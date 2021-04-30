@@ -384,6 +384,27 @@ a {
         color: white; }
     .navbar ul .fa-2x {
       font-size: 1.5rem; }
+  .navbar .form-inline {
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.16) 0px 4px 8px 0px; }
+    .navbar .form-inline input {
+      width: 72%; }
+      .navbar .form-inline input:focus {
+        outline: none; }
+      .navbar .form-inline input::placeholder {
+        opacity: 0.5;
+        font-size: 1rem; }
+  .navbar .form-cont button {
+    background-color: #4d4d4d;
+    color: white; }
+  .navbar #navbarDropdown {
+    position: relative; }
+    .navbar #navbarDropdown::before {
+      position: absolute;
+      content: "";
+      border-left: 1px solid #cccccc;
+      left: 0;
+      width: 1px;
+      height: 70%; }
   .navbar .form-container {
     width: 100%;
     height: 100%;
@@ -468,6 +489,20 @@ a {
       width: 1%;
       height: 90%;
       border-right: 1px solid #cccccc; }
+
+#nav-line {
+  position: relative;
+  padding-right: 0.7rem;
+  margin-right: 0.7rem; }
+  #nav-line::after {
+    display: block;
+    content: '';
+    position: absolute;
+    bottom: 0.4rem;
+    right: 0px;
+    width: 1%;
+    height: 90%;
+    border-right: 1px solid #cccccc; }
 
 .modal {
   width: 100vw;
@@ -565,24 +600,28 @@ a {
     .showcase .cattegories-box {
       height: 91.5%;
       border-radius: 10px 10px 0 0; }
-  .showcase .slick {
-    height: 100%;
-    margin-left: 1rem;
-    margin-right: 3rem; }
-    .showcase .slick-showcase {
-      height: 580px;
-      width: 100%; }
-    .showcase .slick div {
-      width: 100%;
-      height: 100%; }
-      .showcase .slick div img {
+  .showcase .carousel {
+    height: 580px;
+    width: 100%; }
+    .showcase .carousel-inner {
+      height: 100%;
+      margin-left: 1rem;
+      margin-right: 3rem; }
+      .showcase .carousel-inner-item {
+        width: 100%;
+        height: 100%; }
+      .showcase .carousel-inner img {
         height: 100%;
         width: 100%; }
-    .showcase .slick-prev:before, .showcase .slick-next:before {
-      color: black; }
+    .showcase .carousel-indicators li {
+      height: 6px;
+      width: 40px;
+      margin-left: 1rem; }
+    .showcase .carousel-control-next-icon, .showcase .carousel .carousel-control-prev-icon {
+      height: 35px;
+      width: 35px; }
   .showcase .blog-articles {
-    display: grid;
-    grid-template-columns: repeat(2, 2fr);
+    grid-template-columns: repeat(3, 2fr);
     grid-row-start: 4;
     grid-row-end: 6;
     grid-gap: 1rem; }
@@ -595,7 +634,8 @@ a {
     .showcase .blog-articles img {
       width: 40%;
       height: 100%;
-      float: left; }
+      float: left;
+      padding: 0.5rem; }
 
 .boxes-watched .box {
   width: 70px;
