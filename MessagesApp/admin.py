@@ -1,4 +1,5 @@
 from django.contrib import admin
-from .models import Message
+from .models import Complaint, Question
 
-admin.site.register(Message)
+admin.site.register(Complaint)
+admin.site.register(Question)
