@@ -42,7 +42,13 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'Profile.apps.ProfileConfig',
-    'Product.apps.ProductConfig',
+    'ProductApp.apps.ProductappConfig',
+    'AddressBookApp.apps.AddressbookappConfig',
+    'OrdersApp.apps.OrdersappConfig',
+    'ComplainApp.apps.ComplainappConfig',
+    'QuestionApp.apps.QuestionappConfig',
+    'MessagesApp.apps.MessagesappConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
