@@ -7,5 +7,5 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("Profile.urls")),
-    path('', TemplateView.as_view(template_name='index.html'), name="landing-page")
+    path('', TemplateView.as_view(template_name='landing_page.html'), name="landing-page")
 ]
