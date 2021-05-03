@@ -7,3 +7,8 @@ from django.views import View
 class UserAccount(View):
     def get(self, request):
         return HttpResponse("<b>Settings</b>")
+
+
+class Register(View):
+    def get(self, request):
+        return render(request, "profile/register.html")

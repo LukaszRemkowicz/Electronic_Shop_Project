@@ -91,6 +91,9 @@ a {
 
 .font-red {
   color: #ff503c; }
+  .font-red:hover {
+    text-decoration: none;
+    color: #ff503c; }
 
 .font-black {
   color: black; }
@@ -199,6 +202,9 @@ a {
 
 .font-red {
   color: #ff503c; }
+  .font-red:hover {
+    text-decoration: none;
+    color: #ff503c; }
 
 .font-black {
   color: black; }
@@ -352,6 +358,71 @@ a {
       font-size: 1rem;
       font-weight: 100;
       border: none; }
+
+#register-form .form-group input {
+  height: 3.5rem; }
+  #register-form .form-group input::placeholder {
+    opacity: 0.6; }
+
+#register-form button {
+  height: 3rem; }
+
+#register-card {
+  width: 40% !important;
+  padding-bottom: 2rem; }
+  #register-card .card-title h4 {
+    font-size: 1.3rem; }
+  #register-card .card-title p {
+    padding-top: 0.7rem; }
+
+.check {
+  padding-top: 1rem; }
+  .checkbox {
+    width: 19px;
+    margin: 0;
+    margin-right: 0.5rem;
+    height: 19px; }
+  .check .inline {
+    margin-bottom: 0;
+    text-align: left;
+    padding-bottom: 10px; }
+  .check input {
+    margin-top: 2px;
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 10px;
+    line-height: 130%;
+    cursor: pointer; }
+    .check input:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 10px;
+      left: 0;
+      width: 19px;
+      height: 19px;
+      margin-top: -10px;
+      background-color: white;
+      border: 1px solid #4d4d4d; }
+    .check input:after {
+      content: '';
+      position: absolute;
+      top: 9px;
+      left: 4px;
+      width: 10px;
+      height: 6px;
+      margin-top: -5px;
+      border: 2px solid #202121;
+      border-top: none;
+      border-right: none;
+      background: rgba(0, 0, 0, 0);
+      opacity: 0;
+      transform: rotate(-45deg) scale(0);
+      transition: all 0.3s; }
+    .check input:checked::after {
+      opacity: 1;
+      transform: rotate(-45deg) scale(1); }
 
 .navbar {
   display: grid;
