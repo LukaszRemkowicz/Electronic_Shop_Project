@@ -11,7 +11,11 @@
    <section class="align-center my-3 ">
         <div class="container d-flex flex-column align-items-center justify-content-center">
 
+
             <div class="card w-50 d-flex justify-content-center align-items-center" id="register-card">
+                <div class="d-flex flex-row">
+                    {% include 'messages.html' %}
+                </div>
 
                 <div class="card-title  pt-5 pb-4 border-bottom w-75 mx-3 d-flex flex-xl-row justify-content-xl-between flex-column align-items-center">
 
@@ -27,34 +31,39 @@
 
                 </div>
 
-                <form action="" class=" bg-white pt-4 pb-4 my-2 w-75" id="register-form">
+                <form action="{% url 'register' %}" method="post" class=" bg-white pt-4 pb-4 my-2 w-75" id="register-form">
 
                     {% csrf_token %}
+                    {% load widget_tweaks %}
+                    
 
                     <div class="d-flex flex-column form-group">
 
-                        <input type="text" class="form-control my-2" autocomplete="username" id="username" aria-describedby="emailHelp" placeholder="Username">
+
+                       {% render_field form.username class="form-control my-2" %} 
+                        <!-- <input type="text" class="form-control my-2" autocomplete="username" id="username" aria-describedby="emailHelp" placeholder="Username"> -->
 
                     </div>
 
                     <div class="d-flex flex-column form-group">
-
-                        <input type="email" class="form-control my-2" autocomplete="email" id="email" aria-describedby="emailHelp" placeholder="Email">
-
-                    </div>
-                    <div class="d-flex flex-column form-group ">
-
-                        <input type="password" autocomplete="current-password" class="form-control my-2" id="password" placeholder="Password">
+                        {% render_field form.email type="email" class="form-control my-2" autocomplete="email" id="email" aria-describedby="emailHelp" placeholder="Email" %} 
+                        <!-- <input type="email" class="form-control my-2" autocomplete="email" id="email" aria-describedby="emailHelp" placeholder="Email"> -->
 
                     </div>
                     <div class="d-flex flex-column form-group ">
+                          {% render_field form.password1 type="password" autocomplete="current-password" class="form-control my-2" id="password" placeholder="Password" %} 
+                        <!-- <input type="password" autocomplete="current-password" class="form-control my-2" id="password" placeholder="Password">#} -->
 
-                        <input type="password" autocomplete="new-password" class="form-control my-2" id="retype-password" aria-describedby="emailHelp" placeholder="Repeat password">
+                    </div>
+                    <div class="d-flex flex-column form-group ">
+                           {% render_field form.password2 type="password" autocomplete="new-password" class="form-control my-2" id="retype-password" aria-describedby="emailHelp" placeholder="Repeat password" %} 
+                        <!-- <input type="password" autocomplete="new-password" class="form-control my-2" id="retype-password" aria-describedby="emailHelp" placeholder="Repeat password"> -->
 
                     </div>
 
                     <div class="check d-flex justify-content-left w-75">
-                        <input type="checkbox" class="checkbox">
+                         {{ accepted_terms.accepted_terms }} 
+                         <!-- <input type="checkbox" class="checkbox">  -->
                         <p class="inline">I have read and accepted the <a href="" class="font-red">Terms, Conditions and Privacy Policy </a> </p>
                     </div>
 

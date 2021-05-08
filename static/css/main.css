@@ -90,7 +90,7 @@ a {
   background-color: whitesmoke; }
 
 .font-red {
-  color: #ff503c; }
+  color: #ff503c !important; }
   .font-red:hover {
     text-decoration: none;
     color: #ff503c; }

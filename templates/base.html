@@ -16,6 +16,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
 
+    <script rel="script">
+        window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+        }, 5000);
+    </script>
+
     <!-- Custom css -->
     
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
@@ -34,17 +42,13 @@
 
         <!-- navbar -->
         <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light">
+            <nav class="navbar navbar-expand-lg navbar-light d-flex flex-row-lg flex-colum justify-content-center">
                 <a class="navbar-brand" href="#"><img src="{% static 'images/blocks-logo/electronic2.png' %}" alt=""></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <form class="form-inline my-2 my-lg-0 w-100 border rounded-pill d-flex justify-content-between">
-                    <input class="form-control mr-sm-2 border-0 rounded-pill" type="search" placeholder="What are you looking for?" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0 w-100 border rounded-pill d-flex flex-row justify-content-between">
+                    <input class="form-control mr-sm-2 border-0 rounded-pill w-50 w-30-sm" type="search" placeholder="What are you looking for?" aria-label="Search">
                     <div class="form-cont d-flex">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <li class="nav-item dropdown d-inline-lg d-none">
+                            <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Everywhere
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -54,14 +58,18 @@
                             <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
-                        <button class="btn btn-outline-success my-2 my-sm-0 border-0 text-white rounded-pill" type="submit">
+                        <button class="btn btn-outline-success my-sm-0 border-0 text-white rounded-pill" type="submit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="25" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                         </button>
                     </div>
                 </form>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
             
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav mr-auto h-100">
                     <li class="nav-item active" id="nav-line">
                         <a class="btn d-flex flex-column text-center" href="#"><i class="fas fa-headset fa-2x d-flex flex-column text-center"></i><span class="sr-only">(current)</span>Contact</a>
                     </li>
@@ -89,10 +97,6 @@
                 <div class="line-close" data-dismiss="modal" aria-label="Close">
                     <div class="line"></div>
                 </div>
-
-                <!-- <button type="button" class="close " data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button> -->
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-body">
@@ -100,7 +104,7 @@
                                 <div class="inside-container grid-container bg-light-grey border-rounded">
                                     <div class="sign-in flex-container">
                                         <h3 class="inline">Sign in to continue</h3>
-                                        <p class="inline">Not a member yet? <span>Register now</span></p>
+                                        <p class="inline">Not a member yet? <a class="btn mt-0 border-0 pl-1 font-red" href="{% url 'register' %}">Register now</a> </p>
                                         
                                     </div>
                                     <form action="" class="flex-container flex-column">
