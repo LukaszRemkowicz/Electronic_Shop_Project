@@ -3,18 +3,27 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
-from django.views.generic.edit import FormView
+from django.contrib.auth import login
 from django.urls import reverse_lazy
 
+""" class bassed views import """
+
+from django.views.generic.edit import FormView
+from django.views.generic import ListView
 from django.views import View
+from django.contrib.auth.views import LogoutView
+
 from .forms import RegisterForm, AcceptTerms
-from django.contrib.auth import login
+from .models import Profile
 
 
-class UserAccount(View):
+# class Logout(LogoutView):
+#     pass
 
-    def get(self, request):
-        return HttpResponse("<b>Settings</b>")
+
+class UserAccount(ListView):
+    model = Profile
+    template_name= 'profile/account.html'
 
 
 class Register(FormView):
