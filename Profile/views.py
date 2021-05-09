@@ -31,29 +31,15 @@ class Register(FormView):
         return context
 
     def form_valid(self, form): 
-        try:
-            # email=form.cleaned_data['email']
-            email = User.objects.filter(email=form.cleaned_data['email'])[1]
-            messages.error(self.request, "Account registered on that email")
+        user = form.save()
+    
+        if user is not None:
+            login(self.request, user)
+            messages.info(self.request, "account created")
 
-            return redirect('register')
-
-
-        except:
-            user = form.save()
-        
-            if user is not None:
-                login(self.request, user)
-                messages.info(self.request, "account created")
-
-            return super(Register, self).form_valid(form)
-
-            
-
-        
+        return super(Register, self).form_valid(form)
 
     def form_invalid(self, form):
-    
         messages.error(self.request, form.errors)
 
         return super(Register, self).form_invalid(form)
