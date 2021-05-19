@@ -1,15 +1,16 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import User
 
-from ProductApp.models import Product
+
+from ProductApp.models import MainProductDatabase
 from OrdersApp.models import Order
 
-User = settings.AUTH_USER_MODEL
 
 
 class Complaint(models.Model):
     type = models.CharField(default="RMA", max_length=20)
-    product = models.OneToOneField(Product, on_delete=models.CASCADE)
+    product = models.OneToOneField(MainProductDatabase, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
 
     CHOICES = [

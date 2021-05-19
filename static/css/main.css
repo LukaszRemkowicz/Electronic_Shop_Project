@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100&display=swap");
 * {
   padding: 0;
   box-sizing: border-box;
@@ -55,6 +59,10 @@ li {
   background: #ff503c;
   color: white; }
 
+.btn-blue {
+  background: #0169a1;
+  color: white; }
+
 a {
   text-decoration: none;
   color: black; }
@@ -90,13 +98,16 @@ a {
   background-color: whitesmoke; }
 
 .font-red {
-  color: #ff503c !important; }
+  color: #ff503c; }
   .font-red:hover {
     text-decoration: none;
     color: #ff503c; }
 
 .font-black {
   color: black; }
+
+.font-blue {
+  color: #0169a1; }
 
 .line-through {
   text-decoration: line-through;
@@ -166,6 +177,10 @@ li {
   background: #ff503c;
   color: white; }
 
+.btn-blue {
+  background: #0169a1;
+  color: white; }
+
 a {
   text-decoration: none;
   color: black; }
@@ -208,6 +223,9 @@ a {
 
 .font-black {
   color: black; }
+
+.font-blue {
+  color: #0169a1; }
 
 .line-through {
   text-decoration: line-through;
@@ -423,6 +441,79 @@ a {
     .check input:checked::after {
       opacity: 1;
       transform: rotate(-45deg) scale(1); }
+
+.card-border {
+  border-radius: 5px;
+  border-right-width: 0px;
+  border-left-width: 0px; }
+
+.grid-span {
+  grid-template-columns: repeat(14, 1fr);
+  grid-gap: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem; }
+  .grid-span #card1 {
+    grid-column: 1/ span 2;
+    grid-row: 1/ span 1; }
+  .grid-span #card2 {
+    grid-column: 1/ span 2;
+    grid-row: 2/ span 3; }
+  .grid-span #card3 {
+    grid-column: 1/ span 2; }
+  .grid-span #card4 {
+    grid-column: 1/ span 2; }
+  .grid-span #card5 {
+    grid-column: 1/ span 2; }
+  .grid-span #card6 {
+    grid-column: 1/ span 2; }
+  .grid-span #card7 {
+    grid-column: 3/ span 11;
+    grid-row: 1/ span 7; }
+  .grid-span #card8 {
+    grid-column: 3/ span 11;
+    grid-row: 7/ span 8; }
+
+.cards .card-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  font-family: "Poppins", sans-serif; }
+
+.card-body .card-text {
+  font-size: 0.8rem;
+  font-weight: 100;
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  text-decoration: none; }
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(9, 19, 105, 0.027); }
+
+.account-column {
+  width: 15%;
+  font-size: 0.9rem;
+  font-weight: 300;
+  font-family: "Poppins", sans-serif; }
+
+.account-orders {
+  padding: 5px;
+  width: 100px;
+  border-radius: 7px;
+  font-size: 0.9rem;
+  font-weight: 100;
+  margin: 0 auto;
+  cursor: pointer; }
+  .account-orders:hover {
+    text-decoration: none; }
+
+.filters-buttons {
+  width: 200px; }
+
+.filter-active {
+  border: 1px solid #e7e7e7;
+  border-radius: 5px;
+  color: black; }
 
 .navbar {
   display: grid;

@@ -1,6 +1,6 @@
 from django.db import models
 
-from ProductApp.models import Product
+from ProductApp.models import MainProductDatabase
 
 
 class Order(models.Model):
@@ -10,7 +10,7 @@ class Order(models.Model):
 
     # CHOICESs = ((str(prod.name), str(prod.name)) for prod in Product.objects.filter())
 
-    product = models.ManyToManyField(Product)
+    product = models.ManyToManyField(MainProductDatabase)
 
     CHOICES = [
         ("Sent", "Sent"),

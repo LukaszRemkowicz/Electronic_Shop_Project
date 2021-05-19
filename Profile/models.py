@@ -16,6 +16,7 @@ class Profile(models.Model):
     questions = models.OneToOneField(Question, on_delete=models.CASCADE, blank=True, null=True)
     complain = models.OneToOneField(Complaint, on_delete=models.CASCADE, blank=True, null=True)
     is_staff = models.BooleanField(default=False)
+    keep_me = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

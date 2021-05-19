@@ -19,6 +19,10 @@ import os
 
 from dotenv import load_dotenv
 
+
+from django.contrib.messages import constants as messages
+
+
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
@@ -47,6 +51,7 @@ INSTALLED_APPS = [
     'OrdersApp.apps.OrdersappConfig',
     'MessagesApp.apps.MessagesappConfig',
     'widget_tweaks',
+    'reset_migrations',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -64,6 +69,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'electronic_shop.middlewere.LoginFormMiddleware',
+
 ]
 
 ROOT_URLCONF = 'electronic_shop.urls'
@@ -79,10 +86,16 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'electronic_shop.custom_context_processor.login_form_content',
+               
             ],
         },
     },
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'electronic_shop.custom_context_processor.login_form_content',
+)
 
 WSGI_APPLICATION = 'electronic_shop.wsgi.application'
 
@@ -149,7 +162,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-from django.contrib.messages import constants as messages
 
 MESSAGE_TAGS = {
 messages.DEBUG: 'alert-info',
@@ -158,3 +170,5 @@ messages.SUCCESS: 'alert-success',
 messages.WARNING: 'alert-warning',
 messages.ERROR: 'alert-danger',
 }
+
+LOGIN_URL = 'landing-page'

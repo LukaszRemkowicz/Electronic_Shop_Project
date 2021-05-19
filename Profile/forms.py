@@ -2,6 +2,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import authenticate
+from django.contrib.auth import login
+
 
 class RegisterForm(UserCreationForm):
 
@@ -22,9 +26,27 @@ class RegisterForm(UserCreationForm):
 
         fields = UserCreationForm.Meta.fields + ('username', 'password1', 'password2', 'email')
 
+class CustomLoginForm(forms.Form):
+    username = forms.CharField(required=True)
+    password = forms.CharField(required=True)
+    
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+        password = self.data.get('password')
+        if User.objects.filter(username=username).exists():
+            try:
+                user = authenticate(username=username, password=password)
+            except:
+                raise forms.ValidationError("Error")
+        else:
+            raise forms.ValidationError("Wrong login")
+        return username
         
-
 
 class AcceptTerms(forms.Form):
     accepted_terms = forms.BooleanField(required=True, widget=forms.CheckboxInput(attrs={'type': 'checkbox',
+                                                                                         'class': 'checkbox'}))
+    
+class KeepMeLoggedIn(forms.Form):
+    keep_me_logged = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'type': 'checkbox',
                                                                                          'class': 'checkbox'}))

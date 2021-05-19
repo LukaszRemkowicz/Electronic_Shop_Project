@@ -5,39 +5,70 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.urls import reverse_lazy
+from django.contrib.auth import authenticate
 
 """ class bassed views import """
 
 from django.views.generic.edit import FormView
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView
 from django.views import View
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import LogoutView, LoginView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .forms import RegisterForm, AcceptTerms
+
+from .forms import RegisterForm, AcceptTerms, CustomLoginForm
 from .models import Profile
+from ProductApp.models import MainProductDatabase as Products
 
 
-# class Logout(LogoutView):
-#     pass
+class LandingPage(FormView):
+    form_class = CustomLoginForm
+    template_name = 'landing_page.html'
+    redirect_authenticated_user = True
+    success_url = reverse_lazy('account')
+    
+    def form_valid(self, form): 
+        username = self.request.POST.get('username')
+        password = self.request.POST.get('password')
+        user = authenticate(self.request, username=username, password=password)
+        if user is not None:
+            login(self.request, user)
+        print('user logged in')
+        # messages.info(self.request, "You have logged in")
 
+        return super(LandingPage, self).form_valid(form)
+        
+    def form_invalid(self, form):
+        messages.error(self.request, form.errors)
 
-class UserAccount(ListView):
+        return redirect('landing-page')
+        
+
+class UserAccount(LoginRequiredMixin, FormView):
     model = Profile
+    form_class = CustomLoginForm
     template_name= 'profile/account.html'
-
+    # redirect_authenticated_user = True
+    # success_url = reverse_lazy('account')
+    
+    
+ 
 
 class Register(FormView):
     template_name = 'profile/register.html'
     form_class = RegisterForm
     redirect_authenticated_user = True
     success_url = reverse_lazy('landing-page')
+    
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        accepted_terms = AcceptTerms
+        context = super().get_context_data(**kwargs)     
+        accepted_terms = AcceptTerms()
+        context['register_form'] = context.get('form')
         context['accepted_terms'] = accepted_terms
-
         return context
+    
 
     def form_valid(self, form): 
         user = form.save()
@@ -53,55 +84,4 @@ class Register(FormView):
 
         return super(Register, self).form_invalid(form)
 
-
-
-
-    # form = register
-    # accepted_terms = terms
-    # content = {'form': form,
-    #            'accepted_terms': accepted_terms}
-    # template_name = 'profile/register.html'
-    #
-    # def get(self, request):
-    #     form = self.form
-    #     accepted_terms = self.accepted_terms
-    #     content = self.content
-    #     print('dlaczego tutaj')
-    #
-    #     return render(request, self.template_name, content)
-    #
-    # def post(self, request, *args, **kwargs):
-    #     form = self.form(request.POST)
-    #     accepted_terms = self.accepted_terms(request.POST)
-    #     content = self.content
-    #
-    #     if form.is_valid():
-    #         username = form.data['username']
-    #         password = form.data['password1']
-    #         password2 = form.data['password2']
-    #         email = form.data['email']
-    #         try:
-    #             user = User.objects.get(email=email)
-    #             messages.error(request, "There is user registered with that email")
-    #             print('not ok')
-    #
-    #             try:
-    #                 user = User.objects.get(username=username)
-    #                 messages.error(request, "There is user registered with that email")
-    #                 print('not ok')
-    #                 return redirect('home')
-    #
-    #             except ObjectDoesNotExist:
-    #                 messages.success(request, "Account created")
-    #                 print('not ok')
-    #                 return redirect('register')
-    #
-    #         except ObjectDoesNotExist:
-    #             messages.success(request, "Account created")
-    #             print('not ok')
-    #             return redirect('register')
-    #
-    #     else:
-    #         messages.error(request, form.errors)
-    #     return render(request, self.template_name, content)
 
