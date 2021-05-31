@@ -19,7 +19,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import RegisterForm, AcceptTerms, CustomLoginForm
 from .models import Profile
-from ProductApp.models import MainProductDatabase as Products
+# from ProductApp.models import MainProductDatabase as Products
 
 
 class LandingPage(FormView):
@@ -49,8 +49,8 @@ class UserAccount(LoginRequiredMixin, FormView):
     model = Profile
     form_class = CustomLoginForm
     template_name= 'profile/account.html'
-    # redirect_authenticated_user = True
-    # success_url = reverse_lazy('account')
+    redirect_authenticated_user = True
+    success_url = reverse_lazy('account')
     
     
  
@@ -64,9 +64,9 @@ class Register(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)     
-        accepted_terms = AcceptTerms()
-        context['register_form'] = context.get('form')
-        context['accepted_terms'] = accepted_terms
+        # accepted_terms = AcceptTerms()
+        # context['register_form'] = context.get('register_form')
+        # context['accepted_terms'] = accepted_terms
         return context
     
 

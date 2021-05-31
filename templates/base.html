@@ -41,138 +41,140 @@
     <header class="bg-white">
 
         <!-- navbar -->
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light d-flex flex-row-lg flex-colum justify-content-center">
-                <a class="navbar-brand" href="{% url 'landing-page' %}"><img src="{% static 'images/blocks-logo/electronic2.png' %}" alt=""></a>
-                <form class="form-inline my-2 my-lg-0 w-100 border rounded-pill d-flex flex-row justify-content-between">
-                    <input class="form-control mr-sm-2 border-0 rounded-pill w-50 w-30-sm" type="search" placeholder="What are you looking for?" aria-label="Search">
-                    <div class="form-cont d-flex">
-                        <li class="nav-item dropdown d-inline-lg d-none">
-                            <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Everywhere
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                        <button class="btn btn-outline-success my-sm-0 border-0 text-white rounded-pill" type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="25" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                        </button>
-                    </div>
-                </form>
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="navbar-brand" href="{% url 'landing-page' %}"><img src="{% static 'images/blocks-logo/electronic2.png' %}" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-            
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto h-100">
-                    <li class="nav-item active" id="nav-line">
-                        <a class="btn d-flex text-center" href="#"><i class="fas fa-headset fa-2x d-flex flex-column text-center"></i><span class="sr-only">(current)</span>Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        {% if user.is_authenticated %} 
-                        <a href="{% url 'account' %}" class="btn d-flex text-center"><i class="fas fa-user-alt fa-2x"></i> <span class="nav-font-size"></span>
-                        
-                            {% if user.first_name and user.last_name %}
-
-                            <h5 style="font-size: 0.7rem">{{user.first_name }} {{ user.last_name }}</h5>
-
-                            
-
-                            {% else %}
-                            {{ user.username }}
-
-                            {% endif %}
-                        
-                         </a> 
-
-                        {% else %}
-                        <a href="" data-toggle="modal" data-target="#Modal1" class="btn d-flex  text-center"><i class="fas fa-user-alt fa-2x"></i> <span class="nav-font-size"></span>Login</a>
-
-                        {% endif %}
-                        
-                    </li>
-                    <li class="nav-item">
-                    <a href="" class="btn d-flex  text-center"><i class="fas fa-heart fa-2x d-flex  text-center"></i><span class="nav-font-size">Listy zakupowe</span></a> 
-                    </li>
-                    <li class="nav-item">
-                    <a class="btn d-flex  text-center" href="#"><i class="fas fa-shopping-cart fa-2x"></i><span class="nav-font-size"> 0,00zł</span></a>
-                    </li>
-                </ul>
+                    <form class="form-inline my-2 my-lg-0 flex-row w-100 border rounded-pill d-flex justify-content-between">
+                        <div class="search-bar text-left">
+                            <input class="form-control  mr-sm-2 border-0 rounded-pill" type="search" placeholder="What are you looking for?" aria-label="Search">
+                        </div>
+                        <div class="form-cont d-flex ">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Everywhere
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>
+                            <button class="btn btn-outline-success my-sm-0 border-0 text-white rounded-pill" type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="25" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            </button>
+                        </div>
+                    </form>
                 
-                </div>
-            </nav>
-        </div>
+                    <div class=" collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active" id="nav-line">
+                                <a class="btn d-flex flex-column text-center" href="#"><i class="fas fa-headset fa-2x d-flex flex-column text-center"></i><span class="nav-font-size">Contact</span></a>
+                            </li>
+                            <li class="nav-item">
+                            {% if user.is_authenticated %} 
+                                <a href="{% url 'account' %}" class="btn d-flex text-center"><i class="fas fa-user-alt fa-2x"></i> <span class="nav-font-size"></span>
+                                
+                                    {% if user.first_name and user.last_name %}
+
+                                    <h5 style="font-size: 0.7rem">{{user.first_name }} {{ user.last_name }}</h5>
+
+                                    {% else %}
+                                    {{ user.username }}
+
+                                    {% endif %}
+                                
+                                </a> 
+
+                                {% else %}
+                                <a href="" data-toggle="modal" data-target="#Modal1" class="btn d-flex  text-center"><i class="fas fa-user-alt fa-2x"></i> <span class="nav-font-size"></span>Login</a>
+
+                                {% endif %}
+                            
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="btn d-flex flex-column text-center"><i class="fas fa-heart fa-2x d-flex flex-column text-center"></i><span class="nav-font-size">Listy zakupowe</span></a> 
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn d-flex flex-column text-center" href="#"><i class="fas fa-shopping-cart fa-2x"></i><span class="nav-font-size"> 0,00zł</span></a>
+                            </li>
+                        </ul>
+                
+                    </div>
+                </nav>
+            </div>
 
 
         <!-- Modal login-->
 
             {% if not user.is_authenticated %}
-                    <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-                        <div class="line-close" data-dismiss="modal" aria-label="Close">
-                            <div class="line"></div>
-                        </div>
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <div class="form-container ">
-                                        <div class="inside-container grid-container bg-light-grey border-rounded">
-                                            <div class="sign-in flex-container">
-                                                <h3 class="inline">Sign in to continue</h3>
-                                                <p class="inline">Not a member yet? <a class="btn mt-0 border-0 pl-1 font-red" href="{% url 'register' %}">Register now</a> </p>
-                                                
+                    <div class="line-close" data-dismiss="modal" aria-label="Close">
+                        <div class="line"></div>
+                    </div>
+
+                    <!-- <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button> -->
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="form-container">
+                                    <div class="inside-container d-flex flex-column bg-light-grey border-rounded">
+                                        <div class="sign-in flex-container">
+                                            <h3 class="inline"><span>Sign in</span> to continue</h3>
+                                            <p class="inline">Not a member yet? <a class="btn mt-0 border-0 pl-1 font-red" href="{% url 'register' %}">Register now</a> </p>
+                                                    
+                                        </div>
+                                        <form action="{% url 'landing-page' %}" method="post" class="flex-container flex-column login-form">
+
+                                            {% csrf_token %}
+                                            {% load widget_tweaks %}
+
+                                            {% render_field login_form.username type="text" autocomplete="username" placeholder="Email or Username" %}
+                                            {% render_field login_form.password type="password" autocomplete="current-password" placeholder="Password" %} 
+                                            
+
+                                            {% comment %} <input type="text" autocomplete="username" placeholder="Email or Username"> {% endcomment %}
+                                            {% comment %} <input type="password" autocomplete="current-password" placeholder="Password"> {% endcomment %}
+                                            <div class="check flex-container">
+                                                {{ keep_me.keep_me_logged }}
+                                                {% comment %} <input type="checkbox" class="checkbox"> {% endcomment %}
+                                                <p class="inline">Keep me loggeed in</p> 
                                             </div>
-                                            <form action="{% url 'landing-page' %}" method="post" class="flex-container flex-column">
-
-                                                {% csrf_token %}
-                                                {% load widget_tweaks %}
-
-                                                {% render_field form.username type="text" autocomplete="username" placeholder="Email or Username" %}
-                                                {% render_field form.password type="password" autocomplete="current-password" placeholder="Password" %} 
-                                                
-
-                                                {% comment %} <input type="text" autocomplete="username" placeholder="Email or Username"> {% endcomment %}
-                                                {% comment %} <input type="password" autocomplete="current-password" placeholder="Password"> {% endcomment %}
-                                                <div class="check flex-container">
-                                                    {{ keep_me.keep_me_logged }}
-                                                    {% comment %} <input type="checkbox" class="checkbox"> {% endcomment %}
-                                                    <p class="inline">Keep me loggeed in</p> 
-                                                </div>
-                                                <button type="submit" class="btn-red">Login Now</button>
-                                            </form>
-                                            <p><a href="">Forgot your password?</a></p>
-                                            <div class="social-sigin">
-                                                <h2>Or sign in with</h2>
-                        
-                                                <div class="social-buttons grid-container">
-                                                    <a href=""> <img src="{% static 'images/social-logos/google-icon.svg' %}" alt="">
-                                                        Google
-                                                    </a>
-                                                    <a href=""> <img src="{% static 'images/social-logos/twitter (2).svg' %}" alt="">
-                                                        Twitter</a>
-                                                    <a href=""> <img src="{% static 'images/social-logos/facebook-3.svg'%} " alt="">
-                                                        Facebook</a>
-                                                </div>
-                        
+                                            <button type="submit" class="btn-red">Login Now</button>
+                                        </form>
+                                        <p class="forgot-pass"><a href="">Forgot your password?</a></p>
+                                        <div class="social-sigin">
+                                            <h2>Or sign in with</h2>
+                    
+                                            <div class="social-buttons grid-container">
+                                                <a href=""> <img src="images/social-logos/google-icon.svg" alt="">
+                                                    Google
+                                                </a>
+                                                <a href=""> <img src="images/social-logos/twitter (2).svg" alt="">
+                                                    Twitter</a>
+                                                <a href=""> <img src="images/social-logos/facebook-3.svg" alt="">
+                                                    Facebook</a>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
             {% endif %}
 
         <!-- Second bar -->
 
-        <section class="another-navbar">
+        <section class="another-navbar mt-3 bg-white box-shadow">
             <div class="container flex-container fas-flex">
                 <i class="fas fa-desktop"><span class='fas-font'> Computers</span></i>
                 <i class="fas fa-laptop"><span class='fas-font'> Laptops</span></i>
@@ -261,31 +263,16 @@
                         <i class="flex-container">
                             <svg class="social-objects" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Twitter icon</title><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
                         </i>
-                     
+                    
                     </div>
-                    <!-- <div class="icons flex-container">
-                    
-                        <i class="fab fa-facebook-f fa-2x"></i>
-                        <i class="fab fa-twitter fa-2x"></i>
-                        <i class="fab fa-instagram fa-2x"></i>
-                        <i class="fab fa-youtube fa-2x"></i>
-                    </div> -->
-                    
-
-                </div>
-                
+                </div>        
+            </div>           
             </div>
 
         </div>
         
     </footer>
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
-    <!-- <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <script type="text/javascript" src="static/js/slick.min.js"></script> -->
+    
 
 </body>
 </html>

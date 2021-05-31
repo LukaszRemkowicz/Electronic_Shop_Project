@@ -1,0 +1,104 @@
+#register-form{
+
+    & .form-group{
+
+        & input{
+            height: 3.5rem;
+
+            &::placeholder{
+                opacity: 0.6;
+            }
+        }
+    }
+
+    & button{
+        height: 3rem;
+    }
+
+    
+}
+
+#register-card{
+    width: 40% !important;
+    padding-bottom: 2rem;
+
+    & .card-title{
+    
+        & h4{
+            font-size: 1.3rem;
+            
+        }
+
+        & p{
+            padding-top: 0.7rem;
+        }
+
+    }
+}
+
+.check{
+
+    padding-top: 1rem;
+
+    &box{
+
+    width: 19px;
+    margin: 0;
+    margin-right: 0.5rem;
+    height: 19px;
+
+    }
+
+    & .inline{
+        margin-bottom: 0;
+        text-align: left;
+        padding-bottom: 10px;
+        }
+
+    & input{
+        margin-top: 2px;
+        display: inline-block;
+        position: relative;
+        padding-left: 25px;
+        margin-right: 10px;
+        line-height: 130%;
+        cursor: pointer;
+        
+        &:before{
+            content: '';
+            display: block;
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 19px;
+            height: 19px;
+            margin-top: -10px;
+            background-color: white;
+            border: 1px solid $grey-main-color;
+        }
+
+        &:after{
+            content: '';
+            position: absolute;
+            top: 9px;
+            left: 4px;
+            width: 10px;
+            height: 6px;
+            margin-top: -5px;
+            border: 2px solid #202121;
+            border-top: none;
+            border-right: none;
+            background: rgba(0,0,0,0);
+            opacity: 0;
+            transform: rotate(-45deg) scale(0);
+            transition: all 0.3s;
+        }
+
+        &:checked::after{
+            opacity: 1;
+            transform: rotate(
+        -45deg
+        ) scale(1);
+        }
+    }
+}
