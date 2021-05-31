@@ -14,7 +14,7 @@ media
 
 migrations
 static/*
-electronic_shop/statics/*
+electronic_shop/statics/images
 .vscode/
 
 # If you are using PyCharm #
