@@ -19,11 +19,9 @@ class RegisterForm(UserCreationForm):
         email = self.cleaned_data.get("email")
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("Acount with that Email already exist")
-       
 
     class Meta:
         model = User
-
         fields = UserCreationForm.Meta.fields + ('username', 'password1', 'password2', 'email')
 
 class CustomLoginForm(forms.Form):

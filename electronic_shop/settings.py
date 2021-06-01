@@ -45,6 +45,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    
+    # Custom APPS
+    
     'Profile.apps.ProfileConfig',
     'ProductApp.apps.ProductappConfig',
     'AddressBookApp.apps.AddressbookappConfig',
@@ -52,13 +61,6 @@ INSTALLED_APPS = [
     'MessagesApp.apps.MessagesappConfig',
     'widget_tweaks',
     'reset_migrations',
-
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
@@ -105,8 +107,12 @@ WSGI_APPLICATION = 'electronic_shop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST')
+        
     }
 }
 
@@ -149,7 +155,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, "electronic_shop/statics"),
+        os.path.join(BASE_DIR, "electronic_shop/static"),
         os.path.join(BASE_DIR, "static"),
     ]
     

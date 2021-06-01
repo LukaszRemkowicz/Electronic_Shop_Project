@@ -60,16 +60,14 @@ class Register(FormView):
     form_class = RegisterForm
     redirect_authenticated_user = True
     success_url = reverse_lazy('landing-page')
-    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)     
-        # accepted_terms = AcceptTerms()
-        # context['register_form'] = context.get('register_form')
-        # context['accepted_terms'] = accepted_terms
+        accepted_terms = AcceptTerms()
+        context['register_form'] = context.get('register_form')
+        context['accepted_terms'] = accepted_terms
         return context
     
-
     def form_valid(self, form): 
         user = form.save()
     
@@ -83,5 +81,5 @@ class Register(FormView):
         messages.error(self.request, form.errors)
 
         return super(Register, self).form_invalid(form)
-
+    
 

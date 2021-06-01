@@ -13,8 +13,8 @@ media
 *.bak
 
 migrations
-static/*
-electronic_shop/statics/images
+static
+/electronic_shop/statics/images
 .vscode/
 
 # If you are using PyCharm #
