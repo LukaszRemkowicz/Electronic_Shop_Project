@@ -5,7 +5,7 @@ from AddressBookApp.models import AddressBook
 from MessagesApp.models import Complaint, Question
 from OrdersApp.models import Order
 
-User = settings.AUTH_USER_MODEL
+from django.contrib.auth.models import User
 
 
 class Profile(models.Model):

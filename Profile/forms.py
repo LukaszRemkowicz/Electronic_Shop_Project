@@ -7,7 +7,10 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login
 
 
-class RegisterForm(UserCreationForm):
+class RegisterForm(UserCreationForm):   
+    class Meta:
+        model = User
+        fields = UserCreationForm.Meta.fields + ('username', 'password1', 'password2', 'email')
 
     def clean_username(self):
         username = self.cleaned_data.get("username")
@@ -20,9 +23,6 @@ class RegisterForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("Acount with that Email already exist")
 
-    class Meta:
-        model = User
-        fields = UserCreationForm.Meta.fields + ('username', 'password1', 'password2', 'email')
 
 class CustomLoginForm(forms.Form):
     username = forms.CharField(required=True)
