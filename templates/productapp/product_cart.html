@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+
+    {% for product in query %}
+        <section class="my-2">
+            <div class="container bg-white m-auto box-shadow">
+                <div class="small-container m-auto justify-content-center py-3">
+                    <li>{{ product.ean }}</li>
+                    <a href="{% url 'product_page' product.id %}?id={{ product.id }}" class="btn btn-danger"> go to product </a>
+                </div>
+            </div>
+        </section>
+        
+    {% endfor %}
+    
+{% endblock %}

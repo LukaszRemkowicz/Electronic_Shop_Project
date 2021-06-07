@@ -14,17 +14,13 @@
                 <div class="alarm-box cattegories-box bg-white">
 
                     <ul>
-                        <li>Coputers</li>
-                        <li>Laptops</li>
-                        <li>TV's</li>
-                        <li>Servers</li>
-                        <li>Tablets</li>
-                        <li>Smartphones</li>
-                        <li>HDD's</li>
-                        <li>Computer components</li>
+                        {% for cattegory in query %}
+                            <li><a href="{% url 'products_cart' %}?cattegory={{ cattegory }}">{{ cattegory }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
+            
             <!-- Carousel section -->
 
             <div id="carouselLandinpage" class="carousel slide carousel-fade" data-ride="carousel">

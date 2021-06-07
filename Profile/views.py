@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate
+from typing import Any, Dict
 
 """ class bassed views import """
 
@@ -19,7 +20,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import RegisterForm, AcceptTerms, CustomLoginForm
 from .models import Profile
-# from ProductApp.models import MainProductDatabase as Products
+from ProductApp.models import MainProductDatabase as Products
+from ProductApp.models import CHOICES
 
 
 class LandingPage(FormView):
@@ -43,6 +45,12 @@ class LandingPage(FormView):
         messages.error(self.request, form.errors)
 
         return redirect('landing-page')
+    
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super(LandingPage, self).get_context_data(**kwargs)
+        query = [product_cat[0] for product_cat in CHOICES]
+        context['query'] = query
+        return context
         
 
 class UserAccount(LoginRequiredMixin, FormView):

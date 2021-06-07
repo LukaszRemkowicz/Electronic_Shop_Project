@@ -30,7 +30,10 @@
 
     <!-- Custom Scripts -->
 
-    <script type="text/javascript" src="{% static 'js/main.js' %}"></script
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <script>
+        var user = '{{ request.user }}'
+    </script>
 
 
     <!-- Fonts -->
@@ -97,7 +100,7 @@
                                 {% else %}
                                 <a href="" data-toggle="modal" data-target="#Modal1" class="btn d-flex  text-center"><i class="fas fa-user-alt fa-2x"></i> <span class="nav-font-size"></span>Login</a>
 
-                                {% endif %}
+                            {% endif %}
                             
                             </li>
                             <li class="nav-item">
@@ -334,6 +337,8 @@
 
             });
     </script>
+
+    <script src="{% static 'js/cart.js' %}" type="text/javascript"></script>   
 
 </body>
 </html>
