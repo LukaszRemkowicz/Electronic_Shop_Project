@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'AddressBookApp.apps.AddressbookappConfig',
     'OrdersApp.apps.OrdersappConfig',
     'MessagesApp.apps.MessagesappConfig',
+    'ShoppingCardApp.apps.ShoppingcardappConfig',
     'widget_tweaks',
     'reset_migrations',
 ]
