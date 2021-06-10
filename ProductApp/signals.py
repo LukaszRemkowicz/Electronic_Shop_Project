@@ -45,6 +45,12 @@ def create_product(sender, instance, created, **kwargs):
             product = choose_model(instance.__class__.__name__, instance)
             product.ean = instance.ean
             product.cattegory = instance.cattegory
+            product.name = instance.name
+            product.price = instance.price
+            product.pieces = instance.pieces
+            product.promotion = instance.promotion
+            product.main_photo = instance.main_photo
+            
             
     
         

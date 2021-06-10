@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="m-auto">
+    <div class="container w-100 border-rounded d-flex">
+        <div class="card my-1 w-75">
+            <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">name</th>
+                        <th scope="col">price</th>
+                        <th scope="col">quantity</th>
+                        <th scope="col">sum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <td scope="row">{{ item.product.name }}</td>
+                                <td scope="row">{{ item.product.price|floatformat:2 }}</td>
+                                <td scope="row">{{ item.quantity }}</td>
+                                <td scope="row">{{ item.get_total|floatformat:2 }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+            </table>
+        </div>
+        <div class="total card my-1 w-25">
+            Total:
+            {{ order.get_cart_total }}
+            
+        </div>
+    </div>
+</section>
+
+
+
+
+{% endblock %}

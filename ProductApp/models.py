@@ -28,7 +28,8 @@ CHOICES = [
 
 
 class Phones(models.Model):
-    name = models.CharField(max_length=20)
+    
+    name = models.CharField(max_length=20, default='')
     price = models.FloatField(max_length=10)
     pieces = models.IntegerField()
     promotion = models.FloatField(blank=True, null=True)
@@ -77,7 +78,9 @@ class Phones(models.Model):
     
     
 class Monitors(models.Model):
-    name = models.CharField(max_length=20)
+    
+    main_photo = models.ImageField(null=True, blank=True)
+    name = models.CharField(max_length=20, default='')
     price = models.FloatField(max_length=10)
     pieces = models.IntegerField()
     promotion = models.FloatField(blank=True, null=True)
@@ -120,6 +123,11 @@ class Monitors(models.Model):
 
     
 class MainProductDatabase(models.Model):
+    
+    name = models.CharField(max_length=20, default='')
+    price = models.FloatField(max_length=10, default=0)
+    pieces = models.IntegerField(default=0)
+    promotion = models.FloatField(blank=True, null=True)
     phones_product_data = models.OneToOneField(Phones, on_delete=models.CASCADE, null=True, blank=True)
     monitors_product_data = models.OneToOneField(Monitors, on_delete=models.CASCADE, default='')
     ean = models.IntegerField(null=True, blank=True, unique=True)
