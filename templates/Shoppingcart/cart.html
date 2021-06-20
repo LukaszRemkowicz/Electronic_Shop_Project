@@ -21,6 +21,7 @@
                                 <td scope="row">{{ item.product.price|floatformat:2 }}</td>
                                 <td scope="row">{{ item.quantity }}</td>
                                 <td scope="row">{{ item.get_total|floatformat:2 }}</td>
+                                <a href=""></a>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -28,7 +29,7 @@
         </div>
         <div class="total card my-1 w-25">
             Total:
-            {{ order.get_cart_total }}
+            {{ order.get_cart_total|floatformat:2 }}
             
         </div>
     </div>

@@ -7,14 +7,14 @@ from ProductApp.models import MainProductDatabase
 from .models import Order, OrderItem
 
 def update_item(request):
-    data = json.loads(request.data)
+    data = json.loads(request.body)
     product_id = data['productId']
     action = data['action']
     
     customer = request.user.customer
     product = MainProductDatabase.objects.get(id=product_id)
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
-    orderItem, created = Order.objects.get_or_create(order=order, product=product)
+    orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
     
     if action == 'add':
         orderItem.quantity = (orderItem.quantity + 1)

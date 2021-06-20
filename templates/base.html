@@ -34,6 +34,8 @@
     <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
     <script>
         var user = '{{ request.user }}'
+        var orderCartTotal = '{{ order.get_cart_items }}'
+
         function getCookie(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -125,8 +127,8 @@
                             </li>
                                                         
                             <li class="nav-item" >
-                                <div id="shopping-cart" data-totalitems="0"> 
-                                    <a data-product="{{ product.id }}" data-action="add" class="btn d-flex flex-column text-center" href="#"><i class="fas fa-shopping-cart fa-2x shopping-cart"></i><span class="nav-font-size"> 0,00zł</span></a>
+                                <div id="shopping-cart" data-totalitems={% if not order %}'0'{% else %}"{{ order.get_cart_items }}"{% endif %}> 
+                                    <a data-product="{{ product.id }}" data-action="add" class="btn d-flex flex-column text-center" href="{% url 'shopping-cart' %}"><i class="fas fa-shopping-cart fa-2x shopping-cart"></i><span class="nav-font-size"> 0,00zł</span></a>
                                 </div>
                             </li>
                         </ul>
