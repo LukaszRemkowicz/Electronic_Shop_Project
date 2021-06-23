@@ -124,7 +124,8 @@ class Monitors(models.Model):
     
 class MainProductDatabase(models.Model):
     
-    name = models.CharField(max_length=20, default='')
+    img = models.ImageField(null=True, blank=True, upload_to='products_pic')
+    name = models.CharField(max_length=100, default='')
     price = models.FloatField(max_length=10, default=0)
     pieces = models.IntegerField(default=0)
     promotion = models.FloatField(blank=True, null=True)
@@ -136,6 +137,15 @@ class MainProductDatabase(models.Model):
 
     def __str__(self) -> str:
         return f'Product: {self.monitors_product_data.name}'
+    
+    @property
+    def get_img(self) -> str:
+        try:
+            url = self.img.url
+        except:
+            url=''
+        
+        return url
     
     
 class Laptops(models.Model):

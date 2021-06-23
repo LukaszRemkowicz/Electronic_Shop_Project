@@ -3,35 +3,59 @@
 {% block content %}
 
 <section class="m-auto">
-    <div class="container w-100 border-rounded d-flex">
-        <div class="card my-1 w-75">
-            <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">name</th>
-                        <th scope="col">price</th>
-                        <th scope="col">quantity</th>
-                        <th scope="col">sum</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for item in items %}
-                            <tr>
-                                <td scope="row">{{ item.product.name }}</td>
-                                <td scope="row">{{ item.product.price|floatformat:2 }}</td>
-                                <td scope="row">{{ item.quantity }}</td>
-                                <td scope="row">{{ item.get_total|floatformat:2 }}</td>
-                                <a href=""></a>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-            </table>
+    <div class="small-container w-100 border-rounded d-flex">
+        <div class="col-9 m-5 bg-white box-shadow ">
+            <div class="summary-container m-5">
+                    <div class="columns-name row py-3 mx-2 my-2 text-left">
+                        <p class="col-2"></p>
+                        <p class="col-6">Item</p>
+                        <p class="col-2">Quantity</p>
+                        <p class="col-2">Price</p>
+                    </div>
+                    {% for item in items %}
+                        <div class="row py-3 mx-2 my-2 row-box">
+                            <div class="pic-div col-2">
+                                <img src="{{ item.product.get_img }}" alt="">
+                            </div>
+                            <div class="product-cart-description col-6 d-flex align-items-center">
+                                <p>{{ item.product.name }}</p>
+                            </div>
+                            <div class="add-more-section col-4 d-flex p-0 align-items-center">
+                                <div class="quantity w-50 d-flex h-100">
+                                    <p class="add-more-icons text-left align-self-center">{{ item.quantity }}</p> 
+                                    <div class="arrows d-flex flex-column justify-content-center">
+                                        <a href=""><i class="fas fa-caret-up"></i></a>
+                                        <a href=""><i class="fas fa-caret-down"></i></a>
+                                    </div>
+                                </div> 
+                                <p class="price-summ-section w-25 text-left">{{ item.get_total|floatformat:2 }} $</p>
+                                <div class="trash-icon w-25">
+                                    <a href="" class=""><i class="fas fa-trash-alt align-self-center"></a></i>
+                                </div>
+                                
+                        
+                            </div>
+                        </div>
+                        
+                    {% endfor %}
+            </div>
         </div>
-        <div class="total card my-1 w-25">
-            Total:
-            {{ order.get_cart_total|floatformat:2 }}
-            
+        <div class="col-3 mt-5 mb-5 mx-3 bg-white box-shadow price-info">
+            <div class="summary-container py-3 px-2 w-100">
+                <div class="price-row col-12 d-flex justify-content-between">
+
+                    <p class="d-flex align-self-center">Subtotal ({% if order.get_cart_items == 1 %}Item {% else %}Items{% endif %}: {{ order.get_cart_items }})</p>
+                    <p class="">{{ order.get_cart_total|floatformat:2 }}$</p> 
+                </div>
+                <div class="price-row-btn col-12 d-flex justify-content-center btn-red">
+                Proceed to checkout
+                </div>
+            </div>
         </div>
+
+
+
+        
     </div>
 </section>
 

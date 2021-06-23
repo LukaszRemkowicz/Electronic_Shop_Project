@@ -49,7 +49,7 @@ def create_product(sender, instance, created, **kwargs):
             product.price = instance.price
             product.pieces = instance.pieces
             product.promotion = instance.promotion
-            product.main_photo = instance.main_photo
+            product.main_photo = instance.img
             
             
     
