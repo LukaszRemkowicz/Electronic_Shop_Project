@@ -1,0 +1,138 @@
+.after-before{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 1px;
+}
+
+.shipping-information{
+
+    position: relative;
+    padding: 1rem;
+
+    &::after{
+        @extend .after-before;
+        border-bottom: 1px solid rgba(204, 204, 204, 0.5);
+        bottom: 0;
+        left: 0;
+    }
+
+    &::before{
+        @extend .after-before;
+        border-top: 1px solid rgba(204, 204, 204, 0.5);
+        top: 0;
+        left: 0;
+    }
+}
+
+
+.product-row{
+    padding: 1rem;
+
+    & img{
+        width: 5rem;
+    }
+
+    position: relative;
+    &::after{
+        position: absolute;
+        content: '';
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        border-bottom: 1px solid rgb(204, 204, 204);
+    }
+}
+
+.back-to-cart{
+    position: relative;
+    &::after{
+        position: absolute;
+        content: '';
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        border-bottom: 1px solid rgb(204, 204, 204);
+    }
+
+    & .btn{
+        background-color: white;
+        border: 1px solid rgb(204, 204, 204);
+    }
+
+    & a{
+        padding: 2rem;
+    }
+}
+
+.order-summary{
+    position: relative;
+    &::after{
+        position: absolute;
+        content: '';
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        border-bottom: 1px solid rgb(204, 204, 204);
+    }
+}
+
+.summary-section{
+    padding: 1.5rem;
+}
+
+.ship-container{
+    height: 30rem;
+}
+
+.addres-form{
+    .form-row{
+
+        & input{
+            height: 2.5rem;
+            border: 1px solid rgba(204, 204, 204, 1);
+            padding-left: 1rem;
+        } 
+    }
+
+    & a{
+        padding: 0.6rem;
+        margin-top: 1rem;
+    }
+}
+
+.book-addresses{
+    height: 7rem;
+    padding-bottom: 1rem;
+    position: relative;
+
+    &::after{
+        position: absolute;
+        content: '';
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        border-bottom: 1px solid rgb(204, 204, 204);
+    }
+
+    & .book-box{
+        border: 1px solid rgba(204, 204, 204, 1);
+        width: 20%;
+        margin: 1rem;
+        padding: 0.2rem;
+
+        &:hover{
+            cursor: pointer;
+            border-color: $main-red-color;
+        }
+    }
+       
+    & p{
+        font-size: 0.7rem;
+        margin-bottom: 0.2rem;
+    }
+}

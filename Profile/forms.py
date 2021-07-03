@@ -7,15 +7,39 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login
 
 
-class RegisterForm(UserCreationForm):   
+# class RegisterForm(UserCreationForm):   
+#     class Meta:
+#         model = User
+#         fields = UserCreationForm.Meta.fields + ('username', 'password1', 'password2', 'email')
+
+#     def clean_username(self):
+#         username = self.cleaned_data.get("username")
+#         if User.objects.filter(username=username).exists():
+#             raise forms.ValidationError("User with that name already exist")
+#         return username
+
+#     def clean_email(self):
+#         email = self.cleaned_data.get("email")
+#         if User.objects.filter(email=email).exists():
+#             raise forms.ValidationError("Acount with that Email already exist")
+#         return email
+    
+    
+class RegisterForm(UserCreationForm):
     class Meta:
         model = User
-        fields = UserCreationForm.Meta.fields + ('username', 'password1', 'password2', 'email')
+        fields = UserCreationForm.Meta.fields + (
+            "username",
+            "password1",
+            "password2",
+            "email",
+        )
 
     def clean_username(self):
         username = self.cleaned_data.get("username")
         if User.objects.filter(username=username).exists():
             raise forms.ValidationError("User with that name already exist")
+
         return username
 
     def clean_email(self):
@@ -23,6 +47,16 @@ class RegisterForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("Acount with that Email already exist")
 
+        return email
+
+    def save(self, commit=True):
+        user = super(RegisterForm, self).save(commit=False)
+        user.email = self.cleaned_data.get("email")
+
+        if commit:
+            user.save()
+
+        return user
 
 class CustomLoginForm(forms.Form):
     username = forms.CharField(required=True)

@@ -15,7 +15,7 @@
 }
 
 .price-info{
-    height: 200px;
+    height: 25%;
 }
 
 .pic-div{
@@ -30,6 +30,17 @@
 }
 
 .summary-container{
+
+    & a:nth-of-type(2) {
+        padding: 0.8rem;
+        font-size: 1.1rem;
+
+        & i {
+            padding-right: 2rem;
+        }
+
+    }
+
     .row-box{
         position: relative;
         margin-top: 0 !important;
@@ -96,6 +107,11 @@
 
             & i{
                 font-size: 1.5rem;
+                width: 20%;
+
+                &:hover{
+                    cursor: pointer;
+                }
             }
         }
     }
@@ -111,5 +127,12 @@
 
     i{
         width: 100%;
+    }
+}
+
+.price-row-btn{
+    &:hover{
+        color: white;
+        text-decoration: none;
     }
 }

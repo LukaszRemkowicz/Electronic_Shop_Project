@@ -34,10 +34,13 @@ class LandingPage(FormView):
         username = self.request.POST.get('username')
         password = self.request.POST.get('password')
         user = authenticate(self.request, username=username, password=password)
+        
         if user is not None:
             login(self.request, user)
-        print('user logged in')
-        # messages.info(self.request, "You have logged in")
+            messages.info(self.request, "You have logged in")
+        else:
+            messages.error(self.request, "Username or password incorrect")
+
 
         return super(LandingPage, self).form_valid(form)
         
@@ -61,8 +64,6 @@ class UserAccount(LoginRequiredMixin, FormView):
     success_url = reverse_lazy('account')
     
     
- 
-
 class Register(FormView):
     template_name = 'profile/register.html'
     form_class = RegisterForm
@@ -84,6 +85,7 @@ class Register(FormView):
             messages.info(self.request, "account created")
 
         return super(Register, self).form_valid(form)
+
 
     def form_invalid(self, form):
         messages.error(self.request, form.errors)

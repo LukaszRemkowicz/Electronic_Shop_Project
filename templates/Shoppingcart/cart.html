@@ -24,8 +24,8 @@
                                 <div class="quantity w-50 d-flex h-100">
                                     <p class="add-more-icons text-left align-self-center">{{ item.quantity }}</p> 
                                     <div class="arrows d-flex flex-column justify-content-center">
-                                        <a href=""><i class="fas fa-caret-up"></i></a>
-                                        <a href=""><i class="fas fa-caret-down"></i></a>
+                                        <i class="fas fa-caret-up update-cart" data-action="add" data-product='{{ item.product.id }}'></i>
+                                        <i class="fas fa-caret-down update-cart" data-action="remove" data-product='{{ item.product.id }}'></i>
                                     </div>
                                 </div> 
                                 <p class="price-summ-section w-25 text-left">{{ item.get_total|floatformat:2 }} $</p>
@@ -47,9 +47,8 @@
                     <p class="d-flex align-self-center">Subtotal ({% if order.get_cart_items == 1 %}Item {% else %}Items{% endif %}: {{ order.get_cart_items }})</p>
                     <p class="">{{ order.get_cart_total|floatformat:2 }}$</p> 
                 </div>
-                <div class="price-row-btn col-12 d-flex justify-content-center btn-red">
-                Proceed to checkout
-                </div>
+                <a class="price-row-btn col-12 d-flex justify-content-center btn-red" href="{% url 'summary-cart' %}">Proceed to checkout</a> 
+                <a type='button' href='javascript:history.go(-1)' class="btn btn-light mt-4 w-100"><i class="fas fa-arrow-left"></i>Back to shopping</a>
             </div>
         </div>
 

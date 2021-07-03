@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="small-container">
+
+    <div class="row col-12 d-flex justify-content-center">
+        <div class="my-2 col-5 ">
+            <div class="bg-white box-shadow ship-container p-3">
+                <div class="shipping-information text-left">
+                    <h5 class='h-100'>Shipping Information: </h5>
+                </div>
+                <div class="book-addresses">
+                    <div class="book-box">
+                        <p>Lukas Lorem</p>
+                        <p>Lorem 4/5</p>
+                        <p>88-888 Warszawa</p>
+                        <p>Phone 555-555-555</p>
+                    </div>
+                </div>
+                <form class="form addres-form mt-3 mx-1">
+                    <div class="form-row">
+                        <div class="form-group col-12 d-flex justify-content-between">
+                            <input type="text" class="col-6 mr-2 rounded" placeholder="Address..">
+                            <input class="col-6  rounded" type="text" placeholder="City..">
+                        </div>
+                    </div> 
+                    <div class="form-row">
+                        <div class="form-group col-12 d-flex justify-content-between">
+                            <input type="text" class='col-6 mr-2 rounded' placeholder="State..">
+                            <input type="text" class='col-6 rounded' placeholder="Zip code..">
+                        </div>
+                    </div> 
+                    <div class="form-row">
+                        <div class="form-group col-12 d-flex justify-content-start">
+                            <input type="text" class='col-6 mr-2 rounded' placeholder="Street name..">
+                        </div>
+                    </div> 
+                    
+                    <a href="" type='submit' class="btn-red w-100">Continue</a>
+                </form> 
+            </div>
+
+        </div>
+        <div class="my-2 bg-white col-4 mx-2 box-shadow summary-section">
+            <div class="back-to-cart py-3 text-left">
+                <a href="" class='btn btn-light py-2'>
+                <i class="fas fa-arrow-left "></i>
+                Back to cart
+            </a>
+            </div>
+            
+            <h3 class='py-2 text-left order-summary py-3'>Order summary</h3> 
+            <div class="product-summary">
+                {% for item in items %}
+                    <div class="row product-row">
+                        <div class="col-3">
+                            <img class= "picture-box" src="{{ item.product.get_img }}" alt="">
+                        </div>
+                        <div class="col-5 d-flex justify-content-center align-items-center">
+                            <p class=''> {{ item.product.name }} </p>
+                        </div>
+                        <div class="col-2 d-flex justify-content-center align-items-center">
+                            <p class='price '> ${{ item.product.price }} </p>
+                        </div>
+                        <div class="col-2 d-flex justify-content-center align-items-center">
+                            <p class='quantity '>{{ item.quantity }}</p>
+                        </div>   
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+{% endblock content %} 
