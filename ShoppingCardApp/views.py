@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 import json
 
 from ProductApp.models import MainProductDatabase 
 from .models import Order, OrderItem
 
-def address_checkout(request):
+def address_checkout(request) -> HttpResponse:
     
     if request.user.is_authenticated:
         customer = request.user.customer
@@ -20,7 +20,7 @@ def address_checkout(request):
     
     return render(request,'Shoppingcart/address-checkout.html', context)
 
-def update_item(request):
+def update_item(request) -> JsonResponse:
     data = json.loads(request.body)
     product_id = data['productId']
     action = data['action']
@@ -43,7 +43,7 @@ def update_item(request):
     return JsonResponse("item was added", safe=False)
 
 
-def cart(request):
+def cart(request) -> HttpResponse:
     
     if request.user.is_authenticated:
         customer = request.user.customer
@@ -57,7 +57,7 @@ def cart(request):
     
     return render(request, 'Shoppingcart/cart.html', context)
 
-def checkout(request):
+def checkout(request) -> HttpResponse:
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)

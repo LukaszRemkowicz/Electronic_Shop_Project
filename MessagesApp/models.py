@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 from ProductApp.models import MainProductDatabase
-from OrdersApp.models import Order
+from ShoppingCardApp.models import Order
 
 
 
@@ -20,9 +20,9 @@ class Complaint(models.Model):
     ]
 
     status = models.CharField(choices=CHOICES, max_length=50, default="checking the complaint")
-    user_id = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     message = models.CharField(max_length=10000)
-    order_number = models.OneToOneField(Order, on_delete=models.CASCADE)
+    order = models.OneToOneField(Order, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"RMA nr. {self.id}"
@@ -33,7 +33,7 @@ class Question(models.Model):
     subject = models.CharField(blank=True, max_length=20)
     message = models.CharField(max_length=10000)
     date = models.DateField(auto_now_add=True)
-    user_id = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     CHOICES = [
         ("Answered", "Answered"),

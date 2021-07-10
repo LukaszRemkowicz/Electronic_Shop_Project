@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
@@ -7,6 +7,7 @@ from django.contrib.auth import login
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate
 from typing import Any, Dict
+
 
 """ class bassed views import """
 
@@ -70,7 +71,7 @@ class Register(FormView):
     redirect_authenticated_user = True
     success_url = reverse_lazy('landing-page')
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)     
         accepted_terms = AcceptTerms()
         context['register_form'] = context.get('register_form')
@@ -86,10 +87,13 @@ class Register(FormView):
 
         return super(Register, self).form_valid(form)
 
-
     def form_invalid(self, form):
         messages.error(self.request, form.errors)
 
         return super(Register, self).form_invalid(form)
     
+    def get(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
+        if request.user.is_authenticated:
+            return redirect('landing-page')
+        return super(LoginView, self).get(request, *args, **kwargs)
 

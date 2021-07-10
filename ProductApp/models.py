@@ -130,13 +130,13 @@ class MainProductDatabase(models.Model):
     pieces = models.IntegerField(default=0)
     promotion = models.FloatField(blank=True, null=True)
     phones_product_data = models.OneToOneField(Phones, on_delete=models.CASCADE, null=True, blank=True)
-    monitors_product_data = models.OneToOneField(Monitors, on_delete=models.CASCADE, default='')
+    monitors_product_data = models.OneToOneField(Monitors, on_delete=models.CASCADE, default='', null=True, blank=True)
     ean = models.IntegerField(null=True, blank=True, unique=True)
     product_of_the_day = models.BooleanField(default=False)
     cattegory = models.CharField(max_length=50, default='')
 
     def __str__(self) -> str:
-        return f'Product: {self.monitors_product_data.name}'
+        return f'Product: {self.name}'
     
     @property
     def get_img(self) -> str:
