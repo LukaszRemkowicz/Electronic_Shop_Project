@@ -44,8 +44,11 @@ INSTALLED_APPS = [
     'OrdersApp.apps.OrdersappConfig',
     'MessagesApp.apps.MessagesappConfig',
     'ShoppingCardApp.apps.ShoppingcardappConfig',
+    'API.apps.ApiConfig',
     'widget_tweaks',
     'reset_migrations',
+    'rest_framework.authtoken',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -165,3 +168,4 @@ LOGIN_URL = 'landing-page'
 MEDIA_URL = '/media/' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+AUTH_USER_MODE = 'core.User'

@@ -9,6 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/95019cdce1.js" crossorigin="anonymous"></script>
 
+    <style type='text/css'>
+
+        .tooglecolor {
+            color: red !important;
+        }
+
+    </style>
+
     <!-- Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     
@@ -118,7 +126,7 @@
                                 </a> 
 
                                 {% else %}
-                                <a href="" data-toggle="modal" data-target="#Modal1" class="btn d-flex  text-center"><i class="fas fa-user-alt fa-2x"></i> <span class="nav-font-size"></span>Login</a>
+                                <a href="" data-toggle="modal" data-target="#Modal1" class="btn d-flex  text-center just-for-testing-DOM"><i class="fas fa-user-alt fa-2x"></i> <span class="nav-font-size"></span>Login</a>
 
                             {% endif %}
                             
@@ -359,7 +367,10 @@
             });
     </script>
 
+    
+
     <script src="{% static 'js/cart.js' %}" type="text/javascript"></script>   
+    <script src="{% static 'js/domExample.js' %}" type="text/javascript"></script> 
 
 </body>
 </html>
