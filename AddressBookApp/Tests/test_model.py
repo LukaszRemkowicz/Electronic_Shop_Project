@@ -33,5 +33,18 @@ class TestAdressBookApp(TestCase):
         
         address = AddressBook.objects.create(**address_data)
         
+        address_data_two = {
+            'name': 'Lukas',
+            'last_name': 'Lukas Last Name',
+            'city': 'Gdansk',
+            'post_code': '12-345',
+            'phone_number': '111-222-333',
+            'user': user,
+        }
+        
+        """ Check if user can create more addresses """
+        addressTwo = AddressBook.objects.create(**address_data_two)
+            
         self.assertEqual(address.user.username, 'Test')
         self.assertEqual(address.city, 'Elblag')
+        self.assertEqual(addressTwo.city, 'Gdansk')

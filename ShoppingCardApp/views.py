@@ -4,7 +4,8 @@ from django.http import JsonResponse, HttpResponse
 import json
 
 from ProductApp.models import MainProductDatabase 
-from .models import Order, OrderItem
+from .models import Customer, Order, OrderItem
+from AddressBookApp.models import AddressBook
 
 def address_checkout(request) -> HttpResponse:
     
@@ -12,11 +13,13 @@ def address_checkout(request) -> HttpResponse:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
+        address_list = AddressBook.objects.filter(user= request.user)
     else: 
         items = []
+        address_list = []
         order = {'get_cart_total': 0, 'get_cart_items': 0}
         
-    context = {'items': items, 'order': order}
+    context = {'items': items, 'order': order, 'address_list': address_list}
     
     return render(request,'Shoppingcart/address-checkout.html', context)
 
@@ -25,7 +28,11 @@ def update_item(request) -> JsonResponse:
     product_id = data['productId']
     action = data['action']
     
-    customer = request.user.customer
+    # customer = request.user.customer
+    try:
+        customer = request.user.customer
+    except:
+        customer = Customer.objects.create(user=request.user)
     product = MainProductDatabase.objects.get(id=product_id)
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
     orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)

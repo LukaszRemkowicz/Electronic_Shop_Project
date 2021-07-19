@@ -10,30 +10,33 @@
                 <div class="shipping-information text-left">
                     <h5 class='h-100'>Shipping Information: </h5>
                 </div>
-                <div class="book-addresses">
-                    <div class="book-box">
-                        <p>Lukas Lorem</p>
-                        <p>Lorem 4/5</p>
-                        <p>88-888 Warszawa</p>
-                        <p>Phone 555-555-555</p>
-                    </div>
+                <div class="book-addresses d-flex">
+                    {% for address in address_list %}
+                        <div class="book-box" id="{{ address.id }}">
+                            <p class="book-address">{{address.name}}</p>
+                            <p class='book-street'>{{ address.street }}</p>
+                            <p> <span class='book-postcode'>{{address.post_code}}</span>  <span class='book-city'> {{address.city}} </span> </p>
+                            <p> Phone: <span class='d-line book.phone'>{{address.phone_number}}</span></p>
+                            <p class='book-state'> {{ address.state }} </p>
+                        </div>
+                    {% endfor %}
                 </div>
                 <form class="form addres-form mt-3 mx-1">
                     <div class="form-row">
                         <div class="form-group col-12 d-flex justify-content-between">
-                            <input type="text" class="col-6 mr-2 rounded" placeholder="Address..">
-                            <input class="col-6  rounded" type="text" placeholder="City..">
+                            <input id='formAddress' type="text" class="formAddress col-6 mr-2 rounded" placeholder="Name..">
+                            <input id='formCity' class="col-6  rounded" type="text" placeholder="City..">
                         </div>
                     </div> 
                     <div class="form-row">
                         <div class="form-group col-12 d-flex justify-content-between">
-                            <input type="text" class='col-6 mr-2 rounded' placeholder="State..">
-                            <input type="text" class='col-6 rounded' placeholder="Zip code..">
+                            <input id='formState' type="text" class='col-6 mr-2 rounded' placeholder="State..">
+                            <input id="formZipCode" type="text" class='col-6 rounded' placeholder="Zip code..">
                         </div>
                     </div> 
                     <div class="form-row">
                         <div class="form-group col-12 d-flex justify-content-start">
-                            <input type="text" class='col-6 mr-2 rounded' placeholder="Street name..">
+                            <input id='formStreetName' type="text" class='col-6 mr-2 rounded' placeholder="Street name..">
                         </div>
                     </div> 
                     
