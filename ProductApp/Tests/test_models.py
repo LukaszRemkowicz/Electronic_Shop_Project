@@ -12,7 +12,7 @@ class TestProduct(TestCase):
         
         data = {
             'name': 'Iphone 10',
-            'price': 3000,
+            'price': 360,
             'pieces': 2,
             'ram': 8,
             'memory': 8,
@@ -21,7 +21,7 @@ class TestProduct(TestCase):
             'describe': 'The best model',
             'producent': 'Apple',
             'producent_code': 'AABB123',
-            'ean': 123456,
+            'ean': 2343356,
             'waterproof': True,
             'distibution': 'EU',
             'system': 'IOS',

@@ -6,6 +6,13 @@
     margin: 0;
 }
 
+a{
+    &:hover{
+        text-decoration: none;
+        color: inherit;
+    }
+    
+}
 
 img{
     width: 100%;
@@ -192,3 +199,44 @@ a{
     text-transform: uppercase;
 }
 
+.hidden{
+    display: none !important;
+}
+
+.error-form{
+
+    & input{
+        visibility: visible;
+        border-color: $error-form-color !important;
+    }
+    
+    & .fa-exclamation-circle{
+        color: $error-form-color !important;
+        visibility: visible !important;
+    }
+
+    & p{
+        margin-bottom: 0;
+        font-size: 0.8rem;
+        color:  $error-form-color;
+        padding-top: 0.5rem;
+        padding-left: 0.1rem;
+        margin-bottom: -0.5rem;
+        text-align: left;
+        display: inline !important;
+        animation: autoHide 0s ease-in 4s forwards;
+    }
+}
+
+.success-form{
+
+    & input{
+        visibility: visible !important;
+        border-color: green !important;
+    }
+    
+    & .fa-check-circle{
+        color: #2ecc71;
+        visibility: visible !important;
+    }
+}

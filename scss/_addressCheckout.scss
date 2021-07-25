@@ -1,7 +1,7 @@
 .after-before{
     position: absolute;
     content: '';
-    width: 100%;
+    width: 97%;
     height: 1px;
 }
 
@@ -9,25 +9,32 @@
 
     position: relative;
     padding: 1rem;
+    margin-bottom: 1.5rem;
 
     &::after{
         @extend .after-before;
         border-bottom: 1px solid rgba(204, 204, 204, 0.5);
         bottom: 0;
-        left: 0;
+        left: 7px;
     }
 
     &::before{
         @extend .after-before;
         border-top: 1px solid rgba(204, 204, 204, 0.5);
         top: 0;
-        left: 0;
+        left: 7px;
     }
 }
 
+.description-row{
+    padding: 0 !important;
+    font-weight: 600;
+}
 
 .product-row{
     padding: 1rem;
+    margin-left: 0;
+    margin-right: 0;
 
     & img{
         width: 5rem;
@@ -47,6 +54,16 @@
 
 .back-to-cart{
     position: relative;
+
+    .total{
+        padding-right: 1rem;
+
+        h4{
+            height: 100%;
+            padding: 0.3rem;
+        }
+    }
+
     &::after{
         position: absolute;
         content: '';
@@ -80,32 +97,93 @@
     }
 }
 
-.summary-section{
-    padding: 1.5rem;
+
+.summary-cart{
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .shipping-info{
+        grid-column: 5 /  9;
+        grid-row: 1 /  2;
+
+        .payment{
+            padding-top: 2rem;
+            width: 100%;
+            display: inline;
+
+
+            & button{
+                padding: 0.6rem;
+                width: 98%;
+                display: block;
+                font-size: 1.1rem;
+            }
+        }
+    }
+
+    .summary-section{
+        padding: 1.5rem;
+        grid-column: 9 /  12;
+        grid-row: 1/2;
+    }
 }
 
-.ship-container{
-    height: 33rem;
-}
 
 .addres-form{
+    padding: 0.5rem;
     .form-row{
+        .form-group{
 
-        & input{
-            height: 2.5rem;
-            border: 1px solid rgba(204, 204, 204, 1);
-            padding-left: 1rem;
-        } 
+            & p{
+                display: none;
+            }
+
+            & .form-right{
+                width: 100%;
+                padding-right: 0;
+                position: relative;
+
+                & i{
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    visibility: hidden;
+                }
+
+                & input{
+                    height: 2.5rem;
+                    border: 1px solid rgba(204, 204, 204, 1);
+                    padding-left: 1rem;
+                    font-size: 1.1rem;
+                    width: 100%;
+
+                    &:focus{
+                        outline: none;
+                    }
+                } 
+            }  
+            
+            & .form-left{
+                padding-right: 15px;
+
+                @extend .form-right;
+                & i{
+                    right: 25px;
+                }
+
+            }    
+        }
     }
 
     & a{
         padding: 0.6rem;
         margin-top: 1rem;
+        font-size: 1.2rem;
     }
 }
 
 .book-addresses{
-    height: 9.5rem;
+    // height: 10.5rem;
     padding-bottom: 1rem;
     position: relative;
 
@@ -113,17 +191,17 @@
         position: absolute;
         content: '';
         bottom: 0;
-        left: 0;
-        width: 100%;
+        left: 7px;
+        width: 97%;
         height: 1px;
         border-bottom: 1px solid rgb(204, 204, 204);
     }
 
     & .book-box{
         border: 1px solid rgba(204, 204, 204, 1);
-        width: 30%;
-        margin: 1rem;
-        padding: 0.2rem;
+        width: 35%;
+        margin: 0.5rem;
+        padding: 0.5rem;
 
         &:hover{
             cursor: pointer;
@@ -132,7 +210,7 @@
     }
        
     & p{
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         margin-bottom: 0.2rem;
     }
 }

@@ -10,7 +10,7 @@ class ProductPage(ListView):
     
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super(ProductPage, self).get_context_data(**kwargs)
-        id = self.request.GET.get('id') 
+        id = self.kwargs['MainProductDatabase_id']
         product = MainProductDatabase.objects.get(id=id)
         context['product'] = product
         return context
