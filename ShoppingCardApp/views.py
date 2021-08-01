@@ -1,25 +1,18 @@
+import json
+import datetime
+
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.contrib import messages
 
-import json
-
 from ProductApp.models import MainProductDatabase 
-from .models import Customer, Order, OrderItem
+from .models import Customer, Order, OrderItem, ShippingAddress
 from AddressBookApp.models import AddressBook
 
 def order_finished(request) -> JsonResponse:
     
-    data = json.loads(request.body)
-    name = data['customerName']
-    city = data['customerCity']
-    state = data['customerState']
-    zipcode = data['customerZipcode']
-    street = data['customerStreet']
-    email = data['customerEmail']
-     
-    print(data)
     
+        
     return JsonResponse('order saved.. ', safe=False)
 
 def address_checkout(request) -> HttpResponse:

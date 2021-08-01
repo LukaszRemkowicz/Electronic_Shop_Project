@@ -1,96 +1,112 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
 
 <div class="small-container">
 
     <div class="grid-container summary-cart">
-        <div class="shipping-info">
+        <div class="shipping-info" id="accordion">
             <div id="shipInfo" class="my-2 ">
                 <div class="bg-white box-shadow ship-container p-3">
-                    <div class="shipping-information text-left">
-                        <h5 class='h-100'>Shipping Information: </h5>
-                    </div>
-                    <div class="book-addresses d-flex elementsToHide">
-                        {% for address in address_list %}
-                            <div class="book-box" id="{{ address.id }}">
-                                <p class="book-address">{{address.name}}</p>
-                                <p class='book-street'>{{ address.street }}</p>
-                                <p> <span class='book-postcode'>{{address.post_code}}</span>  <span class='book-city'> {{address.city}} </span> </p>
-                                <p> Phone: <span class='d-line book.phone'>{{address.phone_number}}</span></p>
-                                <p class='book-state'> {{ address.state }} </p>
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <form class="form addres-form mt-3" id="addres-form" method='post'>
+
+                        
+                    <form class="form addres-form mt-3 " id="addres-form" method='post'>
                         {% csrf_token %}
-
-                        <div class="form-row elementsToHide">
-                            <div class="form-group col-12 d-flex justify-content-between">
-                                <div class="form-left d-flex flex-column form-inputs">
-                                    <input id='formName' type="text" name='formName' class="formName mr-2 rounded" placeholder="Name.."/>
-                                    <i class="fas fa-check-circle"></i>
-                                    <i class="fas fa-exclamation-circle"></i>
-                                    <p class=""> Warning</p>
-                                </div>
-                                <div class="form-right d-flex flex-column form-inputs">
-                                    <input id='formCity' name='formCity' class="rounded" type="text" placeholder="City.."/>
-                                    <i class="fas fa-check-circle"></i>
-                                    <i class="fas fa-exclamation-circle"></i>
-                                    <p class=""> Warning</p>
-                                </div>
-                            </div>
-                        </div> 
-
-                        <div class="form-row elementsToHide">
-                            <div class="form-group col-12 d-flex justify-content-between">
-                                <div class="form-left d-flex flex-column form-inputs">
-                                    <input id='formState' name='formState' type="text" class='mr-2 rounded' placeholder="State.."/>
-                                    <i class="fas fa-check-circle"></i>
-                                    <i class="fas fa-exclamation-circle "></i>    
-                                    <p class=""> Warning</p>
-                                </div>
-                                <div class="form-right d-flex flex-column form-inputs">
-                                    <input id="formZipCode" name='formZipCode' type="text" class='rounded' placeholder="Zip code.."/>
-                                    <i class="fas fa-check-circle"></i>
-                                    <i class="fas fa-exclamation-circle"></i>
-                                    <p class=""> Warning</p>
-                                </div>
-                            </div>
-                        </div> 
-
-                        <div class="form-row elementsToHide">
-                            <div class="form-group col-12 d-flex justify-content-start">
-
-                                <div class="form-left d-flex flex-column form-inputs">
-                                    <input id='formStreetName' name='formStreetName' type="text" class=' mr-2 rounded' placeholder="Street name.."/>
-                                    <i class="fas fa-check-circle"></i>
-                                    <i class="fas fa-exclamation-circle"></i>
-                                    <p class=""> Warning</p>
-                                </div>
-
-                                <div class="form-right d-flex flex-column form-inputs">
-                                    <input id='formEmail' name='formEmail' type="text" class=' mr-2 rounded' placeholder= 
-                                    {% if user.is_authenticated and user.email %} "{{ user.email }}"
-                                    {% else %} "Email.." {% endif %}
-                                    {% if user.is_authenticated and user.email %} disabled {% endif %}/>
-                                    <i class="fas fa-check-circle"></i>
-                                    <i class="fas fa-exclamation-circle"></i>
-                                    <p class=""> Warning</p>
-                                </div>
-                                
-                            </div>
-                        </div> 
-
-                        <div class="w-100">
-                            <a href="" type='submit' class="btn-red w-100 form-submit">Continue</a>
+                         <div class="shipping-information text-left box-shadow">
+                            <a class='h-100' data-toggle="collapse" data-target="#catch-form" aria-expanded="true" aria-controls="catch-form">Shipping Information: </a>
                         </div>
-                        <div class="payment d-flex justify-content-center hidden">
-                            <button type='submit' href="" class="btn-red ">Process to checkout</button>
+                        <div class="collapse show" id='catch-form' aria-labelledby="headingOne" data-parent="#accordion">
+
+                            <div class="book-addresses d-flex pt-3">
+                                {% for address in address_list %}
+                                    <div class="book-box box-shadow" id="{{ address.id }}">
+                                        <p class="book-address">{{address.name}}</p>
+                                        <p class='book-street'>{{ address.street }}</p>
+                                        <p> <span class='book-postcode'>{{address.post_code}}</span>  <span class='book-city'> {{address.city}} </span> </p>
+                                        <p> Phone: <span class='d-line book.phone'>{{address.phone_number}}</span></p>
+                                        <p class='book-state'> {{ address.state }} </p>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        
+                            <div class="form-row">
+                                <div class="form-group col-12 d-flex justify-content-between mt-4">
+                                    <div class="form-left d-flex flex-column form-inputs">
+                                        <input id='formName' type="text" name='formName' class="formName mr-2 rounded" placeholder="Name and Surname.."/>
+                                        <i class="fas fa-check-circle"></i>
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <p class=""> Warning</p>
+                                    </div>
+                                    <div class="form-right d-flex flex-column form-inputs">
+                                        <input id='formCity' name='formCity' class="rounded" type="text" placeholder="City.."/>
+                                        <i class="fas fa-check-circle"></i>
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <p class=""> Warning</p>
+                                    </div>
+                                </div>
+                            </div> 
+
+                            <div class="form-row">
+                                <div class="form-group col-12 d-flex justify-content-between">
+                                    <div class="form-left d-flex flex-column form-inputs">
+                                        <input id='formState' name='formState' type="text" class='mr-2 rounded' placeholder="State.."/>
+                                        <i class="fas fa-check-circle"></i>
+                                        <i class="fas fa-exclamation-circle "></i>    
+                                        <p class=""> Warning</p>
+                                    </div>
+                                    <div class="form-right d-flex flex-column form-inputs">
+                                        <input id="formZipCode" name='formZipCode' type="text" class='rounded' placeholder="Zip code.."/>
+                                        <i class="fas fa-check-circle"></i>
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <p class=""> Warning</p>
+                                    </div>
+                                </div>
+                            </div> 
+
+                            <div class="form-row">
+                                <div class="form-group col-12 d-flex justify-content-start">
+
+                                    <div class="form-left d-flex flex-column form-inputs">
+                                        <input id='formStreetName' name='formStreetName' type="text" class=' mr-2 rounded' placeholder="Street name.."/>
+                                        <i class="fas fa-check-circle"></i>
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <p class=""> Warning</p>
+                                    </div>
+
+                                    <div class="form-right d-flex flex-column form-inputs">
+                                        <input id='formEmail' name='formEmail' type="text" class=' mr-2 rounded' placeholder= 
+                                        {% if user.is_authenticated and user.email %} "{{ user.email }}"
+                                        {% else %} "Email.." {% endif %}
+                                        {% if user.is_authenticated and user.email %} disabled {% endif %}/>
+                                        <i class="fas fa-check-circle"></i>
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <p class=""> Warning</p>
+                                    </div>
+                                    
+                                </div>
+                            </div> 
+
                         </div>
                         
+
+                        <div class="">
+
+                            <div class="shipping-information text-left box-shadow" >
+                                <a class='h-100' data-toggle="collapse" href="#shipping-methods" role="button" aria-expanded="false" aria-controls="shipping-methods">Payment methods: </a>
+                            </div>
+
+                            <div class="payment justify-content-center align-items-center flex-column collapse" id='shipping-methods' aria-labelledby="headingOne" data-parent="#accordion"> 
+                                
+                                <div class="images d-flex justify-content-center m-auto">
+                                    <div class="img payment-images box-shadow" data-name='bank tranfer'><img src="{% static 'images/payment_methods/bank_transfer.png' %}" alt=""></div>
+                                    <div class="img payment-images box-shadow" data-name='blik'><img src="{% static 'images/payment_methods/blik.png' %}" alt=""></div>
+                                    <div class="img payment-images box-shadow" data-name='paypal'><img src="{% static 'images/payment_methods/paypal.jpg' %}" alt=""></div>
+                                </div>
+                                <button type='submit' href="" class="btn-red w-100 box-shadow submit-button">Process to checkout</button>
+                            </div>
+                        </div>                
                     </form> 
-                    
             </div>
            
         </div>
@@ -144,6 +160,14 @@
     </div>
     
 </div>
+
+
+<script>
+
+    let orderSummary = {{ order.get_cart_total|floatformat:2 }};
+    const redirectToAccountUrl = "{% url 'account' %}"
+
+</script>
 
 
 {% endblock content %} 

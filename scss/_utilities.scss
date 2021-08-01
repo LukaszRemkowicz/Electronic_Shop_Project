@@ -240,3 +240,7 @@ a{
         visibility: visible !important;
     }
 }
+
+.alert{
+    animation: autoHide 0s ease-in 4s forwards;
+}
