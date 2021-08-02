@@ -25,7 +25,7 @@ class TestOrderModel(TestCase):
     
         self.data = {
             'date_order': '2021-07-04 14:30:59',
-            'transactionId': '12A',
+            'transaction_id': '12A',
         }
         
         self.product_data={

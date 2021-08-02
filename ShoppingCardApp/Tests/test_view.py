@@ -1,11 +1,12 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
+from django.http import response
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.urls.base import translate_url
 
 from ProductApp.models import Phones, MainProductDatabase
-from ..models import Customer, Order, OrderItem
+from ..models import Customer, Order, OrderItem, ShippingAddress
 
 import json
 
@@ -59,7 +60,7 @@ class TestShoppingCartViews(TestCase):
         }  
         self.data = {
             'date_order': '2021-07-04 14:30:59',
-            'transactionId': '12A',
+            'transaction_id': '12A',
         }
     
     def test_address_checkout(self) -> None:
@@ -93,7 +94,7 @@ class TestShoppingCartViews(TestCase):
         customer = create_customer(user)
         product = Phones.objects.create(**self.product_data)
         product_main = MainProductDatabase.objects.get(ean=product.ean)
-        order = Order.objects.create(customer=customer, date_order=self.data['date_order'], transactionId='11')
+        order = Order.objects.create(customer=customer, date_order=self.data['date_order'], transaction_id='11')
         order_item = OrderItem.objects.create(order=order, product=product_main, quantity=3, date_ordered=self.data['date_order'])
          
         body = {
@@ -129,7 +130,7 @@ class TestShoppingCartViews(TestCase):
         customer = create_customer(user)
         product = Phones.objects.create(**self.product_data)
         product_main = MainProductDatabase.objects.get(ean=product.ean)
-        order = Order.objects.create(customer=customer, date_order=self.data['date_order'], transactionId='11')
+        order = Order.objects.create(customer=customer, date_order=self.data['date_order'], transaction_id='11')
         order_item = OrderItem.objects.create(order=order, product=product_main, quantity=2, date_ordered=self.data['date_order'])
         
         body = {
@@ -150,3 +151,39 @@ class TestShoppingCartViews(TestCase):
         order_item_testing = OrderItem.objects.filter(order=order).exists()
         
         self.assertNotEqual(order_item_testing, True)
+
+
+    def test_order_complete_API(self):
+        """ check complete order """
+        
+        url = reverse('order-finished')
+        
+        user = create_user(**self.payload)
+        login = self.client.login(**self.payload)
+        
+        customer = create_customer(user)
+        product = Phones.objects.create(**self.product_data)
+        product_main = MainProductDatabase.objects.get(ean=product.ean)
+        order = Order.objects.create(customer=customer, date_order=self.data['date_order'])
+        order_item = OrderItem.objects.create(order=order, product=product_main, quantity=2, date_ordered=self.data['date_order'])
+                
+        body = {
+            'price': float(order.get_cart_total),
+            'payment': 'paypal',
+            'customerName' : 'Test Test',
+            'customerCity' : 'Warszawa',
+            'customerState' : 'Testowo 1',
+            'customerZipcode' : '12-300',
+            'customerStreet' : 'TestStreet',
+            'customerEmail' : 'test@test.com',
+        }
+
+        response = self.client.post(url, json.dumps(body), content_type="application/json")
+
+        shipping = ShippingAddress.objects.get(order=order)
+        order = Order.objects.get(customer=customer)
+        
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(order.complete, True)
+        self.assertEqual(shipping.city, body['customerCity'])
+        
