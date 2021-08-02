@@ -11,7 +11,34 @@ from AddressBookApp.models import AddressBook
 
 def order_finished(request) -> JsonResponse:
     
+    data = json.loads(request.body)
+    payment_method = data['payment']
+    name = data['customerName']
+    email = data['customerEmail']
     
+    transaction_id = datetime.datetime.now().timestamp()
+     
+    if request.user.is_authenticated:
+        customer = request.user.customer
+    else:
+        customer = Customer.objects.create(email=data['customerEmail'])
+        
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    total = float(data['price']) 
+    order.transaction_id = transaction_id 
+    
+    if total == float(order.get_cart_total):
+        order.complete = True
+    order.save()
+    
+    ShippingAddress.objects.create(
+        customer = customer,
+        order = order,
+        address = data['customerStreet'],
+        city = data['customerCity'],
+        state = data['customerState'],
+        zipcode = data['customerZipcode'], 
+    )
         
     return JsonResponse('order saved.. ', safe=False)
 
