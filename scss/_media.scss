@@ -830,6 +830,146 @@ $buy-section: 20rem;
 
 }
 
+// Summary cart media
+
+@media (max-width: 1300px){
+    .summary-cart{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .summary-section{
+        width: 40rem;
+    }
+
+}
+
+$max_width: 670px;
+$min_width: 100px;
+$width_summary: 40rem;
+
+@while $min-width <= $max-width{
+    @media(max-width: $max-width) and (min-width: $min-width){
+        .summary-cart, .summary-section, .ship-container{
+            $width: ($width - 5%);
+            $max-width: ($max-width - 5px);
+            $width_summary: $width_summary - 0.25rem;
+            width: 100vw !important;
+        }
+
+        @if $max-width <= 612 and $max-width > 500 {
+            .book{
+
+                &-addresses{
+                    flex-direction: column;
+                    align-content: center;
+                }
+                &-box{
+                    width: 90% !important;
+                }
+            }  
+
+            .form-row{
+                & .form-group{
+                    flex-direction: column;
+
+                    & .form-left{
+                        padding-right: 0 !important;
+                        margin-bottom: 1rem;
+                    }
+                }
+            }
+
+            .images{
+                width: 90vw;
+                // flex-direction: column;
+
+                & .img{
+                    width: 50%;
+                    margin: 2rem 0;
+                    
+                    & img{
+                        padding: 0;
+                        width: 80%;
+                    }
+                }
+            }     
+        }
+
+        @if $max-width <= 500 and $max-width > 300{
+            
+            .images{
+                width: 90vw;
+                display: grid !important;
+                grid-template-columns: repeat(2, 5fr);
+                align-items: center;
+
+                & .img{
+                    // margin: 2rem 0;
+                    margin: 1rem auto;
+                    width: 80%;
+                    
+                    & img{
+                        padding: 0;
+                        width: 80%;
+                    }
+                }
+            }     
+            
+        }
+
+        @if $max-width <= 300{
+            .book{
+
+                &-addresses{
+                    display: none !important;
+                }
+            }   
+            .form-row{
+                & .form-group{
+                    flex-direction: column;
+
+                    & .form-left{
+                        padding-right: 0 !important;
+                        margin-bottom: 1rem;
+                    }
+                }
+            }  
+        }
+
+        // back to cart section
+
+        @if $max-width <= 420{
+            .back-to-cart{
+                flex-direction: column;
+
+                & a{
+                    width: 70%;
+                    margin: 0 auto;
+                }
+
+                & .total{
+                    margin-top: 1rem;
+                }
+            }
+
+            .summary-section{
+
+                & .product-row{
+
+                    & img{
+                        width: 100%;
+                        
+                    }
+                }
+            }
+              
+        }
+    }
+}
+
 
 
 

@@ -48,9 +48,29 @@
 }
 
 .product-row{
-    padding: 1rem;
+    padding: 1rem 0;
     margin-left: 0;
     margin-right: 0;
+    width: 100%;
+
+    & div{
+        padding-left: 1rem;
+        padding-right: 0;
+        padding-bottom: 0.5rem;
+        width: 100%;
+
+        & p{
+            margin-bottom: 0;
+            width: 100%;
+            display: block;
+        }
+    }
+
+    
+
+    & .quantity{
+        font-size: 0.8rem;
+    }
 
     & img{
         width: 5rem;
@@ -261,3 +281,4 @@
 .submit-button{
     border: none;
 }
+
