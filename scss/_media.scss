@@ -835,7 +835,7 @@ $buy-section: 20rem;
 @media (max-width: 1300px){
     .summary-cart{
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         justify-content: center;
         align-items: center;
     }
@@ -856,8 +856,10 @@ $width_summary: 40rem;
             $width: ($width - 5%);
             $max-width: ($max-width - 5px);
             $width_summary: $width_summary - 0.25rem;
+            flex-direction: column-reverse;
             width: 100vw !important;
         }
+        
 
         @if $max-width <= 612 and $max-width > 500 {
             .book{
