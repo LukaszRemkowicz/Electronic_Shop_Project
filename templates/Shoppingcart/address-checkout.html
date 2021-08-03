@@ -93,7 +93,7 @@
                         <div class="">
 
                             <div class="shipping-information text-left box-shadow" >
-                                <a class='h-100' data-toggle="collapse" href="#shipping-methods" role="button" aria-expanded="false" aria-controls="shipping-methods">Payment methods: </a>
+                                <a class='h-100 ship_info_a' data-toggle="collapse" href="#shipping-methods" role="button" aria-expanded="false" aria-controls="shipping-methods">Payment methods: </a>
                             </div>
 
                             <div class="payment justify-content-center align-items-center flex-column collapse" id='shipping-methods' aria-labelledby="headingOne" data-parent="#accordion"> 
@@ -103,7 +103,14 @@
                                     <div class="img payment-images box-shadow" data-name='blik'><img src="{% static 'images/payment_methods/blik.png' %}" alt=""></div>
                                     <div class="img payment-images box-shadow" data-name='paypal'><img src="{% static 'images/payment_methods/paypal.jpg' %}" alt=""></div>
                                 </div>
-                                <button type='submit' href="" class="btn-red w-100 box-shadow submit-button">Process to checkout</button>
+                                <button type='submit' href="" 
+                                    {% if order.get_cart_total == 0 %}
+                                        disabled class="btn-red w-100 box-shadow submit-button">Basket is empty
+                                    {% else %}
+                                        class="btn-red w-100 box-shadow submit-button">Process to checkout
+                                    {% endif %}
+                                    
+                                 </button>
                             </div>
                         </div>                
                     </form> 
@@ -114,10 +121,10 @@
         
         <div class="my-2 bg-white mx-2 box-shadow summary-section">
             <div class="back-to-cart py-3 d-flex justify-content-between">
-                <a href="" class='btn btn-light py-2'>
+                <a href="{% url 'shopping-cart' %}" class='btn btn-light py-2'>
                 <i class="fas fa-arrow-left "></i>
                 Back to cart
-            </a>
+                </a>
             <div class="total">
                     <h4>Total: $ {{ order.get_cart_total|floatformat:2 }}</h4>
             </div>
