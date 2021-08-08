@@ -81,8 +81,15 @@ def update_item(request) -> JsonResponse:
     
     if orderItem.quantity <= 0:
         orderItem.delete()
-    
-    return JsonResponse("item was added", safe=False)
+        
+    data = {
+        'items' : orderItem.quantity,
+        'summaryItem': orderItem.get_total,
+        'subtotal': order.get_cart_total,
+        'totalItems': order.get_cart_items,
+    }
+        
+    return JsonResponse(json.dumps(data),safe=False)
 
 
 def cart(request) -> HttpResponse:

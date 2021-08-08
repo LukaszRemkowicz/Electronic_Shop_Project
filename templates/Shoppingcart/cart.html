@@ -21,7 +21,7 @@
                             </div>
                             <div class="col price-div ">
                                 <span class='box-shadow'>
-                                    {{ item.get_total|floatformat:2 }} $<span class="close">&#10005;</span>
+                                    <span class='getTotal'>{{ item.get_total|floatformat:2 }} </span> $<span class="close">&#10005;</span>
                                 </span>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                 <div class="price-row col-12 d-flex justify-content-between">
                     <span class="subtotal">
                         <p class="d-flex align-self-center">Subtotal </p>
-                        <p>({% if order.get_cart_items == 1 %}Item {% else %}Items{% endif %}: {{ order.get_cart_items }})</p>
+                        <p>({% if order.get_cart_items == 1 %}Item {% else %}Items{% endif %}: <span class="subtotalItems"> {{ order.get_cart_items }} </span>)</p>
                     </span>
                     <p class="price-total">{{ order.get_cart_total|floatformat:2 }}$</p> 
                 </div>
