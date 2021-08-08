@@ -1,32 +1,47 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 
 <section class="m-auto">
     <div class="small-container mb-5 cart_section w-100 border-rounded grid-container">
-        <div class="m-5 bg-white box-shadow sum-cont ">
+        <div class="mt-5 bg-white box-shadow sum-cont ">
             <div class="summary-container m-5">
-                {% for item in items %}
-                    <div class="row w-100 p-3 product-cart border-top border-bottom">
-                        <div class="row main align-items-center">
-                            <div class="col-2 pic-div"><img class=" img-fluid " src="{{ item.product.get_img }}"></div>
-                            <div class="col category-div">
-                                <div class="row text-muted">{{item.product.cattegory}}</div>
-                                <div class="row name-div">{{ item.product.name }}</div>
-                            </div>
-                            <div class="col quantity-div"> 
-                                <a href="#" class='update-cart' data-action="remove" data-product='{{ item.product.id }}'>  -  </a>
-                                <a href="#" class="border">{{ item.quantity }}</a>
-                                <a href="#" class='update-cart' data-action="add" data-product='{{ item.product.id }}'>  +  </a> 
-                            </div>
-                            <div class="col price-div ">
-                                <span class='box-shadow'>
-                                    <span class='getTotal'>{{ item.get_total|floatformat:2 }} </span> $<span class="close">&#10005;</span>
-                                </span>
+
+                {% if order.get_cart_items == 0 %}
+
+                    <h4 class='Empty_cart'>Summary cart: </h4>
+                    <p>The cart is empty</p>
+
+                    <img src="{% static 'images/empty_basket/basket1.png' %} " alt="">
+
+                {% else %}
+
+                    {% for item in items %}
+                        <div class="row w-100 p-3 product-cart border-top border-bottom">
+                            <div class="row main align-items-center">
+                                <div class="col-2 pic-div"><img class=" img-fluid " src="{{ item.product.get_img }}"></div>
+                                <div class="col category-div">
+                                    <div class="row text-muted">{{item.product.cattegory}}</div>
+                                    <div class="row name-div">{{ item.product.name }}</div>
+                                </div>
+                                <div class="col quantity-div"> 
+                                    <a href="#" class='update-cart' data-action="remove" data-product='{{ item.product.id }}'>  -  </a>
+                                    <a href="#" class="border">{{ item.quantity }}</a>
+                                    <a href="#" class='update-cart' data-action="add" data-product='{{ item.product.id }}'>  +  </a> 
+                                </div>
+                                <div class="col price-div ">
+                                    <span class='box-shadow'>
+                                        <span class='getTotal'>{{ item.get_total|floatformat:2 }} </span> $<span class="close">&#10005;</span>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+
+                {% endif %}
+
             </div>
         </div>
         <div class="mt-5 mx-3 bg-white box-shadow price-info">

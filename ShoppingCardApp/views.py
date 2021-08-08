@@ -104,6 +104,8 @@ def cart(request) -> HttpResponse:
         
     context = {'items': items, 'order': order}
     
+    print(len(items))
+    
     return render(request, 'Shoppingcart/cart.html', context)
 
 def checkout(request) -> HttpResponse:

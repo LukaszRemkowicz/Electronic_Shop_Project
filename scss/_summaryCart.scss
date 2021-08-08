@@ -3,6 +3,7 @@
     & .subtotal p{
         font-size: 1rem;
         padding-right: 1rem;
+        margin-bottom: 0 !important;
         }
 
     & .price-total{
@@ -41,7 +42,7 @@
 
 .sum-cont{
     grid-column: 1 / span 6;
-    grid-row: 1 / span 20;
+    // grid-row: 1 /  20;
 }
 
 
@@ -50,6 +51,10 @@
 
 
 
+    & img{
+        width: 100px;
+        color: $main-red-color;
+    }
     .product-cart{
         padding-right: 5rem;
         padding-left: 5rem;
@@ -229,6 +234,26 @@
         text-decoration: none;
     }
 }
+
+
+.Empty_cart{
+    width: 100%;
+    position: relative;
+    padding-bottom: 1rem;
+
+    &:after{
+        content: '';
+        position: absolute;
+        display: block;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border-bottom: 1px solid rgb(204, 204, 204);
+    }
+
+}
+
+
 
 
 @import 'media';

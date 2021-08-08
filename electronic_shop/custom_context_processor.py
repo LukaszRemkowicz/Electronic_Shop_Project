@@ -15,7 +15,7 @@ def login_form_content(request):
     except:
         customer = ''
         order = ''
-    
+            
     return {'login_form': form, 'keep_me': keep_me, 'order': order}
     
     
