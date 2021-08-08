@@ -8,6 +8,7 @@ media
 
 #Files
 *.txt
+*.cmd
 
 # Backup files #
 *.bak

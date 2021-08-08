@@ -3,52 +3,43 @@
 {% block content %}
 
 <section class="m-auto">
-    <div class="small-container w-100 border-rounded d-flex">
-        <div class="col-9 m-5 bg-white box-shadow ">
+    <div class="small-container mb-5 cart_section w-100 border-rounded grid-container">
+        <div class="m-5 bg-white box-shadow sum-cont ">
             <div class="summary-container m-5">
-                    <div class="columns-name row py-3 mx-2 my-2 text-left">
-                        <p class="col-2"></p>
-                        <p class="col-6">Item</p>
-                        <p class="col-2">Quantity</p>
-                        <p class="col-2">Price</p>
-                    </div>
-                    {% for item in items %}
-                        <div class="row py-3 mx-2 my-2 row-box">
-                            <div class="pic-div col-2">
-                                <img src="{{ item.product.get_img }}" alt="">
+                {% for item in items %}
+                    <div class="row w-100 p-3 product-cart border-top border-bottom">
+                        <div class="row main align-items-center">
+                            <div class="col-2 pic-div"><img class=" img-fluid " src="{{ item.product.get_img }}"></div>
+                            <div class="col category-div">
+                                <div class="row text-muted">{{item.product.cattegory}}</div>
+                                <div class="row name-div">{{ item.product.name }}</div>
                             </div>
-                            <div class="product-cart-description col-6 d-flex align-items-center">
-                                <p>{{ item.product.name }}</p>
+                            <div class="col quantity-div"> 
+                                <a href="#" class='update-cart' data-action="remove" data-product='{{ item.product.id }}'>  -  </a>
+                                <a href="#" class="border">{{ item.quantity }}</a>
+                                <a href="#" class='update-cart' data-action="add" data-product='{{ item.product.id }}'>  +  </a> 
                             </div>
-                            <div class="add-more-section col-4 d-flex p-0 align-items-center">
-                                <div class="quantity w-50 d-flex h-100">
-                                    <p class="add-more-icons text-left align-self-center">{{ item.quantity }}</p> 
-                                    <div class="arrows d-flex flex-column justify-content-center">
-                                        <i class="fas fa-caret-up update-cart" data-action="add" data-product='{{ item.product.id }}'></i>
-                                        <i class="fas fa-caret-down update-cart" data-action="remove" data-product='{{ item.product.id }}'></i>
-                                    </div>
-                                </div> 
-                                <p class="price-summ-section w-25 text-left">{{ item.get_total|floatformat:2 }} $</p>
-                                <div class="trash-icon w-25">
-                                    <a href="" class=""><i class="fas fa-trash-alt align-self-center"></a></i>
-                                </div>
-                                
-                        
+                            <div class="col price-div ">
+                                <span class='box-shadow'>
+                                    {{ item.get_total|floatformat:2 }} $<span class="close">&#10005;</span>
+                                </span>
                             </div>
                         </div>
-                        
-                    {% endfor %}
+                    </div>
+                {% endfor %}
             </div>
         </div>
-        <div class="col-3 mt-5 mb-5 mx-3 bg-white box-shadow price-info">
+        <div class="mt-5 mx-3 bg-white box-shadow price-info">
             <div class="summary-container py-3 px-2 w-100">
                 <div class="price-row col-12 d-flex justify-content-between">
-
-                    <p class="d-flex align-self-center">Subtotal ({% if order.get_cart_items == 1 %}Item {% else %}Items{% endif %}: {{ order.get_cart_items }})</p>
-                    <p class="">{{ order.get_cart_total|floatformat:2 }}$</p> 
+                    <span class="subtotal">
+                        <p class="d-flex align-self-center">Subtotal </p>
+                        <p>({% if order.get_cart_items == 1 %}Item {% else %}Items{% endif %}: {{ order.get_cart_items }})</p>
+                    </span>
+                    <p class="price-total">{{ order.get_cart_total|floatformat:2 }}$</p> 
                 </div>
-                <a class="price-row-btn col-12 d-flex justify-content-center btn-red" href="{% url 'summary-cart' %}">Proceed to checkout</a> 
-                <a type='button' href='javascript:history.go(-1)' class="btn btn-light mt-4 w-100"><i class="fas fa-arrow-left"></i>Back to shopping</a>
+                <a class="price-row-btn box-shadow col-12 d-flex justify-content-center btn-red" href="{% url 'summary-cart' %}">Proceed to checkout</a> 
+                <a type='button' href='javascript:history.go(-1)' class="btn box-shadow btn-light mt-4 w-100"><i class="fas fa-arrow-left"></i>Back to shopping</a>
             </div>
         </div>
 
@@ -57,6 +48,49 @@
         
     </div>
 </section>
+
+{% comment %} <section class="m-auto">
+    <div class="card small-container cart_section w-100 border-rounded d-flex justify-content-center">
+        <div class="row">
+            <div class="col-md-8 cart">
+                <div class="title">
+                    <div class="row">
+                        <div class="col">
+                            <h4><b>Shopping Cart</b></h4>
+                        </div>
+                        <div class="col align-self-center text-right text-muted">3 items</div>
+                    </div>
+                </div>
+                <div class="row border-top border-bottom">
+                    <div class="row main align-items-center">
+                        <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></div>
+                        <div class="col">
+                            <div class="row text-muted">Shirt</div>
+                            <div class="row">Cotton T-shirt</div>
+                        </div>
+                        <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
+                        <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                    </div>
+                </div>
+                <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+            </div>
+            
+
+                <div class="mt-5 mb-5 mx-3 bg-white box-shadow price-info">
+                <div class="summary-container py-3 px-2 w-100">
+                    <div class="price-row col-12 d-flex justify-content-between">
+
+                        <p class="d-flex align-self-center">Subtotal ({% if order.get_cart_items == 1 %}Item {% else %}Items{% endif %}: {{ order.get_cart_items }})</p>
+                        <p class="">{{ order.get_cart_total|floatformat:2 }}$</p> 
+                    </div>
+                    <a class="price-row-btn col-12 d-flex justify-content-center btn-red" href="{% url 'summary-cart' %}">Proceed to checkout</a> 
+                    <a type='button' href='javascript:history.go(-1)' class="btn btn-light mt-4 w-100"><i class="fas fa-arrow-left"></i>Back to shopping</a>
+                </div>
+        </div>
+
+        </div>
+    </div>
+</section> {% endcomment %}
 
 
 

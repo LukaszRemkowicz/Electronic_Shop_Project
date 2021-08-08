@@ -1,10 +1,11 @@
 .price-row{
 
-    & p:nth-child(1){
-        font-size: 1.5rem;
+    & .subtotal p{
+        font-size: 1rem;
+        padding-right: 1rem;
         }
 
-    & p:nth-child(2){
+    & .price-total{
         font-size: 2rem;
         }
 
@@ -15,24 +16,64 @@
 }
 
 .price-info{
-    height: 25%;
+    // height: 25%;
+    grid-column: 7 / span 12;
+    grid-row: 1 / span 5;
+    padding: 1.5rem;
 }
 
 .pic-div{
 
-    width: 5rem;
-    height: 5rem;
+    width: 25rem;
+    height: 7rem;
+    min-width: 5rem;
+    min-height: 5rem;
+    flex-grow: 1;
+    padding: 0 !important;
+    margin-right: 1rem;
     
     & img{
         width: 100%;
         height: 100%;
+        
     }
 }
 
+.sum-cont{
+    grid-column: 1 / span 6;
+    grid-row: 1 / span 20;
+}
+
+
+
 .summary-container{
 
+
+
+    .product-cart{
+        padding-right: 5rem;
+        padding-left: 5rem;
+
+        & .price-div{
+            overflow-wrap: break-word;
+            
+
+            & .box-shadow{
+                border: 1px solid rgb(204, 204, 204);
+                padding: 0.6rem;
+                background-color: rgba(241, 248, 255, 0.5);
+            }
+
+            & .close{
+                float: none;
+                padding-left: 2rem;
+            }
+    
+            }
+    }
+
     & a:nth-of-type(2) {
-        padding: 0.8rem;
+        padding: 0.5rem;
         font-size: 1.1rem;
 
         & i {
@@ -44,17 +85,52 @@
     .row-box{
         position: relative;
         margin-top: 0 !important;
+        padding-top: 1.2rem !important;
 
-        &::after{
+        // &::after{
+        //     content: '';
+        //     position: absolute;
+        //     margin: 0 auto;
+        //     display: block;
+        //     bottom: 0;
+        //     left: 0;
+        //     height: 5px;
+        //     width: 100%;
+        //     border-bottom: 1px solid rgb(204, 204, 204);
+        // }
+
+        &::before{
             content: '';
             position: absolute;
             margin: 0 auto;
             display: block;
-            bottom: 0;
             left: 0;
+            top: 0;
             height: 5px;
             width: 100%;
             border-bottom: 1px solid rgb(204, 204, 204);
+        }
+
+
+        & .price-col{
+            padding-left: 0;
+
+            & p{
+                margin: auto 0;
+                padding-left: 1rem;
+            }
+
+            & .trash-icon{
+
+                text-align: left;
+                margin: auto 0;
+                padding-left: 1rem;
+            
+                i{
+                    width: 100%;
+                    color: $main-red-color;
+                }
+            }
         }
     }
 }
@@ -68,6 +144,10 @@
         padding-left: 0;
         padding-bottom: 0;
         margin-bottom: 0 !important;
+
+        &:last-child{
+            padding-left: 1rem;
+        }
     }
 
     &::after{
@@ -83,31 +163,49 @@
 }
 
 .product-cart-description{
-        padding-left: 0;
+        padding-left: 1rem;
+
+        & p{
+            margin: auto 0;
+        }
 }
 
 .add-more-section{  
 
+    width: 100%;
+
     & i{
         color: $main-red-color;
         font-size: 1.5rem;
+        padding-left: 0.5rem;
+        // height: 100%;
+        // display: block;
+
+        &:hover{
+            cursor: pointer;
+        }
     }
 
-    & .quantity{
+    
+    & p{
+        // width: 20%;
+        // margin-bottom: 0;
 
-        & p{
-            width: 20%;
-            margin-bottom: 0;
+        & span{
+            font-size: 0.7rem;
         }
 
+    
+
         & .arrows{
-            width: 80%;
+            
+            width: 100%;
             text-align: left;
             height: 100%;
 
             & i{
                 font-size: 1.5rem;
-                width: 20%;
+                display: block;
 
                 &:hover{
                     cursor: pointer;
@@ -117,18 +215,13 @@
     }
 }
 
-.price-summ-section{
-    margin-bottom: 0;
+.update-cart{
+    font-size: 1.5rem;
+    font-weight: 300;
 }
 
-.trash-icon{
 
-    text-align: left;
 
-    i{
-        width: 100%;
-    }
-}
 
 .price-row-btn{
     &:hover{
@@ -136,3 +229,6 @@
         text-decoration: none;
     }
 }
+
+
+@import 'media';

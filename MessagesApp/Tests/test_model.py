@@ -64,7 +64,7 @@ class TestMessageApp(TestCase):
         customer = create_customer(user)
         product = Phones.objects.create(**self.product_data)
         product_main = MainProductDatabase.objects.get(ean=product.ean)
-        order = Order.objects.create(customer=customer, transactionId='11')
+        order = Order.objects.create(customer=customer, transaction_id='11')
                 
         complaint_data = {
             'product': product_main,
@@ -77,7 +77,7 @@ class TestMessageApp(TestCase):
         complaint = Complaint.objects.create(**complaint_data)
 
         self.assertEqual(complaint.user.username, 'Test')
-        self.assertEqual(complaint.order.transactionId, '11')
+        self.assertEqual(complaint.order.transaction_id, '11')
         
     
     def test_question_model(self):
