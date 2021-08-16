@@ -30,9 +30,9 @@ CHOICES = [
 class Phones(models.Model):
     
     name = models.CharField(max_length=20, default='')
-    price = models.FloatField(max_length=10)
+    price = models.DecimalField(max_digits=7, decimal_places=2)
     pieces = models.IntegerField()
-    promotion = models.FloatField(blank=True, null=True)
+    promotion = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
     ram = models.IntegerField()
     memory = models.IntegerField()
     modem = models.IntegerField()
@@ -81,9 +81,9 @@ class Monitors(models.Model):
     
     main_photo = models.ImageField(null=True, blank=True)
     name = models.CharField(max_length=20, default='')
-    price = models.FloatField(max_length=10)
+    price = models.DecimalField(max_digits=7, decimal_places=2)
     pieces = models.IntegerField()
-    promotion = models.FloatField(blank=True, null=True)
+    promotion = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
     color = models.CharField(max_length=40)
     resolution = models.CharField(max_length=20)
     refresh_rate = models.CharField(max_length=10)
@@ -126,9 +126,9 @@ class MainProductDatabase(models.Model):
     
     img = models.ImageField(null=True, blank=True, upload_to='products_pic')
     name = models.CharField(max_length=100, default='')
-    price = models.FloatField(max_length=10, default=0)
+    price = models.DecimalField(max_digits=7, decimal_places=2, default=0)
     pieces = models.IntegerField(default=0)
-    promotion = models.FloatField(blank=True, null=True)
+    promotion = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
     phones_product_data = models.OneToOneField(Phones, on_delete=models.CASCADE, null=True, blank=True)
     monitors_product_data = models.OneToOneField(Monitors, on_delete=models.CASCADE, default='', null=True, blank=True)
     ean = models.IntegerField(null=True, blank=True, unique=True)
