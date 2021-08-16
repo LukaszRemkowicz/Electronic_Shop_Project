@@ -8,58 +8,18 @@ from django.contrib import messages
 from ProductApp.models import MainProductDatabase 
 from .models import Customer, Order, OrderItem, ShippingAddress
 from AddressBookApp.models import AddressBook
-
-
-""" Creating cart items """
-
-def order_cart(cart):
-    
-    items = []
-    order = {'get_cart_total': 0, 'get_cart_items': 0}
-    cart_items = order['get_cart_items']
-    
-    for item_id in cart:
-            cart_items += cart[item_id]["quantity"]
-            
-            product = MainProductDatabase.objects.get(id=item_id)
-            total = (product.price * cart[item_id]['quantity'])
-            
-            order['get_cart_total'] += total
-            order['get_cart_items'] += cart[item_id]['quantity']
-            
-            item = {
-                'product': {
-                    'id': product.id,
-                    'name': product.name,
-                    'price': product.price,
-                    'get_img': product.get_img,
-                    'cattegory': product.cattegory
-                },
-                'quantity': cart[item_id]['quantity'], 
-                'get_total': total
-            }
-            
-            
-            items.append(item)
-    
-    return items, order, cart_items
+from .utils import order_cart, cart_data
 
 
 """ Get data for unauthorised user """
+
 def order_cart_unauthorised_user(request) -> JsonResponse:
 
-    try:
-        cart = json.loads(request.COOKIES['cart'])['products']
-    except:
-        cart = {}
-        
-    print('cart unauthorised: ', cart)
-        
-    items, order, cart_items = order_cart(cart)
-        
+    items, order, cart_items = order_cart(request)
     context = {'items': items, 'order': order}
     
     return JsonResponse(context, safe=False)
+
 
 """ Finish order """
 
@@ -101,16 +61,7 @@ def order_finished(request) -> JsonResponse:
 
 def address_checkout(request) -> HttpResponse:
     
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-        address_list = AddressBook.objects.filter(user= request.user)
-    else: 
-        items = []
-        address_list = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-        
+    items, order, address_list = cart_data(request) 
     context = {'items': items, 'order': order, 'address_list': address_list}
     
     return render(request,'Shoppingcart/address-checkout.html', context)
@@ -158,19 +109,7 @@ def update_item(request) -> JsonResponse:
 
 def cart(request) -> HttpResponse:
     
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-    else: 
-        
-        try:
-            cart = json.loads(request.COOKIES['cart'])['products']
-        except:
-            cart = {}
-            
-        items, order, cart_items = order_cart(cart)
-        
+    items, order, address_list = cart_data(request)
     context = {'items': items, 'order': order}
         
     return render(request, 'Shoppingcart/cart.html', context)
