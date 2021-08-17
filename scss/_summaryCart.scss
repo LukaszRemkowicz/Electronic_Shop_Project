@@ -223,6 +223,12 @@
 .update-cart{
     font-size: 1.5rem;
     font-weight: 300;
+
+    & .iks{
+        &:hover{
+            cursor: pointer;
+        }
+    }
 }
 
 

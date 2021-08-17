@@ -141,7 +141,7 @@
                             <li class="nav-item" >
                                 <div id="shopping-cart" data-totalitems={% if not order %}'0'{% else %}"{{ order.get_cart_items }}"{% endif %}> 
                                     
-                                    <a data-product="{{ product.id }}" data-action="add" class="btn d-flex flex-column text-center" href= "{% url 'shopping-cart' %}"><i class="fas fa-shopping-cart fa-2x shopping-cart"></i><span class="nav-font-size"> 0,00zł</span></a>
+                                    <a data-product="{{ product.id }}" data-action="add" class="btn d-flex flex-column text-center" href= "{% url 'shopping-cart' %}"><i class="fas fa-shopping-cart fa-2x shopping-cart"></i><span class="nav-font-size price-navbar">{{order.get_cart_total|floatformat:2}} $</span></a>
                                     
                                 </div>
                             </li>
