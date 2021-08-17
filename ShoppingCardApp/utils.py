@@ -1,7 +1,9 @@
 import json
+from decimal import Decimal
+
 
 from ProductApp.models import MainProductDatabase
-from .models import Order
+from .models import Order, Customer, OrderItem
 from AddressBookApp.models import AddressBook
 
 
@@ -56,3 +58,38 @@ def cart_data(request):
         items, order, cart_items = order_cart(request)
     
     return items, order, address_list
+
+
+def complete_unauthorised_user_order(request, data):
+    name = data['customerName']
+    email = data['customerEmail']
+    
+    items, order, cart_items = order_cart(request)
+        
+    customer, created = Customer.objects.get_or_create(email=email)
+    customer.name = name
+    customer.save()
+    
+    order = Order.objects.create(
+        customer = customer,
+        complete = False,
+    )
+    
+    for item in items:
+        product = MainProductDatabase.objects.get(id=item['product']['id'])
+        
+        order_item = OrderItem.objects.create(
+            product=product,
+            order=order,
+            quantity=item['quantity']
+        )
+    
+    return customer, order
+    
+    
+class DecimalEncoder(json.JSONEncoder):
+    
+    def default(self, obj):
+        if isinstance(obj, Decimal):
+            return float(obj)
+        return json.JSONEncoder.default(self, obj)

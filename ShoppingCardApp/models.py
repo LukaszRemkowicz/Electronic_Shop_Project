@@ -9,7 +9,7 @@ class Customer(models.Model):
     email = models.CharField(max_length=30, blank=True, null=True)
     
     def __str__(self) -> str:
-        return self.user.username
+        return str(self.email)
     
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)

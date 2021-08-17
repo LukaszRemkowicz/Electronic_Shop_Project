@@ -8,7 +8,7 @@ from django.contrib import messages
 from ProductApp.models import MainProductDatabase 
 from .models import Customer, Order, OrderItem, ShippingAddress
 from AddressBookApp.models import AddressBook
-from .utils import order_cart, cart_data
+from .utils import order_cart, cart_data, complete_unauthorised_user_order, DecimalEncoder
 
 
 """ Get data for unauthorised user """
@@ -18,26 +18,25 @@ def order_cart_unauthorised_user(request) -> JsonResponse:
     items, order, cart_items = order_cart(request)
     context = {'items': items, 'order': order}
     
-    return JsonResponse(context, safe=False)
+    return JsonResponse(json.dumps(context, cls=DecimalEncoder), safe=False)
 
 
 """ Finish order """
 
 def order_finished(request) -> JsonResponse:
     
-    data = json.loads(request.body)
+    data = json.loads(request.body)    
     payment_method = data['payment']
-    name = data['customerName']
-    email = data['customerEmail']
-    
+
     transaction_id = datetime.datetime.now().timestamp()
      
     if request.user.is_authenticated:
         customer = request.user.customer
-    else:
-        customer = Customer.objects.create(email=data['customerEmail'])
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
         
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    else:
+        customer, order = complete_unauthorised_user_order(request, data)
+            
     total = float(data['price']) 
     order.transaction_id = transaction_id 
     
@@ -53,7 +52,7 @@ def order_finished(request) -> JsonResponse:
         state = data['customerState'],
         zipcode = data['customerZipcode'], 
     )
-        
+            
     return JsonResponse('order saved.. ', safe=False)
 
 
@@ -102,7 +101,7 @@ def update_item(request) -> JsonResponse:
         'totalItems': order.get_cart_items,
     }
         
-    return JsonResponse(json.dumps(data),safe=False)
+    return JsonResponse(json.dumps(data, cls=DecimalEncoder),safe=False)
 
 
 """ Render cart template """
