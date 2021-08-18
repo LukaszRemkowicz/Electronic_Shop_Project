@@ -1,7 +1,6 @@
 import json
 from decimal import Decimal
 
-
 from ProductApp.models import MainProductDatabase
 from .models import Order, Customer, OrderItem
 from AddressBookApp.models import AddressBook

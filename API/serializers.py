@@ -1,10 +1,10 @@
+from typing import Any
+
 from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-
 from rest_framework import serializers
 
-from typing import Any
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -64,3 +64,4 @@ class AuthTokenSerializer(serializers.Serializer):
         attrs['user'] = user
         
         return attrs
+    

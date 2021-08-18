@@ -9,6 +9,7 @@ media
 #Files
 *.txt
 *.cmd
+deleted.py
 
 # Backup files #
 *.bak
