@@ -158,7 +158,7 @@ class TestOrderModel(TestCase):
         self.assertEqual(str(order), str(order.id))
         
         """ Check Customer __str__ method """
-        self.assertEqual(str(customer), user.username)
+        self.assertEqual(str(customer), user.email)
         
         """ Check ShippingAddress __str__ method """
         self.assertEqual(str(shipping), shipping.address)

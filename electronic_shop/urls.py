@@ -12,6 +12,6 @@ urlpatterns = [
     # path('', TemplateView.as_view(template_name='landing_page.html'), name="landing-page"),
     path('', include("ProductApp.urls"), name="products"),
     path('', include('ShoppingCardApp.urls'), name="shopping_cart"),
-    path('api/', include('API.urls'), name='api'),
+    path('api/', include('API.urls', namespace='api')),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

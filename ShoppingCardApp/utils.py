@@ -7,9 +7,10 @@ from AddressBookApp.models import AddressBook
 
 
 def order_cart(request):
-    
+
     try:
-        cart = json.loads(request.COOKIES['cart'])['products']
+        # new_request = request.COOKIES["cart"].replace("\'", "\"")
+        cart = json.loads(request.COOKIES["cart"])['products']
     except:
         cart = {}
     
@@ -17,9 +18,15 @@ def order_cart(request):
     order = {'get_cart_total': 0, 'get_cart_items': 0}
     cart_items = order['get_cart_items']
     
+    # print('cart: ', cart)
+    
+    
     for item_id in cart:
-            cart_items += cart[item_id]["quantity"]
+        
+            # print('item id: ', item_id)
             
+            cart_items += cart[item_id]["quantity"]
+                                    
             product = MainProductDatabase.objects.get(id=item_id)
             total = (product.price * cart[item_id]['quantity'])
             

@@ -1,11 +1,13 @@
 import json
 import datetime
+from django.http.response import JsonResponse
 
 from rest_framework import serializers, generics, authentication, permissions
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.settings import api_settings
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.parsers import JSONParser
 
 from .serializers import AuthTokenSerializer, UserSerializer
 from ShoppingCardApp import utils  
@@ -41,6 +43,7 @@ class UnauthorisedUserOrderView(APIView):
     def post(self, request):
         authentication_classes = [authentication.TokenAuthentication]
         permission_classes = [permissions.IsAdminUser]
+        parser_classes = [JSONParser]
         
         items, order, cart_items = utils.order_cart(request)
         context = {'items': items, 'order': order}
@@ -51,9 +54,10 @@ class UnauthorisedUserOrderView(APIView):
 class FinishOrderView(APIView):
     """ finish order api """
     
-    def post(self, request, format=None):
+    def post(self, request, format=None) -> JsonResponse:
         authentication_classes = [authentication.TokenAuthentication]
         permission_classes = [permissions.IsAdminUser]
+        parser_classes = [JSONParser]
                 
         data = request.data        
         payment_method = data['payment']
@@ -65,8 +69,11 @@ class FinishOrderView(APIView):
             
         else:
             customer, order = utils.complete_unauthorised_user_order(request, data)
-                
+            
+         
         total = float(data['price']) 
+        # print('total: ', total)
+        # print('get_cart_total', order.get_cart_total)   
         order.transaction_id = transaction_id 
         
         if total == float(order.get_cart_total):
@@ -91,6 +98,7 @@ class UpdateItemView(APIView):
     def post(self, request):
         authentication_classes = [authentication.TokenAuthentication]
         permission_classes = [permissions.IsAdminUser]
+        parser_classes = [JSONParser]
         
         data = request.data
         product_id = data['productId']

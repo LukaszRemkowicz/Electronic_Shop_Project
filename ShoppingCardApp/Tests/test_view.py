@@ -1,9 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
-from django.http import response
 from django.test import TestCase, Client
 from django.urls import reverse
-from django.urls.base import translate_url
 
 from ProductApp.models import Phones, MainProductDatabase
 from ..models import Customer, Order, OrderItem, ShippingAddress
@@ -15,7 +13,7 @@ def create_user(*args, **kwargs) -> User:
     """ Help function to create user """
     return get_user_model().objects.create_user(**kwargs)
 
-def create_customer(user: User):
+def create_customer(user: User) -> Customer:
     """ Help function to create customer """
     return Customer.objects.create(user=user, email=user.email)
 
@@ -87,7 +85,7 @@ class TestShoppingCartViews(TestCase):
     def test_update_item_api(self) -> None:
         """ check if user can add item to the basket """
         
-        url = reverse('update_item')
+        url = reverse('api:update_item')
 
         user = create_user(**self.payload)
         login = self.client.login(**self.payload)
@@ -107,15 +105,12 @@ class TestShoppingCartViews(TestCase):
         for num_of_iteration in range(1,6):
             
             order_item_testing = OrderItem.objects.get(order=order)       
-            # print(f'\nThere are {order_item_testing.quantity} items before adding one')
             response = self.client.post(url, 
                                         json.dumps(body), 
                                         content_type="application/json")
     
             self.assertEqual(response.status_code, 200)
-            # print(response.__dict__)
             order_item_testing = OrderItem.objects.get(order=order)
-            # print(f'There are {order_item_testing.quantity} after adding one')
         
             self.assertEqual(order_item.quantity + num_of_iteration, order_item_testing.quantity)
  
@@ -123,7 +118,7 @@ class TestShoppingCartViews(TestCase):
     def test_substract_item_api(self) -> None:
         """ check if user can substract item from the basket """
         
-        url = reverse('update_item')
+        url = reverse('api:update_item')
 
         user = create_user(**self.payload)
         login = self.client.login(**self.payload)
@@ -153,10 +148,10 @@ class TestShoppingCartViews(TestCase):
         self.assertNotEqual(order_item_testing, True)
 
 
-    def test_order_complete_API(self):
+    def test_order_complete_API(self) -> None:
         """ check complete order """
         
-        url = reverse('order-finished')
+        url = reverse('api:order-finished')
         
         user = create_user(**self.payload)
         login = self.client.login(**self.payload)
