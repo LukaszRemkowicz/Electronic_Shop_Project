@@ -48,6 +48,7 @@ def create_product(sender, instance, created, **kwargs):
             product.name = instance.name
             product.price = instance.price
             product.pieces = instance.pieces
+            product.color = instance.color
             try:
                 product.promotion = instance.promotion
             except:

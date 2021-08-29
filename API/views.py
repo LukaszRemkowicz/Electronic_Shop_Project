@@ -80,6 +80,11 @@ class FinishOrderView(APIView):
             order.complete = True
         order.save()
         
+        products =shopping_cart.OrderItem.objects.filter(order=order)
+        for item in products:
+            item.product.pieces -= item.quantity
+            item.product.save()
+   
         shopping_cart.ShippingAddress.objects.create(
             customer = customer,
             order = order,
@@ -103,6 +108,9 @@ class UpdateItemView(APIView):
         data = request.data
         product_id = data['productId']
         action = data['action']
+        print(data['amount'])
+        amount = data['amount']
+        
         
         # customer = request.user.customer
         try:
@@ -117,9 +125,9 @@ class UpdateItemView(APIView):
         orderItem, created = shopping_cart.OrderItem.objects.get_or_create(order=order, product=product)
         
         if action == 'add':
-            orderItem.quantity = (orderItem.quantity + 1)
+            orderItem.quantity = (orderItem.quantity + int(amount))
         elif action == 'remove':
-            orderItem.quantity = (orderItem.quantity - 1)
+            orderItem.quantity = (orderItem.quantity - int(amount))
         elif action == 'delete':
             orderItem.quantity = 0
             
@@ -128,11 +136,14 @@ class UpdateItemView(APIView):
         if orderItem.quantity <= 0:
             orderItem.delete()
             
+        product_quantity = product.pieces - orderItem.quantity
+            
         data = {
             'items' : orderItem.quantity,
             'summaryItem': orderItem.get_total,
             'subtotal': order.get_cart_total,
             'totalItems': order.get_cart_items,
+            'pieces': product_quantity
         }
         
         return Response(json.dumps(data, cls=utils.DecimalEncoder))

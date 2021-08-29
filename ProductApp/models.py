@@ -134,6 +134,7 @@ class MainProductDatabase(models.Model):
     ean = models.IntegerField(null=True, blank=True, unique=True)
     product_of_the_day = models.BooleanField(default=False)
     cattegory = models.CharField(max_length=50, default='')
+    color = models.CharField(max_length=100, default='')
 
     def __str__(self) -> str:
         return f'Product: {self.name}'
@@ -146,7 +147,7 @@ class MainProductDatabase(models.Model):
             url=''
         
         return url
-    
+
     
 class Laptops(models.Model):
     pass
