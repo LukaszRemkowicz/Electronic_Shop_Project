@@ -24,6 +24,7 @@ class TestShoppingCartViews(TestCase):
         self.client = Client()
         self.product_data={
                 'name': 'Iphone 10',
+                'model': 'Iphone 10',
                 'price': 3000,
                 'pieces': 2,
                 'ram': 8,
@@ -33,7 +34,7 @@ class TestShoppingCartViews(TestCase):
                 'describe': 'The best model',
                 'producent': 'Apple',
                 'producent_code': 'AABB123',
-                'ean': 123456,
+                'ean': 12345644,
                 'waterproof': True,
                 'distibution': 'EU',
                 'system': 'IOS',
@@ -44,13 +45,35 @@ class TestShoppingCartViews(TestCase):
                 'audio_jack': "Yes",
                 'screen': '100x200',
                 'screen_diagonal': 7.2,
-                'battery': "100Ah",
+                'battery': 5000,
                 'high':'10cm',
                 'width': '10cm',
                 'deep': '10cm',
                 'weight': '500g',
-                'cattegory': 'phones'
+                'cattegory': 'Monitor'
             }
+        
+        self.product_monitor = {
+            'name':'LG',
+            'model': 'Samsung',
+            'price' : 1000,
+            'pieces' : 20,
+            'color' : 'White',
+            'resolution': '100x200',
+            'refresh_rate' : 400,
+            'power_consumption' : 20,
+            'producent' : 'Samsung',
+            'producent_code' : 'AA@@SS',
+            'ean' : 1122343,
+            'distribution' : 'EU',
+            'screen': 'Mat',
+            'screen_diagonal' : '15\'',
+            'high' : '200',
+            'width' : '100',
+            'deep' : '10',
+            'weight' : '20kg',
+        }
+        
         self.payload = {
             'username': 'Test',
             'password': 'TestingFunc123',

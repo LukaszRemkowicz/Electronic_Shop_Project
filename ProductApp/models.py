@@ -1,18 +1,18 @@
-from django.db import models
-from django.db.models.base import Model
-from django.utils.safestring import mark_safe
 from typing import Any
-
-
 import os
 import codecs
 
+from django.db import models
+from django.db.models.base import Model
+from django.utils.safestring import mark_safe
+
+
 CHOICES = [
         ("Laptops", "Laptops"),
-        ("phones", 'phones'),
+        ("Phones", 'Phones'),
         ("PC", "PC"),
         ("Monitor", "Monitor"),
-        ("Accesories_for_laptops", "Accesories_for_laptops"),
+        ("Accesories for laptops", "Accesories for laptops"),
         ("SSD", "SSD"),
         ("Graphs", "Graphs"),
         ("Ram", "Ram"),
@@ -30,6 +30,7 @@ CHOICES = [
 class Phones(models.Model):
     
     name = models.CharField(max_length=20, default='')
+    model = models.CharField(max_length=20, null=True, blank=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
     pieces = models.IntegerField()
     promotion = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
@@ -56,7 +57,7 @@ class Phones(models.Model):
     audio_jack = models.CharField(max_length=10)
     screen = models.CharField(max_length=30)
     screen_diagonal = models.CharField(max_length=10)
-    battery = models.CharField(max_length=10)
+    battery = models.IntegerField()
     high = models.CharField(max_length=10)
     width = models.CharField(max_length=10)
     deep = models.CharField(max_length=10)
@@ -81,13 +82,14 @@ class Monitors(models.Model):
     
     main_photo = models.ImageField(null=True, blank=True)
     name = models.CharField(max_length=20, default='')
+    model = models.CharField(max_length=20, null=True, blank=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
     pieces = models.IntegerField()
     promotion = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
     color = models.CharField(max_length=40)
     resolution = models.CharField(max_length=20)
-    refresh_rate = models.CharField(max_length=10)
-    Power_consumption = models.CharField(max_length=10)
+    refresh_rate = models.IntegerField()
+    power_consumption = models.IntegerField()
     describe = models.CharField(max_length=30000, null=True)
     main_photo = models.ImageField(upload_to=f'monitors', null=True, blank=True)
     content_photo1 = models.ImageField(upload_to=f'monitors', null=True, blank=True)
@@ -97,7 +99,7 @@ class Monitors(models.Model):
     producent = models.CharField(max_length=100)
     producent_code = models.CharField(max_length=100)
     ean = models.IntegerField(unique=True)
-    distibution = models.CharField(max_length=10)
+    distribution = models.CharField(max_length=10)
     screen = models.CharField(max_length=30)
     screen_diagonal = models.CharField(max_length=10)
     high = models.CharField(max_length=10)
@@ -129,11 +131,14 @@ class MainProductDatabase(models.Model):
     price = models.DecimalField(max_digits=7, decimal_places=2, default=0)
     pieces = models.IntegerField(default=0)
     promotion = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
+    
     phones_product_data = models.OneToOneField(Phones, on_delete=models.CASCADE, null=True, blank=True)
     monitors_product_data = models.OneToOneField(Monitors, on_delete=models.CASCADE, default='', null=True, blank=True)
+    laptops_product_data = models.OneToOneField('Laptops', on_delete=models.CASCADE, default='', null=True, blank=True)
+    
     ean = models.IntegerField(null=True, blank=True, unique=True)
     product_of_the_day = models.BooleanField(default=False)
-    cattegory = models.CharField(max_length=50, default='')
+    cattegory =  models.CharField(choices=CHOICES, max_length=50, default='')
     color = models.CharField(max_length=100, default='')
 
     def __str__(self) -> str:

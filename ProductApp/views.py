@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 from ShoppingCardApp.models import Customer, Order, OrderItem
 from .models import MainProductDatabase
+from .utils import filter_products
 
 
 
@@ -17,18 +18,27 @@ class ProductPage(ListView):
         context = super(ProductPage, self).get_context_data(**kwargs)
         id = self.kwargs['MainProductDatabase_id']
         product = MainProductDatabase.objects.get(id=id)
+        
         try:
             customer = Customer.objects.get(user=self.request.user)
             order = Order.objects.get(customer=customer, complete=False)
             orderItem = OrderItem.objects.get(order=order)
-            pieces = product.pieces - orderItem.quantity
-            context['pieces_range'] = range(1, pieces+1)
-            
+            pieces = product.pieces - orderItem.quantity     
         except:
             orderItem = ''
             pieces = product.pieces
-            context['pieces_range'] = range(1, product.pieces+1)
             
+        same_products = filter_products(product.cattegory, product)
+        print(same_products)
+        
+        if pieces <= 10:
+                pieces_range = range(1, pieces+1)
+        else: 
+            pieces_range = range(1, 11)
+            
+                
+        context['pieces_range'] = pieces_range
+        context['same_products'] = same_products
         context['product'] = product
         context['pieces'] = pieces
         return context

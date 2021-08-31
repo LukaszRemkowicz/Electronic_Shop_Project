@@ -79,45 +79,37 @@
                                 </div>
             
                                 <div class="select-section">
-                                    <div class="color-section">
-                                        <p class="px-5 pt-1 text-left">
-                                            Color:
-                                        </p>
-                                        <div class="buttons d-flex px-5">
-                                            <a href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 {% if product.color == 'white' %} active-product-content bg-white{% endif %}">White</a>
-                                            <a href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 {% if product.color == 'blue' %} active-product-content bg-white{% endif %}">Blue</a>
-                                            <a href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 {% if product.color == 'grey' %} active-product-content bg-white{% endif %}">Grey</a>
-                                        </div>
-                                    </div>
-                                    <div class="processor-section">
-                                        <p class="px-5 pt-4 text-left">
-                                            Processor:
-                                        </p>
-                                        <div class="buttons d-flex px-5">
-                                            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 active-product-content bg-white">AMD Ryzen 3 4300U</a>
-                                            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2">AMD Ryzen 5 4500U</a>
-                                        </div>
-                                    </div>
-                                    <div class="ram-section">
-                                        <p class="px-5 pt-4 text-left">
-                                            RAM:
-                                        </p>
-                                        <div class="buttons d-flex px-5">
-                                            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2">8GB</a>
-                                            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 bg-white active-product-content">16GB</a>
-                                            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2">32GB</a>
-                                        </div>
-                                    </div>
-                                    <div class="disc-section">
-                                        <p class="px-5 pt-4 text-left">
-                                            Disc SSD M.2 PCIe:
-                                        </p>
-                                        <div class="buttons d-flex px-5">
-                                            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 bg-white active-product-content">512GB</a>
-                                            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 ">1TB</a>
-                                            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2">256GB</a>
-                                        </div>
-                                    </div>
+                                    {% if product.cattegory == 'Phones' %}
+                                        {% include 'productapp/products_templates/phones.html' %}
+                                    {% elif product.cattegory == 'Laptops' %}
+                                        {% include 'productapp/products_templates/Laptops.html' %}
+                                    {% elif product.cattegory == 'PC' %}
+                                        {% include 'productapp/products_templates/PC.html' %}
+                                    {% elif product.cattegory == 'Monitor' %}
+                                        {% include 'productapp/products_templates/Monitor.html' %}
+                                    {% elif product.cattegory == 'Accesories for laptops' %}
+                                        {% include 'productapp/products_templates/Accesories_for_laptops.html' %}
+                                    {% elif product.cattegory == 'SSD' %}
+                                        {% include 'productapp/products_templates/SSD.html' %}
+                                    {% elif product.cattegory == 'Graphs' %}
+                                        {% include 'productapp/products_templates/Graphs.html' %}
+                                    {% elif product.cattegory == 'Ram' %}
+                                        {% include 'productappproducts_templates//Ram.html' %}
+                                    {% elif product.cattegory == 'Pendrives' %}
+                                        {% include 'productapp/products_templates/Pendrives.html' %}
+                                    {% elif product.cattegory == 'Routers' %}
+                                        {% include 'productapp/products_templates/Routers.html' %}
+                                    {% elif product.cattegory == 'Switches' %}
+                                        {% include 'productapp/products_templates/Switches.html' %}
+                                    {% elif product.cattegory == 'Motherboard' %}
+                                    {% include 'productapp/products_templates/Motherboard.html' %}
+                                    {% elif product.cattegory == 'CPU' %}
+                                        {% include 'productapp/products_templates/CPU.html' %}
+                                    {% elif product.cattegory == 'TV' %}
+                                        {% include 'productapp/products_templates/TV.html' %}
+                                    {% elif product.cattegory == 'Headphones' %}
+                                        {% include 'productapp/products_templates/Headphones.html' %}
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

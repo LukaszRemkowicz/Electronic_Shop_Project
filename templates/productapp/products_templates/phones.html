@@ -1,0 +1,60 @@
+{% load static %}
+
+<div class="color-section">
+    <p class="px-5 pt-1 text-left">
+        Color:
+    </p>
+    <div class="buttons d-flex px-5">
+    
+        {% for element in same_products.colors %}
+
+            <a href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 {% if element == product.phones_product_data.color %}active-product-content bg-white{% endif %} ">{{ element }}</a>
+
+        {% endfor %}
+
+    </div>
+</div>
+<div class="processor-section">
+    <p class="px-5 pt-4 text-left">
+        Memory:
+    </p>
+    <div class="buttons d-flex px-5 sort_items">
+
+        {% for element in same_products.memory %}
+
+            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element == product.phones_product_data.memory %}active-product-content bg-white{% endif %} ">{{ element }} GHz</a>
+
+        {% endfor %}
+        
+    </div>
+</div>
+<div class="ram-section">
+    <p class="px-5 pt-4 text-left">
+        RAM: 
+    </p>
+    <div class="buttons d-flex px-5 sort_items">
+
+        {% for element in same_products.ram %}
+
+            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element == product.phones_product_data.ram %}active-product-content bg-white{% endif %} ">{{ element }} GHz</a>
+
+        {% endfor %}
+
+    </div>
+</div>
+<div class="disc-section">
+    <p class="px-5 pt-4 text-left">
+        Battery:
+    </p>
+    <div class="buttons d-flex px-5 sort_items">
+
+        {% for element in same_products.battery %}
+
+            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element == product.phones_product_data.battery %}active-product-content bg-white{% endif %} ">{{ element }} GHz</a>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+<script src='{% static 'js/sortSpecData.js' %}'></script>

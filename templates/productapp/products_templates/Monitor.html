@@ -1,0 +1,60 @@
+{% load static %}
+
+<div class="color-section">
+    <p class="px-5 pt-1 text-left">
+        Color:
+    </p>
+    <div class="buttons d-flex px-5">
+    
+        {% for element in same_products %}
+
+            <a href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 {% if element.monitors_product_data.color == product.monitors_product_data.color %}active-product-content bg-white{% endif %} ">{{ element.monitors_product_data.color }}</a>
+
+        {% endfor %}
+
+    </div>
+</div>
+<div class="processor-section">
+    <p class="px-5 pt-4 text-left">
+        Refresh rate:
+    </p>
+    <div class="buttons d-flex px-5 sort_items">
+
+        {% for element in same_products %}
+
+            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element.monitors_product_data.refresh_rate == product.monitors_product_data.refresh_rate %}active-product-content bg-white{% endif %} ">{{ element.monitors_product_data.refresh_rate }} GHz</a>
+
+        {% endfor %}
+        
+    </div>
+</div>
+<div class="ram-section">
+    <p class="px-5 pt-4 text-left">
+        Power consumption:
+    </p>
+    <div class="buttons d-flex px-5 sort_items">
+
+        {% for element in same_products %}
+
+            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element.monitors_product_data.power_consumption == product.monitors_product_data.power_consumption %}active-product-content bg-white{% endif %} ">{{ element.monitors_product_data.power_consumption }} W</a>
+
+        {% endfor %}
+
+    </div>
+</div>
+<div class="disc-section">
+    <p class="px-5 pt-4 text-left">
+        Diagonal:
+    </p>
+    <div class="buttons d-flex px-5 sort_items">
+
+        {% for element in same_products %}
+
+            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element.monitors_product_data.screen_diagonal == product.monitors_product_data.screen_diagonal %}active-product-content bg-white{% endif %} ">{{ element.monitors_product_data.screen_diagonal }}</a>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+<script src='{% static 'js/sortSpecData.js' %}'></script>

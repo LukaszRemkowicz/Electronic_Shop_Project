@@ -10,6 +10,7 @@ media
 *.txt
 *.cmd
 deleted.py
+help_script.py
 
 # Backup files #
 *.bak

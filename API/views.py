@@ -108,9 +108,7 @@ class UpdateItemView(APIView):
         data = request.data
         product_id = data['productId']
         action = data['action']
-        print(data['amount'])
         amount = data['amount']
-        
         
         # customer = request.user.customer
         try:
