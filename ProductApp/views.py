@@ -29,14 +29,14 @@ class ProductPage(ListView):
             pieces = product.pieces
             
         same_products = filter_products(product.cattegory, product)
-        print(same_products)
+        print(product)
+        print(product.color)
         
         if pieces <= 10:
                 pieces_range = range(1, pieces+1)
         else: 
             pieces_range = range(1, 11)
-            
-                
+                  
         context['pieces_range'] = pieces_range
         context['same_products'] = same_products
         context['product'] = product

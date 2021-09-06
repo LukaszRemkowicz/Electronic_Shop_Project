@@ -1,40 +1,64 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from .models import (MainProductDatabase, Phones, 
-                     Monitors, Laptops, Pc, AccesoriesForLaptops, 
-                     Ssd, Graphs,Ram, Pendrives, Routers, Switches,
-                     Motherboard, Cpu, Tv, Headphones)
-
+from . import models
 
 def choose_model(model, instance):
-    """ help function for difference models """
+    """ create objects for specific model """
+    
     if model == "Phones":
-        return MainProductDatabase.objects.create(phones_product_data=instance)
+        return models.MainProductDatabase.objects.create(phones_product_data=instance)
     elif model == "Monitors":
-        return MainProductDatabase.objects.create(monitors_product_data=instance)
+        return models.MainProductDatabase.objects.create(monitors_product_data=instance)
+    elif model == 'Laptops':
+        return models.MainProductDatabase.objects.create(laptops_product_data=instance)
+    elif model == 'Pc':
+        return models.MainProductDatabase.objects.create(pc_product_data=instance)
+    elif model == 'AccesoriesForLaptops':
+        return models.MainProductDatabase.objects.create(AccesoriesForLaptops_data=instance)
+    elif model == 'Ssd':
+        return models.MainProductDatabase.objects.create(ssd_product_data=instance)
+    elif model == 'Graphs':
+        return models.MainProductDatabase.objects.create(graphs_product_data=instance)
+    elif model == 'Ram':
+        return models.MainProductDatabase.objects.create(ram_product_data=instance)
+    elif model == 'Pendrives':
+        return models.MainProductDatabase.objects.create(pendrive_product_data=instance)
+    elif model == 'Switches':
+        return models.MainProductDatabase.objects.create(stwitch_product_data=instance)
+    elif model == 'Motherboard':
+        return models.MainProductDatabase.objects.create(motherboard_product_data=instance)
+    elif model == 'Cpu':
+        return models.MainProductDatabase.objects.create(cpu_product_data=instance)
+    elif model == 'Tv':
+        return models.MainProductDatabase.objects.create(tv_product_data=instance)
+    elif model == 'Headphones':
+        return models.MainProductDatabase.objects.create(headphones_product_data=instance)
+    elif model == 'Routers':
+        return models.MainProductDatabase.objects.create(routers_product_data=instance)
+    
 
-@receiver(post_save, sender=Phones)
-@receiver(post_save, sender=Monitors)
-@receiver(post_save, sender=Laptops)
-@receiver(post_save, sender=Pc)
-@receiver(post_save, sender=AccesoriesForLaptops)
-@receiver(post_save, sender=Ssd)
-@receiver(post_save, sender=Graphs)
-@receiver(post_save, sender=Ram)
-@receiver(post_save, sender=Pendrives)
-@receiver(post_save, sender=Routers)
-@receiver(post_save, sender=Switches)
-@receiver(post_save, sender=Motherboard)
-@receiver(post_save, sender=Cpu)
-@receiver(post_save, sender=Tv)
-@receiver(post_save, sender=Headphones)
+@receiver(post_save, sender=models.Phones)
+@receiver(post_save, sender=models.Monitors)
+@receiver(post_save, sender=models.Laptops)
+@receiver(post_save, sender=models.Pc)
+@receiver(post_save, sender=models.AccesoriesForLaptops)
+@receiver(post_save, sender=models.Ssd)
+@receiver(post_save, sender=models.Graphs)
+@receiver(post_save, sender=models.Ram)
+@receiver(post_save, sender=models.Pendrives)
+@receiver(post_save, sender=models.Routers)
+@receiver(post_save, sender=models.Switches)
+@receiver(post_save, sender=models.Motherboard)
+@receiver(post_save, sender=models.Cpu)
+@receiver(post_save, sender=models.Tv)
+@receiver(post_save, sender=models.Headphones)
 def create_product(sender, instance, created, **kwargs):
     if created:
         
         """ check if ean code is already in the base """
         
-        product_ean = MainProductDatabase.objects.filter(ean=instance.ean).exists()
+        product_ean = models.MainProductDatabase.objects.filter(ean=instance.ean).exists()
         
         if product_ean:
             pass
@@ -62,23 +86,23 @@ def create_product(sender, instance, created, **kwargs):
     
         
         
-@receiver(post_save, sender=Phones)
-@receiver(post_save, sender=Monitors)
-@receiver(post_save, sender=Laptops)
-@receiver(post_save, sender=Pc)
-@receiver(post_save, sender=AccesoriesForLaptops)
-@receiver(post_save, sender=Ssd)
-@receiver(post_save, sender=Graphs)
-@receiver(post_save, sender=Ram)
-@receiver(post_save, sender=Pendrives)
-@receiver(post_save, sender=Routers)
-@receiver(post_save, sender=Switches)
-@receiver(post_save, sender=Motherboard)
-@receiver(post_save, sender=Cpu)
-@receiver(post_save, sender=Tv)
-@receiver(post_save, sender=Headphones)
+@receiver(post_save, sender=models.Phones)
+@receiver(post_save, sender=models.Monitors)
+@receiver(post_save, sender=models.Laptops)
+@receiver(post_save, sender=models.Pc)
+@receiver(post_save, sender=models.AccesoriesForLaptops)
+@receiver(post_save, sender=models.Ssd)
+@receiver(post_save, sender=models.Graphs)
+@receiver(post_save, sender=models.Ram)
+@receiver(post_save, sender=models.Pendrives)
+@receiver(post_save, sender=models.Routers)
+@receiver(post_save, sender=models.Switches)
+@receiver(post_save, sender=models.Motherboard)
+@receiver(post_save, sender=models.Cpu)
+@receiver(post_save, sender=models.Tv)
+@receiver(post_save, sender=models.Headphones)
 def save_product(sender, instance, **kwargs):
-    product_ean = MainProductDatabase.objects.filter(ean=instance.ean).exists()
+    product_ean = models.MainProductDatabase.objects.filter(ean=instance.ean).exists()
     if product_ean:
         pass
     else:

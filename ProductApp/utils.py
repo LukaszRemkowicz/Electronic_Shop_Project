@@ -12,6 +12,7 @@ def filter_products(cattegory, product):
             'memory' : set([element.phones_product_data.memory for element in same_products]),
             'ram' : set([element.phones_product_data.ram for element in same_products]),
             'battery' : set([element.phones_product_data.battery for element in same_products]),
+            'items_id' : [element.id for element in same_products]
         }
         
         return same_products_data
@@ -71,3 +72,92 @@ def filter_products(cattegory, product):
     elif cattegory == 'Headphones':
         product_model = product.headphones_product_model.model
         return models.MainProductDatabase.objects.filter(headphones_product_model__model=product_model)
+    
+    
+def find_new_product(product_items_list, product_data, product_parametr, main_product):
+        
+    for id in product_items_list:
+        
+        if main_product.cattegory == "Phones":
+            if product_parametr == 'color':
+            
+                try:
+                    product = models.MainProductDatabase.objects.get(id=int(id), color=product_data)
+                    return product                          
+                except:
+                    pass
+                                
+            elif product_parametr == 'memory':
+                                
+                try:
+                    product = models.MainProductDatabase.objects.get(id=int(id), phones_product_data__memory=product_data)       
+                    return product                
+                except:
+                    pass
+                
+            
+            elif product_parametr == 'ram':
+                
+                try:
+                    product = models.MainProductDatabase.objects.get(id=int(id), phones_product_data__ram=product_data)     
+                    return product                     
+                except:
+                    pass
+                
+            
+            elif product_parametr == 'battery':
+                
+                try:
+                    product = models.MainProductDatabase.objects.get(id=int(id), phones_product_data__battery=product_data) 
+                    return product                         
+                except:
+                    pass
+                
+    
+            
+            
+
+        
+       
+    
+    # elif cattegory == 'Laptops':
+    #     pass
+    
+    # elif cattegory == 'PC':
+    #     pass
+    
+    # elif cattegory == 'Monitor':
+    #     pass
+    
+    # elif cattegory == 'Accesories for laptops':
+    #     pass
+    
+    # elif cattegory == 'SSD':
+    #     pass
+    
+    # elif cattegory == 'Graphs':
+    #     pass
+    
+    # elif cattegory == 'Ram':
+    #     pass
+    
+    # elif cattegory == 'Pendrives':
+    #     pass
+    
+    # elif cattegory == 'Routers':
+    #     pass
+    
+    # elif cattegory == 'Switches':
+    #     pass
+    
+    # elif cattegory == 'Motherboard':
+    #     pass
+    
+    # elif cattegory == 'CPU':
+    #     pass
+    
+    # elif cattegory == 'TV':
+    #     pass
+    
+    # elif cattegory == 'Headphones':
+    #     pass
