@@ -1,3 +1,5 @@
+from django.core.exceptions import ObjectDoesNotExist
+
 from ProductApp import models
 
 
@@ -114,50 +116,122 @@ def find_new_product(product_items_list, product_data, product_parametr, main_pr
                     pass
                 
     
-            
-            
-
+def get_product(model, instance):
+    """ Help function for signals. Get product with specific model """
+    
+    if model == "Phones":
+        return models.MainProductDatabase.objects.get(phones_product_data=instance).phones_product_data
+    elif model == "Monitors":
+        return models.MainProductDatabase.objects.get(monitors_product_data=instance).monitors_product_data
+    elif model == 'Laptops':
+        return models.MainProductDatabase.objects.get(laptops_product_data=instance).laptops_product_data
+    elif model == 'Pc':
+        return models.MainProductDatabase.objects.get(pc_product_data=instance).pc_product_data
+    elif model == 'AccesoriesForLaptops':
+        return models.MainProductDatabase.objects.get(AccesoriesForLaptops_data=instance).AccesoriesForLaptops_data
+    elif model == 'Ssd':
+        return models.MainProductDatabase.objects.get(ssd_product_data=instance).ssd_product_data
+    elif model == 'Graphs':
+        return models.MainProductDatabase.objects.get(graphs_product_data=instance).graphs_product_data
+    elif model == 'Ram':
+        return models.MainProductDatabase.objects.get(ram_product_data=instance).ram_product_data
+    elif model == 'Pendrives':
+        return models.MainProductDatabase.objects.get(pendrive_product_data=instance).pendrive_product_data
+    elif model == 'Switches':
+        return models.MainProductDatabase.objects.get(switch_product_data=instance).switch_product_data
+    elif model == 'Motherboard':
+        return models.MainProductDatabase.objects.get(motherboard_product_data=instance).motherboard_product_data
+    elif model == 'Cpu':
+        return models.MainProductDatabase.objects.get(cpu_product_data=instance).cpu_product_data
+    elif model == 'Tv':
+        return models.MainProductDatabase.objects.get(tv_product_data=instance).tv_product_data
+    elif model == 'Headphones':
+        return models.MainProductDatabase.objects.get(headphones_product_data=instance).headphones_product_data
+    elif model == 'Routers':
+        return models.MainProductDatabase.objects.get(routers_product_data=instance).routers_product_data
+    
+    
+def choose_model(model, instance):
+    """ Help function for signals. Create objects for specific model """
+    
+    if model == "Phones":
+        return models.MainProductDatabase.objects.create(phones_product_data=instance)
+    elif model == "Monitors":
+        return models.MainProductDatabase.objects.create(monitors_product_data=instance)
+    elif model == 'Laptops':
+        return models.MainProductDatabase.objects.create(laptops_product_data=instance)
+    elif model == 'Pc':
+        return models.MainProductDatabase.objects.create(pc_product_data=instance)
+    elif model == 'AccesoriesForLaptops':
+        return models.MainProductDatabase.objects.create(AccesoriesForLaptops_data=instance)
+    elif model == 'Ssd':
+        return models.MainProductDatabase.objects.create(ssd_product_data=instance)
+    elif model == 'Graphs':
+        return models.MainProductDatabase.objects.create(graphs_product_data=instance)
+    elif model == 'Ram':
+        return models.MainProductDatabase.objects.create(ram_product_data=instance)
+    elif model == 'Pendrives':
+        return models.MainProductDatabase.objects.create(pendrive_product_data=instance)
+    elif model == 'Switches':
+        return models.MainProductDatabase.objects.create(switch_product_data=instance)
+    elif model == 'Motherboard':
+        return models.MainProductDatabase.objects.create(motherboard_product_data=instance)
+    elif model == 'Cpu':
+        return models.MainProductDatabase.objects.create(cpu_product_data=instance)
+    elif model == 'Tv':
+        return models.MainProductDatabase.objects.create(tv_product_data=instance)
+    elif model == 'Headphones':
+        return models.MainProductDatabase.objects.create(headphones_product_data=instance)
+    elif model == 'Routers':
+        return models.MainProductDatabase.objects.create(routers_product_data=instance)
+    
+    
+def try_to_get_product(product, instance):
+    """ Help function for signals. Try to get specific product from model """
+    try: 
+        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).phones_product_data
+        instance_obj.name
+    except ObjectDoesNotExist:
+        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).monitors_product_data
+        instance_obj.name
+    except ObjectDoesNotExist:
+        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).laptops_product_data
+        instance_obj.name
+    except ObjectDoesNotExist:
+        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).pc_product_data
+        instance_obj.name
+    except ObjectDoesNotExist:
+        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).AccesoriesForLaptops_data
+        instance_obj.name
+    except ObjectDoesNotExist:
+        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).ssd_product_data
+        instance_obj.name
+    except ObjectDoesNotExist:
+        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).graphs_product_data
+        instance_obj.name
+    except ObjectDoesNotExist:
+        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).ram_product_data
+        instance_obj.name
+    except ObjectDoesNotExist:
+        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).pendrive_product_data
+        instance_obj.name
+    except ObjectDoesNotExist:
+        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).switch_product_data
+        instance_obj.name
+    except ObjectDoesNotExist:
+        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).motherboard_product_data
+        instance_obj.name
+    except ObjectDoesNotExist:
+        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).cpu_product_data
+        instance_obj.name
+    except ObjectDoesNotExist:
+        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).tv_product_data
+        instance_obj.name
+    except ObjectDoesNotExist:
+        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).headphones_product_data
+        instance_obj.name
+    except ObjectDoesNotExist:
+        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).routers_product_data
+        instance_obj.name
         
-       
-    
-    # elif cattegory == 'Laptops':
-    #     pass
-    
-    # elif cattegory == 'PC':
-    #     pass
-    
-    # elif cattegory == 'Monitor':
-    #     pass
-    
-    # elif cattegory == 'Accesories for laptops':
-    #     pass
-    
-    # elif cattegory == 'SSD':
-    #     pass
-    
-    # elif cattegory == 'Graphs':
-    #     pass
-    
-    # elif cattegory == 'Ram':
-    #     pass
-    
-    # elif cattegory == 'Pendrives':
-    #     pass
-    
-    # elif cattegory == 'Routers':
-    #     pass
-    
-    # elif cattegory == 'Switches':
-    #     pass
-    
-    # elif cattegory == 'Motherboard':
-    #     pass
-    
-    # elif cattegory == 'CPU':
-    #     pass
-    
-    # elif cattegory == 'TV':
-    #     pass
-    
-    # elif cattegory == 'Headphones':
-    #     pass
+    return instance_obj
