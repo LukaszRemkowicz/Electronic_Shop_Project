@@ -31,7 +31,7 @@ class TestProductView(TestCase):
                 'audio_jack': "Yes",
                 'screen': '100x200',
                 'screen_diagonal': 7.2,
-                'battery': "100Ah",
+                'battery': 100,
                 'high':'10cm',
                 'width': '10cm',
                 'deep': '10cm',

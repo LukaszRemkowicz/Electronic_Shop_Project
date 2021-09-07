@@ -16,7 +16,7 @@ def filter_products(cattegory, product):
             'battery' : set([element.phones_product_data.battery for element in same_products]),
             'items_id' : [element.id for element in same_products]
         }
-        
+                
         return same_products_data
     
     elif cattegory == 'Laptops':

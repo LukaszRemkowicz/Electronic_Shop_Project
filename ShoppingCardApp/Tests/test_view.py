@@ -121,6 +121,7 @@ class TestShoppingCartViews(TestCase):
         body = {
             'productId': product.id,
             'action': 'add',
+            'amount': 1
         }
         
         """ add 5 items """
@@ -154,6 +155,7 @@ class TestShoppingCartViews(TestCase):
         body = {
             'productId': product.id,
             'action': 'remove',
+            'amount': 1
         }
         
         response = self.client.post(url, json.dumps(body), content_type="application/json")

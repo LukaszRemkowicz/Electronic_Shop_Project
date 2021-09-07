@@ -20,12 +20,12 @@ PRODUCT_DATA={
                 'audio_jack': "Yes",
                 'screen': '100x200',
                 'screen_diagonal': 7.2,
-                'battery': "100Ah",
+                'battery': 100,
                 'high':'10cm',
                 'width': '10cm',
                 'deep': '10cm',
                 'weight': '500g',
-                'cattegory': 'phones'
+                'cattegory': 'Phones'
             }
 
 SECOND_PRODUCT = {
@@ -35,7 +35,7 @@ SECOND_PRODUCT = {
                 'ram': 8,
                 'memory': 8,
                 'modem': 8,
-                'color': 'grey',
+                'color': 'white',
                 'describe': 'The best model',
                 'producent': 'Apple',
                 'producent_code': 'AABB123',
@@ -50,10 +50,10 @@ SECOND_PRODUCT = {
                 'audio_jack': "Yes",
                 'screen': '100x200',
                 'screen_diagonal': 7.2,
-                'battery': "100Ah",
+                'battery': 100,
                 'high':'10cm',
                 'width': '10cm',
                 'deep': '10cm',
                 'weight': '500g',
-                'cattegory': 'phones'
+                'cattegory': 'Phones'
             }

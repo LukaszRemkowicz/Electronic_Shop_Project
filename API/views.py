@@ -1,6 +1,7 @@
 import json
 import datetime
 import re
+from django.core.exceptions import ObjectDoesNotExist
 
 from django.http.response import JsonResponse
 from rest_framework import serializers, generics, authentication, permissions
@@ -106,8 +107,9 @@ class UpdateItemView(APIView):
         authentication_classes = [authentication.TokenAuthentication]
         permission_classes = [permissions.IsAdminUser]
         parser_classes = [JSONParser]
-        
+            
         data = request.data
+        
         product_id = data['productId']
         action = data['action']
         amount = data['amount']
@@ -148,7 +150,7 @@ class UpdateItemView(APIView):
         
         return Response(json.dumps(data, cls=utils.DecimalEncoder))
     
-class get_product_data(APIView):
+class GetProductData(APIView):
     
     def post(self, request):
         authentication_classes = [authentication.TokenAuthentication]
@@ -165,20 +167,19 @@ class get_product_data(APIView):
         re_pattern = r'(.*-)(.*)(-.*)'
         product_parametr = re.match(re_pattern, product_parametr).group(2)
         main_product = product_app.MainProductDatabase.objects.get(id=int(main_product))
-        
-        print('product_parametr: ', product_parametr)
-        
+                
         if product_parametr == 'memory'  or product_parametr == 'battery':
             product_data = int(product_data[:-4])
         elif product_parametr == 'ram':
             product_data = int(product_data[:-3])
-            
-        print('product_data : ', product_data)
-                    
+ 
         product = find_new_product(product_items_list, product_data, product_parametr, main_product)
-        
-        print(product)
-        
+                
+        try:
+            product_id = product.id
             
-        return Response(json.dumps(product.id))
+        except AttributeError:
+            product_id = ''
+            
+        return Response(json.dumps(product_id))
         

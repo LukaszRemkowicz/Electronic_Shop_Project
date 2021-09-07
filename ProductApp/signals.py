@@ -1,5 +1,7 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.core.exceptions import ObjectDoesNotExist
+
 
 from . import models, utils
 
@@ -19,7 +21,7 @@ from . import models, utils
 @receiver(post_save, sender=models.Tv)
 @receiver(post_save, sender=models.Headphones)
 def create_product(sender, instance, created, **kwargs):
-    
+        
     if created:  
         """ check if ean code is already in the DB """
         
@@ -49,10 +51,7 @@ def create_product(sender, instance, created, **kwargs):
         """ update product if not created"""
         
         product = models.MainProductDatabase.objects.get(ean=instance.ean)
-        print(product.price != utils.get_product(instance.__class__.__name__, instance).price)
-        print(product.price)
-        print(utils.get_product(instance.__class__.__name__, instance).price)
-        
+ 
         try:
         
             if product.name != utils.get_product(instance.__class__.__name__, instance).name:
@@ -108,26 +107,28 @@ def save_product(sender, instance, **kwargs):
 @receiver(post_save, sender=models.MainProductDatabase)
 def update_product(sender, instance, created, **kwargs):
     """ Update product if main product changed """
-    
-    product = models.MainProductDatabase.objects.get(ean=instance.ean)
-    
-    instance_obj = utils.try_to_get_product(product, instance)
         
-    if product.name != instance_obj.name:
-        instance_obj.name = product.name
-        instance_obj.save()
-    elif product.price != instance_obj.name:
-        instance_obj.price = product.price
-        instance_obj.save()
-    elif product.pieces != instance_obj.name:
-        instance_obj.pieces = product.pieces
-        instance_obj.save()
-    elif product.ean != instance_obj.name:
-        instance_obj.ean = product.ean
-        instance_obj.save()
-    elif product.cattegory != instance_obj.name:
-        instance_obj.cattegory = product.cattegory
-        instance_obj.save()
-    elif product.color != instance_obj.name:
-        instance_obj.color = product.color
-        instance_obj.save()    
+    if not created:
+    
+        product = models.MainProductDatabase.objects.get(ean=instance.ean)
+        
+        instance_obj = utils.try_to_get_product(product, instance)
+            
+        if product.name != instance_obj.name:
+            instance_obj.name = product.name
+            instance_obj.save()
+        elif product.price != instance_obj.name:
+            instance_obj.price = product.price
+            instance_obj.save()
+        elif product.pieces != instance_obj.name:
+            instance_obj.pieces = product.pieces
+            instance_obj.save()
+        elif product.ean != instance_obj.name:
+            instance_obj.ean = product.ean
+            instance_obj.save()
+        elif product.cattegory != instance_obj.name:
+            instance_obj.cattegory = product.cattegory
+            instance_obj.save()
+        elif product.color != instance_obj.name:
+            instance_obj.color = product.color
+            instance_obj.save()    

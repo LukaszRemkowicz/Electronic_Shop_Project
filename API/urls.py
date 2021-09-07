@@ -12,5 +12,5 @@ urlpatterns = [
     path('order-cart-unauthorised-user/', views.UnauthorisedUserOrderView.as_view(),name='order-cart-unauthorised-user'),
     path('order-completed/', views.FinishOrderView.as_view(), name='order-finished'),
     path('update-item/', views.UpdateItemView.as_view(), name="update_item"),
-    path('get-product/', views.get_product_data.as_view(), name="get_product"),
+    path('get-product/', views.GetProductData.as_view(), name="get_product"),
 ]
