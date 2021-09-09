@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import MainProductDatabase, Phones, Monitors
+from . import models
 
-admin.site.register(MainProductDatabase)
-admin.site.register(Phones)
-admin.site.register(Monitors)
+admin.site.register(models.MainProductDatabase)
+admin.site.register(models.Phones)
+admin.site.register(models.Monitors)
+admin.site.register(models.ReviewAndQuestions)

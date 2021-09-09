@@ -130,24 +130,19 @@
                             <div class="buy-it d-flex">
                                 <a href="" class="btn-red ml-2 p-1 py-2 mr-2 text-center">Buy now</a>
                                 <select name="amount" id="" class="">
+                                    
+                                    {% for num in  pieces_range %}
 
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
+                                        <option value="{{ num }}">{{ num }}</option>
+
+                                    {% endfor %}
             
                                     </select>
                                 </div>
 
                             <div class="d-flex justify-content-between pl-3 left-pcs">
                                 <p class="">or</p>
-                                <p class="text-right pt-2 font-light-grey mb-0"><span class="hide-it">Left: 4 pcs</span></p>
+                                <p class="text-right pt-2 font-light-grey mb-0"><span class="hide-it">Left: {{ product.quantity }} pcs</span></p>
                             </div>
                             
                             <div class="d-flex basket ">
@@ -195,234 +190,39 @@
                 <div class="mb-3 pb-4 pt-4" id="specification">
                     <div class="small-container bg-white box-shadow mx-0 p-5">
                         <table class="table table-striped account-table">
-                            <tbody>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <h6 class="h3-2 col-12 pt-2 pb-2"> <span class="pb-2 underline upper">Specification</span> </h6>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center">
-                                            <p class="pr-4 mb-0 text-right col-6">Producent: </p>
-                                            <p class="mb-0 text-left col-6">Lenovo</p>
-                                        </div>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center ">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">Producer code: </p>
-                                            <p class="mb-0 w-50 text-left col-6">20VG0079PB</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5 ">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">EAN: </p>
-                                            <p class="mb-0  w-50 text-left col-6">111111111111</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper"> Basic Informations</span></h6>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5 ">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">Type: </p>
-                                            <p class="mb-0 w-50 text-left col-6">Laptop</p>
-                                        </div>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">Color: </p>
-                                            <p class="mb-0  w-50 text-left col-6">grey</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper">PROCESOR</span></h6>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">Processor: </p>
-                                            <p class="mb-0 w-50 text-left col-6">AMD Ryzen 5 4500U</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">CPU Clock Speed: </p>
-                                            <p class="mb-0  w-50 text-left col-6">2.3 GHz / 4 GHz</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">Number Of Cores / threads: </p>
-                                            <p class="mb-0  w-50 text-left col-6">6/6
-                                            </p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper">Memory</span></h6>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5 ">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6t col-6">RAM inside: </p>
-                                            <p class="mb-0 w-50 text-left col-6 col-6">8 GB</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5 ">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">Maximum Ram: </p>
-                                            <p class="mb-0  w-50 text-left col-6">32 GB</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5 ">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">Type: </p>
-                                            <p class="mb-0  w-50 text-left col-6">DDR4</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5 ">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">Frequency: </p>
-                                            <p class="mb-0  w-50 text-left col-6">3200 MHz</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <h6 class="mx-5 p-2 mb-0 pt-2 pb-3"><span class="pb-2 underline upper">Discs</span></h6>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5 p-2 ">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6 col-6">SSD M.2 PCIe: </p>
-                                            <p class="mb-0 w-50 text-left col-6 col-6">512GB</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <h6 class="mx-5 p-2 pt-2 pb-3 mb-0 "><span class="pb-2 underline upper">Screen</span></h6>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5 ">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">Diagonal: </p>
-                                            <p class="mb-0 w-50 text-left col-6">15.6"</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5 ">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">Resolution: </p>
-                                            <p class="mb-0 w-50 text-left col-6">1920 x 1080 (Full HD)</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5  ">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">Matrix coating: </p>
-                                            <p class="mb-0 w-50 text-left col-6">matte</p>
-                                        </div>
-                                </th>
-                                </tr>
-            
-                                <tr>
-                                    <th scope="row w-100">
-                                        <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper">Wireless</span></h6>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">Network card: </p>
-                                            <p class="mb-0 w-50 text-left col-6">1 Gb/s</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">WiFI: </p>
-                                            <p class="mb-0 w-50 text-left col-6">802.11ax (gen. 6)</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">Bluetooth: </p>
-                                            <p class="mb-0 w-50 text-left col-6">yes</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper">Dimensions</span></h6>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5 p-2 ">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">High [cm]: </p>
-                                            <p class="mb-0 w-50 text-left col-6">1.89</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5 p-2 ">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">Width [cm]: </p>
-                                            <p class="mb-0 w-50 text-left col-6">35.7</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5 p-2 ">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">Depth [cm]: </p>
-                                            <p class="mb-0 w-50 text-left col-6">23.5</p>
-                                        </div>
-                                </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row w-100">
-                                        <div class="d-flex justify-content-center mx-5 p-2">
-                                            <p class="pr-4 mb-0 w-50 text-right col-6">Weight [kg]: </p>
-                                            <p class="mb-0 w-50 text-left col-6">1.7</p>
-                                        </div>
-                                </th>
-                                </tr>
-                            </tbody>
+                            
+                            {% if product.cattegory == 'Phones' %}
+                                {% include 'productapp/product_spec/phones.html' %}
+                            {% elif product.cattegory == 'Laptops' %}
+                                {% include 'productapp/product_spec/Laptops.html' %}
+                            {% elif product.cattegory == 'PC' %}
+                                {% include 'productapp/product_spec/PC.html' %}
+                            {% elif product.cattegory == 'Monitor' %}
+                                {% include 'productapp/product_spec/Monitor.html' %}
+                            {% elif product.cattegory == 'Accesories for laptops' %}
+                                {% include 'productapp/product_spec/Accesories_for_laptops.html' %}
+                            {% elif product.cattegory == 'SSD' %}
+                                {% include 'productapp/product_spec/SSD.html' %}
+                            {% elif product.cattegory == 'Graphs' %}
+                                {% include 'productapp/product_spec/Graphs.html' %}
+                            {% elif product.cattegory == 'Ram' %}
+                                {% include 'productappproduct_spec//Ram.html' %}
+                            {% elif product.cattegory == 'Pendrives' %}
+                                {% include 'productapp/product_spec/Pendrives.html' %}
+                            {% elif product.cattegory == 'Routers' %}
+                                {% include 'productapp/product_spec/Routers.html' %}
+                            {% elif product.cattegory == 'Switches' %}
+                                {% include 'productapp/product_spec/Switches.html' %}
+                            {% elif product.cattegory == 'Motherboard' %}
+                            {% include 'productapp/product_spec/Motherboard.html' %}
+                            {% elif product.cattegory == 'CPU' %}
+                                {% include 'productapp/product_spec/CPU.html' %}
+                            {% elif product.cattegory == 'TV' %}
+                                {% include 'productapp/product_spec/TV.html' %}
+                            {% elif product.cattegory == 'Headphones' %}
+                                {% include 'productapp/product_spec/Headphones.html' %}
+                            {% endif %}
+
                         </table> 
                     </div>
 
@@ -438,27 +238,48 @@
                             <div class="d-flex flex-column pb-3 stars-class">
                                 <h4 class="text-left">Opinions</h4>
                                 <div class="stars text-left pl-5">
-                                    <i class="fas fa-star font-red fa-3x"></i>
+
+                                    {% for element in product.get_star_avg.1 %}
+                                    
+                                        {% if element %}
+                                        
+                                            <i class="fas fa-star font-red fa-3x"></i>
+                                        
+                                        {% else %}
+
+                                            <i class="far fa-star fa-3x"></i>    
+                                        
+                                        {% endif %}
+                                    
+                                    {% endfor %}
+                                    {% comment %} <i class="fas fa-star font-red fa-3x"></i>
                                     <i class="fas fa-star font-red fa-3x"></i>
                                     <i class="fas fa-star font-red fa-3x"></i>
                                     <i class="far fa-star fa-3x"></i>
-                                    <i class="far fa-star fa-3x"></i>
+                                    <i class="far fa-star fa-3x"></i> {% endcomment %}
                                 </div>
-                                <a href="" class="text-left pl-5 ml-5">10 reviews</a>
+                                <a href="" class="text-left pl-5 ml-5">{{ product.get_num_of_reviews }} reviews</a>
                             </div>
                             <div class="rated-on d-flex flex-column pl-5">
                                 <p class="pt-3">This product is rated on</p>
-                                <h2><span> 4.5</span>/5</h2>
+                                <h2><span> {{product.get_star_avg.0}}</span>/5</h2>
                             </div>
                             <div class="progress-bars ml-4 pt-3">
+                                {% for key, value in product.get_stars.items %}
+
                                 <div class="d-flex mb-2">
-                                    <p class="mb-0">2</p>
+                                    <p>{{ element }}</p>
+                                    <p class="mb-0">{{ key }}</p>
+                                    <i class="fas fa-star font-red"></i>
                                     <div class="progress align-items-center w-100 mt-1 mx-2">
-                                        <div class="progress-bar" role="progressbar" style="width: 50%; height: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar" role="progressbar" style="width: {{ value.1 }}%; height: 100%;" aria-valuenow="{{ value.1 }}" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <p class="mb-0">2</p>
+                                    <p class="mb-0"> {{ value.1 }}%</p>
                                 </div>
-                                <div class="d-flex mb-2">
+
+                                {% endfor %}
+
+                                {% comment %} <div class="d-flex mb-2">
                                     <p class="mb-0">2</p>
                                     <div class="progress align-items-center w-100 mt-1 mx-2">
                                         <div class="progress-bar" role="progressbar" style="width: 50%; height: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -485,76 +306,80 @@
                                         <div class="progress-bar" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <p class="mb-0">2</p>
+                                </div> {% endcomment %}
+                            </div>
+
+                            <div class="add-opinion">
+                                
+                                <div class="modal fade" id="opinion-modal" tabindex="-1" role="dialog" aria-labelledby="question-modalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content p-5">
+                                        <div class="modal-header">
+                                            <div class="product-div d-flex">
+                                                <p class="align-self-center w-100">Lorem ipsum dolor sit amet.</p>
+                                            </div>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                    
+                                            <!-- Form question submit -->
+                    
+                                            <form class="review-form">
+                                                {% csrf_token %}
+                                                <div class="form-group" >
+                                                    <textarea class="form-control" data-productid='{{ product.id }}' id="opinion-form" rows="3"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-red">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <button type="button" class="btn-red mx-4 px-5 border-rounded" data-toggle="modal" data-target="#opinion-modal">
+                                        Write your opinion
+                                    </button>
                                 </div>
                             </div>
                             
                         </div>
             
                         <!-- user review -->
+
+                        {% for review in reviews %}
             
-                        <div class="d-flex mx-5 mt-3 border-bottom review-container">
-                            <div class="review pr-5">
-                                <i class="fas fa-user font-red fa-2x"></i>
-                                <p>Janek</p>
-                            </div>
-                            <div class="d-flex flex-column ml-4">
-                                <div class="text-left d-flex">
-                                    <div class="stars">
-                                        <i class="fas fa-star font-red"></i>
-                                        <i class="fas fa-star font-red"></i>
-                                        <i class="fas fa-star font-red"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
+                            <div class="d-flex mx-5 mt-3 border-bottom review-container">
+                                <div class="review pr-5">
+                                    <i class="fas fa-user font-red fa-2x"></i>
+                                    <p>{{ review.user.username }}</p>
+                                </div>
+                                <div class="d-flex flex-column ml-4">
+                                    <div class="text-left d-flex">
+                                        <div class="stars">
+                                        
+                                            {% for star in review.get_range_stars %}
+                                                {% if star %}
+                                                    <i class="fas fa-star font-red "></i>
+
+                                                {% else %}
+                                                    <i class="far fa-star"></i>
+                                                {% endif %}
+
+                                            {% endfor %}
+
+                                        </div>
+                                        <p class="ml-2">{{ review.get_time }}</p>
                                     </div>
-                                    <p class="ml-2">4 years ago</p>
-                                </div>
-                                <div class="">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum a neque assumenda officiis qui asperiores amet veritatis molestias eius omnis.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex mx-5 mt-3 border-bottom review-container">
-                            <div class="review pr-5">
-                                <i class="fas fa-user font-red fa-2x"></i>
-                                <p>Janek</p>
-                            </div>
-                            <div class="d-flex flex-column ml-4">
-                                <div class="text-left d-flex">
-                                    <div class="stars">
-                                        <i class="fas fa-star font-red"></i>
-                                        <i class="fas fa-star font-red"></i>
-                                        <i class="fas fa-star font-red"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
+                                    <div class="">
+                                        <p>{{ review.review }}</p>
                                     </div>
-                                    <p class="ml-2">4 years ago</p>
-                                </div>
-                                <div class="">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum a neque assumenda officiis qui asperiores amet veritatis molestias eius omnis.</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="d-flex mx-5 mt-3 border-bottom review-container">
-                            <div class="review pr-5">
-                                <i class="fas fa-user font-red fa-2x"></i>
-                                <p>Janek</p>
-                            </div>
-                            <div class="d-flex flex-column ml-4">
-                                <div class="text-left d-flex">
-                                    <div class="stars">
-                                        <i class="fas fa-star font-red"></i>
-                                        <i class="fas fa-star font-red"></i>
-                                        <i class="fas fa-star font-red"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <p class="ml-2">4 years ago</p>
-                                </div>
-                                <div class="">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum a neque assumenda officiis qui asperiores amet veritatis molestias eius omnis.</p>
-                                </div>
-                            </div>
-                        </div>
+                        
+                        {% endfor %}
+            
                     </div>
                     
                         
@@ -567,6 +392,7 @@
                 <div class="small-container w-100 bg-white pt-4 mb-4 box-shadow mx-0">
                     <div class="d-flex border-bottom pb-2 mx-5 ask-form">
                         <p>Do you have some question?</p>
+                        
                         <div class="modal fade" id="question-modal" tabindex="-1" role="dialog" aria-labelledby="question-modalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content p-5">
@@ -687,5 +513,6 @@
     <script>
         
     </script>
+    <script src='{% static 'js/productReview.js' %}'></script>
 
 {% endblock %}

@@ -1,23 +1,24 @@
 from typing import Any, Dict
+import datetime
 
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.contrib.auth.models import User
 
 from ShoppingCardApp.models import Customer, Order, OrderItem
-from .models import MainProductDatabase
+from . import models
 from .utils import filter_products
 
 
 
 class ProductPage(ListView):
     template_name = 'productapp/product.html'
-    model = MainProductDatabase
+    model = models.MainProductDatabase
     
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super(ProductPage, self).get_context_data(**kwargs)
         id = self.kwargs['MainProductDatabase_id']
-        product = MainProductDatabase.objects.get(id=id)
+        product =  models.MainProductDatabase.objects.get(id=id)
         
         try:
             customer = Customer.objects.get(user=self.request.user)
@@ -36,7 +37,10 @@ class ProductPage(ListView):
                 pieces_range = range(1, pieces+1)
         else: 
             pieces_range = range(1, 11)
-                  
+        
+        questions_and_reviews = models.ReviewAndQuestions.objects.filter(product_id=id)
+       
+        context['reviews'] = questions_and_reviews
         context['pieces_range'] = pieces_range
         context['same_products'] = same_products
         context['product'] = product
@@ -45,11 +49,11 @@ class ProductPage(ListView):
     
 class ProductsCart(ListView):
     template_name = 'productapp/product_cart.html'
-    model = MainProductDatabase
+    model =  models.MainProductDatabase
     
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super(ProductsCart, self).get_context_data(**kwargs)
         cattegory = self.request.GET.get('cattegory')
-        query = MainProductDatabase.objects.filter(cattegory=cattegory)
+        query =  models.MainProductDatabase.objects.filter(cattegory=cattegory)
         context['query'] = query
         return context

@@ -1,10 +1,12 @@
-from typing import Any
+from typing import Any, Dict, List, Tuple
 import os
 import codecs
+import math
 
-from django.db import models
+from django.db import models, reset_queries
 from django.db.models.base import Model
 from django.utils.safestring import mark_safe
+from django.contrib.auth.models import User
 
 
 CHOICES = [
@@ -63,6 +65,7 @@ class Phones(models.Model):
     deep = models.CharField(max_length=10)
     weight = models.CharField(max_length=10)
     opinions = models.CharField(max_length=5000, blank=True, null=True)
+    reviews = models.CharField(max_length=5000, blank=True, null=True)
     
     cattegory = models.CharField(choices=CHOICES, max_length=50, default='')
     
@@ -99,7 +102,7 @@ class Monitors(models.Model):
     producent = models.CharField(max_length=100)
     producent_code = models.CharField(max_length=100)
     ean = models.IntegerField(unique=True)
-    distribution = models.CharField(max_length=10)
+    distribution = models.CharField(max_length=10, default='EU')
     screen = models.CharField(max_length=30)
     screen_diagonal = models.CharField(max_length=10)
     high = models.CharField(max_length=10)
@@ -152,6 +155,48 @@ class MainProductDatabase(models.Model):
             url=''
         
         return url
+    
+    @property
+    def get_star_avg(self) -> Tuple[str, List[bool]]:
+        """ Method to get product review avarage """
+        
+        opinions = len(ReviewAndQuestions.objects.filter(product=self.id))
+        stars = sum([element.stars for element in ReviewAndQuestions.objects.all()])
+        
+        result = stars/opinions
+        frac, whole = math.modf(result)
+        
+        ranger = [True if num  in [element for element in range(1, int(whole) +1 )] else False for num in range(1, int(6))]
+           
+        if frac > 0:
+            return str(result), ranger
+        else:
+            return str(int(whole)), ranger
+        
+        
+    @property
+    def get_stars(self) -> Dict[str, int]:
+        """ Help method to generate progress bars """
+        
+        stars = [element.stars for element in ReviewAndQuestions.objects.filter(product=self.id)]
+        stars_dict = {key:0 for key in range(1, 6)}
+        
+        for element in stars:
+            if element not in stars_dict:
+                stars_dict[element] = 1
+            else:
+                stars_dict[element] += 1
+                
+        for key, value in stars_dict.items():
+            percentage = (100*value) / len(stars)
+            stars_dict[key] = (value, int(percentage))
+        
+        return stars_dict
+
+    @property
+    def get_num_of_reviews(self) -> int:
+        return len(ReviewAndQuestions.objects.filter(product=self.id))
+        
 
     
 class Laptops(models.Model):
@@ -193,3 +238,28 @@ class Headphones(models.Model):
 class Routers(models.Model):
     pass
 
+
+class ReviewAndQuestions(models.Model):
+    
+    product = models.ForeignKey(MainProductDatabase, on_delete=models.CASCADE)
+    review = models.CharField(max_length=5000)
+    question = models.CharField(max_length=5000)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField(auto_created=True)
+    stars = models.IntegerField(default=1)
+    
+    def __str__(self) -> str:
+        return f'Review of {self.product.name}'
+    
+    @property
+    def get_time(self) -> str:
+        return str(self.date) 
+    
+    @property
+    def get_range_stars(self) -> List[bool]:
+        """ return array with representation (True or False) of stars given to a product """
+        
+        return [True if num in [el for el in range(1, self.stars+1)] else False for num in range(1, 6)]
+    
+        
+    
