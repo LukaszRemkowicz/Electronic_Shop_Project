@@ -247,6 +247,7 @@ class ReviewAndQuestions(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField(auto_created=True)
     stars = models.IntegerField(default=1)
+    checked = models.BooleanField(default=False)
     
     def __str__(self) -> str:
         return f'Review of {self.product.name}'

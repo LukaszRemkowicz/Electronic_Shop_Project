@@ -12,13 +12,13 @@ media
 deleted.py
 help_script.py
 examples.py
+env_script.py
 
 # Backup files #
 *.bak
 
 migrations
-static
-/electronic_shop/statics/images
+/electronic_shop/static/images
 .vscode/
 
 # If you are using PyCharm #

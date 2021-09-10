@@ -316,7 +316,7 @@
                                     <div class="modal-content p-5">
                                         <div class="modal-header">
                                             <div class="product-div d-flex">
-                                                <p class="align-self-center w-100">Lorem ipsum dolor sit amet.</p>
+                                                <p class="align-self-center w-100">Let us know, what you think about this product</p>
                                             </div>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -330,6 +330,19 @@
                                                 {% csrf_token %}
                                                 <div class="form-group" >
                                                     <textarea class="form-control" data-productid='{{ product.id }}' id="opinion-form" rows="3"></textarea>
+                                                    <input type="text" placeholder='Write your order number here..' class='order-number-review'>
+                                                    <p>Do you like this product?</p>
+                                                    <div class="">
+                                                        <div class="stars-in-review">
+                                                            <i class="far fa-star fa-3x stars-review-form" data-numofstars='1'></i>
+                                                            <i class="far fa-star fa-3x stars-review-form" data-numofstars='2'></i>
+                                                            <i class="far fa-star fa-3x stars-review-form" data-numofstars='3'></i>
+                                                            <i class="far fa-star fa-3x stars-review-form" data-numofstars='4'></i>
+                                                            <i class="far fa-star fa-3x stars-review-form" data-numofstars='5'></i>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    
                                                 </div>
                                                 <button type="submit" class="btn btn-red">Submit</button>
                                             </form>
@@ -514,5 +527,6 @@
         
     </script>
     <script src='{% static 'js/productReview.js' %}'></script>
+    <script src='{% static 'js/productReviewStars.js' %}'></script>
 
 {% endblock %}

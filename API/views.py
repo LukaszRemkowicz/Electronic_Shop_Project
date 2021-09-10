@@ -183,3 +183,19 @@ class GetProductData(APIView):
             
         return Response(json.dumps(product_id))
         
+        
+class CreateReview(APIView):
+    
+    def post(self, request):
+        authentication_classes = [authentication.TokenAuthentication]
+        permission_classes = [permissions.IsAdminUser]
+        parser_classes = [JSONParser]
+        
+        data = request.data
+        
+        content = data['content']
+        product_id = data['productId']
+        order_number = data['orderNumber']
+        
+        
+        
