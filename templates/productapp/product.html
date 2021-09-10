@@ -258,7 +258,7 @@
                                     <i class="far fa-star fa-3x"></i>
                                     <i class="far fa-star fa-3x"></i> {% endcomment %}
                                 </div>
-                                <a href="" class="text-left pl-5 ml-5">{{ product.get_num_of_reviews }} reviews</a>
+                                <a href="" class="text-left pl-5 ml-5">{{ product.get_num_of_reviews }} review{{ product.get_num_of_reviews|pluralize }}</a>
                             </div>
                             <div class="rated-on d-flex flex-column pl-5">
                                 <p class="pt-3">This product is rated on</p>
@@ -351,7 +351,7 @@
                                     </div>
                                 </div>
                                 <div class="">
-                                    <button type="button" class="btn-red mx-4 px-5 border-rounded" data-toggle="modal" data-target="#opinion-modal">
+                                    <button type="button" class="box-shadow btn-red mx-4 px-5 border-rounded" data-toggle="modal" data-target="#opinion-modal">
                                         Write your opinion
                                     </button>
                                 </div>
@@ -362,7 +362,7 @@
                         <!-- user review -->
 
                         {% for review in reviews %}
-            
+
                             <div class="d-flex mx-5 mt-3 border-bottom review-container">
                                 <div class="review pr-5">
                                     <i class="fas fa-user font-red fa-2x"></i>
@@ -404,7 +404,7 @@
             <div class="d-flex ask" id="ask-something">
                 <div class="small-container w-100 bg-white pt-4 mb-4 box-shadow mx-0">
                     <div class="d-flex border-bottom pb-2 mx-5 ask-form">
-                        <p>Do you have some question?</p>
+                        <p>Do you have any question?</p>
                         
                         <div class="modal fade" id="question-modal" tabindex="-1" role="dialog" aria-labelledby="question-modalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
@@ -412,7 +412,7 @@
                                 <div class="modal-header">
                                     <div class="product-div d-flex">
                                         <img src="https://images.morele.net/i1064/7845491_0_i1064.jpg" alt="">
-                                        <p class="align-self-center w-100">Lorem ipsum dolor sit amet.</p>
+                                        <p class="align-self-center w-100">{{ product.name }}</p>
                                     </div>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -422,7 +422,8 @@
             
                                     <!-- Form question submit -->
             
-                                    <form method="POST">
+                                    <form method="POST" class='question-form' data-productid='{{ product.id }}'>
+                                        {% csrf_token %}
                                         <div class="form-group">
                                             <textarea class="form-control" id="question-form" rows="3"></textarea>
                                         </div>
@@ -433,7 +434,7 @@
                             </div>
                         </div>
                         <div class="">
-                            <button type="button" class="btn-red mx-4 px-5 border-rounded" data-toggle="modal" data-target="#question-modal">
+                            <button type="button" class="btn-red mx-4 px-5 border-rounded box-shadow" data-toggle="modal" data-target="#question-modal">
                                 Ask something
                             </button>
                         </div>
@@ -441,70 +442,35 @@
                     </div>
             
                     <!-- user questions -->
-            
-                    <div class="d-flex mx-5 mt-3 border-bottom user-questions">
-                        <div class="review pr-5">
-                            <i class="fas fa-user font-red fa-2x"></i>
-                            <p>Janek</p>
-                        </div>
-                        <div class="d-flex flex-column ml-4">
-                            <div class="text-left d-flex">
-                                <div class="stars">
-                                    <i class="fas fa-star font-red"></i>
-                                    <i class="fas fa-star font-red"></i>
-                                    <i class="fas fa-star font-red"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
+
+                    {% for question in questions %}
+                    {% if  question.question%} 
+                    
+                        <div class="d-flex mx-5 mt-3 border-bottom user-questions">
+                            <div class="review pr-5">
+                                <i class="fas fa-user font-red fa-2x"></i>
+                                <p>{{question.user.username}}</p>
+                            </div>
+                            <div class="d-flex flex-column ml-4 w-50">
+                                <div class="text-left d-flex">
+                                    <h3></h3>
+                                    <p class="ml-2 text-left">{{ question.get_time }}</p>
                                 </div>
-                                <p class="ml-2">4 years ago</p>
-                            </div>
-                            <div class="">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum a neque assumenda officiis qui asperiores amet veritatis molestias eius omnis.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex mx-5 mt-3 border-bottom user-questions">
-                        <div class="review pr-5">
-                            <i class="fas fa-user font-red fa-2x"></i>
-                            <p>Janek</p>
-                        </div>
-                        <div class="d-flex flex-column ml-4">
-                            <div class="text-left d-flex">
-                                <div class="stars">
-                                    <i class="fas fa-star font-red"></i>
-                                    <i class="fas fa-star font-red"></i>
-                                    <i class="fas fa-star font-red"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
+                                <div class="">
+                                    <p class="text-left pl-2">{{ question.question }}</p>
+                                    {% if question.employer_reply %}
+                                        <div class="bg-light-grey border-rounded py-1 mb-3 ml-5 w-25">
+                                            <p class='p-0 m-0'>{{ question.employer_reply }}</p>
+                                        </div>
+                                        
+                                    {% endif %}
                                 </div>
-                                <p class="ml-2">4 years ago</p>
-                            </div>
-                            <div class="">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum a neque assumenda officiis qui asperiores amet veritatis molestias eius omnis.</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-flex mx-5 mt-3 border-bottom user-questions">
-                        <div class="review pr-5">
-                            <i class="fas fa-user font-red fa-2x"></i>
-                            <p>Janek</p>
-                        </div>
-                        <div class="d-flex flex-column ml-4">
-                            <div class="text-left d-flex">
-                                <div class="stars">
-                                    <i class="fas fa-star font-red"></i>
-                                    <i class="fas fa-star font-red"></i>
-                                    <i class="fas fa-star font-red"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <p class="ml-2">4 years ago</p>
-                            </div>
-                            <div class="">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum a neque assumenda officiis qui asperiores amet veritatis molestias eius omnis.</p>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    {% endif %}
+                    {% endfor %}
+                    
                     <div class="d-none justify-content-center align-items-end arrow-ups">
                         <a href="#product-section"><i class="far fa-arrow-alt-circle-up font-red"></i></a>
                     </div>
@@ -528,5 +494,6 @@
     </script>
     <script src='{% static 'js/productReview.js' %}'></script>
     <script src='{% static 'js/productReviewStars.js' %}'></script>
+    <script src='{% static 'js/productQuestion.js' %}'></script>
 
 {% endblock %}

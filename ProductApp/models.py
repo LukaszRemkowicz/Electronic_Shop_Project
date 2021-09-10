@@ -36,16 +36,12 @@ class Phones(models.Model):
     price = models.DecimalField(max_digits=7, decimal_places=2)
     pieces = models.IntegerField()
     promotion = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
+    
     ram = models.IntegerField()
     memory = models.IntegerField()
     modem = models.IntegerField()
     color = models.CharField(max_length=40)
     describe = models.CharField(max_length=30000, null=True)
-    main_photo = models.ImageField(upload_to=f'phones', null=True, blank=True)
-    content_photo1 = models.ImageField(upload_to=f'phones', null=True, blank=True)
-    content_photo2 = models.ImageField(upload_to=f'phones', null=True, blank=True)
-    content_photo3 = models.ImageField(upload_to=f'phones', null=True, blank=True)
-    html_file = models.FileField(upload_to="phones", default="", blank=True, null=True)
     producent = models.CharField(max_length=100)
     producent_code = models.CharField(max_length=100)
     ean = models.IntegerField(unique=True)
@@ -64,11 +60,14 @@ class Phones(models.Model):
     width = models.CharField(max_length=10)
     deep = models.CharField(max_length=10)
     weight = models.CharField(max_length=10)
-    opinions = models.CharField(max_length=5000, blank=True, null=True)
-    reviews = models.CharField(max_length=5000, blank=True, null=True)
-    
     cattegory = models.CharField(choices=CHOICES, max_length=50, default='')
+
     
+    main_photo = models.ImageField(upload_to=f'phones', null=True, blank=True)
+    content_photo1 = models.ImageField(upload_to=f'phones', null=True, blank=True)
+    content_photo2 = models.ImageField(upload_to=f'phones', null=True, blank=True)
+    content_photo3 = models.ImageField(upload_to=f'phones', null=True, blank=True)
+    html_file = models.FileField(upload_to="phones", default="", blank=True, null=True)
 
     def __str__(self) -> str:
         return self.name
@@ -83,22 +82,17 @@ class Phones(models.Model):
     
 class Monitors(models.Model):
     
-    main_photo = models.ImageField(null=True, blank=True)
     name = models.CharField(max_length=20, default='')
     model = models.CharField(max_length=20, null=True, blank=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
     pieces = models.IntegerField()
     promotion = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
+    
     color = models.CharField(max_length=40)
     resolution = models.CharField(max_length=20)
     refresh_rate = models.IntegerField()
     power_consumption = models.IntegerField()
     describe = models.CharField(max_length=30000, null=True)
-    main_photo = models.ImageField(upload_to=f'monitors', null=True, blank=True)
-    content_photo1 = models.ImageField(upload_to=f'monitors', null=True, blank=True)
-    content_photo2 = models.ImageField(upload_to=f'monitors', null=True, blank=True)
-    content_photo3 = models.ImageField(upload_to=f'monitors', null=True, blank=True)
-    html_file = models.FileField(upload_to="monitors", default="", null=True, blank=True)
     producent = models.CharField(max_length=100)
     producent_code = models.CharField(max_length=100)
     ean = models.IntegerField(unique=True)
@@ -108,12 +102,14 @@ class Monitors(models.Model):
     high = models.CharField(max_length=10)
     width = models.CharField(max_length=10)
     deep = models.CharField(max_length=10)
-    weight = models.CharField(max_length=10)
-    opinions = models.CharField(max_length=5000, null=True, blank=True)
-    
-    
+    weight = models.CharField(max_length=10)  
     cattegory = models.CharField(choices=CHOICES, max_length=50, default='')
     
+    main_photo = models.ImageField(upload_to=f'monitors', null=True, blank=True)
+    content_photo1 = models.ImageField(upload_to=f'monitors', null=True, blank=True)
+    content_photo2 = models.ImageField(upload_to=f'monitors', null=True, blank=True)
+    content_photo3 = models.ImageField(upload_to=f'monitors', null=True, blank=True)
+    html_file = models.FileField(upload_to="monitors", default="", null=True, blank=True)
 
     def __str__(self) -> str:
         return self.name
@@ -125,7 +121,6 @@ class Monitors(models.Model):
             return mark_safe(html_string)
         return None
     
-
     
 class MainProductDatabase(models.Model):
     
@@ -134,13 +129,13 @@ class MainProductDatabase(models.Model):
     price = models.DecimalField(max_digits=7, decimal_places=2, default=0)
     pieces = models.IntegerField(default=0)
     promotion = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
+    product_of_the_day = models.BooleanField(default=False)
     
     phones_product_data = models.OneToOneField(Phones, on_delete=models.CASCADE, null=True, blank=True)
     monitors_product_data = models.OneToOneField(Monitors, on_delete=models.CASCADE, default='', null=True, blank=True)
     laptops_product_data = models.OneToOneField('Laptops', on_delete=models.CASCADE, default='', null=True, blank=True)
     
     ean = models.IntegerField(null=True, blank=True, unique=True)
-    product_of_the_day = models.BooleanField(default=False)
     cattegory =  models.CharField(choices=CHOICES, max_length=50, default='')
     color = models.CharField(max_length=100, default='')
 
@@ -160,8 +155,8 @@ class MainProductDatabase(models.Model):
     def get_star_avg(self) -> Tuple[str, List[bool]]:
         """ Method to get product review avarage """
         
-        opinions = len(ReviewAndQuestions.objects.filter(product=self.id))
-        stars = sum([element.stars for element in ReviewAndQuestions.objects.all()])
+        opinions = len(Reviews.objects.filter(product=self.id, checked_by_employer=True))
+        stars = sum([element.stars for element in Reviews.objects.filter(checked_by_employer=True)])
         
         result = stars/opinions
         frac, whole = math.modf(result)
@@ -171,14 +166,13 @@ class MainProductDatabase(models.Model):
         if frac > 0:
             return str(result), ranger
         else:
-            return str(int(whole)), ranger
-        
+            return str(int(whole)), ranger   
         
     @property
     def get_stars(self) -> Dict[str, int]:
         """ Help method to generate progress bars """
         
-        stars = [element.stars for element in ReviewAndQuestions.objects.filter(product=self.id)]
+        stars = [element.stars for element in Reviews.objects.filter(product=self.id, checked_by_employer=True)]
         stars_dict = {key:0 for key in range(1, 6)}
         
         for element in stars:
@@ -195,12 +189,53 @@ class MainProductDatabase(models.Model):
 
     @property
     def get_num_of_reviews(self) -> int:
-        return len(ReviewAndQuestions.objects.filter(product=self.id))
+        return len(Reviews.objects.filter(product=self.id, checked_by_employer=True))
         
-
     
 class Laptops(models.Model):
-    pass
+
+    name = models.CharField(max_length=20, default='')
+    model = models.CharField(max_length=20, null=True, blank=True)
+    price = models.DecimalField(max_digits=7, decimal_places=2)
+    pieces = models.IntegerField()
+    promotion = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
+    
+    color = models.CharField(max_length=40)
+    resolution = models.CharField(max_length=20)
+    energy_time = models.IntegerField()
+    battery = models.IntegerField()
+    producent = models.CharField(max_length=100)
+    producent_code = models.CharField(max_length=100)
+    ean = models.IntegerField(unique=True)
+    distribution = models.CharField(max_length=10, default='EU')
+    screen = models.CharField(max_length=30)
+    screen_diagonal = models.CharField(max_length=10)
+    high = models.CharField(max_length=10)
+    width = models.CharField(max_length=10)
+    deep = models.CharField(max_length=10)
+    weight = models.CharField(max_length=10)
+    cattegory = models.CharField(choices=CHOICES, max_length=50, default='')
+    system = models.CharField(max_length=20)
+    graph = models.CharField(max_length=20)
+
+    describe = models.CharField(max_length=30000, null=True)
+    main_photo = models.ImageField(upload_to=f'monitors', null=True, blank=True)
+    content_photo1 = models.ImageField(upload_to=f'monitors', null=True, blank=True)
+    content_photo2 = models.ImageField(upload_to=f'monitors', null=True, blank=True)
+    content_photo3 = models.ImageField(upload_to=f'monitors', null=True, blank=True)
+    html_file = models.FileField(upload_to="monitors", default="", null=True, blank=True)
+    
+    
+    def __str__(self) -> str:
+        return self.name
+    
+    def render_html(self) -> Any:
+        path = self.html_file.path
+        if os.path.exists(path):
+            html_string = codecs.open(path, 'r').read()
+            return mark_safe(html_string)
+        return None
+    
      
 class Pc(models.Model):
     pass
@@ -239,18 +274,18 @@ class Routers(models.Model):
     pass
 
 
-class ReviewAndQuestions(models.Model):
+class Reviews(models.Model):
     
     product = models.ForeignKey(MainProductDatabase, on_delete=models.CASCADE)
-    review = models.CharField(max_length=5000)
-    question = models.CharField(max_length=5000)
+    review = models.CharField(max_length=5000, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField(auto_created=True)
+    date = models.DateField(auto_now_add=True)
     stars = models.IntegerField(default=1)
-    checked = models.BooleanField(default=False)
+    checked_by_employer = models.BooleanField(default=False)
+    question_checked_by_employer = models.BooleanField(default=False)
     
     def __str__(self) -> str:
-        return f'Review of {self.product.name}'
+        return f'Review of {self.product.name}/ Product ID: {self.product.id}'
     
     @property
     def get_time(self) -> str:
@@ -263,4 +298,19 @@ class ReviewAndQuestions(models.Model):
         return [True if num in [el for el in range(1, self.stars+1)] else False for num in range(1, 6)]
     
         
+class Questions(models.Model):
     
+    product = models.ForeignKey(MainProductDatabase, on_delete=models.CASCADE)
+    question = models.CharField(max_length=5000, blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+    checked_by_employer = models.BooleanField(default=False)
+    employer_reply = models.CharField(max_length=5000, blank=True, null=True)
+    
+    def __str__(self) -> str:
+        return f'Question of {self.product.name}/ Product ID: {self.product.id}'
+    
+    
+    @property
+    def get_time(self) -> str:
+        return str(self.date) 

@@ -38,9 +38,11 @@ class ProductPage(ListView):
         else: 
             pieces_range = range(1, 11)
         
-        questions_and_reviews = models.ReviewAndQuestions.objects.filter(product_id=id)
+        reviews = models.Reviews.objects.filter(product_id=id, checked_by_employer=True)
+        question = models.Questions.objects.filter(product_id=id, checked_by_employer=True)
        
-        context['reviews'] = questions_and_reviews
+        context['questions'] = question
+        context['reviews'] = reviews
         context['pieces_range'] = pieces_range
         context['same_products'] = same_products
         context['product'] = product

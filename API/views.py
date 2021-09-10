@@ -196,6 +196,38 @@ class CreateReview(APIView):
         content = data['content']
         product_id = data['productId']
         order_number = data['orderNumber']
+        stars = data['stars']
+        
+        try:
+            order = shopping_cart.Order.objects.get(id=int(order_number))
+            order_item = shopping_cart.OrderItem.objects.get(order=order, product_id=int(product_id))
+            new_review = product_app.ReviewAndQuestions.objects.create(product_id=int(product_id),
+                                                                   review=content,
+                                                                   user=request.user,
+                                                                   stars=stars)
+            result = 'Review has been saved'
+        except:
+            result = f'This product have not been bought in order number {order_number}'
+            
+        response = {'result': result}
+        return Response(json.dumps(response))
         
         
+class CreateQuestion(APIView):
+    
+    def post(self, request):
+        authentication_classes = [authentication.TokenAuthentication]
+        permission_classes = [permissions.IsAdminUser]
+        parser_classes = [JSONParser]
         
+        data = request.data
+        
+        content = data['content']
+        product_id = data['productId']
+        
+        question = product_app.Questions.objects.create(product_id=int(product_id),
+                                                        question=content,
+                                                        user=request.user)
+
+        result = {'result' : 'Question sent. Wait for our employer reply'}
+        return Response(json.dumps(result))

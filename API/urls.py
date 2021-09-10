@@ -13,5 +13,6 @@ urlpatterns = [
     path('order-completed/', views.FinishOrderView.as_view(), name='order-finished'),
     path('update-item/', views.UpdateItemView.as_view(), name="update_item"),
     path('get-product/', views.GetProductData.as_view(), name="get_product"),
-    path('create-review', views.CreateReview.as_view(), name='create-review')
+    path('create-review/', views.CreateReview.as_view(), name='create-review'),
+    path('create-question/', views.CreateQuestion.as_view(), name='create-question'),
 ]

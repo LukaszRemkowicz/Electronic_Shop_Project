@@ -21,6 +21,7 @@ function acceptReview(event){
             'content' : content,
             'productId' : productId,
             'orderNumber': orderNumber,
+            'stars' : numClicked,
         })
     })
 
@@ -30,6 +31,7 @@ function acceptReview(event){
 
     .then(data =>{
         data = JSON.parse(data)
+        console.log(data)
     })
 
 }
