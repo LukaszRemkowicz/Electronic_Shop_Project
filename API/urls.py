@@ -16,3 +16,4 @@ urlpatterns = [
     path('create-review/', views.CreateReview.as_view(), name='create-review'),
     path('create-question/', views.CreateQuestion.as_view(), name='create-question'),
 ]
+

@@ -2,7 +2,6 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from ProductApp import models
 
-
 def filter_products(cattegory, product):
     if cattegory == 'Phones':
         product_model = product.phones_product_data.model
@@ -52,8 +51,8 @@ def filter_products(cattegory, product):
         return models.MainProductDatabase.objects.filter(pendrives_product_model__model=product_model)
     
     elif cattegory == 'Routers':
-        product_model = product.routers_product_model.model
-        return models.MainProductDatabase.objects.filter(routers_product_model__model=product_model)
+        product_model = product.router_product_data.model
+        return models.MainProductDatabase.objects.filter(router_product_data__model=product_model)
     
     elif cattegory == 'Switches':
         product_model = product.switches_product_model.model
@@ -148,11 +147,13 @@ def get_product(model, instance):
     elif model == 'Headphones':
         return models.MainProductDatabase.objects.get(headphones_product_data=instance).headphones_product_data
     elif model == 'Routers':
-        return models.MainProductDatabase.objects.get(routers_product_data=instance).routers_product_data
+        return models.MainProductDatabase.objects.get(router_product_data=instance).router_product_data
     
     
 def choose_model(model, instance):
     """ Help function for signals. Create objects for specific model """
+    
+    
     
     if model == "Phones":
         return models.MainProductDatabase.objects.create(phones_product_data=instance)
@@ -183,55 +184,56 @@ def choose_model(model, instance):
     elif model == 'Headphones':
         return models.MainProductDatabase.objects.create(headphones_product_data=instance)
     elif model == 'Routers':
-        return models.MainProductDatabase.objects.create(routers_product_data=instance)
+        return models.MainProductDatabase.objects.create(router_product_data=instance)
     
     
 def try_to_get_product(product, instance):
     """ Help function for signals. Try to get specific product from model """
+    
+    instance_obj = models.MainProductDatabase.objects.get(ean=product.ean)
     try: 
-        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).phones_product_data
-        instance_obj.name
-    except ObjectDoesNotExist:
-        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).monitors_product_data
-        instance_obj.name
-    except ObjectDoesNotExist:
-        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).laptops_product_data
-        instance_obj.name
-    except ObjectDoesNotExist:
-        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).pc_product_data
-        instance_obj.name
-    except ObjectDoesNotExist:
-        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).AccesoriesForLaptops_data
-        instance_obj.name
-    except ObjectDoesNotExist:
-        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).ssd_product_data
-        instance_obj.name
-    except ObjectDoesNotExist:
-        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).graphs_product_data
-        instance_obj.name
-    except ObjectDoesNotExist:
-        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).ram_product_data
-        instance_obj.name
-    except ObjectDoesNotExist:
-        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).pendrive_product_data
-        instance_obj.name
-    except ObjectDoesNotExist:
-        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).switch_product_data
-        instance_obj.name
-    except ObjectDoesNotExist:
-        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).motherboard_product_data
-        instance_obj.name
-    except ObjectDoesNotExist:
-        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).cpu_product_data
-        instance_obj.name
-    except ObjectDoesNotExist:
-        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).tv_product_data
-        instance_obj.name
-    except ObjectDoesNotExist:
-        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).headphones_product_data
-        instance_obj.name
-    except ObjectDoesNotExist:
-        instance_obj = models.MainProductDatabase.objects.get(ean=product.ean).routers_product_data
-        instance_obj.name
-        
-    return instance_obj
+        instance_obj.phones_product_data.name
+        return instance_obj.phones_product_data
+    except AttributeError:
+        instance_obj.monitors_product_data.name
+        return instance_obj.monitors_product_data
+    except AttributeError:
+        instance_obj.laptops_product_data.name
+        return instance_obj.laptops_product_data
+    except AttributeError:
+        instance_obj.pc_product_data.name
+        return instance_obj.pc_product_data
+    except AttributeError:
+        instance_obj.accesories_for_laptop.name
+        return instance_obj.accesories_for_laptop
+    except AttributeError:
+        instance_obj.ssd_product_data.name
+        return instance_obj.ssd_product_data
+    except AttributeError:
+        instance_obj.graphs_product_data.name
+        return instance_obj.graphs_product_data
+    except AttributeError:
+        instance_obj.ram_product_data.name
+        return instance_obj.ram_product_data
+    except AttributeError:
+        instance_obj.pendrive_product_data.name
+        return instance_obj.pendrive_product_data
+    except AttributeError:
+        instance_obj.switch_product_data.name
+        return instance_obj.switch_product_data
+    except AttributeError:
+        instance_obj.motherboard_product_data.name
+        return instance_obj.motherboard_product_data
+    except AttributeError:
+        instance_obj.cpu_product_data.name
+        return instance_obj.cpu_product_data
+    except AttributeError:
+        instance_obj.tv_product_data.name
+        return instance_obj.tv_product_data
+    except AttributeError:
+        instance_obj.headphones_product_data.name
+        return instance_obj.headphones_product_data
+    except AttributeError:
+        instance_obj.router_product_data.name
+        return instance_obj.router_product_data
+            

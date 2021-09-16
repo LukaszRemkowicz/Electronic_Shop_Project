@@ -35,9 +35,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    # Custom APPS
-    
     'Profile.apps.ProfileConfig',
     'ProductApp.apps.ProductappConfig',
     'AddressBookApp.apps.AddressbookappConfig',

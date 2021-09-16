@@ -1,9 +1,24 @@
+from functools import wraps
+
+
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.exceptions import ObjectDoesNotExist
 
 
 from . import models, utils
+
+skip_signals = False
+
+def skip_signal():
+    def _skip_signal(signal_func):
+        @wraps(signal_func)
+        def _decorator(sender, instance, **kwargs):
+            if skip_signals == True:
+                return None
+            return signal_func(sender, instance, **kwargs)  
+        return _decorator
+    return _skip_signal
 
 @receiver(post_save, sender=models.Phones)
 @receiver(post_save, sender=models.Monitors)
@@ -21,6 +36,8 @@ from . import models, utils
 @receiver(post_save, sender=models.Tv)
 @receiver(post_save, sender=models.Headphones)
 def create_product(sender, instance, created, **kwargs):
+    
+    global skip_signals
         
     if created:  
         """ check if ean code is already in the DB """
@@ -32,6 +49,9 @@ def create_product(sender, instance, created, **kwargs):
         
         else:
             
+            print(instance)
+            
+            skip_signals = True
             product = utils.choose_model(instance.__class__.__name__, instance)
             product.ean = instance.ean
             product.cattegory = instance.cattegory
@@ -47,6 +67,8 @@ def create_product(sender, instance, created, **kwargs):
                 product.main_photo = instance.img
             except:
                 pass
+            
+            skip_signals = False
     else:
         """ update product if not created"""
         
@@ -97,22 +119,35 @@ def create_product(sender, instance, created, **kwargs):
 def save_product(sender, instance, **kwargs):
     """ save main product if created """
     
+    global skip_signals
+    
     product_ean = models.MainProductDatabase.objects.filter(ean=instance.ean).exists()
     if product_ean:
         pass
     else:
+        print(instance)
+        
+        skip_signals = True
         instance.mainproductdatabase.save()
+        skip_signals = False
         
         
 @receiver(post_save, sender=models.MainProductDatabase)
+@skip_signal()
 def update_product(sender, instance, created, **kwargs):
     """ Update product if main product changed """
-        
+    
+    global skip_signals
+            
     if not created:
     
         product = models.MainProductDatabase.objects.get(ean=instance.ean)
         
+        skip_signals = True
         instance_obj = utils.try_to_get_product(product, instance)
+        
+        
+        print(instance_obj)
             
         if product.name != instance_obj.name:
             instance_obj.name = product.name
@@ -131,4 +166,6 @@ def update_product(sender, instance, created, **kwargs):
             instance_obj.save()
         elif product.color != instance_obj.name:
             instance_obj.color = product.color
-            instance_obj.save()    
+            instance_obj.save()   
+
+        skip_signals = False

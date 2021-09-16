@@ -1,0 +1,133 @@
+<tbody>
+
+    <tr>
+        <th scope="row w-100">
+            <h6 class="h3-2 col-12 pt-2 pb-2"> <span class="pb-2 underline upper">Specification</span> </h6>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center">
+                <p class="pr-4 mb-0 text-right col-6">Producent: </p>
+                <p class="mb-0 text-left col-6">{{ product.cpu_product_data.producent }}</p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Producent code: </p>
+                <p class="mb-0 w-50 text-left col-6">{{ product.cpu_product_data.producent_code }}</p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">EAN: </p>
+                <p class="mb-0  w-50 text-left col-6">{{ product.cpu_product_data.ean }}</p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper"> Basic Informations</span></h6>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Cooler: </p>
+
+                {% if product.cpu_product_data.cooler %}
+                    <p class="mb-0 w-50 text-left col-6">YES</p>
+                {% else %}
+                    <p class="mb-0 w-50 text-left col-6">NO</p>
+                {% endif %}
+
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Socket: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.cpu_product_data.socket }} </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Cores number: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.cpu_product_data.cores_num }}</p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6"> Threat number: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.cpu_product_data.threat_num }} </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper"> Clock Frequency </span></h6>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Ram slots: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.cpu_product_data.clock_frequency }} </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Supported memory: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.cpu_product_data.supported_memory  }} </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper"> General </span></h6>
+        </th>
+    </tr>
+
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Weight: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.cpu_product_data.weight }} </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">High: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.cpu_product_data.high }} </p>
+            </div>
+        </th>
+    </tr>
+
+</tbody>
