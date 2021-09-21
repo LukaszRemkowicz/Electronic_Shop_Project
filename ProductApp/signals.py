@@ -1,12 +1,10 @@
 from functools import wraps
 
-
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.core.exceptions import ObjectDoesNotExist
-
 
 from . import models, utils
+
 
 skip_signals = False
 
@@ -19,6 +17,7 @@ def skip_signal():
             return signal_func(sender, instance, **kwargs)  
         return _decorator
     return _skip_signal
+
 
 @receiver(post_save, sender=models.Phones)
 @receiver(post_save, sender=models.Monitors)
@@ -96,6 +95,9 @@ def create_product(sender, instance, created, **kwargs):
                 product.save()
             elif product.color != utils.get_product(instance.__class__.__name__, instance).color:
                 product.color = instance.color
+                product.save()  
+            elif product.img != utils.get_product(instance.__class__.__name__, instance).main_photo:
+                product.img = instance.main_photo
                 product.save()    
             
         except:

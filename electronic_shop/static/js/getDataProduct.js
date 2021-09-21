@@ -10,7 +10,7 @@ childProductData.forEach(element =>{
         // let news = newArr.filter(elements => !elements.isEqualNode(element.parentNode));
         // nowy = news
         productData['productClicked'] = {'type' : element.innerHTML,
-                                            'divId': element.parentNode.id}
+                                            'divId': element.parentNode.dataset.name}
         url =  window.location.href.split('/')
         productData['productId'] = url[url.length-2]
         productData['itemsId'] = JSON.parse(productIds)
@@ -38,7 +38,7 @@ childProductData.forEach(element =>{
         
         .then(data =>{
             data = JSON.parse(data);
-            console.log(data)
+            console.log(data);
 
             window.location.href = `/product/${+data}/`;
         })

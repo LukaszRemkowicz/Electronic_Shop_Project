@@ -42,8 +42,35 @@
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6">Resolution: </p>
-                <p class="mb-0 w-50 text-left col-6">{{ product.pc_product_data.resolution }}</p>
+                <p class="pr-4 mb-0 w-50 text-right col-6">Processor: </p>
+                <p class="mb-0 w-50 text-left col-6">{{ product.pc_product_data.processor }}</p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Socket: </p>
+                <p class="mb-0 w-50 text-left col-6">{{ product.pc_product_data.socket }}</p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Cooler: </p>
+                <p class="mb-0 w-50 text-left col-6">{{ product.pc_product_data.cooler }}</p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Chipset: </p>
+                <p class="mb-0 w-50 text-left col-6">{{ product.pc_product_data.chipset }}</p>
             </div>
         </th>
     </tr>
@@ -53,6 +80,15 @@
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6 col-6">System: </p>
                 <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.pc_product_data.system }} </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Power suply [W]: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.pc_product_data.power_suply }} </p>
             </div>
         </th>
     </tr>
@@ -70,7 +106,7 @@
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6 col-6"> Disc: </p>
-                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.pc_product_data.disc }} </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {% if product.pc_product_data.disc == 0 %} No disc {% else %} {{ product.pc_product_data.disc }} {% endif %} </p>
             </div>
         </th>
     </tr>
@@ -79,7 +115,7 @@
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Ram: </p>
-                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.pc_product_data.ram }} </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.pc_product_data.ram }} GB</p>
             </div>
         </th>
     </tr>
@@ -105,8 +141,8 @@
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">WiFi: </p>
-                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.pc_product_data.wifi  }} </p>
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Bluetooth: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {% if product.pc_product_data.bluetooth %}YES {% else %} NO {% endif %} </p>
             </div>
         </th>
     </tr>
@@ -114,8 +150,8 @@
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Bluetooth: </p>
-                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.pc_product_data.bluetooth  }} </p>
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Wifi: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {% if product.pc_product_data.wifi %}YES {% else %} NO {% endif %}</p>
             </div>
         </th>
     </tr>
@@ -126,11 +162,28 @@
         </th>
     </tr>
 
+     <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Mouse: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.pc_product_data.mouse }}</p>
+            </div>
+        </th>
+    </tr>
 
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Weight: </p>
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Keyboard: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.pc_product_data.keyboard }}</p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Weight [kg]: </p>
                 <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.pc_product_data.weight }} </p>
             </div>
         </th>
@@ -139,7 +192,7 @@
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">High: </p>
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">High [cm]: </p>
                 <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.pc_product_data.high }} </p>
             </div>
         </th>
@@ -148,10 +201,20 @@
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Deep: </p>
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Deep [cm]: </p>
                 <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.pc_product_data.deep }} </p>
             </div>
         </th>
     </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Width [cm]: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.pc_product_data.width }} </p>
+            </div>
+        </th>
+    </tr>
+
 
 </tbody>

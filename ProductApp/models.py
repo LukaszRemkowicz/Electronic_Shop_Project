@@ -15,7 +15,7 @@ CHOICES = [
         ("Laptops", "Laptops"),
         ("Phones", 'Phones'),
         ("PC", "PC"),
-        ("Monitor", "Monitor"),
+        ("Monitors", "Monitors"),
         ("Accesories for laptops", "Accesories for laptops"),
         ("SSD", "SSD"),
         ("Graphs", "Graphs"),
@@ -32,13 +32,13 @@ CHOICES = [
 
 class Inherit(models.Model):
     
-    name = models.CharField(max_length=60, default='')
+    name = models.CharField(max_length=200, default='')
     model = models.CharField(max_length=20, null=True, blank=True)
     price = models.DecimalField(max_digits=7, decimal_places=2, default=0)
     pieces = models.IntegerField(default=0)
     promotion = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
     producent = models.CharField(max_length=100, default='')
-    producent_code = models.CharField(max_length=100, default='')
+    producent_code = models.CharField(max_length=100, default='', null=True, blank=True)
     ean = models.BigIntegerField(unique=True, null=True)
     color = models.CharField(max_length=40, null=True, blank=True)
     distribution = models.CharField(max_length=10, default='EU')
@@ -47,13 +47,14 @@ class Inherit(models.Model):
     width = models.FloatField(blank=True, null=True)
     deep = models.FloatField(blank=True, null=True)
     weight = models.FloatField(blank=True, null=True)
-    high = models.CharField(max_length=10, blank=True, null=True)
+    high = models.FloatField(blank=True, null=True)
     
-    main_photo = models.ImageField(upload_to='monitors', null=True, blank=True)
-    content_photo1 = models.ImageField(upload_to='monitors', null=True, blank=True)
-    content_photo2 = models.ImageField(upload_to='monitors', null=True, blank=True)
-    content_photo3 = models.ImageField(upload_to='monitors', null=True, blank=True)
-    html_file = models.FileField(upload_to="monitors", default="", null=True, blank=True)
+    main_photo = models.ImageField(upload_to='products_pic', null=True, blank=True)
+    content_photo1 = models.ImageField(upload_to='products_pic', null=True, blank=True)
+    content_photo2 = models.ImageField(upload_to='products_pic', null=True, blank=True)
+    content_photo3 = models.ImageField(upload_to='products_pic', null=True, blank=True)
+    html_file = models.FileField(upload_to="products_pic", default="", null=True, blank=True)
+    product_of_the_day = models.BooleanField(default=False)
     
     def __str__(self) -> str:
         return self.name
@@ -115,17 +116,19 @@ class MainProductDatabase(models.Model):
         """ Method to get product review avarage """
         
         opinions = len(Reviews.objects.filter(product=self.id, checked_by_employer=True))
-        stars = sum([element.stars for element in Reviews.objects.filter(checked_by_employer=True)])
-        
-        result = stars/opinions
-        frac, whole = math.modf(result)
-        
-        ranger = [True if num  in [element for element in range(1, int(whole) +1 )] else False for num in range(1, int(6))]
-           
-        if frac > 0:
-            return str(result), ranger
+        stars = sum([element.stars for element in Reviews.objects.filter(product=self.id,checked_by_employer=True)])
+        if stars > 0:
+            result = stars/opinions
+            frac, whole = math.modf(result)
+            
+            ranger = [True if num  in [element for element in range(1, int(whole) +1 )] else False for num in range(1, int(6))]
+            
+            if frac > 0:
+                return str(result), ranger
+            else:
+                return str(int(whole)), ranger   
         else:
-            return str(int(whole)), ranger   
+            return str(0), [False for _ in range(5)]
         
     @property
     def get_stars(self) -> Dict[str, int]:
@@ -134,15 +137,17 @@ class MainProductDatabase(models.Model):
         stars = [element.stars for element in Reviews.objects.filter(product=self.id, checked_by_employer=True)]
         stars_dict = {key:0 for key in range(1, 6)}
         
-        for element in stars:
-            if element not in stars_dict:
-                stars_dict[element] = 1
-            else:
-                stars_dict[element] += 1
-                
-        for key, value in stars_dict.items():
-            percentage = (100*value) / len(stars)
-            stars_dict[key] = (value, int(percentage))
+        if len(stars) > 0:
+        
+            for element in stars:
+                if element not in stars_dict:
+                    stars_dict[element] = 1
+                else:
+                    stars_dict[element] += 1
+                    
+            for key, value in stars_dict.items():
+                percentage = (100*value) / len(stars)
+                stars_dict[key] = (value, int(percentage))         
         
         return stars_dict
 
@@ -162,6 +167,7 @@ class Phones(Inherit):
     processor = models.CharField(max_length=20, default='')
     cpu_clock = models.CharField(max_length=100, default='')
     memory_card = models.CharField(max_length=10, default='')
+    max_memory_card = models.CharField(max_length=50, default='')
     usb = models.CharField(max_length=10, default='')
     audio_jack = models.CharField(max_length=10, default='')
     screen = models.CharField(max_length=30, default='')
@@ -180,30 +186,37 @@ class Monitors(Inherit):
     
 class Laptops(Inherit):
     
-    resolution = models.CharField(max_length=20, default='')
+    resolution = models.CharField(max_length=50, default='')
     energy_time = models.IntegerField(default=0)
     battery = models.IntegerField(default=0)
     screen = models.CharField(max_length=30, default='')
     screen_diagonal = models.CharField(max_length=10, default='')
-    system = models.CharField(max_length=20, default='')
-    graph = models.CharField(max_length=20, default='')
+    system = models.CharField(max_length=50, default='')
+    graph = models.CharField(max_length=50, default='')
     disc = models.IntegerField(default=0)
     ram = models.IntegerField(default=0)
     ram_model = models.CharField(max_length=20, default='')
     p_c_i_e = models.IntegerField(default=0)
-    wifi = models.CharField(max_length=20, default='')
+    wifi = models.CharField(max_length=50, default='')
     bluetooth = models.CharField(max_length=10, default='Yes')
+    processor = models.CharField(max_length=50, default='')
     
      
 class Pc(Inherit):
     
-    resolution = models.CharField(max_length=20, default='')
+    processor = models.CharField(max_length=50, default='')
+    socket = models.CharField(max_length=20, default='')
+    cooler = models.CharField(max_length=20, default='')
     system = models.CharField(max_length=20, default='')
     graph = models.CharField(max_length=20, default='')
+    chipset = models.CharField(max_length=20, default='')
+    power_suply = models.IntegerField(default=0)
+    mouse = models.CharField(max_length=10, default='No')
+    keyboard = models.CharField(max_length=10, default='No')
     disc = models.IntegerField(default=0)
     ram = models.IntegerField(default=0)
-    ram_model = models.CharField(max_length=20, default='')
-    p_c_i_e = models.IntegerField(default=0)
+    ram_type = models.CharField(max_length=20, default='')
+    p_c_i_e = models.CharField(max_length=50 ,default='')
     wifi = models.CharField(max_length=20, default='')
     bluetooth = models.CharField(max_length=10, default='')
     
@@ -218,7 +231,7 @@ class Ssd(Inherit):
     capacity = models.IntegerField(default=0)
     reading_speed = models.IntegerField(default=0)
     writing_speed = models.IntegerField(default=0)
-    work_time = models.IntegerField(default=0)
+    work_time = models.CharField(max_length=30 ,default='')
     
      
 class Graphs(Inherit):
@@ -236,10 +249,11 @@ class Ram(Inherit):
     
     capacity = models.IntegerField(default=0)
     frequency = models.IntegerField(default=0)
-    module_number = models.IntegerField(default=0)
-    profile = models.CharField(max_length=30, default='')
+    modules_number = models.IntegerField(default=0)
+    delay = models.CharField(max_length=30, default='')
     voltage = models.FloatField(default=0)
-    lights = models.CharField(max_length=20, default='')
+    lights = models.CharField(max_length=20, default='No')
+    type = models.CharField(max_length=20, default='')
     
 
 class Pendrives(Inherit):
@@ -251,11 +265,10 @@ class Pendrives(Inherit):
 
 class Switches(Inherit):
     
-    num_of_connectors = models.IntegerField(default=0)
     num_of_poe = models.IntegerField(default=0)
     case_kind = models.CharField(max_length=40, default='')
     manageable = models.BooleanField(default=False)
-    ports_num = models.IntegerField(default=4)
+    ports_num = models.CharField(max_length=50 ,default='')
     bus_speed = models.IntegerField(default=0)
     
 

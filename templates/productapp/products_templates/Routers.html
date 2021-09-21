@@ -1,60 +1,35 @@
-{% load static %}
-
 <div class="color-section">
     <p class="px-5 pt-1 text-left">
-        Color:
+        Producent Code:
     </p>
-    <div class="buttons d-flex px-5">
+    <p>{{ product.router_product_data.producent_code }}</p>
+    <p class="px-5 pt-1 text-left">
+        Ean:
+    </p>
+    <p>{{ product.router_product_data.ean }}</p>
     
-        {% for element in same_products %}
-
-            <a href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 {% if element.phones_product_data.color == product.phones_product_data.color %}active-product-content bg-white{% endif %} ">{{ element.phones_product_data.color }}</a>
-
-        {% endfor %}
-
-    </div>
-</div>
-<div class="processor-section">
-    <p class="px-5 pt-4 text-left">
-        Memory:
+    {% if product.router_product_data.wifi %}
+        <p class="px-5 pt-1 text-left">
+        Wifi standard:
+        </p>
+        <p>{{ product.router_product_data.wifi_standard }}</p>
+    {% endif %}
+    
+    {% if product.router_product_data.encryption_standard %}
+        <p class="px-5 pt-1 text-left">
+        Encryption standard:
     </p>
-    <div class="buttons d-flex px-5 sort_items">
-
-        {% for element in same_products %}
-
-            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element.phones_product_data.memory == product.phones_product_data.memory %}active-product-content bg-white{% endif %} ">{{ element.phones_product_data.memory }} GHz</a>
-
-        {% endfor %}
-        
-    </div>
-</div>
-<div class="ram-section">
-    <p class="px-5 pt-4 text-left">
-        RAM:
+    <p>{{ product.router_product_data.encryption_standard }}</p>
+    {% endif %}
+    
+    <p class="px-5 pt-1 text-left">
+        Lan ports:
     </p>
-    <div class="buttons d-flex px-5 sort_items">
+    <p>{{ product.router_product_data.lan_ports }}</p>,
 
-        {% for element in same_products %}
-
-            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element.phones_product_data.ram == product.phones_product_data.ram %}active-product-content bg-white{% endif %} ">{{ element.phones_product_data.ram }} GHz</a>
-
-        {% endfor %}
-
-    </div>
-</div>
-<div class="disc-section">
-    <p class="px-5 pt-4 text-left">
-        Battery:
+    <p class="px-5 pt-1 text-left">
+        Wan ports:
     </p>
-    <div class="buttons d-flex px-5 sort_items">
-
-        {% for element in same_products %}
-
-            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element.phones_product_data.battery == product.phones_product_data.battery %}active-product-content bg-white{% endif %} ">{{ element.phones_product_data.battery }} GHz</a>
-
-        {% endfor %}
-
-    </div>
+    <p>{{ product.router_product_data.wan_ports }}</p>
+    
 </div>
-
-<script src='{% static 'js/sortSpecData.js' %}'></script>

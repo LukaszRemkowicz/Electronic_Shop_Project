@@ -78,6 +78,158 @@ SAMSUNG_FIT_PLUS_2020_256GB = {
 
 #  penek = Pendrives.objects.create(**SAMSUNG_FIT_PLUS_2020_256GB)
 
+""" Laptops """
+
+Dell_Vostro_3500_grey = {
+    'name': 'Dell Vostro 3500',
+    'producent': 'Dell',
+    'producent_code': 'N3004VN3500EMEA01_2105',
+    'ean': 5901165730663,
+    'model': 'Vostro 3500',
+    'price': 699.99,
+    'pieces': 5,
+    'color': 'Grey',
+    'cattegory': 'Laptops',
+    'processor': 'Intel Core i5',
+    'resolution': '1920 x 1080 (Full HD)',
+    'energy_time': 2,
+    'battery': 48,
+    'screen': 'Mat',
+    'screen_diagonal': '15.6"',
+    'system': 'No system',
+    'graph': 'Intel Iris Xe',
+    'disc': 0,
+    'ram': 8,
+    'ram_model': 'DDR4',
+    'p_c_i_e': 256,
+    'wifi': '802.11ac (gen. 5)',   
+    'width': 36.4,
+    'deep': 24.9,
+    'weight': 1.78,
+    'high': 1.8
+ }
+
+Dell_Vostro_3500_black = {
+    'name': 'Dell Vostro 3500',
+    'producent': 'Dell',
+    'producent_code': 'N3001VN3500EMEA01_2201',
+    'ean': 5901165731608,
+    'model': 'Vostro 3500',
+    'price': 700.99,
+    'pieces': 5,
+    'color': 'Grey',
+    'cattegory': 'Laptops',
+    'processor': 'Intel Core i3-1115G4',
+    'resolution': '1920 x 1080 (Full HD)',
+    'energy_time': 2,
+    'battery': 42,
+    'screen': 'Mat',
+    'screen_diagonal': '15.6"',
+    'system': 'Windows 10 Pro',
+    'graph': 'Intel UHD Graphics Xe G4',
+    'disc': 0,
+    'ram': 8,
+    'ram_model': 'DDR4',
+    'p_c_i_e': 256,
+    'wifi': '802.11ac (gen. 5)',   
+    'width': 36.4,
+    'deep': 24.9,
+    'weight': 1.98,
+    'high': 1.99
+ }
+
+Dell_Vostro_3500_grey_16gb = {
+    'name': 'Dell Vostro 3500',
+    'producent': 'Dell',
+    'producent_code': 'N3001VN3500EMEA01_2201_16',
+    'ean': 59011657316081,
+    'model': 'Vostro 3500',
+    'price': 700.99,
+    'pieces': 5,
+    'color': 'Grey',
+    'cattegory': 'Laptops',
+    'processor': 'Intel Core i3-1115G4',
+    'resolution': '1920 x 1080 (Full HD)',
+    'energy_time': 2,
+    'battery': 42,
+    'screen': 'Mat',
+    'screen_diagonal': '15.6"',
+    'system': 'Windows 10 Pro',
+    'graph': 'Intel UHD Graphics Xe G4',
+    'disc': 0,
+    'ram': 16,
+    'ram_model': 'DDR4',
+    'p_c_i_e': 256,
+    'wifi': '802.11ac (gen. 5)',   
+    'width': 36.4,
+    'deep': 24.9,
+    'weight': 1.98,
+    'high': 1.99
+ }
+
+# from ProductApp.models import *
+# lapek = Laptops.objects.create(**Dell_Vostro_3500_grey)
+
+""" Pc's"""
+
+Gigabyte_AORUS_Model_X_Core_i9_11900K_16_GB_RTX_3080_2_TB_1_TB_M_2_PCIe = {
+    'name': 'Gigabyte AORUS Model X Core i9-11900K, 16 GB, RTX 3080, 2 TB + 1 TB M.2 PCIe',
+    'model': 'AORUS Model X',
+    'price': 4399,
+    'pieces': 5,
+    'producent': 'Gigabyte',
+    'ean': 4719331819804,
+    'processor': 'Core i9-11900K',
+    'socket': 'LGA 1200',
+    'cooler': 'Water',
+    'system': 'No system',
+    'graph': 'RTX 3080',
+    'chipset': 'Intel Z590',
+    'power_suply': 850,
+    'mouse': 'No',
+    'keyboard': 'No',
+    'disc': 0,
+    'ram': 16,
+    'ram_type': 'DDR4',
+    'p_c_i_e': '2 TB + 1 TB',
+    'wifi': '802.11 ax', 
+    'bluetooth': False,
+    'cattegory': 'PC',
+    'width': 22.3,
+    'deep': 52.1,
+    'weight': 17,
+    'high': 50,
+}
+
+Gigabyte_AORUS_Model_X_Ryzen_9_5900X_32_GB_RTX_3080_2_TB_1_TB_M_2_PCIe = {
+    'name': 'Gigabyte AORUS Model X Ryzen 9 5900X, 32 GB, RTX 3080, 2 TB + 1 TB M.2 PCIe',
+    'model': 'AORUS Model X',
+    'price': 4399,
+    'pieces': 5,
+    'producent': 'Gigabyte',
+    'ean': 4719331819842,
+    'processor': 'Ryzen 9 5900X',    
+    'socket': 'AM4',
+    'cooler': 'Water',
+    'system': 'No system',
+    'graph': 'RTX 3080',
+    'chipset': 'Intel Z590',
+    'power_suply': 850,
+    'mouse': 'No',
+    'keyboard': 'No',
+    'disc': 0,
+    'ram': 32,
+    'ram_type': 'DDR4',
+    'p_c_i_e': '2 TB + 1 TB',
+    'wifi': '802.11 ax', 
+    'bluetooth': False,
+    'cattegory': 'PC',
+    'width': 280,
+    'deep': 170,
+    'weight': 1230,
+    'high': 39,
+}
+
 """ Headphones """
 
 Corsair_HS50_Pro_Stereo_Black = {

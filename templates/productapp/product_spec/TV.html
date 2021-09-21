@@ -41,14 +41,19 @@
             </div>
         </th>
     </tr>
-    <tr>
-        <th scope="row w-100">
-            <div class="d-flex justify-content-center mx-5">
-                <p class="pr-4 mb-0 w-50 text-right col-6">Color: </p>
-                <p class="mb-0  w-50 text-left col-6">{{ product.tv_product_data.color }}</p>
-            </div>
-        </th>
-    </tr>
+
+    {% if product.tv_product_data.color %}
+    
+        <tr>
+            <th scope="row w-100">
+                <div class="d-flex justify-content-center mx-5">
+                    <p class="pr-4 mb-0 w-50 text-right col-6">Color: </p>
+                    <p class="mb-0  w-50 text-left col-6">{{ product.tv_product_data.color }}</p>
+                </div>
+            </th>
+        </tr>
+    
+    {% endif %}
     
     <tr>
         <th scope="row w-100">
@@ -93,7 +98,7 @@
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">power_consumption: </p>
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">power_consumption [W]: </p>
                 <p class="mb-0 w-50 text-left col-6 col-6">{{ product.tv_product_data.power_consumption }}</p>
             </div>
         </th>
@@ -102,7 +107,7 @@
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">refresh_rate: </p>
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Refresh rate [Hz]: </p>
                 <p class="mb-0 w-50 text-left col-6 col-6">{{ product.tv_product_data.refresh_rate }}</p>
             </div>
         </th>
@@ -111,7 +116,7 @@
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">resolution: </p>
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Resolution: </p>
                 <p class="mb-0 w-50 text-left col-6 col-6">{{ product.tv_product_data.resolution }}</p>
             </div>
         </th>

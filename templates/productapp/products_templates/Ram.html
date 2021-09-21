@@ -2,59 +2,50 @@
 
 <div class="color-section">
     <p class="px-5 pt-1 text-left">
-        Color:
+        Capacity:
     </p>
-    <div class="buttons d-flex px-5">
+    <div class="buttons d-flex px-5" data-name='product-capacity-data'>
     
-        {% for element in same_products %}
-
-            <a href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 {% if element.phones_product_data.color == product.phones_product_data.color %}active-product-content bg-white{% endif %} ">{{ element.phones_product_data.color }}</a>
+        {% for element in same_products.capacity %}
+        
+            <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data {% if element == product.ram_product_data.capacity %}active-product-content bg-white{% endif %} ">{{ element }}</button>
 
         {% endfor %}
 
     </div>
 </div>
+
 <div class="processor-section">
     <p class="px-5 pt-4 text-left">
-        Memory:
+        Frequency [MHz]:
     </p>
-    <div class="buttons d-flex px-5 sort_items">
+    <div class="buttons d-flex px-5 sort_items" data-name='product-frequency-data'>
 
-        {% for element in same_products %}
+        {% for element in same_products.frequency %}
 
-            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element.phones_product_data.memory == product.phones_product_data.memory %}active-product-content bg-white{% endif %} ">{{ element.phones_product_data.memory }} GHz</a>
+            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.ram_product_data.frequency %}active-product-content bg-white{% endif %} ">{{ element }}</button>
 
         {% endfor %}
         
     </div>
 </div>
-<div class="ram-section">
-    <p class="px-5 pt-4 text-left">
-        RAM:
-    </p>
-    <div class="buttons d-flex px-5 sort_items">
 
-        {% for element in same_products %}
-
-            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element.phones_product_data.ram == product.phones_product_data.ram %}active-product-content bg-white{% endif %} ">{{ element.phones_product_data.ram }} GHz</a>
-
-        {% endfor %}
-
-    </div>
-</div>
 <div class="disc-section">
     <p class="px-5 pt-4 text-left">
-        Battery:
+        Color:
     </p>
-    <div class="buttons d-flex px-5 sort_items">
+    <div class="buttons d-flex px-5 sort_items" data-name='product-color-data'>
 
-        {% for element in same_products %}
+        {% for element in same_products.items %}
 
-            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element.phones_product_data.battery == product.phones_product_data.battery %}active-product-content bg-white{% endif %} ">{{ element.phones_product_data.battery }} GHz</a>
+            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element.color == product.color %}active-product-content bg-white{% endif %} ">{{ element.color }}</button>
 
         {% endfor %}
 
     </div>
 </div>
 
+<script> let productIds = '{{ same_products.items_id }}'; </script>
 <script src='{% static 'js/sortSpecData.js' %}'></script>
+<script src='{% static 'js/getDataProduct.js' %}'></script>
+

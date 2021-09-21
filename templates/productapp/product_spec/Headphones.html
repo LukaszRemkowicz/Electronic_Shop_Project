@@ -72,9 +72,18 @@
         <tr>
             <th scope="row w-100">
                 <div class="d-flex justify-content-center mx-5">
-                    <p class="pr-4 mb-0 w-50 text-right col-6">Bluetooth range: </p>
+                    <p class="pr-4 mb-0 w-50 text-right col-6">Bluetooth range [m]: </p>
                     <p class="mb-0  w-50 text-left col-6">{{ product.headphone_product_data.bluetooth_range }}
                     </p>
+                </div>
+            </th>
+        </tr>
+
+        <tr>
+            <th scope="row w-100">
+                <div class="d-flex justify-content-center mx-5 p-2 ">
+                    <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Work time [h]: </p>
+                    <p class="mb-0 w-50 text-left col-6 col-6">{{ product.headphone_product_data.work_time }}</p>
                 </div>
             </th>
         </tr>
@@ -96,7 +105,7 @@
         <tr>
             <th scope="row w-100">
                 <div class="d-flex justify-content-center mx-5">
-                    <p class="pr-4 mb-0 w-50 text-right col-6">Cable lenght: </p>
+                    <p class="pr-4 mb-0 w-50 text-right col-6">Cable lenght [m]: </p>
                     <p class="mb-0  w-50 text-left col-6">{{ product.headphone_product_data.cable_lenght }}
                     </p>
                 </div>
@@ -118,15 +127,6 @@
                 <p class="mb-0 w-50 text-left col-6 col-6">
                 {% if product.headphone_product_data.microphone %}YES{% else %}NO{% endif %}
                 </p>
-            </div>
-        </th>
-    </tr>
-
-    <tr>
-        <th scope="row w-100">
-            <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Work time: </p>
-                <p class="mb-0 w-50 text-left col-6 col-6">{{ product.headphone_product_data.work_time }}</p>
             </div>
         </th>
     </tr>

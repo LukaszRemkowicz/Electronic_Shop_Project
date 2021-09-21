@@ -1,3 +1,5 @@
+from typing import Any, Dict
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
 from django.contrib import messages
@@ -6,18 +8,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate
-from typing import Any, Dict
-
-
-""" class bassed views import """
-
 from django.views.generic.edit import FormView
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from django.views import View
 from django.contrib.auth.views import LogoutView, LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 
 from .forms import RegisterForm, AcceptTerms, CustomLoginForm
 from .models import Profile

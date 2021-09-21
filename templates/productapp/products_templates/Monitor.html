@@ -1,12 +1,10 @@
-{% load static %}
-
 <div class="color-section">
     <p class="px-5 pt-1 text-left">
         Color:
     </p>
-    <div class="buttons d-flex px-5">
+    <div class="buttons d-flex px-5" data-name='product-color-data'>
     
-        {% for element in same_products %}
+        {% for element in same_products.items %}
 
             <a href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 {% if element.monitors_product_data.color == product.monitors_product_data.color %}active-product-content bg-white{% endif %} ">{{ element.monitors_product_data.color }}</a>
 
@@ -16,13 +14,13 @@
 </div>
 <div class="processor-section">
     <p class="px-5 pt-4 text-left">
-        Refresh rate:
+        Refresh rate [GHz]:
     </p>
-    <div class="buttons d-flex px-5 sort_items">
+    <div class="buttons d-flex px-5 sort_items" data-name='product-refresh_rate-data'>
 
-        {% for element in same_products %}
+        {% for element in same_products.refresh_rate %}
 
-            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element.monitors_product_data.refresh_rate == product.monitors_product_data.refresh_rate %}active-product-content bg-white{% endif %} ">{{ element.monitors_product_data.refresh_rate }} GHz</a>
+            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element == product.monitors_product_data.refresh_rate %}active-product-content bg-white{% endif %} ">{{ element }}</a>
 
         {% endfor %}
         
@@ -30,13 +28,13 @@
 </div>
 <div class="ram-section">
     <p class="px-5 pt-4 text-left">
-        Power consumption:
+        Power consumption [W]:
     </p>
-    <div class="buttons d-flex px-5 sort_items">
+    <div class="buttons d-flex px-5 sort_items" data-name='product-power_consumption-data'>
 
-        {% for element in same_products %}
+        {% for element in same_products.power_consumption %}
 
-            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element.monitors_product_data.power_consumption == product.monitors_product_data.power_consumption %}active-product-content bg-white{% endif %} ">{{ element.monitors_product_data.power_consumption }} W</a>
+            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element == product.monitors_product_data.power_consumption %}active-product-content bg-white{% endif %} ">{{ element }}</a>
 
         {% endfor %}
 
@@ -46,15 +44,17 @@
     <p class="px-5 pt-4 text-left">
         Diagonal:
     </p>
-    <div class="buttons d-flex px-5 sort_items">
+    <div class="buttons d-flex px-5 sort_items" data-name='product-diagonal-data'>
 
-        {% for element in same_products %}
+        {% for element in same_products.screen_diagonal %}
 
-            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element.monitors_product_data.screen_diagonal == product.monitors_product_data.screen_diagonal %}active-product-content bg-white{% endif %} ">{{ element.monitors_product_data.screen_diagonal }}</a>
+            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element == product.monitors_product_data.screen_diagonal %}active-product-content bg-white{% endif %} ">{{ element }}</a>
 
         {% endfor %}
 
     </div>
 </div>
 
+<script> let productIds = '{{ same_products.items_id }}'; </script>
 <script src='{% static 'js/sortSpecData.js' %}'></script>
+<script src='{% static 'js/getDataProduct.js' %}'></script>

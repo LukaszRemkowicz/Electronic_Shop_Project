@@ -26,12 +26,14 @@ function acceptReview(event){
     })
 
     .then(response =>{
-        return response.json()
+        return response.json();
     })
 
     .then(data =>{
-        data = JSON.parse(data)
-        console.log(data)
+        data = JSON.parse(data);
+        console.log(data);
+        window.location.reload();
+        window.scrollTo(0, 0);
     })
 
 }

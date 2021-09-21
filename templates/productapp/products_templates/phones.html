@@ -4,53 +4,56 @@
     <p class="px-5 pt-1 text-left">
         Color:
     </p>
-    <div class="buttons d-flex px-5" id='product-color-data'>
+    <div class="buttons d-flex px-5" data-name='product-color-data'>
     
-        {% for element in same_products.colors %}
+        {% for element in same_products.items %}
         
-            <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data {% if element == product.color %}active-product-content bg-white{% endif %} ">{{ element }}</button>
+            <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data {% if element.phones_product_data.color == product.color %}active-product-content bg-white{% endif %} ">{{ element.phones_product_data.color }}</button>
 
         {% endfor %}
 
     </div>
 </div>
+
 <div class="processor-section">
     <p class="px-5 pt-4 text-left">
-        Memory:
+        Memory [GB]:
     </p>
-    <div class="buttons d-flex px-5 sort_items" id='product-memory-data'>
+    <div class="buttons d-flex px-5 sort_items" data-name='product-memory-data'>
 
         {% for element in same_products.memory %}
 
-            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.phones_product_data.memory %}active-product-content bg-white{% endif %} ">{{ element }} GHz</button>
+            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.phones_product_data.memory %}active-product-content bg-white{% endif %} ">{{ element }}</button>
 
         {% endfor %}
         
     </div>
 </div>
+
 <div class="ram-section">
     <p class="px-5 pt-4 text-left">
-        RAM: 
+        RAM [GB]: 
     </p>
-    <div class="buttons d-flex px-5 sort_items" id='product-ram-data'>
+    <div class="buttons d-flex px-5 sort_items" data-name='product-ram-data'>
 
         {% for element in same_products.ram %}
 
-            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.phones_product_data.ram %}active-product-content bg-white{% endif %} ">{{ element }} GB</button>
+            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.phones_product_data.ram %}active-product-content bg-white{% endif %} ">{{ element }}</button>
 
         {% endfor %}
 
     </div>
 </div>
+
 <div class="disc-section">
     <p class="px-5 pt-4 text-left">
-        Battery:
+        Battery [mAh]:
     </p>
-    <div class="buttons d-flex px-5 sort_items" id='product-battery-data'>
+    <div class="buttons d-flex px-5 sort_items" data-name='product-battery-data'>
 
         {% for element in same_products.battery %}
 
-            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.phones_product_data.battery %}active-product-content bg-white{% endif %} ">{{ element }} GHz</button>
+            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.phones_product_data.battery %}active-product-content bg-white{% endif %} ">{{ element }}</button>
 
         {% endfor %}
 

@@ -10,6 +10,7 @@ from rest_framework.settings import api_settings
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
+from django.contrib import messages
 
 from .serializers import AuthTokenSerializer, UserSerializer
 from ShoppingCardApp import utils  
@@ -43,7 +44,7 @@ class ManageUserView(generics.RetrieveUpdateAPIView):
 class UnauthorisedUserOrderView(APIView):
     """ created order and items for unauthorised user """
     
-    def post(self, request):
+    def post(self, request) -> Response:
         authentication_classes = [authentication.TokenAuthentication]
         permission_classes = [permissions.IsAdminUser]
         parser_classes = [JSONParser]
@@ -57,7 +58,7 @@ class UnauthorisedUserOrderView(APIView):
 class FinishOrderView(APIView):
     """ finish order api """
     
-    def post(self, request, format=None) -> JsonResponse:
+    def post(self, request, format=None) -> Response:
         authentication_classes = [authentication.TokenAuthentication]
         permission_classes = [permissions.IsAdminUser]
         parser_classes = [JSONParser]
@@ -103,7 +104,7 @@ class FinishOrderView(APIView):
 class UpdateItemView(APIView):
     """ Update item quantity """
     
-    def post(self, request):
+    def post(self, request) -> Response:
         authentication_classes = [authentication.TokenAuthentication]
         permission_classes = [permissions.IsAdminUser]
         parser_classes = [JSONParser]
@@ -118,10 +119,9 @@ class UpdateItemView(APIView):
         try:
             customer = request.user.customer
         except:
-            customer = shopping_cart.Customer.objects.create(user=request.user)
+            customer = shopping_cart.Customer.objects.create(user=request.user, email=request.user.email)
             customer.email = request.user.email
             customer.save()
-        
         product = product_app.MainProductDatabase.objects.get(id=product_id)
         order, created = shopping_cart.Order.objects.get_or_create(customer=customer, complete=False)
         orderItem, created = shopping_cart.OrderItem.objects.get_or_create(order=order, product=product)
@@ -152,7 +152,7 @@ class UpdateItemView(APIView):
     
 class GetProductData(APIView):
     
-    def post(self, request):
+    def post(self, request)-> Response:
         authentication_classes = [authentication.TokenAuthentication]
         permission_classes = [permissions.IsAdminUser]
         parser_classes = [JSONParser]
@@ -164,14 +164,17 @@ class GetProductData(APIView):
         product_data = data['productData']['productClicked']['type']
         product_parametr = data['productData']['productClicked']['divId']
         
+        print('tutaj', product_parametr)
+        
         re_pattern = r'(.*-)(.*)(-.*)'
+
         product_parametr = re.match(re_pattern, product_parametr).group(2)
         main_product = product_app.MainProductDatabase.objects.get(id=int(main_product))
                 
-        if product_parametr == 'memory'  or product_parametr == 'battery':
-            product_data = int(product_data[:-4])
-        elif product_parametr == 'ram':
-            product_data = int(product_data[:-3])
+        # if product_parametr == 'memory'  or product_parametr == 'battery':
+        #     product_data = int(product_data[:-4])
+        # elif product_parametr == 'ram':
+        #     product_data = int(product_data[:-3])
  
         product = find_new_product(product_items_list, product_data, product_parametr, main_product)
                 
@@ -186,7 +189,7 @@ class GetProductData(APIView):
         
 class CreateReview(APIView):
     
-    def post(self, request):
+    def post(self, request) -> Response:
         authentication_classes = [authentication.TokenAuthentication]
         permission_classes = [permissions.IsAdminUser]
         parser_classes = [JSONParser]
@@ -201,13 +204,15 @@ class CreateReview(APIView):
         try:
             order = shopping_cart.Order.objects.get(id=int(order_number))
             order_item = shopping_cart.OrderItem.objects.get(order=order, product_id=int(product_id))
-            new_review = product_app.ReviewAndQuestions.objects.create(product_id=int(product_id),
-                                                                   review=content,
-                                                                   user=request.user,
-                                                                   stars=stars)
+            new_review = product_app.Reviews.objects.create(product_id=int(product_id),
+                                                            review=content,
+                                                            user=request.user,
+                                                            stars=stars)
             result = 'Review has been saved'
+            messages.info(request, 'Review has been saved')
         except:
             result = f'This product have not been bought in order number {order_number}'
+            messages.error(request, f'Wrong order number. Review has not been sent')
             
         response = {'result': result}
         return Response(json.dumps(response))
@@ -215,7 +220,7 @@ class CreateReview(APIView):
         
 class CreateQuestion(APIView):
     
-    def post(self, request):
+    def post(self, request) -> Response:
         authentication_classes = [authentication.TokenAuthentication]
         permission_classes = [permissions.IsAdminUser]
         parser_classes = [JSONParser]

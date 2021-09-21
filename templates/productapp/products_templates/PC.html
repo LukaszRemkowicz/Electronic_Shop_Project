@@ -1,14 +1,12 @@
-{% load static %}
-
 <div class="color-section">
     <p class="px-5 pt-1 text-left">
-        Color:
+        RAM:
     </p>
-    <div class="buttons d-flex px-5">
+    <div class="buttons d-flex px-5" data-name='product-ram-data'>
     
-        {% for element in same_products %}
+        {% for element in same_products.ram %}
 
-            <a href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 {% if element.phones_product_data.color == product.phones_product_data.color %}active-product-content bg-white{% endif %} ">{{ element.phones_product_data.color }}</a>
+            <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data {% if element == product.pc_product_data.ram %}active-product-content bg-white{% endif %}">{{ element }}</button>
 
         {% endfor %}
 
@@ -16,13 +14,13 @@
 </div>
 <div class="processor-section">
     <p class="px-5 pt-4 text-left">
-        Memory:
+        Disc Pcie:
     </p>
-    <div class="buttons d-flex px-5 sort_items">
+    <div class="buttons d-flex px-5 sort_items" data-name='product-p_c_i_e-data'>
 
-        {% for element in same_products %}
+        {% for element in same_products.p_c_i_e %}
 
-            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element.phones_product_data.memory == product.phones_product_data.memory %}active-product-content bg-white{% endif %} ">{{ element.phones_product_data.memory }} GHz</a>
+            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.pc_product_data.p_c_i_e %}active-product-content bg-white{% endif %}">{{ element }}</button>
 
         {% endfor %}
         
@@ -30,13 +28,13 @@
 </div>
 <div class="ram-section">
     <p class="px-5 pt-4 text-left">
-        RAM:
+        System:
     </p>
-    <div class="buttons d-flex px-5 sort_items">
+    <div class="buttons d-flex px-5 sort_items" data-name='product-system-data'>
 
-        {% for element in same_products %}
+        {% for element in same_products.system %}
 
-            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element.phones_product_data.ram == product.phones_product_data.ram %}active-product-content bg-white{% endif %} ">{{ element.phones_product_data.ram }} GHz</a>
+            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2  spec-product-data {% if element == product.pc_product_data.system %}active-product-content bg-white{% endif %}">{{ element }}</button>
 
         {% endfor %}
 
@@ -44,17 +42,19 @@
 </div>
 <div class="disc-section">
     <p class="px-5 pt-4 text-left">
-        Battery:
+        Processor:
     </p>
-    <div class="buttons d-flex px-5 sort_items">
+    <div class="buttons d-flex px-5 sort_items" data-name='product-processor-data'>
 
-        {% for element in same_products %}
+        {% for element in same_products.processor %}
 
-            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element.phones_product_data.battery == product.phones_product_data.battery %}active-product-content bg-white{% endif %} ">{{ element.phones_product_data.battery }} GHz</a>
+            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.pc_product_data.processor %}active-product-content bg-white{% endif %}">{{ element }}</button>
 
         {% endfor %}
 
     </div>
 </div>
 
+<script> let productIds = '{{ same_products.items_id }}'; </script>
 <script src='{% static 'js/sortSpecData.js' %}'></script>
+<script src='{% static 'js/getDataProduct.js' %}'></script>

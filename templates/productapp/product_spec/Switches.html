@@ -1,42 +1,48 @@
 <tbody>
+
     <tr>
         <th scope="row w-100">
             <h6 class="h3-2 col-12 pt-2 pb-2"> <span class="pb-2 underline upper">Specification</span> </h6>
         </th>
     </tr>
+
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center">
-                <p class="pr-4 mb-0 text-right col-6">Producent: </p>
+                <p class="pr-4 mb-0 text-right col-6">Producent:</p>
                 <p class="mb-0 text-left col-6">{{ product.switch_product_data.producent }}</p>
             </div>
         </th>
     </tr>
+
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center ">
-                <p class="pr-4 mb-0 w-50 text-right col-6">Producent code: </p>
+                <p class="pr-4 mb-0 w-50 text-right col-6">Producent code:</p>
                 <p class="mb-0 w-50 text-left col-6">{{ product.switch_product_data.producent_code }}</p>
             </div>
-    </th>
+        </th>
     </tr>
+
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6">EAN: </p>
+                <p class="pr-4 mb-0 w-50 text-right col-6">EAN:</p>
                 <p class="mb-0  w-50 text-left col-6">{{ product.switch_product_data.ean }}</p>
             </div>
-    </th>
+        </th>
     </tr>
+
     <tr>
         <th scope="row w-100">
             <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper"> Basic Informations</span></h6>
         </th>
     </tr>
+
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6">Type: </p>
+                <p class="pr-4 mb-0 w-50 text-right col-6">Type:</p>
                 <p class="mb-0 w-50 text-left col-6">{{ product.switch_product_data.cattegory }}</p>
             </div>
         </th>
@@ -45,19 +51,21 @@
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Bus speed: </p>
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Bus speed:</p>
                 <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.switch_product_data.bus_speed }} </p>
             </div>
         </th>
     </tr>
+
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Manageable: </p>
-                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.switch_product_data.manageable }}</p>
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Manageable:</p>
+                <p class="mb-0 w-50 text-left col-6 col-6">{% if product.switch_product_data.manageable %}Yes{% else %}No{% endif %}</p>
             </div>
         </th>
     </tr>
+
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
@@ -129,6 +137,5 @@
             </div>
         </th>
     </tr>
-
 
 </tbody>

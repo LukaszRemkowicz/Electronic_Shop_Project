@@ -30,8 +30,6 @@ class ProductPage(ListView):
             pieces = product.pieces
             
         same_products = filter_products(product.cattegory, product)
-        print(product)
-        print(product.color)
         
         if pieces <= 10:
                 pieces_range = range(1, pieces+1)
@@ -47,6 +45,7 @@ class ProductPage(ListView):
         context['same_products'] = same_products
         context['product'] = product
         context['pieces'] = pieces
+        
         return context
     
 class ProductsCart(ListView):

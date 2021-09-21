@@ -55,6 +55,8 @@ function acceptForm(event){
     
     // form Validation
 
+    console.log(customerEmail)
+
     let error = 0
 
     if (customerName.split(' ').length === 1){
@@ -95,7 +97,7 @@ function acceptForm(event){
         setSuccessFor(event.target[name='formStreetName'])
     }
 
-    if (user === 'AnonymousUser'){
+    if (user === 'AnonymousUser' || customerEmail.placeholder.trim() === 'Email..'){
         customerEmail = customerEmail.value
     }else{
         customerEmail = customerEmail.placeholder.trim()

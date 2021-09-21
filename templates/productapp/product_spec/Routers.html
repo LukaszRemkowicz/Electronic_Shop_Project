@@ -41,14 +41,17 @@
             </div>
         </th>
     </tr>
-    <tr>
-        <th scope="row w-100">
-            <div class="d-flex justify-content-center mx-5">
-                <p class="pr-4 mb-0 w-50 text-right col-6">Color: </p>
-                <p class="mb-0  w-50 text-left col-6">{{ product.router_product_data.color }}</p>
-            </div>
-        </th>
-    </tr>
+
+    {% if product.router_product_data.color %}
+        <tr>
+            <th scope="row w-100">
+                <div class="d-flex justify-content-center mx-5">
+                    <p class="pr-4 mb-0 w-50 text-right col-6">Color: </p>
+                    <p class="mb-0  w-50 text-left col-6">{{ product.router_product_data.color }}</p>
+                </div>
+            </th>
+        </tr>
+    {% endif %}
     
     <tr>
         <th scope="row w-100">
@@ -166,7 +169,7 @@
                     {% if product.router_product_data.usb_ports > 0 %}
                         {{product.router_product_data.usb_ports}}
                     {% else %}
-                        BRAK
+                        No USB ports
                     {% endif %}
                 </p>
             </div>
@@ -201,7 +204,7 @@
                 <p class="pr-4 mb-0 w-50 text-right col-6">High [cm]: </p>
                 <p class="mb-0 w-50 text-left col-6">{{ product.router_product_data.high }}</p>
             </div>
-    </th>
+        </th>
     </tr>
 
     <tr>
@@ -228,6 +231,7 @@
                 <p class="pr-4 mb-0 w-50 text-right col-6">Weight [kg]: </p>
                 <p class="mb-0 w-50 text-left col-6">{{ product.router_product_data.weight }}</p>
             </div>
-    </th>
+        </th>
     </tr>
+    
 </tbody>
