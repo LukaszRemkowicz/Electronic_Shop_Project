@@ -4,11 +4,16 @@ import codecs
 import math
 
 from django.db import models, reset_queries
-from django.db.models.base import Model
-from django.db.models.expressions import F
+# from django.db.models.base import Model
+# from django.db.models.expressions import F
 from django.utils.safestring import mark_safe
-from django.contrib.auth.models import User
-from django.core.exceptions import ObjectDoesNotExist 
+# from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
+from django.conf import settings
+
+
+# User = get_user_model()
+User = settings.AUTH_USER_MODEL
 
 
 CHOICES = [
@@ -50,9 +55,8 @@ class Inherit(models.Model):
     high = models.FloatField(blank=True, null=True)
     
     main_photo = models.ImageField(upload_to='products_pic', null=True, blank=True)
-    content_photo1 = models.ImageField(upload_to='products_pic', null=True, blank=True)
-    content_photo2 = models.ImageField(upload_to='products_pic', null=True, blank=True)
-    content_photo3 = models.ImageField(upload_to='products_pic', null=True, blank=True)
+    second_photo = models.ImageField(upload_to='products_pic', null=True, blank=True)
+    third_photo = models.ImageField(upload_to='products_pic', null=True, blank=True)
     html_file = models.FileField(upload_to="products_pic", default="", null=True, blank=True)
     product_of_the_day = models.BooleanField(default=False)
     
@@ -154,27 +158,27 @@ class MainProductDatabase(models.Model):
     @property
     def get_num_of_reviews(self) -> int:
         return len(Reviews.objects.filter(product=self.id, checked_by_employer=True))
-        
+
 
 class Phones(Inherit):
-    
-    ram = models.IntegerField(default=0)
-    memory = models.IntegerField(default=0)
-    modem = models.IntegerField(default=0)
+
+    ram = models.CharField(max_length=50, default='')
+    memory = models.CharField(max_length=50, default='')
+    modem = models.CharField(max_length=20 ,default='')
 
     waterproof = models.BooleanField(default=False)
-    system = models.CharField(max_length=10, default='')
-    processor = models.CharField(max_length=20, default='')
+    system = models.CharField(max_length=50, default='')
+    processor = models.CharField(max_length=100, default='')
     cpu_clock = models.CharField(max_length=100, default='')
-    memory_card = models.CharField(max_length=10, default='')
+    memory_card = models.CharField(max_length=50, default='')
     max_memory_card = models.CharField(max_length=50, default='')
     usb = models.CharField(max_length=10, default='')
-    audio_jack = models.CharField(max_length=10, default='')
+    audio_jack = models.CharField(max_length=50, default='')
     screen = models.CharField(max_length=30, default='')
-    screen_diagonal = models.CharField(max_length=10, default='')
-    battery = models.IntegerField(default=0)
-    
-    
+    screen_diagonal = models.CharField(max_length=50, default='')
+    battery = models.CharField(max_length=50, default='')
+
+
 class Monitors(Inherit):
 
     resolution = models.CharField(max_length=20, default='')
@@ -188,18 +192,23 @@ class Laptops(Inherit):
     
     resolution = models.CharField(max_length=50, default='')
     energy_time = models.IntegerField(default=0)
-    battery = models.IntegerField(default=0)
+    battery = models.CharField(max_length=30, default='')
     screen = models.CharField(max_length=30, default='')
     screen_diagonal = models.CharField(max_length=10, default='')
     system = models.CharField(max_length=50, default='')
     graph = models.CharField(max_length=50, default='')
+    second_graph = models.CharField(max_length=50, default='', blank=True, null=True)
     disc = models.IntegerField(default=0)
     ram = models.IntegerField(default=0)
     ram_model = models.CharField(max_length=20, default='')
-    p_c_i_e = models.IntegerField(default=0)
+    max_ram = models.IntegerField(default=0)
+    ram_freq = models.CharField(max_length=50, default='')
+    p_c_i_e = models.CharField(max_length=50, default='')
     wifi = models.CharField(max_length=50, default='')
     bluetooth = models.CharField(max_length=10, default='Yes')
     processor = models.CharField(max_length=50, default='')
+    processor_clock = models.CharField(max_length=50, default='')
+    processor_cores_threads = models.CharField(max_length=50, default='')
     
      
 class Pc(Inherit):
@@ -300,19 +309,19 @@ class Cpu(Inherit):
     
 
 class Tv(Inherit):
-    diagonal = models.IntegerField(default=0)
+    diagonal = models.CharField(max_length=20, default='')
     matrix_type = models.CharField(max_length=20, default='')
     resolution = models.CharField(max_length=50, default='')
-    curved = models.BooleanField(default=False)
-    hdr = models.BooleanField(default=False)
-    refresh_rate = models.IntegerField(default=0)
-    smart_tv = models.BooleanField(default=False)
-    wifi = models.BooleanField(default=False)
-    bluetooth = models.BooleanField(default=False)
+    curved = models.CharField(max_length=10, default='No')
+    hdr = models.CharField(max_length=10, default='No')
+    refresh_rate = models.CharField(max_length=50, default='')
+    smart_tv = models.CharField(max_length=10, default='No')
+    wifi = models.CharField(max_length=10, default='No')
+    bluetooth = models.CharField(max_length=10, default='No')
     hdmi_ports = models.IntegerField(default=0)
     usb_ports = models.IntegerField(default=0)
-    energy_class = models.IntegerField(default=0)
-    power_consumption = models.IntegerField(default=0)
+    energy_class = models.CharField(max_length=10, default='')
+    power_consumption = models.CharField(max_length=50, default='')
     
 
 class Headphones(Inherit):

@@ -7,7 +7,7 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
     
     if cattegory == 'Phones':
         product_model = product.phones_product_data.model
-        same_products = models.MainProductDatabase.objects.filter(phones_product_data__model=product_model)
+        same_products = models.MainProductDatabase.objects.filter(phones_product_data__model=product_model)[:4]
         same_products_data = {
             'items' : same_products, 
             'colors' : set([element.phones_product_data.color for element in same_products]),
@@ -16,7 +16,7 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
             'battery' : set([element.phones_product_data.battery for element in same_products]),
             'items_id' : [element.id for element in same_products]
         }   
-              
+        print(same_products_data)
         return same_products_data
     
     elif cattegory == 'Laptops':
@@ -31,7 +31,11 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
             'processor' : set([element.laptops_product_data.processor for element in same_products]),
             'items_id' : [element.id for element in same_products]
         }
-                
+        if product.laptops_product_data.producent == 'Apple':
+            same_products_data['colors'] = set([element.laptops_product_data.color for element in same_products])
+            same_products_data['system'] = ''
+            same_products_data['processor'] = ''
+                        
         return same_products_data
     
     elif cattegory == 'PC':
@@ -54,7 +58,8 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
         product_model = product.monitors_product_data.model
         same_products = models.MainProductDatabase.objects.filter(monitors_product_data__model=product_model)
         same_products_data = {
-            'items' : same_products, 
+            'items' : same_products,
+            'colors' : set([element.monitors_product_data.color for element in same_products]), 
             'refresh_rate' : set([element.monitors_product_data.refresh_rate for element in same_products]),
             'power_consumption' : set([element.monitors_product_data.power_consumption for element in same_products]),
             'diagonal' : set([element.monitors_product_data.diagonal for element in same_products]),
@@ -84,6 +89,7 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
         same_products_data = {
             'items' : same_products, 
             'capacity' : set([element.ram_product_data.capacity for element in same_products]),
+            'colors' : set([element.ram_product_data.color for element in same_products]), 
             'frequency' : set([element.ram_product_data.frequency for element in same_products]),
             'items_id' : [element.id for element in same_products]
         }
@@ -222,6 +228,13 @@ def find_new_product(product_items_list: List,
             elif product_parametr == 'system':
                 try:
                     product = models.MainProductDatabase.objects.get(id=int(id), laptops_product_data__system=product_data) 
+                    return product                         
+                except:
+                    pass
+            
+            elif product_parametr == 'color':
+                try:
+                    product = models.MainProductDatabase.objects.get(id=int(id), laptops_product_data__color=product_data) 
                     return product                         
                 except:
                     pass

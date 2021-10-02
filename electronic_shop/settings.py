@@ -162,10 +162,13 @@ messages.ERROR: 'alert-danger',
 
 LOGIN_URL = 'landing-page'
 
-MEDIA_URL = '/media/' 
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-AUTH_USER_MODE = 'core.User'
+# AUTH_USER_MODE = 'core.User'
+AUTH_USER_MODEL = 'auth.User'
+# AUTH_USER_MODEL = 'core.User'
+
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (

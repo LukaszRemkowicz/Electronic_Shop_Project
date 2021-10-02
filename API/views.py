@@ -169,6 +169,7 @@ class GetProductData(APIView):
         re_pattern = r'(.*-)(.*)(-.*)'
 
         product_parametr = re.match(re_pattern, product_parametr).group(2)
+        print('Product-param', product_parametr)
         main_product = product_app.MainProductDatabase.objects.get(id=int(main_product))
                 
         # if product_parametr == 'memory'  or product_parametr == 'battery':
@@ -177,6 +178,8 @@ class GetProductData(APIView):
         #     product_data = int(product_data[:-3])
  
         product = find_new_product(product_items_list, product_data, product_parametr, main_product)
+        
+        print('nowy product', product)
                 
         try:
             product_id = product.id

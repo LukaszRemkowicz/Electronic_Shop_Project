@@ -3,12 +3,13 @@ import datetime
 
 from django.shortcuts import render
 from django.views.generic import ListView
-from django.contrib.auth.models import User
+from django.conf import settings
 
 from ShoppingCardApp.models import Customer, Order, OrderItem
 from . import models
 from .utils import filter_products
 
+User = settings.AUTH_USER_MODEL
 
 
 class ProductPage(ListView):
@@ -17,8 +18,9 @@ class ProductPage(ListView):
     
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super(ProductPage, self).get_context_data(**kwargs)
-        id = self.kwargs['MainProductDatabase_id']
-        product =  models.MainProductDatabase.objects.get(id=id)
+        product_id = self.kwargs['MainProductDatabase_id']
+        print(product_id)
+        product =  models.MainProductDatabase.objects.get(id=product_id)
         
         try:
             customer = Customer.objects.get(user=self.request.user)
@@ -35,9 +37,9 @@ class ProductPage(ListView):
                 pieces_range = range(1, pieces+1)
         else: 
             pieces_range = range(1, 11)
-        
-        reviews = models.Reviews.objects.filter(product_id=id, checked_by_employer=True)
-        question = models.Questions.objects.filter(product_id=id, checked_by_employer=True)
+                    
+        reviews = models.Reviews.objects.filter(product_id=product_id, checked_by_employer=True)
+        question = models.Questions.objects.filter(product_id=product_id, checked_by_employer=True)
        
         context['questions'] = question
         context['reviews'] = reviews

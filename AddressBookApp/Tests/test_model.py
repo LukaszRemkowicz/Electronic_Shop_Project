@@ -1,23 +1,22 @@
 from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import User
 
 from ..models import AddressBook
 
 
-def create_user(*args, **kwargs) -> User:
+def create_user(*args, **kwargs) -> get_user_model:
     """ Help function to create user """
     return get_user_model().objects.create_user(**kwargs)
 
 class TestAdressBookApp(TestCase):
-    
+  
     def setUp(self) -> None:
         self.payload = {
             'username': 'Test',
             'password': 'TestingFunc123',
             'email': 'test123@test.com',
         }  
-    
+   
     def test_address_book_model(self) -> None:
         
         user = create_user(**self.payload)
@@ -43,8 +42,8 @@ class TestAdressBookApp(TestCase):
         }
         
         """ Check if user can create more addresses """
-        addressTwo = AddressBook.objects.create(**address_data_two)
+        address_two = AddressBook.objects.create(**address_data_two)
             
         self.assertEqual(address.user.username, 'Test')
         self.assertEqual(address.city, 'Elblag')
-        self.assertEqual(addressTwo.city, 'Gdansk')
+        self.assertEqual(address_two.city, 'Gdansk')
