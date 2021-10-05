@@ -47,6 +47,7 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
             'p_c_i_e' : set([element.pc_product_data.p_c_i_e for element in same_products]),
             'ram' : set([element.pc_product_data.ram for element in same_products]),
             'system' : set([element.pc_product_data.system for element in same_products]),
+            'graph' : set([element.pc_product_data.graph for element in same_products]),
             'processor' : set([element.pc_product_data.processor for element in same_products]),
             'items_id' : [element.id for element in same_products]
         }
@@ -146,7 +147,7 @@ def find_new_product(product_items_list: List,
             if product_parametr == 'color':
                 try:
                     product = models.MainProductDatabase.objects.get(id=int(id), color=product_data)
-                    return product                          
+                    return product
                 except:
                     pass
                                 
@@ -176,7 +177,7 @@ def find_new_product(product_items_list: List,
             if product_parametr == 'ram':
                 try:
                     product = models.MainProductDatabase.objects.get(id=int(id), pc_product_data__ram=product_data)
-                    return product                          
+                    return product
                 except:
                     pass
                                 
@@ -200,13 +201,20 @@ def find_new_product(product_items_list: List,
                     return product                         
                 except:
                     pass
+            
+            elif product_parametr == 'graph':
+                try:
+                    product = models.MainProductDatabase.objects.get(id=int(id), pc_product_data__graph=product_data) 
+                    return product                     
+                except:
+                    pass
                 
         elif main_product.cattegory == "Laptops":
             
             if product_parametr == 'ram':
                 try:
                     product = models.MainProductDatabase.objects.get(id=int(id), laptops_product_data__ram=product_data)
-                    return product                          
+                    return product
                 except:
                     pass
                                 
@@ -244,7 +252,7 @@ def find_new_product(product_items_list: List,
             if product_parametr == 'color':
                 try:
                     product = models.MainProductDatabase.objects.get(id=int(id), color=product_data)
-                    return product                          
+                    return product
                 except:
                     pass
                                 
@@ -255,9 +263,9 @@ def find_new_product(product_items_list: List,
                 except:
                     pass
                 
-            elif product_parametr == 'screen_diagonal':
+            elif product_parametr == 'diagonal':
                 try:
-                    product = models.MainProductDatabase.objects.get(id=int(id), monitors_product_data__screen_diagonal=product_data) 
+                    product = models.MainProductDatabase.objects.get(id=int(id), monitors_product_data__diagonal=product_data) 
                     return product                         
                 except:
                     pass
@@ -275,7 +283,7 @@ def find_new_product(product_items_list: List,
             if product_parametr == 'color':
                 try:
                     product = models.MainProductDatabase.objects.get(id=int(id), color=product_data)
-                    return product                          
+                    return product
                 except:
                     pass
                                 
@@ -305,7 +313,7 @@ def find_new_product(product_items_list: List,
             if product_parametr == 'color':
                 try:
                     product = models.MainProductDatabase.objects.get(id=int(id), color=product_data)
-                    return product                          
+                    return product
                 except:
                     pass
                                 
@@ -336,7 +344,7 @@ def find_new_product(product_items_list: List,
                 if product_parametr == 'num_of_poe':
                     try:
                         product = models.MainProductDatabase.objects.get(id=int(id), switch_product_data__num_of_poe=product_data)
-                        return product                          
+                        return product
                     except:
                         pass
                                     
@@ -358,7 +366,7 @@ def find_new_product(product_items_list: List,
                      
                 try:
                     product = models.MainProductDatabase.objects.get(id=int(id), tv_product_data__diagonal=product_data)
-                    return product                          
+                    return product
                 except:
                     pass
                                    

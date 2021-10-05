@@ -21,21 +21,22 @@ class ProductPage(ListView):
         product_id = self.kwargs['MainProductDatabase_id']
         print(product_id)
         product =  models.MainProductDatabase.objects.get(id=product_id)
-        
+
         try:
             customer = Customer.objects.get(user=self.request.user)
             order = Order.objects.get(customer=customer, complete=False)
-            orderItem = OrderItem.objects.get(order=order)
-            pieces = product.pieces - orderItem.quantity     
+            order_item = OrderItem.objects.get(order=order)
+            pieces = product.pieces - order_item.quantity
         except:
-            orderItem = ''
+            order_item = ''
             pieces = product.pieces
             
         same_products = filter_products(product.cattegory, product)
+        print(same_products)
         
         if pieces <= 10:
                 pieces_range = range(1, pieces+1)
-        else: 
+        else:
             pieces_range = range(1, 11)
                     
         reviews = models.Reviews.objects.filter(product_id=product_id, checked_by_employer=True)

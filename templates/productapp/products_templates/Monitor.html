@@ -1,60 +1,153 @@
-<div class="color-section">
-    <p class="px-5 pt-1 text-left">
-        Color:
-    </p>
-    <div class="buttons d-flex px-5" data-name='product-color-data'>
+{% load static %}
+
+{% if same_products.items|length >= 2 %}
+
+    {% if same_products.colors|length >= 2 %}
+
+
+        <div class="color-section data-blocks">
+            <p class="px-5 pt-1 text-left">
+                Color:
+            </p>
+            <div class="buttons d-flex px-5" data-name='product-color-data'>
+            
+                {% for element in same_products.colors %}
+
+                    <button 
+                    href="" 
+                    class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 {% if element == product.monitors_product_data.color %}active-product-content bg-white{% endif %}">
+                    {{ element }}
+                    </button>
+
+                {% endfor %}
+
+            </div>
+        </div>
     
-        {% for element in same_products.colors %}
+    {% endif %}
+    
+    {% if same_products.refresh_rate|length >= 2 %}
 
-            <a href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 {% if element == product.monitors_product_data.color %}active-product-content bg-white{% endif %} ">{{ element }}</a>
+        <div class="processor-section data-blocks">
+            <p class="px-5 pt-4 text-left">
+                Refresh rate [GHz]:
+            </p>
+            <div class="buttons d-flex px-5 sort_items" data-name='product-refresh_rate-data'>
 
-        {% endfor %}
+                {% for element in same_products.refresh_rate %}
 
+                    <button 
+                    href="" 
+                    class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.monitors_product_data.refresh_rate %}active-product-content bg-white{% endif %} ">
+                    {{ element }}
+                    </button>
+
+                {% endfor %}
+                
+            </div>
+        </div>
+    
+    {% endif %}
+
+    {% if same_products.power_consumption|length >= 2 %}
+
+        <div class="ram-section data-blocks">
+            <p class="px-5 pt-4 text-left">
+                Power consumption [W]:
+            </p>
+            <div class="buttons d-flex px-5 sort_items" data-name='product-power_consumption-data'>
+
+                {% for element in same_products.power_consumption %}
+
+                    <button 
+                    href="" 
+                    class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.monitors_product_data.power_consumption %}active-product-content bg-white{% endif %} ">
+                    {{ element }}
+                    </button>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    
+    {% endif %}
+
+    {% if same_products.diagonal|length >= 2 %}
+
+        <div class="disc-section data-blocks">
+            <p class="px-5 pt-4 text-left">
+                Diagonal:
+            </p>
+            <div class="buttons d-flex px-5 sort_items" data-name='product-diagonal-data'>
+
+                {% for element in same_products.diagonal %}
+
+                    <button 
+                    href="" 
+                    class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.monitors_product_data.diagonal %}active-product-content bg-white{% endif %} ">
+                    {{ element }}
+                    </button>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    
+    {% endif %}
+
+{% else %}
+
+    <div class="color-section data-blocks">
+
+        <div class="d-flex">
+            <p class="px-5 pt-1 text-left">
+                Producent Code:
+            </p>
+            <p class="px-5 pt-1 text-left font-light-grey">{{ product.monitors_product_data.producent_code }}</p>
+        </div>
+
+        <div class="d-flex">
+            <p class="px-5 pt-1 text-left d-inline">
+            Ean:
+            </p>
+            <p class="px-5 pt-1 text-left font-light-grey">{{ product.monitors_product_data.ean }}</p>
+        </div>
+
+        <div class="d-flex">
+            <p class="px-5 pt-1 text-left d-inline">
+                Color:
+            </p>
+            <p class="px-5 pt-1 text-left font-light-grey">{{ product.monitors_product_data.color }}</p>
+        </div>
+
+        <div class="d-flex">
+            <p class="px-5 pt-1 text-left d-inline">
+                Curved:
+            </p>
+            <p class="px-5 pt-1 text-left font-light-grey">{{ product.monitors_product_data.curved }}</p>
+        </div>
+
+        <div class="d-flex">
+            <p class="px-5 pt-1 text-left d-inline">
+                Diagonal:
+            </p>
+            <p class="px-5 pt-1 text-left font-light-grey">{{ product.monitors_product_data.diagonal }}</p>
+        </div>
+
+        <div class="d-flex">
+            <p class="px-5 pt-1 text-left d-inline">
+                Refresh rate:
+            </p>
+            <p class="px-5 pt-1 text-left font-light-grey">{{ product.monitors_product_data.refresh_rate }}</p>
+        </div>
+   
     </div>
-</div>
-<div class="processor-section">
-    <p class="px-5 pt-4 text-left">
-        Refresh rate [GHz]:
-    </p>
-    <div class="buttons d-flex px-5 sort_items" data-name='product-refresh_rate-data'>
 
-        {% for element in same_products.refresh_rate %}
+{% endif %}
 
-            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element == product.monitors_product_data.refresh_rate %}active-product-content bg-white{% endif %} ">{{ element }}</a>
 
-        {% endfor %}
-        
-    </div>
-</div>
-<div class="ram-section">
-    <p class="px-5 pt-4 text-left">
-        Power consumption [W]:
-    </p>
-    <div class="buttons d-flex px-5 sort_items" data-name='product-power_consumption-data'>
-
-        {% for element in same_products.power_consumption %}
-
-            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element == product.monitors_product_data.power_consumption %}active-product-content bg-white{% endif %} ">{{ element }}</a>
-
-        {% endfor %}
-
-    </div>
-</div>
-<div class="disc-section">
-    <p class="px-5 pt-4 text-left">
-        Diagonal:
-    </p>
-    <div class="buttons d-flex px-5 sort_items" data-name='product-diagonal-data'>
-
-        {% for element in same_products.screen_diagonal %}
-
-            <a href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 {% if element == product.monitors_product_data.screen_diagonal %}active-product-content bg-white{% endif %} ">{{ element }}</a>
-
-        {% endfor %}
-
-    </div>
-</div>
 
 <script> let productIds = '{{ same_products.items_id }}'; </script>
 <script src='{% static 'js/sortSpecData.js' %}'></script>
 <script src='{% static 'js/getDataProduct.js' %}'></script>
+<script src='{% static 'js/renderProductDataInFilerBox.js' %}'></script>

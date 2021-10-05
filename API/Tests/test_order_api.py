@@ -2,7 +2,6 @@ import json
 
 from django.test import TestCase, Client
 from django.urls import reverse
-from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 
 from ProductApp import models
@@ -14,7 +13,7 @@ from .products_data import PRODUCT_DATA, SECOND_PRODUCT
 
 """ create user """
 
-def create_user(data) -> User:
+def create_user(data) -> get_user_model:
     return get_user_model().objects.create_user(**data)
 
 

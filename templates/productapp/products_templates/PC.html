@@ -1,60 +1,142 @@
-<div class="color-section">
-    <p class="px-5 pt-1 text-left">
-        RAM:
-    </p>
-    <div class="buttons d-flex px-5" data-name='product-ram-data'>
+{% load static %}
+
+{% if same_products.items|length >= 2 %}
+
+    <a class="d-block font-light-grey">Check similar products:</a>
+
+    {% if same_products.ram|length >= 2 %}
+
+        <div class="color-section data-blocks">
+            <p class="px-5 pt-1 text-left">
+                RAM:
+            </p>
+            <div class="buttons d-flex px-5" data-name='product-ram-data'>
+            
+                {% for element in same_products.ram %}
+
+                    <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data {% if element == product.pc_product_data.ram %}active-product-content bg-white{% endif %}">{{ element }}</button>
+
+                {% endfor %}
+
+            </div>
+        </div>
     
-        {% for element in same_products.ram %}
+    {% endif %}
 
-            <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data {% if element == product.pc_product_data.ram %}active-product-content bg-white{% endif %}">{{ element }}</button>
+    {% if same_products.p_c_i_e|length >= 2 %}
+    
+        <div class="processor-section data-blocks">
+            <p class="px-5 pt-4 text-left">
+                Disc Pcie:
+            </p>
+            <div class="buttons d-flex px-5 sort_items" data-name='product-p_c_i_e-data'>
 
-        {% endfor %}
+                {% for element in same_products.p_c_i_e %}
 
+                    <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.pc_product_data.p_c_i_e %}active-product-content bg-white{% endif %}">{{ element }}</button>
+
+                {% endfor %}
+                
+            </div>
+        </div>
+
+    {% endif %}
+
+    {% if same_products.system|length >= 2 %}
+    
+        <div class="ram-section data-blocks">
+            <p class="px-5 pt-4 text-left">
+                System:
+            </p>
+            <div class="buttons d-flex px-5 sort_items" data-name='product-system-data'>
+
+                {% for element in same_products.system %}
+
+                    <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2  spec-product-data {% if element == product.pc_product_data.system %}active-product-content bg-white{% endif %}">{{ element }}</button>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    
+    {% endif %}
+
+    {% if same_products.processor|length >= 2 %}
+    
+        <div class="disc-section data-blocks">
+            <p class="px-5 pt-4 text-left">
+                Processor:
+            </p>
+            <div class="buttons d-flex px-5 sort_items" data-name='product-processor-data'>
+
+                {% for element in same_products.processor %}
+
+                    <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.pc_product_data.processor %}active-product-content bg-white{% endif %}">{{ element }}</button>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    
+    {% endif %}
+
+    <div class="disc-section data-blocks">
+        <p class="px-5 pt-4 text-left">
+            Graph:
+        </p>
+        <div class="buttons d-flex px-5 sort_items" data-name='product-graph-data'>
+
+            {% for element in same_products.graph %}
+
+                <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.pc_product_data.graph %}active-product-content bg-white{% endif %} ">{{ element }}</button>
+
+            {% endfor %}
+
+        </div>
     </div>
-</div>
-<div class="processor-section">
-    <p class="px-5 pt-4 text-left">
-        Disc Pcie:
-    </p>
-    <div class="buttons d-flex px-5 sort_items" data-name='product-p_c_i_e-data'>
 
-        {% for element in same_products.p_c_i_e %}
+{% else %}
 
-            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.pc_product_data.p_c_i_e %}active-product-content bg-white{% endif %}">{{ element }}</button>
-
-        {% endfor %}
-        
+    <div class="d-flex">
+        <p class="px-5 pt-1 text-left">
+            Producent Code:
+        </p>
+        <p class="px-5 pt-1 text-left font-light-grey">{{ product.pc_product_data.producent_code }}</p>
     </div>
-</div>
-<div class="ram-section">
-    <p class="px-5 pt-4 text-left">
-        System:
-    </p>
-    <div class="buttons d-flex px-5 sort_items" data-name='product-system-data'>
 
-        {% for element in same_products.system %}
-
-            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2  spec-product-data {% if element == product.pc_product_data.system %}active-product-content bg-white{% endif %}">{{ element }}</button>
-
-        {% endfor %}
-
+    <div class="d-flex">
+        <p class="px-5 pt-1 text-left d-inline">
+        Ean:
+        </p>
+        <p class="px-5 pt-1 text-left font-light-grey">{{ product.pc_product_data.ean }}</p>
     </div>
-</div>
-<div class="disc-section">
-    <p class="px-5 pt-4 text-left">
-        Processor:
-    </p>
-    <div class="buttons d-flex px-5 sort_items" data-name='product-processor-data'>
 
-        {% for element in same_products.processor %}
-
-            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.pc_product_data.processor %}active-product-content bg-white{% endif %}">{{ element }}</button>
-
-        {% endfor %}
-
+    <div class="d-flex">
+        <p class="px-5 pt-1 text-left d-inline">
+            Ram:
+        </p>
+        <p class="px-5 pt-1 text-left font-light-grey">{{ product.pc_product_data.Ram }}</p>
     </div>
-</div>
+
+    <div class="d-flex">
+        <p class="px-5 pt-1 text-left d-inline">
+            Processor:
+        </p>
+        <p class="px-5 pt-1 text-left font-light-grey">{{ product.pc_product_data.processor }}</p>
+    </div>
+
+    <div class="d-flex">
+        <p class="px-5 pt-1 text-left d-inline">
+            Disc Pcie:
+        </p>
+        <p class="px-5 pt-1 text-left font-light-grey">{{ product.pc_product_data.p_c_i_e }}</p>
+    </div>
+
+
+
+{% endif %}
 
 <script> let productIds = '{{ same_products.items_id }}'; </script>
 <script src='{% static 'js/sortSpecData.js' %}'></script>
 <script src='{% static 'js/getDataProduct.js' %}'></script>
+<script src='{% static 'js/renderProductDataInFilerBox.js' %}'></script>

@@ -38,14 +38,14 @@ CHOICES = [
 class Inherit(models.Model):
     
     name = models.CharField(max_length=200, default='')
-    model = models.CharField(max_length=20, null=True, blank=True)
+    model = models.CharField(max_length=100, null=True, blank=True)
     price = models.DecimalField(max_digits=7, decimal_places=2, default=0)
     pieces = models.IntegerField(default=0)
     promotion = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
     producent = models.CharField(max_length=100, default='')
     producent_code = models.CharField(max_length=100, default='', null=True, blank=True)
     ean = models.BigIntegerField(unique=True, null=True)
-    color = models.CharField(max_length=40, null=True, blank=True)
+    color = models.CharField(max_length=50, null=True, blank=True)
     distribution = models.CharField(max_length=10, default='EU')
     cattegory = models.CharField(choices=CHOICES, max_length=50, default='')
     describe = models.CharField(max_length=30000, null=True, blank=True, default='')
@@ -181,11 +181,14 @@ class Phones(Inherit):
 
 class Monitors(Inherit):
 
-    resolution = models.CharField(max_length=20, default='')
-    refresh_rate = models.IntegerField(default=0)
-    power_consumption = models.IntegerField(default=0)
+    resolution = models.CharField(max_length=50, default='')
+    refresh_rate = models.CharField(max_length=20, default='')
+    format = models.CharField(max_length=10, default='')
+    power_consumption = models.CharField(max_length=20, default='')
+    matrix_type = models.CharField(max_length=20, default='')
     screen = models.CharField(max_length=30, default='')
-    screen_diagonal = models.CharField(max_length=10, default='')
+    diagonal = models.CharField(max_length=10, default='')
+    curved = models.CharField(max_length=10, default='')
         
     
 class Laptops(Inherit):
@@ -217,12 +220,12 @@ class Pc(Inherit):
     socket = models.CharField(max_length=20, default='')
     cooler = models.CharField(max_length=20, default='')
     system = models.CharField(max_length=20, default='')
-    graph = models.CharField(max_length=20, default='')
-    chipset = models.CharField(max_length=20, default='')
-    power_suply = models.IntegerField(default=0)
+    graph = models.CharField(max_length=50, default='')
+    motherboard_chipset = models.CharField(max_length=20, default='')
+    power_suply = models.CharField(max_length=20, default='')
     mouse = models.CharField(max_length=10, default='No')
     keyboard = models.CharField(max_length=10, default='No')
-    disc = models.IntegerField(default=0)
+    disc = models.CharField(max_length=20, default='')
     ram = models.IntegerField(default=0)
     ram_type = models.CharField(max_length=20, default='')
     p_c_i_e = models.CharField(max_length=50 ,default='')

@@ -1,7 +1,7 @@
 import json
 import datetime
 import re
-from django.core.exceptions import ObjectDoesNotExist
+from decimal import Decimal
 
 from django.http.response import JsonResponse
 from rest_framework import serializers, generics, authentication, permissions
@@ -11,13 +11,16 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from django.contrib import messages
+from django.forms.models import model_to_dict
+from django.core.exceptions import ObjectDoesNotExist
 
 from .serializers import AuthTokenSerializer, UserSerializer
-from ShoppingCardApp import utils  
+from ShoppingCardApp import utils
 from ShoppingCardApp import models as shopping_cart
 from AddressBookApp import models as address
 from ProductApp import models as product_app
 from ProductApp.utils import find_new_product
+from .utils import recurssive
 
 class CreateUserView(generics.CreateAPIView):
     """ create user """
@@ -165,6 +168,8 @@ class GetProductData(APIView):
         product_parametr = data['productData']['productClicked']['divId']
         
         print('tutaj', product_parametr)
+        print('jakas lista', product_items_list)
+        print('product data' , product_data)
         
         re_pattern = r'(.*-)(.*)(-.*)'
 
@@ -239,3 +244,54 @@ class CreateQuestion(APIView):
 
         result = {'result' : 'Question sent. Wait for our employer reply'}
         return Response(json.dumps(result))
+    
+class ProductDict(APIView):
+    def post(self, request) -> Response:
+        authentication_classes = [authentication.TokenAuthentication]
+        permission_classes = [permissions.IsAdminUser]
+        parser_classes = [JSONParser]
+        
+        data = request.data
+        
+        product_id = data['productId']
+        
+        products_dict = {
+            'phones_product_data' : lambda x: product_app.Phones.objects.get(id=x),
+            'monitors_product_data' : lambda x: product_app.Monitors.objects.get(id=x),
+            'laptops_product_data' : lambda x: product_app.Laptops.objects.get(id=x),
+            'pc_product_data' : lambda x: product_app.Pc.objects.get(id=x),
+            'accesories_for_laptop' : lambda x: product_app.AccesoriesForLaptops.objects.get(id=x),
+            'ssd_product_data' : lambda x: product_app.Ssd.objects.get(id=x),
+            'graph_product_data' : lambda x: product_app.Graphs.objects.get(id=x),
+            'ram_product_data' : lambda x: product_app.Ram.objects.get(id=x),
+            'pendrive_product_data' : lambda x: product_app.Pendrives.objects.get(id=x),
+            'switch_product_data' : lambda x: product_app.Switches.objects.get(id=x),
+            'motherboard_product_data' : lambda x: product_app.Motherboard.objects.get(id=x),
+            'cpu_product_data' : lambda x: product_app.Cpu.objects.get(id=x),
+            'tv_product_data' : lambda x: product_app.Tv.objects.get(id=x),
+            'headphone_product_data' : lambda x: product_app.Headphones.objects.get(id=x),
+            'router_product_data' : lambda x: product_app.Routers.objects.get(id=x),
+        }
+        
+        try:
+            product = model_to_dict(product_app.MainProductDatabase.objects.get(id=int(product_id)))
+            for key, value in products_dict.items():
+                try:
+                    new_product_id = product[key]
+                    new_product = model_to_dict(value(new_product_id))
+                    product = new_product
+                except:
+                    pass
+        except ObjectDoesNotExist:
+            return 'Object does not exist'
+        
+        # print(product)
+        
+        
+        product = recurssive(product)
+        
+        print(product)
+        
+        return Response(json.dumps(product))
+    
+   

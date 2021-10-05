@@ -2,20 +2,28 @@
 
 {% if same_products.items|length >= 2 %}
 
-    <div class="color-section">
-        <p class="px-5 pt-1 text-left">
-            Diagonal:
-        </p>
-        <div class="buttons d-flex px-5" data-name='product-diagonal-data'>
-        
-            {% for element in same_products.diagonal %}
+     {% if same_products.diagonal|length >= 2 %}
+
+        <div class="color-section data-blocks">
+            <p class="px-5 pt-1 text-left">
+                Diagonal:
+            </p>
+            <div class="buttons d-flex px-5" data-name='product-diagonal-data'>
             
-                <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data {% if element == product.tv_product_data.diagonal %}active-product-content bg-white{% endif %} ">{{ element }}</button>
+                {% for element in same_products.diagonal %}
+                
+                    <button 
+                    href="" 
+                    class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data {% if element == product.tv_product_data.diagonal %}active-product-content bg-white{% endif %} ">
+                    {{ element }}
+                    </button>
 
-            {% endfor %}
+                {% endfor %}
 
+            </div>
         </div>
-    </div>
+
+    {% endif %}
 
 {% else %}
 
@@ -79,4 +87,4 @@
 <script> let productIds = '{{ same_products.items_id }}'; </script>
 <script src='{% static 'js/sortSpecData.js' %}'></script>
 <script src='{% static 'js/getDataProduct.js' %}'></script>
-
+<script src='{% static 'js/renderProductDataInFilerBox.js' %}'></script>
