@@ -28,9 +28,9 @@ function getNameOfPayment(event){
     if(activeButtonPayment != this && activeButtonPayment !== ''){
         activeButtonPayment.style.borderColor = '#cccccc'
     }
-    
+
     activeButtonPayment = this
-    
+
     if (activeButtonPayment !== ''){
         activeButtonPayment.style.borderColor = '#ff503c';
     }
@@ -52,7 +52,7 @@ function acceptForm(event){
     const customerZipcode = event.target[name='formZipCode'].value.trim();
     const customerStreet = event.target[name='formStreetName'].value.trim();
     let customerEmail = event.target[name='formEmail'];
-    
+
     // form Validation
 
     console.log(customerEmail)
@@ -60,7 +60,7 @@ function acceptForm(event){
     let error = 0
 
     if (customerName.split(' ').length === 1){
-        setErrorFor(event.target[name='formName'], 'Not valid Name and Surname') 
+        setErrorFor(event.target[name='formName'], 'Not valid Name and Surname')
         error = 1
     }else if (customerName === ''){
         setErrorFor(event.target[name='formName'], 'Username cannot be blank');
@@ -70,7 +70,7 @@ function acceptForm(event){
     }
 
     if (customerCity === '' ){
-        setErrorFor(event.target[name='formCity'], 'City cannot be blank'); 
+        setErrorFor(event.target[name='formCity'], 'City cannot be blank');
         error = 1;
     }else{
         setSuccessFor(event.target[name='formCity'])
@@ -113,10 +113,10 @@ function acceptForm(event){
         setSuccessFor(event.target[name='formEmail'])
     }
 
-    
+
 
     // Fetch api to View point
-       
+
     const url = '/api/order-completed/'
 
     if (error === 0){
@@ -136,12 +136,12 @@ function acceptForm(event){
                 'customerStreet' : customerStreet,
                 'customerEmail' : customerEmail,
             })})
-    
+
             .then(response => {
                 // console.log(event);
                 return response.json()
             })
-    
+
             .then((data) =>{
                 console.log('data: ', data)
                 // location.reload()
@@ -149,21 +149,21 @@ function acceptForm(event){
                 alert('Order sent')
 
                 document.querySelector('.shopping-cart').dataset['totalitems'] = 0
-                
+
                 console.log(user)
                 if(user === 'AnonymousUser'){
                     window.location.href = redirectToLandingPage
                 }else{
                     window.location.href = redirectToAccountUrl
                 }
-                
-                
-                
+
+
+
                 cart = {}
                 document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
             })
     }
-    
+
 }
 
 if (addressForm != null){
@@ -197,7 +197,7 @@ function setSuccessFor(username){
 
     formControl.classList.remove('error-form')
     formControl.classList.add('success-form');
-    
+
 }
 
 

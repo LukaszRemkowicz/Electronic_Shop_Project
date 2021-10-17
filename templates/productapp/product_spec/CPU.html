@@ -45,9 +45,9 @@
                 <p class="pr-4 mb-0 w-50 text-right col-6">Cooler: </p>
 
                 {% if product.cpu_product_data.cooler %}
-                    <p class="mb-0 w-50 text-left col-6">YES</p>
+                    <p class="mb-0 w-50 text-left col-6">Yes</p>
                 {% else %}
-                    <p class="mb-0 w-50 text-left col-6">NO</p>
+                    <p class="mb-0 w-50 text-left col-6">N/a</p>
                 {% endif %}
 
             </div>
@@ -101,31 +101,6 @@
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Supported memory: </p>
                 <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.cpu_product_data.supported_memory  }} </p>
-            </div>
-        </th>
-    </tr>
-
-    <tr>
-        <th scope="row w-100">
-            <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper"> General </span></h6>
-        </th>
-    </tr>
-
-
-    <tr>
-        <th scope="row w-100">
-            <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Weight: </p>
-                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.cpu_product_data.weight }} </p>
-            </div>
-        </th>
-    </tr>
-
-    <tr>
-        <th scope="row w-100">
-            <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">High: </p>
-                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.cpu_product_data.high }} </p>
             </div>
         </th>
     </tr>

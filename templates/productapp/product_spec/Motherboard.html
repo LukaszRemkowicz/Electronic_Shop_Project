@@ -118,7 +118,9 @@
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Raid controler: </p>
-                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.motherboard_product_data.raid_controler }} </p>
+                <p class="mb-0 w-50 text-left col-6 col-6">
+                {% for element in product.motherboard_product_data.split_raid %}
+                {{element}}<br>{% endfor %} </p>
             </div>
         </th>
     </tr>
@@ -162,8 +164,12 @@
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Connections: </p>
-                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.motherboard_product_data.get_connections }} </p>
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Width [mm]: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6">
+                {% if product.motherboard_product_data.change_high %}{{ product.motherboard_product_data.change_width }}
+                {% else %} N/a
+                {% endif %}
+                </p>
             </div>
         </th>
     </tr>
@@ -171,17 +177,12 @@
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Weight: </p>
-                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.motherboard_product_data.weight }} </p>
-            </div>
-        </th>
-    </tr>
-
-    <tr>
-        <th scope="row w-100">
-            <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">High: </p>
-                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.motherboard_product_data.high }} </p>
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">High [mm]: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6">
+                {% if product.motherboard_product_data.change_high %}{{ product.motherboard_product_data.change_high }}
+                {% else %} N/a
+                {% endif %}
+                 </p>
             </div>
         </th>
     </tr>

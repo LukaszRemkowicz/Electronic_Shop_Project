@@ -1,49 +1,32 @@
-{% load static %}
+<div class="color-section">
 
-<div class="processor-section">
-    <p class="px-5 pt-4 text-left">
-        Bus speed [Gb/s]:
-    </p>
-    <div class="buttons d-flex px-5 sort_items" data-name='product-bus_speed-data'>
+        <div class="d-flex">
+            <p class="px-5 pt-1 text-left">
+                Bus speed [Gb/s]:
+            </p>
+            <p class="px-5 pt-1 text-left font-light-grey">{{ product.switch_product_data.bus_speed }}</p>
+        </div>
 
-        {% for element in same_products.bus_speed %}
+        <div class="d-flex">
+            <p class="px-5 pt-1 text-left d-inline">
+                Ports:
+            </p>
+            <p class="px-5 pt-1 text-left font-light-grey">{{ product.switch_product_data.ports_num }}</p>
+        </div>
 
-            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.switch_product_data.bus_speed %}active-product-content bg-white{% endif %} ">{{ element }}</button>
+        <div class="d-flex">
+            <p class="px-5 pt-1 text-left d-inline">
+                PoE:
+            </p>
+            <p class="px-5 pt-1 text-left font-light-grey">{{ product.switch_product_data.num_of_poe }}</p>
+        </div>
 
-        {% endfor %}
-        
+        <div class="d-flex">
+            <p class="px-5 pt-1 text-left d-inline">
+                Manageable:
+            </p>
+            <p class="px-5 pt-1 text-left font-light-grey">{{ product.switch_product_data.manageable }}</p>
+        </div>
+   
     </div>
-</div>
-<div class="ram-section">
-    <p class="px-5 pt-4 text-left">
-        Ports: 
-    </p>
-    <div class="buttons d-flex px-5 sort_items" data-name='product-ports_num-data'>
-
-        {% for element in same_products.ports_num %}
-
-            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.switch_product_data.ports_num %}active-product-content bg-white{% endif %} ">{{ element }}</button>
-
-        {% endfor %}
-
-    </div>
-</div>
-<div class="disc-section">
-    <p class="px-5 pt-4 text-left">
-        PoE:
-    </p>
-    <div class="buttons d-flex px-5 sort_items" data-name='product-num_of_poe-data'>
-
-        {% for element in same_products.num_of_poe %}
-
-            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.switch_product_data.num_of_poe %}active-product-content bg-white{% endif %} ">{% if element >= 0 %}{{ element }}{% else %}No PoE ports{% endif %}</button>
-
-        {% endfor %}
-
-    </div>
-</div>
-
-<script> let productIds = '{{ same_products.items_id }}'; </script>
-<script src='{% static 'js/sortSpecData.js' %}'></script>
-<script src='{% static 'js/getDataProduct.js' %}'></script>
 

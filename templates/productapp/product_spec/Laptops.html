@@ -81,7 +81,7 @@
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Disc </p>
-                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.laptops_product_data.disc }} GB</p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.laptops_product_data.disc }}</p>
             </div>
         </th>
     </tr>
@@ -97,15 +97,15 @@
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Ram </p>
-                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.laptops_product_data.p_c_i_e }} GB</p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.laptops_product_data.ram }} GB</p>
             </div>
         </th>
     </tr>
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">ram_model </p>
-                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.laptops_product_data.p_c_i_e }}</p>
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Ram model </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.laptops_product_data.ram_model }}</p>
             </div>
         </th>
     </tr>
@@ -155,7 +155,13 @@
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Bluetooth </p>
-                <p class="mb-0 w-50 text-left col-6 col-6">{{ product.laptops_product_data.bluetooth }}</p>
+                <p class="mb-0 w-50 text-left col-6 col-6">
+                {% if product.laptops_product_data.bluetooth %}
+                Yes
+                {% else %}
+                N/a
+                {% endif %}
+                </p>
             </div>
         </th>
     </tr>
@@ -182,7 +188,7 @@
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6">High [cm]: </p>
-                <p class="mb-0 w-50 text-left col-6">{{ product.laptops_product_data.high }}</p>
+                <p class="mb-0 w-50 text-left col-6">{{ product.laptops_product_data.change_high }}</p>
             </div>
     </th>
     </tr>
@@ -190,7 +196,7 @@
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6">Width [cm]: </p>
-                <p class="mb-0 w-50 text-left col-6">{{ product.laptops_product_data.width }}</p>
+                <p class="mb-0 w-50 text-left col-6">{{ product.laptops_product_data.change_width }}</p>
             </div>
     </th>
     </tr>
@@ -198,7 +204,7 @@
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6">Depth [cm]: </p>
-                <p class="mb-0 w-50 text-left col-6">{{ product.laptops_product_data.deep }}</p>
+                <p class="mb-0 w-50 text-left col-6">{{ product.laptops_product_data.change_deep }}</p>
             </div>
     </th>
     </tr>
@@ -206,7 +212,7 @@
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2">
                 <p class="pr-4 mb-0 w-50 text-right col-6">Weight [kg]: </p>
-                <p class="mb-0 w-50 text-left col-6">{{ product.laptops_product_data.weight }}</p>
+                <p class="mb-0 w-50 text-left col-6">{{ product.laptops_product_data.change_weight }}</p>
             </div>
     </th>
     </tr>

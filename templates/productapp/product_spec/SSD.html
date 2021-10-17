@@ -54,7 +54,7 @@
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Capacity: </p>
-                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.ssd_product_data.capacity }} GB</p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.ssd_product_data.capacity }}</p>
             </div>
         </th>
     </tr>
@@ -80,7 +80,11 @@
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Work time: </p>
-                <p class="mb-0 w-50 text-left col-6 col-6">{{ product.ssd_product_data.work_time }}</p>
+                <p class="mb-0 w-50 text-left col-6 col-6">
+                {% if product.ssd_product_data.work_time != '0' %}{{ product.ssd_product_data.life_time }}
+                {% else %}N/a
+                {% endif %}
+                </p>
             </div>
         </th>
     </tr>

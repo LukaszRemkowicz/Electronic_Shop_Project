@@ -117,7 +117,11 @@
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6">High [cm]: </p>
-                <p class="mb-0 w-50 text-left col-6">{{ product.monitors_product_data.high }}</p>
+                <p class="mb-0 w-50 text-left col-6">
+                {% if product.monitors_product_data.change_high %}{{ product.monitors_product_data.change_high }}
+                {% else %} N/a
+                {% endif %}
+                </p>
             </div>
     </th>
     </tr>
@@ -126,7 +130,11 @@
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6">Width [cm]: </p>
-                <p class="mb-0 w-50 text-left col-6">{{ product.monitors_product_data.width }}</p>
+                <p class="mb-0 w-50 text-left col-6">
+                {% if product.monitors_product_data.change_high %}{{ product.monitors_product_data.change_width }}
+                {% else %} N/a
+                {% endif %}
+                </p>
             </div>
         </th>
     </tr>
@@ -135,16 +143,24 @@
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6">Depth [cm]: </p>
-                <p class="mb-0 w-50 text-left col-6">{{ product.monitors_product_data.deep }}</p>
+                <p class="mb-0 w-50 text-left col-6">
+                {% if product.monitors_product_data.change_high %}{{ product.monitors_product_data.change_deep }}
+                {% else %} N/a
+                {% endif %}
+                </p>
             </div>
         </th>
     </tr>
-    
+
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2">
                 <p class="pr-4 mb-0 w-50 text-right col-6">Weight [kg]: </p>
-                <p class="mb-0 w-50 text-left col-6">{{ product.monitors_product_data.weight }}</p>
+                <p class="mb-0 w-50 text-left col-6">
+                {% if product.monitors_product_data.change_high %}{{ product.monitors_product_data.change_weight }}
+                {% else %} N/a
+                {% endif %}
+                </p>
             </div>
     </th>
     </tr>

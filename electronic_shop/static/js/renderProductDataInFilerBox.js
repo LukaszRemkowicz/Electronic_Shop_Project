@@ -63,6 +63,8 @@ const productDict = {
     'Phones': ['cpu_clock', 'system', 'memory', 'ram', 'memory_card', 'screen_diagonal'],
     'Laptops': ['p_c_i_e', 'ram_freq', 'ram', 'resolution', 'screen_diagonal', 'system'],
     'Monitors': ['diagonal', 'matrix_type', 'curved', 'refresh_rate', 'resolution'],
+    'SSD': ['producent_code', 'ean', 'capacity', 'format', 'reading_speed', 'writing_speed', 'life_time'],
+    'Ram': ['producent_code', 'ean', 'capacity', 'frequency', 'modules_number', 'delay']
 }
 
 

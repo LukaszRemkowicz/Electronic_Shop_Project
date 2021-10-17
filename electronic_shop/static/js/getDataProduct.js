@@ -1,6 +1,5 @@
 let childProductData = document.querySelectorAll('.spec-product-data')
 let specProductData = document.querySelectorAll('.active-product-content')
-let nowy = []
 let productData = {}
 
 
@@ -8,8 +7,8 @@ childProductData.forEach(element =>{
     element.addEventListener('click', () =>{
         let newArr = [...specProductData].map(element => element.parentNode)
         // let news = newArr.filter(elements => !elements.isEqualNode(element.parentNode));
-        // nowy = news
-        productData['productClicked'] = {'type' : element.innerHTML,
+        const newData = element.innerText.replaceAll('/n', '').trim()
+        productData['productClicked'] = {'type' : newData,
                                             'divId': element.parentNode.dataset.name}
         url =  window.location.href.split('/')
         productData['productId'] = url[url.length-2]
@@ -22,7 +21,7 @@ childProductData.forEach(element =>{
         const urlProduct = '/api/get-product/'
 
         fetch(urlProduct, {
-            method: 'POST', 
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken' : csrftoken,
@@ -35,11 +34,9 @@ childProductData.forEach(element =>{
         .then(response =>{
             return response.json()
         })
-        
+
         .then(data =>{
             data = JSON.parse(data);
-            console.log(data);
-
             window.location.href = `/product/${+data}/`;
         })
     })

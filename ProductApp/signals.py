@@ -47,9 +47,7 @@ def create_product(sender, instance, created, **kwargs):
             pass
         
         else:
-            
-            print(instance)
-            
+                        
             skip_signals = True
             product = utils.choose_model(instance.__class__.__name__, instance)
             product.ean = instance.ean
@@ -63,8 +61,11 @@ def create_product(sender, instance, created, **kwargs):
             except:
                 pass
             try:
-                product.main_photo = instance.img
-            except:
+                product.img = instance.main_photo
+                product.second_img = instance.second_photo
+                product.third_img = instance.third_photo
+            except Exception as e:
+                print('Oops, something went wrong: ', e)
                 pass
             
             skip_signals = False
@@ -72,6 +73,9 @@ def create_product(sender, instance, created, **kwargs):
         """ update product if not created"""
         
         product = models.MainProductDatabase.objects.get(ean=instance.ean)
+        
+        print(product.img)
+        print(utils.get_product(instance.__class__.__name__, instance).main_photo)
  
         try:
         
@@ -95,10 +99,16 @@ def create_product(sender, instance, created, **kwargs):
                 product.save()
             elif product.color != utils.get_product(instance.__class__.__name__, instance).color:
                 product.color = instance.color
-                product.save()  
+                product.save()
             elif product.img != utils.get_product(instance.__class__.__name__, instance).main_photo:
                 product.img = instance.main_photo
-                product.save()    
+                product.save()
+            elif product.second_img != utils.get_product(instance.__class__.__name__, instance).second_photo:
+                product.second_img = instance.second_photo
+                product.save()
+            elif product.third_img != utils.get_product(instance.__class__.__name__, instance).third_photo:
+                product.third_img = instance.third_photo
+                product.save()
             
         except:
             pass

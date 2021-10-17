@@ -1,38 +1,105 @@
-<div class="color-section">
-    <p class="px-5 pt-1 text-left">
+{% load static %}
+
+{% if same_products.colors|length >= 2 %}
+
+    <div class="color-section data-blocks">
+        <p class="px-5 pt-1 text-left">
+            Color:
+        </p>
+        <div class="buttons d-flex px-5" data-name='product-color-data'>
+
+            {% for element in same_products.colors %}
+
+                <button
+                href=""
+                class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data {% if element == product.color %}active-product-content bg-white{% endif %} ">
+                {{ element }}
+                </button>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endif %}
+
+<div class="d-flex">
+        <p class="px-5 pt-1 text-left d-inline">
         Producent Code:
-    </p>
-    <p>{{ product.headphone_product_data.producent_code }}</p>
-    <p class="px-5 pt-1 text-left">
+        </p>
+        <p class="px-5 pt-1 text-left font-light-grey">{{ product.headphone_product_data.producent_code }}</p>
+</div>
+<div class="d-flex">
+        <p class="px-5 pt-1 text-left d-inline">
         Ean:
-    </p>
-    <p>{{ product.headphone_product_data.ean }}</p>
-    <p class="px-5 pt-1 text-left">
+        </p>
+    <p class="px-5 pt-1 text-left font-light-grey">{{ product.headphone_product_data.ean }}</p>
+</div>
+<div class="d-flex">
+        <p class="px-5 pt-1 text-left d-inline">
         Microphone:
     </p>
     <p>{% if product.headphone_product_data.microphone %}Yes{% else %}No{% endif %}</p>
-    
-    
-    {% if product.headphone_product_data.bluetooth %}
-        <p class="px-5 pt-1 text-left">
+</div>
+
+{% if product.headphone_product_data.bluetooth_range %}
+
+    <div class="d-flex">
+        <p class="px-5 pt-1 text-left d-inline">
             Wireless:
         </p>
-        <p>Yes</p>
-        <p class="px-5 pt-1 text-left">Wireless range:</p>
-        <p>{{ product.headphone_product_data.bluetooth_range }}</p>
-        <p class="px-5 pt-1 text-left">Work time:</p>
-        <p>{{ product.headphone_product_data.work_time }}</p>
-    {% endif %}
+        <p class="px-5 pt-1 text-left font-light-grey">Yes</p>
+    </div>
+    <div class="d-flex">
+        <p class="px-5 pt-1 text-left d-inline">
+        Wireless range:</p>
+        <p class="px-5 pt-1 text-left font-light-grey">{{ product.headphone_product_data.bluetooth_range }}</p>
+    </div>
 
-    {% if product.headphone_product_data.cable %}
-        <p class="px-5 pt-1 text-left">
+{% endif %}
+
+{% if product.headphone_product_data.work_time %}
+
+    <div class="d-flex">
+        <p class="px-5 pt-1 text-left d-inline">
+        Work time:</p>
+        <p class="px-5 pt-1 text-left font-light-grey">{{ product.headphone_product_data.work_time }}</p>
+    </div>
+
+{% endif %}
+
+{% if product.headphone_product_data.cable_lenght %}
+
+    <div class="d-flex">
+        <p class="px-5 pt-1 text-left d-inline">
             Cable:
         </p>
         <p>Yes</p>
-        <p class="px-5 pt-1 text-left">Cable lenght:</p>
-        <p>{{ product.headphone_product_data.cable_lenght }}</p>
-        <p class="px-5 pt-1 text-left">Jack:</p>
-        <p>{{ product.headphone_product_data.jack }}</p>
-    {% endif %}
-    
-</div>
+    </div>
+
+    <div class="d-flex">
+        <p class="px-5 pt-1 text-left d-inline">
+        Cable lenght:
+        </p>
+        <p class="px-5 pt-1 text-left font-light-grey">{{ product.headphone_product_data.cable_lenght }}</p>
+    </div>
+{% endif %}
+
+{% if product.headphone_product_data.jack %}
+
+    <div class="d-flex">
+        <p class="px-5 pt-1 text-left d-inline">
+        Jack:
+        </p>
+        <p class="px-5 pt-1 text-left font-light-grey">{{ product.headphone_product_data.jack }}</p>
+    </div>
+
+{% endif %}
+
+
+
+
+<script> let productIds = '{{ same_products.items_id }}'; </script>
+<script src='{% static 'js/sortSpecData.js' %}'></script>
+<script src='{% static 'js/getDataProduct.js' %}'></script>
+<script src='{% static 'js/renderProductDataInFilerBox.js' %}'></script>

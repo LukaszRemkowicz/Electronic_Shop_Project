@@ -43,7 +43,7 @@
     </tr>
 
     {% if product.tv_product_data.color %}
-    
+
         <tr>
             <th scope="row w-100">
                 <div class="d-flex justify-content-center mx-5">
@@ -52,9 +52,9 @@
                 </div>
             </th>
         </tr>
-    
+
     {% endif %}
-    
+
     <tr>
         <th scope="row w-100">
             <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper">Screen</span></h6>
@@ -98,7 +98,7 @@
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
-                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">power_consumption [W]: </p>
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Power consumption [W]: </p>
                 <p class="mb-0 w-50 text-left col-6 col-6">{{ product.tv_product_data.power_consumption }}</p>
             </div>
         </th>
@@ -128,7 +128,7 @@
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Curved: </p>
                 <p class="mb-0 w-50 text-left col-6 col-6">
-                {% if product.tv_product_data.curved %}YES{% else %}NO{% endif %}
+                {% if product.tv_product_data.curved %}Yes{% else %}N/a{% endif %}
                 </p>
             </div>
         </th>
@@ -139,7 +139,7 @@
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6 col-6">HDR: </p>
                 <p class="mb-0 w-50 text-left col-6 col-6">
-                {% if product.tv_product_data.hdr %}YES{% else %}NO{% endif %}
+                {% if product.tv_product_data.hdr %}Yes{% else %}N/a{% endif %}
                 </p>
             </div>
         </th>
@@ -150,7 +150,7 @@
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6 col-6">SMART TV: </p>
                 <p class="mb-0 w-50 text-left col-6 col-6">
-                {% if product.tv_product_data.smart_tv %}YES{% else %}NO{% endif %}
+                {% if product.tv_product_data.smart_tv %}Yes{% else %}N/a{% endif %}
                 </p>
             </div>
         </th>
@@ -161,7 +161,7 @@
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6 col-6">WiFI: </p>
                 <p class="mb-0 w-50 text-left col-6 col-6">
-                {% if product.tv_product_data.wifi %}YES{% else %}NO{% endif %}
+                {% if product.tv_product_data.wifi %}Yes{% else %}N/a{% endif %}
                 </p>
             </div>
         </th>
@@ -172,7 +172,7 @@
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Bluetooth: </p>
                 <p class="mb-0 w-50 text-left col-6 col-6">
-                {% if product.tv_product_data.bluetooth %}YES{% else %}NO{% endif %}
+                {% if product.tv_product_data.bluetooth %}Yes{% else %}N/a{% endif %}
                 </p>
             </div>
         </th>
@@ -210,17 +210,21 @@
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6">High [cm]: </p>
                 <p class="mb-0 w-50 text-left col-6">
-                {% if product.tv_product_data.high == 0 %}No Data {% else %}
-                {{ product.tv_product_data.high }}{% endif %}</p>
+                {% if product.tv_product_data.high == 0 %}N/a {% else %}
+                {{ product.tv_product_data.change_high }}{% endif %}</p>
             </div>
-    </th>
+        </th>
     </tr>
 
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6">Width [cm]: </p>
-                <p class="mb-0 w-50 text-left col-6">{% if product.tv_product_data.width == 0 %}No Data {% else %}{{ product.tv_product_data.width }}{% endif %}</p>
+                <p class="mb-0 w-50 text-left col-6">{% if product.tv_product_data.width == 0 %}N/a 
+                {% else %}
+                {{ product.tv_product_data.change_width }}
+                {% endif %}
+                </p>
             </div>
         </th>
     </tr>
@@ -229,17 +233,25 @@
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2 ">
                 <p class="pr-4 mb-0 w-50 text-right col-6">Depth [cm]: </p>
-                <p class="mb-0 w-50 text-left col-6">{% if product.tv_product_data.deep == 0 %}No Data {% else %}{{ product.tv_product_data.deep }}{% endif %}</p>
+                <p class="mb-0 w-50 text-left col-6">{% if product.tv_product_data.deep == 0 %}N/a
+                {% else %}
+                {{ product.tv_product_data.change_deep }}
+                {% endif %}
+                </p>
             </div>
         </th>
     </tr>
-    
+
     <tr>
         <th scope="row w-100">
             <div class="d-flex justify-content-center mx-5 p-2">
                 <p class="pr-4 mb-0 w-50 text-right col-6">Weight [kg]: </p>
-                <p class="mb-0 w-50 text-left col-6">{% if product.tv_product_data.weight == 0 %}No Data {% else %}{{ product.tv_product_data.weight }}{% endif %}</p>
+                <p class="mb-0 w-50 text-left col-6">{% if product.tv_product_data.weight == 0 %}N/a
+                {% else %}
+                {{ product.tv_product_data.change_weight }}
+                {% endif %}
+                </p>
             </div>
-    </th>
+        </th>
     </tr>
 </tbody>

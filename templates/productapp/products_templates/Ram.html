@@ -1,51 +1,134 @@
 {% load static %}
 
-<div class="color-section">
-    <p class="px-5 pt-1 text-left">
-        Capacity:
-    </p>
-    <div class="buttons d-flex px-5" data-name='product-capacity-data'>
+{% if same_products.items|length >= 2%}
+
+    {% if same_products.capacity|length >= 2 %}
+
+        <div class="color-section data-blocks">
+            <p class="px-5 pt-1 text-left">
+                Capacity:
+            </p>
+            <div class="buttons d-flex px-5" data-name='product-capacity-data'>
+            
+                {% for element in same_products.capacity %}
+                
+                    <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data {% if element == product.ram_product_data.capacity %}active-product-content bg-white{% endif %} ">{{ element }}</button>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    {% endif %}
+
+    {% if same_products.frequency|length >= 2 %}
+
+        <div class="processor-section data-blocks">
+            <p class="px-5 pt-4 text-left">
+                Frequency [MHz]:
+            </p>
+            <div class="buttons d-flex px-5 sort_items" data-name='product-frequency-data'>
+
+                {% for element in same_products.frequency %}
+
+                    <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.ram_product_data.frequency %}active-product-content bg-white{% endif %} ">{{ element }}</button>
+
+                {% endfor %}
+                
+            </div>
+        </div>
+
+    {% endif %}
+
+    {% if same_products.modules_number|length >= 2 %}
+
+        <div class="disc-section data-blocks">
+            <p class="px-5 pt-4 text-left">
+                Modules number:
+            </p>
+            <div class="buttons d-flex px-5 sort_items" data-name='product-modules_number-data'>
+
+                {% for element in same_products.modules_number %}
+
+                    <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.ram_product_data.modules_number %}active-product-content bg-white{% endif %} ">{{ element}}</button>
+
+                {% endfor %}
+
+            </div>
+        </div>
     
-        {% for element in same_products.capacity %}
-        
-            <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data {% if element == product.ram_product_data.capacity %}active-product-content bg-white{% endif %} ">{{ element }}</button>
+    {% endif %}
 
-        {% endfor %}
+    {% if same_products.delay|length >= 2 %}
 
+        <div class="disc-section data-blocks">
+            <p class="px-5 pt-4 text-left">
+                Delay:
+            </p>
+            <div class="buttons d-flex px-5 sort_items" data-name='product-delay-data'>
+
+                {% for element in same_products.delay %}
+
+                    <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.ram_product_data.delay %}active-product-content bg-white{% endif %} ">{{ element}}</button>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    
+    {% endif %}
+
+{% else %}
+
+<div class="color-section">
+
+        <div class="d-flex">
+            <p class="px-5 pt-1 text-left">
+                Producent Code:
+            </p>
+            <p class="px-5 pt-1 text-left font-light-grey">{{ product.ram_product_data.producent_code }}</p>
+        </div>
+
+        <div class="d-flex">
+            <p class="px-5 pt-1 text-left d-inline">
+            Ean:
+            </p>
+            <p class="px-5 pt-1 text-left font-light-grey">{{ product.ram_product_data.ean }}</p>
+        </div>
+
+        <div class="d-flex">
+            <p class="px-5 pt-1 text-left d-inline">
+                Capacity:
+            </p>
+            <p class="px-5 pt-1 text-left font-light-grey">{{ product.ram_product_data.capacity }}</p>
+        </div>
+
+        <div class="d-flex">
+            <p class="px-5 pt-1 text-left d-inline">
+                Frequency:
+            </p>
+            <p class="px-5 pt-1 text-left font-light-grey">{{ product.ram_product_data.frequency }}</p>
+        </div>
+
+        <div class="d-flex">
+            <p class="px-5 pt-1 text-left d-inline">
+                Modules number:
+            </p>
+            <p class="px-5 pt-1 text-left font-light-grey">{{ product.ram_product_data.modules_number }}</p>
+        </div>
+
+        <div class="d-flex">
+            <p class="px-5 pt-1 text-left d-inline">
+                Delay:
+            </p>
+            <p class="px-5 pt-1 text-left font-light-grey">{{ product.ram_product_data.delay }}</p>
+        </div>
+   
     </div>
-</div>
 
-<div class="processor-section">
-    <p class="px-5 pt-4 text-left">
-        Frequency [MHz]:
-    </p>
-    <div class="buttons d-flex px-5 sort_items" data-name='product-frequency-data'>
-
-        {% for element in same_products.frequency %}
-
-            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.ram_product_data.frequency %}active-product-content bg-white{% endif %} ">{{ element }}</button>
-
-        {% endfor %}
-        
-    </div>
-</div>
-
-<div class="disc-section">
-    <p class="px-5 pt-4 text-left">
-        Color:
-    </p>
-    <div class="buttons d-flex px-5 sort_items" data-name='product-color-data'>
-
-        {% for element in same_products.colors %}
-
-            <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.color %}active-product-content bg-white{% endif %} ">{{ element}}</button>
-
-        {% endfor %}
-
-    </div>
-</div>
+{% endif %}
 
 <script> let productIds = '{{ same_products.items_id }}'; </script>
 <script src='{% static 'js/sortSpecData.js' %}'></script>
 <script src='{% static 'js/getDataProduct.js' %}'></script>
+<script src='{% static 'js/renderProductDataInFilerBox.js' %}'></script>
 
