@@ -16,5 +16,5 @@ def recurssive(product, new_dict):
             recurssive(value, new_dict)
         else:
             new_dict[key] = value
-            
+
     return new_dict

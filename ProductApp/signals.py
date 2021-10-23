@@ -158,25 +158,22 @@ def update_product(sender, instance, created, **kwargs):
         skip_signals = True
         instance_obj = utils.try_to_get_product(product, instance)
 
-
-        print(instance_obj)
-
         if product.name != instance_obj.name:
             instance_obj.name = product.name
             instance_obj.save()
-        elif product.price != instance_obj.name:
+        elif product.price != instance_obj.price:
             instance_obj.price = product.price
             instance_obj.save()
-        elif product.pieces != instance_obj.name:
+        elif product.pieces != instance_obj.pieces:
             instance_obj.pieces = product.pieces
             instance_obj.save()
-        elif product.ean != instance_obj.name:
+        elif product.ean != instance_obj.ean:
             instance_obj.ean = product.ean
             instance_obj.save()
-        elif product.cattegory != instance_obj.name:
+        elif product.cattegory != instance_obj.cattegory:
             instance_obj.cattegory = product.cattegory
             instance_obj.save()
-        elif product.color != instance_obj.name:
+        elif product.color != instance_obj.color:
             instance_obj.color = product.color
             instance_obj.save()
 

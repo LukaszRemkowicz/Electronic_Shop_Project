@@ -90,13 +90,10 @@ class FinishOrderView(APIView):
 
         products =shopping_cart.OrderItem.objects.filter(order=order)
         for item in products:
-            # if order.complete:
-            #     item.product.bought_num += item.quantity
+            if order.complete:
+                item.product.bought_num += item.quantity
             item.product.pieces -= item.quantity
-            item.product.save(update_fields=['pieces', 'bought_num'])
-            print('item.product.pieces po save', item.product.pieces)
-            print('item ean po save', item.product.ean)
-            print('item nazwa po save', item.product.name)
+            item.product.save()
 
         shopping_cart.ShippingAddress.objects.create(
             customer = customer,
@@ -286,9 +283,7 @@ class ProductDict(APIView):
         except ObjectDoesNotExist:
             return 'Object does not exist'
 
-        # print(product)
         new_dict = {}
-        # print('product przed recursive', product)
         product = recurssive(product, new_dict)
 
         print(product)
