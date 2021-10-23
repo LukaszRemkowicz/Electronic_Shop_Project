@@ -2,6 +2,7 @@ import json
 import datetime
 import re
 from decimal import Decimal
+import time
 
 from django.http.response import JsonResponse
 from rest_framework import serializers, generics, authentication, permissions
@@ -89,8 +90,13 @@ class FinishOrderView(APIView):
 
         products =shopping_cart.OrderItem.objects.filter(order=order)
         for item in products:
+            # if order.complete:
+            #     item.product.bought_num += item.quantity
             item.product.pieces -= item.quantity
-            item.product.save()
+            item.product.save(update_fields=['pieces', 'bought_num'])
+            print('item.product.pieces po save', item.product.pieces)
+            print('item ean po save', item.product.ean)
+            print('item nazwa po save', item.product.name)
 
         shopping_cart.ShippingAddress.objects.create(
             customer = customer,
@@ -101,6 +107,7 @@ class FinishOrderView(APIView):
             zipcode = data['customerZipcode'],
         )
 
+        # time.sleep(50000)
         return Response('Order saved..')
 
 
@@ -167,24 +174,18 @@ class GetProductData(APIView):
         product_data = data['productData']['productClicked']['type']
         product_parametr = data['productData']['productClicked']['divId']
 
-        print('tutaj', product_parametr)
-        print('jakas lista', product_items_list)
-        print('product data' , product_data)
+        # print('tutaj', product_parametr)
+        # print('jakas lista', product_items_list)
+        # print('product data' , product_data)
 
         re_pattern = r'(.*-)(.*)(-.*)'
 
         product_parametr = re.match(re_pattern, product_parametr).group(2)
-        print('Product-param', product_parametr)
+        # print('Product-param', product_parametr)
         main_product = product_app.MainProductDatabase.objects.get(id=int(main_product))
-
-        # if product_parametr == 'memory'  or product_parametr == 'battery':
-        #     product_data = int(product_data[:-4])
-        # elif product_parametr == 'ram':
-        #     product_data = int(product_data[:-3])
-
         product = find_new_product(product_items_list, product_data, product_parametr, main_product)
 
-        print('nowy product', product)
+        # print('nowy product', product)
 
         try:
             product_id = product.id
@@ -279,16 +280,16 @@ class ProductDict(APIView):
                 try:
                     new_product_id = product[key]
                     new_product = model_to_dict(value(new_product_id))
-                    product = new_product
+                    product['main'] = new_product
                 except:
                     pass
         except ObjectDoesNotExist:
             return 'Object does not exist'
 
         # print(product)
-
-
-        product = recurssive(product)
+        new_dict = {}
+        # print('product przed recursive', product)
+        product = recurssive(product, new_dict)
 
         print(product)
 

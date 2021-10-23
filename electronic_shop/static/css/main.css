@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
 * {
   padding: 0;
   box-sizing: border-box;
@@ -15,12 +15,12 @@ img {
   width: 100%; }
 
 body {
-  font-family: "Dosis", sans-serif;
+  font-family: "Poppins", sans-serif;
   line-height: 1.6;
   background: whitesmoke; }
 
 .container {
-  max-width: 2080px;
+  max-width: 1509px;
   margin: 0 auto;
   text-align: center; }
 
@@ -65,6 +65,10 @@ li {
 
 .btn-blue {
   background: #0169a1;
+  color: white; }
+
+.btn-brown {
+  background: #3c1400;
   color: white; }
 
 a {
@@ -165,6 +169,9 @@ a {
 .font-light-grey {
   color: #757575; }
 
+.font-brown {
+  color: #3c1400; }
+
 .line-through {
   text-decoration: line-through;
   color: #4d4d4d;
@@ -177,7 +184,7 @@ a {
   border-radius: 10px; }
 
 .active-product-content {
-  border: 1px solid #ff503c; }
+  border: 2px solid #ff503c; }
 
 .box-shadow {
   box-shadow: 6px 13px 24px -5px rgba(0, 0, 0, 0.17); }
@@ -234,12 +241,12 @@ img {
   width: 100%; }
 
 body {
-  font-family: "Dosis", sans-serif;
+  font-family: "Poppins", sans-serif;
   line-height: 1.6;
   background: whitesmoke; }
 
 .container {
-  max-width: 2080px;
+  max-width: 1509px;
   margin: 0 auto;
   text-align: center; }
 
@@ -284,6 +291,10 @@ li {
 
 .btn-blue {
   background: #0169a1;
+  color: white; }
+
+.btn-brown {
+  background: #3c1400;
   color: white; }
 
 a {
@@ -384,6 +395,9 @@ a {
 .font-light-grey {
   color: #757575; }
 
+.font-brown {
+  color: #3c1400; }
+
 .line-through {
   text-decoration: line-through;
   color: #4d4d4d;
@@ -396,7 +410,7 @@ a {
   border-radius: 10px; }
 
 .active-product-content {
-  border: 1px solid #ff503c; }
+  border: 2px solid #ff503c; }
 
 .box-shadow {
   box-shadow: 6px 13px 24px -5px rgba(0, 0, 0, 0.17); }
@@ -722,24 +736,44 @@ a {
 
 .main-product-div {
   box-shadow: 6px 13px 24px -5px rgba(0, 0, 0, 0.17); }
+  .main-product-div .mini-images-section {
+    padding: 2rem;
+    width: 12%; }
+    .main-product-div .mini-images-section .mini-img {
+      border: 1px solid #cbcbcb; }
+      .main-product-div .mini-images-section .mini-img:hover {
+        cursor: pointer;
+        border-color: #ff503c; }
   .main-product-div .buttons a {
     font-size: 1rem; }
     .main-product-div .buttons a:hover {
       text-decoration: none; }
-  .main-product-div img {
-    width: 40%;
-    height: 70%;
-    margin-left: 5rem; }
+  .main-product-div .main-img {
+    height: 30rem; }
+    .main-product-div .main-img-div {
+      box-sizing: border-box;
+      height: 70%; }
+    .main-product-div .main-img img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; }
 
 .main-content {
-  padding: 1rem; }
+  width: 35%;
+  padding: 1rem;
+  color: #0d0d0d; }
   .main-content .select-section {
     margin-bottom: 1rem; }
   .main-content h4 {
     font-weight: 600;
-    font-size: 1.3rem; }
+    font-size: 1rem; }
   .main-content p.text-left {
     font-size: 1.1rem; }
+  .main-content .product-id p {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    font-weight: 400;
+    color: #757575; }
 
 #product-section .grid-container p {
   font-size: 1.1rem; }
@@ -816,17 +850,42 @@ a {
         background-color: #ff503c;
         color: white; }
 
-#description img {
-  width: 40%; }
-
 #description p {
-  font-size: 1.2rem; }
+  font-family: "Poppins", sans-serif; }
+
+#description h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: #0d0d0d; }
+
+#description .description-photo {
+  overflow: hidden;
+  margin: auto !important;
+  display: block; }
+  #description .description-photo img {
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: 100% !important;
+    padding: 2rem; }
 
 .border-bottom {
   border-bottom: 1px; }
 
+.review-questions-btns, .add-opinion button, #ask-something button {
+  border: none;
+  padding: 0.5rem 0;
+  display: block; }
+
+.write-opinion {
+  margin-left: 1rem; }
+  .write-opinion-btn {
+    width: 70%;
+    border: none; }
+
 #opinions h4 {
-  font-size: 3rem !important; }
+  font-size: 2rem; }
 
 #opinions .stars-class .stars i {
   font-size: 2rem; }
@@ -839,21 +898,63 @@ a {
   font-size: 1.5rem; }
 
 #opinions .rated-on p {
-  font-size: 1.5rem; }
+  font-size: 1rem; }
 
 #opinions .rated-on h2 span {
   font-size: 3rem; }
 
 #opinions .progress-bars {
-  width: 30%;
-  margin: 0 20rem 0 10rem !important; }
+  width: 30%; }
+
+#opinions .bar:nth-child(1) {
+  width: 10%; }
+
+#opinions .bar:nth-child(2) {
+  width: 15%; }
+
+#opinions .bar:nth-child(3) {
+  width: 50%; }
+
+#opinions .bar:nth-child(4) {
+  width: 25%; }
+
+#opinion-modal .modal-content {
+  height: auto;
+  width: 80%; }
+
+#opinion-modal .modal-header {
+  border-bottom: none; }
+
+#opinion-modal .review-form button {
+  margin: 0 auto;
+  padding: 0.5rem 5rem; }
+
+#opinion-modal .review-form .img-block div:nth-child(2) {
+  width: 40%; }
+
+#opinion-modal .review-form .img-block div:nth-child(1) {
+  width: 60%; }
+
+#opinion-modal .product-div p {
+  font-weight: 600; }
+
+#opinion-modal .stars-review-form {
+  color: #ff503c; }
+  #opinion-modal .stars-review-form:hover {
+    cursor: pointer; }
+
+#opinion-modal .stars-in-review {
+  position: relative; }
 
 #ask-something .small-container > div:first-child p {
   font-size: 1.5rem; }
 
-#ask-something input, #ask-something button {
+#ask-something input {
   height: 2.3rem;
   border: none; }
+
+#ask-something button {
+  width: 70%; }
 
 #ask-something .border-rounded {
   border-radius: 5px; }
@@ -866,6 +967,9 @@ a {
     width: 50%; }
   #ask-something .modal-dialog {
     left: 40%; }
+  #ask-something .modal-content {
+    width: 80%;
+    height: auto; }
 
 #ask-something form button {
   width: 100%; }
@@ -901,6 +1005,25 @@ a {
     color: white;
     text-align: center;
     border-radius: 24px; }
+
+.product-spec p:nth-child(1) {
+  font-size: 1rem;
+  color: #757575;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  line-height: 1.5; }
+
+.reviews-questions, .user-review, .user-questions .user-question p, .user-questions .employer-reply p:nth-child(1) {
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #0d0d0d; }
+
+.user-review {
+  font-size: 1rem; }
+
+.user-questions .user-question p {
+  font-size: 1rem; }
 
 .price-row .subtotal p {
   font-size: 1rem;
@@ -1323,207 +1446,207 @@ a {
 
 @media (max-width: 4000px) and (min-width: 100px) {
   .modal-dialog {
-    width: 30.5% !important; } }
+    width: 15.5% !important; } }
 
 @media (max-width: 3950px) and (min-width: 100px) {
   .modal-dialog {
-    width: 31% !important; } }
+    width: 16% !important; } }
 
 @media (max-width: 3900px) and (min-width: 100px) {
   .modal-dialog {
-    width: 31.5% !important; } }
+    width: 16.5% !important; } }
 
 @media (max-width: 3850px) and (min-width: 100px) {
   .modal-dialog {
-    width: 32% !important; } }
+    width: 17% !important; } }
 
 @media (max-width: 3800px) and (min-width: 100px) {
   .modal-dialog {
-    width: 32.5% !important; } }
+    width: 17.5% !important; } }
 
 @media (max-width: 3750px) and (min-width: 100px) {
   .modal-dialog {
-    width: 33% !important; } }
+    width: 18% !important; } }
 
 @media (max-width: 3700px) and (min-width: 100px) {
   .modal-dialog {
-    width: 33.5% !important; } }
+    width: 18.5% !important; } }
 
 @media (max-width: 3650px) and (min-width: 100px) {
   .modal-dialog {
-    width: 34% !important; } }
+    width: 19% !important; } }
 
 @media (max-width: 3600px) and (min-width: 100px) {
   .modal-dialog {
-    width: 34.5% !important; } }
+    width: 19.5% !important; } }
 
 @media (max-width: 3550px) and (min-width: 100px) {
   .modal-dialog {
-    width: 35% !important; } }
+    width: 20% !important; } }
 
 @media (max-width: 3500px) and (min-width: 100px) {
   .modal-dialog {
-    width: 35.5% !important; } }
+    width: 20.5% !important; } }
 
 @media (max-width: 3450px) and (min-width: 100px) {
   .modal-dialog {
-    width: 36% !important; } }
+    width: 21% !important; } }
 
 @media (max-width: 3400px) and (min-width: 100px) {
   .modal-dialog {
-    width: 36.5% !important; } }
+    width: 21.5% !important; } }
 
 @media (max-width: 3350px) and (min-width: 100px) {
   .modal-dialog {
-    width: 37% !important; } }
+    width: 22% !important; } }
 
 @media (max-width: 3300px) and (min-width: 100px) {
   .modal-dialog {
-    width: 37.5% !important; } }
+    width: 22.5% !important; } }
 
 @media (max-width: 3250px) and (min-width: 100px) {
   .modal-dialog {
-    width: 38% !important; } }
+    width: 23% !important; } }
 
 @media (max-width: 3200px) and (min-width: 100px) {
   .modal-dialog {
-    width: 38.5% !important; } }
+    width: 23.5% !important; } }
 
 @media (max-width: 3150px) and (min-width: 100px) {
   .modal-dialog {
-    width: 39% !important; } }
+    width: 24% !important; } }
 
 @media (max-width: 3100px) and (min-width: 100px) {
   .modal-dialog {
-    width: 39.5% !important; } }
+    width: 24.5% !important; } }
 
 @media (max-width: 3050px) and (min-width: 100px) {
   .modal-dialog {
-    width: 40% !important; } }
+    width: 25% !important; } }
 
 @media (max-width: 3000px) and (min-width: 100px) {
   .modal-dialog {
-    width: 40.5% !important; } }
+    width: 25.5% !important; } }
 
 @media (max-width: 2950px) and (min-width: 100px) {
   .modal-dialog {
-    width: 41% !important; } }
+    width: 26% !important; } }
 
 @media (max-width: 2900px) and (min-width: 100px) {
   .modal-dialog {
-    width: 41.5% !important; } }
+    width: 26.5% !important; } }
 
 @media (max-width: 2850px) and (min-width: 100px) {
   .modal-dialog {
-    width: 42% !important; } }
+    width: 27% !important; } }
 
 @media (max-width: 2800px) and (min-width: 100px) {
   .modal-dialog {
-    width: 42.5% !important; } }
+    width: 27.5% !important; } }
 
 @media (max-width: 2750px) and (min-width: 100px) {
   .modal-dialog {
-    width: 43% !important; } }
+    width: 28% !important; } }
 
 @media (max-width: 2700px) and (min-width: 100px) {
   .modal-dialog {
-    width: 43.5% !important; } }
+    width: 28.5% !important; } }
 
 @media (max-width: 2650px) and (min-width: 100px) {
   .modal-dialog {
-    width: 44% !important; } }
+    width: 29% !important; } }
 
 @media (max-width: 2600px) and (min-width: 100px) {
   .modal-dialog {
-    width: 44.5% !important; } }
+    width: 29.5% !important; } }
 
 @media (max-width: 2550px) and (min-width: 100px) {
   .modal-dialog {
-    width: 45% !important; } }
+    width: 30% !important; } }
 
 @media (max-width: 2500px) and (min-width: 100px) {
   .modal-dialog {
-    width: 45.5% !important; } }
+    width: 30.5% !important; } }
 
 @media (max-width: 2450px) and (min-width: 100px) {
   .modal-dialog {
-    width: 46% !important; } }
+    width: 31% !important; } }
 
 @media (max-width: 2400px) and (min-width: 100px) {
   .modal-dialog {
-    width: 46.5% !important; } }
+    width: 31.5% !important; } }
 
 @media (max-width: 2350px) and (min-width: 100px) {
   .modal-dialog {
-    width: 47% !important; } }
+    width: 32% !important; } }
 
 @media (max-width: 2300px) and (min-width: 100px) {
   .modal-dialog {
-    width: 47.5% !important; } }
+    width: 32.5% !important; } }
 
 @media (max-width: 2250px) and (min-width: 100px) {
   .modal-dialog {
-    width: 48% !important; } }
+    width: 33% !important; } }
 
 @media (max-width: 2200px) and (min-width: 100px) {
   .modal-dialog {
-    width: 48.5% !important; } }
+    width: 33.5% !important; } }
 
 @media (max-width: 2150px) and (min-width: 100px) {
   .modal-dialog {
-    width: 49% !important; } }
+    width: 34% !important; } }
 
 @media (max-width: 2100px) and (min-width: 100px) {
   .modal-dialog {
-    width: 49.5% !important; } }
+    width: 34.5% !important; } }
 
 @media (max-width: 2050px) and (min-width: 100px) {
   .modal-dialog {
-    width: 50% !important; } }
+    width: 35% !important; } }
 
 @media (max-width: 2000px) and (min-width: 100px) {
   .modal-dialog {
-    width: 50.5% !important; } }
+    width: 35.5% !important; } }
 
 @media (max-width: 1950px) and (min-width: 100px) {
   .modal-dialog {
-    width: 51% !important; } }
+    width: 36% !important; } }
 
 @media (max-width: 1900px) and (min-width: 100px) {
   .modal-dialog {
-    width: 51.5% !important; } }
+    width: 36.5% !important; } }
 
 @media (max-width: 1850px) and (min-width: 100px) {
   .modal-dialog {
-    width: 52% !important; } }
+    width: 37% !important; } }
 
 @media (max-width: 1800px) and (min-width: 100px) {
   .modal-dialog {
-    width: 52.5% !important; } }
+    width: 37.5% !important; } }
 
 @media (max-width: 1750px) and (min-width: 100px) {
   .modal-dialog {
-    width: 53% !important; } }
+    width: 38% !important; } }
 
 @media (max-width: 1700px) and (min-width: 100px) {
   .modal-dialog {
-    width: 53.5% !important; } }
+    width: 38.5% !important; } }
 
 @media (max-width: 1650px) and (min-width: 100px) {
   .modal-dialog {
-    width: 54% !important; } }
+    width: 39% !important; } }
 
 @media (max-width: 1600px) and (min-width: 100px) {
   .modal-dialog {
-    width: 54.5% !important; } }
+    width: 39.5% !important; } }
 
 @media (max-width: 1550px) and (min-width: 100px) {
   .modal-dialog {
-    width: 55% !important; } }
+    width: 40% !important; } }
 
 @media (max-width: 1500px) and (min-width: 100px) {
   .modal-dialog {
-    width: 55.5% !important; }
+    width: 40.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1540,7 +1663,7 @@ a {
 
 @media (max-width: 1450px) and (min-width: 100px) {
   .modal-dialog {
-    width: 56% !important; }
+    width: 41% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1557,7 +1680,7 @@ a {
 
 @media (max-width: 1400px) and (min-width: 100px) {
   .modal-dialog {
-    width: 56.5% !important; }
+    width: 41.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1574,7 +1697,7 @@ a {
 
 @media (max-width: 1350px) and (min-width: 100px) {
   .modal-dialog {
-    width: 57% !important; }
+    width: 42% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1591,7 +1714,7 @@ a {
 
 @media (max-width: 1300px) and (min-width: 100px) {
   .modal-dialog {
-    width: 57.5% !important; }
+    width: 42.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1608,7 +1731,7 @@ a {
 
 @media (max-width: 1250px) and (min-width: 100px) {
   .modal-dialog {
-    width: 58% !important; }
+    width: 43% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1625,7 +1748,7 @@ a {
 
 @media (max-width: 1200px) and (min-width: 100px) {
   .modal-dialog {
-    width: 58.5% !important; }
+    width: 43.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1642,7 +1765,7 @@ a {
 
 @media (max-width: 1150px) and (min-width: 100px) {
   .modal-dialog {
-    width: 59% !important; }
+    width: 44% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1659,7 +1782,7 @@ a {
 
 @media (max-width: 1100px) and (min-width: 100px) {
   .modal-dialog {
-    width: 59.5% !important; }
+    width: 44.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1676,7 +1799,7 @@ a {
 
 @media (max-width: 1050px) and (min-width: 100px) {
   .modal-dialog {
-    width: 60% !important; }
+    width: 45% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1693,7 +1816,7 @@ a {
 
 @media (max-width: 1000px) and (min-width: 100px) {
   .modal-dialog {
-    width: 60.5% !important; }
+    width: 45.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1710,7 +1833,7 @@ a {
 
 @media (max-width: 950px) and (min-width: 100px) {
   .modal-dialog {
-    width: 61% !important; }
+    width: 46% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1727,7 +1850,7 @@ a {
 
 @media (max-width: 900px) and (min-width: 100px) {
   .modal-dialog {
-    width: 61.5% !important; }
+    width: 46.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1744,7 +1867,7 @@ a {
 
 @media (max-width: 850px) and (min-width: 100px) {
   .modal-dialog {
-    width: 62% !important; }
+    width: 47% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1761,7 +1884,7 @@ a {
 
 @media (max-width: 800px) and (min-width: 100px) {
   .modal-dialog {
-    width: 62.5% !important; }
+    width: 47.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1778,7 +1901,7 @@ a {
 
 @media (max-width: 750px) and (min-width: 100px) {
   .modal-dialog {
-    width: 63% !important; }
+    width: 48% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1795,7 +1918,7 @@ a {
 
 @media (max-width: 700px) and (min-width: 100px) {
   .modal-dialog {
-    width: 63.5% !important; }
+    width: 48.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1812,7 +1935,7 @@ a {
 
 @media (max-width: 650px) and (min-width: 100px) {
   .modal-dialog {
-    width: 64% !important; }
+    width: 49% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1829,7 +1952,7 @@ a {
 
 @media (max-width: 600px) and (min-width: 100px) {
   .modal-dialog {
-    width: 64.5% !important; }
+    width: 49.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1846,7 +1969,7 @@ a {
 
 @media (max-width: 550px) and (min-width: 100px) {
   .modal-dialog {
-    width: 65% !important; }
+    width: 50% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1863,7 +1986,7 @@ a {
 
 @media (max-width: 500px) and (min-width: 100px) {
   .modal-dialog {
-    width: 65.5% !important; }
+    width: 50.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1880,7 +2003,7 @@ a {
 
 @media (max-width: 450px) and (min-width: 100px) {
   .modal-dialog {
-    width: 66% !important; }
+    width: 51% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1897,7 +2020,7 @@ a {
 
 @media (max-width: 400px) and (min-width: 100px) {
   .modal-dialog {
-    width: 66.5% !important; }
+    width: 51.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1914,7 +2037,7 @@ a {
 
 @media (max-width: 350px) and (min-width: 100px) {
   .modal-dialog {
-    width: 67% !important; }
+    width: 52% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1931,7 +2054,7 @@ a {
 
 @media (max-width: 300px) and (min-width: 100px) {
   .modal-dialog {
-    width: 67.5% !important; }
+    width: 52.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1948,7 +2071,7 @@ a {
 
 @media (max-width: 250px) and (min-width: 100px) {
   .modal-dialog {
-    width: 68% !important; }
+    width: 53% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1965,7 +2088,7 @@ a {
 
 @media (max-width: 200px) and (min-width: 100px) {
   .modal-dialog {
-    width: 68.5% !important; }
+    width: 53.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1982,7 +2105,7 @@ a {
 
 @media (max-width: 150px) and (min-width: 100px) {
   .modal-dialog {
-    width: 69% !important; }
+    width: 54% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -1999,7 +2122,7 @@ a {
 
 @media (max-width: 100px) and (min-width: 100px) {
   .modal-dialog {
-    width: 69.5% !important; }
+    width: 54.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -5727,207 +5850,207 @@ a {
 
 @media (max-width: 4000px) and (min-width: 100px) {
   .modal-dialog {
-    width: 30.5% !important; } }
+    width: 15.5% !important; } }
 
 @media (max-width: 3950px) and (min-width: 100px) {
   .modal-dialog {
-    width: 31% !important; } }
+    width: 16% !important; } }
 
 @media (max-width: 3900px) and (min-width: 100px) {
   .modal-dialog {
-    width: 31.5% !important; } }
+    width: 16.5% !important; } }
 
 @media (max-width: 3850px) and (min-width: 100px) {
   .modal-dialog {
-    width: 32% !important; } }
+    width: 17% !important; } }
 
 @media (max-width: 3800px) and (min-width: 100px) {
   .modal-dialog {
-    width: 32.5% !important; } }
+    width: 17.5% !important; } }
 
 @media (max-width: 3750px) and (min-width: 100px) {
   .modal-dialog {
-    width: 33% !important; } }
+    width: 18% !important; } }
 
 @media (max-width: 3700px) and (min-width: 100px) {
   .modal-dialog {
-    width: 33.5% !important; } }
+    width: 18.5% !important; } }
 
 @media (max-width: 3650px) and (min-width: 100px) {
   .modal-dialog {
-    width: 34% !important; } }
+    width: 19% !important; } }
 
 @media (max-width: 3600px) and (min-width: 100px) {
   .modal-dialog {
-    width: 34.5% !important; } }
+    width: 19.5% !important; } }
 
 @media (max-width: 3550px) and (min-width: 100px) {
   .modal-dialog {
-    width: 35% !important; } }
+    width: 20% !important; } }
 
 @media (max-width: 3500px) and (min-width: 100px) {
   .modal-dialog {
-    width: 35.5% !important; } }
+    width: 20.5% !important; } }
 
 @media (max-width: 3450px) and (min-width: 100px) {
   .modal-dialog {
-    width: 36% !important; } }
+    width: 21% !important; } }
 
 @media (max-width: 3400px) and (min-width: 100px) {
   .modal-dialog {
-    width: 36.5% !important; } }
+    width: 21.5% !important; } }
 
 @media (max-width: 3350px) and (min-width: 100px) {
   .modal-dialog {
-    width: 37% !important; } }
+    width: 22% !important; } }
 
 @media (max-width: 3300px) and (min-width: 100px) {
   .modal-dialog {
-    width: 37.5% !important; } }
+    width: 22.5% !important; } }
 
 @media (max-width: 3250px) and (min-width: 100px) {
   .modal-dialog {
-    width: 38% !important; } }
+    width: 23% !important; } }
 
 @media (max-width: 3200px) and (min-width: 100px) {
   .modal-dialog {
-    width: 38.5% !important; } }
+    width: 23.5% !important; } }
 
 @media (max-width: 3150px) and (min-width: 100px) {
   .modal-dialog {
-    width: 39% !important; } }
+    width: 24% !important; } }
 
 @media (max-width: 3100px) and (min-width: 100px) {
   .modal-dialog {
-    width: 39.5% !important; } }
+    width: 24.5% !important; } }
 
 @media (max-width: 3050px) and (min-width: 100px) {
   .modal-dialog {
-    width: 40% !important; } }
+    width: 25% !important; } }
 
 @media (max-width: 3000px) and (min-width: 100px) {
   .modal-dialog {
-    width: 40.5% !important; } }
+    width: 25.5% !important; } }
 
 @media (max-width: 2950px) and (min-width: 100px) {
   .modal-dialog {
-    width: 41% !important; } }
+    width: 26% !important; } }
 
 @media (max-width: 2900px) and (min-width: 100px) {
   .modal-dialog {
-    width: 41.5% !important; } }
+    width: 26.5% !important; } }
 
 @media (max-width: 2850px) and (min-width: 100px) {
   .modal-dialog {
-    width: 42% !important; } }
+    width: 27% !important; } }
 
 @media (max-width: 2800px) and (min-width: 100px) {
   .modal-dialog {
-    width: 42.5% !important; } }
+    width: 27.5% !important; } }
 
 @media (max-width: 2750px) and (min-width: 100px) {
   .modal-dialog {
-    width: 43% !important; } }
+    width: 28% !important; } }
 
 @media (max-width: 2700px) and (min-width: 100px) {
   .modal-dialog {
-    width: 43.5% !important; } }
+    width: 28.5% !important; } }
 
 @media (max-width: 2650px) and (min-width: 100px) {
   .modal-dialog {
-    width: 44% !important; } }
+    width: 29% !important; } }
 
 @media (max-width: 2600px) and (min-width: 100px) {
   .modal-dialog {
-    width: 44.5% !important; } }
+    width: 29.5% !important; } }
 
 @media (max-width: 2550px) and (min-width: 100px) {
   .modal-dialog {
-    width: 45% !important; } }
+    width: 30% !important; } }
 
 @media (max-width: 2500px) and (min-width: 100px) {
   .modal-dialog {
-    width: 45.5% !important; } }
+    width: 30.5% !important; } }
 
 @media (max-width: 2450px) and (min-width: 100px) {
   .modal-dialog {
-    width: 46% !important; } }
+    width: 31% !important; } }
 
 @media (max-width: 2400px) and (min-width: 100px) {
   .modal-dialog {
-    width: 46.5% !important; } }
+    width: 31.5% !important; } }
 
 @media (max-width: 2350px) and (min-width: 100px) {
   .modal-dialog {
-    width: 47% !important; } }
+    width: 32% !important; } }
 
 @media (max-width: 2300px) and (min-width: 100px) {
   .modal-dialog {
-    width: 47.5% !important; } }
+    width: 32.5% !important; } }
 
 @media (max-width: 2250px) and (min-width: 100px) {
   .modal-dialog {
-    width: 48% !important; } }
+    width: 33% !important; } }
 
 @media (max-width: 2200px) and (min-width: 100px) {
   .modal-dialog {
-    width: 48.5% !important; } }
+    width: 33.5% !important; } }
 
 @media (max-width: 2150px) and (min-width: 100px) {
   .modal-dialog {
-    width: 49% !important; } }
+    width: 34% !important; } }
 
 @media (max-width: 2100px) and (min-width: 100px) {
   .modal-dialog {
-    width: 49.5% !important; } }
+    width: 34.5% !important; } }
 
 @media (max-width: 2050px) and (min-width: 100px) {
   .modal-dialog {
-    width: 50% !important; } }
+    width: 35% !important; } }
 
 @media (max-width: 2000px) and (min-width: 100px) {
   .modal-dialog {
-    width: 50.5% !important; } }
+    width: 35.5% !important; } }
 
 @media (max-width: 1950px) and (min-width: 100px) {
   .modal-dialog {
-    width: 51% !important; } }
+    width: 36% !important; } }
 
 @media (max-width: 1900px) and (min-width: 100px) {
   .modal-dialog {
-    width: 51.5% !important; } }
+    width: 36.5% !important; } }
 
 @media (max-width: 1850px) and (min-width: 100px) {
   .modal-dialog {
-    width: 52% !important; } }
+    width: 37% !important; } }
 
 @media (max-width: 1800px) and (min-width: 100px) {
   .modal-dialog {
-    width: 52.5% !important; } }
+    width: 37.5% !important; } }
 
 @media (max-width: 1750px) and (min-width: 100px) {
   .modal-dialog {
-    width: 53% !important; } }
+    width: 38% !important; } }
 
 @media (max-width: 1700px) and (min-width: 100px) {
   .modal-dialog {
-    width: 53.5% !important; } }
+    width: 38.5% !important; } }
 
 @media (max-width: 1650px) and (min-width: 100px) {
   .modal-dialog {
-    width: 54% !important; } }
+    width: 39% !important; } }
 
 @media (max-width: 1600px) and (min-width: 100px) {
   .modal-dialog {
-    width: 54.5% !important; } }
+    width: 39.5% !important; } }
 
 @media (max-width: 1550px) and (min-width: 100px) {
   .modal-dialog {
-    width: 55% !important; } }
+    width: 40% !important; } }
 
 @media (max-width: 1500px) and (min-width: 100px) {
   .modal-dialog {
-    width: 55.5% !important; }
+    width: 40.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -5944,7 +6067,7 @@ a {
 
 @media (max-width: 1450px) and (min-width: 100px) {
   .modal-dialog {
-    width: 56% !important; }
+    width: 41% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -5961,7 +6084,7 @@ a {
 
 @media (max-width: 1400px) and (min-width: 100px) {
   .modal-dialog {
-    width: 56.5% !important; }
+    width: 41.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -5978,7 +6101,7 @@ a {
 
 @media (max-width: 1350px) and (min-width: 100px) {
   .modal-dialog {
-    width: 57% !important; }
+    width: 42% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -5995,7 +6118,7 @@ a {
 
 @media (max-width: 1300px) and (min-width: 100px) {
   .modal-dialog {
-    width: 57.5% !important; }
+    width: 42.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6012,7 +6135,7 @@ a {
 
 @media (max-width: 1250px) and (min-width: 100px) {
   .modal-dialog {
-    width: 58% !important; }
+    width: 43% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6029,7 +6152,7 @@ a {
 
 @media (max-width: 1200px) and (min-width: 100px) {
   .modal-dialog {
-    width: 58.5% !important; }
+    width: 43.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6046,7 +6169,7 @@ a {
 
 @media (max-width: 1150px) and (min-width: 100px) {
   .modal-dialog {
-    width: 59% !important; }
+    width: 44% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6063,7 +6186,7 @@ a {
 
 @media (max-width: 1100px) and (min-width: 100px) {
   .modal-dialog {
-    width: 59.5% !important; }
+    width: 44.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6080,7 +6203,7 @@ a {
 
 @media (max-width: 1050px) and (min-width: 100px) {
   .modal-dialog {
-    width: 60% !important; }
+    width: 45% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6097,7 +6220,7 @@ a {
 
 @media (max-width: 1000px) and (min-width: 100px) {
   .modal-dialog {
-    width: 60.5% !important; }
+    width: 45.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6114,7 +6237,7 @@ a {
 
 @media (max-width: 950px) and (min-width: 100px) {
   .modal-dialog {
-    width: 61% !important; }
+    width: 46% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6131,7 +6254,7 @@ a {
 
 @media (max-width: 900px) and (min-width: 100px) {
   .modal-dialog {
-    width: 61.5% !important; }
+    width: 46.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6148,7 +6271,7 @@ a {
 
 @media (max-width: 850px) and (min-width: 100px) {
   .modal-dialog {
-    width: 62% !important; }
+    width: 47% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6165,7 +6288,7 @@ a {
 
 @media (max-width: 800px) and (min-width: 100px) {
   .modal-dialog {
-    width: 62.5% !important; }
+    width: 47.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6182,7 +6305,7 @@ a {
 
 @media (max-width: 750px) and (min-width: 100px) {
   .modal-dialog {
-    width: 63% !important; }
+    width: 48% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6199,7 +6322,7 @@ a {
 
 @media (max-width: 700px) and (min-width: 100px) {
   .modal-dialog {
-    width: 63.5% !important; }
+    width: 48.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6216,7 +6339,7 @@ a {
 
 @media (max-width: 650px) and (min-width: 100px) {
   .modal-dialog {
-    width: 64% !important; }
+    width: 49% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6233,7 +6356,7 @@ a {
 
 @media (max-width: 600px) and (min-width: 100px) {
   .modal-dialog {
-    width: 64.5% !important; }
+    width: 49.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6250,7 +6373,7 @@ a {
 
 @media (max-width: 550px) and (min-width: 100px) {
   .modal-dialog {
-    width: 65% !important; }
+    width: 50% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6267,7 +6390,7 @@ a {
 
 @media (max-width: 500px) and (min-width: 100px) {
   .modal-dialog {
-    width: 65.5% !important; }
+    width: 50.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6284,7 +6407,7 @@ a {
 
 @media (max-width: 450px) and (min-width: 100px) {
   .modal-dialog {
-    width: 66% !important; }
+    width: 51% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6301,7 +6424,7 @@ a {
 
 @media (max-width: 400px) and (min-width: 100px) {
   .modal-dialog {
-    width: 66.5% !important; }
+    width: 51.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6318,7 +6441,7 @@ a {
 
 @media (max-width: 350px) and (min-width: 100px) {
   .modal-dialog {
-    width: 67% !important; }
+    width: 52% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6335,7 +6458,7 @@ a {
 
 @media (max-width: 300px) and (min-width: 100px) {
   .modal-dialog {
-    width: 67.5% !important; }
+    width: 52.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6352,7 +6475,7 @@ a {
 
 @media (max-width: 250px) and (min-width: 100px) {
   .modal-dialog {
-    width: 68% !important; }
+    width: 53% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6369,7 +6492,7 @@ a {
 
 @media (max-width: 200px) and (min-width: 100px) {
   .modal-dialog {
-    width: 68.5% !important; }
+    width: 53.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6386,7 +6509,7 @@ a {
 
 @media (max-width: 150px) and (min-width: 100px) {
   .modal-dialog {
-    width: 69% !important; }
+    width: 54% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
@@ -6403,7 +6526,7 @@ a {
 
 @media (max-width: 100px) and (min-width: 100px) {
   .modal-dialog {
-    width: 69.5% !important; }
+    width: 54.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }

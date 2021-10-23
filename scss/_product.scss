@@ -5,6 +5,19 @@
     &-product-div{
         box-shadow: 6px 13px 24px -5px rgba(0,0,0,0.17);
 
+        .mini-images-section{
+            padding: 2rem;
+            width: 12%;
+
+            & .mini-img{
+                border: 1px solid #cbcbcb;
+            &:hover{
+                cursor: pointer;
+                border-color: $main-red-color;
+                }
+            }
+        }
+
         .buttons{
 
             a{
@@ -16,41 +29,55 @@
             }
         }
 
-        & img{
-            width: 40%;
-            height: 70%;
-            // padding: 3rem 0 3rem 3rem;
-            margin-left: 5rem;
+        & .main-img{
+            height: 30rem;
 
+            &-div{
+                box-sizing: border-box;
+                height: 70%;
             }
+
+            & img{
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+                }
+        }
+    }
+
+    &-content{
+        width: 35%;
+        padding: 1rem;
+        color: #0d0d0d;
+
+        & .select-section{
+            margin-bottom: 1rem;
         }
 
-        &-content{
-            // width: 35rem;
-            padding: 1rem;
+        & h4{
 
-            & .select-section{
-                margin-bottom: 1rem;
-            }
-
-            & h4{
-
-                font-weight: 600;
-                font-size: 1.3rem;
-            }
-
-            p.text-left{
-
-                font-size: 1.1rem;
-
-            }
-            
+            font-weight: 600;
+            font-size: 1rem;
         }
+
+        p.text-left{
+
+            font-size: 1.1rem;
+        }
+
+        & .product-id p{
+            font-size: 0.8rem;
+            line-height: 1.6;
+            font-weight: 400;
+            color: $font-light-grey;
+        }
+
+    }
 }
 
 #product-section{
 
-    
+
     & .grid-container{
         // grid-template-columns: 10fr 2fr;
         // grid-gap: 2rem;
@@ -91,7 +118,7 @@
     order: 2;
     display: flex;
     justify-content: space-between;
-    
+
     &-container{
         position: sticky;
         // width: 20rem !important;
@@ -114,7 +141,7 @@
 }
 
 .buy{
-    z-index: 1001 !important;      
+    z-index: 1001 !important;
     top: 49px !important;
     width: 20rem !important;
 
@@ -122,13 +149,13 @@
         width: 100%;
         z-index: 101 !important;
 
-        .basket{ 
+        .basket{
             font-size: 1.2rem;
             border-radius: 7px;
             width: 80%;
             display: block;
             right: 0;
-            
+
         }
 
         & .free-deliver{
@@ -140,7 +167,7 @@
         }
     }
     &-it{
-        
+
         & a{
             width: 100%;
             font-size: 1.2rem;
@@ -161,11 +188,11 @@
 
 .product-navbar-container{
     padding: 0;
-    
+
 
 
     & .navbar-nav{
-        
+
         height: 100%;
 
         & .nav-link{
@@ -188,13 +215,34 @@
 
 #description{
 
-
-    & img{
-        width: 40%;
+    & p{
+        // font-size: 1rem;
+        font-family: $mery-popins-font;
     }
 
-    & p{
-        font-size: 1.2rem;
+    & h3{
+        font-family: $mery-popins-font;
+        font-weight: 600;
+        font-size: 1.8rem;
+        color: #0d0d0d;
+    }
+
+    .description-photo {
+        // height: 30rem;
+        // width: 20rem !important;
+        overflow: hidden;
+        margin: auto !important;
+        display: block;
+
+        & img{
+            height: 100% !important;
+            // box-sizing: border-box;
+            max-width: 100% !important;
+            max-height: 100% !important;
+            width: 100% !important;
+            padding: 2rem;
+        }
+
     }
 
 
@@ -204,18 +252,34 @@
     border-bottom: 1px;
 }
 
-// Opinion seection
+// Opinion section
+
+.review-questions-btns{
+    border: none;
+    padding: 0.5rem 0;
+    display: block;
+}
+
+.write-opinion{
+
+    margin-left: 1rem;
+
+    &-btn{
+        width: 70%;
+        border: none;
+    }
+}
 
 #opinions{
     h4{
-        font-size: 3rem !important;
+        font-size: 2rem;
     }
 
     & .stars-class{
 
         .stars i{
             font-size: 2rem;
-            
+
         }
         & p{
             font-size: 1.2rem !important;
@@ -229,7 +293,7 @@
 
     & .rated-on{
         p{
-            font-size: 1.5rem;
+            font-size: 1rem;
         }
 
         & h2 span{
@@ -237,21 +301,95 @@
         }
     }
 
-    & .progress-bars{
+    .progress-bar{
+
+        &s{
         width: 30%;
-        margin: 0 20rem 0 10rem !important;
+        // margin: 0 20rem 0 10rem !important;
+        }
+    }
+
+    .bar {
+        &:nth-child(1){
+            width: 10%;
+        }
+        &:nth-child(2){
+            width: 15%;
+        }
+        &:nth-child(3){
+            width: 50%;
+        }
+        &:nth-child(4){
+            width: 25%;
+            }
+        }
+}
+
+#opinion-modal{
+
+    & .modal-content{
+        height: auto;
+        width: 80%;
+    }
+
+    & .modal-header{
+        border-bottom: none;
+    }
+
+    & .review-form{
+        & button{
+            margin: 0 auto;
+            padding: 0.5rem 5rem;
+        }
+
+        & .img-block div:nth-child(2){
+            width: 40%;
+        }
+
+        & .img-block div:nth-child(1){
+            width: 60%;
+        }
+    }
+
+    & .product-div{
+        p{
+            font-weight: 600;
+        }
+    }
+
+    .stars-review-form{
+        color:$main-red-color;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    .stars-in-review{
+        position: relative;
     }
 }
 
-// Ask soemthing
+.add-opinion{
+
+    & button {
+        @extend .review-questions-btns;
+    }
+}
+
+// Ask something
 
 #ask-something{
     & .small-container > div:first-child p {
                 font-size: 1.5rem;
-            } 
-    & input, button{
+            }
+    & input{
         height: 2.3rem;
         border: none;
+    }
+
+    & button {
+        @extend .review-questions-btns;
+        width: 70%;
     }
 
     .border-rounded{
@@ -273,6 +411,11 @@
 
         &-dialog{
             left: 40%;
+        }
+
+        &-content{
+            width: 80%;
+            height: auto;
         }
     }
 
@@ -321,3 +464,39 @@
         border-radius:24px;
     }
 }
+
+.product-spec{
+    & p:nth-child(1){
+        font-size: 1rem;
+        color: #757575;
+        font-family: $mery-popins-font;
+        font-weight: 400;
+        line-height: 1.5;
+    }
+}
+
+.reviews-questions {
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #0d0d0d;
+}
+
+.user-review{
+    @extend .reviews-questions;
+    font-size: 1rem;
+}
+
+.user-questions {
+
+    & .user-question p{
+        @extend .reviews-questions;
+        font-size: 1rem;
+    }
+
+    & .employer-reply p:nth-child(1){
+        @extend .reviews-questions;
+    }
+}
+
+

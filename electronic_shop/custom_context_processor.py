@@ -10,7 +10,7 @@ from ShoppingCardApp.utils import order_cart
 def login_form_content(request):
     form = CustomLoginForm()
     keep_me = KeepMeLoggedIn()
-    
+
     if request.user.is_authenticated:
         try:
             customer = Customer.objects.get(user=request.user.id)
@@ -20,9 +20,9 @@ def login_form_content(request):
             order = ''
     else:
         _, order, _ = order_cart(request)
-            
+
     return {'login_form': form, 'keep_me': keep_me, 'order': order}
-    
-    
-    
+
+
+
 

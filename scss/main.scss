@@ -44,17 +44,17 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        
+
         & li{
             // height: 70%;
             flex-direction: column;
 
             & .fas{
                 text-shadow: -1px 0 #000, 0 1px #000, 1.5px 0 #000, 0 -1px #000;
-                color: white;   
-                
-            
-            } 
+                color: white;
+
+
+            }
         }
 
         .fa-2x{
@@ -65,7 +65,7 @@
     // form bar
 
     .form{
-    
+
         &-inline{
         box-shadow: rgba(0,0,0,0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.16) 0px 4px 8px 0px;
 
@@ -75,7 +75,7 @@
 
             & input{
                 width: 100% !important;
-                
+
 
                 &:focus{
                     outline: none;
@@ -93,10 +93,10 @@
                 background-color: #4d4d4d;
                 color: white;
             }
-            
+
         }
 
-        
+
     }
 
     #navbarDropdown{
@@ -153,12 +153,12 @@
 
 
             & .select-dropdown{
-            
+
                 position: relative;
 
                 &.everywhere-btn{
                     width: 100%;
-                }                
+                }
 
                 & .dropdown{
                 display: none;
@@ -180,12 +180,12 @@
                         border: none;
                         width: 100%;
                         font-size: 1rem;
-                        
+
                         &:hover{
                             cursor: pointer;
                         }
                     }
-                    
+
                     & a{
                         padding-top: 0.5rem;
                         padding-left: 2rem;
@@ -206,7 +206,7 @@
                     height: 100%;
                 }
             }
-            
+
             .btn{
                 height: 101%;
             }
@@ -284,7 +284,7 @@
             height: 1.5rem;
             border-left: 2px solid black;
             transform: rotate(45deg);
-            
+
             &::after{
                 position: absolute;
                 content: "";
@@ -322,7 +322,7 @@
         width: 100%;
         height: 100%;
         background: none;
-        padding: 0; 
+        padding: 0;
 
         & .sign-in{
 
@@ -330,10 +330,10 @@
                 font-size: 1rem !important;
             }
         }
-         
+
     }
 
-    
+
 
     &-backdrop.show{
         opacity: 0.7;
@@ -359,7 +359,7 @@
             margin-bottom: 0;
             display: flex;
             align-items: center;
-            
+
             }
 
             & span{
@@ -403,7 +403,7 @@
                 background-color: $main-red-color;
                 color: $font-color;
             }
-    
+
         &-font{
         font-weight: 100;
         font-size: 1rem;
@@ -413,7 +413,7 @@
         &-flex{
             height: 100%;
             justify-content: space-between;
-            
+
         }
     }
 
@@ -447,17 +447,17 @@
     .carousel{
         height: 580px;
         width: 100%;
-    
+
         &-inner{
         height: 100%;
         margin-left: 1rem;
         margin-right: 3rem;
-    
+
         &-item{
             width: 100%;
             height: 100%;
         }
-    
+
         img{
             height: 100%;
             width: 100%;
@@ -476,7 +476,7 @@
             height: 35px;
             width: 35px;
         }
-    
+
     }
 
     // .slick{
@@ -503,7 +503,7 @@
     //         color: black;
     //     }
     // }
-     
+
 
     .blog-articles{
         grid-template-columns: repeat(3, 2fr);
@@ -565,7 +565,7 @@
         border: 1px solid rgb(211, 205, 205);
         box-shadow: -5px 9px 22px 4px rgba(208,208,208,0.62);
         border-radius: 10px;
-        
+
         width: 100%;
         height: 100%;
         grid-column: 4 / span 5;
@@ -590,9 +590,9 @@
 
     h3{
         margin-top: 1rem;
-        
+
     }
-    
+
     .alarm-box{
         width: 100.5%;
         height: 91%;
@@ -693,7 +693,7 @@
     }
 
     p {
-        
+
         display:inline-block;
         font-size: 0.9rem;
         padding: 0.3rem
@@ -704,7 +704,7 @@
         span{
             padding: 0.5rem;
             font-size: 1.7rem;
-            
+
         }
     }
 }
@@ -762,7 +762,7 @@
             form{
                 width: 100%;
                 height: 100%;
-                
+
             }
 
             & input{
@@ -772,8 +772,8 @@
                 border-radius: 10px;
                 padding-left: 1rem;
 
-               
-                
+
+
                 &:focus{
                     outline: none;
                 }
@@ -807,9 +807,9 @@
     .mobile-pic img{
         width: 50%;
     }
-    
+
     .mobile{
-    
+
         &-aplication{
             height: 100%;
             grid-template-columns: 3fr 2fr;
@@ -836,7 +836,7 @@
             width: 65%;
             height: 100%;
             padding-top: 0.7rem;
-            
+
 
             & img{
                 height: 170px;
@@ -849,7 +849,7 @@
             width: 100%;
             margin-top: 0.5rem;
             justify-content: left;
-            
+
             & img{
                 display: inline;
                 width: 35%;
@@ -935,14 +935,14 @@
 // Footer - Phone and contact section
 
 .contact{
-    
+
     height: 100%;
     width: 20%;
     justify-content: space-between;
     margin-right: 2rem;
 
     .icons{
-        
+
         & i{
             height: 50px;
             width: 50%;
@@ -967,7 +967,7 @@
                 border-bottom: 1px solid $main-red-color;
 
             }
-        
+
 
             & h4, .fas{
                 display: flex;
@@ -1008,7 +1008,7 @@
         width: 100%;
         padding-top: 2rem;
 
-        
+
 
         .social-objects{
             width: 100%;
@@ -1016,12 +1016,12 @@
             fill: $main-red-color;
             opacity: 0.8;
         }
-        
+
         .instagram, .facebook{
             width: 85%;
             height: 85%;
         }
-    
+
 
         & h3{
             padding-left: 0;
@@ -1039,7 +1039,7 @@
     text-align: left;
     height: 100%;
     width: 100%;
-    }   
+    }
 }
 
 

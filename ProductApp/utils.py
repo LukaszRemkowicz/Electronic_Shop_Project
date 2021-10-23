@@ -547,5 +547,3 @@ def try_to_get_product(product: models.MainProductDatabase, instance: Any) -> mo
     except AttributeError:
         instance_obj.router_product_data.name
         return instance_obj.router_product_data
-
-

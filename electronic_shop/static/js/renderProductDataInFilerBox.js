@@ -1,7 +1,7 @@
 let getProductDataBars = document.querySelectorAll('.data-blocks')
 
 const URL = window.location.href;
-let newProduct = 0
+let newProduct
 
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
@@ -44,6 +44,7 @@ if(getProductDataBars.length <= 2 && getProductDataBars.length >= 1 ){
         })
         .then((data) =>{
             newProduct = JSON.parse(data);
+            console.log('datka', data);
             try{
                 console.log(productDict[newProduct.cattegory])
                 const productSpecList = productDict[newProduct.cattegory];

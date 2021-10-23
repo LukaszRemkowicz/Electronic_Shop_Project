@@ -22,11 +22,11 @@
 
                         {% if pieces == 0 %}
                             <option value="0">0</option>
-                        {% else %} 
+                        {% else %}
                             {% for num in pieces_range %}
                                 <option value="{{num}}">{{num}}</option>
                             {% endfor %}
-                        {% endif %}                    
+                        {% endif %}
 
                         </select>
                     </div>
@@ -35,16 +35,16 @@
                     <p class="">or</p>
                     <p class="text-right pt-2 font-light-grey mb-0 pieces">Left: {{pieces}} pcs</p>
                 </div>
-                
+
                 <div class="d-flex basket">
-                    {% if pieces <= 0%} 
+                    {% if pieces <= 0%}
                         <button href="#" type="button" class="add-to-cart btn-light ml-2 p-2 pt-2 pb-2 text-center" disabled>Product is not avaiable </button>
                     {%else%}
                         <a href="#" data-product="{{ product.id }}" data-action="add" type="button" class="add-to-cart btn-red ml-2 p-2 pt-2 pb-2 text-center update-cart">Add to cart </a>
                     {% endif %}
-                    
+
                 </div>
-            
+
                 <div class="free-deliver d-flex mt-4 border-top border-bottom py-3">
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-truck mr-2 font-red" viewBox="0 0 16 16">
@@ -67,16 +67,80 @@
                     <div class="small-container mx-0">
 
                         <div class="main-product-div d-flex bg-white mt-4 mb-4 justify-content-between">
-                            
-                            <img src="{% if product.img %}{{ product.img.url }}{% endif %}" class="align-self-center m-auto main-pic" alt="" />
-                            <div class="main-content d-flex flex-column pb-5 pt-4 border-left">
-            
-                                <h4 class="mt-2 mb-0 text-left pl-5">{{ product.name }}</h4>
-                                
-                                <div class="justify-content-between d-flex w-100 product-id flex-column">
-                                    <p class="text-left pl-5 pt-1 d-inline font-light-grey">Product ID: {{ product.id }}</p>
+
+                            <!-- product images section -->
+                            <div class="d-flex flex-column mini-images-section">
+                                {% for key, value in product.return_images.items %}
+                                    <img src="{{value}}" alt="" class="
+                                    {% if value == product.img.url %}
+                                    active-product-content
+                                    {% else %}
+                                    mini-img
+                                    {% endif %} p-3"
+                                    data-image-name='{{ key }}'>
+                                {% endfor %}
+
+                            </div>
+                            <div class="d-flex main-img">
+                                <div class="align-self-center m-auto main-img-div">
+                                    <img src="{% if product.img %}{{ product.img.url }}{% endif %}" class="main-pic" alt="" />
                                 </div>
-            
+
+                            </div>
+
+                            <!-- product filter section -->
+
+                            <div class="main-content d-flex flex-column pb-5 pt-4 border-left">
+
+                                <h4 class="mt-2 mb-0 text-left pl-5">{{ product.name }}</h4>
+
+                                <div class="d-flex w-100 product-id">
+                                    <p class="text-left pl-5 pt-1 d-inline font-light-grey">Product ID: {{ product.id }}</p>
+                                    {% if same_products|length >= 2 %}
+                                        <p class="text-left pl-5 pt-1 d-inline font-light-grey">Check similar products:</p>
+                                    {% endif %}
+                                </div>
+
+                                <div class="text-left pl-5 d-flex">
+
+                                    <div class="">
+                                        {% for element in product.get_star_avg.1 %}
+
+                                            {% if element %}
+
+                                                <i class="fas fa-star font-red fa-1x"></i>
+
+                                            {% else %}
+
+                                                <i class="far fa-star font-red fa-1x"></i>
+
+                                            {% endif %}
+
+                                        {% endfor %}
+                                        <a href="#opinions" class='font-red'>({% if not product.get_num_of_reviews %}0{% else %}{{product.get_num_of_reviews}}{% endif %})</a>
+                                    </div>
+
+                                    {% if product.get_num_of_questions %}
+
+                                        <div class="pl-4">
+                                            <p>{{ product.get_num_of_questions }} Questions</p>
+                                        </div>
+
+                                    {% endif %}
+
+                                    {% if product.bought_num %}
+
+                                        <div class="pl-4">
+                                            <p>{{ product.get_num_of_questions }} Questions</p>
+                                        </div>
+
+                                    {% endif %}
+
+
+
+
+                                </div>
+
                                 <div class="select-section">
                                     {% if product.cattegory == 'Phones' %}
                                         {% include 'productapp/products_templates/phones.html' %}
@@ -124,18 +188,18 @@
                                 <h2 class="w-100 pb-4 text-left">3 299 zł</h2>
                             </div>
 
-                            
+
 
                             <div class="buy-it d-flex">
                                 <a href="" class="btn-red ml-2 p-1 py-2 mr-2 text-center">Buy now</a>
                                 <select name="amount" id="" class="">
-                                    
+
                                     {% for num in  pieces_range %}
 
                                         <option value="{{ num }}">{{ num }}</option>
 
                                     {% endfor %}
-            
+
                                     </select>
                                 </div>
 
@@ -143,11 +207,11 @@
                                 <p class="">or</p>
                                 <p class="text-right pt-2 font-light-grey mb-0"><span class="hide-it">Left: {{ product.quantity }} pcs</span></p>
                             </div>
-                            
+
                             <div class="d-flex basket ">
                                 <a href="" class=" btn-red border-rounded ml-2 p-2 pt-2 pb-2 text-center add-to-cart">Add to card</a>
                             </div>
-                        
+
                             <div class="free-deliver d-flex mt-4 border-top border-bottom py-3">
 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-truck mr-2 font-red" viewBox="0 0 16 16">
@@ -155,7 +219,7 @@
                                 </svg>
                                 <h3 class="my-auto">Free Delivery</h3>
                             </div>
-                        </div>               
+                        </div>
                 </div>
             </section>
 
@@ -173,15 +237,46 @@
                             </ul>
                         </div>
                     </div>
-                    
                 </div>
             </nav>
+            {% comment %} {{product.phones_product_data.render_html}} {% endcomment %}
 
-            {% for object in object_list %}
-                {{ object.render_html }}
-            {% endfor %}
+            {% if product.cattegory == 'Phones' %}
+                {% comment %} {{product.phones_product_data.render_html}} {% endcomment %}
+                 {% include 'productapp/product_description_templates/Phones.html' %}
+            {% elif product.cattegory == 'Laptops' %}
+                 {% include 'productapp/product_description_templates/Laptops.html' %}
+            {% elif product.cattegory == 'PC' %}
+                 {% include 'productapp/product_description_templates/PC.html' %}
+            {% elif product.cattegory == 'Monitors' %}
+                 {% include 'productapp/product_description_templates/Monitor.html' %}
+            {% elif product.cattegory == 'Accesories for laptops.html' %}
+                 {% include 'productapp/product_description_templates/Accesories for laptops.html.html' %}
+            {% elif product.cattegory == 'SSD' %}
+                 {% include 'productapp/product_description_templates/SSD.html' %}
+            {% elif product.cattegory == 'Graphs' %}
+                 {% include 'productapp/product_description_templates/Graphs.html' %}
+            {% elif product.cattegory == 'Ram' %}
+                 {% include 'productapp/product_description_templates/Ram.html' %}
+            {% elif product.cattegory == 'Pendrives' %}
+                 {% include 'productapp/product_description_templates/Pendrives.html' %}
+            {% elif product.cattegory == 'Routers' %}
+                 {% include 'productapp/product_description_templates/Routers.html' %}
+            {% elif product.cattegory == 'Switches' %}
+                 {% include 'productapp/product_description_templates/Switches.html' %}
+            {% elif product.cattegory == 'Motherboard' %}
+                 {% include 'productapp/product_description_templates/Motherboard.html' %}
+            {% elif product.cattegory == 'CPU' %}
+                 {% include 'productapp/product_description_templates/CPU.html' %}
+            {% elif product.cattegory == 'TV' %}
+                 {% include 'productapp/product_description_templates/TV.html' %}
+            {% elif product.cattegory == 'Headphones' %}
+                 {% include 'productapp/product_description_templates/Headphones.html' %}
+            {% endif %}
 
-            
+
+
+
 
             <!-- Specification -->
 
@@ -189,7 +284,7 @@
                 <div class="mb-3 pb-4 pt-4" id="specification">
                     <div class="small-container bg-white box-shadow mx-0 p-5">
                         <table class="table table-striped account-table">
-                            
+
                             {% if product.cattegory == 'Phones' %}
                                 {% include 'productapp/product_spec/phones.html' %}
                             {% elif product.cattegory == 'Laptops' %}
@@ -222,10 +317,10 @@
                                 {% include 'productapp/product_spec/Headphones.html' %}
                             {% endif %}
 
-                        </table> 
+                        </table>
                     </div>
 
-                    
+
                 </div>
             </section>
 
@@ -233,23 +328,23 @@
             <section class="my-3">
                 <div class="d-flex flex-column" id="opinions">
                     <div class="small-container pt-3 mx-0 bg-white box-shadow">
-                        <div class="d-flex border-bottom pb-5 mx-5 opinion-div">
+                        <div class="d-flex border-bottom pb-5 mx-5 opinion-div justify-content-between">
                             <div class="d-flex flex-column pb-3 stars-class">
-                                <h4 class="text-left">Opinions</h4>
-                                <div class="stars text-left pl-5">
+                                <h4 class="">Opinions</h4>
+                                <div class="stars">
 
                                     {% for element in product.get_star_avg.1 %}
-                                    
+
                                         {% if element %}
-                                        
-                                            <i class="fas fa-star font-red fa-3x"></i>
-                                        
+
+                                            <i class="fas fa-star font-red fa-2x"></i>
+
                                         {% else %}
 
-                                            <i class="far fa-star fa-3x"></i>    
-                                        
+                                            <i class="far fa-star fa-2x"></i>
+
                                         {% endif %}
-                                    
+
                                     {% endfor %}
                                     {% comment %} <i class="fas fa-star font-red fa-3x"></i>
                                     <i class="fas fa-star font-red fa-3x"></i>
@@ -257,23 +352,23 @@
                                     <i class="far fa-star fa-3x"></i>
                                     <i class="far fa-star fa-3x"></i> {% endcomment %}
                                 </div>
-                                <a href="" class="text-left pl-5 ml-5">{{ product.get_num_of_reviews }} review{{ product.get_num_of_reviews|pluralize }}</a>
+                                <a href="#reviews" class="w-100">{{ product.get_num_of_reviews }} review{{ product.get_num_of_reviews|pluralize }}</a>
                             </div>
                             <div class="rated-on d-flex flex-column pl-5">
-                                <p class="pt-3">This product is rated on</p>
+                                <p class="">This product is rated on</p>
                                 <h2><span> {{product.get_star_avg.0}}</span>/5</h2>
                             </div>
-                            <div class="progress-bars ml-4 pt-3">
+                            <div class="progress-bars ml-4">
                                 {% for key, value in product.get_stars.items %}
-                                {{ element }}
                                 <div class="d-flex mb-2">
-                                    <p>{{ element }}</p>
-                                    <p class="mb-0">{{ key }}</p>
-                                    <i class="fas fa-star font-red"></i>
-                                    <div class="progress align-items-center w-100 mt-1 mx-2">
+                                    <p class="mb-0 bar">{{ key }}</p>
+                                    <div class="bar d-flex">
+                                        <i class="fas fa-star font-red align-self-center"></i>
+                                    </div>
+                                    <div class="progress align-items-center w-100 mt-1 mx-2 bar">
                                         <div class="progress-bar" role="progressbar" style="width: {{ value.1 }}%; height: 100%;" aria-valuenow="{{ value.1 }}" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <p class="mb-0"> {% if value == 0 %}0{% else %}{{ value.1 }}{% endif %}%</p>
+                                    <p class="mb-0 bar"> {% if value == 0 %}0{% else %}{{ value.1 }}{% endif %}%</p>
                                 </div>
 
                                 {% endfor %}
@@ -309,68 +404,79 @@
                             </div>
 
                             <div class="add-opinion">
-                                
+
                                 <div class="modal fade" id="opinion-modal" tabindex="-1" role="dialog" aria-labelledby="question-modalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content p-5">
                                         <div class="modal-header">
-                                            <div class="product-div d-flex">
-                                                <p class="align-self-center w-100">Let us know, what you think about this product</p>
+                                            <div class="product-div d-flex w-100 text-left">
+                                                <p class="w-100">{{product.name}}</p>
                                             </div>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            {% comment %} <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            </button> {% endcomment %}
                                         </div>
                                         <div class="modal-body">
-                    
+
                                             <!-- Form question submit -->
-                    
+
                                             <form class="review-form">
                                                 {% csrf_token %}
                                                 <div class="form-group" >
-                                                    <textarea class="form-control" data-productid='{{ product.id }}' id="opinion-form" rows="3"></textarea>
-                                                    <input type="text" placeholder='Write your order number here..' class='order-number-review'>
-                                                    <p>Do you like this product?</p>
-                                                    <div class="">
-                                                        <div class="stars-in-review">
-                                                            <i class="far fa-star fa-3x stars-review-form" data-numofstars='1'></i>
-                                                            <i class="far fa-star fa-3x stars-review-form" data-numofstars='2'></i>
-                                                            <i class="far fa-star fa-3x stars-review-form" data-numofstars='3'></i>
-                                                            <i class="far fa-star fa-3x stars-review-form" data-numofstars='4'></i>
-                                                            <i class="far fa-star fa-3x stars-review-form" data-numofstars='5'></i>
+
+                                                    <div class="d-flex img-block mb-4 ">
+                                                        <div class="d-flex flex-column">
+                                                            <div class="w-100">
+                                                                <p class='text-left pl-4'>Do you like this product?</p>
+                                                                <div class="stars-in-review w-100 text-left pl-4 d-flex pb-4 ">
+                                                                    <i class="far fa-star fa-2x stars-review-form font-red" data-numofstars='1'></i>
+                                                                    <i class="far fa-star fa-2x stars-review-form" data-numofstars='2'></i>
+                                                                    <i class="far fa-star fa-2x stars-review-form" data-numofstars='3'></i>
+                                                                    <i class="far fa-star fa-2x stars-review-form" data-numofstars='4'></i>
+                                                                    <i class="far fa-star fa-2x stars-review-form" data-numofstars='5'></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="w-100 text-left pl-4">
+                                                                    <label class='text-left'>What's your order number?</label>
+                                                                    <input type="text" placeholder='Order number' class='order-number-review w-75 text-center form-control'>
+                                                            </div>
+                                                        </div>
+                                                        <div class="pr-4">
+                                                            <img src="{{product.img.url}}" alt="">
                                                         </div>
                                                     </div>
-                                                    
-                                                    
+                                                    <textarea class="form-control" data-productid='{{ product.id }}' id="opinion-form" rows="3"></textarea>
+
+
                                                 </div>
-                                                <button type="submit" class="btn btn-red">Submit</button>
+                                                <button type="submit" class="btn btn-brown">Submit</button>
                                             </form>
                                         </div>
                                     </div>
                                     </div>
                                 </div>
-                                <div class="">
-                                    <button type="button" class="box-shadow btn-red mx-4 px-5 border-rounded" data-toggle="modal" data-target="#opinion-modal">
-                                        Write your opinion
+                                <div class="write-opinion">
+                                    <button type="button" class="btn-brown mx-4 px-5 box-shadow write-opinion-btn" data-toggle="modal" data-target="#opinion-modal">
+                                        Write opinion
                                     </button>
                                 </div>
                             </div>
-                            
+
                         </div>
-            
+
                         <!-- user review -->
 
                         {% for review in reviews %}
 
-                            <div class="d-flex mx-5 mt-3 border-bottom review-container">
+                            <div class="d-flex mx-5 mt-3 border-bottom review-container py-2" id="reviews">
                                 <div class="review pr-5">
-                                    <i class="fas fa-user font-red fa-2x"></i>
+                                    <i class="fas fa-user font-brown fa-2x"></i>
                                     <p>{{ review.user.username }}</p>
                                 </div>
                                 <div class="d-flex flex-column ml-4">
                                     <div class="text-left d-flex">
                                         <div class="stars">
-                                        
+
                                             {% for star in review.get_range_stars %}
                                                 {% if star %}
                                                     <i class="fas fa-star font-red "></i>
@@ -384,17 +490,17 @@
                                         </div>
                                         <p class="ml-2">{{ review.get_time }}</p>
                                     </div>
-                                    <div class="">
+                                    <div class="user-review text-left">
                                         <p>{{ review.review }}</p>
                                     </div>
                                 </div>
                             </div>
-                        
+
                         {% endfor %}
-            
+
                     </div>
-                    
-                        
+
+
                 </div>
             </section>
 
@@ -402,83 +508,83 @@
 
             <div class="d-flex ask" id="ask-something">
                 <div class="small-container w-100 bg-white pt-4 mb-4 box-shadow mx-0">
-                    <div class="d-flex border-bottom pb-2 mx-5 ask-form">
+                    <div class="d-flex border-bottom pb-2 mx-5 ask-form justify-content-between">
                         <p>Do you have any question?</p>
-                        
+
                         <div class="modal fade" id="question-modal" tabindex="-1" role="dialog" aria-labelledby="question-modalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content p-5">
                                 <div class="modal-header">
-                                    <div class="product-div d-flex">
-                                        <img src="https://images.morele.net/i1064/7845491_0_i1064.jpg" alt="">
-                                        <p class="align-self-center w-100">{{ product.name }}</p>
+                                    <div class="product-div d-flex w-100">
+                                        <img class='' src="{% if product.img %}{{ product.img.url }}{% endif %}" alt="">
+                                        <div class="">
+                                            <p class="align-self-center w-100 px-2">{{ product.name }}</p>
+                                        </div>
                                     </div>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    {% comment %} <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    </button> {% endcomment %}
                                 </div>
                                 <div class="modal-body">
-            
+
                                     <!-- Form question submit -->
-            
+
                                     <form method="POST" class='question-form' data-productid='{{ product.id }}'>
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <textarea class="form-control" id="question-form" rows="3"></textarea>
                                         </div>
-                                        <button type="submit" class="btn btn-red">Submit</button>
+                                        <button type="submit" class="btn btn-brown">Submit</button>
                                     </form>
                                 </div>
                             </div>
                             </div>
                         </div>
                         <div class="">
-                            <button type="button" class="btn-red mx-4 px-5 border-rounded box-shadow" data-toggle="modal" data-target="#question-modal">
+                            <button type="button" class="btn-brown mx-4 px-5 box-shadow" data-toggle="modal" data-target="#question-modal">
                                 Ask something
                             </button>
                         </div>
-                        
                     </div>
-            
+
                     <!-- user questions -->
 
                     {% for question in questions %}
-                    {% if  question.question%} 
-                    
-                        <div class="d-flex mx-5 mt-3 border-bottom user-questions">
+                    {% if  question.question%}
+
+                        <div class="d-flex mx-5 mt-3 border-bottom user-questions py-2">
                             <div class="review pr-5">
-                                <i class="fas fa-user font-red fa-2x"></i>
+                                <i class="fas fa-user font-brown fa-2x"></i>
                                 <p>{{question.user.username}}</p>
                             </div>
-                            <div class="d-flex flex-column ml-4 w-50">
+                            <div class="d-flex flex-column ml-4">
                                 <div class="text-left d-flex">
-                                    <h3></h3>
                                     <p class="ml-2 text-left">{{ question.get_time }}</p>
                                 </div>
-                                <div class="">
+                                <div class="user-question text-left">
                                     <p class="text-left pl-2">{{ question.question }}</p>
                                     {% if question.employer_reply %}
-                                        <div class="bg-light-grey border-rounded py-1 mb-3 ml-5 w-25">
+                                        <div class="bg-light-grey border-rounded py-2 mb-3 ml-5 px-2 text-left employer-reply">
                                             <p class='p-0 m-0'>{{ question.employer_reply }}</p>
                                         </div>
-                                        
+
                                     {% endif %}
                                 </div>
                             </div>
                         </div>
-                    
+
                     {% endif %}
                     {% endfor %}
-                    
+
                     <div class="d-none justify-content-center align-items-end arrow-ups">
                         <a href="#product-section"><i class="far fa-arrow-alt-circle-up font-red"></i></a>
                     </div>
-                </div>  
+                </div>
             </div>
         </div>
     </div>
 
-    <script 
+    <script
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.min.js" integrity="sha512-QABeEm/oYtKZVyaO8mQQjePTPplrV8qoT7PrwHDJCBLqZl5UmuPi3APEcWwtTNOiH24psax69XPQtEo5dAkGcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </script>
@@ -489,10 +595,12 @@
         });
     </script> {% endcomment %}
     <script>
-        
+        const productId = '{{ product.id }}';
     </script>
+
     <script src='{% static 'js/productReview.js' %}'></script>
     <script src='{% static 'js/productReviewStars.js' %}'></script>
     <script src='{% static 'js/productQuestion.js' %}'></script>
+    <script src='{% static 'js/ProductPage/changeMainPhoto.js' %}'></script>
 
 {% endblock %}

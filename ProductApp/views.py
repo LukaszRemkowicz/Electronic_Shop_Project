@@ -19,8 +19,6 @@ class ProductPage(ListView):
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super(ProductPage, self).get_context_data(**kwargs)
         product_id = self.kwargs['MainProductDatabase_id']
-        print('produkcik id: ', product_id)
-        print('pokaz kwargsa', self.kwargs['MainProductDatabase_id'])
         product =  models.MainProductDatabase.objects.get(id=product_id)
 
         try:
@@ -33,7 +31,7 @@ class ProductPage(ListView):
             pieces = product.pieces
 
         same_products = filter_products(product.cattegory, product)
-        print('same_products', same_products)
+        # print('same_products', same_products)
 
         if pieces <= 10:
                 pieces_range = range(1, pieces+1)

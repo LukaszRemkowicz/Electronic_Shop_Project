@@ -31,7 +31,7 @@
     }
 
     .navbar{
-    
+
         display: grid;
         justify-items: center;
         grid-template-columns: 6fr;
@@ -70,7 +70,7 @@
                 margin: 0 !important;
             }
 
-        
+
         }
     }
 
@@ -96,7 +96,7 @@
                 padding: 0 !important;
             }
         }
-        
+
     }
 
     .main-product-div{
@@ -123,7 +123,7 @@
         }
     }
 
-        
+
 
     #product-section, #buy-section{
 
@@ -146,13 +146,13 @@
         }
     }
 
-    #fixed-sticky-wrapper{  
+    #fixed-sticky-wrapper{
         order: 1;
         height: auto;
         margin-bottom: 0 !important;
         width: 100%;
         margin-top: 1rem;
-    
+
     }
 
     .buys{
@@ -167,7 +167,7 @@
         margin: 0 !important;
         width: 100% !important;
         margin-right: 0 !important;
-        
+
 
         &-container{
             height: 6rem !important;
@@ -265,7 +265,7 @@
                 h4{
                     text-align: center !important;
                 }
-                
+
                 .stars {
                     display: flex;
                     justify-content: center;
@@ -279,7 +279,7 @@
                     padding-left: 0 !important;
                 }
 
-                
+
             }
             .rated-on{
                 width: 100%;
@@ -314,7 +314,7 @@
 
                         & div:first-child{
                             justify-content: center;
-                            
+
                         }
 
                         & div:nth-of-type(2){
@@ -325,10 +325,10 @@
                         }
                     }
                 }
-            }    
+            }
         }
     }
-    
+
     // Ask something
 
     .ask{
@@ -373,7 +373,7 @@
                 }
             }
 
-           
+
         }
         .arrow-up{
             height: 10px !important;
@@ -388,7 +388,7 @@
             }
         }
 
-    
+
     }
 
     #ask-something{
@@ -422,7 +422,7 @@
                 text-align: center;
             }
 
-            
+
 
             &::after{
                 display: none;
@@ -503,7 +503,7 @@ $min-width: 1001px;
 $min-width-for-search-bar: 200px;
 $max-width-for-login-modal: 4000px;
 $min-width-for-login-modal: 100px;
-$width-login-modal: 30%;
+$width-login-modal: 15%;
 $width-less-than-thousand: 80%;
 $modal-dialog-width: 50%;
 $width: 70%;
@@ -522,7 +522,7 @@ $buy-section: 20rem;
 
 @while $min-width-for-login-modal <= $max-width-for-login-modal{
     @media (max-width: $max-width-for-login-modal) and (min-width: $min-width-for-login-modal){
-        
+
         .modal-dialog{
             width: $width-login-modal + 0.5% !important;
             $width-login-modal: $width-login-modal + 0.5%
@@ -534,21 +534,21 @@ $buy-section: 20rem;
             .sign-in{
                 flex-direction: column;
                 margin-bottom: 2rem;
-    
+
                 h3, p{
                     padding-bottom: 1rem;
                 }
-    
+
                 p{
                     width: 100% !important;
                     text-align: center;
                 }
-    
+
                 h3 span{
                     color: $main-red-color;
                     font-size: 1.5rem;
                 }
-    
+
                 p span{
                     display: block;
                 }
@@ -557,15 +557,15 @@ $buy-section: 20rem;
         }
         $max-width-for-login-modal: $max-width-for-login-modal - 50px;
 
-        
-        
+
+
     }
 }
 
 
 @while $min-width-for-search-bar <= $max-width{
     @media (max-width: $max-width) and (min-width: $min-width-for-search-bar){
-         
+
         .navbar{
 
             & .form-inline{
@@ -589,7 +589,7 @@ $buy-section: 20rem;
 
                     $max-width: $max-width - 50px;
 
-                }    
+                }
             }
         }
     }
@@ -598,10 +598,10 @@ $buy-section: 20rem;
 
 @while $min-width <= $max-width{
     @media (max-width: $max-width) and (min-width: $min-width){
-    
+
         & button{
              margin: 0 !important;
-        } 
+        }
 
         .rest-section{
             width: $rest-section - 4rem;
@@ -626,7 +626,7 @@ $buy-section: 20rem;
             }
 
         }
-        
+
         #product-section{
             & div:first-child{
                 margin-top: 2rem !important;
@@ -664,17 +664,17 @@ $buy-section: 20rem;
 
                     & .product-id{
                         width: 45% !important;
-                        
+
                     }
-                    
+
                 }
             }
-            
+
             & img{
 
                 // padding: $img-padding - 0.2rem;
                 // margin: $img-margin !important;
-                width: $img-width; 
+                width: $img-width;
                 height: $img-height;
                 $padding: $img-padding - 0.2rem;
                 $img-margin: $img-margin - 0.3rem;
@@ -693,12 +693,12 @@ $buy-section: 20rem;
                 padding: 0.5rem;
                 margin-top: 1rem;
                 margin-right: 0 !important;
-                
+
             }
         }
-        
-            
-        
+
+
+
     }
 }
 
@@ -724,7 +724,7 @@ $buy-section: 20rem;
         h3{
             font-size: 0.5rem !important;
         }
-        
+
 
         h3, p{
             padding-bottom: 1rem;
@@ -754,13 +754,13 @@ $buy-section: 20rem;
         .check{
             padding-bottom: 1rem;
 
-    
+
             p{
                 font-size: 1rem !important;
             }
         }
     }
-    
+
 
 
     #navbarNav1{
@@ -791,7 +791,7 @@ $buy-section: 20rem;
 
         .main-content h4, .product-id, .color-section p, .color-section .buttons,
         .processor-section p, .processor-section .buttons,
-        .ram-section p, .ram-section .buttons, .disc-section p, 
+        .ram-section p, .ram-section .buttons, .disc-section p,
         .disc-section .buttons{
             padding-left: 0 !important;
 
@@ -859,7 +859,7 @@ $width_summary: 40rem;
             flex-direction: column-reverse;
             width: 100vw !important;
         }
-        
+
 
         @if $max-width <= 612 and $max-width > 500 {
             .book{
@@ -871,7 +871,7 @@ $width_summary: 40rem;
                 &-box{
                     width: 90% !important;
                 }
-            }  
+            }
 
             .form-row{
                 & .form-group{
@@ -891,17 +891,17 @@ $width_summary: 40rem;
                 & .img{
                     width: 50%;
                     margin: 2rem 0;
-                    
+
                     & img{
                         padding: 0;
                         width: 80%;
                     }
                 }
-            }     
+            }
         }
 
         @if $max-width <= 500 and $max-width > 300{
-            
+
             .images{
                 width: 90vw;
                 display: grid !important;
@@ -912,14 +912,14 @@ $width_summary: 40rem;
                     // margin: 2rem 0;
                     margin: 1rem auto;
                     width: 80%;
-                    
+
                     & img{
                         padding: 0;
                         width: 80%;
                     }
                 }
-            }     
-            
+            }
+
         }
 
         @if $max-width <= 300{
@@ -928,7 +928,7 @@ $width_summary: 40rem;
                 &-addresses{
                     display: none !important;
                 }
-            }   
+            }
             .form-row{
                 & .form-group{
                     flex-direction: column;
@@ -938,7 +938,7 @@ $width_summary: 40rem;
                         margin-bottom: 1rem;
                     }
                 }
-            }  
+            }
         }
 
         // back to cart section
@@ -963,11 +963,11 @@ $width_summary: 40rem;
 
                     & img{
                         width: 100%;
-                        
+
                     }
                 }
             }
-              
+
         }
     }
 }
@@ -1063,13 +1063,13 @@ $width_summary: 40rem;
     .product-cart{
         padding-left: 6rem !important;
     }
-    
+
     .row .main{
         display: grid;
         grid-template-columns: 3fr 5fr;
         width: 100%;
     }
-    
+
     .pic-div{
         width: 100%;
         height: 100%;
@@ -1149,7 +1149,7 @@ $width_summary: 40rem;
         margin-bottom: 0 !important;
     }
 
-        
+
 }
 
 @media(max-width: 360px) {
@@ -1162,7 +1162,7 @@ $width_summary: 40rem;
     .product-cart{
         padding-left: 1rem !important;
     }
-    
+
 }
 
 @media(max-width: 260px){

@@ -1,16 +1,89 @@
-let starsReviewForm = document.querySelectorAll('.stars-review-form')
+let starsReviewForm = document.querySelectorAll('.stars-review-form');
+let getstarsParent = document.querySelector('.stars-in-review');
+let baseClass = []
 
-let numClicked = 0
+let numClicked = 0;
+let active;
+
+
+/* clear stars after moving the mouse from parent DIV */
+
+const clearAllStarsEvent = (parentDiv, stars) => {
+    parentDiv.parentNode.addEventListener('mouseleave', () => {
+            for(let i = 0; i < stars.length; i++ ){
+                if(baseClass.includes(stars[i]) === false ){
+                    console.log('active mouseleave', active);
+                    stars[i].className = 'far fa-star fa-2x stars-review-form';
+                }
+            }
+        }
+)
+}
+
+clearAllStarsEvent(getstarsParent, starsReviewForm)
+
+
+/* clear stars after moving mouse outsite <i> element */
+
+const clearStarsOnHoverEvent = (stars, clickedElement = '') => {
+    stars.forEach(element => {
+        element.addEventListener('mouseleave', () => {
+                let loop;
+                if(clickedElement){
+                    loop = +clickedElement;
+                } else {
+                    loop = active-1;
+                }
+                console.log('loop', loop);
+
+                for(let i = loop; i < starsReviewForm.length; i++ ){
+                    console.log('jestem w ifie', i);
+                    starsReviewForm[i].className = 'far fa-star fa-2x stars-review-form';
+                }
+            }
+        )
+    })
+}
+
+clearStarsOnHoverEvent(starsReviewForm)
+
+
+/* colour the stars on mouse hover */
+
+const colourStarsEvent = (stars) => {
+    stars.forEach(element =>{
+        element.parentElement.addEventListener('mouseover', ()=>{
+            let valueOfStars = event.target.dataset.numofstars;
+            active = valueOfStars
+            console.log('active', active);
+
+            for (let i = 0; i< valueOfStars; i++){
+                starsReviewForm[i].className = 'fas fa-star font-red fa-2x stars-review-form';
+            };
+        })
+    })
+}
+
+colourStarsEvent(starsReviewForm)
+
+
+/* Colour the stars on click event */
 
 starsReviewForm.forEach(element =>{
     element.addEventListener('click', ()=>{
+        console.log('jestem w clicku?');
         let valueOfStars = event.target.dataset.numofstars
         numClicked = +valueOfStars;
         let parent = element.parentNode
-        colourStars(parent)
-
+        baseClass = [];
+        colourStars(parent);
+        starsReviewForm = document.querySelectorAll('.stars-review-form');
+        clearStarsOnHoverEvent(starsReviewForm, valueOfStars);
+        colourStarsEvent(starsReviewForm);
     })
 })
+
+
 
 function colourStars(parentElement){
 
@@ -18,53 +91,46 @@ function colourStars(parentElement){
 
     parentElement.innerHTML = ''
 
-    console.log('parentnode: ', parentElement)
-
     let newDiv = document.createElement('div');
-    newDiv.classList.add('stars-in-review')
-    
+    newDiv.className = 'stars-in-review w-100 text-left pl-4'
+
 
     for(let i = 1; i < (numClicked+1); i++){
 
         let newI = document.createElement('i');
-        newI.classList.add('fas');
-        newI.classList.add('fa-star');
-        newI.classList.add('font-red');
-        newI.classList.add('stars-review-form');
-        newI.classList.add('fa-3x');
+        newI.className = 'fas fa-star font-red fa-2x stars-review-form'
         newI.setAttribute('data-numofstars', `${i}`);
-        console.log('wchodze: ', i);
 
         parentElement.append(newI);
-        
-    }  
+        baseClass.push(newI);
+
+    }
 
     for(let i = (numClicked +1); i > numClicked && i <= 5; i++){
         let newI = document.createElement('i');
-        newI.classList.add('far');
-        newI.classList.add('fa-star');
-        newI.classList.add('stars-review-form');
-        newI.classList.add('fa-3x');
+        newI.className = 'far fa-star fa-2x stars-review-form'
         newI.setAttribute('data-numofstars', `${i}`);
-        
-        console.log('wchodze: ', i);
 
         parentElement.append(newI);
     }
-    
+
     starsReviewForm = [];
     starsReviewForm = document.querySelectorAll('.stars-review-form');
+    console.log('starsReviewForm', starsReviewForm);
+    clearAllStarsEvent(getstarsParent, starsReviewForm);
 
     starsReviewForm.forEach(element =>{
         element.addEventListener('click', ()=>{
             let valueOfStars = event.target.dataset.numofstars
             numClicked = +valueOfStars;
             let parent = element.parentNode
-            colourStars(parent)
-    
+            colourStars(parent);
+            clearStarsOnHoverEvent(starsReviewForm, valueOfStars);
+            colourStarsEvent(starsReviewForm);
+
         })
     })
-    
+
 }
 
 

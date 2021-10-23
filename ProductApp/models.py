@@ -126,6 +126,7 @@ class MainProductDatabase(models.Model):
     ean = models.BigIntegerField(null=True, blank=True, unique=True)
     cattegory =  models.CharField(choices=CHOICES, max_length=50, default='')
     color = models.CharField(max_length=100, default='', blank=True, null=True)
+    bought_num = models.IntegerField(default=0)
 
     def __str__(self) -> str:
         return f'Product: {self.name}'
@@ -182,6 +183,22 @@ class MainProductDatabase(models.Model):
     @property
     def get_num_of_reviews(self) -> int:
         return len(Reviews.objects.filter(product=self.id, checked_by_employer=True))
+
+    @property
+    def get_num_of_questions(self) -> int:
+        return len(Questions.objects.filter(product=self.id, checked_by_employer=True))
+
+    @property
+    def return_images(self) -> List:
+        images_dictionary = dict()
+        if self.img:
+            images_dictionary['img'] = self.img.url
+        if self.second_img:
+            images_dictionary['second_img'] = self.second_img.url
+        if self.third_img:
+            images_dictionary['third_img'] = self.third_img.url
+
+        return images_dictionary
 
 
 class Phones(Inherit):
@@ -419,3 +436,6 @@ class Questions(models.Model):
     @property
     def get_time(self) -> str:
         return str(self.date)
+
+
+' '.replace(' ', 'd')
