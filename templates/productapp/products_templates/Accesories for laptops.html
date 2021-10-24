@@ -1,18 +1,24 @@
 {% load static %}
 
-    <a class="d-block font-light-grey">Check similar products:</a>
-
     {% if same_products.color|length >= 2 %}
 
         <div class="color-section data-blocks">
             <p class="px-5 pt-1 text-left">
                 Color:
             </p>
-            <div class="buttons d-flex px-5" data-name='product-color-data'>
+            <div class="buttons d-flex px-5
+            {% if same_products.color|length >= 4 %}flex-wrap
+            {% endif %}" data-name='product-color-data'>
 
                 {% for element in same_products.color %}
 
-                    <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data {% if element == product.accesories_for_laptop.color %}active-product-content bg-white{% endif %}">{{ element }}</button>
+                    <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data
+                    {% if element == product.accesories_for_laptop.color %}active-product-content bg-white
+                    {% else %}light-border
+                    {% if element|length >= 15 %} font-point-seven-rem
+                    {% endif %}
+                    {% endif %}">{{ element }}
+                    </button>
 
                 {% endfor %}
 
@@ -27,11 +33,19 @@
             <p class="px-5 pt-1 text-left">
                 Diagonal:
             </p>
-            <div class="buttons d-flex px-5" data-name='product-diagonal_for_cases-data'>
+            <div class="buttons d-flex px-5
+            {% if same_products.diagonal|length >= 4 %}flex-wrap
+            {% endif %}" data-name='product-diagonal_for_cases-data'>
 
                 {% for element in same_products.diagonal %}
 
-                    <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data {% if element == product.accesories_for_laptop.diagonal_for_cases %}active-product-content bg-white{% endif %}">{{ element }}</button>
+                    <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data
+                    {% if element == product.accesories_for_laptop.diagonal_for_cases %}active-product-content bg-white
+                    {% else %}light-border
+                    {% endif %}
+                    {% if element|length >= 15 %} font-point-seven-rem
+                    {% endif %}">{{ element }}
+                    </button>
 
                 {% endfor %}
 

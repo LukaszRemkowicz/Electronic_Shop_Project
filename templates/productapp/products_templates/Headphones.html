@@ -6,14 +6,20 @@
         <p class="px-5 pt-1 text-left">
             Color:
         </p>
-        <div class="buttons d-flex px-5" data-name='product-color-data'>
+        <div class="buttons d-flex px-5
+            {% if same_products.colors|length >= 4 %}flex-wrap
+            {% endif %}" data-name='product-color-data'>
 
             {% for element in same_products.colors %}
 
                 <button
                 href=""
-                class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data {% if element == product.color %}active-product-content bg-white{% endif %} ">
-                {{ element }}
+                class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data
+                {% if element == product.color %}active-product-content bg-white
+                {% else %}light-border
+                {% endif %} 
+                {% if element|length >= 15 %} font-point-seven-rem
+                {% endif %} ">{{ element }}
                 </button>
 
             {% endfor %}

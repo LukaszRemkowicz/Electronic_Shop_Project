@@ -30,7 +30,7 @@
         }
 
         & .main-img{
-            height: 30rem;
+            height: 40rem;
 
             &-div{
                 box-sizing: border-box;
@@ -50,8 +50,39 @@
         padding: 1rem;
         color: #0d0d0d;
 
+        .extend-p-a{
+            line-height: 20px;
+            font-weight: 300;
+            font-size: 0.9rem;
+        }
+
         & .select-section{
             margin-bottom: 1rem;
+
+            & .data-blocks{
+
+                & p{
+                    @extend .extend-p-a;
+
+                }
+
+                & button{
+                    @extend .extend-p-a;
+                    text-decoration:none;
+                    background-color: #f2f2f2;
+                    line-height: 24px;
+                    cursor: pointer;
+                    font-family: $mery-popins-font;
+                }
+
+                &:nth-child(1){
+                    padding-top: 1rem;
+                }
+            }
+        }
+
+        & .product-title{
+            font-size: 1.1rem;
         }
 
         & h4{
@@ -65,11 +96,29 @@
             font-size: 1.1rem;
         }
 
-        & .product-id p{
+        & .product-id a, .product-id p{
             font-size: 0.8rem;
             line-height: 1.6;
             font-weight: 400;
             color: $font-light-grey;
+        }
+
+        & .filter-section-reviews > div{
+
+            & p{
+            @extend .extend-p-a;
+
+            }
+
+            & a{
+                @extend .extend-p-a;
+                cursor: pointer;
+            }
+
+            & i{
+                font-size: 0.7rem;
+            }
+
         }
 
     }

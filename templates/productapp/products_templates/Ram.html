@@ -8,11 +8,19 @@
             <p class="px-5 pt-1 text-left">
                 Capacity:
             </p>
-            <div class="buttons d-flex px-5" data-name='product-capacity-data'>
-            
+            <div class="buttons d-flex px-5
+            {% if same_products.capacity|length >= 4 %}flex-wrap
+            {% endif %}" data-name='product-capacity-data'>
+
                 {% for element in same_products.capacity %}
-                
-                    <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data {% if element == product.ram_product_data.capacity %}active-product-content bg-white{% endif %} ">{{ element }}</button>
+
+                    <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data
+                    {% if element == product.ram_product_data.capacity %}active-product-content bg-white
+                    {% else %}light-border
+                    {% endif %}
+                    {% if element|length >= 15 %} font-point-seven-rem
+                    {% endif %} ">{{ element }}
+                    </button>
 
                 {% endfor %}
 
@@ -26,14 +34,22 @@
             <p class="px-5 pt-4 text-left">
                 Frequency [MHz]:
             </p>
-            <div class="buttons d-flex px-5 sort_items" data-name='product-frequency-data'>
+            <div class="buttons d-flex px-5 sort_items
+            {% if same_products.frequency|length >= 4 %}flex-wrap
+            {% endif %}" data-name='product-frequency-data'>
 
                 {% for element in same_products.frequency %}
 
-                    <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.ram_product_data.frequency %}active-product-content bg-white{% endif %} ">{{ element }}</button>
+                    <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data
+                    {% if element == product.ram_product_data.frequency %}active-product-content bg-white
+                    {% else %}light-border
+                    {% endif %}
+                    {% if element|length >= 15 %} font-point-seven-rem
+                    {% endif %} ">{{ element }}
+                    </button>
 
                 {% endfor %}
-                
+
             </div>
         </div>
 
@@ -45,17 +61,25 @@
             <p class="px-5 pt-4 text-left">
                 Modules number:
             </p>
-            <div class="buttons d-flex px-5 sort_items" data-name='product-modules_number-data'>
+            <div class="buttons d-flex px-5 sort_items
+            {% if same_products.modules_number|length >= 4 %}flex-wrap
+            {% endif %}" data-name='product-modules_number-data'>
 
                 {% for element in same_products.modules_number %}
 
-                    <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.ram_product_data.modules_number %}active-product-content bg-white{% endif %} ">{{ element}}</button>
+                    <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data
+                    {% if element == product.ram_product_data.modules_number %}active-product-content bg-white
+                    {% else %}light-border
+                    {% endif %}
+                    {% if element|length >= 15 %} font-point-seven-rem
+                    {% endif %} ">{{ element}}
+                    </button>
 
                 {% endfor %}
 
             </div>
         </div>
-    
+
     {% endif %}
 
     {% if same_products.delay|length >= 2 %}
@@ -64,17 +88,25 @@
             <p class="px-5 pt-4 text-left">
                 Delay:
             </p>
-            <div class="buttons d-flex px-5 sort_items" data-name='product-delay-data'>
+            <div class="buttons d-flex px-5 sort_items
+            {% if same_products.delay|length >= 4 %}flex-wrap
+            {% endif %}" data-name='product-delay-data'>
 
                 {% for element in same_products.delay %}
 
-                    <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data {% if element == product.ram_product_data.delay %}active-product-content bg-white{% endif %} ">{{ element}}</button>
+                    <button href="" class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data
+                    {% if element == product.ram_product_data.delay %}active-product-content bg-white
+                    {% else %}light-border
+                    {% endif %}
+                    {% if element|length >= 15 %} font-point-seven-rem
+                    {% endif %} ">{{ element}}
+                    </button>
 
                 {% endfor %}
 
             </div>
         </div>
-    
+
     {% endif %}
 
 {% else %}
@@ -122,7 +154,7 @@
             </p>
             <p class="px-5 pt-1 text-left font-light-grey">{{ product.ram_product_data.delay }}</p>
         </div>
-   
+
     </div>
 
 {% endif %}

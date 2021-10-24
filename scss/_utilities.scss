@@ -11,7 +11,7 @@ a{
         text-decoration: none;
         color: inherit;
     }
-    
+
 }
 
 img{
@@ -137,7 +137,7 @@ a{
 
     &-red{
         background-color: $main-red-color;
-    
+
     }
 
     &-light-grey{
@@ -171,6 +171,10 @@ a{
     &-brown {
         color: $main-brown-colour;
     }
+
+    &-point-seven-rem{
+        font-size: 0.7rem !important;
+    }
 }
 
 .line-through{
@@ -192,6 +196,10 @@ a{
     &-product-content{
         border: 2px solid $main-red-color;
     }
+}
+
+.light-border{
+    border: 2px solid #f2f2f2;
 
 }
 
@@ -218,7 +226,7 @@ a{
         visibility: visible;
         border-color: $error-form-color !important;
     }
-    
+
     & .fa-exclamation-circle{
         color: $error-form-color !important;
         visibility: visible !important;
@@ -243,7 +251,7 @@ a{
         visibility: visible !important;
         border-color: green !important;
     }
-    
+
     & .fa-check-circle{
         color: #2ecc71;
         visibility: visible !important;

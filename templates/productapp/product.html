@@ -92,52 +92,45 @@
 
                             <div class="main-content d-flex flex-column pb-5 pt-4 border-left">
 
-                                <h4 class="mt-2 mb-0 text-left pl-5">{{ product.name }}</h4>
+                                <h4 class="mt-2 mb-0 text-left pl-5 product-title">{{ product.name }}</h4>
 
                                 <div class="d-flex w-100 product-id">
                                     <p class="text-left pl-5 pt-1 d-inline font-light-grey">Product ID: {{ product.id }}</p>
                                     {% if same_products|length >= 2 %}
-                                        <p class="text-left pl-5 pt-1 d-inline font-light-grey">Check similar products:</p>
+                                        <a href='' class="text-left ml-3 pt-1 d-inline font-light-grey">Check similar products</a>
                                     {% endif %}
                                 </div>
 
-                                <div class="text-left pl-5 d-flex">
+                                <div class="text-left pl-5 d-flex filter-section-reviews align-content-center">
 
-                                    <div class="">
+                                    <div class="d-flex">
                                         {% for element in product.get_star_avg.1 %}
 
                                             {% if element %}
 
-                                                <i class="fas fa-star font-red fa-1x"></i>
+                                                <i class="fas fa-star font-red fa-1x m-auto"></i>
 
                                             {% else %}
 
-                                                <i class="far fa-star font-red fa-1x"></i>
+                                                <i class="far fa-star font-red fa-1x m-auto"></i>
 
                                             {% endif %}
 
                                         {% endfor %}
-                                        <a href="#opinions" class='font-red'>({% if not product.get_num_of_reviews %}0{% else %}{{product.get_num_of_reviews}}{% endif %})</a>
+                                        <a href="#opinions" class='font-red pl-1'>({% if not product.get_num_of_reviews %}0{% else %}{{product.get_num_of_reviews}}{% endif %})</a>
                                     </div>
 
-                                    {% if product.get_num_of_questions %}
+                                    {% comment %} {% if product.get_num_of_questions %} {% endcomment %}
 
-                                        <div class="pl-4">
-                                            <p>{{ product.get_num_of_questions }} Questions</p>
+                                        <div class="pl-3 d-flex">
+                                            <a href='#ask-something' class='m-auto w-100 font-brown'>{{ product.get_num_of_questions }} Questions</a>
                                         </div>
 
-                                    {% endif %}
+                                    {% comment %} {% endif %} {% endcomment %}
 
-                                    {% if product.bought_num %}
-
-                                        <div class="pl-4">
-                                            <p>{{ product.get_num_of_questions }} Questions</p>
-                                        </div>
-
-                                    {% endif %}
-
-
-
+                                    <div class="pl-3 d-flex">
+                                        <p class='m-auto w-100 font-brown'>Bought by {{ product.bought_num }} people </p>
+                                    </div>
 
                                 </div>
 

@@ -64,18 +64,15 @@ def create_product(sender, instance, created, **kwargs):
                 product.img = instance.main_photo
                 product.second_img = instance.second_photo
                 product.third_img = instance.third_photo
-            except Exception as e:
-                print('Oops, something went wrong: ', e)
-                pass
+            except Exception as error:
+                print('Oops, something went wrong: ', error)
+                raise
 
             skip_signals = False
     else:
         """ update product if not created"""
 
         product = models.MainProductDatabase.objects.get(ean=instance.ean)
-
-        print(product.img)
-        print(utils.get_product(instance.__class__.__name__, instance).main_photo)
 
         try:
 

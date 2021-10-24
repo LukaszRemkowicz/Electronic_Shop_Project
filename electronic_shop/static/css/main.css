@@ -172,6 +172,9 @@ a {
 .font-brown {
   color: #3c1400; }
 
+.font-point-seven-rem {
+  font-size: 0.7rem !important; }
+
 .line-through {
   text-decoration: line-through;
   color: #4d4d4d;
@@ -185,6 +188,9 @@ a {
 
 .active-product-content {
   border: 2px solid #ff503c; }
+
+.light-border {
+  border: 2px solid #f2f2f2; }
 
 .box-shadow {
   box-shadow: 6px 13px 24px -5px rgba(0, 0, 0, 0.17); }
@@ -398,6 +404,9 @@ a {
 .font-brown {
   color: #3c1400; }
 
+.font-point-seven-rem {
+  font-size: 0.7rem !important; }
+
 .line-through {
   text-decoration: line-through;
   color: #4d4d4d;
@@ -411,6 +420,9 @@ a {
 
 .active-product-content {
   border: 2px solid #ff503c; }
+
+.light-border {
+  border: 2px solid #f2f2f2; }
 
 .box-shadow {
   box-shadow: 6px 13px 24px -5px rgba(0, 0, 0, 0.17); }
@@ -749,7 +761,7 @@ a {
     .main-product-div .buttons a:hover {
       text-decoration: none; }
   .main-product-div .main-img {
-    height: 30rem; }
+    height: 40rem; }
     .main-product-div .main-img-div {
       box-sizing: border-box;
       height: 70%; }
@@ -762,18 +774,36 @@ a {
   width: 35%;
   padding: 1rem;
   color: #0d0d0d; }
+  .main-content .extend-p-a, .main-content .select-section .data-blocks p, .main-content .select-section .data-blocks button, .main-content .filter-section-reviews > div p, .main-content .filter-section-reviews > div a {
+    line-height: 20px;
+    font-weight: 300;
+    font-size: 0.9rem; }
   .main-content .select-section {
     margin-bottom: 1rem; }
+    .main-content .select-section .data-blocks button {
+      text-decoration: none;
+      background-color: #f2f2f2;
+      line-height: 24px;
+      cursor: pointer;
+      font-family: "Poppins", sans-serif; }
+    .main-content .select-section .data-blocks:nth-child(1) {
+      padding-top: 1rem; }
+  .main-content .product-title {
+    font-size: 1.1rem; }
   .main-content h4 {
     font-weight: 600;
     font-size: 1rem; }
   .main-content p.text-left {
     font-size: 1.1rem; }
-  .main-content .product-id p {
+  .main-content .product-id a, .main-content .product-id p {
     font-size: 0.8rem;
     line-height: 1.6;
     font-weight: 400;
     color: #757575; }
+  .main-content .filter-section-reviews > div a {
+    cursor: pointer; }
+  .main-content .filter-section-reviews > div i {
+    font-size: 0.7rem; }
 
 #product-section .grid-container p {
   font-size: 1.1rem; }
