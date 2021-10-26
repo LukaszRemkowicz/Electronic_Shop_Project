@@ -15,13 +15,13 @@
                 {% for element in same_products.diagonal %}
 
                     <button
-                    href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data
+                    href="" class="btn-light d-inline py-2 mt-2 mb-2 mr-2 spec-product-data
                     {% if element == product.tv_product_data.diagonal %}active-product-content bg-white
                     {% else %}light-border
                     {% endif %}
-                    {% if element|length >= 15 %} font-point-seven-rem
-                    {% endif %} ">
-                    {{ element }}
+                    {% if element|length >= 15 %} font-point-seven-rem px-2
+                    {% else %} px-3
+                    {% endif %} ">{{ element }}
                     </button>
 
                 {% endfor %}
@@ -33,64 +33,43 @@
 
 {% else %}
 
-    <div class="color-section">
+    <div class="pt-5  not-data-block mb-0">
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left">
-                Producent Code:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.tv_product_data.producent_code }}</p>
-        </div>
+        <p class="pl-5 text-left font-light-grey">
+            Producent Code:
+            <span class='product-spec-span'>{{ product.tv_product_data.producent_code }}</span>
+        </p>
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left d-inline">
+        <p class="pl-5 text-left font-light-grey">
             Ean:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.tv_product_data.ean }}</p>
-        </div>
+            <span class='product-spec-span'>{{ product.tv_product_data.ean }}</span>
+        </p>
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left d-inline">
-                Color:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.tv_product_data.color }}</p>
-        </div>
+        <p class="pl-5 text-left font-light-grey">
+            Color:
+            <span class='product-spec-span'>{{ product.tv_product_data.color }}</span>
+        </p>
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left d-inline">
-                Diagonal:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.tv_product_data.diagonal }}</p>
-        </div>
+        <p class="pl-5 text-left font-light-grey">
+            Diagonal:
+            <span class='product-spec-span'>{{ product.tv_product_data.diagonal }}</span>
+        </p>
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left d-inline">
-                Matrix Type:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.tv_product_data.matrix_type }}</p>
-        </div>
+        <p class="pl-5 text-left font-light-grey">
+            Matrix Type:
+            <span class='product-spec-span'>{{ product.tv_product_data.matrix_type }}</span>
+        </p>
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left d-inline">
-                Hdr:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.tv_product_data.hdr }}</p>
-        </div>
+        <p class="pl-5 text-left font-light-grey">
+            Hdr:
+            <span class='product-spec-span'>{{ product.tv_product_data.hdr }}</span>
+        </p>
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left d-inline">
-                Refresh rate:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.tv_product_data.refresh_rate }}</p>
-        </div>
+        <p class="pl-5 text-left font-light-grey">
+            Refresh rate:
+            <span class='product-spec-span'>{{ product.tv_product_data.refresh_rate }}</span>
+        </p>
 
     </div>
 
 {% endif %}
-
-
-
-<script> let productIds = '{{ same_products.items_id }}'; </script>
-<script src='{% static 'js/sortSpecData.js' %}'></script>
-<script src='{% static 'js/getDataProduct.js' %}'></script>
-<script src='{% static 'js/renderProductDataInFilerBox.js' %}'></script>

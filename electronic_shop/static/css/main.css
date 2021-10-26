@@ -25,7 +25,7 @@ body {
   text-align: center; }
 
 .small-container {
-  max-width: 1680px;
+  max-width: 1480px;
   margin: 0 auto;
   text-align: center; }
 
@@ -257,7 +257,7 @@ body {
   text-align: center; }
 
 .small-container {
-  max-width: 1680px;
+  max-width: 1480px;
   margin: 0 auto;
   text-align: center; }
 
@@ -750,7 +750,7 @@ a {
   box-shadow: 6px 13px 24px -5px rgba(0, 0, 0, 0.17); }
   .main-product-div .mini-images-section {
     padding: 2rem;
-    width: 12%; }
+    width: 10rem; }
     .main-product-div .mini-images-section .mini-img {
       border: 1px solid #cbcbcb; }
       .main-product-div .mini-images-section .mini-img:hover {
@@ -761,7 +761,8 @@ a {
     .main-product-div .buttons a:hover {
       text-decoration: none; }
   .main-product-div .main-img {
-    height: 40rem; }
+    padding-right: 4rem;
+    width: 40rem; }
     .main-product-div .main-img-div {
       box-sizing: border-box;
       height: 70%; }
@@ -771,23 +772,28 @@ a {
       object-fit: contain; }
 
 .main-content {
-  width: 35%;
+  width: 25rem;
   padding: 1rem;
-  color: #0d0d0d; }
-  .main-content .extend-p-a, .main-content .select-section .data-blocks p, .main-content .select-section .data-blocks button, .main-content .filter-section-reviews > div p, .main-content .filter-section-reviews > div a {
+  color: #0d0d0d;
+  padding-bottom: 0 !important; }
+  .main-content .extend-p-a, .main-content .select-section .data-blocks p, .main-content .select-section .not-data-block p, .main-content .select-section .data-blocks button, .main-content .select-section .not-data-block button, .main-content .filter-section-reviews > div p, .main-content .filter-section-reviews > div a {
     line-height: 20px;
     font-weight: 300;
     font-size: 0.9rem; }
   .main-content .select-section {
     margin-bottom: 1rem; }
-    .main-content .select-section .data-blocks button {
+    .main-content .select-section .data-blocks button, .main-content .select-section .not-data-block button {
       text-decoration: none;
       background-color: #f2f2f2;
       line-height: 24px;
       cursor: pointer;
       font-family: "Poppins", sans-serif; }
-    .main-content .select-section .data-blocks:nth-child(1) {
+    .main-content .select-section .data-blocks:nth-child(1), .main-content .select-section .not-data-block:nth-child(1) {
       padding-top: 1rem; }
+    .main-content .select-section .data-blocks .product-spec-span, .main-content .select-section .not-data-block .product-spec-span {
+      color: #0d0d0d;
+      font-weight: 600;
+      font-size: 0.9rem; }
   .main-content .product-title {
     font-size: 1.1rem; }
   .main-content h4 {
@@ -826,15 +832,27 @@ a {
 .buys {
   order: 2;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  margin-left: 3rem !important; }
   .buys-container {
     position: sticky;
     z-index: 1000;
     top: 0; }
+    .buys-container div:nth-child(1) {
+      width: 12rem; }
+    .buys-container a {
+      padding: 2rem;
+      font-size: 1rem;
+      width: 100%; }
+    .buys-container .free-deliver h3 {
+      font-weight: 100;
+      font-size: 1rem; }
   .buys .arrow-up {
     width: 100% !important; }
     .buys .arrow-up a {
       font-size: 2.5rem; }
+  .buys .pieces {
+    font-size: 0.9rem; }
 
 .rest-section {
   order: 1; }
@@ -852,9 +870,6 @@ a {
       width: 80%;
       display: block;
       right: 0; }
-    .buy-container .free-deliver h3 {
-      font-weight: 100;
-      font-size: 1.2rem; }
   .buy-it a {
     width: 100%;
     font-size: 1.2rem;
@@ -915,17 +930,17 @@ a {
     border: none; }
 
 #opinions h4 {
-  font-size: 2rem; }
+  font-size: 1.1rem; }
 
 #opinions .stars-class .stars i {
-  font-size: 2rem; }
+  font-size: 1rem; }
 
 #opinions .stars-class p {
   font-size: 1.2rem !important;
   width: 100%; }
 
 #opinions .stars-class a {
-  font-size: 1.5rem; }
+  font-size: 1rem; }
 
 #opinions .rated-on p {
   font-size: 1rem; }
@@ -5001,6 +5016,15 @@ a {
 
 .submit-button {
   border: none; }
+
+#productsList .product-bar {
+  display: block;
+  max-width: 100%;
+  flex: 100%; }
+
+#productsList .img-wrap img {
+  width: 20px;
+  height: 20px; }
 
 .navbar {
   display: grid;

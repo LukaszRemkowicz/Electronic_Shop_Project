@@ -4,10 +4,11 @@
 
     &-product-div{
         box-shadow: 6px 13px 24px -5px rgba(0,0,0,0.17);
+        // height: 30rem;
 
         .mini-images-section{
             padding: 2rem;
-            width: 12%;
+            width: 10rem;
 
             & .mini-img{
                 border: 1px solid #cbcbcb;
@@ -30,7 +31,8 @@
         }
 
         & .main-img{
-            height: 40rem;
+            padding-right: 4rem;
+            width: 40rem;
 
             &-div{
                 box-sizing: border-box;
@@ -46,9 +48,10 @@
     }
 
     &-content{
-        width: 35%;
+        width: 25rem;
         padding: 1rem;
         color: #0d0d0d;
+        padding-bottom: 0 !important;
 
         .extend-p-a{
             line-height: 20px;
@@ -78,7 +81,19 @@
                 &:nth-child(1){
                     padding-top: 1rem;
                 }
+
+                & .product-spec-span{
+                    color: #0d0d0d;
+                    font-weight: 600;
+                    font-size: 0.9rem;
+                }
+
             }
+
+            & .not-data-block{
+                @extend .data-blocks
+            }
+
         }
 
         & .product-title{
@@ -167,6 +182,8 @@
     order: 2;
     display: flex;
     justify-content: space-between;
+    margin-left: 3rem !important;
+
 
     &-container{
         position: sticky;
@@ -174,6 +191,25 @@
         // right: 2rem;
         z-index: 1000;
         top: 0;
+
+        & div:nth-child(1){
+            width: 12rem;
+        }
+
+        & a {
+            padding: 2rem;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        & .free-deliver{
+
+            & h3{
+                font-weight: 100;
+                font-size: 1rem;
+            }
+        }
+
     }
 
     .arrow-up{
@@ -183,6 +219,12 @@
             font-size: 2.5rem;
         }
     }
+
+    .pieces {
+        font-size: 0.9rem;
+    }
+
+    
 }
 
 .rest-section{
@@ -207,13 +249,7 @@
 
         }
 
-        & .free-deliver{
-
-            & h3{
-                font-weight: 100;
-                font-size: 1.2rem;
-            }
-        }
+        
     }
     &-it{
 
@@ -321,22 +357,25 @@
 
 #opinions{
     h4{
-        font-size: 2rem;
+        font-size: 1.1rem;
     }
 
     & .stars-class{
 
-        .stars i{
-            font-size: 2rem;
+        .stars {
+            & i{
+            font-size: 1rem;
+            }
 
         }
+
         & p{
             font-size: 1.2rem !important;
             width: 100%;
         }
 
         & a{
-            font-size: 1.5rem;
+            font-size: 1rem;
         }
     }
 

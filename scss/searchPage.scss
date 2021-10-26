@@ -1,0 +1,16 @@
+#productsList{
+
+    & .product-bar{
+        display: block;
+        max-width: 100%;
+        flex: 100%;
+    }
+    .img-wrap{
+
+        & img{
+            
+            width: 20px;
+            height: 20px;
+        }
+    }
+}

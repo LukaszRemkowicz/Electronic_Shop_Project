@@ -1,38 +1,23 @@
-{% load static %}
+<div class="pt-5  not-data-block mb-0">
 
-<div class="color-section">
+    <p class="pl-5 text-left font-light-grey">
+        Producent Code:
+        <span class='product-spec-span'>{{ product.pendrive_product_data.producent_code }}</span>
+    </p>
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left">
-                Producent Code:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.pendrive_product_data.producent_code }}</p>
-        </div>
+    <p class="pl-5 text-left font-light-grey">
+        Ean:
+        <span class='product-spec-span'>{{ product.pendrive_product_data.ean }}</span>
+    </p>
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left d-inline">
-            Ean:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.pendrive_product_data.ean }}</p>
-        </div>
+    <p class="pl-5 text-left font-light-grey">
+        Capacity:
+        <span class='product-spec-span'>{{ product.pendrive_product_data.capacity }}</span>
+    </p>
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left d-inline">
-                Capacity:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.pendrive_product_data.capacity }}</p>
-        </div>
+    <p class="pl-5 text-left font-light-grey">
+        Connections:
+        <span class='product-spec-span'>{{ product.pendrive_product_data.connector }}</span>
+    </p>
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left d-inline">
-                Connections:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.pendrive_product_data.connector }}</p>
-        </div>
-
-    </div>
-
-<script> let productIds = '{{ same_products.items_id }}'; </script>
-<script src='{% static 'js/sortSpecData.js' %}'></script>
-<script src='{% static 'js/getDataProduct.js' %}'></script>
-
+</div>

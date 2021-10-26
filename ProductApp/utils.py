@@ -4,6 +4,11 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from ProductApp import models
 
+def check_no_data(obj: Any) -> Any:
+    """ Filter to find out if there is 'No data' value """
+    return [element for element in obj if element != 'No data']
+
+
 def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict:
 
     if cattegory == 'Phones':
@@ -11,10 +16,10 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
         same_products = models.MainProductDatabase.objects.filter(phones_product_data__model=product_model)[:4]
         same_products_data = {
             'items' : same_products,
-            'colors' : set([element.phones_product_data.color for element in same_products]),
-            'memory' : set([element.phones_product_data.memory for element in same_products]),
-            'ram' : set([element.phones_product_data.ram for element in same_products]),
-            'battery' : set([element.phones_product_data.battery for element in same_products]),
+            'colors' : check_no_data({element.phones_product_data.color for element in same_products}),
+            'memory' : check_no_data({element.phones_product_data.memory for element in same_products}),
+            'ram' : check_no_data({element.phones_product_data.ram for element in same_products}),
+            'battery' : check_no_data({element.phones_product_data.battery for element in same_products}),
             'items_id' : [element.id for element in same_products]
         }
         print(same_products_data)
@@ -26,14 +31,14 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
         same_products = models.MainProductDatabase.objects.filter(laptops_product_data__model=product_model)
         same_products_data = {
             'items' : same_products,
-            'p_c_i_e' : set([element.laptops_product_data.p_c_i_e for element in same_products]),
-            'ram' : set([element.laptops_product_data.ram for element in same_products]),
-            'system' : set([element.laptops_product_data.system for element in same_products]),
-            'processor' : set([element.laptops_product_data.processor for element in same_products]),
+            'p_c_i_e' : check_no_data({element.laptops_product_data.p_c_i_e for element in same_products}),
+            'ram' : check_no_data({element.laptops_product_data.ram for element in same_products}),
+            'system' : check_no_data({element.laptops_product_data.system for element in same_products}),
+            'processor' : check_no_data({element.laptops_product_data.processor for element in same_products}),
             'items_id' : [element.id for element in same_products]
         }
         if product.laptops_product_data.producent == 'Apple':
-            same_products_data['colors'] = set([element.laptops_product_data.color for element in same_products])
+            same_products_data['colors'] = {element.laptops_product_data.color for element in same_products}
             same_products_data['system'] = ''
             same_products_data['processor'] = ''
 
@@ -45,11 +50,11 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
         same_products = models.MainProductDatabase.objects.filter(pc_product_data__model=product_model)
         same_products_data = {
             'items' : same_products,
-            'p_c_i_e' : set([element.pc_product_data.p_c_i_e for element in same_products]),
-            'ram' : set([element.pc_product_data.ram for element in same_products]),
-            'system' : set([element.pc_product_data.system for element in same_products]),
-            'graph' : set([element.pc_product_data.graph for element in same_products]),
-            'processor' : set([element.pc_product_data.processor for element in same_products]),
+            'p_c_i_e' : check_no_data({element.pc_product_data.p_c_i_e for element in same_products}),
+            'ram' : check_no_data({element.pc_product_data.ram for element in same_products}),
+            'system' : check_no_data({element.pc_product_data.system for element in same_products}),
+            'graph' : check_no_data({element.pc_product_data.graph for element in same_products}),
+            'processor' : check_no_data({element.pc_product_data.processor for element in same_products}),
             'items_id' : [element.id for element in same_products]
         }
 
@@ -61,10 +66,10 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
         same_products = models.MainProductDatabase.objects.filter(monitors_product_data__model=product_model)
         same_products_data = {
             'items' : same_products,
-            'colors' : set([element.monitors_product_data.color for element in same_products]),
-            'refresh_rate' : set([element.monitors_product_data.refresh_rate for element in same_products]),
-            'power_consumption' : set([element.monitors_product_data.power_consumption for element in same_products]),
-            'diagonal' : set([element.monitors_product_data.diagonal for element in same_products]),
+            'colors' : check_no_data({element.monitors_product_data.color for element in same_products}),
+            'refresh_rate' : check_no_data({element.monitors_product_data.refresh_rate for element in same_products}),
+            'power_consumption' : check_no_data({element.monitors_product_data.power_consumption for element in same_products}),
+            'diagonal' : check_no_data({element.monitors_product_data.diagonal for element in same_products}),
             'items_id' : [element.id for element in same_products]
         }
 
@@ -76,9 +81,9 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
         same_products = models.MainProductDatabase.objects.filter(ssd_product_data__model=product_model)
         same_products_data = {
             'items' : same_products,
-            'capacity' : set([element.ssd_product_data.capacity for element in same_products]),
-            'reading_speed' : set([element.ssd_product_data.reading_speed for element in same_products]),
-            'writing_speed' : set([element.ssd_product_data.writing_speed for element in same_products]),
+            'capacity' : check_no_data({element.ssd_product_data.capacity for element in same_products}),
+            'reading_speed' : check_no_data({element.ssd_product_data.reading_speed for element in same_products}),
+            'writing_speed' : check_no_data({element.ssd_product_data.writing_speed for element in same_products}),
             'items_id' : [element.id for element in same_products]
         }
 
@@ -90,10 +95,10 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
         same_products = models.MainProductDatabase.objects.filter(ram_product_data__model=product_model)
         same_products_data = {
             'items' : same_products,
-            'capacity' : set([element.ram_product_data.capacity for element in same_products]),
-            'modules_number' : set([element.ram_product_data.modules_number for element in same_products]),
-            'delay' : set([element.ram_product_data.delay for element in same_products]),
-            'frequency' : set([element.ram_product_data.frequency for element in same_products]),
+            'capacity' : check_no_data({element.ram_product_data.capacity for element in same_products}),
+            'modules_number' : check_no_data({element.ram_product_data.modules_number for element in same_products}),
+            'delay' : check_no_data({element.ram_product_data.delay for element in same_products}),
+            'frequency' : check_no_data({element.ram_product_data.frequency for element in same_products}),
             'items_id' : [element.id for element in same_products]
         }
 
@@ -105,7 +110,7 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
         same_products = models.MainProductDatabase.objects.filter(pendrive_product_data__model=product_model)
         same_products_data = {
             'items' : same_products,
-            'capacity' : set([element.pendrive_product_data.capacity for element in same_products]),
+            'capacity' : check_no_data({element.pendrive_product_data.capacity for element in same_products}),
             'items_id' : [element.id for element in same_products]
         }
 
@@ -117,9 +122,9 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
         same_products = models.MainProductDatabase.objects.filter(switch_product_data__model=product_model)
         same_products_data = {
             'items' : same_products,
-            'num_of_poe' : set([element.switch_product_data.num_of_poe for element in same_products]),
-            'ports_num' : set([element.switch_product_data.ports_num for element in same_products]),
-            'bus_speed' : set([element.switch_product_data.bus_speed for element in same_products]),
+            'num_of_poe' : check_no_data({element.switch_product_data.num_of_poe for element in same_products}),
+            'ports_num' : check_no_data({element.switch_product_data.ports_num for element in same_products}),
+            'bus_speed' : check_no_data({element.switch_product_data.bus_speed for element in same_products}),
             'items_id' : [element.id for element in same_products]
         }
 
@@ -131,7 +136,7 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
         same_products = models.MainProductDatabase.objects.filter(tv_product_data__model=product_model)
         same_products_data = {
             'items' : same_products,
-            'diagonal' : set([element.tv_product_data.diagonal for element in same_products]),
+            'diagonal' : check_no_data({element.tv_product_data.diagonal for element in same_products}),
             'items_id' : [element.id for element in same_products]
         }
 
@@ -143,7 +148,7 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
         same_products = models.MainProductDatabase.objects.filter(headphone_product_data__model=product_model)
         same_products_data = {
             'items' : same_products,
-            'colors' : set([element.headphone_product_data.color for element in same_products]),
+            'colors' : check_no_data({element.headphone_product_data.color for element in same_products}),
             'items_id' : [element.id for element in same_products]
         }
 
@@ -155,8 +160,8 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
         same_products = models.MainProductDatabase.objects.filter(accesories_for_laptop__model=product_model)
         same_products_data = {
             'items' : same_products,
-            'color' : set([element.accesories_for_laptop.color for element in same_products]),
-            'diagonal' : set([element.accesories_for_laptop.diagonal_for_cases for element in same_products]),
+            'color' : check_no_data({element.accesories_for_laptop.color for element in same_products}),
+            'diagonal' : check_no_data({element.accesories_for_laptop.diagonal_for_cases for element in same_products}),
             'items_id' : [element.id for element in same_products]
         }
 

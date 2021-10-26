@@ -16,11 +16,12 @@
 
                     <button
                     href=""
-                    class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data
-                    {% if element == product.color %}active-product-content bg-white
-                    {% else %}light-border
+                    class="btn-light d-inline py-2 mt-2 mb-2 mr-2 spec-product-data
+                    {% if element == product.color %} active-product-content bg-white
+                    {% else %} light-border
                     {% endif %}
-                    {% if element|length >= 15 %} font-point-seven-rem
+                    {% if element|length >= 6 %} font-point-seven-rem px-2
+                    {% else %} px-3
                     {% endif %} ">{{ element }}
                     </button>
 
@@ -35,7 +36,7 @@
 
         <div class="processor-section data-blocks">
             <p class="px-5 pt-4 text-left">
-                Memory [GB]:
+                Memory:
             </p>
             <div class="buttons d-flex px-5 sort_items
             {% if same_products.memory|length >= 4 %}flex-wrap
@@ -45,11 +46,12 @@
 
                     <button
                     href=""
-                    class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data
+                    class="btn-light d-inline mt-2 mb-2 mr-2 py-2 spec-product-data
                     {% if element == product.phones_product_data.memory %}active-product-content bg-white
                     {% else %}light-border
                     {% endif %}
-                    {% if element|length >= 15 %} font-point-seven-rem
+                    {% if element|length >= 6 %} font-point-seven-rem px-2
+                    {% else %} px-3
                     {% endif %} ">{{ element }}
                     </button>
 
@@ -64,7 +66,7 @@
 
         <div class="ram-section data-blocks">
             <p class="px-5 pt-4 text-left">
-                RAM [GB]:
+                RAM:
             </p>
             <div class="buttons d-flex px-5 sort_items
             {% if same_products.ram|length >= 4 %}flex-wrap
@@ -74,11 +76,12 @@
 
                     <button
                     href=""
-                    class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data
+                    class="btn-light d-inline mt-2 mb-2 mr-2 py-2 spec-product-data
                     {% if element == product.phones_product_data.ram %}active-product-content bg-white
                     {% else %}light-border
                     {% endif %}
-                    {% if element|length >= 15 %} font-point-seven-rem
+                    {% if element|length >= 6 %} font-point-seven-rem px-2
+                    {% else %} px-3
                     {% endif %} ">{{ element }}
                     </button>
 
@@ -103,9 +106,12 @@
 
                     <button
                     href=""
-                    class="btn-light d-inline px-3 mt-2 mb-2 mr-2 py-2 spec-product-data
+                    class="btn-light d-inline mt-2 mb-2 mr-2 py-2 spec-product-data
                     {% if element == product.phones_product_data.battery %}active-product-content bg-white
                     {% else %}light-border
+                    {% endif %}
+                    {% if element|length >= 6 %} font-point-seven-rem px-2
+                    {% else %} px-3
                     {% endif %} ">{{ element }}
                     </button>
 
@@ -118,55 +124,38 @@
 
 {% else %}
 
-    <div class="color-section">
+    <div class="pt-5  not-data-block mb-0">
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left">
-                Producent Code:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.phones_product_data.producent_code }}</p>
-        </div>
+        <p class="pl-5 text-left font-light-grey">
+            Producent Code:
+            <span class='product-spec-span'>{{ product.phones_product_data.producent_code }}</span>
+        </p>
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left d-inline">
+        <p class="pl-5 text-left font-light-grey">
             Ean:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.phones_product_data.ean }}</p>
-        </div>
+            <span class='product-spec-span'>{{ product.phones_product_data.ean }}</span>
+        </p>
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left d-inline">
-                Color:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.phones_product_data.color }}</p>
-        </div>
+        <p class="pl-5 text-left font-light-grey">
+            Color:
+            <span class='product-spec-span'>{{ product.phones_product_data.color }}</span>
+        </p>
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left d-inline">
-                RAM:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.phones_product_data.ram }}</p>
-        </div>
+        <p class="pl-5 text-left font-light-grey">
+            RAM:
+            <span class='product-spec-span'>{{ product.phones_product_data.ram }}</span>
+        </p>
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left d-inline">
-                Memory:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.phones_product_data.memory }}</p>
-        </div>
+        <p class="pl-5 text-left font-light-grey">
+            Memory:
+            <span class='product-spec-span'>{{ product.phones_product_data.memory }}</span>
+        </p>
 
-        <div class="d-flex">
-            <p class="px-5 pt-1 text-left d-inline">
-                Battery [mAh]:
-            </p>
-            <p class="px-5 pt-1 text-left font-light-grey">{{ product.phones_product_data.battery }}</p>
-        </div>
+        <p class="pl-5 text-left font-light-grey">
+            Battery [mAh]:
+            <span class='product-spec-span'>{{ product.phones_product_data.battery }}</span>
+        </p>
 
     </div>
 
 {% endif %}
-
-<script> let productIds = '{{ same_products.items_id }}'; </script>
-<script src='{% static 'js/sortSpecData.js' %}'></script>
-<script src='{% static 'js/getDataProduct.js' %}'></script>
-<script src='{% static 'js/renderProductDataInFilerBox.js' %}'></script>

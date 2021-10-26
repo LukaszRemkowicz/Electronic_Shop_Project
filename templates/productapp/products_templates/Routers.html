@@ -1,53 +1,48 @@
-<div class="color-section">
+<div class="pt-5  not-data-block mb-0">
 
-    <div class="d-flex">
-        <p class="px-5 pt-1 text-left">
-            Producent Code:
-        </p>
-        <p class="px-5 pt-1 text-left font-light-grey">{{ product.router_product_data.producent_code }}</p>
-    </div>
+    <p class="pl-5 text-left font-light-grey">
+        Producent Code:
+        <span class='product-spec-span'>{{ product.router_product_data.producent_code }}</span>
+    </p>
 
-    <div class="d-flex">
-        <p class="px-5 pt-1 text-left d-inline">
+    <p class="pl-5 text-left font-light-grey">
         Ean:
-        </p>
-        <p class="px-5 pt-1 text-left font-light-grey">{{ product.router_product_data.ean }}</p>
-    </div>
+        <span class='product-spec-span'>{{ product.router_product_data.ean }}</span>
+    </p>
 
-    <div class="d-flex">
-        <p class="px-5 pt-1 text-left d-inline">
-            Wifi standard:
-        </p>
-        <p class="px-5 pt-1 text-left font-light-grey">
+    <p class="pl-5 text-left font-light-grey">
+        Wifi standard:
+        <span class='product-spec-span'>
         {% if product.router_product_data.wifi %}{{ product.router_product_data.wifi }}
         {% else %}N/a
         {% endif %}
-        </p>
-    </div>
+        </span>
+    </p>
 
-    <div class="d-flex">
-        <p class="px-5 pt-1 text-left d-inline">
-            Encryption standard:
-        </p>
-        <p class="px-5 pt-1 text-left font-light-grey">
-            {% if product.router_product_data.encryption_standard %}{{ product.router_product_data.encryption_standard }}
-            {% else %}N/a
-            {% endif %}
-        </p>
-    </div>
+    <p class="pl-5 text-left font-light-grey">
+        Encryption standard:
+        <span class='product-spec-span'>
+        {% if product.router_product_data.encryption_standard %}{{ product.router_product_data.encryption_standard }}
+        {% else %}N/a
+        {% endif %}</span>
+    </p>
 
-    <div class="d-flex">
-        <p class="px-5 pt-1 text-left d-inline">
-            Lan ports:
-        </p>
-        <p class="px-5 pt-1 text-left font-light-grey">{{ product.router_product_data.lan_ports }}</p>
-    </div>
+    <p class="pl-5 text-left font-light-grey">
+        Lan ports:
+        <span class='product-spec-span'>
+        {% if product.router_product_data.lan_ports %}{{ product.router_product_data.lan_ports }}
+        {% else %}N/a
+        {% endif %}
+        </span>
+    </p>
 
-    <div class="d-flex">
-        <p class="px-5 pt-1 text-left d-inline">
-            Wan ports:
-        </p>
-        <p class="px-5 pt-1 text-left font-light-grey">{{ product.router_product_data.wan_ports }}</p>
-    </div>
+    <p class="pl-5 text-left font-light-grey">
+        Wan ports:
+        <span class='product-spec-span'>
+        {% if product.router_product_data.wan_ports %}{{ product.router_product_data.wan_ports }}
+        {% else %}N/a
+        {% endif %}
+        </span>
+    </p>
+
 </div>
-

@@ -12,11 +12,12 @@
 
                 {% for element in same_products.color %}
 
-                    <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data
+                    <button href="" class="btn-light d-inline py-2 mt-2 mb-2 mr-2 spec-product-data
                     {% if element == product.accesories_for_laptop.color %}active-product-content bg-white
                     {% else %}light-border
-                    {% if element|length >= 15 %} font-point-seven-rem
                     {% endif %}
+                    {% if element|length >= 6 %} font-point-seven-rem px-2
+                    {% else %} px-3
                     {% endif %}">{{ element }}
                     </button>
 
@@ -39,11 +40,12 @@
 
                 {% for element in same_products.diagonal %}
 
-                    <button href="" class="btn-light d-inline px-4 py-2 mt-2 mb-2 mr-2 spec-product-data
+                    <button href="" class="btn-light d-inline py-2 mt-2 mb-2 mr-2 spec-product-data
                     {% if element == product.accesories_for_laptop.diagonal_for_cases %}active-product-content bg-white
                     {% else %}light-border
                     {% endif %}
-                    {% if element|length >= 15 %} font-point-seven-rem
+                    {% if element|length >= 6 %} font-point-seven-rem px-2
+                    {% else %} px-3
                     {% endif %}">{{ element }}
                     </button>
 
@@ -54,23 +56,26 @@
 
     {% endif %}
 
-<div class="color-section">
-    <p class="px-5 pt-1 text-left">
+<div class="pt-5 data-blocks mb-0">
+
+    <p class="pl-5 text-left font-light-grey">
         Producent Code:
+        <span class='product-spec-span'>{{ product.accesories_for_laptop.producent_code }}</span>
     </p>
-    <p>{{ product.accesories_for_laptop.producent_code }}</p>
-    <p class="px-5 pt-1 text-left">
+
+    <p class="pl-5 text-left font-light-grey">
         Ean:
+        <span class='product-spec-span'>{{ product.accesories_for_laptop.ean }}</span>
     </p>
-    <p>{{ product.accesories_for_laptop.ean }}</p>
-    <p class="px-5 pt-1 text-left">
-        Color:
-    </p>
-    <p>{{ product.accesories_for_laptop.color }}</p>
+
+    {% if product.color %}
+
+        <p class="pl-5 text-left font-light-grey">
+            Color:
+            <span class='product-spec-span'>{{ product.accesories_for_laptop.color }}</span>
+        </p>
+
+    {% endif %}
+
 
 </div>
-
-<script> let productIds = '{{ same_products.items_id }}'; </script>
-<script src='{% static 'js/sortSpecData.js' %}'></script>
-<script src='{% static 'js/getDataProduct.js' %}'></script>
-<script src='{% static 'js/renderProductDataInFilerBox.js' %}'></script>

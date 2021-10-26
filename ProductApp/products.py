@@ -288,7 +288,7 @@ Samsung_Galaxy_S20_FE_128GB_Dual_SIM_Blue={
                 'cattegory': 'Phones',
                 'main_photo': 'Samsung Galaxy s20 Blue 128GB_1.jpg',
                 'second_photo': 'Samsung Galaxy s20 Blue 128GB_2.jpg',
-                'third_photo': 'Samsung Galaxy s20 Blue 128GB_2.jpg',
+                'third_photo': 'Samsung Galaxy s20 Blue 128GB_3.jpg',
             }
 
 Samsung_Galaxy_S20_FE_256GB_Dual_SIM_Pink={
@@ -2283,7 +2283,7 @@ Game_X_G500_Core_i5_10400F_32_GB_RTX_3070_Ti_1_TB_M2_PCIe_2_TB_HDD= {
     'processor': 'Core i5-10400F',
     'socket': 'LGA 1200',
     'cooler': 'SilentiumPC Fera 5',
-    'graph': ' RTX 3070 Ti',
+    'graph': 'RTX 3070 Ti',
     'motherboard_chipset': 'Intel B460',
     'ram': 32,
     'ram_type': 'DDR4',
@@ -2430,7 +2430,7 @@ Game_X_G500_Core_i5_10400F_64_GB_RTX_3070_Ti_2_TB_M2_PCIe_1_TB_HDD_Windows_10_Ho
     'ean': 6090915568549,
     'model': 'created_in_shop_group_1',
     'price': 2449.99,
-    'pieces': 2,
+    'pieces': 10,
     'cattegory': 'PC',
     'system': 'Windows 10 Home',
     'wifi': 'Asus USB-N10 Nano B1',
@@ -4939,7 +4939,6 @@ TP_Link_TL_SG1016D = {
     'ports_num': '16x 10/100/1000',
     'main_photo': 'TP-Link TL-SG1016D_1.jpg',
     'second_photo': 'TP-Link TL-SG1016D_2.jpg',
-    'third_photo': 'TP-Link TL-SG1016D_3.jpg',
 }
 
 TP_Link_TL_SF1008D = {
@@ -4984,7 +4983,6 @@ TP_Link_TL_SG108PE = {
     'num_of_poe': '4',
     'main_photo': 'TP-Link TL-SG108PE_1.jpg',
     'second_photo': 'TP-Link TL-SG108PE_2.jpg',
-    'third_photo': 'TP-Link TL-SG108PE_3.jpg',
 }
 
 TP_Link_LS1008G = {
@@ -5066,7 +5064,7 @@ Ubiquiti_USW_Flex = {
     'deep': 107,
     'weight': 230,
     'manageable': 'Yes',
-    'bus_speed': 'No Data',
+    'bus_speed': 'N/a',
     'ports_num': '5x 10/100/1000',
     'num_of_poe': '5',
     'main_photo': 'Ubiquiti USW Flex_1.jpg',
