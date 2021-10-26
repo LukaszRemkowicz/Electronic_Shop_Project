@@ -234,6 +234,16 @@ a {
 .alert {
   animation: autoHide 0s ease-in 4s forwards; }
 
+.extend-p-a, .main-content .select-section .data-blocks p, .main-content .select-section .not-data-block p, .main-content .filter-section-reviews > div p, .main-content .filter-section-reviews > div a, .not-data-block {
+  line-height: 20px;
+  font-weight: 300;
+  font-size: 0.9rem; }
+
+.extend-product-spec-span, .main-content .select-section .data-blocks .product-spec-span, .main-content .select-section .not-data-block .product-spec-span, .not-data-block span {
+  color: #0d0d0d;
+  font-weight: 600;
+  font-size: 0.9rem; }
+
 * {
   padding: 0;
   box-sizing: border-box;
@@ -465,6 +475,16 @@ a {
 
 .alert {
   animation: autoHide 0s ease-in 4s forwards; }
+
+.extend-p-a, .main-content .select-section .data-blocks p, .main-content .select-section .not-data-block p, .main-content .filter-section-reviews > div p, .main-content .filter-section-reviews > div a, .not-data-block {
+  line-height: 20px;
+  font-weight: 300;
+  font-size: 0.9rem; }
+
+.extend-product-spec-span, .main-content .select-section .data-blocks .product-spec-span, .main-content .select-section .not-data-block .product-spec-span, .not-data-block span {
+  color: #0d0d0d;
+  font-weight: 600;
+  font-size: 0.9rem; }
 
 .form-container {
   margin-top: 1rem;
@@ -776,7 +796,7 @@ a {
   padding: 1rem;
   color: #0d0d0d;
   padding-bottom: 0 !important; }
-  .main-content .extend-p-a, .main-content .select-section .data-blocks p, .main-content .select-section .not-data-block p, .main-content .select-section .data-blocks button, .main-content .select-section .not-data-block button, .main-content .filter-section-reviews > div p, .main-content .filter-section-reviews > div a {
+  .main-content .extend-p-a, .main-content .select-section .data-blocks p, .main-content .select-section .not-data-block p, .main-content .filter-section-reviews > div p, .main-content .filter-section-reviews > div a, .main-content .not-data-block {
     line-height: 20px;
     font-weight: 300;
     font-size: 0.9rem; }
@@ -790,10 +810,6 @@ a {
       font-family: "Poppins", sans-serif; }
     .main-content .select-section .data-blocks:nth-child(1), .main-content .select-section .not-data-block:nth-child(1) {
       padding-top: 1rem; }
-    .main-content .select-section .data-blocks .product-spec-span, .main-content .select-section .not-data-block .product-spec-span {
-      color: #0d0d0d;
-      font-weight: 600;
-      font-size: 0.9rem; }
   .main-content .product-title {
     font-size: 1.1rem; }
   .main-content h4 {
@@ -810,6 +826,9 @@ a {
     cursor: pointer; }
   .main-content .filter-section-reviews > div i {
     font-size: 0.7rem; }
+
+.not-data-block p {
+  margin-bottom: 0; }
 
 #product-section .grid-container p {
   font-size: 1.1rem; }
@@ -5017,14 +5036,42 @@ a {
 .submit-button {
   border: none; }
 
+#productsList .productList-flex {
+  flex-direction: row;
+  height: fit-content;
+  height: 15rem;
+  overflow: hidden; }
+
 #productsList .product-bar {
   display: block;
   max-width: 100%;
   flex: 100%; }
 
-#productsList .img-wrap img {
-  width: 20px;
-  height: 20px; }
+#productsList .img-wrap, #productsList .product-description-list-page, #productsList .product-price-lsit-page {
+  padding: 1rem;
+  margin-left: 3rem;
+  width: 10rem;
+  height: 100%; }
+  #productsList .img-wrap img, #productsList .product-description-list-page img, #productsList .product-price-lsit-page img {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+    display: block;
+    align-self: center; }
+
+#productsList .product-description-list-page {
+  width: 45rem;
+  padding-top: 1rem; }
+  #productsList .product-description-list-page a, #productsList .product-description-list-page p, #productsList .product-description-list-page i {
+    font-size: 0.9rem; }
+
+#productsList .not-data-block {
+  padding-top: 2rem !important; }
+  #productsList .not-data-block p {
+    padding-left: 0 !important; }
+
+#productsList .descriptionList {
+  padding-top: 0; }
 
 .navbar {
   display: grid;
