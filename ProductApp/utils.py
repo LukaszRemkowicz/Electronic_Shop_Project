@@ -507,41 +507,36 @@ def try_to_get_product(product: models.MainProductDatabase, instance: Any) -> mo
     """ Help function for signals. Try to get specific product from model """
 
     instance_obj = models.MainProductDatabase.objects.get(ean=product.ean)
-    print('tutaj jestem ', instance_obj.__dict__)
-    # print(hasattr( instance_obj.phones_product_dat))
 
-    LIST_OF_MODELS = [models.Phones, models.Monitors, models.Laptops, models.Pc, models.AccesoriesForLaptops, models.Ssd, models.Graphs, models.Ram, models.Pendrives, models.Switches, models.Motherboard, models.Cpu, models.Tv, models.Headphones, models.Routers]
+    check_if_obj_is_instance_of = {
 
-    dictt = {
-
-        'pc_product_data': (lambda obj: isinstance(obj, models.Pc) if True else ''),
-        'monitors_product_data': (lambda obj: isinstance(obj, models.Monitors) if True else ''),
-        'phones_product_data': (lambda obj: isinstance(obj, models.Phones) if True else ''),
-        'laptops_product_data': (lambda obj: isinstance(obj, models.Laptops) if True else ''),
-        'accesories_for_laptop': (lambda obj: isinstance(obj, models.AccesoriesForLaptops) if True else ''),
-        'ssd_product_data': (lambda obj: isinstance(obj, models.Ssd) if True else ''),
-        'graph_product_data': (lambda obj: isinstance(obj, models.Graphs) if True else ''),
-        'ram_product_data': (lambda obj: isinstance(obj, models.Ram) if True else ''),
-        'pendrive_product_data': (lambda obj: isinstance(obj, models.Pendrives) if True else ''),
-        'switch_product_data': (lambda obj: isinstance(obj, models.Switches) if True else ''),
-        'motherboard_product_data': (lambda obj: isinstance(obj, models.Motherboard) if True else ''),
-        'cpu_product_data': (lambda obj: isinstance(obj, models.Cpu) if True else ''),
-        'tv_product_data': (lambda obj: isinstance(obj, models.Tv) if True else ''),
-        'headphone_product_data': (lambda obj: isinstance(obj, models.Headphones) if True else ''),
-        'router_product_data': (lambda obj: isinstance(obj, models.Routers) if True else ''),
+        'pc_product_data': lambda obj: isinstance(obj, models.Pc) if True else '',
+        'monitors_product_data': lambda obj: isinstance(obj, models.Monitors) if True else '',
+        'phones_product_data': lambda obj: isinstance(obj, models.Phones) if True else '',
+        'laptops_product_data': lambda obj: isinstance(obj, models.Laptops) if True else '',
+        'accesories_for_laptop': lambda obj: isinstance(obj, models.AccesoriesForLaptops) if True else '',
+        'ssd_product_data': lambda obj: isinstance(obj, models.Ssd) if True else '',
+        'graph_product_data': lambda obj: isinstance(obj, models.Graphs) if True else '',
+        'ram_product_data': lambda obj: isinstance(obj, models.Ram) if True else '',
+        'pendrive_product_data': lambda obj: isinstance(obj, models.Pendrives) if True else '',
+        'switch_product_data': lambda obj: isinstance(obj, models.Switches) if True else '',
+        'motherboard_product_data': lambda obj: isinstance(obj, models.Motherboard) if True else '',
+        'cpu_product_data': lambda obj: isinstance(obj, models.Cpu) if True else '',
+        'tv_product_data': lambda obj: isinstance(obj, models.Tv) if True else '',
+        'headphone_product_data': lambda obj: isinstance(obj, models.Headphones) if True else '',
+        'router_product_data': lambda obj: isinstance(obj, models.Routers) if True else '',
 
     }
 
     for key, value in model_to_dict(instance_obj).items():
+
         if getattr(instance_obj, key) != None:
-            # print('-'*40)
-            # print(key)
-            # print(value)
-            att = getattr(instance_obj, key)
-            # print(type(att))
+
+            get_instance_attribute = getattr(instance_obj, key)
+
             try:
-                if dictt[key](att):
-                    return att
+                if check_if_obj_is_instance_of[key](get_instance_attribute):
+                    return get_instance_attribute
             except:
                 pass
 

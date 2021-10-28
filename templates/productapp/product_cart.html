@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content  %}
 
@@ -169,7 +170,7 @@
 
 			<header class="border-bottom mb-4 pb-3">
 					<div class="form-inline">
-						<span class="mr-md-auto">32 Items found </span>
+						<span class="mr-md-auto">{{query|length}} Items found </span>
 						<select class="mr-2 form-control">
 							<option>Latest items</option>
 							<option>Trending</option>
@@ -177,32 +178,33 @@
 							<option>Cheapest</option>
 						</select>
 						<div class="btn-group">
-							<a href="#" class="btn btn-outline-secondary" data-toggle="tooltip" title="" data-original-title="List view">
+							<a href="#" class="btn btn-outline-secondary active ListView" data-toggle="tooltip" title="" data-original-title="List view">
 								<i class="fa fa-bars"></i></a>
-							<a href="#" class="btn  btn-outline-secondary active" data-toggle="tooltip" title="" data-original-title="Grid view">
+							<a href="#" class="btn btn-outline-secondary GridView" data-toggle="tooltip" title="" data-original-title="Grid view">
 								<i class="fa fa-th"></i></a>
 						</div>
 					</div>
 			</header><!-- sect-heading -->
+			<div class="toogle-products">
 
-			{% for product in query %}
+				{% for product in query %}
 
-				<div class="row" id='productsList'>
+				<div class="row productsList">
 					<div class="col-md-4 product-bar">
-						<figure class="card card-product-grid productList-flex">
-							<div class="img-wrap d-flex">
+						<figure class="card card-product-grid productList-flex p-4">
 
-								{% if product.promotion %}
-									<span class="badge badge-danger"> NEW </span>
-								{% endif %}
+							<div class="d-flex wrap-photo-and-icon">
+								<div class="img-wrap d-flex">
+									<img src="{{product.img.url}}" class="img-fluid ">
+								</div> <!-- img-wrap.// -->
+								<i class="lni lni-heart font-light-grey"></i>
 
-								<img src="{{product.img.url}}" class="img-fluid ">
-							</div> <!-- img-wrap.// -->
+							</div>
 
-							<figcaption class="info-wrap ml-4 product-description-list-page">
+							<figcaption class="info-wrap ml-4 product-description-list-page ">
 								<div class="fix-height d-flex flex-column">
 									<a href="{% url 'product_page' product.id %}" class="title text-left">{{ product.name }}</a>
-									<div class="d-flex align-content-center pt-2">
+									<div class="d-flex align-content-center pt-2 stars-div">
 
 										<div class="d-flex">
 
@@ -238,35 +240,35 @@
 									<div class="descriptionList">
 
 										{% if product.cattegory == 'Phones' %}
-											{% include 'productapp/productSpecification_list/phones.html' %}
+											{% include 'partials/productSpecification_list/phones.html' %}
 										{% elif product.cattegory == 'Laptops' %}
-											{% include 'productapp/productSpecification_list/Laptops.html' %}
+											{% include 'partials/productSpecification_list/Laptops.html' %}
 										{% elif product.cattegory == 'PC' %}
-											{% include 'productapp/productSpecification_list/PC.html' %}
+											{% include 'partials/productSpecification_list/PC.html' %}
 										{% elif product.cattegory == 'Monitors' %}
-											{% include 'productapp/productSpecification_list/Monitor.html' %}
+											{% include 'partials/productSpecification_list/Monitor.html' %}
 										{% elif product.cattegory == 'Accesories for laptops' %}
-											{% include 'productapp/productSpecification_list/Accesories for laptops.html' %}
+											{% include 'partials/productSpecification_list/Accesories for laptops.html' %}
 										{% elif product.cattegory == 'SSD' %}
-											{% include 'productapp/productSpecification_list/SSD.html' %}
+											{% include 'partials/productSpecification_list/SSD.html' %}
 										{% elif product.cattegory == 'Graphs' %}
-											{% include 'productapp/productSpecification_list/Graphs.html' %}
+											{% include 'partials/productSpecification_list/Graphs.html' %}
 										{% elif product.cattegory == 'Ram' %}
-											{% include 'productapp/productSpecification_list/Ram.html' %}
+											{% include 'partials/productSpecification_list/Ram.html' %}
 										{% elif product.cattegory == 'Pendrives' %}
-											{% include 'productapp/productSpecification_list/Pendrives.html' %}
+											{% include 'partials/productSpecification_list/Pendrives.html' %}
 										{% elif product.cattegory == 'Routers' %}
-											{% include 'productapp/productSpecification_list/Routers.html' %}
+											{% include 'partials/productSpecification_list/Routers.html' %}
 										{% elif product.cattegory == 'Switches' %}
-											{% include 'productapp/productSpecification_list/Switches.html' %}
+											{% include 'partials/productSpecification_list/Switches.html' %}
 										{% elif product.cattegory == 'Motherboard' %}
-											{% include 'productapp/productSpecification_list/Motherboard.html' %}
+											{% include 'partials/productSpecification_list/Motherboard.html' %}
 										{% elif product.cattegory == 'CPU' %}
-											{% include 'productapp/productSpecification_list/CPU.html' %}
+											{% include 'partials/productSpecification_list/CPU.html' %}
 										{% elif product.cattegory == 'TV' %}
-											{% include 'productapp/productSpecification_list/TV.html' %}
+											{% include 'partials/productSpecification_list/TV.html' %}
 										{% elif product.cattegory == 'Headphones' %}
-											{% include 'productapp/productSpecification_list/Headphones.html' %}
+											{% include 'partials/productSpecification_list/Headphones.html' %}
 										{% endif %}
 
 									</div>
@@ -274,12 +276,25 @@
 								</div>
 							</figcaption>
 
-							<div class="ml-2 mr-4 p-4 product-price-lsit-page">
+							<div class="ml-2 mr-4 py-1 product-price-list-page d-flex flex-column justify-content-center">
 								<div class="price-wrap mt-2">
-									<span class="price">${{product.price}}</span>
+
 									{% if product.promotion %}
-										<del class="price-old">$1980</del>
+										<div class="d-flex flex-column">
+											<div class="d-flex">
+												<span class="badge badge-danger font-size-0-8"> PROMOTION </span>
+												<del class="price-old font-size-0-8 pl-3">${{product.price}}</del>
+											</div>
+											<span class="price pt-3">${{product.promotion}}</span>
+										</div>
+
+									{% else %}
+										<span class="price pt-5">${{product.price}}</span>
 									{% endif %}
+
+									{% include 'partials/free_deliver.html' %}
+
+
 								</div> <!-- price-wrap.// -->
 								<a href="#" class="btn btn-block btn-red">Add to cart </a>
 							</div>
@@ -288,6 +303,8 @@
 				</div> <!-- col.// -->
 
 			{% endfor %}
+
+			</div>
 
 			<nav class="mt-4" aria-label="Page navigation sample">
 			<ul class="pagination">
@@ -302,5 +319,5 @@
 		</main>
 	</div>
 </div>
-
+<script src="{% static 'js/product_search/toogleView.js' %}"></script>
 {% endblock %}

@@ -153,7 +153,6 @@ def update_product(sender, instance, created, **kwargs):
         product = models.MainProductDatabase.objects.get(ean=instance.ean)
 
         skip_signals = True
-        print(product.__dict__)
         instance_obj = utils.try_to_get_product(product, instance)
 
         if product.name != instance_obj.name:
@@ -178,7 +177,6 @@ def update_product(sender, instance, created, **kwargs):
             instance_obj.main_photo = product.img
             instance_obj.save()
         elif product.second_img != instance_obj.second_photo:
-            print('jestem w ifie ze zdjeciem')
             instance_obj.second_photo = product.second_img
             instance_obj.save()
         elif product.third_img != instance_obj.third_photo:

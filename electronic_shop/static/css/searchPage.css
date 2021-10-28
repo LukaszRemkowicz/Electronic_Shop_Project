@@ -1,36 +1,56 @@
-#productsList .productList-flex {
-  flex-direction: row;
+.productsList .productList-flex {
+  display: grid;
+  grid-template-columns: 4fr 10fr 3fr;
   height: fit-content;
-  height: 15rem;
-  overflow: hidden; }
+  overflow: hidden;
+  justify-content: space-between; }
 
-#productsList .product-bar {
+.productsList .wrap-photo-and-icon {
+  position: relative; }
+
+.productsList .product-bar {
   display: block;
   max-width: 100%;
   flex: 100%; }
 
-#productsList .img-wrap, #productsList .product-description-list-page, #productsList .product-price-lsit-page {
-  padding: 1rem;
-  margin-left: 3rem;
+.productsList .img-wrap, .productsList .product-price-list-page {
   width: 10rem;
-  height: 100%; }
-  #productsList .img-wrap img, #productsList .product-description-list-page img, #productsList .product-price-lsit-page img {
+  height: 100%;
+  overflow: hidden;
+  display: inline; }
+  .productsList .img-wrap img, .productsList .product-price-list-page img {
     max-width: 100%;
     max-height: 100%;
-    margin: 0 auto;
-    display: block;
-    align-self: center; }
+    display: inline-block;
+    align-self: center;
+    vertical-align: middle; }
 
-#productsList .product-description-list-page {
-  width: 45rem;
+.productsList .product-description-list-page {
   padding-top: 1rem; }
-  #productsList .product-description-list-page a, #productsList .product-description-list-page p, #productsList .product-description-list-page i {
+  .productsList .product-description-list-page a, .productsList .product-description-list-page p, .productsList .product-description-list-page i {
     font-size: 0.9rem; }
 
-#productsList .not-data-block {
+.productsList .product-price-list-page {
+  min-width: 12rem; }
+  .productsList .product-price-list-page .price {
+    font-size: 1.3rem; }
+
+.productsList .not-data-block {
   padding-top: 2rem !important; }
-  #productsList .not-data-block p {
+  .productsList .not-data-block p {
     padding-left: 0 !important; }
 
-#productsList .descriptionList {
+.productsList .descriptionList {
   padding-top: 0; }
+
+.price-wrap .free-deliver {
+  margin-top: 0.6rem !important; }
+  .price-wrap .free-deliver h3 {
+    font-size: 0.9rem; }
+
+.fix-to-box {
+  display: inline !important; }
+
+.wrap-photo-and-icon .lni-heart {
+  top: 1rem;
+  right: 0; }

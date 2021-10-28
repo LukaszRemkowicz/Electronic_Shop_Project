@@ -48,13 +48,7 @@
 
                     </div>
 
-                    <div class="free-deliver d-flex mt-4 border-top border-bottom py-3 justify-content-around">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-truck mr-2 font-red" viewBox="0 0 16 16">
-                            <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                        </svg>
-                        <h3 class="my-auto">Free Delivery</h3>
-                    </div>
+                   {% include 'partials/free_deliver.html' %}
 
                 </div>
 
@@ -91,6 +85,8 @@
                             <div class="d-flex main-img">
                                 <div class="align-self-center m-auto main-img-div">
                                     <img src="{% if product.img %}{{ product.img.url }}{% endif %}" class="main-pic" alt="" />
+									{% comment %} <i class="far fa-heart font-red fa-2x"></i> {% endcomment %}
+                                    <i class="lni lni-heart font-light-grey"></i>
                                 </div>
 
                             </div>
@@ -145,35 +141,35 @@
 
                                 <div class="select-section">
                                     {% if product.cattegory == 'Phones' %}
-                                        {% include 'productapp/products_templates/phones.html' %}
+                                        {% include 'products_filter_boxes/phones.html' %}
                                     {% elif product.cattegory == 'Laptops' %}
-                                        {% include 'productapp/products_templates/Laptops.html' %}
+                                        {% include 'products_filter_boxes/Laptops.html' %}
                                     {% elif product.cattegory == 'PC' %}
-                                        {% include 'productapp/products_templates/PC.html' %}
+                                        {% include 'products_filter_boxes/PC.html' %}
                                     {% elif product.cattegory == 'Monitors' %}
-                                        {% include 'productapp/products_templates/Monitor.html' %}
+                                        {% include 'products_filter_boxes/Monitor.html' %}
                                     {% elif product.cattegory == 'Accesories for laptops' %}
-                                        {% include 'productapp/products_templates/Accesories for laptops.html' %}
+                                        {% include 'products_filter_boxes/Accesories for laptops.html' %}
                                     {% elif product.cattegory == 'SSD' %}
-                                        {% include 'productapp/products_templates/SSD.html' %}
+                                        {% include 'products_filter_boxes/SSD.html' %}
                                     {% elif product.cattegory == 'Graphs' %}
-                                        {% include 'productapp/products_templates/Graphs.html' %}
+                                        {% include 'products_filter_boxes/Graphs.html' %}
                                     {% elif product.cattegory == 'Ram' %}
-                                        {% include 'productapp/products_templates/Ram.html' %}
+                                        {% include 'products_filter_boxes/Ram.html' %}
                                     {% elif product.cattegory == 'Pendrives' %}
-                                        {% include 'productapp/products_templates/Pendrives.html' %}
+                                        {% include 'products_filter_boxes/Pendrives.html' %}
                                     {% elif product.cattegory == 'Routers' %}
-                                        {% include 'productapp/products_templates/Routers.html' %}
+                                        {% include 'products_filter_boxes/Routers.html' %}
                                     {% elif product.cattegory == 'Switches' %}
-                                        {% include 'productapp/products_templates/Switches.html' %}
+                                        {% include 'products_filter_boxes/Switches.html' %}
                                     {% elif product.cattegory == 'Motherboard' %}
-                                        {% include 'productapp/products_templates/Motherboard.html' %}
+                                        {% include 'products_filter_boxes/Motherboard.html' %}
                                     {% elif product.cattegory == 'CPU' %}
-                                        {% include 'productapp/products_templates/CPU.html' %}
+                                        {% include 'products_filter_boxes/CPU.html' %}
                                     {% elif product.cattegory == 'TV' %}
-                                        {% include 'productapp/products_templates/TV.html' %}
+                                        {% include 'products_filter_boxes/TV.html' %}
                                     {% elif product.cattegory == 'Headphones' %}
-                                        {% include 'productapp/products_templates/Headphones.html' %}
+                                        {% include 'products_filter_boxes/Headphones.html' %}
                                     {% endif %}
                                 </div>
                             </div>
@@ -246,27 +242,27 @@
             {% comment %} {{product.phones_product_data.render_html}} {% endcomment %}
 
             {% if product.cattegory == 'Phones' %}
-                 {% include 'productapp/product_description_templates/Phones.html' %}
+                 {% include 'product_description_templates/Phones.html' %}
             {% elif product.cattegory == 'Laptops' %}
-                 {% include 'productapp/product_description_templates/Laptops.html' %}
+                 {% include 'product_description_templates/Laptops.html' %}
             {% elif product.cattegory == 'PC' %}
-                 {% include 'productapp/product_description_templates/PC.html' %}
+                 {% include 'product_description_templates/PC.html' %}
             {% elif product.cattegory == 'Monitors' %}
-                 {% include 'productapp/product_description_templates/Monitor.html' %}
+                 {% include 'product_description_templates/Monitor.html' %}
             {% elif product.cattegory == 'SSD' %}
-                 {% include 'productapp/product_description_templates/SSD.html' %}
+                 {% include 'product_description_templates/SSD.html' %}
             {% elif product.cattegory == 'Graphs' %}
-                 {% include 'productapp/product_description_templates/Graphs.html' %}
+                 {% include 'product_description_templates/Graphs.html' %}
             {% elif product.cattegory == 'Ram' %}
-                 {% include 'productapp/product_description_templates/Ram.html' %}
+                 {% include 'product_description_templates/Ram.html' %}
             {% elif product.cattegory == 'Routers' %}
-                 {% include 'productapp/product_description_templates/Routers.html' %}
+                 {% include 'product_description_templates/Routers.html' %}
             {% elif product.cattegory == 'Motherboard' %}
-                 {% include 'productapp/product_description_templates/Motherboard.html' %}
+                 {% include 'product_description_templates/Motherboard.html' %}
             {% elif product.cattegory == 'CPU' %}
-                 {% include 'productapp/product_description_templates/CPU.html' %}
+                 {% include 'product_description_templates/CPU.html' %}
             {% elif product.cattegory == 'TV' %}
-                 {% include 'productapp/product_description_templates/TV.html' %}
+                 {% include 'product_description_templates/TV.html' %}
             {% endif %}
 
 

@@ -56,26 +56,4 @@
 
     {% endif %}
 
-<div class="pt-5 data-blocks mb-0">
-
-    <p class="pl-5 text-left font-light-grey">
-        Producent Code:
-        <span class='product-spec-span'>{{ product.accesories_for_laptop.producent_code }}</span>
-    </p>
-
-    <p class="pl-5 text-left font-light-grey">
-        Ean:
-        <span class='product-spec-span'>{{ product.accesories_for_laptop.ean }}</span>
-    </p>
-
-    {% if product.color %}
-
-        <p class="pl-5 text-left font-light-grey">
-            Color:
-            <span class='product-spec-span'>{{ product.accesories_for_laptop.color }}</span>
-        </p>
-
-    {% endif %}
-
-
-</div>
+{% include 'partials/productSpecification_list/Accesories for laptops.html' %}

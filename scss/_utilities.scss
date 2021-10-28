@@ -175,6 +175,10 @@ a{
     &-point-seven-rem{
         font-size: 0.7rem !important;
     }
+
+    &-size-0-8{
+        font-size: 0.8rem;
+    }
 }
 
 .line-through{
@@ -272,4 +276,13 @@ a{
     color: #0d0d0d;
     font-weight: 600;
     font-size: 0.9rem;
+}
+
+.lni-heart{
+    cursor: pointer;
+    font-weight: 100;
+    font-size: 2rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
 }

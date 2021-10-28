@@ -33,6 +33,13 @@
         & .main-img{
             padding-right: 4rem;
             width: 40rem;
+            position: relative;
+
+            .lni-heart{
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
 
             &-div{
                 box-sizing: border-box;
