@@ -1,5 +1,6 @@
 import json
 import datetime
+from math import prod
 import re
 from decimal import Decimal
 import time
@@ -21,7 +22,7 @@ from ShoppingCardApp import models as shopping_cart
 from AddressBookApp import models as address
 from ProductApp import models as product_app
 from ProductApp.utils import find_new_product
-from .utils import recurssive
+from .utils import change_model_to_dict
 
 class CreateUserView(generics.CreateAPIView):
     """ create user """
@@ -130,6 +131,8 @@ class UpdateItemView(APIView):
             customer.email = request.user.email
             customer.save()
         product = product_app.MainProductDatabase.objects.get(id=product_id)
+        order = shopping_cart.Order.objects.filter(customer=customer, complete=False)
+        print(order)
         order, created = shopping_cart.Order.objects.get_or_create(customer=customer, complete=False)
         orderItem, created = shopping_cart.OrderItem.objects.get_or_create(order=order, product=product)
 
@@ -251,42 +254,46 @@ class ProductDict(APIView):
 
         data = request.data
 
+        # if request.data['filter']:
+        #     product_cattegory = data['cattegory']
+        #     filter_param = data['filter']
+        #     products = product_app.MainProductDatabase.objects.filter(cattegory=product_cattegory)
+        #     # products = products.annotate(rate=product_app.MainProductDatabase.get_star_avg)
+
+        #     choose_param = {
+        #         'popular': sort_by_product_rate(products),
+        #         'trending': products.order_by('-bought_num'),
+        #         'cheapest': products.order_by('price'),
+        #         'latest': products
+        #     }
+        #     # if filter_param == 'popular':
+        #     #     product_dict = sort_by_product_rate(products)
+
+        #     # elif filter_param == 'trending':
+        #     #     product_sorted = products.order_by('-bought_num')
+
+        #     # elif filter_param == "cheapest":
+        #     #     product_sorted = products.order_by('price')
+
+        #     # else:
+        #     #     product_sorted = products
+
+        #     # print(choose_param.get(filter_param))
+
+
+        #     product_list = [change_model_to_dict(product) for product in choose_param[filter_param]]
+
+
+        #     return Response(product_list)
+
+        # else:
+
         product_id = data['productId']
 
-        products_dict = {
-            'phones_product_data' : lambda x: product_app.Phones.objects.get(id=x),
-            'monitors_product_data' : lambda x: product_app.Monitors.objects.get(id=x),
-            'laptops_product_data' : lambda x: product_app.Laptops.objects.get(id=x),
-            'pc_product_data' : lambda x: product_app.Pc.objects.get(id=x),
-            'accesories_for_laptop' : lambda x: product_app.AccesoriesForLaptops.objects.get(id=x),
-            'ssd_product_data' : lambda x: product_app.Ssd.objects.get(id=x),
-            'graph_product_data' : lambda x: product_app.Graphs.objects.get(id=x),
-            'ram_product_data' : lambda x: product_app.Ram.objects.get(id=x),
-            'pendrive_product_data' : lambda x: product_app.Pendrives.objects.get(id=x),
-            'switch_product_data' : lambda x: product_app.Switches.objects.get(id=x),
-            'motherboard_product_data' : lambda x: product_app.Motherboard.objects.get(id=x),
-            'cpu_product_data' : lambda x: product_app.Cpu.objects.get(id=x),
-            'tv_product_data' : lambda x: product_app.Tv.objects.get(id=x),
-            'headphone_product_data' : lambda x: product_app.Headphones.objects.get(id=x),
-            'router_product_data' : lambda x: product_app.Routers.objects.get(id=x),
-        }
-
         try:
-            product = model_to_dict(product_app.MainProductDatabase.objects.get(id=int(product_id)))
-            for key, value in products_dict.items():
-                try:
-                    new_product_id = product[key]
-                    new_product = model_to_dict(value(new_product_id))
-                    product['main'] = new_product
-                except:
-                    pass
+            product = product_app.MainProductDatabase.objects.get(id=int(product_id))
+            product = change_model_to_dict(product)
         except ObjectDoesNotExist:
             return 'Object does not exist'
 
-        new_dict = {}
-        product = recurssive(product, new_dict)
-
-        print(product)
-
         return Response(json.dumps(product))
-

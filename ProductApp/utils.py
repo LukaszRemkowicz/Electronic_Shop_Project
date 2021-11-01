@@ -2,6 +2,7 @@ from typing import Dict, List, Any
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms.models import model_to_dict
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from ProductApp import models
 
@@ -586,3 +587,42 @@ def try_to_get_product(product: models.MainProductDatabase, instance: Any) -> mo
     # except AttributeError:
     #     instance_obj.router_product_data.name
     #     return instance_obj.router_product_data
+
+
+def sort_by_product_rate(products):
+    product_dict = { product:product.get_star_avg[0] for product in products}
+    product_sorted = sorted(product_dict.items(), key=lambda item: item[1], reverse=True)
+
+    for product in product_sorted:
+        product[0].rate = product[0].get_star_avg[0]
+
+    # for product in product_sorted:
+    #     print(product[0].__dict__)
+
+    return [product[0] for product in product_sorted]
+
+
+def paginate_view(products, result, page):
+    """ create paginator from model query """
+
+    paginator = Paginator(products, result)
+
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        page = 1
+        products = paginator.page(page)
+    except EmptyPage:
+        page = paginator.num_pages
+        products = paginator.page(page)
+
+    left_index = (int(page)-2)
+
+    if left_index < 1:
+        left_index = 1
+
+    right_index = (int(page)+3)
+    if right_index > paginator.num_pages:
+            right_index = paginator.num_pages +1
+
+    return range(left_index, right_index), paginator, products

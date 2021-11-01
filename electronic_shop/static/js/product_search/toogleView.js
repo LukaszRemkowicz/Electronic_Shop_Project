@@ -10,9 +10,74 @@ const productprice = document.querySelectorAll('.product-price-list-page');
 const descList = document.querySelectorAll('.descriptionList');
 const wrapImg = document.querySelectorAll('.img-wrap');
 const starstDiv = document.querySelectorAll('.stars-div');
+let toogleButtons = document.querySelectorAll('.toogle-view');
+
+
+function checkParams(){
+    let urlParams = new URLSearchParams(window.location.href);
+
+    if(urlParams.get('toogle') != null && urlParams.get('toogle') === 'true'){
+        console.log('jestem w ifieeeeeee toogle');
+        addClasses()
+    }
+}
+
+checkParams()
+
+function changeUrl (boolean){
+    let url = window.location.href;
+    let newParam;
+    console.log(url);
+
+    url = url.replace('#', '')
+
+    if(url.split('?').length >= 2){
+
+        let urlSplitted = url.split('&')
+
+        urlSplitted.forEach((element, index) =>{
+            if(element.includes('toogle=')){
+                urlSplitted[index] = `toogle=${boolean}`;
+            }
+        })
+
+        let urlJoined = urlSplitted.join('&');
+
+        if (urlJoined.includes('toogle') == false){
+            urlJoined += `&toogle=${boolean}`;
+        }
+
+        window.history.pushState("", "", urlJoined);
+    } else{
+        url = url.replace('#', '');
+        newParam = `?toogle=${boolean}`;
+        window.history.pushState("object or string", "Title", `${url}${newParam}`);
+    }
+
+    toogleButtons.forEach(element => {
+        const getPage = element.getAttribute('href').split('&')[0];
+        let getToogleOrFilter = window.location.href.split('&');
+
+        getToogleOrFilter.forEach((element, index) => {
+            if(getToogleOrFilter[0] == element){
+                getToogleOrFilter[0] = getPage
+            }
+            if(element.includes('toogle=')){
+                getToogleOrFilter[index] = `toogle=${boolean}`
+            }
+        })
+
+        const newJoinedAtt = getToogleOrFilter.join('&');
+        element.href = newJoinedAtt;
+        console.log(element.href)
+    })
+}
 
 
 function addClasses(){
+
+    changeUrl('true')
+
     listView.classList.remove('active');
     gridView.classList.add('active');
     // toogleDiv.classList.add('d-flex', 'flex-wrap', 'justify-content-between');
@@ -68,6 +133,9 @@ function addClasses(){
 }
 
 function removeClasses(){
+
+    changeUrl('false')
+
     listView.classList.add('active');
     gridView.classList.remove('active');
 

@@ -1,7 +1,18 @@
 var updateCart = document.querySelectorAll('.update-cart');
-var addButton = document.querySelector('.basket')
+var addButton = document.querySelector('.basket');
+let getProductAmount = document.querySelector('.amount');
 
 cartTotal = 0;
+
+let selected;
+
+if (getProductAmount != null){
+    getProductAmount.addEventListener('change', function(){
+        selected = this.value
+        console.log(selected)
+    })
+}
+
 
 function changeAddButton(pieces, productId){
 
@@ -17,16 +28,6 @@ function changeAddButton(pieces, productId){
         addButton.append(newButton)
     }else{
         addButton.querySelector('.update-cart').style.visibility = 'visible'
-
-        // addButton.innerHTML = '';
-        // const newAncor = document.createElement('a');
-        // newAncor.setAttribute('href', '#')
-        // newAncor.setAttribute('data-product', productId);
-        // newAncor.setAttribute('data-action', "add");
-        // newAncor.setAttribute('type', 'button');
-        // newAncor.className = 'add-to-cart btn-red ml-2 p-2 pt-2 pb-2 text-center update-cart';
-        // newAncor.innerText = 'Add to cart';
-        // addButton.append(newAncor)
     }
 
 }
@@ -40,29 +41,29 @@ function updateCartFunc(element, action){
         let getDiv = document.querySelector(`[data-product="${element.dataset['product']}"]`).parentElement.parentElement
 
         let quantity = getDiv.querySelector('.quantity-div').querySelector('.border')
-        let totalItem = getDiv.querySelector('.price-div').querySelector('.box-shadow').querySelector('.getTotal') 
+        let totalItem = getDiv.querySelector('.price-div').querySelector('.box-shadow').querySelector('.getTotal')
 
         quantity.innerHTML = JSON.parse(cartTotal).items
         totalItem.innerHTML = JSON.parse(cartTotal).summaryItem.toFixed(2)
-        
+
     }
-    
+
 
     let totalBasket = document.querySelector('.price-total');
     const totalItems = document.getElementById('shopping-cart');
     const subtalItems = document.querySelector('.subtotalItems');
     let navbarPrice = document.querySelector('.price-navbar')
-    
+
     if (totalBasket !== null){
         console.log('tutaj jestem zimeczku')
         totalBasket.innerHTML = `${JSON.parse(cartTotal).subtotal} $`;
         subtalItems.innerHTML = JSON.parse(cartTotal).totalItems;
-        
+
     }
 
     navbarPrice.innerHTML = `${(+JSON.parse(cartTotal).subtotal).toFixed(2)} $`;
     totalItems.dataset['totalitems'] = JSON.parse(cartTotal).totalItems;
-    
+
 }
 
 
@@ -72,11 +73,10 @@ for(var i = 0; i < updateCart.length; i++){
         var productId = this.dataset.product
         var action = this.dataset.action
 
-        let getProductAmount = document.querySelector('.amount')
         if (getProductAmount != null){
-            getProductAmount = getProductAmount.options[getProductAmount.selectedIndex].text
+            getProductAmount = selected ?? 1
         }else{
-            getProductAmount=''
+            getProductAmount= 1
         }
 
         console.log('productId:', productId, 'action:', action, 'ammount', getProductAmount)
@@ -84,7 +84,7 @@ for(var i = 0; i < updateCart.length; i++){
         if (action === 'delete'){
             document.querySelector(`#product-${productId}`).remove()
         }
-        
+
         console.log('USER:', user)
         if(user == 'AnonymousUser'){
             console.log('this: ', this)
@@ -106,9 +106,9 @@ function addCookieItem(productId, action, element){
 
         if (cart['products'][productId] === undefined){
             console.log('cart po dodaniu', cart)
-            cart['products'][productId] = {'quantity' : 1}; 
+            cart['products'][productId] = {'quantity' : 1};
         }else{
-            
+
             cart['products'][productId]['quantity'] += 1;
 
             if (cart['products'][productId]['quantity'] <= 0){
@@ -139,7 +139,7 @@ function addCookieItem(productId, action, element){
     const url = '/api/order-cart-unauthorised-user/'
 
     fetch(url, {
-        method: 'POST', 
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken' : csrftoken,
@@ -165,13 +165,13 @@ function addCookieItem(productId, action, element){
             'summaryItem': 0,
             'subtotal': 0,
             'totalItems': 0,
-            
+
         };
-        
+
         if (action !== 'delete' || cart['products'][productId] !== undefined){
-            filteredData = data['items'].filter(element => { 
+            filteredData = data['items'].filter(element => {
                 if(element['product'].id === +productId)
-                {return element} 
+                {return element}
             })[0];
 
             console.log('filteredData: ', filteredData)
@@ -179,7 +179,7 @@ function addCookieItem(productId, action, element){
             cartTotal.items = filteredData.quantity;
             cartTotal.summaryItem = +filteredData.get_total;
         }
-        
+
         cartTotal.subtotal = +data['order'].get_cart_total
         cartTotal.totalItems = data['order'].get_cart_items
 
@@ -188,7 +188,7 @@ function addCookieItem(productId, action, element){
         //     'summaryItem': +filteredData.get_total,
         //     'subtotal': +data['order'].get_cart_total,
         //     'totalItems': data['order'].get_cart_items,
-            
+
         // });
 
         cartTotal = JSON.stringify(cartTotal)
@@ -201,7 +201,9 @@ function addCookieItem(productId, action, element){
 function updateUserOrder(productId, action, getProductAmount, element){
     console.log('User is logged in, sending data')
 
-    const url = '/api/update-item/'
+    const url = '/api/update-item/';
+
+    console.log('productId', productId, 'action', action, 'amount', getProductAmount)
 
     fetch(url, {
         method: 'POST',
@@ -224,14 +226,17 @@ function updateUserOrder(productId, action, getProductAmount, element){
             window.location.href = redirectToAccountUrl
         }
         cartTotal = data;
-        
+
         if(document.querySelector('.add-to-cart') != null){
             changeAddButton(JSON.parse(data).pieces, productId);
-            const getPieces = document.querySelector('.pieces')
-            getPieces.innerText = `Left: ${+JSON.parse(data).pieces} pcs`
+            const getPieces = document.querySelector('.pieces');
+            if(getPieces){
+                getPieces.innerText = `Left: ${+JSON.parse(data).pieces} pcs`
 
-            let getProductAmount = document.querySelector('.amount')
-            getProductAmount.innerHTML = ''
+                let getProductAmount = document.querySelector('.amount')
+                getProductAmount.innerHTML = ''
+            }
+            
 
             if (+JSON.parse(data).pieces === 0){
                 const newOption = document.createElement('option')
@@ -240,14 +245,16 @@ function updateUserOrder(productId, action, getProductAmount, element){
                 getProductAmount.append(newOption)
             }
 
-            for (let num = 1; num <= +JSON.parse(data).pieces; num++){
-                const newOption = document.createElement('option')
-                newOption.setAttribute('value', num)
-                newOption.innerText = num
-                getProductAmount.append(newOption)
+            if(getPieces){
+                for (let num = 1; num <= +JSON.parse(data).pieces; num++){
+                    const newOption = document.createElement('option')
+                    newOption.setAttribute('value', num)
+                    newOption.innerText = num
+                    getProductAmount.append(newOption)
+                }
             }
         }
-        
+
         updateCartFunc(element, action);
     })
 }

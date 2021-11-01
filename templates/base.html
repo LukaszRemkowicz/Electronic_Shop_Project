@@ -39,8 +39,6 @@
 
     </script>
 
-    <script src="{% static 'js/cart.js' %}" type="text/javascript"></script>
-
     <!-- Custom css -->
 
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
@@ -226,14 +224,14 @@
 
         <section class="another-navbar bg-white box-shadow">
             <div class="container flex-container fas-flex">
-                <i class="fas fa-desktop"><a href="{% url 'products_cart' %}?cattegory=PC" class='p-3 fas-font'> Computers</a></i>
-                <i class="fas fa-laptop"><a href="{% url 'products_cart' %}?cattegory=Laptops" class='p-3 fas-font'>Laptops</a></i>
-                <i class="fas fa-tv"><a href="{% url 'products_cart' %}?cattegory=TV" class='p-3 fas-font'>TV</a></i>
-                <i class="fas fa-server"><a href="{% url 'products_cart' %}?cattegory=Routers" class='p-3 fas-font'> Routers</a></i>
-                <i class="fas fa-tablet-alt"><a href="{% url 'products_cart' %}?cattegory=Monitors" class='p-3 fas-font'> Monitors</a></i>
-                <i class="fas fa-mobile-alt"><a href="{% url 'products_cart' %}?cattegory=Phones" class='p-3 fas-font'> Smartphones</a></i>
-                <i class="far fa-hdd"><a href="{% url 'products_cart' %}?cattegory=Ram" class='p-3 fas-font'> Ram's</a></i>
-                <i class="fas fa-microchip"><a href="{% url 'products_cart' %}?cattegory=CPU" class='p-3 fas-font'> CPU's</a></i></i>
+                <i class="fas fa-desktop"><a href="{% url 'products_cart' cattegory='PC' %}" class='p-3 fas-font'> Computers</a></i>
+                <i class="fas fa-laptop"><a href="{% url 'products_cart' cattegory='Laptops' %}" class='p-3 fas-font'>Laptops</a></i>
+                <i class="fas fa-tv"><a href="{% url 'products_cart' cattegory='TV' %}?page={{page}}" class='p-3 fas-font'>TV</a></i>
+                <i class="fas fa-server"><a href="{% url 'products_cart' cattegory='Routers' %}" class='p-3 fas-font'> Routers</a></i>
+                <i class="fas fa-tablet-alt"><a href="{% url 'products_cart' cattegory='Monitors' %}" class='p-3 fas-font'> Monitors</a></i>
+                <i class="fas fa-mobile-alt"><a href="{% url 'products_cart' cattegory='Phones' %}" class='p-3 fas-font'> Smartphones</a></i>
+                <i class="far fa-hdd"><a href="{% url 'products_cart' cattegory='Ram' %}" class='p-3 fas-font'> Ram's</a></i>
+                <i class="fas fa-microchip"><a href="{% url 'products_cart' cattegory='CPU' %}" class='p-3 fas-font'> CPU's</a></i></i>
 
             </div>
         </section>

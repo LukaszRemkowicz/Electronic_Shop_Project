@@ -1,13 +1,12 @@
 from typing import Any, Dict
-import datetime
 
-from django.shortcuts import render
 from django.views.generic import ListView
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 
 from ShoppingCardApp.models import Customer, Order, OrderItem
 from . import models
-from .utils import filter_products
+from .utils import filter_products, sort_by_product_rate, paginate_view
 
 User = settings.AUTH_USER_MODEL
 
@@ -26,7 +25,8 @@ class ProductPage(ListView):
             order = Order.objects.get(customer=customer, complete=False)
             order_item = OrderItem.objects.get(order=order)
             pieces = product.pieces - order_item.quantity
-        except:
+
+        except ObjectDoesNotExist:
             order_item = ''
             pieces = product.pieces
 
@@ -34,7 +34,7 @@ class ProductPage(ListView):
         # print('same_products', same_products)
 
         if pieces <= 10:
-                pieces_range = range(1, pieces+1)
+            pieces_range = range(1, pieces+1)
         else:
             pieces_range = range(1, 11)
 
@@ -56,7 +56,39 @@ class ProductsCart(ListView):
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super(ProductsCart, self).get_context_data(**kwargs)
-        cattegory = self.request.GET.get('cattegory')
-        query =  models.MainProductDatabase.objects.filter(cattegory=cattegory)
-        context['query'] = query
+        product_cattegory = self.kwargs['cattegory']
+        products =  models.MainProductDatabase.objects.filter(cattegory=product_cattegory)
+        context['products_total'] = len(products)
+
+        if self.request.GET.get('filter'):
+            filter_option = self.request.GET.get('filter')
+            choose_param = {
+                'popular': sort_by_product_rate(products),
+                'trending': products.order_by('-bought_num'),
+                'cheapest': products.order_by('price'),
+                'latest': products
+            }
+
+            try:
+                products = choose_param[filter_option]
+                context['products_total'] = len(products)
+
+            except ObjectDoesNotExist:
+                pass
+
+            context['filter_option'] = filter_option
+
+        context['products_total'] = len(products)
+        page = self.request.GET.get('page')
+        result = 9
+
+        ranger, paginator, products = paginate_view(products, result, page)
+
+        context['page_num_range'] = range(paginator.num_pages-3, paginator.num_pages+1)
+        context['last_page'] = paginator.num_pages
+        context['custom_range'] = ranger
+        context['cattegory'] = product_cattegory
+        context['paginator'] = paginator
+        context['products'] = products
+
         return context

@@ -2,9 +2,11 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 import os
 import codecs
 import math
+from datetime import date
 
 from django.db import models, reset_queries
-from django.utils import tree
+from django.utils import tree, timezone
+from django import utils
 # from django.db.models.base import Model
 # from django.db.models.expressions import F
 from django.utils.safestring import mark_safe
@@ -127,6 +129,10 @@ class MainProductDatabase(models.Model):
     cattegory =  models.CharField(choices=CHOICES, max_length=50, default='')
     color = models.CharField(max_length=100, default='', blank=True, null=True)
     bought_num = models.IntegerField(default=0)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['created']
 
     def __str__(self) -> str:
         return f'Product: {self.name}'
@@ -150,7 +156,8 @@ class MainProductDatabase(models.Model):
             result = stars/opinions
             frac, whole = math.modf(result)
 
-            ranger = [True if num  in [element for element in range(1, int(whole) +1 )] else False for num in range(1, int(6))]
+            ranger = [True if num  in [element for element in range(1, int(whole) +1 )]
+                      else False for num in range(1, int(6))]
 
             if frac > 0:
                 return str(result), ranger
@@ -399,12 +406,15 @@ class Routers(Inherit):
 class Reviews(models.Model):
 
     product = models.ForeignKey(MainProductDatabase, on_delete=models.CASCADE)
-    review = models.CharField(max_length=5000, blank=True, null=True)
+    review = models.TextField(max_length=5000, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
     stars = models.IntegerField(default=1)
     checked_by_employer = models.BooleanField(default=False)
     question_checked_by_employer = models.BooleanField(default=False)
+    
+    class Meta:
+        unique_together = [['product', 'user']]
 
     def __str__(self) -> str:
         return f'Review of {self.product.name}/ Product ID: {self.product.id}'

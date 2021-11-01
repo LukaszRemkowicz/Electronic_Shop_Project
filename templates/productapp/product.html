@@ -482,7 +482,7 @@
                                         <p class="ml-2">{{ review.get_time }}</p>
                                     </div>
                                     <div class="user-review text-left">
-                                        <p>{{ review.review }}</p>
+                                        <p>{{ review.review|linebreaksbr }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -587,14 +587,14 @@
     </script> {% endcomment %}
     <script> const productId = '{{ product.id }}';</script>
     <script> const productIds = '{{ same_products.items_id }}'; </script>
-    <script src='{% static 'js/ProductPage/productReview.js' %}'></script>
-    <script src='{% static 'js/ProductPage/productReviewStars.js' %}'></script>
-    <script src='{% static 'js/ProductPage/productQuestion.js' %}'></script>
-    <script src='{% static 'js/ProductPage/changeMainPhoto.js' %}'></script>
-    <script src='{% static 'js/ProductPage/sortSpecData.js' %}'></script>
-    <script src='{% static 'js/ProductPage/getDataProduct.js' %}'></script>
-    <script src='{% static 'js/productPage/renderProductDatailFilterBox.js' %}'></script>
-    <script src='{% static 'js/productPage/tables.js' %}'></script>
-    <script src='{% static 'js/productPage/jumpSmooth.js' %}'></script>
+    <script src="{% static 'js/ProductPage/productReview.js' %}"></script>
+    <script src="{% static 'js/ProductPage/productReviewStars.js' %}"></script>
+    <script src="{% static 'js/ProductPage/productQuestion.js' %}"></script>
+    <script src="{% static 'js/ProductPage/changeMainPhoto.js' %}"></script>
+    <script src="{% static 'js/ProductPage/sortSpecData.js' %}"></script>
+    <script src="{% static 'js/ProductPage/getDataProduct.js' %}"></script>
+    <script src="{% static 'js/productPage/renderProductDatailFilterBox.js' %}"></script>
+    <script src="{% static 'js/productPage/tables.js' %}"></script>
+    <script src="{% static 'js/productPage/jumpSmooth.js' %}"></script>
 
 {% endblock %}

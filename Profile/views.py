@@ -18,7 +18,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import RegisterForm, AcceptTerms, CustomLoginForm
 from .models import Profile
 from ProductApp.models import MainProductDatabase as Products
-from ProductApp.models import CHOICES
+
+
+CATTEGORIES = ["Laptops", "Phones", "PC", "Monitors","Accesories for laptops", "SSD",
+           "Graphs", "Ram", "Pendrives", "Routers", "Switches", "Motherboard", "CPU",
+           "TV", "Headphones"]
 
 
 class LandingPage(FormView):
@@ -26,12 +30,12 @@ class LandingPage(FormView):
     template_name = 'landing_page.html'
     redirect_authenticated_user = True
     success_url = reverse_lazy('account')
-    
-    def form_valid(self, form): 
+
+    def form_valid(self, form):
         username = self.request.POST.get('username')
         password = self.request.POST.get('password')
         user = authenticate(self.request, username=username, password=password)
-        
+
         if user is not None:
             login(self.request, user)
             messages.info(self.request, "You have logged in")
@@ -40,18 +44,18 @@ class LandingPage(FormView):
 
 
         return super(LandingPage, self).form_valid(form)
-        
+
     def form_invalid(self, form):
         messages.error(self.request, form.errors)
 
         return redirect('landing-page')
-    
+
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super(LandingPage, self).get_context_data(**kwargs)
-        query = [product_cat[0] for product_cat in CHOICES]
+        query = [product_cat for product_cat in CATTEGORIES]
         context['query'] = query
         return context
-        
+
 
 class UserAccount(LoginRequiredMixin, FormView):
     model = Profile
@@ -59,8 +63,8 @@ class UserAccount(LoginRequiredMixin, FormView):
     template_name= 'profile/account.html'
     redirect_authenticated_user = True
     success_url = reverse_lazy('account')
-    
-    
+
+
 class Register(FormView):
     template_name = 'profile/register.html'
     form_class = RegisterForm
@@ -68,15 +72,15 @@ class Register(FormView):
     success_url = reverse_lazy('landing-page')
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-        context = super().get_context_data(**kwargs)     
+        context = super().get_context_data(**kwargs)
         accepted_terms = AcceptTerms()
         context['register_form'] = context.get('register_form')
         context['accepted_terms'] = accepted_terms
         return context
-    
-    def form_valid(self, form): 
+
+    def form_valid(self, form):
         user = form.save()
-    
+
         if user is not None:
             login(self.request, user)
             messages.info(self.request, "account created")
@@ -87,7 +91,7 @@ class Register(FormView):
         messages.error(self.request, form.errors)
 
         return super(Register, self).form_invalid(form)
-    
+
     def get(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
         if request.user.is_authenticated:
             return redirect('landing-page')

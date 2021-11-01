@@ -35,36 +35,36 @@
 
                     {% csrf_token %}
                     {% load widget_tweaks %}
-                    
+
 
                     <div class="d-flex flex-column form-group">
 
                     {% comment %} {{form.username}} {% endcomment %}
 
 
-                       {% render_field form.username class="form-control my-2" autocomplete="username" id="username" aria-describedby="emailHelp" placeholder="Username" %} 
+                       {% render_field form.username class="form-control my-2" autocomplete="username" id="username" aria-describedby="emailHelp" placeholder="Username" %}
                         <!-- <input type="text" class="form-control my-2" autocomplete="username" id="username" aria-describedby="emailHelp" placeholder="Username"> -->
 
                     </div>
 
                     <div class="d-flex flex-column form-group">
-                        {% render_field form.email type="email" class="form-control my-2" autocomplete="email" id="email" aria-describedby="emailHelp" placeholder="Email" %} 
+                        {% render_field form.email type="email" class="form-control my-2" autocomplete="email" id="email" aria-describedby="emailHelp" placeholder="Email" %}
                         <!-- <input type="email" class="form-control my-2" autocomplete="email" id="email" aria-describedby="emailHelp" placeholder="Email"> -->
 
                     </div>
                     <div class="d-flex flex-column form-group ">
-                          {% render_field form.password1 type="password" autocomplete="current-password" class="form-control my-2" id="password" placeholder="Password" %} 
+                          {% render_field form.password1 type="password" autocomplete="current-password" class="form-control my-2" id="password" placeholder="Password" %}
                         <!-- <input type="password" autocomplete="current-password" class="form-control my-2" id="password" placeholder="Password">#} -->
 
                     </div>
                     <div class="d-flex flex-column form-group ">
-                           {% render_field form.password2 type="password" autocomplete="new-password" class="form-control my-2" id="retype-password" aria-describedby="emailHelp" placeholder="Repeat password" %} 
+                           {% render_field form.password2 type="password" autocomplete="new-password" class="form-control my-2" id="retype-password" aria-describedby="emailHelp" placeholder="Repeat password" %}
                         <!-- <input type="password" autocomplete="new-password" class="form-control my-2" id="retype-password" aria-describedby="emailHelp" placeholder="Repeat password"> -->
 
                     </div>
 
                     <div class="check d-flex justify-content-left w-75">
-                         {{ accepted_terms.accepted_terms }} 
+                         {{ accepted_terms.accepted_terms }}
                          <!-- <input type="checkbox" class="checkbox">  -->
                         <p class="inline">I have read and accepted the <a href="" class="font-red">Terms, Conditions and Privacy Policy </a> </p>
                     </div>

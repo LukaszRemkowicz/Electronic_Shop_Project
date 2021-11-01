@@ -5120,6 +5120,20 @@ a {
   top: 1rem;
   right: 0; }
 
+.page-item.active .page-link {
+  background-color: #ff503c;
+  border: 1px solid #dee2e6;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0; }
+
+.page-link {
+  color: black; }
+  .page-link p {
+    padding-bottom: 0; }
+
+.page-item {
+  margin: 0.3rem; }
+
 .navbar {
   display: grid;
   grid-template-columns: 1fr 2fr 1.1fr;

@@ -9,7 +9,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("Profile.urls"), name="home"),
-    # path('', TemplateView.as_view(template_name='landing_page.html'), name="landing-page"),
     path('', include("ProductApp.urls"), name="products"),
     path('', include('ShoppingCardApp.urls'), name="shopping_cart"),
     path('api/', include('API.urls', namespace='api')),

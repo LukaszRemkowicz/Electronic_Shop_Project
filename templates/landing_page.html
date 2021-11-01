@@ -15,12 +15,14 @@
 
                     <ul>
                         {% for cattegory in query %}
-                            <li><a href="{% url 'products_cart' %}?cattegory={{ cattegory }}">{{ cattegory }}</a></li>
+                            {% comment %} {{cattegory}} {% endcomment %}
+                            <li><a href="{% url 'products_cart' cattegory=cattegory %}">{{cattegory}}</a></li>
                         {% endfor %}
                     </ul>
+
                 </div>
             </div>
-            
+
             <!-- Carousel section -->
 
             <div id="carouselLandinpage" class="carousel slide carousel-fade" data-ride="carousel">

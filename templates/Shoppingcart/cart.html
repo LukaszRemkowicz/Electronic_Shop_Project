@@ -26,10 +26,10 @@
                                     <div class="row text-muted">{{item.product.cattegory}}</div>
                                     <div class="row name-div">{{ item.product.name }}</div>
                                 </div>
-                                <div class="col quantity-div"> 
+                                <div class="col quantity-div">
                                     <a href="#" class='update-cart' data-action="remove" data-product='{{ item.product.id }}'>  -  </a>
                                     <a href="#" class="border">{{ item.quantity }}</a>
-                                    <a href="#" class='update-cart' data-action="add" data-product='{{ item.product.id }}'>  +  </a> 
+                                    <a href="#" class='update-cart' data-action="add" data-product='{{ item.product.id }}'>  +  </a>
                                 </div>
                                 <div class="col price-div ">
                                     <span class='box-shadow'>
@@ -51,16 +51,16 @@
                         <p class="d-flex align-self-center">Subtotal </p>
                         <p>({% if order.get_cart_items == 1 %}Item {% else %}Items{% endif %}: <span class="subtotalItems"> {{ order.get_cart_items }} </span>)</p>
                     </span>
-                    <p class="price-total">{{ order.get_cart_total|floatformat:2 }}$</p> 
+                    <p class="price-total">{{ order.get_cart_total|floatformat:2 }}$</p>
                 </div>
-                <a class="price-row-btn box-shadow col-12 d-flex justify-content-center btn-red" href="{% url 'summary-cart' %}">Proceed to checkout</a> 
+                <a class="price-row-btn box-shadow col-12 d-flex justify-content-center btn-red" href="{% url 'summary-cart' %}">Proceed to checkout</a>
                 <a type='button' href='javascript:history.go(-1)' class="btn box-shadow btn-light mt-4 w-100"><i class="fas fa-arrow-left"></i>Back to shopping</a>
             </div>
         </div>
 
 
 
-        
+
     </div>
 </section>
 
@@ -89,16 +89,16 @@
                 </div>
                 <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
             </div>
-            
+
 
                 <div class="mt-5 mb-5 mx-3 bg-white box-shadow price-info">
                 <div class="summary-container py-3 px-2 w-100">
                     <div class="price-row col-12 d-flex justify-content-between">
 
                         <p class="d-flex align-self-center">Subtotal ({% if order.get_cart_items == 1 %}Item {% else %}Items{% endif %}: {{ order.get_cart_items }})</p>
-                        <p class="">{{ order.get_cart_total|floatformat:2 }}$</p> 
+                        <p class="">{{ order.get_cart_total|floatformat:2 }}$</p>
                     </div>
-                    <a class="price-row-btn col-12 d-flex justify-content-center btn-red" href="{% url 'summary-cart' %}">Proceed to checkout</a> 
+                    <a class="price-row-btn col-12 d-flex justify-content-center btn-red" href="{% url 'summary-cart' %}">Proceed to checkout</a>
                     <a type='button' href='javascript:history.go(-1)' class="btn btn-light mt-4 w-100"><i class="fas fa-arrow-left"></i>Back to shopping</a>
                 </div>
         </div>

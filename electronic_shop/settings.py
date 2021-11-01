@@ -73,8 +73,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'electronic_shop.custom_context_processor.login_form_content',  
-               
+                'electronic_shop.custom_context_processor.login_form_content',
+
             ],
         },
     },
@@ -96,7 +96,7 @@ DATABASES = {
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST')
-        
+
     }
 }
 
@@ -143,7 +143,7 @@ STATICFILES_DIRS = [
         os.path.join(BASE_DIR, "static"),
         os.path.join(BASE_DIR, "media"),
     ]
-    
+
 # STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
@@ -173,6 +173,7 @@ AUTH_USER_MODEL = 'auth.User'
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
+        'rest_framework.authentication.TokenAuthentication',
     ),
     # 'DEFAULT_PARSER_CLASSES': [
     #     'rest_framework.parsers.JSONParser',
