@@ -56,6 +56,7 @@ def create_product(sender, instance, created, **kwargs):
             product.price = instance.price
             product.pieces = instance.pieces
             product.color = instance.color
+            
             try:
                 product.promotion = instance.promotion
             except:
@@ -181,6 +182,9 @@ def update_product(sender, instance, created, **kwargs):
             instance_obj.save()
         elif product.third_img != instance_obj.third_photo:
             instance_obj.third_photo = product.third_img
+            instance_obj.save()
+        elif product.bought_num != instance_obj.bought_num:
+            instance_obj.bought_num = product.bought_num
             instance_obj.save()
 
         skip_signals = False

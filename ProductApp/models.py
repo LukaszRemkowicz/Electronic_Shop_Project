@@ -14,6 +14,7 @@ from django.utils.safestring import mark_safe
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 
+
 # User = get_user_model()
 User = settings.AUTH_USER_MODEL
 
@@ -63,6 +64,7 @@ class Inherit(models.Model):
     third_photo = models.ImageField(upload_to='products_pic', null=True, blank=True)
     html_file = models.FileField(upload_to="products_pic", default="", null=True, blank=True)
     product_of_the_day = models.BooleanField(default=False)
+    bought_num = models.IntegerField(default=0)
 
     def __str__(self) -> str:
         return self.name
@@ -73,6 +75,64 @@ class Inherit(models.Model):
             html_string = codecs.open(path, 'r').read()
             return mark_safe(html_string)
         return None
+
+    @property
+    def get_star_avg(self) -> Tuple[str, List[bool]]:
+        """ Method to get product review avarage """
+        
+        product = MainProductDatabase.objects.get(ean=self.ean)
+
+        opinions = len(Reviews.objects.filter(product=product.id, checked_by_employer=True))
+        stars = sum([element.stars for element in Reviews.objects.filter(product=product.id,checked_by_employer=True)])
+        if stars > 0:
+            result = stars/opinions
+            frac, whole = math.modf(result)
+
+            ranger = [True if num  in [element for element in range(1, int(whole) +1 )]
+                      else False for num in range(1, int(6))]
+
+            if frac > 0:
+                return str(result), ranger
+            else:
+                return str(int(whole)), ranger
+        else:
+            return str(0), [False for _ in range(5)]
+
+    @property
+    def get_stars(self) -> Dict[str, int]:
+        """ Help method to generate progress bars """
+        
+        product = MainProductDatabase.objects.get(ean=self.ean)
+
+        stars = [element.stars for element in Reviews.objects.filter(product=product.id, checked_by_employer=True)]
+        stars_dict = {key:0 for key in range(1, 6)}
+
+        if len(stars) > 0:
+
+            for element in stars:
+                if element not in stars_dict:
+                    stars_dict[element] = 1
+                else:
+                    stars_dict[element] += 1
+
+            for key, value in stars_dict.items():
+                percentage = (100*value) / len(stars)
+                stars_dict[key] = (value, int(percentage))
+
+        return stars_dict
+
+    @staticmethod
+    def get_producents(query):
+        producent_dictionary = {}
+        for product in query:
+            if product.producent in producent_dictionary:
+                producent_dictionary[product.producent] += 1
+            else:
+                producent_dictionary[product.producent] = 1
+
+        producent_dictionary['All'] = ' '
+
+        return producent_dictionary
 
     @staticmethod
     def change_decimal(num) -> Union[float, int]:
@@ -378,6 +438,61 @@ class Tv(Inherit):
     energy_class = models.CharField(max_length=10, default='')
     power_consumption = models.CharField(max_length=50, default='')
 
+    @classmethod
+    def data_products_to_filter(cls):
+        refresh = {}
+        for product in Tv.objects.all():
+            if product.refresh_rate in refresh:
+                refresh[product.refresh_rate] += 1
+            else:
+                refresh[product.refresh_rate] = 1
+
+        diagonal = {
+            "20-29'": 0,
+            "30-39'": 0,
+            "40-49'": 0,
+            "50-59'": 0,
+            "60-69'": 0,
+            "70' and more": 0,
+        }
+
+        for product in Tv.objects.all():
+            splited = product.diagonal.split('\'')[0]
+            if 20 <= int(splited) < 30:
+                diagonal["20-29'"] += 1
+            elif 30 <= int(splited) < 39:
+                diagonal["30-39'"] += 1
+            elif 40 <= int(splited) < 49:
+                diagonal["40-49'"] += 1
+            elif 50 <= int(splited) < 59:
+                diagonal["50-59'"] += 1
+            elif 60 <= int(splited) < 69:
+                diagonal["60-69'"] += 1
+            elif 70 <= int(splited):
+                diagonal["70' and more"] += 1
+
+        resolution = {}
+        for product in Tv.objects.all():
+            if product.resolution in resolution:
+                resolution[product.resolution] += 1
+            else:
+                resolution[product.resolution] = 1
+                
+        matrix_type = {}
+        for product in Tv.objects.all():
+            if product.matrix_type in matrix_type:
+                matrix_type[product.matrix_type] += 1
+            else:
+                matrix_type[product.matrix_type] = 1
+
+        return {'refresh_rate': refresh,
+                'diagonal': diagonal,
+                'curved': len([product.curved for product in Tv.objects.all() if product.curved == 'Yes']),
+                'smart_tv': len([product.smart_tv for product in Tv.objects.all() if product.smart_tv == 'Yes']),
+                'resolution': resolution,
+                'matrix_type': matrix_type
+            }
+
 
 class Headphones(Inherit):
     bluetooth_range = models.CharField(max_length=50, default='', blank=True, null=True)
@@ -412,7 +527,7 @@ class Reviews(models.Model):
     stars = models.IntegerField(default=1)
     checked_by_employer = models.BooleanField(default=False)
     question_checked_by_employer = models.BooleanField(default=False)
-    
+
     class Meta:
         unique_together = [['product', 'user']]
 

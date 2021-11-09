@@ -1,0 +1,43 @@
+<div class="pb-3">
+    <h5 class="font-weight-bold">Diagonal [cal]</h5>
+    {% for key, value in products_filter_options.diagonal.items %}
+        {% if value != 0 %}
+        <form>
+            <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{key}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+        </form>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div class="py-3">
+    <h5 class="font-weight-bold">Resolution</h5>
+    {% for resolution, num in products_filter_options.resolution.items %}
+        {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{resolution}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{num}}</span> </div>
+            </form>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div class="py-3">
+    <h5 class="font-weight-bold">Refresh rate [Hz]</h5>
+    {% for refresh, num in products_filter_options.refresh_rate.items %}
+        {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{refresh}} <input type="checkbox"> <span class="check"></span> </label><span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{num}}</span> </div>
+            </form>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div class="py-3">
+    <h5 class="font-weight-bold">Matrix type</h5>
+    {% for matrix, value in products_filter_options.matrix_type.items %}
+        {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{matrix}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+            </form>
+        {% endif %}
+    {% endfor %}
+</div>

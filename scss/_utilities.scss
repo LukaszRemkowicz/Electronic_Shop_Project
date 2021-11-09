@@ -148,7 +148,7 @@ a{
 .font{
 
     &-red{
-        color: $main-red-color;
+        color: $main-red-color !important;
 
         &:hover{
             text-decoration: none;
@@ -285,4 +285,8 @@ a{
     position: absolute;
     top: 1rem;
     right: 1rem;
+}
+
+.display-none{
+    display: none;
 }

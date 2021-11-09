@@ -6,6 +6,9 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from ProductApp import models
 
+
+#TODO: Functions must be refactored
+
 def check_no_data(obj: Any) -> Any:
     """ Filter to find out if there is 'No data' value """
     return [element for element in obj if element != 'No data']
@@ -438,35 +441,35 @@ def find_new_product(product_items_list: List,
 def get_product(model: str, instance: Any) -> models.MainProductDatabase:
     """ Help function for signals. Get product with specific model """
 
-    if model == "Phones":
+    if model.lower() == "Phones".lower():
         return models.MainProductDatabase.objects.get(phones_product_data=instance).phones_product_data
-    elif model == "Monitors":
+    elif model.lower() == "Monitors".lower():
         return models.MainProductDatabase.objects.get(monitors_product_data=instance).monitors_product_data
-    elif model == 'Laptops':
+    elif model.lower() == 'Laptops'.lower():
         return models.MainProductDatabase.objects.get(laptops_product_data=instance).laptops_product_data
-    elif model == 'Pc':
+    elif model.lower() == 'Pc'.lower():
         return models.MainProductDatabase.objects.get(pc_product_data=instance).pc_product_data
-    elif model == 'AccesoriesForLaptops':
+    elif model.lower() == 'AccesoriesForLaptops'.lower():
         return models.MainProductDatabase.objects.get(accesories_for_laptop=instance).accesories_for_laptop
-    elif model == 'Ssd':
+    elif model.lower() == 'Ssd'.lower():
         return models.MainProductDatabase.objects.get(ssd_product_data=instance).ssd_product_data
-    elif model == 'Graphs':
+    elif model.lower() == 'Graphs'.lower():
         return models.MainProductDatabase.objects.get(graph_product_data=instance).graph_product_data
-    elif model == 'Ram':
+    elif model.lower() == 'Ram'.lower():
         return models.MainProductDatabase.objects.get(ram_product_data=instance).ram_product_data
-    elif model == 'Pendrives':
+    elif model.lower() == 'Pendrives'.lower():
         return models.MainProductDatabase.objects.get(pendrive_product_data=instance).pendrive_product_data
-    elif model == 'Switches':
+    elif model.lower() == 'Switches'.lower():
         return models.MainProductDatabase.objects.get(switch_product_data=instance).switch_product_data
-    elif model == 'Motherboard':
+    elif model.lower() == 'Motherboard'.lower():
         return models.MainProductDatabase.objects.get(motherboard_product_data=instance).motherboard_product_data
-    elif model == 'Cpu':
+    elif model.lower() == 'Cpu'.lower():
         return models.MainProductDatabase.objects.get(cpu_product_data=instance).cpu_product_data
-    elif model == 'Tv':
+    elif model.lower().lower() == 'Tv'.lower().lower():
         return models.MainProductDatabase.objects.get(tv_product_data=instance).tv_product_data
-    elif model == 'Headphones':
+    elif model.lower() == 'Headphones'.lower():
         return models.MainProductDatabase.objects.get(headphone_product_data=instance).headphone_product_data
-    elif model == 'Routers':
+    elif model.lower() == 'Routers'.lower():
         return models.MainProductDatabase.objects.get(router_product_data=instance).router_product_data
 
 def choose_model(model: str, instance) -> models.MainProductDatabase:
@@ -626,3 +629,84 @@ def paginate_view(products, result, page):
             right_index = paginator.num_pages +1
 
     return range(left_index, right_index), paginator, products
+
+
+# def get_model_queryset(catt, producent=''):
+
+#     if producent:
+
+#         if producent == 'All':
+#             return models.MainProductDatabase.objects.filter(cattegory=catt)
+
+#         get_queryset = {
+
+#         'PC': lambda producent: models.Pc.objects.filter(producent=producent),
+#         'Monitors': lambda producent: models.Monitors.objects.filter(producent=producent),
+#         'Phones': lambda producent: models.Phones.objects.filter(producent=producent),
+#         'Laptops': lambda producent: models.Laptops.objects.filter(producent=producent),
+#         'Accesories for laptops': lambda producent: models.AccesoriesForLaptops.objects.filter(producent=producent),
+#         'SSD': lambda producent: models.Ssd.objects.filter(producent=producent),
+#         'Graphs': lambda producent: models.Graphs.objects.filter(producent=producent),
+#         'Ram': lambda producent: models.Ram.objects.filter(producent=producent),
+#         'Pendrives': lambda producent: models.Pendrives.objects.filter(producent=producent),
+#         'Switches': lambda producent: models.Switches.objects.filter(producent=producent),
+#         'Motherboard': lambda producent: models.Motherboard.objects.filter(producent=producent),
+#         'CPU': lambda producent: models.Cpu.objects.filter(producent=producent),
+#         'TV': lambda producent: models.Tv.objects.filter(producent=producent),
+#         'Headphones': lambda producent: models.Headphones.objects.filter(producent=producent),
+#         'Routers': lambda producent: models.Routers.objects.filter(producent=producent),
+#         }
+
+#         return get_queryset[catt](producent)
+
+#     else:
+
+
+#         get_queryset = {
+
+#             'PC': models.Pc.objects.all(),
+#             'Monitors': models.Monitors.objects.all(),
+#             'Phones': models.Phones.objects.all(),
+#             'Laptops': models.Laptops.objects.all(),
+#             'Accesories for laptops': models.AccesoriesForLaptops.objects.all(),
+#             'SSD': models.Ssd.objects.all(),
+#             'Graphs': models.Graphs.objects.all(),
+#             'Ram': models.Ram.objects.all(),
+#             'Pendrives': models.Pendrives.objects.all(),
+#             'Switches': models.Switches.objects.all(),
+#             'Motherboard': models.Motherboard.objects.all(),
+#             'CPU': models.Cpu.objects.all(),
+#             'TV': models.Tv.objects.all(),
+#             'Headphones': models.Headphones.objects.all(),
+#             'Routers': models.Routers.objects.all(),
+#         }
+
+#         return get_queryset[catt]
+
+
+def filter_tv_products(request):
+    """ Curved filter """
+
+    filter = {
+        'producent': lambda x, products: products.filter(producent=x),
+        'smart': lambda x, products: products.filter(smart_tv=x),
+        'curved': lambda x, products: products.filter(curved=x),
+
+    }
+
+    products = models.Tv.objects.all()
+
+    url_queryset = { key:str(value[0]) for key, value in request.GET.lists()}
+
+    for key, value in url_queryset.items():
+        if key != 'page' and key != 'grid' and key != 'filter':
+            try:
+                existss = products.filter(**{'smart_tv':value}).exists()
+                if key == 'smart' and existss:
+                    products = filter[key](value, products)
+                elif products.filter(**{key:value}).exists():
+                    products = filter[key](value, products)
+            except ObjectDoesNotExist:
+                pass
+
+    return products

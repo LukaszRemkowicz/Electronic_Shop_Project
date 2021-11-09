@@ -93,11 +93,26 @@
     }
 }
 
-.page-item.active .page-link{
+.btn-red-list{
+    @extend .btn-red;
+    border: 1px solid #ee3304;
+    border-radius: 10px;
+    font-weight: 800;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.active, .page-link{
     background-color: $main-red-color;
-    border: 1px solid #dee2e6;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    border: 1px solid #dee2e6 !important;
+    color: white !important;
 }
 
 .page-link{

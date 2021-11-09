@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'reset_migrations',
     'rest_framework.authtoken',
     'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
