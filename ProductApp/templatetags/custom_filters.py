@@ -1,5 +1,7 @@
 from django import template
 
+from ProductApp.models import MainProductDatabase
+
 register = template.Library()
 
 
@@ -44,3 +46,12 @@ def check_curved(url: str) -> bool:
 @register.filter
 def check_smart(url: str) -> bool:
     return search_for_url(url, 'smart', 'Yes')
+
+
+@register.filter
+def get_main_product_id (product):
+    
+    product = MainProductDatabase.objects.get(ean=product.ean)
+    print(product.id)
+    print('*'*200)
+    return product.id

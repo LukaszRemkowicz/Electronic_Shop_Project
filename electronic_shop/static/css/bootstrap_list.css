@@ -267,6 +267,10 @@ div.text-muted {
     top: 0
 } */
 
+.product{
+    margin-top: 0 !important;
+}
+
 .rating .tick {
     font-size: 0.9rem;
     padding-left: 25px

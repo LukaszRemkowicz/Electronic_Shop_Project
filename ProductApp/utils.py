@@ -1,8 +1,11 @@
 from typing import Dict, List, Any
 
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models.query import QuerySet
 from django.forms.models import model_to_dict
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import HttpRequest, HttpResponse
+
 
 from ProductApp import models
 
@@ -27,7 +30,7 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
             'battery' : check_no_data({element.phones_product_data.battery for element in same_products}),
             'items_id' : [element.id for element in same_products]
         }
-        print(same_products_data)
+        # print(same_products_data)
         return same_products_data
 
     elif cattegory == 'Laptops':
@@ -507,7 +510,7 @@ def choose_model(model: str, instance) -> models.MainProductDatabase:
         return models.MainProductDatabase.objects.create(router_product_data=instance)
 
 
-def try_to_get_product(product: models.MainProductDatabase, instance: Any) -> models.MainProductDatabase:
+def try_to_get_product(product: "models.MainProductDatabase", instance: Any) -> "models.MainProductDatabase":
     """ Help function for signals. Try to get specific product from model """
 
     instance_obj = models.MainProductDatabase.objects.get(ean=product.ean)
@@ -545,67 +548,19 @@ def try_to_get_product(product: models.MainProductDatabase, instance: Any) -> mo
                 pass
 
 
-    # try:
-    #     instance_obj.phones_product_data.name
-    #     return instance_obj.phones_product_data
-    # except AttributeError:
-    #     instance_obj.monitors_product_data.name
-    #     return instance_obj.monitors_product_data
-    # except AttributeError:
-    #     instance_obj.laptops_product_data.name
-    #     return instance_obj.laptops_product_data
-    # except AttributeError:
-    #     instance_obj.pc_product_data.name
-    #     return instance_obj.pc_product_data
-    # except AttributeError:
-    #     instance_obj.accesories_for_laptop.name
-    #     return instance_obj.accesories_for_laptop
-    # except AttributeError:
-    #     instance_obj.ssd_product_data.name
-    #     return instance_obj.ssd_product_data
-    # except AttributeError:
-    #     instance_obj.graph_product_data.name
-    #     return instance_obj.graph_product_data
-    # except AttributeError:
-    #     instance_obj.ram_product_data.name
-    #     return instance_obj.ram_product_data
-    # except AttributeError:
-    #     instance_obj.pendrive_product_data.name
-    #     return instance_obj.pendrive_product_data
-    # except AttributeError:
-    #     instance_obj.switch_product_data.name
-    #     return instance_obj.switch_product_data
-    # except AttributeError:
-    #     instance_obj.motherboard_product_data.name
-    #     return instance_obj.motherboard_product_data
-    # except AttributeError:
-    #     instance_obj.cpu_product_data.name
-    #     return instance_obj.cpu_product_data
-    # except AttributeError:
-    #     instance_obj.tv_product_data.name
-    #     return instance_obj.tv_product_data
-    # except AttributeError:
-    #     instance_obj.headphone_product_data.name
-    #     return instance_obj.headphone_product_data
-    # except AttributeError:
-    #     instance_obj.router_product_data.name
-    #     return instance_obj.router_product_data
+def sort_by_product_rate(products: QuerySet) -> List[QuerySet]:
+    """ Sorting products by stars rate """
 
-
-def sort_by_product_rate(products):
     product_dict = { product:product.get_star_avg[0] for product in products}
     product_sorted = sorted(product_dict.items(), key=lambda item: item[1], reverse=True)
 
     for product in product_sorted:
         product[0].rate = product[0].get_star_avg[0]
 
-    # for product in product_sorted:
-    #     print(product[0].__dict__)
-
     return [product[0] for product in product_sorted]
 
 
-def paginate_view(products, result, page):
+def paginate_view(products: QuerySet, result: int, page: int) -> range:
     """ create paginator from model query """
 
     paginator = Paginator(products, result)
@@ -684,29 +639,3 @@ def paginate_view(products, result, page):
 #         return get_queryset[catt]
 
 
-def filter_tv_products(request):
-    """ Curved filter """
-
-    filter = {
-        'producent': lambda x, products: products.filter(producent=x),
-        'smart': lambda x, products: products.filter(smart_tv=x),
-        'curved': lambda x, products: products.filter(curved=x),
-
-    }
-
-    products = models.Tv.objects.all()
-
-    url_queryset = { key:str(value[0]) for key, value in request.GET.lists()}
-
-    for key, value in url_queryset.items():
-        if key != 'page' and key != 'grid' and key != 'filter':
-            try:
-                existss = products.filter(**{'smart_tv':value}).exists()
-                if key == 'smart' and existss:
-                    products = filter[key](value, products)
-                elif products.filter(**{key:value}).exists():
-                    products = filter[key](value, products)
-            except ObjectDoesNotExist:
-                pass
-
-    return products

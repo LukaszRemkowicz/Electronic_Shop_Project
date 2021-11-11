@@ -14,6 +14,7 @@ from django.utils.safestring import mark_safe
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 
+from ProductApp.utilss.models_utils import *
 
 # User = get_user_model()
 User = settings.AUTH_USER_MODEL
@@ -79,7 +80,7 @@ class Inherit(models.Model):
     @property
     def get_star_avg(self) -> Tuple[str, List[bool]]:
         """ Method to get product review avarage """
-        
+
         product = MainProductDatabase.objects.get(ean=self.ean)
 
         opinions = len(Reviews.objects.filter(product=product.id, checked_by_employer=True))
@@ -101,7 +102,7 @@ class Inherit(models.Model):
     @property
     def get_stars(self) -> Dict[str, int]:
         """ Help method to generate progress bars """
-        
+
         product = MainProductDatabase.objects.get(ean=self.ean)
 
         stars = [element.stars for element in Reviews.objects.filter(product=product.id, checked_by_employer=True)]
@@ -153,6 +154,28 @@ class Inherit(models.Model):
 
     def change_weight(self) -> Union[float, int]:
         return Inherit.change_decimal(self.weight)
+
+    @property
+    def return_images(self) -> List:
+        images_dictionary = dict()
+        if self.main_photo:
+            images_dictionary['main_photo'] = self.main_photo.url
+        if self.second_photo:
+            images_dictionary['second_photo'] = self.second_photo.url
+        if self.third_photo:
+            images_dictionary['third_photo'] = self.third_photo.url
+
+        return images_dictionary
+
+    @property
+    def get_num_of_reviews(self) -> int:
+        product = MainProductDatabase.objects.get(ean=self.ean)
+        return len(Reviews.objects.filter(product=product.id, checked_by_employer=True))
+
+    @property
+    def get_num_of_questions(self) -> int:
+        product = MainProductDatabase.objects.get(ean=self.ean)
+        return len(Questions.objects.filter(product=product.id, checked_by_employer=True))
 
     class Meta:
         abstract = True
@@ -206,66 +229,47 @@ class MainProductDatabase(models.Model):
 
         return url
 
-    @property
-    def get_star_avg(self) -> Tuple[str, List[bool]]:
-        """ Method to get product review avarage """
+    # @property
+    # def get_star_avg(self) -> Tuple[str, List[bool]]:
+    #     """ Method to get product review avarage """
 
-        opinions = len(Reviews.objects.filter(product=self.id, checked_by_employer=True))
-        stars = sum([element.stars for element in Reviews.objects.filter(product=self.id,checked_by_employer=True)])
-        if stars > 0:
-            result = stars/opinions
-            frac, whole = math.modf(result)
+    #     opinions = len(Reviews.objects.filter(product=self.id, checked_by_employer=True))
+    #     stars = sum([element.stars for element in Reviews.objects.filter(product=self.id,checked_by_employer=True)])
+    #     if stars > 0:
+    #         result = stars/opinions
+    #         frac, whole = math.modf(result)
 
-            ranger = [True if num  in [element for element in range(1, int(whole) +1 )]
-                      else False for num in range(1, int(6))]
+    #         ranger = [True if num  in [element for element in range(1, int(whole) +1 )]
+    #                   else False for num in range(1, int(6))]
 
-            if frac > 0:
-                return str(result), ranger
-            else:
-                return str(int(whole)), ranger
-        else:
-            return str(0), [False for _ in range(5)]
+    #         if frac > 0:
+    #             return str(result), ranger
+    #         else:
+    #             return str(int(whole)), ranger
+    #     else:
+    #         return str(0), [False for _ in range(5)]
 
-    @property
-    def get_stars(self) -> Dict[str, int]:
-        """ Help method to generate progress bars """
+    # @property
+    # def get_stars(self) -> Dict[str, int]:
+    #     """ Help method to generate progress bars """
 
-        stars = [element.stars for element in Reviews.objects.filter(product=self.id, checked_by_employer=True)]
-        stars_dict = {key:0 for key in range(1, 6)}
+    #     stars = [element.stars for element in Reviews.objects.filter(product=self.id, checked_by_employer=True)]
+    #     stars_dict = {key:0 for key in range(1, 6)}
 
-        if len(stars) > 0:
+    #     if len(stars) > 0:
 
-            for element in stars:
-                if element not in stars_dict:
-                    stars_dict[element] = 1
-                else:
-                    stars_dict[element] += 1
+    #         for element in stars:
+    #             if element not in stars_dict:
+    #                 stars_dict[element] = 1
+    #             else:
+    #                 stars_dict[element] += 1
 
-            for key, value in stars_dict.items():
-                percentage = (100*value) / len(stars)
-                stars_dict[key] = (value, int(percentage))
+    #         for key, value in stars_dict.items():
+    #             percentage = (100*value) / len(stars)
+    #             stars_dict[key] = (value, int(percentage))
 
-        return stars_dict
+    #     return stars_dict
 
-    @property
-    def get_num_of_reviews(self) -> int:
-        return len(Reviews.objects.filter(product=self.id, checked_by_employer=True))
-
-    @property
-    def get_num_of_questions(self) -> int:
-        return len(Questions.objects.filter(product=self.id, checked_by_employer=True))
-
-    @property
-    def return_images(self) -> List:
-        images_dictionary = dict()
-        if self.img:
-            images_dictionary['img'] = self.img.url
-        if self.second_img:
-            images_dictionary['second_img'] = self.second_img.url
-        if self.third_img:
-            images_dictionary['third_img'] = self.third_img.url
-
-        return images_dictionary
 
 
 class Phones(Inherit):
@@ -286,6 +290,12 @@ class Phones(Inherit):
     screen_diagonal = models.CharField(max_length=50, default='')
     battery = models.CharField(max_length=50, default='')
 
+    @classmethod
+    def data_products_to_filter(cls) -> Dict:
+
+        phones = Phones.objects.all()
+        return filter_phones(phones)
+
 
 class Monitors(Inherit):
 
@@ -297,6 +307,13 @@ class Monitors(Inherit):
     screen = models.CharField(max_length=30, default='')
     diagonal = models.CharField(max_length=10, default='')
     curved = models.CharField(max_length=10, default='')
+
+
+    @classmethod
+    def data_products_to_filter(cls) -> Dict:
+
+        monitors = Monitors.objects.all()
+        return filter_monitors(monitors)
 
 
 class Laptops(Inherit):
@@ -320,6 +337,14 @@ class Laptops(Inherit):
     processor = models.CharField(max_length=50, default='')
     processor_clock = models.CharField(max_length=50, default='')
     processor_cores_threads = models.CharField(max_length=50, default='')
+
+
+    @classmethod
+    def data_products_to_filter(cls) -> Dict:
+
+        laptops = Laptops.objects.all()
+        return filter_laptops(laptops)
+
 
 
 class Pc(Inherit):
@@ -440,58 +465,11 @@ class Tv(Inherit):
 
     @classmethod
     def data_products_to_filter(cls):
-        refresh = {}
-        for product in Tv.objects.all():
-            if product.refresh_rate in refresh:
-                refresh[product.refresh_rate] += 1
-            else:
-                refresh[product.refresh_rate] = 1
 
-        diagonal = {
-            "20-29'": 0,
-            "30-39'": 0,
-            "40-49'": 0,
-            "50-59'": 0,
-            "60-69'": 0,
-            "70' and more": 0,
-        }
+        tvs = Tv.objects.all()
 
-        for product in Tv.objects.all():
-            splited = product.diagonal.split('\'')[0]
-            if 20 <= int(splited) < 30:
-                diagonal["20-29'"] += 1
-            elif 30 <= int(splited) < 39:
-                diagonal["30-39'"] += 1
-            elif 40 <= int(splited) < 49:
-                diagonal["40-49'"] += 1
-            elif 50 <= int(splited) < 59:
-                diagonal["50-59'"] += 1
-            elif 60 <= int(splited) < 69:
-                diagonal["60-69'"] += 1
-            elif 70 <= int(splited):
-                diagonal["70' and more"] += 1
+        return filter_tvs(tvs)
 
-        resolution = {}
-        for product in Tv.objects.all():
-            if product.resolution in resolution:
-                resolution[product.resolution] += 1
-            else:
-                resolution[product.resolution] = 1
-                
-        matrix_type = {}
-        for product in Tv.objects.all():
-            if product.matrix_type in matrix_type:
-                matrix_type[product.matrix_type] += 1
-            else:
-                matrix_type[product.matrix_type] = 1
-
-        return {'refresh_rate': refresh,
-                'diagonal': diagonal,
-                'curved': len([product.curved for product in Tv.objects.all() if product.curved == 'Yes']),
-                'smart_tv': len([product.smart_tv for product in Tv.objects.all() if product.smart_tv == 'Yes']),
-                'resolution': resolution,
-                'matrix_type': matrix_type
-            }
 
 
 class Headphones(Inherit):

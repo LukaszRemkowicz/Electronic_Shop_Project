@@ -130,6 +130,7 @@ class UpdateItemView(APIView):
             customer = shopping_cart.Customer.objects.create(user=request.user, email=request.user.email)
             customer.email = request.user.email
             customer.save()
+
         product = product_app.MainProductDatabase.objects.get(id=product_id)
         order = shopping_cart.Order.objects.filter(customer=customer, complete=False)
         print(order)

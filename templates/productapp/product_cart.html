@@ -670,48 +670,50 @@
 								<div class="card-body-description">
 									{% comment %} <h6 class="font-weight-bold pt-1">{{product.name|truncatechars:30}}</h6> {% endcomment %}
 
-											<h6 class="font-weight-bold pt-1 product-description {% if not request.get_full_path|find_grid %} display-none {% endif %}">
-											<a href="{% url 'product_page' product.id %}">{{product.name}}</a>
-											</h6>
+									<h6 class="font-weight-bold pt-1 product-description {% if not request.get_full_path|find_grid %} display-none {% endif %}">
+									<a href="{% url 'product_page' product|get_main_product_id %}">{{product.name}}</a>
+									</h6>
 
-											<div class="product-description {% if not request.get_full_path|find_grid %} display-none {% endif %}">
+									<div class="product-description {% if not request.get_full_path|find_grid %} display-none {% endif %}">
 
-												{% if product.cattegory == 'Phones' %}
-													{% include 'partials/productSpecification_list/phones.html' %}
-												{% elif product.cattegory == 'Laptops' %}
-													{% include 'partials/productSpecification_list/Laptops.html' %}
-												{% elif product.cattegory == 'PC' %}
-													{% include 'partials/productSpecification_list/PC.html' %}
-												{% elif product.cattegory == 'Monitors' %}
-													{% include 'partials/productSpecification_list/Monitor.html' %}
-												{% elif product.cattegory == 'Accesories for laptops' %}
-													{% include 'partials/productSpecification_list/Accesories for laptops.html' %}
-												{% elif product.cattegory == 'SSD' %}
-													{% include 'partials/productSpecification_list/SSD.html' %}
-												{% elif product.cattegory == 'Graphs' %}
-													{% include 'partials/productSpecification_list/Graphs.html' %}
-												{% elif product.cattegory == 'Ram' %}
-													{% include 'partials/productSpecification_list/Ram.html' %}
-												{% elif product.cattegory == 'Pendrives' %}
-													{% include 'partials/productSpecification_list/Pendrives.html' %}
-												{% elif product.cattegory == 'Routers' %}
-													{% include 'partials/productSpecification_list/Routers.html' %}
-												{% elif product.cattegory == 'Switches' %}
-													{% include 'partials/productSpecification_list/Switches.html' %}
-												{% elif product.cattegory == 'Motherboard' %}
-													{% include 'partials/productSpecification_list/Motherboard.html' %}
-												{% elif product.cattegory == 'CPU' %}
-													{% include 'partials/productSpecification_list/CPU.html' %}
-												{% elif product.cattegory == 'TV' %}
-													{% include 'partials/productSpecification_list/TV.html' %}
-												{% elif product.cattegory == 'Headphones' %}
-													{% include 'partials/productSpecification_list/Headphones.html' %}
-												{% endif %}
+										{% if product.cattegory == 'Phones' %}
+											{% include 'partials/productSpecification_list/phones.html' %}
+										{% elif product.cattegory == 'Laptops' %}
+											{% include 'partials/productSpecification_list/Laptops.html' %}
+										{% elif product.cattegory == 'PC' %}
+											{% include 'partials/productSpecification_list/PC.html' %}
+										{% elif product.cattegory == 'Monitors' %}
+											{% include 'partials/productSpecification_list/Monitor.html' %}
+										{% elif product.cattegory == 'Accesories for laptops' %}
+											{% include 'partials/productSpecification_list/Accesories for laptops.html' %}
+										{% elif product.cattegory == 'SSD' %}
+											{% include 'partials/productSpecification_list/SSD.html' %}
+										{% elif product.cattegory == 'Graphs' %}
+											{% include 'partials/productSpecification_list/Graphs.html' %}
+										{% elif product.cattegory == 'Ram' %}
+											{% include 'partials/productSpecification_list/Ram.html' %}
+										{% elif product.cattegory == 'Pendrives' %}
+											{% include 'partials/productSpecification_list/Pendrives.html' %}
+										{% elif product.cattegory == 'Routers' %}
+											{% include 'partials/productSpecification_list/Routers.html' %}
+										{% elif product.cattegory == 'Switches' %}
+											{% include 'partials/productSpecification_list/Switches.html' %}
+										{% elif product.cattegory == 'Motherboard' %}
+											{% include 'partials/productSpecification_list/Motherboard.html' %}
+										{% elif product.cattegory == 'CPU' %}
+											{% include 'partials/productSpecification_list/CPU.html' %}
+										{% elif product.cattegory == 'TV' %}
+											{% include 'partials/productSpecification_list/TV.html' %}
+										{% elif product.cattegory == 'Headphones' %}
+											{% include 'partials/productSpecification_list/Headphones.html' %}
+										{% endif %}
 
-											</div>
+									</div>
 
-											<h6 class="font-weight-bold pt-1 description-grid"><a href="{% url 'product_page' product.id %}">{{product.name|truncatechars:30}}</a></h6>
-											<div class="text-muted description description-grid">Space for small product description</div>
+									<h6 class="font-weight-bold pt-1 description-grid"><a href="{% url 'product_page' product|get_main_product_id %}">{{product.name|truncatechars:30}}</a></h6>
+									<div class="text-muted description description-grid">Space for small product description</div>
+
+									<div class="d-flex">
 
 										<div class="d-flex align-items-center product">
 											{% for element in product.get_star_avg.1 %}
@@ -725,7 +727,24 @@
 
 												{% endif %}
 											{% endfor %}
+											<a href="{% url 'product_page' product|get_main_product_id %}#opinions"
+												class='font-red pl-1 m-auto'>({% if not product.get_num_of_reviews %}0{% else %}{{product.get_num_of_reviews}}{% endif %})
+											</a>
 										</div>
+
+										{% if product.get_num_of_questions and not request.get_full_path|find_grid %}
+											<div class="pl-3">
+												<a href="{% url 'product_page' product|get_main_product_id %}#ask-something" class='m-auto w-100 font-brown'>{{ product.get_num_of_questions }} Questions</a>
+											</div>
+										{% endif %}
+										{% if  product.bought_num and not request.get_full_path|find_grid%}
+											<div class="pl-3">
+												<p class='m-auto w-100 font-brown'>Bought by {{ product.bought_num }} people </p>
+											</div>
+										{% endif %}
+
+									</div>
+
 								</div>
 
                                 <div class="d-flex align-items-center justify-content-between pb-3 buy-list-view">

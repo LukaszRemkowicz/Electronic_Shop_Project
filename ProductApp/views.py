@@ -8,9 +8,11 @@ from django.http import HttpResponse, HttpRequest, request
 
 from ShoppingCardApp.models import Customer, Order, OrderItem
 from . import models
-from .utils import filter_products, sort_by_product_rate, paginate_view, try_to_get_product, filter_tv_products
+from .utils import filter_products, sort_by_product_rate, paginate_view, try_to_get_product
+from .utilss.view_utils import *
 from .forms import FilterForm
 from .filters import SnippetFilter
+from ProductApp import models
 
 User = settings.AUTH_USER_MODEL
 
@@ -27,8 +29,13 @@ class ProductPage(ListView):
         if self.request.user.is_authenticated:
             customer = Customer.objects.get(user=self.request.user)
             order = Order.objects.get(customer=customer, complete=False)
-            order_item = OrderItem.objects.get(order=order)
-            pieces = product.pieces - order_item.quantity
+            try:
+                order_item = OrderItem.objects.get(order=order, product__ean=product.ean)
+                pieces = product.pieces - order_item.quantity
+
+            except ObjectDoesNotExist:
+                order_item = ''
+                pieces = product.pieces
 
         elif not self.request.user.is_authenticated:
             order_item = ''
@@ -41,6 +48,9 @@ class ProductPage(ListView):
             pieces_range = range(1, pieces+1)
         else:
             pieces_range = range(1, 11)
+
+        product = try_to_get_product(product, '')
+
 
         reviews = models.Reviews.objects.filter(product_id=product_id, checked_by_employer=True)
         question = models.Questions.objects.filter(product_id=product_id, checked_by_employer=True)
@@ -123,7 +133,10 @@ class ProductsCart(ListView):
 
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-        """ View for render products search template. On this view products are filtered by user filters """
+        """ View for render products in product_cart template.
+        On this view products are filtered by user applied filters """
+
+        #TODO: Write tests for this view
 
         context = super().get_context_data(**kwargs)
 
@@ -134,10 +147,18 @@ class ProductsCart(ListView):
 
         #TODO: add filters by cattegory. Create functions for each model
 
-        products = filter_tv_products(self.request)
+        cattegories = {
+            'TV':  filter_tv_products(self.request)
+        }
+
+        try:
+            products = cattegories[product_cattegory]
+        except (KeyError, ObjectDoesNotExist) as e:
+            products = []
 
 
-        # Filter products by popular, trending filters etc. It should be done at the end of all filters
+        # Filter products by popular, trending filters etc.
+        # It should be done at the end of all filters
 
         if self.request.GET.get('filter'):
 
@@ -153,7 +174,7 @@ class ProductsCart(ListView):
             try:
                 products = choose_param[filter_option]
                 context['products_total'] = len(products)
-                print( [product.price for product in products])
+                # print( [product.price for product in products])
 
             except ObjectDoesNotExist:
                 pass
@@ -161,19 +182,28 @@ class ProductsCart(ListView):
             context['filter_option'] = filter_option
 
 
-        # Method is called from specific produc Model. It is returning dictionary with filter name as a key,
-        # and number of products as a value. For example: {'diagonal':2} == {filter:prodcut_number}.
+        # Method is called from specific produc Model.
+        # Returning dictionary with filter name as a "key", and number of products as a "value".
+        # For example: {'diagonal':2} == {filter:prodcut_number}.
 
-        #TODO: add data_products_to_filter method to each model
+        #TODO: add data_products_to_filter method to each model. Add try catch blocks
 
-        data_to_filter = products[0].data_products_to_filter()
+        try:
+            data_to_filter = products[0].data_products_to_filter()
+        except IndexError:
+            data_to_filter = []
 
-        # Create producent dictionary {name: products number for producent} from first query (all producents)
+        print(data_to_filter)
+
+
+        # Create producent dictionary {name: products number for producent}
+        # from first query (all producents)
+
         old_products = [try_to_get_product(product, '') for product in old_products]
 
         context['products_total'] = len(products)
 
-        # Paginate View 
+        # Paginate View
         page = self.request.GET.get('page')
         result = 9
         ranger, paginator, products = paginate_view(products, result, page)
@@ -191,5 +221,8 @@ class ProductsCart(ListView):
         context['paginator'] = paginator
         context['products'] = products
         context['form'] = form
+        context['mainDatabaseProd'] = old_products
 
         return context
+
+

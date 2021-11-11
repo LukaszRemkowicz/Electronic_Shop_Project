@@ -2,11 +2,13 @@
 
 {% block content %}
 {% load static %}
+{% load custom_filters %}
 
     <!-- product page -->
     <!-- Main content section -->
 
     <!-- Buy it section -->
+    
     <div class=" m-auto d-flex justify-content-between small-container" >
 
         <div class="buys flex-column sticky-top align-items-start my-3 buy-section-hide " >
@@ -43,7 +45,7 @@
                         {% if pieces <= 0%}
                             <button href="#" type="button" class="add-to-cart btn-light ml-2 p-2 pt-2 pb-2 text-center" disabled>Product is not avaiable </button>
                         {%else%}
-                            <a href="#" data-product="{{ product.id }}" data-action="add" type="button" class="add-to-cart btn-red ml-2 pt-2 pb-2 text-center update-cart">Add to cart </a>
+                            <a href="#" data-product="{{ product|get_main_product_id }}" data-action="add" type="button" class="add-to-cart btn-red ml-2 pt-2 pb-2 text-center update-cart">Add to cart </a>
                         {% endif %}
 
                     </div>
@@ -73,7 +75,7 @@
                             <div class="d-flex flex-column mini-images-section">
                                 {% for key, value in product.return_images.items %}
                                     <img src="{{value}}" alt="" class="
-                                    {% if value == product.img.url %}
+                                    {% if value == product.main_photo.url %}
                                     active-product-content
                                     {% else %}
                                     mini-img
@@ -84,7 +86,7 @@
                             </div>
                             <div class="d-flex main-img">
                                 <div class="align-self-center m-auto main-img-div">
-                                    <img src="{% if product.img %}{{ product.img.url }}{% endif %}" class="main-pic" alt="" />
+                                    <img src="{% if product.main_photo %}{{ product.main_photo.url }}{% endif %}" class="main-pic" alt="" />
 									{% comment %} <i class="far fa-heart font-red fa-2x"></i> {% endcomment %}
                                     <i class="lni lni-heart font-light-grey"></i>
                                 </div>
@@ -98,7 +100,7 @@
                                 <h4 class="mt-2 mb-0 text-left pl-5 product-title">{{ product.name }}</h4>
 
                                 <div class="d-flex w-100 product-id">
-                                    <p class="text-left pl-5 pt-1 d-inline font-light-grey">Product ID: {{ product.id }}</p>
+                                    <p class="text-left pl-5 pt-1 d-inline font-light-grey">Product ID: {{ product|get_main_product_id }}</p>
                                     {% if same_products|length >= 2 %}
                                         <a href='' class="text-left ml-3 pt-1 d-inline font-light-grey">Check similar products</a>
                                     {% endif %}
@@ -433,10 +435,10 @@
                                                             </div>
                                                         </div>
                                                         <div class="pr-4">
-                                                            <img src="{{product.img.url}}" alt="">
+                                                            <img src="{{product.main_photo.url}}" alt="">
                                                         </div>
                                                     </div>
-                                                    <textarea class="form-control" data-productid='{{ product.id }}' id="opinion-form" rows="3"></textarea>
+                                                    <textarea class="form-control" data-productid='{{ product|get_main_product_id }}' id="opinion-form" rows="3"></textarea>
 
 
                                                 </div>
@@ -507,7 +509,7 @@
                             <div class="modal-content p-5">
                                 <div class="modal-header">
                                     <div class="product-div d-flex w-100">
-                                        <img class='' src="{% if product.img %}{{ product.img.url }}{% endif %}" alt="">
+                                        <img class='' src="{% if product.main_photo %}{{ product.main_photo.url }}{% endif %}" alt="">
                                         <div class="">
                                             <p class="align-self-center w-100 px-2">{{ product.name }}</p>
                                         </div>
@@ -520,7 +522,7 @@
 
                                     <!-- Form question submit -->
 
-                                    <form method="POST" class='question-form' data-productid='{{ product.id }}'>
+                                    <form method="POST" class='question-form' data-productid='{{ product|get_main_product_id }}'>
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <textarea class="form-control" id="question-form" rows="3"></textarea>
@@ -585,7 +587,7 @@
             $("#fixed").sticky({topSpacing:0});
         });
     </script> {% endcomment %}
-    <script> const productId = '{{ product.id }}';</script>
+    <script> const productId = '{{ product|get_main_product_id }}';</script>
     <script> const productIds = '{{ same_products.items_id }}'; </script>
     <script src="{% static 'js/ProductPage/productReview.js' %}"></script>
     <script src="{% static 'js/ProductPage/productReviewStars.js' %}"></script>
