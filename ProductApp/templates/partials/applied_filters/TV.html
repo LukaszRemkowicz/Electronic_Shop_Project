@@ -1,9 +1,0 @@
-{% load custom_filters %}
-
-{% if request.get_full_path|check_curved %}
-    <div class="green-label font-weight-bold p-0 px-1 mx-sm-1 mx-0 my-sm-0 my-2">{{'curved'|capfirst }} <span class=" px-1 close">&times;</span> </div>
-{% endif %}
-
-{% if request.get_full_path|check_smart %}
-    <div class="green-label font-weight-bold p-0 px-1 mx-sm-1 mx-0 my-sm-0 my-2">{{'Smart Tv'|capfirst }} <span class=" px-1 close">&times;</span> </div>
-{% endif %}

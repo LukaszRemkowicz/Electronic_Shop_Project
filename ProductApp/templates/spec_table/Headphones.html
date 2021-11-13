@@ -1,0 +1,134 @@
+<tbody>
+    <tr>
+        <th scope="row w-100">
+            <h6 class="h3-2 col-12 pt-2 pb-2"> <span class="pb-2 underline upper">Specification</span> </h6>
+        </th>
+    </tr>
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center">
+                <p class="pr-4 mb-0 text-right col-6">Producent: </p>
+                <p class="mb-0 text-left col-6">{{ product.producent }}</p>
+            </div>
+        </th>
+    </tr>
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Producer code: </p>
+                <p class="mb-0 w-50 text-left col-6">{{ product.producent_code }}</p>
+            </div>
+    </th>
+    </tr>
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">EAN: </p>
+                <p class="mb-0  w-50 text-left col-6">{{ product.ean }}</p>
+            </div>
+    </th>
+    </tr>
+    <tr>
+        <th scope="row w-100">
+            <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper"> Basic Informations</span></h6>
+        </th>
+    </tr>
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Type: </p>
+                <p class="mb-0 w-50 text-left col-6">{{ product.cattegory }}</p>
+            </div>
+        </th>
+    </tr>
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Color: </p>
+                <p class="mb-0  w-50 text-left col-6">{{ product.color }}</p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper">General information</span></h6>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Bluetooth: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6">
+                {% if product.bluetooth %}Yes{% else %}N/a{% endif %}
+                </p>
+            </div>
+        </th>
+    </tr>
+
+    {% if product.bluetooth %}
+
+        <tr>
+            <th scope="row w-100">
+                <div class="d-flex justify-content-center mx-5">
+                    <p class="pr-4 mb-0 w-50 text-right col-6">Bluetooth range [m]: </p>
+                    <p class="mb-0  w-50 text-left col-6">{{ product.bluetooth_range }}
+                    </p>
+                </div>
+            </th>
+        </tr>
+
+        <tr>
+            <th scope="row w-100">
+                <div class="d-flex justify-content-center mx-5 p-2 ">
+                    <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Work time [h]: </p>
+                    <p class="mb-0 w-50 text-left col-6 col-6">{{ product.work_time }}</p>
+                </div>
+            </th>
+        </tr>
+
+    {% endif %}
+
+    {% if product.cable %}
+
+        <tr>
+            <th scope="row w-100">
+                <div class="d-flex justify-content-center mx-5">
+                    <p class="pr-4 mb-0 w-50 text-right col-6">Jack: </p>
+                    <p class="mb-0  w-50 text-left col-6">{{ product.jack }}
+                    </p>
+                </div>
+            </th>
+        </tr>
+
+        <tr>
+            <th scope="row w-100">
+                <div class="d-flex justify-content-center mx-5">
+                    <p class="pr-4 mb-0 w-50 text-right col-6">Cable lenght [m]: </p>
+                    <p class="mb-0  w-50 text-left col-6">{{ product.cable_lenght }}
+                    </p>
+                </div>
+            </th>
+        </tr>
+
+    {% endif %}
+
+    <tr>
+        <th scope="row w-100">
+            <h6 class="mx-5 p-2 mb-0 pt-2 pb-3"><span class="pb-2 underline upper">Other</span></h6>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Microphone: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6">
+                {% if product.microphone %}Yes{% else %}N/a{% endif %}
+                </p>
+            </div>
+        </th>
+    </tr>
+
+</tbody>

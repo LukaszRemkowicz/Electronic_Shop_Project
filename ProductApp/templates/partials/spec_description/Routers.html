@@ -1,0 +1,48 @@
+<div class="pt-5  not-data-block mb-0">
+
+    <p class="pl-5 text-left font-light-grey">
+        Producent Code:
+        <span class='product-spec-span'>{{ product.producent_code }}</span>
+    </p>
+
+    <p class="pl-5 text-left font-light-grey">
+        Ean:
+        <span class='product-spec-span'>{{ product.ean }}</span>
+    </p>
+
+    <p class="pl-5 text-left font-light-grey">
+        Wifi standard:
+        <span class='product-spec-span'>
+        {% if product.wifi %}{{ product.wifi }}
+        {% else %}N/a
+        {% endif %}
+        </span>
+    </p>
+
+    <p class="pl-5 text-left font-light-grey">
+        Encryption standard:
+        <span class='product-spec-span'>
+        {% if product.encryption_standard %}{{ product.encryption_standard }}
+        {% else %}N/a
+        {% endif %}</span>
+    </p>
+
+    <p class="pl-5 text-left font-light-grey">
+        Lan ports:
+        <span class='product-spec-span'>
+        {% if product.lan_ports %}{{ product.lan_ports }}
+        {% else %}N/a
+        {% endif %}
+        </span>
+    </p>
+
+    <p class="pl-5 text-left font-light-grey">
+        Wan ports:
+        <span class='product-spec-span'>
+        {% if product.wan_ports %}{{ product.wan_ports }}
+        {% else %}N/a
+        {% endif %}
+        </span>
+    </p>
+
+</div>

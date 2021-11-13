@@ -1,0 +1,76 @@
+{% if products_filter_options.capacity|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Capacity</h5>
+        {% for capacity, value in products_filter_options.capacity.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{capacity}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.frequency|length > 1  %}
+    <div class="py-3">
+        <h5 class="font-weight-bold">Frequency</h5>
+        {% for frequency, num in products_filter_options.frequency.items %}
+            {% if value != 0 %}
+                <form>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{frequency}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{num}}</span> </div>
+                </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.modules_number|length > 1  %}
+    <div class="py-3">
+        <h5 class="font-weight-bold">Modules number</h5>
+        {% for modules_number, value in products_filter_options.modules_number.items %}
+            {% if value != 0 %}
+                <form>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{modules_number}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+                </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.delay|length > 1  %}
+    <div class="py-3">
+        <h5 class="font-weight-bold">Delay</h5>
+        {% for delay, value in products_filter_options.delay.items %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{delay}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+            </form>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.voltage|length > 1  %}
+    <div class="py-3">
+        <h5 class="font-weight-bold">Voltage</h5>
+        {% for voltage, value in products_filter_options.voltage.items %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{voltage}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+            </form>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.type|length > 1  %}
+    <div class="py-3">
+        <h5 class="font-weight-bold">Type</h5>
+        {% for type, value in products_filter_options.type.items %}
+            {% if products_filter_options.type|length > 1 %}
+                <form>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{type}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+                </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+

@@ -1,0 +1,102 @@
+{% if products_filter_options.wifi|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Wifi</h5>
+        {% for wifi, value in products_filter_options.wifi.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                    <label class="tick">{{wifi}}
+                    <input type="checkbox"> <span class="check"></span> </label>
+                    <span class="badge badge-primary badge-pill">{{value}}</span>
+                </div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.lan_ports|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Lan ports</h5>
+        {% for lan_ports, value in products_filter_options.lan_ports.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                    <label class="tick">{{lan_ports}}
+                    <input type="checkbox"> <span class="check"></span> </label>
+                    <span class="badge badge-primary badge-pill">{{value}}</span>
+                </div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.wan_ports|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Wan ports</h5>
+        {% for wan_ports, value in products_filter_options.wan_ports.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                    <label class="tick">{{wan_ports}}
+                    <input type="checkbox"> <span class="check"></span> </label>
+                    <span class="badge badge-primary badge-pill">{{value}}</span>
+                </div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.case|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Case</h5>
+        {% for case, value in products_filter_options.case.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                    <label class="tick">{{case}}
+                    <input type="checkbox"> <span class="check"></span> </label>
+                    <span class="badge badge-primary badge-pill">{{value}}</span>
+                </div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.usb_ports|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Usb ports</h5>
+        {% for usb_ports, value in products_filter_options.usb_ports.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                    <label class="tick">{% if value == '0' %}No usb ports {% else %}{{usb_ports}}{% endif %}
+                    <input type="checkbox"> <span class="check"></span> </label>
+                    <span class="badge badge-primary badge-pill">{{value}}</span>
+                </div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.sim|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Sim</h5>
+        {% for sim, value in products_filter_options.sim.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                    <label class="tick">{% if sim %}Yes {% else %}No{% endif %}
+                    <input type="checkbox"> <span class="check"></span> </label>
+                    <span class="badge badge-primary badge-pill">{{value}}</span>
+                </div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+

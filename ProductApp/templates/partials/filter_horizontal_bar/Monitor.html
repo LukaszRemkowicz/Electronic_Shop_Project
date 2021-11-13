@@ -1,0 +1,16 @@
+{% comment %} <div class="form-inline d-flex align-items-center  checkbox bg-light border mx-lg-2">
+
+    <label class="tick" {% if products_filter_options.curved == 0 %}style="pointer-events:none"{% endif %}>
+        <input type="checkbox" class='curved'>Curved
+        <span class="check">
+        <div class="curvedDiv"></div>
+        </span>
+    </label>
+
+    <span class="px-2 count {% if products_filter_options.curved == 0 %}font-red {% else %}text-success{% endif %}">
+        {% if products_filter_options.curved %}{{products_filter_options.curved}}
+        {% else %}0
+        {% endif %}
+    </span>
+
+</div> {% endcomment %}

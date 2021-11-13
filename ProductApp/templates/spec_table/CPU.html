@@ -1,0 +1,108 @@
+<tbody>
+
+    <tr>
+        <th scope="row w-100">
+            <h6 class="h3-2 col-12 pt-2 pb-2"> <span class="pb-2 underline upper">Specification</span> </h6>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center">
+                <p class="pr-4 mb-0 text-right col-6">Producent: </p>
+                <p class="mb-0 text-left col-6">{{ product.producent }}</p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Producent code: </p>
+                <p class="mb-0 w-50 text-left col-6">{{ product.producent_code }}</p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">EAN: </p>
+                <p class="mb-0  w-50 text-left col-6">{{ product.ean }}</p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper"> Basic Informations</span></h6>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Cooler: </p>
+
+                {% if product.cooler %}
+                    <p class="mb-0 w-50 text-left col-6">Yes</p>
+                {% else %}
+                    <p class="mb-0 w-50 text-left col-6">N/a</p>
+                {% endif %}
+
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Socket: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.socket }} </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Cores number: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.cores_num }}</p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6"> Threat number: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.threat_num }} </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper"> Clock Frequency </span></h6>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Ram slots: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.clock_frequency }} </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Supported memory: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6"> {{ product.supported_memory  }} </p>
+            </div>
+        </th>
+    </tr>
+
+</tbody>

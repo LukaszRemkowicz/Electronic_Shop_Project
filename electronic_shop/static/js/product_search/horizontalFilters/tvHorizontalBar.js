@@ -1,75 +1,49 @@
-let producentFilter = document.querySelector('.checkchecked');
-const curved = document.querySelector('.curved');
-const smartTv = document.querySelector('.smart')
+const tvFilters = document.querySelectorAll('.tv-filters .tick span');
 
 
-function addEventToProducentLists(){
-    producentFilter.addEventListener('click', () => {
-
-        const producent = document.querySelector('.producentsFilters').innerText.toString()
-        console.log('jestem w evencie');
-        let producentsFilter = document.querySelector('.producentFilters');
-
-        if(producentsFilter.checked){
-
-            changeUrls('producent', producent);
-            location.reload();
+function checkClicked(){
+    urlSearchParams = new URLSearchParams(window.location.search);
+    params = Object.fromEntries(urlSearchParams.entries());
+    for(let [param, value] of Object.entries(params)){
+        console.log(param, value);
+        try{
+            let catchElement = document.querySelector(`[data-filter="${param}=${value}"]`);
+            catchElement.firstElementChild.classList.add('newClass');
+            catchElement.style.backgroundColor = '#ff503c';
+        } catch(e){
+            console.log(e);
         }
+    }
+}
+
+checkClicked()
+
+function addCheckBoxes(element, queryAll) {
+
+    queryAll.forEach(el => {
+        try{
+            el.firstElementChild.classList.remove('newClass');
+        } catch(e){
+            console.log(e);
+        }
+        el.style.backgroundColor = '#f8f8f8';
+        checkClicked()
+    });
+
+    element.firstElementChild.classList.add('newClass');
+    element.style.backgroundColor = '#ff503c';
+    window.location.reload();
+}
+
+tvFilters.forEach(element => {
+    element.addEventListener('click', () =>{
+        const filter = element.dataset.filter.split('=');
+        changeUrls(filter[0], filter[1]);
+        addCheckBoxes(element, tvFilters)
     })
-
-
-}
-
-addEventToProducentLists();
-
-function addCheckBoxes(elementToSplit){
-    let status = document.querySelector(`.tick .check .${elementToSplit}Div`);
-
-    if (window.location.href.includes(elementToSplit)){
-        const splitted = window.location.href.split('&');
-        splitted.forEach(element => {
-
-            if (element.includes(elementToSplit)){
-
-                if (element.split(`${elementToSplit}=`)[1] == 'Yes'){
-
-                    status.classList.add('newClass');
-                    status.parentNode.style.backgroundColor = '#ff503c';
-
-                } else {
-
-                    status.classList.remove('newClass');
-                    status.parentNode.style.backgroundColor = '#f8f8f8';
-                }
-            }
-        })
-
-    }
-}
-
-addCheckBoxes('curved');
-addCheckBoxes('smart');
-
-function checkClicked(elementToSplit, bool, opositeBool){
-    let status = document.querySelector(`.tick .check .${elementToSplit}Div`);
-
-    if(status.classList.value === `${elementToSplit}Div`){
-        changeUrls(elementToSplit, bool);
-        status.classList.add('newClass');
-        status.parentNode.style.backgroundColor = '#ff503c';
-        location.reload();
-    } else{
-        changeUrls(elementToSplit, opositeBool);
-        status.classList.remove('newClass');
-        status.parentNode.style.backgroundColor = '#f8f8f8';
-        location.reload();
-    }
-}
-
-
-curved.addEventListener('click', () =>{
-    checkClicked('curved', 'Yes', 'No');
-});
-smartTv.addEventListener('click', () =>{
-    checkClicked('smart', 'Yes', 'No');
 })
+
+
+
+
+

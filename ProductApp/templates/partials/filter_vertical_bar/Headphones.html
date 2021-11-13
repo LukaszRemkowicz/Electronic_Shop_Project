@@ -1,0 +1,17 @@
+{% if products_filter_options.connection|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Connection</h5>
+        {% for key, value in products_filter_options.connection.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> 
+                    <label class="tick">{{key}}
+                    <input type="checkbox"> <span class="check"></span> </label> 
+                    <span class="badge badge-primary badge-pill">{{value}}</span>
+                </div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+

@@ -47,7 +47,7 @@
                     <button
                     href=""
                     class="btn-light d-inline mt-2 mb-2 mr-2 py-2 spec-product-data
-                    {% if element == product.phones_product_data.memory %}active-product-content bg-white
+                    {% if element == product.memory %}active-product-content bg-white
                     {% else %}light-border
                     {% endif %}
                     {% if element|length >= 6 %} font-point-seven-rem px-2
@@ -77,7 +77,7 @@
                     <button
                     href=""
                     class="btn-light d-inline mt-2 mb-2 mr-2 py-2 spec-product-data
-                    {% if element == product.phones_product_data.ram %}active-product-content bg-white
+                    {% if element == product.ram %}active-product-content bg-white
                     {% else %}light-border
                     {% endif %}
                     {% if element|length >= 6 %} font-point-seven-rem px-2
@@ -107,7 +107,7 @@
                     <button
                     href=""
                     class="btn-light d-inline mt-2 mb-2 mr-2 py-2 spec-product-data
-                    {% if element == product.phones_product_data.battery %}active-product-content bg-white
+                    {% if element == product.battery %}active-product-content bg-white
                     {% else %}light-border
                     {% endif %}
                     {% if element|length >= 6 %} font-point-seven-rem px-2
@@ -124,6 +124,6 @@
 
 {% else %}
 
-    {% include 'partials/productSpecification_list/Phones.html' %}
+    {% include 'partials/spec_description/Phones.html' %}
 
 {% endif %}

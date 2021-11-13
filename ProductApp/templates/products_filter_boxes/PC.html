@@ -15,7 +15,7 @@
                 {% for element in same_products.ram %}
 
                     <button href="" class="btn-light d-inline py-2 mt-2 mb-2 mr-2 spec-product-data
-                    {% if element == product.pc_product_data.ram %}active-product-content bg-white
+                    {% if element == product.ram %}active-product-content bg-white
                     {% else %}light-border
                     {% endif %}
                     {% if element|length >= 15 %} font-point-seven-rem px-2
@@ -43,7 +43,7 @@
                 {% for element in same_products.p_c_i_e %}
 
                     <button href="" class="btn-light d-inline mt-2 mb-2 mr-2 py-2 spec-product-data
-                    {% if element == product.pc_product_data.p_c_i_e %}active-product-content bg-white
+                    {% if element == product.p_c_i_e %}active-product-content bg-white
                     {% else %}light-border
                     {% endif %}
                     {% if element|length >= 15 %} font-point-seven-rem px-2
@@ -71,7 +71,7 @@
                 {% for element in same_products.system %}
 
                     <button href="" class="btn-light d-inline mt-2 mb-2 mr-2 py-2  spec-product-data
-                    {% if element == product.pc_product_data.system %}active-product-content bg-white
+                    {% if element == product.system %}active-product-content bg-white
                     {% else %}light-border
                     {% endif %}
                     {% if element|length >= 15 %} font-point-seven-rem px-2
@@ -99,7 +99,7 @@
                 {% for element in same_products.processor %}
 
                     <button href="" class="btn-light d-inline mt-2 mb-2 mr-2 py-2 spec-product-data
-                    {% if element == product.pc_product_data.processor %}active-product-content bg-white
+                    {% if element == product.processor %}active-product-content bg-white
                     {% else %}light-border
                     {% endif %}
                     {% if element|length >= 15 %} font-point-seven-rem px-2
@@ -125,7 +125,7 @@
             {% for element in same_products.graph %}
 
                 <button href="" class="btn-light d-inline mt-2 mb-2 mr-2 py-2 spec-product-data
-                {% if element == product.pc_product_data.graph %}active-product-content bg-white
+                {% if element == product.graph %}active-product-content bg-white
                 {% else %}light-border
                 {% endif %}
                 {% if element|length >= 15 %} font-point-seven-rem px-2
@@ -140,6 +140,6 @@
 
 {% else %}
 
-    {% include 'partials/productSpecification_list/PC.html' %}
+    {% include 'partials/spec_description/PC.html' %}
 
 {% endif %}

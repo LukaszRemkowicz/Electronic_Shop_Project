@@ -148,7 +148,21 @@ class ProductsCart(ListView):
         #TODO: add filters by cattegory. Create functions for each model
 
         cattegories = {
-            'TV':  filter_tv_products(self.request)
+            'TV':  filter_tv_products(self.request),
+            'Monitors':  filter_monitors_products(self.request),
+            'PC':  filter_pcs_products(self.request),
+            'SSD':  filter_ssd_products(self.request),
+            'Graphs':  filter_graphs_products(self.request),
+            'Ram':  filter_rams_products(self.request),
+            'Pendrives':  filter_pendrives_products(self.request),
+            'Switches':  filter_switches_products(self.request),
+            'Motherboard':  filter_motherboard_products(self.request),
+            'CPU':  filter_cpus_products(self.request),
+            'Headphones':  filter_headphones_products(self.request),
+            'Routers':  filter_routers_products(self.request),
+            'Accesories for laptops':  AccesoriesForLaptops.objects.all(),
+            'Laptops':  filter_laptops_products(self.request),
+            'Phones':  filter_phones_products(self.request),
         }
 
         try:
@@ -178,8 +192,6 @@ class ProductsCart(ListView):
 
             except ObjectDoesNotExist:
                 pass
-
-            context['filter_option'] = filter_option
 
 
         # Method is called from specific produc Model.

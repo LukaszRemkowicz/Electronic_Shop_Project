@@ -1,0 +1,263 @@
+<tbody>
+    <tr>
+        <th scope="row w-100">
+            <h6 class="h3-2 col-12 pt-2 pb-2"> <span class="pb-2 underline upper">Specification</span> </h6>
+        </th>
+    </tr>
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center">
+                <p class="pr-4 mb-0 text-right col-6">Producent: </p>
+                <p class="mb-0 text-left col-6">{{ product.producent }}</p>
+            </div>
+        </th>
+    </tr>
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Producer code: </p>
+                <p class="mb-0 w-50 text-left col-6">{{ product.producent_code }}</p>
+            </div>
+    </th>
+    </tr>
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">EAN: </p>
+                <p class="mb-0  w-50 text-left col-6">{{ product.ean }}</p>
+            </div>
+    </th>
+    </tr>
+    <tr>
+        <th scope="row w-100">
+            <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper"> Basic Informations</span></h6>
+        </th>
+    </tr>
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Type: </p>
+                <p class="mb-0 w-50 text-left col-6">{{ product.cattegory }}</p>
+            </div>
+        </th>
+    </tr>
+
+    {% if product.color %}
+        <tr>
+            <th scope="row w-100">
+                <div class="d-flex justify-content-center mx-5">
+                    <p class="pr-4 mb-0 w-50 text-right col-6">Color: </p>
+                    <p class="mb-0  w-50 text-left col-6">{{ product.color }}</p>
+                </div>
+            </th>
+        </tr>
+    {% endif %}
+
+    <tr>
+        <th scope="row w-100">
+            <h6 class="mx-5 mb-0 pt-2 pb-3"><span class="pb-2 underline upper">General information</span></h6>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Wifi: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6">
+                {% if product.wifi %}Yes{% else %}Not avaiable{% endif %}
+                </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Wifi Standard: </p>
+                <p class="mb-0  w-50 text-left col-6">{% if product.wifi %}{{ product.wifi }}{% else %}N/a {% endif %}
+                </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Wifi 2.4 Ghz speed: </p>
+                <p class="mb-0  w-50 text-left col-6">{% if product.wifi_2_4ghz_speed %}{{ product.wifi_2_4ghz_speed }}{% else %}N/a {% endif %}
+                </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Wifi 5 Ghz speed: </p>
+                <p class="mb-0  w-50 text-left col-6">{% if product.wifi_5ghz_speed %}{{ product.wifi_5ghz_speed }}{% else %}N/a {% endif %}
+                </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Case: </p>
+                <p class="mb-0  w-50 text-left col-6">
+                {{product.case }}
+                </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5">
+                <p class="pr-4 mb-0 w-50 text-right col-6">VPN: </p>
+                <p class="mb-0  w-50 text-left col-6">
+                {% if product.vpn %}Yes{% else %}Not avaiable{% endif %}
+                </p>
+            </div>
+        </th>
+    </tr>
+
+
+    <tr>
+        <th scope="row w-100">
+            <h6 class="mx-5 p-2 mb-0 pt-2 pb-3"><span class="pb-2 underline upper">Other</span></h6>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Encryption standard: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6">{% if product.encryption_standard %}
+                {{ product.encryption_standard }}
+                {% else %}
+                N/a
+                {% endif %}
+                </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Wan ports: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6">
+                {% if product.wan_ports %}{{ product.wan_ports }}
+                {% else %} N/a
+                {% endif %}
+                </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Lan ports: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6">{% if product.lan_ports %}{{ product.lan_ports }}
+                {% else %} N/a
+                {% endif %}</p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">USB ports: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6">
+                    {{product.usb_ports}}
+                </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6 col-6">SIM: </p>
+                <p class="mb-0 w-50 text-left col-6 col-6">
+                {% if product.sim %}Yes
+                {% else %}N/a
+                {% endif %}
+                </p>
+            </div>
+        </th>
+    </tr>
+
+        <tr>
+            <th scope="row w-100">
+                <div class="d-flex justify-content-center mx-5 p-2 ">
+                    <p class="pr-4 mb-0 w-50 text-right col-6 col-6">Antennas number: </p>
+                    <p class="mb-0 w-50 text-left col-6 col-6">{{ product.antennas }}</p>
+                </div>
+            </th>
+        </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">High [mm]: </p>
+                <p class="mb-0 w-50 text-left col-6">
+                {% if product.change_high %}
+                {{ product.change_high }}
+                {% else %}
+                Data not avaiable
+                {% endif %}
+                </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Width [mm]: </p>
+                <p class="mb-0 w-50 text-left col-6">
+                {% if product.change_width %}
+                {{ product.change_width }}
+                {% else %}
+                Data not avaiable
+                {% endif %}
+                </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2 ">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Depth [mm]: </p>
+                <p class="mb-0 w-50 text-left col-6">
+                {% if product.change_deep %}
+                {{ product.change_deep }}
+                {% else %}
+                Data not avaiable
+                {% endif %}
+                </p>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th scope="row w-100">
+            <div class="d-flex justify-content-center mx-5 p-2">
+                <p class="pr-4 mb-0 w-50 text-right col-6">Weight [g]: </p>
+                <p class="mb-0 w-50 text-left col-6">
+                {% if product.change_weight %}
+                {{ product.change_weight }}
+                {% else %}
+                Data not avaiable
+                {% endif %}
+                </p>
+            </div>
+        </th>
+    </tr>
+
+</tbody>

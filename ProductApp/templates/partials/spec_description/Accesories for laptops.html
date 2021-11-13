@@ -1,0 +1,22 @@
+<div class="pt-5 not-data-block mb-0">
+
+    <p class="pl-5 text-left font-light-grey">
+        Producent Code:
+        <span class='product-spec-span'>{{ product.producent_code }}</span>
+    </p>
+
+    <p class="pl-5 text-left font-light-grey">
+        Ean:
+        <span class='product-spec-span'>{{ product.ean }}</span>
+    </p>
+
+    {% if product.color %}
+
+        <p class="pl-5 text-left font-light-grey">
+            Color:
+            <span class='product-spec-span'>{{ product.color }}</span>
+        </p>
+
+    {% endif %}
+
+</div>

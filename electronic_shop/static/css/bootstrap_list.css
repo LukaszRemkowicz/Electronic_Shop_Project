@@ -220,7 +220,8 @@ label {
 }
 
 .close {
-    font-size: 1.2rem
+    font-size: 1.2rem;
+    cursor: pointer;
 }
 
 div.text-muted {
@@ -338,7 +339,7 @@ h6 {
     background-color: #48b83ee8
 }
 
-img {
+.card-img-top {
     padding-top: 1.5rem;
     width: 192px;
     height: 132px;

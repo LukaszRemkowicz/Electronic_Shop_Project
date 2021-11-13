@@ -1,6 +1,6 @@
 const filterParameter = document.querySelector('.product-filter-parameter');
-const urlSearchParams = new URLSearchParams(window.location.search);
-const params = Object.fromEntries(urlSearchParams.entries());
+let urlSearchParams = new URLSearchParams(window.location.search);
+let params = Object.fromEntries(urlSearchParams.entries());
 // const URL = '/api/product-dict/';
 
 const filterParam = document.querySelectorAll('.product-filter-parameters input');

@@ -1,0 +1,13 @@
+{% if products_filter_options.capacity|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Capacity</h5>
+        {% for capacity, value in products_filter_options.capacity.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{capacity}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+

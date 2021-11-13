@@ -15,7 +15,7 @@
                 {% for element in same_products.capacity %}
 
                     <button href="" class="btn-light d-inline mt-2 mb-2 mr-2 py-2
-                    {% if element == product.ssd_product_data.capacity %}active-product-content bg-white
+                    {% if element == product.capacity %}active-product-content bg-white
                     {% else %}light-border
                     {% endif %}
                     {% if element|length >= 15 %} font-point-seven-rem px-2
@@ -32,6 +32,6 @@
 
 {% else %}
 
-    {% include 'partials/productSpecification_list/SSD.html' %}
+    {% include 'partials/spec_description/SSD.html' %}
 
 {% endif %}

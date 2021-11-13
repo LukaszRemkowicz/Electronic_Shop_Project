@@ -1,0 +1,37 @@
+<div class="pt-5  not-data-block mb-0">
+
+    <p class="pl-5 text-left font-light-grey">
+        Producent Code:
+        <span class='product-spec-span'>{{ product.producent_code }}</span>
+    </p>
+
+    <p class="pl-5 text-left font-light-grey">
+        Ean:
+        <span class='product-spec-span'>{{ product.ean }}</span>
+    </p>
+
+    <p class="pl-5 text-left font-light-grey">
+        Bus speed:
+        <span class='product-spec-span'>{{ product.bus_speed }}</span>
+    </p>
+
+    <p class="pl-5 text-left font-light-grey">
+        Ports:
+        <span class='product-spec-span'>{{ product.ports_num }}</span>
+    </p>
+
+    <p class="pl-5 text-left font-light-grey">
+        PoE:
+        <span class='product-spec-span'>
+        {% if product.num_of_poe %}
+        {% else %}N/a
+        {% endif %}{{ product.num_of_poe }}
+        </span>
+    </p>
+
+    <p class="pl-5 text-left font-light-grey">
+        Manageable:
+        <span class='product-spec-span'>{{ product.manageable }}</span>
+    </p>
+
+</div>

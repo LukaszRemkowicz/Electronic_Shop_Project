@@ -50,8 +50,12 @@ def check_smart(url: str) -> bool:
 
 @register.filter
 def get_main_product_id (product):
-    
+
     product = MainProductDatabase.objects.get(ean=product.ean)
-    print(product.id)
-    print('*'*200)
     return product.id
+
+@register.filter
+def get_aplied_filters(request):
+    url_queryset = { key:str(value[0]) for key, value in request.GET.lists()}
+
+    return {key.replace('_', ' ') for key, _ in url_queryset.items() if key not in ('page', 'grid')}

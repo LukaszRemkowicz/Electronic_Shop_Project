@@ -1,0 +1,68 @@
+<div class="pt-5  not-data-block mb-0">
+
+    <p class="pl-5 text-left font-light-grey">
+        Producent Code:
+        <span class='product-spec-span'>{{ product.producent_code }}</span>
+    </p>
+
+    <p class="pl-5 text-left font-light-grey">
+        Ean:
+        <span class='product-spec-span'>{{ product.ean }}</span>
+    </p>
+
+    <p class="pl-5 text-left font-light-grey">
+        Microphone:
+        <span class='product-spec-span'>
+        {% if product.microphone %}Yes
+        {% else %}No
+        {% endif %}
+        </span>
+    </p>
+
+    {% if product.bluetooth_range %}
+
+        <p class="pl-5 text-left font-light-grey">
+            Wireless:
+            <span class='product-spec-span'>Yes</span>
+        </p>
+
+        <p class="pl-5 text-left font-light-grey">
+            Wireless range:
+            <span class='product-spec-span'>{{ product.bluetooth_range }}</span>
+        </p>
+
+    {% endif %}
+
+    {% if product.work_time %}
+
+        <p class="pl-5 text-left font-light-grey">
+            Work time:
+            <span class='product-spec-span'>{{ product.work_time }}</span>
+        </p>
+
+    {% endif %}
+
+    {% if product.cable_lenght %}
+
+        <p class="pl-5 text-left font-light-grey">
+            Cable:
+            <span class='product-spec-span'>Yes</span>
+        </p>
+
+        <p class="pl-5 text-left font-light-grey">
+            Cable lenght:
+            <span class='product-spec-span'>{{ product.cable_lenght }}</span>
+        </p>
+
+    {% endif %}
+
+    {% if product.jack %}
+
+        <p class="pl-5 text-left font-light-grey">
+            Jack:
+            <span class='product-spec-span'>{{ product.jack }}</span>
+        </p>
+
+    {% endif %}
+
+</div>

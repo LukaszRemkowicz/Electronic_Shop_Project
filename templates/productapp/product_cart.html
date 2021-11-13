@@ -240,35 +240,35 @@
 									<div class="descriptionList">
 
 										{% if product.cattegory == 'Phones' %}
-											{% include 'partials/productSpecification_list/phones.html' %}
+											{% include 'partials/spec_description/phones.html' %}
 										{% elif product.cattegory == 'Laptops' %}
-											{% include 'partials/productSpecification_list/Laptops.html' %}
+											{% include 'partials/spec_description/Laptops.html' %}
 										{% elif product.cattegory == 'PC' %}
-											{% include 'partials/productSpecification_list/PC.html' %}
+											{% include 'partials/spec_description/PC.html' %}
 										{% elif product.cattegory == 'Monitors' %}
-											{% include 'partials/productSpecification_list/Monitor.html' %}
+											{% include 'partials/spec_description/Monitor.html' %}
 										{% elif product.cattegory == 'Accesories for laptops' %}
-											{% include 'partials/productSpecification_list/Accesories for laptops.html' %}
+											{% include 'partials/spec_description/Accesories for laptops.html' %}
 										{% elif product.cattegory == 'SSD' %}
-											{% include 'partials/productSpecification_list/SSD.html' %}
+											{% include 'partials/spec_description/SSD.html' %}
 										{% elif product.cattegory == 'Graphs' %}
-											{% include 'partials/productSpecification_list/Graphs.html' %}
+											{% include 'partials/spec_description/Graphs.html' %}
 										{% elif product.cattegory == 'Ram' %}
-											{% include 'partials/productSpecification_list/Ram.html' %}
+											{% include 'partials/spec_description/Ram.html' %}
 										{% elif product.cattegory == 'Pendrives' %}
-											{% include 'partials/productSpecification_list/Pendrives.html' %}
+											{% include 'partials/spec_description/Pendrives.html' %}
 										{% elif product.cattegory == 'Routers' %}
-											{% include 'partials/productSpecification_list/Routers.html' %}
+											{% include 'partials/spec_description/Routers.html' %}
 										{% elif product.cattegory == 'Switches' %}
-											{% include 'partials/productSpecification_list/Switches.html' %}
+											{% include 'partials/spec_description/Switches.html' %}
 										{% elif product.cattegory == 'Motherboard' %}
-											{% include 'partials/productSpecification_list/Motherboard.html' %}
+											{% include 'partials/spec_description/Motherboard.html' %}
 										{% elif product.cattegory == 'CPU' %}
-											{% include 'partials/productSpecification_list/CPU.html' %}
+											{% include 'partials/spec_description/CPU.html' %}
 										{% elif product.cattegory == 'TV' %}
-											{% include 'partials/productSpecification_list/TV.html' %}
+											{% include 'partials/spec_description/TV.html' %}
 										{% elif product.cattegory == 'Headphones' %}
-											{% include 'partials/productSpecification_list/Headphones.html' %}
+											{% include 'partials/spec_description/Headphones.html' %}
 										{% endif %}
 
 									</div>
@@ -374,21 +374,8 @@
 <div class="wrapper ">
     <div class="d-md-flex align-items-md-center">
         <div class="h3 cattegory_cat">{{cattegory}}</div>
-        <div class="ml-auto d-flex align-items-center views">
-			<span class="btn {% if request.get_full_path|find_grid %} font-red {% endif %} grid-view">
-				<span class="fas fa-th px-md-2 px-1"></span>
-				<span>Grid view</span>
-			</span>
-			<span class="btn list-view {% if not request.get_full_path|find_grid %} font-red {% endif %}">
-				<span class="fas fa-list-ul"></span>
-				<span class="px-md-2 px-1">List view</span>
-			</span>
-			<span class="green-label px-md-2 px-1">{{products_total}}</span>
-			<span class="text-muted">Product{{products_total|pluralize}}</span>
-		</div>
-    </div>
-    <div class="d-lg-flex align-items-lg-center pt-2">
-        <div class="form-inline d-flex align-items-center  mr-lg-2 radio bg-light border product-filter-parameters">
+
+		<div class="form-inline d-flex align-items-center ml-lg-5 mr-lg-2 radio bg-light border product-filter-parameters">
 			<label class="options">Latest
 				<input type="radio" name="radio" value='latest' {% if filter_option == 'latest' %}checked{% endif %}>
 				<span class="checkmark"></span>
@@ -406,6 +393,22 @@
 				<span class="checkmark"></span>
 			</label>
 		</div>
+
+        <div class="ml-auto d-flex align-items-center views">
+			<span class="btn {% if request.get_full_path|find_grid %} font-red {% endif %} grid-view">
+				<span class="fas fa-th px-md-2 px-1"></span>
+				<span>Grid view</span>
+			</span>
+			<span class="btn list-view {% if not request.get_full_path|find_grid %} font-red {% endif %}">
+				<span class="fas fa-list-ul"></span>
+				<span class="px-md-2 px-1">List view</span>
+			</span>
+			<span class="green-label px-md-2 px-1">{{products_total}}</span>
+			<span class="text-muted">Product{{products_total|pluralize}}</span>
+		</div>
+    </div>
+    <div class="d-lg-flex align-items-lg-center pt-2">
+
         {% comment %} <div class="form-inline d-flex align-items-center  checkbox bg-light border mx-lg-2">
 			<label class="tick">Farm
 				<input type="checkbox" checked="checked">
@@ -414,7 +417,7 @@
 			<span class="text-success px-2 count"> 328</span>
 		</div> {% endcomment %}
 
-		{% if cattegory == 'Phones' %}
+		{% comment %} {% if cattegory == 'Phones' %}
 			{% include 'partials/filter_horizontal_bar/phones.html' %}
 		{% elif cattegory == 'Laptops' %}
 			{% include 'partials/filter_horizontal_bar/Laptops.html' %}
@@ -444,11 +447,11 @@
 			{% include 'partials/filter_horizontal_bar/TV.html' %}
 		{% elif cattegory == 'Headphones' %}
 			{% include 'partials/filter_horizontal_bar/Headphones.html' %}
-		{% endif %}
+		{% endif %} {% endcomment %}
 
 		<!-- Producents filter -->
 
-        <div class="form-inline d-flex align-items-center  checkbox bg-light border mx-lg-2">
+        {% comment %} <div class="form-inline d-flex align-items-center  checkbox bg-light border mx-lg-2">
 			{% with request.get_full_path|find_producent as producent %}
 					{% load widget_tweaks %}
 					<label class="tick producentsFilters" > {{producent}}
@@ -465,51 +468,29 @@
 					{% endfor %}
 				</select>
 			{% endwith %}
+		</div> {% endcomment %}
+
+		<div class="d-sm-flex align-items-sm-center pt-2 clear filters-active">
+			<div class="text-muted filter-label mr-1">Applied Filters:</div>
+			{% comment %} {% if filter_option %}
+				<div class="green-label font-weight-bold p-0 px-1 mx-sm-1 mx-0 my-sm-0 my-2">{{filter_option|capfirst }} <span class=" px-1 close">&times;</span> </div>
+			{% endif %} {% endcomment %}
+
+			{% for filter in  request|get_aplied_filters %}
+
+				<div class="green-label font-weight-bold p-0 px-1 mx-sm-1 mx-0 my-sm-0 my-2 filters-applied">{{filter|capfirst }} <span class=" px-1 close">&times;</span> </div>
+
+			{% endfor %}
+
+
+			{% comment %} <div class="green-label font-weight-bold p-0 px-1 mx-sm-1 mx-0">Selected Filtre <span class=" px-1 close">&times;</span> </div> {% endcomment %}
 		</div>
 
     </div>
 
 	<!-- Applied filters section -->
 
-    <div class="d-sm-flex align-items-sm-center pt-2 clear filters-active">
-        <div class="text-muted filter-label mr-1">Applied Filters:</div>
-		{% if filter_option %}
-        	<div class="green-label font-weight-bold p-0 px-1 mx-sm-1 mx-0 my-sm-0 my-2">{{filter_option|capfirst }} <span class=" px-1 close">&times;</span> </div>
-		{% endif %}
 
-		{% if cattegory == 'Phones' %}
-			{% include 'partials/applied_filters/phones.html' %}
-		{% elif cattegory == 'Laptops' %}
-			{% include 'partials/applied_filters/Laptops.html' %}
-		{% elif cattegory == 'PC' %}
-			{% include 'partials/applied_filters/PC.html' %}
-		{% elif cattegory == 'Monitors' %}
-			{% include 'partials/applied_filters/Monitor.html' %}
-		{% elif cattegory == 'Accesories for laptops' %}
-			{% include 'partials/applied_filters/Accesories for laptops.html' %}
-		{% elif cattegory == 'SSD' %}
-			{% include 'partials/applied_filters/SSD.html' %}
-		{% elif cattegory == 'Graphs' %}
-			{% include 'partials/applied_filters/Graphs.html' %}
-		{% elif cattegory == 'Ram' %}
-			{% include 'partials/applied_filters/Ram.html' %}
-		{% elif cattegory == 'Pendrives' %}
-			{% include 'partials/applied_filters/Pendrives.html' %}
-		{% elif cattegory == 'Routers' %}
-			{% include 'partials/applied_filters/Routers.html' %}
-		{% elif cattegory == 'Switches' %}
-			{% include 'partials/applied_filters/Switches.html' %}
-		{% elif cattegory == 'Motherboard' %}
-			{% include 'partials/applied_filters/Motherboard.html' %}
-		{% elif cattegory == 'CPU' %}
-			{% include 'partials/applied_filters/CPU.html' %}
-		{% elif cattegory == 'TV' %}
-			{% include 'partials/applied_filters/TV.html' %}
-		{% elif cattegory == 'Headphones' %}
-			{% include 'partials/applied_filters/Headphones.html' %}
-		{% endif %}
-        {% comment %} <div class="green-label font-weight-bold p-0 px-1 mx-sm-1 mx-0">Selected Filtre <span class=" px-1 close">&times;</span> </div> {% endcomment %}
-    </div>
 
 	<!-- Mobile view? -->
 
@@ -560,6 +541,22 @@
                 </ul>
             </div> {% endcomment %}
 
+				<div class="pb-3">
+					<h5 class="font-weight-bold">Producents</h5>
+					{% for producent, number in producents.items %}
+						<form>
+							<div class="form-inline d-flex align-items-center py-1 justify-content-between">
+								<label class="tick producent-label">{{producent}}
+									<input type="checkbox">
+									<span class="check" data-filter="producent={{producent}}">
+									<div class=""></div></span>
+								</label>
+								<span class="badge badge-primary badge-pill">{{number}}</span>
+							</div>
+						</form>
+					{% endfor %}
+				</div>
+
 
 			{% if cattegory == 'Phones' %}
 				{% include 'partials/filter_vertical_bar/phones.html' %}
@@ -597,15 +594,18 @@
 
             <div class="py-3">
                 <h5 class="font-weight-bold">Rating</h5>
-                <form class="rating">
+                <form class="rating rating-stars">
 
                     <div class="form-inline d-flex align-items-center py-2">
-						<label class="tick"><span class="fas fa-star"></span>
+						<label class="tick">
 							<span class="fas fa-star"></span>
 							<span class="fas fa-star"></span>
 							<span class="fas fa-star"></span>
 							<span class="fas fa-star"></span>
-							<input type="checkbox"> <span class="check"></span>
+							<span class="fas fa-star"></span>
+							<input type="checkbox">
+							<span class="check"  data-filter='stars=5'>
+							<div class=""></div></span>
 						</label>
 					</div>
 
@@ -616,7 +616,9 @@
 							<span class="fas fa-star"></span>
 							<span class="fas fa-star"></span>
 							<span class="far fa-star px-1 text-muted"></span>
-							<input type="checkbox"> <span class="check"></span>
+							<input type="checkbox" >
+							<span class="check" data-filter='stars=4'>
+							<div class=""></div></span>
 						</label>
 					</div>
 
@@ -627,7 +629,9 @@
 							<span class="fas fa-star"></span>
 							<span class="far fa-star px-1 text-muted"></span>
 							<span class="far fa-star px-1 text-muted"></span>
-							<input type="checkbox"> <span class="check"></span>
+							<input type="checkbox" >
+							<span class="check" data-filter='stars=3'>
+							<div class=""></div></span>
 						</label>
 					</div>
 
@@ -638,7 +642,9 @@
 							<span class="far fa-star px-1 text-muted"></span>
 							<span class="far fa-star px-1 text-muted"></span>
 							<span class="far fa-star px-1 text-muted"></span>
-							<input type="checkbox"> <span class="check"></span>
+							<input type="checkbox" >
+							<span class="check" data-filter='stars=2'>
+							<div class=""></div></span>
 						</label>
 					</div>
 
@@ -649,7 +655,9 @@
 							<span class="far fa-star px-1 text-muted"></span>
 							<span class="far fa-star px-1 text-muted"></span>
 							<span class="far fa-star px-1 text-muted"></span>
-							<input type="checkbox"> <span class="check"></span>
+							<input type="checkbox" >
+							<span class="check" data-filter='stars=1'>
+							<div class=""></div></span>
 						</label>
 					</div>
 
@@ -664,7 +672,10 @@
                 <div class="row">
 					{% for product in products %}
                     <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 mb-4 product-rows">
-                        <div class="card"> <img class="card-img-top" src="{{product.main_photo.url}}">
+                        <div class="card">
+							<img class="card-img-top" src="{{product.main_photo.url}}">
+							<i class="lni lni-heart font-light-grey"></i>
+
                             <div class="card-body">
 
 								<div class="card-body-description">
@@ -677,35 +688,35 @@
 									<div class="product-description {% if not request.get_full_path|find_grid %} display-none {% endif %}">
 
 										{% if product.cattegory == 'Phones' %}
-											{% include 'partials/productSpecification_list/phones.html' %}
+											{% include 'partials/spec_description/phones.html' %}
 										{% elif product.cattegory == 'Laptops' %}
-											{% include 'partials/productSpecification_list/Laptops.html' %}
+											{% include 'partials/spec_description/Laptops.html' %}
 										{% elif product.cattegory == 'PC' %}
-											{% include 'partials/productSpecification_list/PC.html' %}
+											{% include 'partials/spec_description/PC.html' %}
 										{% elif product.cattegory == 'Monitors' %}
-											{% include 'partials/productSpecification_list/Monitor.html' %}
+											{% include 'partials/spec_description/Monitor.html' %}
 										{% elif product.cattegory == 'Accesories for laptops' %}
-											{% include 'partials/productSpecification_list/Accesories for laptops.html' %}
+											{% include 'partials/spec_description/Accesories for laptops.html' %}
 										{% elif product.cattegory == 'SSD' %}
-											{% include 'partials/productSpecification_list/SSD.html' %}
+											{% include 'partials/spec_description/SSD.html' %}
 										{% elif product.cattegory == 'Graphs' %}
-											{% include 'partials/productSpecification_list/Graphs.html' %}
+											{% include 'partials/spec_description/Graphs.html' %}
 										{% elif product.cattegory == 'Ram' %}
-											{% include 'partials/productSpecification_list/Ram.html' %}
+											{% include 'partials/spec_description/Ram.html' %}
 										{% elif product.cattegory == 'Pendrives' %}
-											{% include 'partials/productSpecification_list/Pendrives.html' %}
+											{% include 'partials/spec_description/Pendrives.html' %}
 										{% elif product.cattegory == 'Routers' %}
-											{% include 'partials/productSpecification_list/Routers.html' %}
+											{% include 'partials/spec_description/Routers.html' %}
 										{% elif product.cattegory == 'Switches' %}
-											{% include 'partials/productSpecification_list/Switches.html' %}
+											{% include 'partials/spec_description/Switches.html' %}
 										{% elif product.cattegory == 'Motherboard' %}
-											{% include 'partials/productSpecification_list/Motherboard.html' %}
+											{% include 'partials/spec_description/Motherboard.html' %}
 										{% elif product.cattegory == 'CPU' %}
-											{% include 'partials/productSpecification_list/CPU.html' %}
+											{% include 'partials/spec_description/CPU.html' %}
 										{% elif product.cattegory == 'TV' %}
-											{% include 'partials/productSpecification_list/TV.html' %}
+											{% include 'partials/spec_description/TV.html' %}
 										{% elif product.cattegory == 'Headphones' %}
-											{% include 'partials/productSpecification_list/Headphones.html' %}
+											{% include 'partials/spec_description/Headphones.html' %}
 										{% endif %}
 
 									</div>
@@ -713,7 +724,7 @@
 									<h6 class="font-weight-bold pt-1 description-grid"><a href="{% url 'product_page' product|get_main_product_id %}">{{product.name|truncatechars:30}}</a></h6>
 									<div class="text-muted description description-grid">Space for small product description</div>
 
-									<div class="d-flex">
+									<div class="d-flex mt-3">
 
 										<div class="d-flex align-items-center product">
 											{% for element in product.get_star_avg.1 %}
@@ -737,6 +748,7 @@
 												<a href="{% url 'product_page' product|get_main_product_id %}#ask-something" class='m-auto w-100 font-brown'>{{ product.get_num_of_questions }} Questions</a>
 											</div>
 										{% endif %}
+
 										{% if  product.bought_num and not request.get_full_path|find_grid%}
 											<div class="pl-3">
 												<p class='m-auto w-100 font-brown'>Bought by {{ product.bought_num }} people </p>
@@ -901,6 +913,8 @@
 <script src="{% static 'js/product_search/paginator.js' %}"></script>
 <script src="{% static 'js/product_search/changeProducentFilter.js' %}"></script>
 <script src="{% static 'js/product_search/horizontalFilters/tvHorizontalBar.js' %}"></script>
+<script src="{% static 'js/product_search/horizontalFilters/filterProducents.js' %}"></script>
+<script src="{% static 'js/product_search/removeAppliedFilters.js' %}"></script>
 
 <script>
 	let url = window.location.href

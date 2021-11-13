@@ -1,0 +1,95 @@
+{% if products_filter_options.chipset|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Chipset</h5>
+        {% for chipset, value in products_filter_options.chipset.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> 
+                    <label class="tick">{{chipset}}
+                    <input type="checkbox"> <span class="check"></span> </label> 
+                    <span class="badge badge-primary badge-pill">{{value}}</span>
+                </div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.processor_socket|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Processor socket</h5>
+        {% for processor_socket, value in products_filter_options.processor_socket.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{processor_socket}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.ram_slots|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Ram slots</h5>
+        {% for ram_slots, value in products_filter_options.ram_slots.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{ram_slots}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.card_standard|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Card standard</h5>
+        {% for card_standard, value in products_filter_options.card_standard.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{card_standard}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.raid_controler|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Raid controler</h5>
+        {% for raid_controler, value in products_filter_options.raid_controler.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{raid_controler}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.ram|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Ram</h5>
+        {% for ram, value in products_filter_options.ram.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{ram}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.wifi|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Wi-Fi</h5>
+        {% for wifi, value in products_filter_options.wifi.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{wifi}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+

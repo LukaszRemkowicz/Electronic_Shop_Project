@@ -15,7 +15,7 @@
                 {% for element in same_products.capacity %}
 
                     <button href="" class="btn-light d-inline py-2 mt-2 mb-2 mr-2 spec-product-data
-                    {% if element == product.ram_product_data.capacity %}active-product-content bg-white
+                    {% if element == product.capacity %}active-product-content bg-white
                     {% else %}light-border
                     {% endif %}
                     {% if element|length >= 15 %} font-point-seven-rem px-2
@@ -42,7 +42,7 @@
                 {% for element in same_products.frequency %}
 
                     <button href="" class="btn-light d-inline mt-2 mb-2 mr-2 py-2 spec-product-data
-                    {% if element == product.ram_product_data.frequency %}active-product-content bg-white
+                    {% if element == product.frequency %}active-product-content bg-white
                     {% else %}light-border
                     {% endif %}
                     {% if element|length >= 15 %} font-point-seven-rem px-2
@@ -70,7 +70,7 @@
                 {% for element in same_products.modules_number %}
 
                     <button href="" class="btn-light d-inline mt-2 mb-2 mr-2 py-2 spec-product-data
-                    {% if element == product.ram_product_data.modules_number %}active-product-content bg-white
+                    {% if element == product.modules_number %}active-product-content bg-white
                     {% else %}light-border
                     {% endif %}
                     {% if element|length >= 15 %} font-point-seven-rem px-2
@@ -98,7 +98,7 @@
                 {% for element in same_products.delay %}
 
                     <button href="" class="btn-light d-inline mt-2 mb-2 mr-2 py-2 spec-product-data
-                    {% if element == product.ram_product_data.delay %}active-product-content bg-white
+                    {% if element == product.delay %}active-product-content bg-white
                     {% else %}light-border
                     {% endif %}
                     {% if element|length >= 15 %} font-point-seven-rem px-2
@@ -115,6 +115,6 @@
 
 {% else %}
 
-    {% include 'partials/productSpecification_list/Ram.html' %}
+    {% include 'partials/spec_description/Ram.html' %}
 
 {% endif %}

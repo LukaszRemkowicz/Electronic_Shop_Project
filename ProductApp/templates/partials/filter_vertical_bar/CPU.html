@@ -1,0 +1,81 @@
+{% if products_filter_options.cooler|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Cooler</h5>
+        {% for cooler, value in products_filter_options.cooler.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> 
+                    <label class="tick">{{cooler}}
+                    <input type="checkbox"> <span class="check"></span> </label> 
+                    <span class="badge badge-primary badge-pill">{{value}}</span>
+                </div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.socket|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Socket</h5>
+        {% for socket, value in products_filter_options.socket.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{socket}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.cores_num|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Cores num</h5>
+        {% for cores_num, value in products_filter_options.cores_num.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{cores_num}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.threat_num|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Threat num</h5>
+        {% for threat_num, value in products_filter_options.threat_num.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{threat_num}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.clock_frequency|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Clock frequency</h5>
+        {% for clock_frequency, value in products_filter_options.clock_frequency.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{clock_frequency}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.supported_memory|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Supported memory</h5>
+        {% for supported_memory, value in products_filter_options.supported_memory.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{supported_memory}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}

@@ -1,0 +1,44 @@
+{% if products_filter_options.num_of_poe|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Num of PoE ports</h5>
+        {% for num_of_poe, value in products_filter_options.num_of_poe.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">
+                {% if num_of_poe != '' %}  {{num_of_poe}}
+                {% else %} No PoE ports
+                {% endif %} 
+                <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.case_kind|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Case kind</h5>
+        {% for case_kind, value in products_filter_options.case_kind.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{case_kind}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.manageable|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Manageable</h5>
+        {% for manageable, value in products_filter_options.manageable.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{manageable}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+

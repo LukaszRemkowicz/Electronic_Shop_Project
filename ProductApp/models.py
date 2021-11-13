@@ -131,8 +131,6 @@ class Inherit(models.Model):
             else:
                 producent_dictionary[product.producent] = 1
 
-        producent_dictionary['All'] = ' '
-
         return producent_dictionary
 
     @staticmethod
@@ -366,8 +364,20 @@ class Pc(Inherit):
     bluetooth = models.CharField(max_length=10, default='')
 
 
+    @classmethod
+    def data_products_to_filter(cls) -> Dict:
+
+        pcs = Pc.objects.all()
+        return filter_pcs(pcs)
+
+
 class AccesoriesForLaptops(Inherit):
     diagonal_for_cases = models.CharField(max_length=20, blank=True, null=True)
+
+    @classmethod
+    def data_products_to_filter(cls) -> None:
+
+        pass
 
 
 class Ssd(Inherit):
@@ -379,6 +389,13 @@ class Ssd(Inherit):
     life_time = models.CharField(max_length=30 ,default='')
 
 
+    @classmethod
+    def data_products_to_filter(cls) -> Dict:
+
+        ssd = Ssd.objects.all()
+        return filter_ssd(ssd)
+
+
 class Graphs(Inherit):
 
     chipset = models.CharField(max_length=30, default='')
@@ -388,6 +405,12 @@ class Graphs(Inherit):
     ram_type = models.CharField(max_length=50, default='')
     core_clock = models.CharField(max_length=50, default='')
     connector_type = models.CharField(max_length=60, default='')
+
+    @classmethod
+    def data_products_to_filter(cls) -> Dict:
+
+        graphs = Graphs.objects.all()
+        return filter_graphs(graphs)
 
 
 class Ram(Inherit):
@@ -401,11 +424,24 @@ class Ram(Inherit):
     type = models.CharField(max_length=20, default='')
 
 
+    @classmethod
+    def data_products_to_filter(cls) -> Dict:
+
+        rams = Ram.objects.all()
+        return filter_rams(rams)
+
+
 class Pendrives(Inherit):
 
     capacity = models.CharField(max_length=20, default='')
     connector = models.CharField(max_length=20, default='')
     case = models.CharField(max_length=50, default='')
+
+    @classmethod
+    def data_products_to_filter(cls) -> Dict:
+
+        pendrives = Pendrives.objects.all()
+        return filter_pendrives(pendrives)
 
 
 class Switches(Inherit):
@@ -419,6 +455,12 @@ class Switches(Inherit):
     @property
     def split_ports(self):
         return self.ports_num.split('\n')
+
+    @classmethod
+    def data_products_to_filter(cls) -> Dict:
+
+        switches = Switches.objects.all()
+        return filter_switches(switches)
 
 
 class Motherboard(Inherit):
@@ -438,6 +480,12 @@ class Motherboard(Inherit):
     def split_raid(self):
         return self.raid_controler.split('\n')
 
+    @classmethod
+    def data_products_to_filter(cls) -> Dict:
+
+        motherboards = Motherboard.objects.all()
+        return filter_motherboards(motherboards)
+
 
 class Cpu(Inherit):
     cooler = models.CharField(default='', max_length=20)
@@ -446,6 +494,12 @@ class Cpu(Inherit):
     threat_num = models.CharField(default='', max_length=20)
     clock_frequency = models.CharField(default='', max_length=20)
     supported_memory = models.CharField(default='', max_length=20)
+
+    @classmethod
+    def data_products_to_filter(cls) -> Dict:
+
+        cpus = Cpu.objects.all()
+        return filter_cpus(cpus)
 
 
 class Tv(Inherit):
@@ -467,7 +521,6 @@ class Tv(Inherit):
     def data_products_to_filter(cls):
 
         tvs = Tv.objects.all()
-
         return filter_tvs(tvs)
 
 
@@ -479,6 +532,12 @@ class Headphones(Inherit):
     microphone = models.BooleanField(default=False)
     work_time = models.CharField(max_length=50, default='', blank=True, null=True)
     connection = models.CharField(max_length=50, default='')
+
+    @classmethod
+    def data_products_to_filter(cls) -> Dict:
+
+        headphones = Headphones.objects.all()
+        return filter_headphones(headphones)
 
 
 
@@ -494,6 +553,13 @@ class Routers(Inherit):
     antennas = models.IntegerField(default=0, blank=True, null=True)
     wifi_2_4ghz_speed = models.CharField(default='', max_length=100, blank=True, null=True)
     wifi_5ghz_speed = models.CharField(default='', max_length=100, blank=True, null=True)
+
+
+    @classmethod
+    def data_products_to_filter(cls) -> Dict:
+
+        routers = Routers.objects.all()
+        return filter_routers(routers)
 
 
 class Reviews(models.Model):

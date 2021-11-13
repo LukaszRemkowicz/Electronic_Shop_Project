@@ -1,0 +1,61 @@
+{% if products_filter_options.chipset|length > 1  %}
+    <div class="pb-3">
+        <h5 class="font-weight-bold">Chipset</h5>
+        {% for chipset, value in products_filter_options.chipset.items %}
+            {% if value != 0 %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{chipset}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.chipset_producent|length > 1  %}
+    <div class="py-3">
+        <h5 class="font-weight-bold">Chipset producent</h5>
+        {% for chipset_producent, num in products_filter_options.chipset_producent.items %}
+            {% if value != 0 %}
+                <form>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{chipset_producent}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{num}}</span> </div>
+                </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.ram|length > 1  %}
+    <div class="py-3">
+        <h5 class="font-weight-bold">Ram [GB]</h5>
+        {% for ram, value in products_filter_options.ram.items %}
+            {% if value != 0 %}
+                <form>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{ram}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+                </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.ram_type|length > 1  %}
+    <div class="py-3">
+        <h5 class="font-weight-bold">Ram type</h5>
+        {% for ram_type, value in products_filter_options.ram_type.items %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{ram_type}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+            </form>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if products_filter_options.connector_type|length > 1  %}
+    <div class="py-3">
+        <h5 class="font-weight-bold">Connector type</h5>
+        {% for connector_type, value in products_filter_options.connector_type.items %}
+            <form>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{connector_type}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+            </form>
+        {% endfor %}
+    </div>
+{% endif %}
+
