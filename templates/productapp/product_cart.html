@@ -482,6 +482,9 @@
 
 			{% endfor %}
 
+			{% if request|get_aplied_filters|length >= 2 %}
+				<div class="green-label font-weight-bold p-0 px-1 mx-sm-1 mx-0 my-sm-0 my-2 all-filters">All filters <span class=" px-1 close">&times;</span> </div>
+			{% endif %}
 
 			{% comment %} <div class="green-label font-weight-bold p-0 px-1 mx-sm-1 mx-0">Selected Filtre <span class=" px-1 close">&times;</span> </div> {% endcomment %}
 		</div>
@@ -662,6 +665,7 @@
 					</div>
 
                 </form>
+				<button class='btn-red mt-5 w-100 p-1 no-border filter-btn'>Filter</button>
             </div>
         </section>
 
@@ -674,7 +678,6 @@
                     <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 mb-4 product-rows">
                         <div class="card">
 							<img class="card-img-top" src="{{product.main_photo.url}}">
-							<i class="lni lni-heart font-light-grey"></i>
 
                             <div class="card-body">
 
@@ -760,7 +763,17 @@
 								</div>
 
                                 <div class="d-flex align-items-center justify-content-between pb-3 buy-list-view">
-                                    <div class="d-flex flex-column">
+
+									<div class="position-relative w-100">
+										<i class="lni lni-heart font-light-grey hearts" data-heart={{product|get_main_product_id}}></i>
+
+										<i class="fas fa-heart font-red fa-2x hearts
+										{% if not product|check_like:request %}
+										d-none
+										{% endif %}" data-heart={{product|get_main_product_id}}></i>
+									</div>
+
+                                    <div class="d-flex flex-column pt-3 pb-1">
 										{% if product.promotion %}
 
                                         	<div class="h6 font-weight-bold">{{product.promotion}} EUR</div>
@@ -913,8 +926,9 @@
 <script src="{% static 'js/product_search/paginator.js' %}"></script>
 <script src="{% static 'js/product_search/changeProducentFilter.js' %}"></script>
 <script src="{% static 'js/product_search/horizontalFilters/tvHorizontalBar.js' %}"></script>
-<script src="{% static 'js/product_search/horizontalFilters/filterProducents.js' %}"></script>
 <script src="{% static 'js/product_search/removeAppliedFilters.js' %}"></script>
+<script src="{% static 'js/product_search/acceptFilters.js' %}"></script>
+<script src="{% static 'js/product_search/catchHeart.js' %}"></script>
 
 <script>
 	let url = window.location.href

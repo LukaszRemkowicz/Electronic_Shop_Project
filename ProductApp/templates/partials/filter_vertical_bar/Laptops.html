@@ -1,10 +1,17 @@
 {% if products_filter_options.diagonal|length > 1  %}
-    <div class="pb-3">
+    <div class="pb-3 horizontal-filters">
         <h5 class="font-weight-bold">Diagonal [cal]</h5>
-        {% for key, value in products_filter_options.diagonal.items %}
+        {% for diagonal, value in products_filter_options.diagonal.items %}
             {% if value != 0 %}
             <form>
-                <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{key}} <input type="checkbox"> <span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{value}}</span></div>
+                <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                    <label class="tick">{{diagonal}}
+                        <input type="checkbox">
+                        <span class="check" data-filter='diagonal={{diagonal}}'>
+                        <div class=""></div></span>
+                    </label>
+                <span class="badge badge-primary badge-pill">{{value}}</span>
+                </div>
             </form>
             {% endif %}
         {% endfor %}
@@ -12,12 +19,19 @@
 {% endif %}
 
 {% if products_filter_options.resolution|length > 1  %}
-    <div class="py-3">
+    <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Resolution</h5>
         {% for resolution, num in products_filter_options.resolution.items %}
             {% if value != 0 %}
                 <form>
-                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{resolution}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{num}}</span> </div>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                        <label class="tick">{{resolution}}
+                            <input type="checkbox">
+                            <span class="check" data-filter='resolution={{resolution}}'>
+                            <div class=""></div></span>
+                        </label>
+                        <span class="badge badge-primary badge-pill">{{num}}</span>
+                    </div>
                 </form>
             {% endif %}
         {% endfor %}
@@ -25,12 +39,19 @@
 {% endif %}
 
 {% if products_filter_options.bluetooth|length > 1  %}
-    <div class="py-3">
+    <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Bluetooth</h5>
         {% for bluetooth, num in products_filter_options.bluetooth.items %}
             {% if value != 0 %}
                 <form>
-                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{bluetooth}} <input type="checkbox"> <span class="check"></span> </label><span class="check"></span> </label> <span class="badge badge-primary badge-pill">{{num}}</span> </div>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                        <label class="tick">{{bluetooth}}
+                            <input type="checkbox">
+                            <span class="check" data-filter='bluetooth={{bluetooth}}'>
+                            <div class=""></div></span>
+                        </label>
+                        <span class="badge badge-primary badge-pill">{{num}}</span>
+                    </div>
                 </form>
             {% endif %}
         {% endfor %}
@@ -39,12 +60,19 @@
 
 
 {% if products_filter_options.screen|length > 1  %}
-    <div class="py-3">
+    <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Screen</h5>
         {% for screen, value in products_filter_options.screen.items %}
             {% if value != 0 %}
                 <form>
-                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{screen}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                        <label class="tick">{{screen}}
+                            <input type="checkbox">
+                            <span class="check" data-filter='screen={{screen}}'>
+                            <div class=""></div></span>
+                        </label>
+                        <span class="badge badge-primary badge-pill">{{value}}</span>
+                    </div>
                 </form>
             {% endif %}
         {% endfor %}
@@ -52,12 +80,19 @@
 {% endif %}
 
 {% if products_filter_options.system|length > 1  %}
-    <div class="py-3">
+    <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">System</h5>
         {% for system, value in products_filter_options.system.items %}
             {% if value != 0 %}
                 <form>
-                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{system}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                        <label class="tick">{{system}}
+                            <input type="checkbox">
+                            <span class="check" data-filter='system={{system}}'>
+                            <div class=""></div></span>
+                        </label>
+                        <span class="badge badge-primary badge-pill">{{value}}</span>
+                    </div>
                 </form>
             {% endif %}
         {% endfor %}
@@ -65,12 +100,19 @@
 {% endif %}
 
 {% if products_filter_options.graph|length > 1  %}
-    <div class="py-3">
+    <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Graphic</h5>
         {% for graph, value in products_filter_options.graph.items %}
             {% if value != 0 %}
                 <form>
-                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{graph}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                        <label class="tick">{{graph}}
+                            <input type="checkbox">
+                            <span class="check" data-filter='graph={{graph}}'>
+                            <div class=""></div></span>
+                        </label>
+                        <span class="badge badge-primary badge-pill">{{value}}</span>
+                    </div>
                 </form>
             {% endif %}
         {% endfor %}
@@ -78,12 +120,19 @@
 {% endif %}
 
 {% if products_filter_options.ram|length > 1  %}
-    <div class="py-3">
-        <h5 class="font-weight-bold">Ram</h5>
+    <div class="py-3 horizontal-filters">
+        <h5 class="font-weight-bold">Ram [GB]</h5>
         {% for ram, value in products_filter_options.ram.items %}
             {% if value != 0 %}
                 <form>
-                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{ram}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                        <label class="tick">{{ram}}
+                            <input type="checkbox">
+                            <span class="check" data-filter='ram={{ram}}'>
+                            <div class=""></div></span>
+                        </label>
+                        <span class="badge badge-primary badge-pill">{{value}}</span>
+                    </div>
                 </form>
             {% endif %}
         {% endfor %}
@@ -91,12 +140,19 @@
 {% endif %}
 
 {% if products_filter_options.ram_model|length > 1  %}
-    <div class="py-3">
+    <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Ram model</h5>
         {% for ram_model, value in products_filter_options.ram_model.items %}
             {% if value != 0 %}
                 <form>
-                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{ram_model}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                        <label class="tick">{{ram_model}}
+                            <input type="checkbox">
+                            <span class="check" data-filter='ram_model={{ram_model}}'>
+                            <div class=""></div></span>
+                        </label>
+                        <span class="badge badge-primary badge-pill">{{value}}</span>
+                    </div>
                 </form>
             {% endif %}
         {% endfor %}
@@ -104,12 +160,19 @@
 {% endif %}
 
 {% if products_filter_options.ram_freq|length > 1  %}
-    <div class="py-3">
+    <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Ram frequency</h5>
         {% for ram_freq, value in products_filter_options.ram_freq.items %}
             {% if value != 0 %}
                 <form>
-                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{ram_freq}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                        <label class="tick">{{ram_freq}}
+                            <input type="checkbox">
+                            <span class="check" data-filter='ram_freq={{ram_freq}}'>
+                            <div class=""></div></span>
+                        </label>
+                        <span class="badge badge-primary badge-pill">{{value}}</span>
+                    </div>
                 </form>
             {% endif %}
         {% endfor %}
@@ -117,12 +180,19 @@
 {% endif %}
 
 {% if products_filter_options.pcie|length > 1  %}
-    <div class="py-3">
+    <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">PcIE Disc</h5>
         {% for pcie, value in products_filter_options.pcie.items %}
             {% if value != 0 %}
                 <form>
-                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{pcie}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                        <label class="tick">{{pcie}}
+                            <input type="checkbox">
+                            <span class="check" data-filter='pcie={{pcie}}'>
+                            <div class=""></div></span>
+                        </label>
+                        <span class="badge badge-primary badge-pill">{{value}}</span>
+                    </div>
                 </form>
             {% endif %}
         {% endfor %}
@@ -130,12 +200,19 @@
 {% endif %}
 
 {% if products_filter_options.processor|length > 1  %}
-    <div class="py-3">
+    <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Processor</h5>
         {% for processor, value in products_filter_options.processor.items %}
             {% if value != 0 %}
                 <form>
-                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{processor}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                        <label class="tick">{{processor}}
+                            <input type="checkbox">
+                            <span class="check" data-filter='processor={{processor}}'>
+                            <div class=""></div></span>
+                        </label>
+                        <span class="badge badge-primary badge-pill">{{value}}</span>
+                    </div>
                 </form>
             {% endif %}
         {% endfor %}
@@ -143,25 +220,39 @@
 {% endif %}
 
 {% if products_filter_options.processor_clock|length > 1  %}
-    <div class="py-3">
+    <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Processor clock</h5>
         {% for processor_clock, value in products_filter_options.processor_clock.items %}
             {% if value != 0 %}
                 <form>
-                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{processor_clock}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                        <label class="tick">{{processor_clock}}
+                            <input type="checkbox">
+                            <span class="check" data-filter='processor_clock={{processor_clock}}'>
+                            <div class=""></div></span>
+                        </label>
+                        <span class="badge badge-primary badge-pill">{{value}}</span>
+                    </div>
                 </form>
             {% endif %}
         {% endfor %}
     </div>
 {% endif %}
 
-{% if products_filter_options.cores_threads|length > 1  %}
-    <div class="py-3">
+{% if products_filter_options.processor_cores_threads|length > 1  %}
+    <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Cores threads</h5>
-        {% for cores_threads, value in products_filter_options.cores_threads.items %}
+        {% for processor_cores_threads, value in products_filter_options.processor_cores_threads.items %}
             {% if value != 0 %}
                 <form>
-                    <div class="form-inline d-flex align-items-center py-1 justify-content-between"> <label class="tick">{{cores_threads}} <input type="checkbox"> <span class="check"></span> </label><span class="badge badge-primary badge-pill">{{value}}</span> </div>
+                    <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                        <label class="tick">{{processor_cores_threads}}
+                            <input type="checkbox">
+                            <span class="check" data-filter='processor_cores_threads={{processor_cores_threads}}'>
+                            <div class=""></div></span>
+                        </label>
+                        <span class="badge badge-primary badge-pill">{{value}}</span>
+                    </div>
                 </form>
             {% endif %}
         {% endfor %}

@@ -15,6 +15,7 @@ from rest_framework.parsers import JSONParser
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth import get_user_model
 
 from .serializers import AuthTokenSerializer, UserSerializer
 from ShoppingCardApp import utils
@@ -23,6 +24,8 @@ from AddressBookApp import models as address
 from ProductApp import models as product_app
 from ProductApp.utils import find_new_product
 from .utils import change_model_to_dict
+
+User = get_user_model()
 
 class CreateUserView(generics.CreateAPIView):
     """ create user """
@@ -298,3 +301,24 @@ class ProductDict(APIView):
             return 'Object does not exist'
 
         return Response(json.dumps(product))
+
+class UpdateProduct(APIView):
+    def post(self, request, product_id) -> Response:
+        authentication_classes = [authentication.TokenAuthentication]
+        permission_classes = [permissions.IsAdminUser]
+        parser_classes = [JSONParser]
+
+        data = request.data
+        user_id = data['user_id']
+        print(data['fields'].items())
+        for field, value in data['fields'].items():
+            product = product_app.MainProductDatabase.objects.get(id=product_id)
+            user = User.objects.get(id=int(user_id))
+            gettattr = getattr(product, field)
+            if field == 'likes' and value == 'add':
+                gettattr.add(user)
+            elif field == 'likes' and value == 'remove':
+                gettattr.remove(user)
+            
+
+        return Response('Product Updated')

@@ -384,8 +384,9 @@
     <script src="{% static 'js/domExample.js' %}" type="text/javascript"></script>
     <script src="{% static 'js/addressBook.js' %}" type="text/javascript"></script>
     <script>
-        const redirectToAccountUrl = "{% url 'account' %}"
-        const redirectToLandingPage = "{% url 'landing-page' %}"
+        const redirectToAccountUrl = "{% url 'account' %}";
+        const redirectToLandingPage = "{% url 'landing-page' %}";
+        const userId = {{request.user.id}}
     </script>
     <script src="{% static 'js/cookie.js' %}" type="text/javascript"></script>
 

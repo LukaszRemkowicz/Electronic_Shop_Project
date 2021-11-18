@@ -98,7 +98,7 @@ def filter_phones(phones: QuerySet) -> Dict:
         'processor': processor,
         'system': system,
         'cpu_clock': cpu_clock,
-    }
+        }
 
 def filter_monitors(monitors: QuerySet) -> Dict:
 
@@ -184,7 +184,6 @@ def filter_monitors(monitors: QuerySet) -> Dict:
             diagonal["70' and more"] += 1
 
     return {
-
         'resolution': resolution,
         'diagonal': diagonal,
         'curved': curved,
@@ -292,20 +291,21 @@ def filter_laptops(laptops: QuerySet) -> Dict:
         else:
             processor_cores_threads[product.processor_cores_threads] = 1
 
-    return {'resolution': resolution,
-            'diagonal': screen_diagonal,
-            'bluetooth': len([product.bluetooth for product in laptops if product.bluetooth == True]),
-            'screen': screen,
-            'system': system,
-            'graph': graph,
-            'ram': ram,
-            'ram_model': ram_model,
-            'ram_freq': ram_freq,
-            'pcie': p_c_i_e,
-            'processor': processor,
-            'processor_clock': processor_clock,
-            'cores_threads': processor_cores_threads,
-            }
+    return {
+        'resolution': resolution,
+        'diagonal': screen_diagonal,
+        'bluetooth': len([product.bluetooth for product in laptops if product.bluetooth == True]),
+        'screen': screen,
+        'system': system,
+        'graph': graph,
+        'ram': ram,
+        'ram_model': ram_model,
+        'ram_freq': ram_freq,
+        'pcie': p_c_i_e,
+        'processor': processor,
+        'processor_clock': processor_clock,
+        'processor_cores_threads': processor_cores_threads,
+        }
 
 def filter_pcs(pcs: QuerySet) -> Dict:
 
@@ -771,12 +771,13 @@ def filter_tvs(tvs: QuerySet) -> Dict:
     if 'Yes' not in smart_tv:
         smart_tv['Yes'] = 0
 
-    return {'refresh_rate': refresh,
-            'diagonal': diagonal,
-            'curved': curved,
-            'smart_tv': smart_tv,
-            'resolution': resolution,
-            'matrix_type': matrix_type
+    return {
+        'refresh_rate': refresh,
+        'diagonal': diagonal,
+        'curved': curved,
+        'smart_tv': smart_tv,
+        'resolution': resolution,
+        'matrix_type': matrix_type
         }
 
 def filter_headphones(heaphones: QuerySet) -> Dict:

@@ -354,6 +354,24 @@ h6 {
     visibility: hidden
 }
 
+.buy-list-view{
+    justify-content: space-between !important;
+}
+
+.buy-list-view .position-relative{
+    height: 10%;
+}
+
+.buy-list-view .position-relative *{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.buy-list-view div:first-child{
+    padding-bottom: 0 !important;
+}
+
 @media(min-width:992px) {
 
     .filter,

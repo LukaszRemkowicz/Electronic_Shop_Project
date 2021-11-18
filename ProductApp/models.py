@@ -211,6 +211,8 @@ class MainProductDatabase(models.Model):
     color = models.CharField(max_length=100, default='', blank=True, null=True)
     bought_num = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
+    
+    likes = models.ManyToManyField(User, default=None)
 
     class Meta:
         ordering = ['created']
@@ -606,5 +608,3 @@ class Questions(models.Model):
     def get_time(self) -> str:
         return str(self.date)
 
-
-' '.replace(' ', 'd')

@@ -1,18 +1,17 @@
 from typing import Any, Dict
-import json
 
-from django.views.generic import ListView, FormView
+from django.views.generic import ListView
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponse, HttpRequest, request
 
 from ShoppingCardApp.models import Customer, Order, OrderItem
-from . import models
+# from . import models
 from .utils import filter_products, sort_by_product_rate, paginate_view, try_to_get_product
 from .utilss.view_utils import *
-from .forms import FilterForm
 from .filters import SnippetFilter
 from ProductApp import models
+
+#TODO change productApp models. Add "as"
 
 User = settings.AUTH_USER_MODEL
 
@@ -145,29 +144,27 @@ class ProductsCart(ListView):
 
         # Call the products models, filter by url queryset and return as query.
 
-        #TODO: add filters by cattegory. Create functions for each model
-
         cattegories = {
-            'TV':  filter_tv_products(self.request),
-            'Monitors':  filter_monitors_products(self.request),
-            'PC':  filter_pcs_products(self.request),
-            'SSD':  filter_ssd_products(self.request),
-            'Graphs':  filter_graphs_products(self.request),
-            'Ram':  filter_rams_products(self.request),
-            'Pendrives':  filter_pendrives_products(self.request),
-            'Switches':  filter_switches_products(self.request),
-            'Motherboard':  filter_motherboard_products(self.request),
-            'CPU':  filter_cpus_products(self.request),
-            'Headphones':  filter_headphones_products(self.request),
-            'Routers':  filter_routers_products(self.request),
-            'Accesories for laptops':  AccesoriesForLaptops.objects.all(),
-            'Laptops':  filter_laptops_products(self.request),
-            'Phones':  filter_phones_products(self.request),
+            'TV': lambda x: filter_tv_products(x),
+            'Monitors': lambda x: filter_monitors_products(x),
+            'PC': lambda x: filter_pcs_products(x),
+            'SSD': lambda x: filter_ssd_products(x),
+            'Graphs': lambda x: filter_graphs_products(x),
+            'Ram': lambda x: filter_rams_products(x),
+            'Pendrives': lambda x: filter_pendrives_products(x),
+            'Switches': lambda x: filter_switches_products(x),
+            'Motherboard': lambda x: filter_motherboard_products(x),
+            'CPU': lambda x: filter_cpus_products(x),
+            'Headphones': lambda x: filter_headphones_products(x),
+            'Routers': lambda x: filter_routers_products(x),
+            'Accesories for laptops': AccesoriesForLaptops.objects.all(),
+            'Laptops': lambda x: filter_laptops_products(x),
+            'Phones': lambda x: filter_phones_products(x),
         }
 
         try:
-            products = cattegories[product_cattegory]
-        except (KeyError, ObjectDoesNotExist) as e:
+            products = cattegories[product_cattegory](self.request)
+        except (KeyError, ObjectDoesNotExist):
             products = []
 
 
@@ -198,14 +195,13 @@ class ProductsCart(ListView):
         # Returning dictionary with filter name as a "key", and number of products as a "value".
         # For example: {'diagonal':2} == {filter:prodcut_number}.
 
-        #TODO: add data_products_to_filter method to each model. Add try catch blocks
-
+        product_filters = try_to_get_product(old_products[0], '')
         try:
-            data_to_filter = products[0].data_products_to_filter()
+            data_to_filter = product_filters.data_products_to_filter()
         except IndexError:
             data_to_filter = []
 
-        print(data_to_filter)
+        print(products)
 
 
         # Create producent dictionary {name: products number for producent}
@@ -223,6 +219,9 @@ class ProductsCart(ListView):
 
         #TODO: Think about using this filter
         form = SnippetFilter
+
+        if self.request.GET.get('filter'):
+            context['filter_option'] = self.request.GET.get('filter')
 
         context['products_filter_options'] = data_to_filter
         context['producents'] = models.Inherit.get_producents(old_products)

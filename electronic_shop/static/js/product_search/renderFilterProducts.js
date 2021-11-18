@@ -1,4 +1,4 @@
-const filterParameter = document.querySelector('.product-filter-parameter');
+const filterParameter = document.querySelector('.product-filter-parameters');
 let urlSearchParams = new URLSearchParams(window.location.search);
 let params = Object.fromEntries(urlSearchParams.entries());
 // const URL = '/api/product-dict/';

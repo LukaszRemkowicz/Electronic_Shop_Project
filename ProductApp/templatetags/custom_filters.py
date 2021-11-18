@@ -1,3 +1,4 @@
+from re import T
 from django import template
 
 from ProductApp.models import MainProductDatabase
@@ -57,5 +58,17 @@ def get_main_product_id (product):
 @register.filter
 def get_aplied_filters(request):
     url_queryset = { key:str(value[0]) for key, value in request.GET.lists()}
+    result = {key.replace('_', ' ') for key, _ in url_queryset.items() if key not in ('page', 'grid', 'filter')}
 
-    return {key.replace('_', ' ') for key, _ in url_queryset.items() if key not in ('page', 'grid')}
+    if 'filter' in url_queryset:
+        result.add(url_queryset['filter'])
+    return result
+
+@register.filter
+def check_like(product, request):
+    product = MainProductDatabase.objects.get(ean=product.ean)
+    many_to_many = [user for user in product.likes.all() if user == request.user]
+    if len(many_to_many) >= 1:
+        return True
+    else:
+        return False
