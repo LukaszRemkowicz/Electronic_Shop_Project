@@ -85,6 +85,21 @@
     margin-right: 1rem !important;
 }
 
+.observe-div{
+    position: sticky;
+    bottom: -1px;
+    padding-top: calc(1em + 1px);
+}
+
+.observe-div.is-pinned{
+    opacity: 0.8;
+
+}
+
+/* .filter-btn.is-pinned:hover{
+    opacity: 1;
+} */
+
 .options .checkmark:after {
     content: "";
     width: 9px;

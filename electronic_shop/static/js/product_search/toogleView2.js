@@ -10,7 +10,7 @@ const productStars = document.querySelectorAll('.product');
 const buyListView = document.querySelectorAll('.buy-list-view');
 
 let productDesc;
-let descGrid; 
+let descGrid;
 
 
 function changeVisibility(element, display){
@@ -23,8 +23,7 @@ function changeVisibility(element, display){
 }
 
 function checkParams(){
-    let urlParams = new URLSearchParams(window.location.href);
-
+    let urlParams = new URLSearchParams(window.location.search);
     if(urlParams.get('grid') != null && urlParams.get('grid') === 'true'){
         add();
     } else {
@@ -32,67 +31,9 @@ function checkParams(){
     }
 };
 
-// function changeUrl (boolean){
-//     let url = window.location.href;
-//     let newParam;
-
-//     url = url.replace('#', '')
-
-//     if(url.split('&').length >= 2 || window.location.href.includes('grid')){
-
-//         let newUrl = window.location.href.replace('#', '').split('?');
-//         let urlSplitted = newUrl[1].split('&')
-
-//         urlSplitted.forEach((element, index) =>{
-//             if(element.includes('grid=')){
-//                 urlSplitted[index] = `grid=${boolean}`;
-//             }
-//         });
-
-//         let urlJoined;
-
-//         if (urlSplitted.length >= 2){
-//             urlJoined = urlSplitted.join('&');
-//         } else {
-//             urlJoined = urlSplitted.join('?')
-//         };
-
-//         if (urlJoined.includes('grid') == false){
-//             urlJoined = urlJoined + `&grid=${boolean}`;
-//             urlJoined = newUrl[0] + '?' + urlJoined;
-//         } else {
-//             urlJoined = newUrl[0] + '?' + urlJoined;
-//         }
-
-//         window.history.pushState("", "", urlJoined);
-
-//     } else if(window.location.href.split('?').length >= 2){
-//         url = url.replace('#', '');
-//         window.history.pushState("object or string", "Title", `${url}&grid=${boolean}`);
-
-//     } else {
-//         window.location.replace(`${url}?grid=${boolean}`)
-//     }
-
-//     toogleButtons.forEach(element => {
-//         const getPage = element.getAttribute('href').split('&')[0];
-//         let getToogleOrFilter = window.location.href.split('&');
-
-//         getToogleOrFilter.forEach((element, index) => {
-//             if(getToogleOrFilter[0] == element){
-//                 getToogleOrFilter[0] = getPage
-//             }
-//             if(element.includes('grid=')){
-//                 getToogleOrFilter[index] = `grid=${boolean}`
-//             }
-//         })
-
-//         const newJoinedAtt = getToogleOrFilter.join('&');
-//         element.href = newJoinedAtt;
-//     })
-// }
-
 checkParams()
+
+/** Change classes on elements if Grid view is enabled */
 
 function add(){
     listView.classList.remove('font-red');
@@ -102,7 +43,7 @@ function add(){
 
     productDesc = document.querySelectorAll('.product-description');
     changeVisibility(productDesc, 'none')
- 
+
     descGrid = document.querySelectorAll('.description-grid');
     changeVisibility(descGrid, 'block')
 
@@ -131,26 +72,38 @@ function add(){
     });
 
     productStars.forEach(element => {
+
         element.classList.remove('mt-3', 'pl-5');
     });
 
     productDesc.forEach(element => {
+
         element.classList.remove('pl-5');
         element.style.textAlign = 'center'
     });
 
     buyListView.forEach(element => {
+
         element.classList.add('justify-content-between');
         element.classList.remove('flex', 'flex-column', 'justify-content-center');
-
         element.querySelector('div:nth-child(1)').classList.remove('pb-5')
+    })
 
+    /** change price and heart divs */
+    let catchStarsDiv = document.querySelectorAll('.buy-list-view .position-relative');
+    catchStarsDiv.forEach(element =>{
+
+        element.classList.remove('w-100');
+        element.style.left = '3rem';
+        element.style.bottom = '1rem';
     })
 
 }
 
+/** Change classes on elements if List view is enabled.*/
+
 function remove(){
-    
+
     listView.classList.add('font-red');
     gridView.classList.remove('font-red');
 

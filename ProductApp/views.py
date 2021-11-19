@@ -157,7 +157,7 @@ class ProductsCart(ListView):
             'CPU': lambda x: filter_cpus_products(x),
             'Headphones': lambda x: filter_headphones_products(x),
             'Routers': lambda x: filter_routers_products(x),
-            'Accesories for laptops': AccesoriesForLaptops.objects.all(),
+            'Accesories for laptops': lambda x: filter_accesories_products(x),
             'Laptops': lambda x: filter_laptops_products(x),
             'Phones': lambda x: filter_phones_products(x),
         }
@@ -168,8 +168,8 @@ class ProductsCart(ListView):
             products = []
 
 
-        # Filter products by popular, trending filters etc.
-        # It should be done at the end of all filters
+        # Filter products by popularity, trending filters etc.
+        # Should be done at the end of all filters
 
         if self.request.GET.get('filter'):
 

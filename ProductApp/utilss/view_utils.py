@@ -23,7 +23,7 @@ def filter_tv_products(request: HttpRequest) -> QuerySet:
 
     filter = {
         'producent': lambda x, products: products.filter(producent=x),
-        'smart': lambda x, products: products.filter(smart_tv=x),
+        'smart_tv': lambda x, products: products.filter(smart_tv=x),
         'curved': lambda x, products: products.filter(curved=x),
         'refresh_rate': lambda x, products: products.filter(refresh_rate=x),
         'resolution': lambda x, products: products.filter(resolution=x),
@@ -34,9 +34,8 @@ def filter_tv_products(request: HttpRequest) -> QuerySet:
 
     url_queryset = return_url_params(request)
 
-    print('url_queryset', url_queryset)
-
     for key, value in url_queryset.items():
+        print(key, value)
         try:
             if key == 'stars':
                 products = filter_by_stars(products, value, Tv.objects.all())
@@ -296,7 +295,7 @@ def filter_cpus_products(request: HttpRequest) -> QuerySet:
         'cores_num': lambda x, products: products.filter(cores_num=x),
         'threat_num': lambda x, products: products.filter(threat_num=x),
         'clock_frequency': lambda x, products: products.filter(clock_frequency=x),
-        'supported_memory': lambda x, products: products.filter(ram=x),
+        'supported_memory': lambda x, products: products.filter(supported_memory=x),
     }
 
     products = Cpu.objects.all()
@@ -447,5 +446,27 @@ def filter_phones_products(request: HttpRequest) -> QuerySet:
                 products = filter[key](value, products)
         except (FieldError, ObjectDoesNotExist, KeyError, FieldDoesNotExist) as e:
             print('Error in Phones function', e)
+
+    return products
+
+def filter_accesories_products(request: HttpRequest) -> QuerySet:
+    """ Create queryset by user filters applied """
+
+    filter = {
+        'producent': lambda x, products: products.filter(producent=x),
+    }
+
+    products = AccesoriesForLaptops.objects.all()
+
+    url_queryset = return_url_params(request)
+
+    for key, value in url_queryset.items():
+        try:
+            if key == 'stars':
+                products = filter_by_stars(products, value, Tv.objects.all())
+            else:
+                products = filter[key](value, products)
+        except (FieldError, ObjectDoesNotExist, KeyError, FieldDoesNotExist) as e:
+            print('Error in Tv function', e)
 
     return products

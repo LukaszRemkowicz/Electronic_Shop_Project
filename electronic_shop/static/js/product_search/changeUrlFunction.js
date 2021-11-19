@@ -1,3 +1,5 @@
+/** Change URL parameters and hrefs links without reloading page */
+
 function changeUrls(filter, boolean){
     // let url = window.location.href;
     // let newParam;
