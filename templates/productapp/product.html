@@ -32,7 +32,7 @@
                             {% endif %}
 
                             </select>
-                            <a href="" class="ml-2 btn-red py-2 text-center w-100">Buy now</a>
+                            <a href= "{% url 'shopping-cart' %}" class="ml-2 btn-red py-2 text-center w-100 update-cart" style="cursor: pointer" data-product="{{ product|get_main_product_id }}" data-action="add">Buy now</a>
 
                         </div>
 
@@ -42,12 +42,8 @@
                     </div>
 
                     <div class="d-flex basket">
-                        {% if pieces <= 0%}
-                            <button href="#" type="button" class="add-to-cart btn-light ml-2 p-2 pt-2 pb-2 text-center" disabled>Product is not avaiable </button>
-                        {%else%}
-                            <a href="#" data-product="{{ product|get_main_product_id }}" data-action="add" type="button" class="add-to-cart btn-red ml-2 pt-2 pb-2 text-center update-cart">Add to cart </a>
-                        {% endif %}
-
+                        <button href="#" type="button" class="add-to-cart btn-light ml-2 p-2 pt-2 pb-2 text-center product-not-avaiable {% if pieces <= 0%} d-block {% else %} d-none {% endif %}" disabled>Product is not avaiable </button>
+                        <a href="#" data-product="{{ product|get_main_product_id }}" data-action="add" type="button" class="add-to-cart btn-red ml-2 pt-2 pb-2 text-center update-cart {% if pieces <= 0%} d-none {% else %} d-block {% endif %}">Add to cart </a>
                     </div>
 
                    {% include 'partials/free_deliver.html' %}
@@ -88,9 +84,20 @@
                                 <div class="align-self-center m-auto main-img-div">
                                     <img src="{% if product.main_photo %}{{ product.main_photo.url }}{% endif %}" class="main-pic" alt="" />
 									{% comment %} <i class="far fa-heart font-red fa-2x"></i> {% endcomment %}
-                                    <i class="lni lni-heart font-light-grey"></i>
+                                    {% comment %} <i class="lni lni-heart font-light-grey"></i> {% endcomment %}
                                 </div>
+                            </div>
 
+                            <div class="position-relative">
+                                <i class="lni lni-heart font-light-grey hearts 
+                                {% if product|check_like:request %}
+                                d-none 
+                                {% endif %}" data-heart={{product|get_main_product_id}}></i>
+
+                                <i class="fas fa-heart font-red fa-2x hearts
+                                {% if not product|check_like:request %}
+                                d-none
+                                {% endif %}" data-heart={{product|get_main_product_id}}></i>
                             </div>
 
                             <!-- product filter section -->
@@ -101,8 +108,9 @@
 
                                 <div class="d-flex w-100 product-id">
                                     <p class="text-left pl-5 pt-1 d-inline font-light-grey">Product ID: {{ product|get_main_product_id }}</p>
-                                    {% if same_products|length >= 2 %}
-                                        <a href='' class="text-left ml-3 pt-1 d-inline font-light-grey">Check similar products</a>
+                                    {% if same_products.items|length >= 2 %}
+                                        {{cattegory}}
+                                        <a href="{% url 'products_cart' product.cattegory %}?ids={{ same_products.items_id }}" class="check-similar text-left ml-3 pt-1 d-inline font-light-grey">Check similar products</a>
                                     {% endif %}
                                 </div>
 
@@ -598,5 +606,9 @@
     <script src="{% static 'js/productPage/renderProductDatailFilterBox.js' %}"></script>
     <script src="{% static 'js/productPage/tables.js' %}"></script>
     <script src="{% static 'js/productPage/jumpSmooth.js' %}"></script>
+    <script src="{% static 'js/product_search/changeUrlFunction.js' %}"></script>
+    <script src="{% static 'js/productPage/checkSimilar.js' %}"></script>
+    <script src="{% static 'js/product_search/catchHeart.js' %}"></script>
+
 
 {% endblock %}

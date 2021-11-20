@@ -79,7 +79,7 @@
     </div>
 {% endif %}
 
-{% if products_filter_options.curved|length > 1  %}
+{% if products_filter_options.curved|length >= 2 and 0 not in products_filter_options.curved.values  %}
     <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Curved</h5>
         {% for curved, value in products_filter_options.curved.items %}
@@ -97,7 +97,7 @@
 {% endif %}
 
 
-{% if products_filter_options.smart_tv|length > 1  %}
+{% if products_filter_options.smart_tv|length >= 2 and 0 not in products_filter_options.smart_tv.values %}
     <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Smart TV</h5>
         {% for smart, value in products_filter_options.smart_tv.items %}

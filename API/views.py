@@ -258,40 +258,6 @@ class ProductDict(APIView):
 
         data = request.data
 
-        # if request.data['filter']:
-        #     product_cattegory = data['cattegory']
-        #     filter_param = data['filter']
-        #     products = product_app.MainProductDatabase.objects.filter(cattegory=product_cattegory)
-        #     # products = products.annotate(rate=product_app.MainProductDatabase.get_star_avg)
-
-        #     choose_param = {
-        #         'popular': sort_by_product_rate(products),
-        #         'trending': products.order_by('-bought_num'),
-        #         'cheapest': products.order_by('price'),
-        #         'latest': products
-        #     }
-        #     # if filter_param == 'popular':
-        #     #     product_dict = sort_by_product_rate(products)
-
-        #     # elif filter_param == 'trending':
-        #     #     product_sorted = products.order_by('-bought_num')
-
-        #     # elif filter_param == "cheapest":
-        #     #     product_sorted = products.order_by('price')
-
-        #     # else:
-        #     #     product_sorted = products
-
-        #     # print(choose_param.get(filter_param))
-
-
-        #     product_list = [change_model_to_dict(product) for product in choose_param[filter_param]]
-
-
-        #     return Response(product_list)
-
-        # else:
-
         product_id = data['productId']
 
         try:
@@ -299,6 +265,8 @@ class ProductDict(APIView):
             product = change_model_to_dict(product)
         except ObjectDoesNotExist:
             return 'Object does not exist'
+        
+        print(product)
 
         return Response(json.dumps(product))
 

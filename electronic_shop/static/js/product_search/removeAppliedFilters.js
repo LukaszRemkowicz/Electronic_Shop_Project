@@ -7,8 +7,11 @@ appliedFilters.forEach(element => {
         params = Object.fromEntries(urlSearchParams.entries());
         let param = element.parentNode.innerText;
         param = param.slice(0, param.length-2).replace(' ', '_')
-        console.log(param);
-        urlSearchParams.delete(param.toLowerCase())
+        if(param == 'Similar_products'){
+            urlSearchParams.delete('ids'.toLowerCase())
+        }else{
+            urlSearchParams.delete(param.toLowerCase())
+        }
         window.history.pushState("object or string", "Title", `?${urlSearchParams}`);
         window.location.reload();
 
@@ -19,7 +22,7 @@ try{
     const deleteAllFilters = document.querySelector('.all-filters')
     deleteAllFilters.addEventListener('click', () => {
         for(let [param, value] of Object.entries(params)){
-            if(param != 'page' && param != 'grid'){
+            if(param != 'page' && param != 'grid' && param != 'ids'){
                 urlSearchParams.delete(param.toLowerCase())
                 window.history.pushState("object or string", "Title", `?${urlSearchParams}`);
             }

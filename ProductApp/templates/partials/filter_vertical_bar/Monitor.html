@@ -1,4 +1,4 @@
-{% if products_filter_options.diagonal|length > 1  %}
+{% if products_filter_options.diagonal|length >= 2 and 0 not in products_filter_options.diagonal.values %}
     <div class="pb-3 horizontal-filters">
         <h5 class="font-weight-bold">Diagonal [cal]</h5>
         {% for diagonal, value in products_filter_options.diagonal.items %}
@@ -17,7 +17,7 @@
     </div>
 {% endif %}
 
-{% if products_filter_options.resolution|length > 1  %}
+{% if products_filter_options.resolution|length >= 2 and 0 not in products_filter_options.resolution.values  %}
     <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Resolution</h5>
         {% for resolution, num in products_filter_options.resolution.items %}
@@ -37,7 +37,7 @@
     </div>
 {% endif %}
 
-{% if products_filter_options.refresh_rate|length > 1  %}
+{% if products_filter_options.refresh_rate|length >= 2 and 0 not in products_filter_options.refresh_rate.values  %}
     <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Refresh rate [Hz]</h5>
         {% for refresh, num in products_filter_options.refresh_rate.items %}
@@ -57,7 +57,7 @@
 {% endif %}
 
 
-{% if products_filter_options.matrix_type|length > 1  %}
+{% if products_filter_options.matrix_type|length >= 2 and 0 not in products_filter_options.matrix_type.values  %}
     <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Matrix type</h5>
         {% for matrix, value in products_filter_options.matrix_type.items %}
@@ -75,7 +75,7 @@
     </div>
 {% endif %}
 
-{% if products_filter_options.screen|length > 1  %}
+{% if products_filter_options.screen|length >= 2 and 0 not in products_filter_options.screen.values  %}
     <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Screen type</h5>
         {% for screen, value in products_filter_options.screen.items %}
@@ -94,7 +94,7 @@
     </div>
 {% endif %}
 
-{% if products_filter_options.format|length > 1  %}
+{% if products_filter_options.format|length >= 2 and 0 not in products_filter_options.format.values  %}
     <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Format</h5>
         {% for format, value in products_filter_options.format.items %}
@@ -114,7 +114,7 @@
     </div>
 {% endif %}
 
-{% if products_filter_options.curved|length > 1  %}
+{% if products_filter_options.curved|length >= 2 and 0 not in products_filter_options.curved.values %}
     <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Curved</h5>
         {% for curved, value in products_filter_options.curved.items %}

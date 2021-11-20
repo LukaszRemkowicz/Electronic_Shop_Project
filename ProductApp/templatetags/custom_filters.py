@@ -1,7 +1,10 @@
 from re import T
 from django import template
+from django.db.models.query import QuerySet
+from django.http.request import HttpRequest
 
 from ProductApp.models import MainProductDatabase
+from ProductApp.utilss.view_utils import change_product_pieces
 
 register = template.Library()
 
@@ -50,25 +53,37 @@ def check_smart(url: str) -> bool:
 
 
 @register.filter
-def get_main_product_id (product):
+def get_main_product_id (product: QuerySet) -> int:
 
     product = MainProductDatabase.objects.get(ean=product.ean)
     return product.id
 
 @register.filter
-def get_aplied_filters(request):
+def get_aplied_filters(request: HttpRequest) -> dict:
     url_queryset = { key:str(value[0]) for key, value in request.GET.lists()}
     result = {key.replace('_', ' ') for key, _ in url_queryset.items() if key not in ('page', 'grid', 'filter')}
 
     if 'filter' in url_queryset:
         result.add(url_queryset['filter'])
+
+    if 'ids' in result:
+        result.remove('ids')
+        result.add('Similar products')
+
     return result
 
 @register.filter
-def check_like(product, request):
+def check_like(product: QuerySet, request: HttpRequest) -> bool:
     product = MainProductDatabase.objects.get(ean=product.ean)
     many_to_many = [user for user in product.likes.all() if user == request.user]
     if len(many_to_many) >= 1:
         return True
     else:
         return False
+
+
+@register.filter
+def update_pieces(request: HttpRequest, product: QuerySet) -> int:
+    result, _ = change_product_pieces(request, product)
+    print('dwdddddddddddddd', result)
+    return result

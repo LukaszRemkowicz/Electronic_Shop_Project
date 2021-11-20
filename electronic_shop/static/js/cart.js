@@ -13,21 +13,31 @@ if (getProductAmount != null){
     })
 }
 
-
-function changeAddButton(pieces, productId){
+function changeAddButton(pieces, element){
 
     if(+pieces <= 0){
+        try{
+            element.classList.remove('d-block');
+            element.classList.add('d-none');
+            parent = element.parentElement;
+            parent.querySelector('.product-not-avaiable').classList.add('d-block');
+            parent.querySelector('.product-not-avaiable').classList.remove('d-none')
 
-        updateCart[0].style.visibility = 'hidden'
+        }catch (e){
+            console.log(e);
+        }
 
-        addButton.innerHTML = '';
-        const newButton = document.createElement('button');
-        newButton.className = 'add-to-cart btn-light ml-2 p-2 pt-2 pb-2 text-center';
-        newButton.disabled = true;
-        newButton.innerText = 'Product is not avaiable'
-        addButton.append(newButton)
-    }else{
-        addButton.querySelector('.update-cart').style.visibility = 'visible'
+    } else{
+        try{
+            element.classList.remove('d-none');
+            element.classList.add('d-block');
+            parent = element.parentElement;
+            parent.querySelector('.product-not-avaiable').classList.add('d-none');
+            parent.querySelector('.product-not-avaiable').classList.remove('d-block')
+        }catch (e){
+            console.log(e);
+        }
+
     }
 
 }
@@ -68,10 +78,11 @@ function updateCartFunc(element, action){
 
 
 
-for(var i = 0; i < updateCart.length; i++){
-        updateCart[i].addEventListener('click', function(){
-        var productId = this.dataset.product
-        var action = this.dataset.action
+updateCart.forEach(element => {
+    element.addEventListener('click', function(){
+
+        const productId = this.dataset.product
+        const action = this.dataset.action
 
         if (getProductAmount != null){
             getProductAmount = selected ?? 1
@@ -86,6 +97,7 @@ for(var i = 0; i < updateCart.length; i++){
         }
 
         console.log('USER:', user)
+
         if(user == 'AnonymousUser'){
             console.log('this: ', this)
             addCookieItem(productId, action, this)
@@ -93,7 +105,7 @@ for(var i = 0; i < updateCart.length; i++){
             updateUserOrder(productId, action, getProductAmount, this);
         }
         })
-}
+})
 
 
 function addCookieItem(productId, action, element){
@@ -199,11 +211,8 @@ function addCookieItem(productId, action, element){
 }
 
 function updateUserOrder(productId, action, getProductAmount, element){
-    console.log('User is logged in, sending data')
 
     const url = '/api/update-item/';
-
-    console.log('productId', productId, 'action', action, 'amount', getProductAmount)
 
     fetch(url, {
         method: 'POST',
@@ -222,13 +231,14 @@ function updateUserOrder(productId, action, getProductAmount, element){
 
     .then((data) =>{
         console.log('data: ', data);
+
         if(JSON.parse(data).totalItems == 0){
             window.location.href = redirectToAccountUrl
         }
         cartTotal = data;
 
         if(document.querySelector('.add-to-cart') != null){
-            changeAddButton(JSON.parse(data).pieces, productId);
+            changeAddButton(JSON.parse(data).pieces, element);
             const getPieces = document.querySelector('.pieces');
             if(getPieces){
                 getPieces.innerText = `Left: ${+JSON.parse(data).pieces} pcs`
@@ -236,20 +246,28 @@ function updateUserOrder(productId, action, getProductAmount, element){
                 let getProductAmount = document.querySelector('.amount')
                 getProductAmount.innerHTML = ''
             }
-            
+
 
             if (+JSON.parse(data).pieces === 0){
-                const newOption = document.createElement('option')
-                newOption.setAttribute('value', 0)
-                newOption.innerText = 0
-                getProductAmount.append(newOption)
+                try{
+                    const newOption = document.createElement('option');
+                    newOption.setAttribute('value', 0);
+                    newOption.innerText = 0;
+                    getProductAmount = document.querySelector('.amount')
+                    getProductAmount.append(newOption);
+
+                } catch {
+                    console.log('')
+                }
+
             }
 
             if(getPieces){
                 for (let num = 1; num <= +JSON.parse(data).pieces; num++){
                     const newOption = document.createElement('option')
                     newOption.setAttribute('value', num)
-                    newOption.innerText = num
+                    newOption.innerText = num;
+                    getProductAmount = document.querySelector('.amount')
                     getProductAmount.append(newOption)
                 }
             }

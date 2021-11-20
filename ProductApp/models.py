@@ -211,7 +211,7 @@ class MainProductDatabase(models.Model):
     color = models.CharField(max_length=100, default='', blank=True, null=True)
     bought_num = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
-    
+
     likes = models.ManyToManyField(User, default=None)
 
     class Meta:
@@ -291,9 +291,13 @@ class Phones(Inherit):
     battery = models.CharField(max_length=50, default='')
 
     @classmethod
-    def data_products_to_filter(cls) -> Dict:
+    def data_products_to_filter(cls, querySet='') -> Dict:
 
-        phones = Phones.objects.all()
+        if querySet:
+            phones = querySet
+        else:
+            phones = Phones.objects.all()
+
         return filter_phones(phones)
 
 
@@ -310,9 +314,13 @@ class Monitors(Inherit):
 
 
     @classmethod
-    def data_products_to_filter(cls) -> Dict:
+    def data_products_to_filter(cls, querySet='') -> Dict:
 
-        monitors = Monitors.objects.all()
+        if querySet:
+            monitors = querySet
+        else:
+            monitors = Monitors.objects.all()
+
         return filter_monitors(monitors)
 
 
@@ -340,9 +348,13 @@ class Laptops(Inherit):
 
 
     @classmethod
-    def data_products_to_filter(cls) -> Dict:
+    def data_products_to_filter(cls, querySet='') -> Dict:
 
-        laptops = Laptops.objects.all()
+        if querySet:
+            laptops = querySet
+        else:
+            laptops = Laptops.objects.all()
+
         return filter_laptops(laptops)
 
 
@@ -367,9 +379,15 @@ class Pc(Inherit):
 
 
     @classmethod
-    def data_products_to_filter(cls) -> Dict:
+    def data_products_to_filter(cls, querySet='') -> Dict:
 
-        pcs = Pc.objects.all()
+        print('query set w modelach', querySet)
+        if querySet:
+            pcs = querySet
+        else:
+            pcs = Pc.objects.all()
+        print('pcs len', filter_pcs(pcs))
+
         return filter_pcs(pcs)
 
 
@@ -377,7 +395,7 @@ class AccesoriesForLaptops(Inherit):
     diagonal_for_cases = models.CharField(max_length=20, blank=True, null=True)
 
     @classmethod
-    def data_products_to_filter(cls) -> None:
+    def data_products_to_filter(cls, queryset='') -> None:
 
         pass
 
@@ -392,9 +410,13 @@ class Ssd(Inherit):
 
 
     @classmethod
-    def data_products_to_filter(cls) -> Dict:
+    def data_products_to_filter(cls, querySet='') -> Dict:
 
-        ssd = Ssd.objects.all()
+        if querySet:
+            ssd = querySet
+        else:
+            ssd = Ssd.objects.all()
+
         return filter_ssd(ssd)
 
 
@@ -409,9 +431,13 @@ class Graphs(Inherit):
     connector_type = models.CharField(max_length=60, default='')
 
     @classmethod
-    def data_products_to_filter(cls) -> Dict:
+    def data_products_to_filter(cls, querySet='') -> Dict:
 
-        graphs = Graphs.objects.all()
+        if querySet:
+            graphs = querySet
+        else:
+            graphs = Graphs.objects.all()
+
         return filter_graphs(graphs)
 
 
@@ -427,9 +453,13 @@ class Ram(Inherit):
 
 
     @classmethod
-    def data_products_to_filter(cls) -> Dict:
+    def data_products_to_filter(cls, querySet='') -> Dict:
 
-        rams = Ram.objects.all()
+        if querySet:
+            rams = querySet
+        else:
+            rams = Ram.objects.all()
+
         return filter_rams(rams)
 
 
@@ -440,9 +470,13 @@ class Pendrives(Inherit):
     case = models.CharField(max_length=50, default='')
 
     @classmethod
-    def data_products_to_filter(cls) -> Dict:
+    def data_products_to_filter(cls, querySet='') -> Dict:
 
-        pendrives = Pendrives.objects.all()
+        if querySet:
+            pendrives = querySet
+        else:
+            pendrives = Pendrives.objects.all()
+
         return filter_pendrives(pendrives)
 
 
@@ -459,9 +493,13 @@ class Switches(Inherit):
         return self.ports_num.split('\n')
 
     @classmethod
-    def data_products_to_filter(cls) -> Dict:
+    def data_products_to_filter(cls, querySet='') -> Dict:
 
-        switches = Switches.objects.all()
+        if querySet:
+            switches = querySet
+        else:
+            switches = Switches.objects.all()
+
         return filter_switches(switches)
 
 
@@ -483,9 +521,13 @@ class Motherboard(Inherit):
         return self.raid_controler.split('\n')
 
     @classmethod
-    def data_products_to_filter(cls) -> Dict:
+    def data_products_to_filter(cls, querySet='') -> Dict:
 
-        motherboards = Motherboard.objects.all()
+        if querySet:
+            motherboards = querySet
+        else:
+            motherboards = Motherboard.objects.all()
+
         return filter_motherboards(motherboards)
 
 
@@ -498,9 +540,13 @@ class Cpu(Inherit):
     supported_memory = models.CharField(default='', max_length=20)
 
     @classmethod
-    def data_products_to_filter(cls) -> Dict:
+    def data_products_to_filter(cls, querySet='') -> Dict:
 
-        cpus = Cpu.objects.all()
+        if querySet:
+            cpus = querySet
+        else:
+            cpus = Cpu.objects.all()
+
         return filter_cpus(cpus)
 
 
@@ -520,9 +566,13 @@ class Tv(Inherit):
     power_consumption = models.CharField(max_length=50, default='')
 
     @classmethod
-    def data_products_to_filter(cls):
+    def data_products_to_filter(cls, querySet='') -> Dict:
 
-        tvs = Tv.objects.all()
+        if querySet:
+            tvs = querySet
+        else:
+            tvs = Tv.objects.all()
+
         return filter_tvs(tvs)
 
 
@@ -536,9 +586,13 @@ class Headphones(Inherit):
     connection = models.CharField(max_length=50, default='')
 
     @classmethod
-    def data_products_to_filter(cls) -> Dict:
+    def data_products_to_filter(cls, querySet='') -> Dict:
 
-        headphones = Headphones.objects.all()
+        if querySet:
+            headphones = querySet
+        else:
+            headphones = Headphones.objects.all()
+
         return filter_headphones(headphones)
 
 
@@ -558,9 +612,13 @@ class Routers(Inherit):
 
 
     @classmethod
-    def data_products_to_filter(cls) -> Dict:
+    def data_products_to_filter(cls, querySet='') -> Dict:
 
-        routers = Routers.objects.all()
+        if querySet:
+            routers = querySet
+        else:
+            routers = Routers.objects.all()
+
         return filter_routers(routers)
 
 

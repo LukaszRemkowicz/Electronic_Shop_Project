@@ -38,9 +38,10 @@
     </div>
 {% endif %}
 
-{% if products_filter_options.waterproof|length > 1  %}
+{% if products_filter_options.waterproof|length >= 2 and 0 not in products_filter_options.waterproof.values  %}
     <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Waterproof</h5>
+
         {% for waterproof, value in products_filter_options.waterproof.items %}
             {% if value != 0 %}
                 <form>

@@ -4,9 +4,11 @@ from math import prod
 from django.db.models.fields.files import FieldFile, ImageFieldFile
 from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist
+from django.conf import settings
 
 from ProductApp import models as product_app
 
+User = settings.AUTH_USER_MODEL
 
 
 def recurssive(product, new_dict):
@@ -19,8 +21,11 @@ def recurssive(product, new_dict):
             new_dict[key] = str(value)
         elif isinstance(value, dict):
             recurssive(value, new_dict)
+        elif key == 'likes':
+            pass
         else:
             new_dict[key] = value
+
 
     return new_dict
 
@@ -59,5 +64,3 @@ def change_model_to_dict(product_model):
 
     return product
 
-
-# 

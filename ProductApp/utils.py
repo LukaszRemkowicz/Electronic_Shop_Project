@@ -586,56 +586,27 @@ def paginate_view(products: QuerySet, result: int, page: int) -> range:
     return range(left_index, right_index), paginator, products
 
 
-# def get_model_queryset(catt, producent=''):
+def get_model_queryset(catt):
 
-#     if producent:
+    get_queryset = {
 
-#         if producent == 'All':
-#             return models.MainProductDatabase.objects.filter(cattegory=catt)
+        'PC': models.Pc.objects.all(),
+        'Monitors': models.Monitors.objects.all(),
+        'Phones': models.Phones.objects.all(),
+        'Laptops': models.Laptops.objects.all(),
+        'Accesories for laptops': models.AccesoriesForLaptops.objects.all(),
+        'SSD': models.Ssd.objects.all(),
+        'Graphs': models.Graphs.objects.all(),
+        'Ram': models.Ram.objects.all(),
+        'Pendrives': models.Pendrives.objects.all(),
+        'Switches': models.Switches.objects.all(),
+        'Motherboard': models.Motherboard.objects.all(),
+        'CPU': models.Cpu.objects.all(),
+        'TV': models.Tv.objects.all(),
+        'Headphones': models.Headphones.objects.all(),
+        'Routers': models.Routers.objects.all(),
+    }
 
-#         get_queryset = {
-
-#         'PC': lambda producent: models.Pc.objects.filter(producent=producent),
-#         'Monitors': lambda producent: models.Monitors.objects.filter(producent=producent),
-#         'Phones': lambda producent: models.Phones.objects.filter(producent=producent),
-#         'Laptops': lambda producent: models.Laptops.objects.filter(producent=producent),
-#         'Accesories for laptops': lambda producent: models.AccesoriesForLaptops.objects.filter(producent=producent),
-#         'SSD': lambda producent: models.Ssd.objects.filter(producent=producent),
-#         'Graphs': lambda producent: models.Graphs.objects.filter(producent=producent),
-#         'Ram': lambda producent: models.Ram.objects.filter(producent=producent),
-#         'Pendrives': lambda producent: models.Pendrives.objects.filter(producent=producent),
-#         'Switches': lambda producent: models.Switches.objects.filter(producent=producent),
-#         'Motherboard': lambda producent: models.Motherboard.objects.filter(producent=producent),
-#         'CPU': lambda producent: models.Cpu.objects.filter(producent=producent),
-#         'TV': lambda producent: models.Tv.objects.filter(producent=producent),
-#         'Headphones': lambda producent: models.Headphones.objects.filter(producent=producent),
-#         'Routers': lambda producent: models.Routers.objects.filter(producent=producent),
-#         }
-
-#         return get_queryset[catt](producent)
-
-#     else:
-
-
-#         get_queryset = {
-
-#             'PC': models.Pc.objects.all(),
-#             'Monitors': models.Monitors.objects.all(),
-#             'Phones': models.Phones.objects.all(),
-#             'Laptops': models.Laptops.objects.all(),
-#             'Accesories for laptops': models.AccesoriesForLaptops.objects.all(),
-#             'SSD': models.Ssd.objects.all(),
-#             'Graphs': models.Graphs.objects.all(),
-#             'Ram': models.Ram.objects.all(),
-#             'Pendrives': models.Pendrives.objects.all(),
-#             'Switches': models.Switches.objects.all(),
-#             'Motherboard': models.Motherboard.objects.all(),
-#             'CPU': models.Cpu.objects.all(),
-#             'TV': models.Tv.objects.all(),
-#             'Headphones': models.Headphones.objects.all(),
-#             'Routers': models.Routers.objects.all(),
-#         }
-
-#         return get_queryset[catt]
+    return get_queryset[catt]
 
 

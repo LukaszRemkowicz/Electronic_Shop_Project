@@ -159,11 +159,11 @@
 {% endif %}
 
 
-{% if products_filter_options.bluetooth|length > 1  %}
+{% if products_filter_options.bluetooth|length >= 2  and 0 not in products_filter_options.bluetooth.values  %}
     <div class="py-3 horizontal-filters">
         <h5 class="font-weight-bold">Bluetooth</h5>
         {% for bluetooth, num in products_filter_options.bluetooth.items %}
-            {% if value != 0 and bluetooth != '0'%}
+            {% if num != 0 and bluetooth != '0'%}
                 <form>
                     <div class="form-inline d-flex align-items-center py-1 justify-content-between">
                     <label class="tick">{{bluetooth}}

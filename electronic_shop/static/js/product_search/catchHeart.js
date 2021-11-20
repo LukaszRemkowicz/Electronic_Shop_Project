@@ -1,5 +1,5 @@
-const heart = document.querySelectorAll('.buy-list-view .lni-heart');
-const heartLiked = document.querySelectorAll('.buy-list-view .fa-heart');
+const heart = document.querySelectorAll('.lni-heart');
+const heartLiked = document.querySelectorAll('.fa-heart');
 
 function fetchHeart (url, whatToDo){
     fetch(url, {
@@ -31,7 +31,7 @@ try{
             element.style.display = 'none';
             const el = element.parentNode.querySelector('.fa-heart');
             el.classList.remove('d-none');
-            el.style.display = 'block'
+            el.style.display = 'inline-block'
         })
     })
 } catch(e) {
@@ -49,7 +49,7 @@ try{
             console.log(element.parentNode.querySelector('.lni'));
             const el = element.parentNode.querySelector('.lni');
             el.classList.remove('d-none');
-            el.style.display = 'block'
+            el.style.display = 'inline-block'
         })
     })
     

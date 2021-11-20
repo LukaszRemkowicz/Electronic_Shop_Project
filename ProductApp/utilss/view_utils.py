@@ -1,3 +1,4 @@
+import json
 from math import prod
 from django.core.exceptions import FieldDoesNotExist, FieldError, ObjectDoesNotExist
 from django.http.request import HttpRequest
@@ -5,11 +6,15 @@ from django.db.models.query import QuerySet
 from django.db.models import Q
 
 from ProductApp.models import *
+from ProductApp.utils import try_to_get_product, get_model_queryset
+from ShoppingCardApp.models import Order, OrderItem, Customer
 
 def return_url_params(request: HttpRequest) -> dict:
     """ Unpack key and value from URL params """
 
-    return { key:str(value[0]) for key, value in request.GET.lists() if key != 'page' and key != 'grid' and key != 'filter'}
+    return {key: str(value[0]) for key, value in request.GET.lists() if
+            key != 'page' and key != 'grid' and key != 'filter' and key != 'ids'}
+
 
 def filter_by_stars(products: QuerySet, value: str, model: QuerySet) -> QuerySet:
     """ Filter products queryset by star value """
@@ -52,6 +57,7 @@ def filter_tv_products(request: HttpRequest) -> QuerySet:
             print('Error in Tv function', e)
 
     return products
+
 
 def filter_monitors_products(request: HttpRequest) -> QuerySet:
     """ Create queryset by user filters applied """
@@ -116,6 +122,7 @@ def filter_pcs_products(request: HttpRequest) -> QuerySet:
 
     return products
 
+
 def filter_ssd_products(request: HttpRequest) -> QuerySet:
     """ Create queryset by user filters applied """
 
@@ -143,6 +150,7 @@ def filter_ssd_products(request: HttpRequest) -> QuerySet:
             print('Error in Ssds function', e)
 
     return products
+
 
 def filter_graphs_products(request: HttpRequest) -> QuerySet:
     """ Create queryset by user filters applied """
@@ -285,6 +293,7 @@ def filter_motherboard_products(request: HttpRequest) -> QuerySet:
 
     return products
 
+
 def filter_cpus_products(request: HttpRequest) -> QuerySet:
     """ Create queryset by user filters applied """
 
@@ -314,6 +323,7 @@ def filter_cpus_products(request: HttpRequest) -> QuerySet:
 
     return products
 
+
 def filter_headphones_products(request: HttpRequest) -> QuerySet:
     """ Create queryset by user filters applied """
 
@@ -337,6 +347,7 @@ def filter_headphones_products(request: HttpRequest) -> QuerySet:
             print('Error in Headphones function', e)
 
     return products
+
 
 def filter_routers_products(request: HttpRequest) -> QuerySet:
     """ Create queryset by user filters applied """
@@ -372,6 +383,7 @@ def filter_routers_products(request: HttpRequest) -> QuerySet:
             print('Error in Routers function', e)
 
     return products
+
 
 def filter_laptops_products(request: HttpRequest) -> QuerySet:
     """ Create queryset by user filters applied """
@@ -409,6 +421,7 @@ def filter_laptops_products(request: HttpRequest) -> QuerySet:
 
     return products
 
+
 def filter_phones_products(request: HttpRequest) -> QuerySet:
     """ Create queryset by user filters applied """
 
@@ -430,7 +443,6 @@ def filter_phones_products(request: HttpRequest) -> QuerySet:
 
     url_queryset = return_url_params(request)
 
-
     for key, value in url_queryset.items():
         print(key, value)
         try:
@@ -441,13 +453,14 @@ def filter_phones_products(request: HttpRequest) -> QuerySet:
                     products = products.filter(diagonal__gt=70)
                 else:
                     value = value.replace('\'', '').replace(' ', '').split('-')
-                    products =  products.filter(Q(screen_diagonal__lt=value[1]), Q(screen_diagonal__gt=value[0]))
+                    products = products.filter(Q(screen_diagonal__lt=value[1]), Q(screen_diagonal__gt=value[0]))
             else:
                 products = filter[key](value, products)
         except (FieldError, ObjectDoesNotExist, KeyError, FieldDoesNotExist) as e:
             print('Error in Phones function', e)
 
     return products
+
 
 def filter_accesories_products(request: HttpRequest) -> QuerySet:
     """ Create queryset by user filters applied """
@@ -470,3 +483,31 @@ def filter_accesories_products(request: HttpRequest) -> QuerySet:
             print('Error in Tv function', e)
 
     return products
+
+
+def get_similar_products_data(request: HttpRequest):
+    ids = json.loads(request.GET.get('ids'))
+    similar_products = MainProductDatabase.objects.filter(id__in=ids)
+    similar_products_ean = [try_to_get_product(product, '').ean for product in similar_products]
+    similar_products = get_model_queryset(similar_products[0].cattegory).filter(ean__in=similar_products_ean)
+
+    return similar_products
+
+def change_product_pieces(request, product):
+    if request.user.is_authenticated:
+        
+        customer = Customer.objects.get(user=request.user)
+        order = Order.objects.get(customer=customer, complete=False)
+        try:
+            order_item = OrderItem.objects.get(order=order, product__ean=product.ean)
+            pieces = product.pieces - order_item.quantity
+
+        except ObjectDoesNotExist:
+            order_item = ''
+            pieces = product.pieces
+
+    elif not request.user.is_authenticated:
+        order_item = ''
+        pieces = product.pieces
+        
+    return pieces, order_item

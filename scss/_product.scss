@@ -19,6 +19,18 @@
             }
         }
 
+        & .position-relative{
+            & i {
+                // position: absolute;
+                top: 0;
+                right: 0;
+                position: relative;
+                margin-top: 1rem;
+                margin-right: 1rem;
+                cursor: pointer;
+            }
+        }
+
         .buttons{
 
             a{

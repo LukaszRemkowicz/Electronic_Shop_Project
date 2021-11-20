@@ -317,7 +317,7 @@ div.text-muted {
 .card:hover {
     transform: scale(1.1);
     transition: all 0.5s ease-in-out;
-    cursor: pointer
+    /* cursor: pointer */
 }
 
 .card-body {
@@ -383,9 +383,9 @@ h6 {
     right: 1rem;
 }
 
-.buy-list-view div:first-child{
+/* .buy-list-view div:first-child{
     padding-bottom: 0 !important;
-}
+} */
 
 @media(min-width:992px) {
 

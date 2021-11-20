@@ -810,6 +810,13 @@ a {
       .main-product-div .mini-images-section .mini-img:hover {
         cursor: pointer;
         border-color: #ff503c; }
+  .main-product-div .position-relative i {
+    top: 0;
+    right: 0;
+    position: relative;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    cursor: pointer; }
   .main-product-div .buttons a {
     font-size: 1rem; }
     .main-product-div .buttons a:hover {
