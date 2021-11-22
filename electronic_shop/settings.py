@@ -41,12 +41,14 @@ INSTALLED_APPS = [
     'OrdersApp.apps.OrdersappConfig',
     'MessagesApp.apps.MessagesappConfig',
     'ShoppingCardApp.apps.ShoppingcardappConfig',
+    'Articles.apps.ArticlesConfig',
     'API.apps.ApiConfig',
     'widget_tweaks',
     'reset_migrations',
     'rest_framework.authtoken',
     'rest_framework',
     'django_filters',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [

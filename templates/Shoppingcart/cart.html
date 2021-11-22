@@ -22,10 +22,10 @@
                         <div class="row w-100 p-3 product-cart border-top border-bottom" id='product-{{ item.product.id }}'>
                             <div class="row main align-items-center">
                                 <div class="col-2 pic-div"><img class=" img-fluid " src="{{ item.product.get_img }}"></div>
-                                <div class="col category-div">
+                                <a class="col category-div" href="{% url 'product_page'  item.product.id %}">
                                     <div class="row text-muted">{{item.product.cattegory}}</div>
                                     <div class="row name-div">{{ item.product.name }}</div>
-                                </div>
+                                </a>
                                 <div class="col quantity-div">
                                     <a href="#" class='update-cart' data-action="remove" data-product='{{ item.product.id }}'>  -  </a>
                                     <a href="#" class="border">{{ item.quantity }}</a>

@@ -1,0 +1,19 @@
+{% load static %}
+
+<div class="blog-articles grid-container">
+    <div class="box px-2 py-2">
+        <a href="{% url 'articles' %}">
+            <img class=""  src="{% static 'images/showcase/pc.jpg'%} " alt="">
+        <p>{{'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet quaerat qui repudiandae quasi, rem culpa!'|truncatechars:80}}</p>
+        </a>
+    </div>
+    <div class="box px-2 py-2">
+        <img src="{% static 'images/showcase/pc2.jpg'%}" alt="">
+        <p>{{'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet quaerat qui repudiandae quasi, rem culpa!'|truncatechars:80}}</p>
+    </div>
+    <div class="box px-2 py-2">
+        <img src="{% static 'images/showcase/koparka.jpg'%} " alt="">
+        <p>{{'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet quaerat qui repudiandae quasi, rem culpa!'|truncatechars:80}}</p>
+    </div>
+</div>
+

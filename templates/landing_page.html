@@ -6,17 +6,18 @@
 
 {% load static %}
 
-    <section class="bg-grey align-center">
+    <section class="bg-grey align-center mt-5 pb-5">
         <div class="container grid-container showcase">
             {% include 'messages.html' %}
+
             <div class="cattegories bg-red">
                 <h2>Cattegories</h2>
-                <div class="alarm-box cattegories-box bg-white">
+                <div class="alarm-box cattegories-box bg-white pt-2 pl-5">
 
                     <ul>
                         {% for cattegory in query %}
                             {% comment %} {{cattegory}} {% endcomment %}
-                            <li><a href="{% url 'products_cart' cattegory=cattegory %}">{{cattegory}}</a></li>
+                            <li class='text-left mb-2'><a href="{% url 'products_cart' cattegory=cattegory %}">{{cattegory}}</a></li>
                         {% endfor %}
                     </ul>
 
@@ -36,10 +37,10 @@
                     <img class="img-responsive d-block mh-100 mw-100 img-fluid" src="{% static 'images/showcase/pc2.jpg'%} " alt="First slide">
                   </div>
                   <div class="carousel-item">
-                    <img class="img-responsive d-block mh-100 mw-100 img-fluid" src="{% static 'images/showcase/koparka_kryptowalut_rtx3070_msi_suprim.jpg'%} " alt="Second slide">
+                    <img class="img-responsive d-block mh-100 mw-100 img-fluid" src="{% static 'images/showcase/koparka.jpg'%} " alt="Second slide">
                   </div>
                   <div class="carousel-item">
-                    <img class="img-responsive d-block mh-100 mw-100 img-fluid" src="{% static 'images/showcase/pc.png'%} " alt="Third slide">
+                    <img class="img-responsive d-block mh-100 mw-100 img-fluid" src="{% static 'images/showcase/pc.jpg'%} " alt="Third slide">
                   </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselLandinpage" role="button" data-slide="prev">
@@ -52,22 +53,7 @@
                 </a>
             </div>
 
-
-
-            <div class="blog-articles grid-container">
-                <div class="box">
-                    <img  src="{% static 'images/showcase/pc.png'%} " alt="">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet quaerat qui repudiandae quasi, rem culpa!</p>
-                </div>
-                <div class="box">
-                    <img src="{% static 'images/showcase/pc2.jpg'%}" alt="">
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus obcaecati cupiditate expedita nobis! Earum, deserunt.</p>
-                </div>
-                <div class="box">
-                    <img src="{% static 'images/showcase/koparka_kryptowalut_rtx3070_msi_suprim.jpg'%} " alt="">
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus obcaecati cupiditate expedita nobis! Earum, deserunt.</p>
-                </div>
-            </div>
+            {% include 'landingPage/articles.html' %}
 
             </div>
     </section>

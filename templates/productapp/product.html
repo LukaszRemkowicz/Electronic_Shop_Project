@@ -3,6 +3,7 @@
 {% block content %}
 {% load static %}
 {% load custom_filters %}
+{% load humanize %}
 
     <!-- product page -->
     <!-- Main content section -->
@@ -18,7 +19,7 @@
 
                 <div class="">
 
-                    <h2 class="w-100 pb-4">{{ product.price }} $</h2>
+                    <h2 class="w-100 pb-4">{{ product.price|intcomma }} $</h2>
 
                     <div class="buys-it d-flex">
                         <select name="amount" id="" class="amount">

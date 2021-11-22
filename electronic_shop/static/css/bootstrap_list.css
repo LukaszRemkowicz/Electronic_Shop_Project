@@ -314,6 +314,11 @@ div.text-muted {
     /* float: right */
 }
 
+.page-not-found{
+    width: 40%;
+    margin-top: 10rem;
+}
+
 .card:hover {
     transform: scale(1.1);
     transition: all 0.5s ease-in-out;
