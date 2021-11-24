@@ -178,6 +178,9 @@ a {
 .font-size-0-8 {
   font-size: 0.8rem; }
 
+.font-white {
+  color: white; }
+
 .line-through {
   text-decoration: line-through;
   color: #4d4d4d;
@@ -436,6 +439,9 @@ a {
 
 .font-size-0-8 {
   font-size: 0.8rem; }
+
+.font-white {
+  color: white; }
 
 .line-through {
   text-decoration: line-through;
@@ -5205,6 +5211,13 @@ a {
   .cdp_i:hover {
     background-color: #ff503c;
     color: #fff; }
+
+.article-row {
+  padding: 0 6rem; }
+
+.badge {
+  padding: .5rem;
+  font-weight: 400; }
 
 .navbar {
   display: grid;
