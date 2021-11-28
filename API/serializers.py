@@ -5,10 +5,11 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from rest_framework import serializers
 
+from Articles.models import ArticleComment, LandingPageArticles
 
 
 class UserSerializer(serializers.ModelSerializer):
-    
+
     class Meta:
         model = get_user_model()
         fields = ('username', 'password', 'email', 'first_name', 'last_name')
@@ -17,24 +18,24 @@ class UserSerializer(serializers.ModelSerializer):
             'last_name': {"required": False, "allow_null": True},
             'email': {"required": False, "allow_null": True},
         }
-        
+
     def create(self, validated_data) -> User:
         """ Create User serializer """
-        
+
         return get_user_model().objects.create_user(**validated_data)
-    
+
     def update(self, instance, validated_data) -> User:
-        
+
         password = validated_data.pop('password', None)
         user = super().update(instance, validated_data)
-        
+
         if password:
             user.set_password(password)
             user.save()
-            
+
         return user
-    
-    
+
+
 class AuthTokenSerializer(serializers.Serializer):
     """ Serializer for token creation """
     username = serializers.CharField()
@@ -43,25 +44,49 @@ class AuthTokenSerializer(serializers.Serializer):
         trim_whitespace=False
     )
     email = serializers.CharField(required=False)
-    
-    
+
+
     def validate(self, attrs) -> Any:
         email = attrs.get('email')
         password = attrs.get('password')
         username = attrs.get('username')
-        
+
         user = authenticate(
             request=self.context.get('request'),
             email=email,
             username=username,
             password= password
         )
-        
+
         if not user:
             message = _('Unable to authenticate')
             raise serializers.ValidationError(message, code='authentication')
-            
+
         attrs['user'] = user
-        
+
         return attrs
+
+class BlogArticlesSerializer(serializers.ModelSerializer):
     
+    new_fields = serializers.SerializerMethodField('get_data_from_comment')
+
+    class Meta:
+        model = ArticleComment
+        fields = ('name', 'comment', 'email', 'article', 'new_fields', 'parent')
+        
+    def create(self, validated_data):
+        """ Create blog comment serializer """
+        print('validated_data', validated_data)
+        
+        comment = ArticleComment.objects.create(**validated_data)
+        print('comment', comment.__dict__)
+        return comment
+    
+    def get_data_from_comment(self, article):
+        print(article.__dict__)
+        # comments = ArticleComment.objects.get(id=article.id)
+        return {
+            'id': article.id,
+            'publish': article.publish,
+            'level': article.level
+        }

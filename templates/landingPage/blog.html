@@ -1,8 +1,17 @@
-<!-- Articles -->
-
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- Articles -->
+
+{% load static %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300&display=swap" rel="stylesheet">
+
+<script type="text/javascript" src="{% static 'js/csrftoken.js' %}"></script>
+<script>
+    const csrftoken = getCookie('csrftoken');
+</script>
 
 {% if articles.render_template %}
 
@@ -15,65 +24,116 @@
         <div class="d-flex justify-content-center py-5 mb-5 article-row">
             <div class="">
                 <!-- Post content-->
-                <article>
+                <article class=''>
                     <!-- Post header-->
                     <header class="mb-4 text-left">
                         <!-- Post title-->
-                        <h1 class="fw-bolder mb-1">{{article.title}}</h1>
+                        <h2 class="fw-bolder mb-1">{{article.title}}</h2>
                         <!-- Post meta content-->
-                        <div class="text-muted fst-italic mb-2">{{article.when_posted}}</div>
+                        <div class="text-muted fst-italic mb-2 when-posted">{{article.when_posted}}</div>
                         <!-- Post tags-->
                         {% for tag in article.return_tags %}
                         <a class="badge bg-red text-decoration-none link-light font-white" href="#!">{{tag}}</a>
                         {% endfor %}
                     </header>
                     <!-- Preview image figure-->
-                    <figure class="mb-4"><img class="img-fluid rounded" src="{% if article.img.url %}{{article.img.url}}{% endif %}" alt="{% if alt_short_descript %}{{alt_short_descript}}{% endif %}" /></figure>
+                    <figure class="mb-4"><img class="img-fluid rounded" src="{% if article.img %}{{article.img.url}}{% endif %}" alt="{% if alt_short_descript %}{{alt_short_descript}}{% endif %}" /></figure>
                     <!-- Post content-->
-                        {{article.render_content}}
+                        {% comment %} {{article.content_rich_editor|safe}} {% endcomment %}
+                        <div class="blog-article-content py-3">
+                            {{article.content_wysiwyg|safe}}
+                        </div>
+
                 </article>
+
                 <!-- Comments section-->
-                <section class="mb-5">
-                    <div class="card bg-light">
-                        <div class="card-body">
-                            <!-- Comment form-->
-                            <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
-                            <!-- Comment with nested comments-->
-                            <div class="d-flex mb-4">
-                                <!-- Parent comment-->
-                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                <div class="ms-3">
-                                    <div class="fw-bold">Commenter Name</div>
-                                    If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
-                                    <!-- Child comment 1-->
-                                    <div class="d-flex mt-4">
-                                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                        <div class="ms-3">
-                                            <div class="fw-bold">Commenter Name</div>
-                                            And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
+                {% load mptt_tags %}
+
+                <div class="container mb-5 mt-5 comments-block">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="text-center mb-5"> Comment section </h3>
+                                <!-- Comment form-->
+                                <div class="be-comment-block" data-articleid='{{ article.id }}'>
+
+                                    <form class="form-block comments-form" method='POST' >
+                                        {% csrf_token %}
+                                        <div class="row justify-content-between">
+                                            <div class="col-xs-12 col-sm-5 px-0">
+                                                <div class="form-group fl_icon ">
+                                                    <div class="icon"><i class="fa fa-user"></i></div>
+                                                    <input class="form-input" name='name' type="text" required placeholder="Your name">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-5 fl_icon px-0">
+                                                <div class="form-group fl_icon">
+                                                    <div class="icon"><i class="fa fa-envelope-o"></i></div>
+                                                    <input class="form-input" name='email' type="email" required placeholder="Your email">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 w-100">
+                                                <div class="form-group">
+                                                    <textarea class="form-input" name='content' required="" placeholder="Join the discussion and leave a comment!"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 w-100 d-none">
+                                                <div class="form-group">
+                                                    <input class="form-input" name='article-id' value="{{article.id}}" required=""></input>
+                                                </div>
+                                            </div>
+                                            <button type='submit' href="" class="btn btn-brown pull-right">submit</button>
                                         </div>
-                                    </div>
-                                    <!-- Child comment 2-->
-                                    <div class="d-flex mt-4">
-                                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                        <div class="ms-3">
-                                            <div class="fw-bold">Commenter Name</div>
-                                            When you put money directly to a problem, it makes a good headline.
-                                        </div>
-                                    </div>
+                                    </form>
+
                                 </div>
-                            </div>
-                            <!-- Single comment-->
-                            <div class="d-flex">
-                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                <div class="ms-3">
-                                    <div class="fw-bold">Commenter Name</div>
-                                    When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
+                                <h3 class="text-left mb-5"> {{comments_number}} Coment{{ comments_number|pluralize}} </h3>
+                                <div class="row">
+                                    <div class="col-md-12 be-comment-block">
+
+                                        {% recursetree comments %}
+
+                                            <div class="media">
+                                                <div class="profileImage" data-ownerComment='{{node.name}}'></div>
+                                                <div class="media-body">
+                                                    <div class="row">
+                                                        <div class="d-flex pl-2">
+                                                            <h5 class="pr-4">{{node.name}}</h5> <span> {{node.publish}}</span>
+                                                        </div>
+
+                                                        {% if node.level < 3 %}
+                                                            <div class="pl-5">
+                                                                <div class="pull-right reply" data-commentid='{{ node.id }}'>
+                                                                    <a class='get-parent' data-parent='{{ node.id }}'><span><i class="fa fa-reply"></i> reply</span></a>
+                                                                </div>
+                                                            </div>
+                                                        {% endif %}
+
+                                                    </div>
+                                                    <p class='text-left node-comment'>{{ node.comment }}</p>
+
+                                                    <!-- Child comment 1-->
+                                                    {% if not node.is_leaf_node %}
+
+                                                        <div class="media mt-4">
+                                                            <div class="media-body">
+                                                                <p>{{ children }}</p>
+                                                            </div>
+                                                        </div>
+
+                                                    {% endif %}
+
+                                                </div>
+                                            </div>
+
+                                        {% endrecursetree %}
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
 
         </div>
@@ -81,4 +141,7 @@
 
 {% endif %}
 
+<script src="{% static 'js/blogPage/comments.js' %}" type="text/javascript"></script>
+
 {% endblock %}
+

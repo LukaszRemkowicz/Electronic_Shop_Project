@@ -17,6 +17,7 @@ urlpatterns = [
     path('create-question/', views.CreateQuestion.as_view(), name='create-question'),
     path('product-dict/', views.ProductDict.as_view(), name='product-dict'),
     path('product/<int:product_id>/', views.UpdateProduct.as_view(), name='update-product'),
+    path('blog/<int:product_id>/comments/', views.UpdateBlogComment.as_view(), name='update-blog-comment')
 
 ]
 

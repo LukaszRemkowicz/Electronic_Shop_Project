@@ -16,8 +16,9 @@ from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import get_user_model
+from Articles.models import ArticleComment, LandingPageArticles
 
-from .serializers import AuthTokenSerializer, UserSerializer
+from .serializers import AuthTokenSerializer, BlogArticlesSerializer, UserSerializer
 from ShoppingCardApp import utils
 from ShoppingCardApp import models as shopping_cart
 from AddressBookApp import models as address
@@ -265,7 +266,7 @@ class ProductDict(APIView):
             product = change_model_to_dict(product)
         except ObjectDoesNotExist:
             return 'Object does not exist'
-        
+
         print(product)
 
         return Response(json.dumps(product))
@@ -287,6 +288,10 @@ class UpdateProduct(APIView):
                 gettattr.add(user)
             elif field == 'likes' and value == 'remove':
                 gettattr.remove(user)
-            
+
 
         return Response('Product Updated')
+
+
+class UpdateBlogComment(generics.CreateAPIView):
+    serializer_class = BlogArticlesSerializer

@@ -32,6 +32,7 @@ Electronic shop is a e-commerce website where users can buy products, create an 
         exit()
 
 8. Create database tables:
+
         manage.py makemigrations
         manage.py migrate
 

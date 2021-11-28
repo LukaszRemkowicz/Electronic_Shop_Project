@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'django.contrib.humanize',
+    # 'ckeditor',
+    'mptt',
 ]
 
 MIDDLEWARE = [
