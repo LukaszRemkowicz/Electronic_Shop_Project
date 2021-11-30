@@ -11,9 +11,9 @@ class BlogAdminForm(forms.ModelForm):
 
 
 class ArticleComents(forms.ModelForm):
-    
+
     parent = TreeNodeChoiceField(queryset=ArticleComment.objects.all())
-    
+
     class Meta:
         model = ArticleComment
         fields = [

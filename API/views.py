@@ -17,8 +17,9 @@ from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import get_user_model
 from Articles.models import ArticleComment, LandingPageArticles
+from ProductApp.models import MainProductDatabase
 
-from .serializers import AuthTokenSerializer, BlogArticlesSerializer, UserSerializer
+from .serializers import AuthTokenSerializer, BlogArticlesSerializer, ProductSerializer, UserSerializer
 from ShoppingCardApp import utils
 from ShoppingCardApp import models as shopping_cart
 from AddressBookApp import models as address
@@ -37,6 +38,11 @@ class CreateTokenView(ObtainAuthToken):
     """Create a new auth token for user"""
     serializer_class = AuthTokenSerializer
     renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
+
+    def _clean_data(self, data):
+        if isinstance(data, bytes):
+            data = data.decode(errors='ignore')
+        return super(CreateTokenView, self)._clean_data(data)
 
 
 class ManageUserView(generics.RetrieveUpdateAPIView):
@@ -271,27 +277,66 @@ class ProductDict(APIView):
 
         return Response(json.dumps(product))
 
-class UpdateProduct(APIView):
-    def post(self, request, product_id) -> Response:
+# class UpdateProduct(APIView):
+#     def post(self, request, product_id) -> Response:
+#         authentication_classes = [authentication.TokenAuthentication]
+#         permission_classes = [permissions.IsAdminUser]
+#         parser_classes = [JSONParser]
+
+#         data = request.data
+#         user_id = data['user_id']
+#         print(data['fields'].items())
+#         for field, value in data['fields'].items():
+#             product = product_app.MainProductDatabase.objects.get(id=product_id)
+#             user = User.objects.get(id=int(user_id))
+#             gettattr = getattr(product, field)
+#             if field == 'likes' and value == 'add':
+#                 gettattr.add(user)
+#             elif field == 'likes' and value == 'remove':
+#                 gettattr.remove(user)
+
+
+#         return Response('Product Updated')
+
+
+class UpdateBlogComment(generics.CreateAPIView):
+    serializer_class = BlogArticlesSerializer
+
+
+class ProductView(generics.RetrieveUpdateAPIView):
+
+    serializer_class = ProductSerializer
+    queryset  = product_app.MainProductDatabase.objects.all()
+
+    def patch(self, request, *args, **kwargs):
+        """ Add/remove like attribute for product """
+
         authentication_classes = [authentication.TokenAuthentication]
         permission_classes = [permissions.IsAdminUser]
         parser_classes = [JSONParser]
 
         data = request.data
         user_id = data['user_id']
-        print(data['fields'].items())
+        product = self.queryset.get(id=kwargs['product_id'])
+        user = User.objects.get(id=int(user_id))
         for field, value in data['fields'].items():
-            product = product_app.MainProductDatabase.objects.get(id=product_id)
-            user = User.objects.get(id=int(user_id))
             gettattr = getattr(product, field)
             if field == 'likes' and value == 'add':
                 gettattr.add(user)
             elif field == 'likes' and value == 'remove':
                 gettattr.remove(user)
+        serializer_class = ProductSerializer(instance=product)
 
+        return Response(serializer_class.data)
 
-        return Response('Product Updated')
+    def get_object(self):
+        """Retrieve and return product"""
+        try:
+            product = self.queryset.get(id=self.kwargs['product_id'])
+        except ObjectDoesNotExist:
+            product = self.queryset[1]
 
+        print(product)
 
-class UpdateBlogComment(generics.CreateAPIView):
-    serializer_class = BlogArticlesSerializer
+        return product
+

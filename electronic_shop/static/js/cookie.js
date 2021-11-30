@@ -20,13 +20,24 @@ function getCookie(name) {
 
 // Create cookie
 
-let cart = JSON.parse(getCookie('cart'))
+let cart = JSON.parse(getCookie('cart'));
+let recentWatched = JSON.parse(getCookie('recentWatched'));
 
-if (cart === null){
-    cart = {}
-    console.log('Cart was created')
-    document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+const createCookie = (cookieEl, cookieName) => {
+    if (cookieEl === null){
+        if(cookieName == 'cart'){
+            cookieEl = {}
+        } else {
+            cookieEl = []
+        }
+        console.log(`${cookieName} was created`)
+        document.cookie = `${cookieName}=` + JSON.stringify(cookieEl) + ";domain=;path=/"
+    }
+};
 
-}
+createCookie(cart, 'cart');
+createCookie(recentWatched, 'recentWatched');
 
-console.log("Cart: ", cart)
+
+console.log("Cart: ", cart);
+console.log("recentWatched: ", recentWatched);

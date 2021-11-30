@@ -2,10 +2,12 @@ from typing import Any
 
 from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.models import User
+from django.db.models.query import QuerySet
 from django.utils.translation import ugettext_lazy as _
 from rest_framework import serializers
 
 from Articles.models import ArticleComment, LandingPageArticles
+from ProductApp.models import MainProductDatabase
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -67,26 +69,32 @@ class AuthTokenSerializer(serializers.Serializer):
         return attrs
 
 class BlogArticlesSerializer(serializers.ModelSerializer):
-    
+    """ Blog comments section Serializer  """
+
     new_fields = serializers.SerializerMethodField('get_data_from_comment')
 
     class Meta:
         model = ArticleComment
         fields = ('name', 'comment', 'email', 'article', 'new_fields', 'parent')
-        
+
     def create(self, validated_data):
         """ Create blog comment serializer """
-        print('validated_data', validated_data)
-        
+
         comment = ArticleComment.objects.create(**validated_data)
-        print('comment', comment.__dict__)
+
         return comment
-    
+
     def get_data_from_comment(self, article):
         print(article.__dict__)
-        # comments = ArticleComment.objects.get(id=article.id)
         return {
             'id': article.id,
             'publish': article.publish,
             'level': article.level
         }
+        
+class ProductSerializer(serializers.ModelSerializer):
+    """ Get products data Serializer  """
+
+    class Meta:
+        model = MainProductDatabase
+        fields = '__all__'

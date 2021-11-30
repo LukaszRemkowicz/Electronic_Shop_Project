@@ -1,0 +1,80 @@
+*   [33md333e09[m[33m ([m[1;35mrefs/stash[m[33m)[m WIP on landingpage: 2adfedc Add: ReadME.md, articles in blog page
+[31m|[m[32m\[m  
+[31m|[m * [33mfece63b[m index on landingpage: 2adfedc Add: ReadME.md, articles in blog page
+[31m|[m[31m/[m  
+[31m|[m * [33m0b1987f[m[33m ([m[1;36mHEAD -> [m[1;32mfeature/landingpage[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m Add: Comment section in blog page. MPTT model.
+[31m|[m[31m/[m  
+* [33m2adfedc[m Add: ReadME.md, articles in blog page
+* [33mbff7981[m[33m ([m[1;32mfeature/productCart[m[33m)[m Add: Articles to Landing Page
+* [33m21535d8[m Feat: Filter products page, check similar, buy now
+* [33m8980731[m Test: Product filters in product_cart.html
+* [33m3b019dc[m Refactor: view_utils.py in ProductApp
+* [33m29e591d[m feat: add filters to all models
+* [33m99fefab[m Applied filters in frontend Created filter functions and methods (in models) on backend - models.utils, views.utils
+* [33ma52c2c4[m Fixed links to products. Changed MainProductDatabase query for specific model. Created filter methods for Laptops, TV, Phones, Monitors. Created utils folder for ProductApp
+* [33m07b49f6[m Working with product list page. Created filters for TV model. Added partials for all models. Refactored code in ProductApp views
+* [33me6c055d[m Feature filter products and paginate added. Posibility to filter products by popularity, price etc. Add to cart option added
+* [33mb3ec0bc[m Refactored templates -> added to ProductApp folder. Created Grid and List view filter in product_cart.html
+* [33m8c30917[m Added frontend to product_cart.html. Fixed bug with Nontype in try except block in utils.try_to_get_product function. Refactored code
+* [33mc57aff8[m Added product description templates Fixed price bar, Refactored html code and js files
+* [33mcaaa00b[m Added Flex-wrap to filter elements if more than 4 Created changing font size, when text in filter box is logner than 15 characters
+* [33m7cfda61[m Fixed signals -> update product model when Main model is changed
+* [33m843d575[m Created frontend to Review, Ask section in product page JS script for dynamic stars hoover and changing prodct photo on click
+* [33m570c558[m Products data created (300 products). Fixed signal to save second and third photo. While creating products, changed Product models logic
+* [33mf45b631[m Created JavaScript logic for empty filter boxes Render product data if there is small amount of filter boxes (renderProductDataInFilerBox.js)
+* [33m0f7b5ff[m Added products (Tv, Laptops, Phones) to products.py Changed logic in products templates (laptops, Tv, Phones)
+* [33m853cde7[m Products (buttons filters) templates created Changed columns types in models. Id's in products templates changed to datasets
+* [33m47af15b[m Rebuilit Signals. Recursion product creation Fix Created products models. Rebulit models: Phones/Monitors. Created one to inherit
+* [33mfd6d159[m Question and Reviews added Dynamic comment section created
+* [33mad5696c[m Write Review endpoint created JavaScript files added to repo
+* [33ma85f41c[m Products specification (tables) templates created Added product reviews logic - stars, avarage, progress-bars
+* [33m735f232[m GetProductData test Added tests for getproductdata endopoint in API app
+* [33mb24337e[m Signals Fixed. Added update MainProduct if product changed (and vice versa)
+* [33m5d1ff14[m Filter products by icons in product page added Get product API added. JavaScript fetch to get product id and load page
+* [33md843208[m[33m ([m[1;31morigin/feature/productCart[m[33m)[m Product data icons feature Added icons visibility logic
+* [33m3118840[m Add product amount feature Created amount option and summary pieces logic
+* [33mf6daf63[m[33m ([m[1;32mfeature/cart[m[33m)[m Tests APIUnauthorisedUserOrderView, FinishOrderView
+* [33mf34bdf9[m Refactoring. Changed ShoppingCartApp API's to Django Rest Framework
+* [33m05e1aef[m Added cart total in navbar
+* [33mc3ab3b2[m Refactoring code. Bug with Decimal number in view repaired. Changed summary quantity on navbar when order for user unauthorised is created
+* [33m1d889b2[m Refactor ShoppingCardApp views. Add utils.py
+* [33mcb01729[m User unauthorised logic. Added api view to render data on frontend. Storing cart in cookie
+* [33m562547c[m Implemented delete quantity button. Improved updateCartFunction - check if queryselector is not null
+* [33mb59bf7d[m Add empty cart template block
+* [33m7c246ea[m Get data from update_item View to JavaScript. Render basket data to cart.html
+* [33m23b223f[m Frontend responsive cart.html
+* [33m7c5d7c2[m Change proccess buttonvalidate if basket is empty. If statement in template
+* [33mc1a4596[m Change column direction to reverse (Frontend)
+* [33m303520d[m Add checkout page responsive
+* [33m63d306c[m Test order compelte API
+* [33m3d9d6b9[m order finish API
+* [33m5b1f056[m Fronted createdJavaScript form validation, Fetch to API endpoint, EventListener for buttons
+* [33m74ba7e9[m Add acceptForm API and FormAdd form check with JS. Also Added API JS -> view with form data
+* [33m2091c1c[m Address Book FeatureAdd onClick event to fill form
+* [33m42cc808[m API user-account endpointAdd user creation, token generation, account-update endpoints. Add tests
+* [33m6291ede[m Add tests
+* [33m7802d8c[m Add basket checkout page
+* [33m68f9a1b[m Add cart.html frontend
+* [33m2d0c5f9[m Add basket JavaScript
+* [33m292770d[m product cart templete schema. Added methods to cart models
+* [33me28f529[m ShoppingCardApp models created
+* [33maa9941a[m Added html javascript logic: user variable, get productID when button clicked
+* [33m6aac151[m working with product
+* [33m46bcadf[m change SQLite to Postgress
+* [33m976527e[m static files added
+* [33mf8488a0[m Product page, tests for user, scss added
+* [33m9aaa36a[m created user profile
+* [33m18415a4[m Logout added
+* [33md9bc58f[m messages tags created
+* [33me981eac[m userRegstration created
+* [33mf36e266[m Created register form frontend
+* [33md138f90[m added base.html
+* [33m0bf99c7[m changed message model. Deleted Complaint and QUestion models
+* [33m5c0b3f2[m added user account url
+* [33m0bf2e70[m Added Complain, Question, Message, AdressBook Apps and models
+* [33m0c18a4c[m Added url to index.html
+* [33m6c2d193[m Added signals
+* [33m781801d[m preparing configuration and folders. Created Profile and Product apps
+* [33m8988349[m deleted secKey
+* [33m810bc16[m added static folder
+* [33m105e5f5[m first commit

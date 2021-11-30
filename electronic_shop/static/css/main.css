@@ -5461,8 +5461,10 @@ a {
   .comments-block .media img {
     width: 60px;
     height: 60px; }
-  .comments-block .reply a {
-    text-decoration: none; }
+  .comments-block .reply {
+    cursor: pointer; }
+    .comments-block .reply a {
+      text-decoration: none; }
   .comments-block .profileImage {
     width: 60px;
     height: 60px;

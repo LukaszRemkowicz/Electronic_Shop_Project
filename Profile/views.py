@@ -15,9 +15,11 @@ from django.views import View
 from django.contrib.auth.views import LogoutView, LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from Articles.models import LandingPageArticles
+from ProductApp.models import MainProductDatabase as Products
+
 from .forms import RegisterForm, AcceptTerms, CustomLoginForm
 from .models import Profile
-from ProductApp.models import MainProductDatabase as Products
 
 
 CATTEGORIES = ["Laptops", "Phones", "PC", "Monitors","Accesories for laptops", "SSD",
@@ -52,8 +54,14 @@ class LandingPage(FormView):
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super(LandingPage, self).get_context_data(**kwargs)
-        query = [product_cat for product_cat in CATTEGORIES]
-        context['query'] = query
+        cattegories = [product_cat for product_cat in CATTEGORIES]
+        
+        articles = LandingPageArticles.objects.filter(outdated=False)[:3]
+        
+        
+        context['articles'] = articles
+        context['cattegories'] = cattegories
+
         return context
 
 

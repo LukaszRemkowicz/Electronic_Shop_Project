@@ -24,6 +24,7 @@ class LandingPageArticles(models.Model):
     posted = models.DateField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     content_wysiwyg = models.TextField()
+    short_description = models.CharField(max_length=100)
     img = models.ImageField(upload_to=f"articles/landin-page/{time.strftime('%Y-%m-%d')}", null=True, blank=True)
     second_img = models.ImageField(upload_to=f"articles/landin-page/{time.strftime('%Y-%m-%d')}", null=True, blank=True)
     third_img = models.ImageField(upload_to=f"articles/landin-page/{time.strftime('%Y-%m-%d')}", null=True, blank=True)
@@ -83,7 +84,6 @@ class ArticleComment(MPTTModel):
 
     class MPTTMeta:
         order_insertion_by = ['publish']
-        
+
     def __str__(self):
         return f'{self.name} Comment ID: {self.id}'
-    

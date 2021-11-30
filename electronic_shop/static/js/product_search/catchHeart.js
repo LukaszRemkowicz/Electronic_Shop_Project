@@ -3,7 +3,7 @@ const heartLiked = document.querySelectorAll('.fa-heart');
 
 function fetchHeart (url, whatToDo){
     fetch(url, {
-        method: 'POST', 
+        method: 'PATCH',
         headers: {
             'Content-type': 'application/json',
             'X-CSRFToken': csrftoken,
@@ -52,7 +52,7 @@ try{
             el.style.display = 'inline-block'
         })
     })
-    
+
 
 }catch(e){
     console.log(e);

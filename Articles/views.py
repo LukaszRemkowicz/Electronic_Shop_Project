@@ -22,10 +22,10 @@ class LandingArticles(CreateView):
         context['comments_number'] = len(comments)
         context['article'] = article
         context['comments'] = models.ArticleComment.objects.filter(article=article)
-        
+
         # Paginator
         # page = self.request.GET.get('page', 1)
         # result = 5
         # ranger, paginator, products = paginate_view(comments, result, page)
- 
+
         return context

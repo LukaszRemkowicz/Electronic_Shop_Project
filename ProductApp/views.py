@@ -6,7 +6,6 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
 from ShoppingCardApp.models import Customer, Order, OrderItem
-# from . import models
 from .utils import filter_products, sort_by_product_rate, paginate_view, try_to_get_product
 from .utilss.view_utils import *
 from .filters import SnippetFilter
@@ -40,7 +39,7 @@ class ProductPage(ListView):
         # elif not self.request.user.is_authenticated:
         #     order_item = ''
         #     pieces = product.pieces
-            
+
         pieces, _ = change_product_pieces(self.request, product)
         same_products = filter_products(product.cattegory, product)
         # print('same_products', same_products)

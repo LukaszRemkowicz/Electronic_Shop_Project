@@ -4,6 +4,7 @@ const commentsForm = document.querySelector('.comments-form');
 let newForm = document.querySelector('.newForm');
 let articleId = document.querySelector('.be-comment-block').dataset.articleid
 
+
 const formElement = function(id, parentId){
     console.log(`document.contains(document.querySelector('.newForm'))`, document.contains(document.querySelector('.newForm')));
     if(document.contains(document.querySelector('.newForm'))){
@@ -145,7 +146,7 @@ commentsForm.addEventListener('submit', (e) => {
     fetchComment(inputs);
 })
 
-
+/** Fire event to newForms */
 function addeventToNewForm (element){
     try{
     newForm = document.querySelector('.newForm');
