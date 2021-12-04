@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'MessagesApp.apps.MessagesappConfig',
     'ShoppingCardApp.apps.ShoppingcardappConfig',
     'Articles.apps.ArticlesConfig',
+    'Emails.apps.EmailsConfig',
+    'Landingpage.apps.LandingpageConfig',
     'API.apps.ApiConfig',
     'widget_tweaks',
     'reset_migrations',

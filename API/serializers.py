@@ -3,12 +3,14 @@ from typing import Any
 from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.models import User
 from django.db.models.query import QuerySet
+from django.http.response import JsonResponse
 from django.utils.translation import ugettext_lazy as _
 from rest_framework import serializers
 
 from Articles.models import ArticleComment, LandingPageArticles
 from ProductApp.models import MainProductDatabase
 from Profile.models import Profile
+from Emails.models import Newsletter
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -51,9 +53,9 @@ class ProfileSerializer(serializers.ModelSerializer):
         print(password)
 
         profile = super().update(instance, validated_data)
-        
+
         print('jestem za profile')
-        
+
         for key, value in validated_data.items():
             if key != 'user':
                 if key == 'keep_me':
@@ -134,3 +136,28 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = MainProductDatabase
         fields = '__all__'
+
+
+class NewsletterSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Newsletter
+        fields = ['email']
+
+    def create(self, validated_data):
+        """ Create blog comment serializer """
+
+        email = Newsletter.objects.filter(email=validated_data['email'])
+
+        if len(email) == 0:
+
+            newsletter = Newsletter.objects.create(**validated_data)
+        else:
+            newsletter = Newsletter.objects.filter(**validated_data)[0]
+
+        return newsletter
+    
+    def to_representation(self, instance):
+        return {
+            "response": "Email has been added"
+        }

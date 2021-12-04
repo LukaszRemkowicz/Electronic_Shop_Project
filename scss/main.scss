@@ -831,6 +831,7 @@
                 border: none;
                 border-radius: 10px;
                 padding-left: 1rem;
+                font-weight: 100;
 
 
 
@@ -932,12 +933,20 @@
     height: fit-content;
     align-items: flex-start;
 
+
     .orders, .about{
 
-        & li, & h3{
+
+        & h3{
             font-size: 1.3rem;
             text-align: left;
             font-family: $mery-popins-font;
+        }
+        & li{
+            font-size: 1rem;
+            font-weight: 100;
+            text-align: left;
+            padding-left: 2rem;
         }
 
         & li, h3{
@@ -947,10 +956,18 @@
 
     }
 
+    .contact{
+        padding-left: 3rem;
+        padding-top: 2rem;
+
+
+    }
+
     .orders, .about, .contact-block {
         width: 20%;
         position: relative;
         height: 100%;
+        @extend .contact;
 
         &::after{
             content: '';
@@ -970,6 +987,7 @@
 
         & h3{
             padding-left: 0;
+            font-size: 1.3rem;
         }
 
         & i{
@@ -982,7 +1000,7 @@
         }
 
         & p{
-            font-size: 1.3rem;
+            font-size: 1rem;
 
             &:nth-of-type(2){
                 margin-top: 1rem;
@@ -1000,6 +1018,11 @@
     width: 20%;
     justify-content: space-between;
     margin-right: 2rem;
+
+    p {
+        font-size: 1rem;
+        font-weight: 100;
+    }
 
     .icons{
 
@@ -1071,21 +1094,27 @@
 
 
         .social-objects{
-            width: 100%;
-            height: 100%;
+            width: 75%;
+            height: 75%;
             fill: $main-red-color;
             opacity: 0.8;
         }
 
         .instagram, .facebook{
-            width: 85%;
-            height: 85%;
+            width: 65%;
+            height: 65%;
         }
 
 
         & h3{
             padding-left: 0;
             padding-bottom: 1rem;
+            font-size: 1.3rem;
+            text-align: left;
+        }
+
+        i{
+            font-size: 1rem;
         }
     }
 }
@@ -1093,7 +1122,11 @@
 .live-chat{
     height: 100%;
     width: 100%;
-    margin-top: 4rem;
+    margin-top: 1rem;
+
+    h3{
+        font-size: 1.3rem
+    }
 
     & h3, i{
     text-align: left;

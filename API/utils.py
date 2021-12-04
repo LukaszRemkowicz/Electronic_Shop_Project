@@ -1,5 +1,6 @@
 from decimal import Decimal
 from math import prod
+import datetime
 
 from django.db.models.fields.files import FieldFile, ImageFieldFile
 from django.forms.models import model_to_dict
@@ -21,6 +22,8 @@ def recurssive(product, new_dict):
             new_dict[key] = str(value)
         elif isinstance(value, dict):
             recurssive(value, new_dict)
+        elif isinstance(value,  datetime.datetime):
+            new_dict[key] = value.strftime("%Y-%m-%d %H:%M:%S")
         elif key == 'likes':
             pass
         else:

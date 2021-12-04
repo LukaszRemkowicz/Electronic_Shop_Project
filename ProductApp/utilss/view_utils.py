@@ -497,8 +497,8 @@ def change_product_pieces(request, product):
     if request.user.is_authenticated:
 
         customer = Customer.objects.get(user=request.user)
-        order = Order.objects.get(customer=customer, complete=False)
         try:
+            order = Order.objects.get(customer=customer, complete=False)
             order_item = OrderItem.objects.get(order=order, product__ean=product.ean)
             pieces = product.pieces - order_item.quantity
 

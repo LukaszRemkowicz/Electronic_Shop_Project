@@ -24,7 +24,11 @@ function countDown(){
     let timeHours = Math.floor((offerTime / (1000 * 60 * 60) % 24));
 
     if(timeHours <= 0 && timeMinutes <= 0 && timeSeconds <= 0){
-        clearInterval(countDown);
+        try{
+            clearInterval(newInterval);
+        } catch (e){
+            console.log(e);
+        }
         const buyBtn = document.querySelector('.sold-left .button');
         buyBtn.innerHTML = '';
 
@@ -32,7 +36,7 @@ function countDown(){
         newBtn.classList.add('buy', 'btn-light', 'd-block');
 
         const newSpan = document.createElement('span');
-        newSpan.innerHTML = 'Sold all';
+        newSpan.innerHTML = 'Promotion ended';
 
         newBtn.appendChild(newSpan);
         newBtn.style.border = '1px solid rgb(204, 204, 204)';
@@ -42,13 +46,18 @@ function countDown(){
         buyBtn.appendChild(newBtn);
         buyBtn.style.cursor = 'default';
 
+        getHour.innerHTML = `00`;
+        getMinutes.innerHTML = `00`;
+        getSeconds.innerHTML =`00`;
+
+    } else{
+        // console.log(timeSeconds, timeMinutes, timeHours);
+        getHour.innerHTML = `${timeHours.toString().length >= 2 ? timeHours : "0"+timeHours}`;
+        getMinutes.innerHTML = `${timeMinutes.toString().length >= 2 ? timeMinutes : "0"+timeMinutes}`;
+        getSeconds.innerHTML = `${timeSeconds.toString().length >= 2 ? timeSeconds : "0"+timeSeconds}`;
     }
 
-    // console.log(timeSeconds, timeMinutes, timeHours)
-
-    getHour.innerHTML = `${timeHours.toString().length >= 2 ? timeHours : "0"+timeHours}`;
-    getMinutes.innerHTML = `${timeMinutes.toString().length >= 2 ? timeMinutes : "0"+timeMinutes}`;
-    getSeconds.innerHTML = `${timeSeconds.toString().length >= 2 ? timeSeconds : "0"+timeSeconds}`;
+    
 }
 
 function resetOfferDate() {
@@ -57,4 +66,4 @@ function resetOfferDate() {
     return futureDate;
 }
 
-setInterval(countDown, 1000);
+let newInterval = setInterval(countDown, 1000);

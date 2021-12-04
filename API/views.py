@@ -20,7 +20,7 @@ from Articles.models import ArticleComment, LandingPageArticles
 from ProductApp.models import MainProductDatabase
 from Profile.models import Profile
 
-from .serializers import AuthTokenSerializer, BlogArticlesSerializer, ProductSerializer, ProfileSerializer, UserSerializer
+from .serializers import AuthTokenSerializer, BlogArticlesSerializer, NewsletterSerializer, ProductSerializer, ProfileSerializer, UserSerializer
 from ShoppingCardApp import utils
 from ShoppingCardApp import models as shopping_cart
 from AddressBookApp import models as address
@@ -354,3 +354,9 @@ class ProductView(generics.RetrieveUpdateAPIView):
 
         return product
 
+
+class Newsletter(generics.CreateAPIView):
+    serializer_class = NewsletterSerializer
+    
+    data = {"response": "Address has been added"}
+        

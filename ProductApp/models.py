@@ -230,6 +230,7 @@ class MainProductDatabase(models.Model):
             url=''
 
         return url
+    
 
     # @property
     # def get_star_avg(self) -> Tuple[str, List[bool]]:
