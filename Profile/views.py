@@ -57,8 +57,11 @@ class LandingPage(FormView):
         cattegories = [product_cat for product_cat in CATTEGORIES]
         
         articles = LandingPageArticles.objects.filter(outdated=False)[:3]
+        selected = Products.objects.filter(selected=True)
+        product_of_the_day = Products.objects.filter(product_of_the_day=True)[0]
         
-        
+        context['product_of_the_day'] = product_of_the_day
+        context['selected'] = selected
         context['articles'] = articles
         context['cattegories'] = cattegories
 

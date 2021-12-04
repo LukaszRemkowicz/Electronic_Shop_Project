@@ -495,7 +495,7 @@ def get_similar_products_data(request: HttpRequest):
 
 def change_product_pieces(request, product):
     if request.user.is_authenticated:
-        
+
         customer = Customer.objects.get(user=request.user)
         order = Order.objects.get(customer=customer, complete=False)
         try:
@@ -509,5 +509,5 @@ def change_product_pieces(request, product):
     elif not request.user.is_authenticated:
         order_item = ''
         pieces = product.pieces
-        
+
     return pieces, order_item

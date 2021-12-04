@@ -1,13 +1,5 @@
-try{
-    if(!recentWatched.includes(productId)){
-        recentWatched.push(+productId)
-        document.cookie = `recentWatched=` + JSON.stringify(recentWatched) + ";domain=;path=/"
-    };
-} catch(e){
-    console.log('Not this site');
-}
-
 recentWatched = JSON.parse(getCookie('recentWatched'));
+const recentWatchedBoxes = document.querySelector('.boxes-watched');
 
 recentWatched.forEach(id => {
 
@@ -15,7 +7,7 @@ recentWatched.forEach(id => {
 
 
     fetch(url, {
-        method: 'GET', 
+        method: 'GET',
         headers: {
             'Content-type': 'application/json',
             'X-CSRFToken': csrftoken,
@@ -23,7 +15,19 @@ recentWatched.forEach(id => {
     })
     .then(response => { return response.json()})
     .then(data => {
-        console.log(data);
+
+        let newDiv = document.createElement('div');
+        let newAhref = document.createElement('a');
+        let newImg = document.createElement('img');
+
+        newImg.src = data.img;
+        newImg.alt = 'Product image recent watched';
+
+        newAhref.appendChild(newImg);
+        newDiv.classList.add('box', 'flex-container');
+        newDiv.appendChild(newAhref);
+
+        recentWatchedBoxes.appendChild(newDiv);
     })
 })
 

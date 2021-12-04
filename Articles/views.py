@@ -19,6 +19,7 @@ class LandingArticles(CreateView):
         article_id = self.kwargs['article_id']
         article = models.LandingPageArticles.objects.get(id=article_id)
         comments = models.ArticleComment.objects.filter(article__id=article_id)
+
         context['comments_number'] = len(comments)
         context['article'] = article
         context['comments'] = models.ArticleComment.objects.filter(article=article)

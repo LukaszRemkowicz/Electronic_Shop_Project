@@ -189,6 +189,8 @@ class MainProductDatabase(models.Model):
     pieces = models.IntegerField(default=0)
     promotion = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
     product_of_the_day = models.BooleanField(default=False)
+    product_of_the_day_added = models.DateTimeField(null=True, blank=True)
+    selected = models.BooleanField(default=False)
 
     phones_product_data = models.OneToOneField('Phones', on_delete=models.CASCADE, null=True, blank=True)
     monitors_product_data = models.OneToOneField('Monitors', on_delete=models.CASCADE, null=True, blank=True)
@@ -212,7 +214,7 @@ class MainProductDatabase(models.Model):
     bought_num = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
 
-    likes = models.ManyToManyField(User, default=None)
+    likes = models.ManyToManyField(User, default=None, blank=True, null=True)
 
     class Meta:
         ordering = ['created']

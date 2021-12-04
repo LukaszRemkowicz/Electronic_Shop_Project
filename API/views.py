@@ -18,8 +18,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import get_user_model
 from Articles.models import ArticleComment, LandingPageArticles
 from ProductApp.models import MainProductDatabase
+from Profile.models import Profile
 
-from .serializers import AuthTokenSerializer, BlogArticlesSerializer, ProductSerializer, UserSerializer
+from .serializers import AuthTokenSerializer, BlogArticlesSerializer, ProductSerializer, ProfileSerializer, UserSerializer
 from ShoppingCardApp import utils
 from ShoppingCardApp import models as shopping_cart
 from AddressBookApp import models as address
@@ -54,6 +55,19 @@ class ManageUserView(generics.RetrieveUpdateAPIView):
     def get_object(self):
         """Retrieve and return authentication user"""
         return self.request.user
+
+
+class ManageProfileView(generics.RetrieveUpdateAPIView):
+    """Manage the authenticated Profile"""
+    serializer_class = ProfileSerializer
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_object(self):
+        """Retrieve and return authentication Profile"""
+        profile = Profile.objects.get(user=self.request.user.id)
+
+        return profile
 
 
 class UnauthorisedUserOrderView(APIView):

@@ -8,6 +8,7 @@ from rest_framework import serializers
 
 from Articles.models import ArticleComment, LandingPageArticles
 from ProductApp.models import MainProductDatabase
+from Profile.models import Profile
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -16,7 +17,8 @@ class UserSerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = ('username', 'password', 'email', 'first_name', 'last_name')
         extra_kwargs = {
-            'password': {'write_only': True, 'min_length': 5}, 'first_name': {"required": False, "allow_null": True},
+            'password': {'write_only': True, 'min_length': 5},
+            'first_name': {"required": False, "allow_null": True},
             'last_name': {"required": False, "allow_null": True},
             'email': {"required": False, "allow_null": True},
         }
@@ -36,6 +38,40 @@ class UserSerializer(serializers.ModelSerializer):
             user.save()
 
         return user
+
+class ProfileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Profile
+        fields = "__all__"
+
+    def update(self, instance, validated_data) -> Profile:
+
+        password = validated_data
+        print(password)
+
+        profile = super().update(instance, validated_data)
+        
+        print('jestem za profile')
+        
+        for key, value in validated_data.items():
+            if key != 'user':
+                if key == 'keep_me':
+                    try:
+                        profile.keep_me = value
+                    except:
+                        pass
+                else:
+                    try:
+                        profile.newsletter = value
+                    except:
+                        pass
+
+        # if password:
+        #     user.set_password(password)
+        #     user.save()
+
+        return profile
 
 
 class AuthTokenSerializer(serializers.Serializer):
@@ -91,7 +127,7 @@ class BlogArticlesSerializer(serializers.ModelSerializer):
             'publish': article.publish,
             'level': article.level
         }
-        
+
 class ProductSerializer(serializers.ModelSerializer):
     """ Get products data Serializer  """
 
