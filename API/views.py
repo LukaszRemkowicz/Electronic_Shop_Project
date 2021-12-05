@@ -6,6 +6,7 @@ from decimal import Decimal
 import time
 
 from django.http.response import JsonResponse
+from django.views import generic
 from rest_framework import serializers, generics, authentication, permissions
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.settings import api_settings
@@ -20,7 +21,7 @@ from Articles.models import ArticleComment, LandingPageArticles
 from ProductApp.models import MainProductDatabase
 from Profile.models import Profile
 
-from .serializers import AuthTokenSerializer, BlogArticlesSerializer, NewsletterSerializer, ProductSerializer, ProfileSerializer, UserSerializer
+from .serializers import AuthTokenSerializer, BlogArticlesSerializer, GetQuantitySerializer, NewsletterSerializer, ProductSerializer, ProfileSerializer, UserSerializer
 from ShoppingCardApp import utils
 from ShoppingCardApp import models as shopping_cart
 from AddressBookApp import models as address
@@ -356,7 +357,23 @@ class ProductView(generics.RetrieveUpdateAPIView):
 
 
 class Newsletter(generics.CreateAPIView):
+    """ Save email to newsletter database """
+
     serializer_class = NewsletterSerializer
-    
+
     data = {"response": "Address has been added"}
-        
+
+
+class OrderProductQuantity(generics.ListAPIView):
+    """ Get product pieces in basket """
+
+    serializer_class = GetQuantitySerializer
+    queryset  = shopping_cart.Order.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        id = kwargs['product_id']
+
+        product_item = shopping_cart.OrderItem.objects.filter(product__id=id, order__complete=False)[0]
+        product_stock = MainProductDatabase.objects.get(id=id).pieces
+
+        return Response({'order_quantity': product_item.quantity, 'product_stock': product_stock})

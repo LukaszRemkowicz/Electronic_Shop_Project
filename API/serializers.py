@@ -156,8 +156,14 @@ class NewsletterSerializer(serializers.ModelSerializer):
             newsletter = Newsletter.objects.filter(**validated_data)[0]
 
         return newsletter
-    
+
     def to_representation(self, instance):
         return {
             "response": "Email has been added"
         }
+
+
+class GetQuantitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MainProductDatabase
+        fields = ['id']

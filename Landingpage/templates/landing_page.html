@@ -116,7 +116,7 @@
                             <p class="font-black desc">
                                 <a href="{% url 'product_page' product_of_the_day.id %}">
                                     {{ product_of_the_day.name|truncatechars:50 }}
-                                </a> 
+                                </a>
                             </p>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                         <p class="font-red">Sold {{ product_of_the_day|get_promotion_buy_num }} piece{{product_of_the_day|get_promotion_buy_num|pluralize}}</p>
                         <p class="font-black ">{{ product_of_the_day.pieces }} pieces left</p>
                         <div class="button add-to-cart update-cart" data-action="add" data-product="{{ product_of_the_day.id }}">
-                            <i class="fas btn-light fa-shopping-cart fa-2x buy" ><span> Basket</span></i>
+                            <i class="fas btn-light fa-shopping-cart fa-2x" ><span> Basket</span></i>
                         </div>
                     </div>
 
@@ -155,7 +155,7 @@
                 <div class="">
                     <img src="{% static 'images/Logos/intel.png'%} " alt="">
                 </div>
-                
+
             </div>
 
             <div class="logo">
@@ -247,6 +247,7 @@
 <script src="{% static 'js/recentWatches.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/landingPage/promotionTimer.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/landingPage/newsletter.js' %}" type="text/javascript"></script>
-
+<script src="{% static 'js/landingPage/checkProductQuantity.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/utils/landingPage.js' %}" type="text/javascript"></script>
 
 {% endblock %}

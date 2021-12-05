@@ -79,6 +79,7 @@ function updateCartFunc(element, action){
 
 
 updateCart.forEach(element => {
+
     element.addEventListener('click', function(){
 
         const productId = this.dataset.product
@@ -98,13 +99,15 @@ updateCart.forEach(element => {
 
         console.log('USER:', user)
 
-        if(user == 'AnonymousUser'){
-            console.log('this: ', this)
-            addCookieItem(productId, action, this)
-        }else{
-            updateUserOrder(productId, action, getProductAmount, this);
+        if(action != undefined){
+            if(user == 'AnonymousUser'){
+                console.log('this: ', this)
+                addCookieItem(productId, action, this)
+            }else{
+                updateUserOrder(productId, action, getProductAmount, this);
+            }
         }
-        })
+    })
 })
 
 
