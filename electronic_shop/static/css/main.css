@@ -5516,6 +5516,10 @@ a {
     height: 150px;
     width: 100%; }
 
+.deliver-options-section p {
+  align-self: center;
+  font-weight: 300; }
+
 .navbar {
   display: grid;
   grid-template-columns: 1fr 2fr 1.1fr;

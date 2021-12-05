@@ -249,39 +249,37 @@
             <div class="orders">
                 <h3 class="py-2">Orders</h3>
                 <ul>
-                    <a href=""><li> Delivery</li></a>
-                    <li>Installments</li>
-                    <li>Insurance</li>
-                    <li>Assembly</li>
-                    <li>Returns and complaints</li>
-                    <li>Frequently Asked Questions</li>
+                    <a href="{% url 'delivery' %}"><li> Delivery</li></a>
+                    <a href="{% url 'installments' %}"><li>Installments</li></a>
+                    <a href="{% url 'insurance' %}"><li>Insurance</li></a>
+                    <a href="{% url 'assembly' %}"><li>Assembly</li></a>
+                    <a href="{% url 'returns-and-complaints' %}"><li>Returns and complaints</li></a>
+                    <a href="{% url 'frequently-asked-questions' %}"> <li>FAQ</li></a>
                 </ul>
             </div>
             <div class="about">
                 <h3 class="py-2">ElectronicShop</h3>
                 <ul>
-                    <li>About us</li>
-                    <li>Regulations</li>
-                    <li>privacy policy</li>
-                    <li>Press office</li>
-                    <li>Forum</li>
-                    <li>Career</li>
-                    <li>Contact</li>
+                    <a href="{% url 'about' %}"><li>About us</li></a>
+                    <a href="{% url 'regulations' %}"><li>Regulations</li></a>
+                    <a href="{% url 'privacy-policy' %}"><li>privacy policy</li></a>
+                    <a href="{% url 'career' %}"><li>Career</li></a>
+                    <a href="{% url 'contact' %}"><li>Contact</li></a>
                 </ul>
             </div>
             <div class="contact-block flex-container flex-column">
                 <div class="phone">
                     <h3 class="py-2">Contact</h3>
                     <i class="fas fa-phone fa-2x"> </i>
-                    <p class="inline">34 377 00 00</p>
-                    <p>pon. - pt. 8:00 - 21:00</p>
-                    <p>sob. - niedz. 8:00 - 19:00</p>
+                    <p class="inline pl-4">48 123 45 67</p>
+                    <p>Mon. - Fri. 8:00 - 21:00</p>
+                    <p>Sat. - Sun. 8:00 - 19:00</p>
 
                 </div>
-                <div class="live-chat">
-                    <h3>Start live chat</h3>
-                    <i class="far fa-comment-dots fa-4x"></i>
-                </div>
+                {% comment %} <div class="live-chat d-flex align-items-center">
+                    <h3>Live chat</h3>
+                    <i class="far fa-comment-dots fa-4x font-red pt-0"></i>
+                </div> {% endcomment %}
             </div>
             <div class="contact flex-container flex-column">
 
@@ -391,8 +389,7 @@
             }); {% endcomment %}
     </script>
 
-
-
+    <script async type="text/javascript" src="https://userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/715a038ddb3f4537898a9bee6e9c0c17ee644b8e0a544c77b22342ece004b488.js"></script>
 
 </body>
 </html>
