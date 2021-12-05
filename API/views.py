@@ -373,7 +373,12 @@ class OrderProductQuantity(generics.ListAPIView):
     def get(self, request, *args, **kwargs):
         id = kwargs['product_id']
 
-        product_item = shopping_cart.OrderItem.objects.filter(product__id=id, order__complete=False)[0]
+        try:
+            product_item = shopping_cart.OrderItem.objects.filter(product__id=id, order__complete=False)[0]
+            product_item = product_item.quantity
+        except IndexError:
+            product_item = ''
+
         product_stock = MainProductDatabase.objects.get(id=id).pieces
 
-        return Response({'order_quantity': product_item.quantity, 'product_stock': product_stock})
+        return Response({'order_quantity': product_item, 'product_stock': product_stock})
