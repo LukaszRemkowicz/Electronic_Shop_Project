@@ -56,15 +56,17 @@ def create_product(sender, instance, created, **kwargs):
             product.price = instance.price
             product.pieces = instance.pieces
             product.color = instance.color
+            product.producent = instance.producent
+            product.model = instance.model
             
             try:
                 product.promotion = instance.promotion
             except:
                 pass
             try:
-                product.img = instance.main_photo
-                product.second_img = instance.second_photo
-                product.third_img = instance.third_photo
+                product.main_photo = instance.main_photo
+                product.second_photo = instance.second_photo
+                product.third_photo = instance.third_photo
             except Exception as error:
                 print('Oops, something went wrong: ', error)
                 raise
@@ -98,14 +100,20 @@ def create_product(sender, instance, created, **kwargs):
             elif product.color != utils.get_product(instance.__class__.__name__, instance).color:
                 product.color = instance.color
                 product.save()
-            elif product.img != utils.get_product(instance.__class__.__name__, instance).main_photo:
-                product.img = instance.main_photo
+            elif product.main_photo != utils.get_product(instance.__class__.__name__, instance).main_photo:
+                product.main_photo = instance.main_photo
                 product.save()
-            elif product.second_img != utils.get_product(instance.__class__.__name__, instance).second_photo:
-                product.second_img = instance.second_photo
+            elif product.second_photo != utils.get_product(instance.__class__.__name__, instance).second_photo:
+                product.second_photo = instance.second_photo
                 product.save()
-            elif product.third_img != utils.get_product(instance.__class__.__name__, instance).third_photo:
-                product.third_img = instance.third_photo
+            elif product.third_photo != utils.get_product(instance.__class__.__name__, instance).third_photo:
+                product.third_photo = instance.third_photo
+                product.save()
+            elif product.producent != utils.get_product(instance.__class__.__name__, instance).producent:
+                product.producent = instance.producent
+                product.save()
+            elif product.model != utils.get_product(instance.__class__.__name__, instance).model:
+                product.model = instance.model
                 product.save()
 
         except:
@@ -175,16 +183,22 @@ def update_product(sender, instance, created, **kwargs):
             instance_obj.color = product.color
             instance_obj.save()
         elif product.img != instance_obj.main_photo:
-            instance_obj.main_photo = product.img
+            instance_obj.main_photo = product.main_photo
             instance_obj.save()
         elif product.second_img != instance_obj.second_photo:
-            instance_obj.second_photo = product.second_img
+            instance_obj.second_photo = product.second_photo
             instance_obj.save()
         elif product.third_img != instance_obj.third_photo:
-            instance_obj.third_photo = product.third_img
+            instance_obj.third_photo = product.third_photo
             instance_obj.save()
         elif product.bought_num != instance_obj.bought_num:
             instance_obj.bought_num = product.bought_num
+            instance_obj.save()
+        elif product.producent != instance_obj.producent:
+            instance_obj.producent = product.producent
+            instance_obj.save()
+        elif product.model != instance_obj.model:
+            instance_obj.model = product.model
             instance_obj.save()
 
         skip_signals = False

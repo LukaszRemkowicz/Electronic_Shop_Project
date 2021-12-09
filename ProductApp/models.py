@@ -181,9 +181,9 @@ class Inherit(models.Model):
 
 class MainProductDatabase(models.Model):
 
-    img = models.ImageField(null=True, blank=True, upload_to='products_pic')
-    second_img = models.ImageField(null=True, blank=True, upload_to='products_pic')
-    third_img = models.ImageField(null=True, blank=True, upload_to='products_pic')
+    main_photo = models.ImageField(null=True, blank=True, upload_to='products_pic')
+    second_photo = models.ImageField(null=True, blank=True, upload_to='products_pic')
+    third_photo = models.ImageField(null=True, blank=True, upload_to='products_pic')
     name = models.CharField(max_length=100, default='')
     price = models.DecimalField(max_digits=7, decimal_places=2, default=0)
     pieces = models.IntegerField(default=0)
@@ -213,6 +213,8 @@ class MainProductDatabase(models.Model):
     color = models.CharField(max_length=100, default='', blank=True, null=True)
     bought_num = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
+    producent = models.CharField(max_length=100, default='')
+    model = models.CharField(max_length=100, null=True, blank=True)
 
     likes = models.ManyToManyField(User, default=None, blank=True, null=True)
 

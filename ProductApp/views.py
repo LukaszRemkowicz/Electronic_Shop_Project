@@ -4,16 +4,22 @@ import json
 from django.views.generic import ListView
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 
 from ShoppingCardApp.models import Customer, Order, OrderItem
 from .utils import filter_products, sort_by_product_rate, paginate_view, try_to_get_product
 from .utilss.view_utils import *
 from .filters import SnippetFilter
 from ProductApp import models
+from ProductApp.utils import get_model_queryset
 
 # TODO change productApp models. Add "as"
 
 User = settings.AUTH_USER_MODEL
+
+CATTEGORIES = ["Laptops", "Phones", "PC", "Monitors","Accesories for laptops", "SSD",
+           "Graphs", "Ram", "Pendrives", "Routers", "Switches", "Motherboard", "CPU",
+           "TV", "Headphones"]
 
 
 class ProductPage(ListView):
@@ -137,8 +143,8 @@ class ProductsCart(ListView):
         # Returning dictionary with filter name as a "key", and number of products as a "value".
         # For example: {'diagonal':2} == {filter:prodcut_number}.
 
-        product_filters = try_to_get_product(old_products[0], '')
         try:
+            product_filters = try_to_get_product(old_products[0], '')
             data_to_filter = product_filters.data_products_to_filter()
         except IndexError:
             data_to_filter = []
@@ -191,25 +197,78 @@ class ProductsCart(ListView):
 
         return context
 
-# class CheckSimilar(ListView):
-#     template_name = 'check_similar.html'
-#     model =  models.MainProductDatabase
+
+class QueryResult(ListView):
+    template_name = 'queryResult.html'
+    model = models.MainProductDatabase
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        """ Filter products by query parameters """
+
+        url_params = { key:str(value[0]) for key, value in self.request.GET.lists()}
+        print(url_params)
+
+        search_query = ''
+        param = ''
+
+        context = super().get_context_data(**kwargs)
+
+        if url_params['param'] and url_params['param'] != 'Everywhere':
+            param = url_params['param']
+            products = get_model_queryset(param)
+        else:
+            param = url_params['param']
+            products = self.model.objects.all()
+
+        if url_params['search_query']:
+
+            search_query = url_params['search_query']
+
+        products = products.distinct().filter(
+            Q(name__icontains=search_query) |
+            Q(ean__icontains=search_query) |
+            Q(producent__icontains=search_query) |
+            Q(model__icontains=search_query)
+            )
+
+        products = [try_to_get_product(product, '') for product in products]
+
+        page = self.request.GET.get('page')
+        result = 10
+        ranger, paginator, products = paginate_view(products, result, page)
 
 
-#     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-#         """ View for render products in product_cart template.
-#         On this view products are filtered by user applied filters """
+        cattegories = [product_cat for product_cat in CATTEGORIES]
 
-#         #TODO: Write tests for this view
+        context['products'] = products
+        context['cattegories'] = cattegories
+        context['param'] = param
+        context['search_query'] = search_query
+        context['custom_range'] = ranger
+        context['paginator'] = paginator
 
-#         context = super().get_context_data(**kwargs)
-#         url_params = { key:str(value[0]) for key, value in self.request.GET.lists()}
-#         ids = json.loads(url_params['ids'])
+        return context
 
-#         products = MainProductDatabase.objects.all()
 
-#         products = products.filter(id__in=ids)
+class Wishlist(ListView):
+    template_name = 'wishlist.html'
+    model = models.MainProductDatabase
 
-#         print(products)
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        """ Show products from wishlist """
 
-#         return context
+        context = super().get_context_data(**kwargs)
+
+        products = MainProductDatabase.objects.filter(likes=self.request.user)
+
+        products = [try_to_get_product(product, '') for product in products]
+        
+        page = self.request.GET.get('page')
+        result = 10
+        ranger, paginator, products = paginate_view(products, result, page)
+
+        context['products'] = products
+        context['custom_range'] = ranger
+        context['paginator'] = paginator
+
+        return context

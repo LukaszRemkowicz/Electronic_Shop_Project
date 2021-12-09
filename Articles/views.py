@@ -10,7 +10,7 @@ from . import forms
 
 
 class LandingArticles(CreateView):
-    template_name = 'landingPage/blog.html'
+    template_name = 'blog.html'
     model = models.LandingPageArticles
     form_class = forms.ArticleComents
 

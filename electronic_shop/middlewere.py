@@ -4,6 +4,7 @@ from django.contrib.auth import login
 from django.utils.deprecation import MiddlewareMixin
 
 from Profile.forms import CustomLoginForm
+from electronic_shop.ProductApp.models import MainProductDatabase
 
 
 

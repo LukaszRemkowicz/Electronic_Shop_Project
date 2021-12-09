@@ -26,7 +26,6 @@ body{
 
 .container{
     max-width: $max-width;
-    // overflow: hidden;
     margin: 0 auto;
     text-align: center;
 }
@@ -34,6 +33,12 @@ body{
 
 .small-container{
     max-width: $small-width;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.smaller-container{
+    max-width: $smaller-width;
     margin: 0 auto;
     text-align: center;
 }
@@ -54,6 +59,10 @@ li{
 
 .flex-column{
     flex-direction: column;
+}
+
+.align-self-center{
+    align-self: center;
 }
 
 .grid-container{
@@ -419,7 +428,7 @@ a{
     font-size: 0.9rem;
 }
 
-.lni-heart{
+.lni-heart-absolute{
     cursor: pointer;
     font-weight: 100;
     font-size: 2rem;
@@ -430,4 +439,8 @@ a{
 
 .display-none{
     display: none;
+}
+
+.no-text-shadow{
+    text-shadow: none !important;
 }

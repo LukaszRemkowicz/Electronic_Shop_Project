@@ -78,44 +78,44 @@ class AssemblyPage(ListView):
 
     template_name = 'assembly.html'
     model = ContentBase
-    
-    
+
+
 class ReturnsComplaintsPage(ListView):
 
     template_name = 'returnsComplaints.html'
     model = ContentBase
-    
-    
+
+
 class FrequentlyQuestionsPage(ListView):
 
     template_name = 'frequentlyQuestions.html'
     model = ContentBase
-    
+
 
 class AboutPage(ListView):
 
     template_name = 'about.html'
     model = ContentBase
-    
+
 
 class RegulationsPage(ListView):
 
     template_name = 'regulations.html'
     model = ContentBase
-    
-    
+
+
 class PrivacyPolicyPage(ListView):
 
     template_name = 'privacyPolicy.html'
     model = ContentBase
-    
-    
+
+
 class CareerPage(ListView):
 
     template_name = 'career.html'
     model = ContentBase
-    
-    
+
+
 class ContactPage(ListView):
 
     template_name = 'contact.html'

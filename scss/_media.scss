@@ -506,8 +506,8 @@ $min-width-for-login-modal: 100px;
 $width-login-modal: 15%;
 $width-less-than-thousand: 80%;
 $modal-dialog-width: 50%;
-$width: 70%;
-$max-width: 2100px;
+$width: 65%;
+$max-width: 3000px;
 $grid-1: 2fr;
 $grid-2: 10fr;
 $grid-jump: 0.5fr;
@@ -517,6 +517,8 @@ $img-width: 40%;
 $img-height: 70%;
 $rest-section: 90rem;
 $buy-section: 20rem;
+$input-width: 1rem;
+$form-inline: 100%;
 
 // login media query
 
@@ -572,7 +574,12 @@ $buy-section: 20rem;
 
                 & .search-bar {
 
-                    @if $max-width <= 1001px{
+                    @if $max-width <= 1201px and $max-width >= 1000px {
+                        $width: calc(#{$width});
+                        width: calc(#{$width}) !important;
+                    }
+
+                    @else if $max-width <= 1001px{
                         @if $max-width <= 200{
                             $width: ($width - 10%);
                             width: calc(#{$width} - 10%) !important;
@@ -584,13 +591,14 @@ $buy-section: 20rem;
 
                     @else{
                         $width: calc(#{$width} - 5px);
-                        width: calc(#{$width} - 10px) !important;
+                        width: calc(#{$width} - 5px) !important;
                     }
 
                     $max-width: $max-width - 50px;
 
                 }
             }
+
         }
     }
 }

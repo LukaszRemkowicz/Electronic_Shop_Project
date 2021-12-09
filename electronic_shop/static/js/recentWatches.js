@@ -16,11 +16,15 @@ recentWatched.forEach(id => {
     .then(response => { return response.json()})
     .then(data => {
 
+        console.log(data);
+
         let newDiv = document.createElement('div');
         let newAhref = document.createElement('a');
+        newAhref.href = `/product/${data.id}`
+
         let newImg = document.createElement('img');
 
-        newImg.src = data.img;
+        newImg.src = data.main_photo;
         newImg.alt = 'Product image recent watched';
 
         newAhref.appendChild(newImg);

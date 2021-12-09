@@ -85,8 +85,12 @@
 
                 {% for product in selected %}
                     <div class="offert label ">
-                        <img src="{{ product.img.url }}" alt="">
-                        <p>{{ product.name|truncatechars:40 }}</p>
+                        <a href="{% url 'product_page' product.id %}">
+                            <img src="{{ product.main_photo.url }}" alt="">
+                        </a>
+                        <a href="{% url 'product_page' product.id %}">
+                            <p>{{ product.name|truncatechars:40 }}</p>
+                        </a>
                         {% if product.promotion %}
                             <div class="">
                                 <p class="line-through d-inline old-price">{{ product.price }} $</p>
@@ -108,7 +112,7 @@
                 <div class="alarm-box bg-white">
                     <div class="product-box">
                         <a href="{% url 'product_page' product_of_the_day.id %}">
-                            <img class="main-pic" src="{{ product_of_the_day.img.url }}" alt="">
+                            <img class="main-pic" src="{{ product_of_the_day.main_photo.url }}" alt="">
                         </a>
                         <div class="description">
                             <p class="font-black line-through">{{ product_of_the_day.price }}</p>
@@ -249,5 +253,6 @@
 <script src="{% static 'js/landingPage/newsletter.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/landingPage/checkProductQuantity.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/utils/landingPage.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/product_search/changeUrlFunction.js' %}"></script>
 
 {% endblock %}

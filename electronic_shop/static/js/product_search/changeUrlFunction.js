@@ -60,18 +60,23 @@ function changeUrls(filter, boolean){
     //     window.location.replace(`${url}?grid=${boolean}`)
     // }
 
-    toogleButtons.forEach(element => {
-        const buttonPage = element.getAttribute('href').split('&')[0];
-        let getToogleOrFilter = window.location.href.replace('#', '').split('&')
-        getToogleOrFilter = getToogleOrFilter.splice(1, getToogleOrFilter.length)
-
-        getToogleOrFilter.forEach((element, index) => {
-            if(element.includes(`${filter}=`)){
-                getToogleOrFilter[index] = `${filter}=${boolean}`
-            }
+    try{
+        toogleButtons.forEach(element => {
+            const buttonPage = element.getAttribute('href').split('&')[0];
+            let getToogleOrFilter = window.location.href.replace('#', '').split('&')
+            getToogleOrFilter = getToogleOrFilter.splice(1, getToogleOrFilter.length)
+    
+            getToogleOrFilter.forEach((element, index) => {
+                if(element.includes(`${filter}=`)){
+                    getToogleOrFilter[index] = `${filter}=${boolean}`
+                }
+            })
+    
+            const newJoinedAtt = getToogleOrFilter.join('&');
+            element.href = `${buttonPage}&${newJoinedAtt}`;
         })
-
-        const newJoinedAtt = getToogleOrFilter.join('&');
-        element.href = `${buttonPage}&${newJoinedAtt}`;
-    })
+    } catch(e){
+        console.log(e);
+    }
+    
 }

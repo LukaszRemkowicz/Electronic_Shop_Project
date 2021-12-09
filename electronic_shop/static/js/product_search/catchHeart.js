@@ -1,5 +1,6 @@
 const heart = document.querySelectorAll('.lni-heart');
 const heartLiked = document.querySelectorAll('.fa-heart');
+const wishlistNav = document.querySelector('.likesNum');
 
 function fetchHeart (url, whatToDo){
     fetch(url, {
@@ -19,7 +20,19 @@ function fetchHeart (url, whatToDo){
         return response.json()
     })
     .then(data => {
-        console.log((data));
+        if(whatToDo == 'add'){
+        try{
+            wishlistNav.innerText = +wishlistNav.innerText + 1;
+        } catch(e){
+            console.log(e);
+        }} else {
+            try{
+                wishlistNav.innerText = +wishlistNav.innerText - 1;
+            } catch(e){
+                console.log(e);
+            }
+        }
+
     })
 }
 

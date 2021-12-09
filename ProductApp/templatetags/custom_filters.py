@@ -85,5 +85,4 @@ def check_like(product: QuerySet, request: HttpRequest) -> bool:
 @register.filter
 def update_pieces(request: HttpRequest, product: QuerySet) -> int:
     result, _ = change_product_pieces(request, product)
-    print('dwdddddddddddddd', result)
     return result
