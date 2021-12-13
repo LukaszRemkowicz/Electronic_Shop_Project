@@ -86,3 +86,31 @@ def check_like(product: QuerySet, request: HttpRequest) -> bool:
 def update_pieces(request: HttpRequest, product: QuerySet) -> int:
     result, _ = change_product_pieces(request, product)
     return result
+
+
+@register.filter
+def find_all(request: HttpRequest) -> int:
+    listed = request.replace('/', '').split('?')
+    print('qwdwd', listed)
+    if listed[0] == 'products':
+        return True
+    else:
+        return False
+    
+
+@register.filter
+def get_category(request: HttpRequest) -> int:
+    return ["Laptops", "Phones","PC","Monitors","Accesories for laptops","SSD","Graphs","Ram", "Pendrives","Routers","Switches","Motherboard","CPU","TV","Headphones"]
+
+
+@register.filter
+def get_mainproductdatabase_product_of_the_day(ean: int) -> bool:
+    product = MainProductDatabase.objects.get(ean=ean)
+    print('product.product_of_the_day', product.product_of_the_day)
+    print(product.__dict__)
+    return True if product.product_of_the_day else False
+
+@register.filter
+def get_mainproductdatabase_promoprice(ean: int) -> bool:
+    product = MainProductDatabase.objects.get(ean=ean)
+    return product.promotion 

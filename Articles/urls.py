@@ -3,5 +3,5 @@ from .views import LandingArticles
 
 
 urlpatterns = [
-    path('blog/<int:article_id>', LandingArticles.as_view(), name='articles'),
+    path('blog/<int:article_id>/', LandingArticles.as_view(), name='articles'),
 ]

@@ -16,11 +16,9 @@ recentWatched.forEach(id => {
     .then(response => { return response.json()})
     .then(data => {
 
-        console.log(data);
-
         let newDiv = document.createElement('div');
         let newAhref = document.createElement('a');
-        newAhref.href = `/product/${data.id}`
+        newAhref.href = `/products/${data.cattegory}/${data.id}`
 
         let newImg = document.createElement('img');
 

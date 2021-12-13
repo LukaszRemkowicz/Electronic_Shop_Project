@@ -9,13 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/95019cdce1.js" crossorigin="anonymous"></script>
 
-    <style type='text/css'>
+    {% comment %} <style type='text/css'>
 
         .tooglecolor {
             color: red !important;
         }
 
-    </style>
+    </style> {% endcomment %}
 
     <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet">
 
@@ -76,6 +76,13 @@
     {% block content %}{% endblock %}
 
     {% include 'footer.html' %}
+    {% load landing_page %}
+
+    <!-- Product of the day counter -->
+    <div class="d-none">
+        <div class="hourBaseHtml" data-promotime='{{product_of_the_day.product_of_the_day_added|format_datetime}}'></div>
+        <div class="baseId" data-productId='{{product_of_the_day.id}}'></div>
+    </div>
 
     <!-- jQUERY -->
 
@@ -88,6 +95,7 @@
     <script src="{% static 'js/cart.js' %}" type="text/javascript"></script>
     <script src="{% static 'js/orderForm.js' %}"></script>
     <script src="{% static 'js/addressBook.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/landingPage/startPromoCounter.js' %}" type="text/javascript"></script>
     <script>
         const redirectToAccountUrl = "{% url 'account' %}";
         const redirectToLandingPage = "{% url 'landing-page' %}";
@@ -96,56 +104,7 @@
     <script src="{% static 'js/cookie.js' %}" type="text/javascript"></script>
     <script src="{% static 'js/animateImg.js' %}" type="text/javascript"></script>
 
-
-    <script>
-        /* Add to cart animation **/
-        {% comment %} $('.add-to-cart').on('click', function () {
-                var button = $(this)
-                var cart = $('#shopping-cart');
-                var carTotal = cart.attr('data-totalitems')
-                var newCartTotal = parseInt(carTotal) + 1;
-                var imgtodrag = $(".main-pic");
-                cart.attr('data-totalitems', newCartTotal);
-                if (imgtodrag) {
-                    var imgclone = imgtodrag.clone()
-                        .offset({
-                        top: imgtodrag.offset().top,
-                        left: imgtodrag.offset().left
-                    })
-                        .css({
-                        'opacity': '0.5',
-                            'position': 'absolute',
-                            'height': '150px',
-                            'width': '150px',
-                            'z-index': '100'
-                    })
-                        .appendTo($('body'))
-                        .animate({
-                        'top': cart.offset().top + 10,
-                            'left': cart.offset().left + 10,
-                            'width': 75,
-                            'height': 75
-                    }, 1000, 'easeInOutExpo');
-
-                    setTimeout(function () {
-                        cart.effect("shake", {
-                            times: 2
-                        }, 200);
-                    }, 1500);
-
-                    imgclone.animate({
-                        'width': 0,
-                            'height': 0
-                    }, function () {
-                        $(this).detach()
-                    });
-
-                }
-
-
-            }); {% endcomment %}
-    </script>
-
+    <!-- Userlike widget -->
     <script async type="text/javascript" src="https://userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/715a038ddb3f4537898a9bee6e9c0c17ee644b8e0a544c77b22342ece004b488.js"></script>
 
 </body>

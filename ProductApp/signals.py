@@ -58,6 +58,7 @@ def create_product(sender, instance, created, **kwargs):
             product.color = instance.color
             product.producent = instance.producent
             product.model = instance.model
+            product.created = instance.created
             
             try:
                 product.promotion = instance.promotion
@@ -182,13 +183,13 @@ def update_product(sender, instance, created, **kwargs):
         elif product.color != instance_obj.color:
             instance_obj.color = product.color
             instance_obj.save()
-        elif product.img != instance_obj.main_photo:
+        elif product.main_photo != instance_obj.main_photo:
             instance_obj.main_photo = product.main_photo
             instance_obj.save()
-        elif product.second_img != instance_obj.second_photo:
+        elif product.second_photo != instance_obj.second_photo:
             instance_obj.second_photo = product.second_photo
             instance_obj.save()
-        elif product.third_img != instance_obj.third_photo:
+        elif product.third_photo != instance_obj.third_photo:
             instance_obj.third_photo = product.third_photo
             instance_obj.save()
         elif product.bought_num != instance_obj.bought_num:

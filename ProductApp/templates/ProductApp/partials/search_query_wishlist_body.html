@@ -1,0 +1,137 @@
+{% load humanize %}
+{% load custom_filters %}
+{% load static %}
+
+<div class="container py-3">
+    <div class="row">
+        {% if products|length == 0 %}
+            <div class="w-100 d-flex justify-content-center">
+                <div class="page-not-found">
+                    <img src="{% static 'images/no-results-found.png' %}" alt="">
+                </div>
+            </div>
+        {% else %}
+            {% for product in products %}
+                <div class="col-lg-12 col-md-12 col-sm-12 offset-md-0 offset-sm-1 mb-4 product-rows">
+                    <div class="card flex-row ">
+                        <div class="align-self-center">
+                            <img class="card-img-top main-pic ml-5" src="{% if product.main_photo %}{{product.main_photo.url}}{% endif %}">
+                        </div>
+
+                        <div class="card-body d-flex justify-content-between">
+
+                            <div class="card-body-description w-75">
+                                <h6 class="font-weight-bold pt-1 pl-5 text-left">{{product.name}}</h6>
+
+                                <h6 class="font-weight-bold pt-1 product-description {% if not request.get_full_path|find_grid %} display-none {% endif %}">
+                                <a href="{% url 'product_page' product.cattegory product|get_main_product_id %}">{{product.name}}</a>
+                                </h6>
+
+                                <div class="product-description">
+
+                                    {% if product.cattegory == 'Phones' %}
+                                        {% include 'ProductApp/partials/spec_description/phones.html' %}
+                                    {% elif product.cattegory == 'Laptops' %}
+                                        {% include 'ProductApp/partials/spec_description/Laptops.html' %}
+                                    {% elif product.cattegory == 'PC' %}
+                                        {% include 'ProductApp/partials/spec_description/PC.html' %}
+                                    {% elif product.cattegory == 'Monitors' %}
+                                        {% include 'ProductApp/partials/spec_description/Monitor.html' %}
+                                    {% elif product.cattegory == 'Accesories for laptops' %}
+                                        {% include 'ProductApp/partials/spec_description/Accesories for laptops.html' %}
+                                    {% elif product.cattegory == 'SSD' %}
+                                        {% include 'ProductApp/partials/spec_description/SSD.html' %}
+                                    {% elif product.cattegory == 'Graphs' %}
+                                        {% include 'ProductApp/partials/spec_description/Graphs.html' %}
+                                    {% elif product.cattegory == 'Ram' %}
+                                        {% include 'ProductApp/partials/spec_description/Ram.html' %}
+                                    {% elif product.cattegory == 'Pendrives' %}
+                                        {% include 'ProductApp/partials/spec_description/Pendrives.html' %}
+                                    {% elif product.cattegory == 'Routers' %}
+                                        {% include 'ProductApp/partials/spec_description/Routers.html' %}
+                                    {% elif product.cattegory == 'Switches' %}
+                                        {% include 'ProductApp/partials/spec_description/Switches.html' %}
+                                    {% elif product.cattegory == 'Motherboard' %}
+                                        {% include 'ProductApp/partials/spec_description/Motherboard.html' %}
+                                    {% elif product.cattegory == 'CPU' %}
+                                        {% include 'ProductApp/partials/spec_description/CPU.html' %}
+                                    {% elif product.cattegory == 'TV' %}
+                                        {% include 'ProductApp/partials/spec_description/TV.html' %}
+                                    {% elif product.cattegory == 'Headphones' %}
+                                        {% include 'ProductApp/partials/spec_description/Headphones.html' %}
+                                    {% endif %}
+
+                                </div>
+
+
+                                <div class="d-flex mt-3 pl-5">
+
+                                    <div class="d-flex align-items-center product">
+                                        {% for element in product.get_star_avg.1 %}
+                                            {% if element %}
+
+                                                <i class="fas fa-star font-red "></i>
+
+                                                {% else %}
+
+                                                <i class="far fa-star font-red "></i>
+
+                                            {% endif %}
+                                        {% endfor %}
+                                        <a href="{% url 'product_page' product.cattegory product|get_main_product_id %}#opinions"
+                                            class='font-red pl-1 m-auto'>({% if not product.get_num_of_reviews %}0{% else %}{{product.get_num_of_reviews}}{% endif %})
+                                        </a>
+                                    </div>
+
+                                    {% if product.get_num_of_questions and not request.get_full_path|find_grid %}
+                                        <div class="pl-3">
+                                            <a href="{% url 'product_page' product.cattegory product|get_main_product_id %}#ask-something" class='m-auto w-100 font-brown'>{{ product.get_num_of_questions }} Questions</a>
+                                        </div>
+                                    {% endif %}
+
+                                    {% if  product.bought_num and not request.get_full_path|find_grid%}
+                                        <div class="pl-3">
+                                            <p class='m-auto w-100 font-brown'>Bought by {{ product.bought_num }} people </p>
+                                        </div>
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between pb-3 buy-list-view flex-column w-25">
+
+                                <div class="position-relative w-100">
+                                    <i class="lni lni-heart lni-heart-absolute font-light-grey hearts
+                                    {% if product|check_like:request %}
+                                    d-none
+                                    {% endif %}" data-heart={{product|get_main_product_id}}></i>
+
+                                    <i class="fas fa-heart font-red fa-2x hearts
+                                    {% if not product|check_like:request %}
+                                    d-none
+                                    {% endif %}" data-heart={{product|get_main_product_id}}></i>
+                                </div>
+
+                                <div class="d-flex flex-column pt-3 pb-1">
+                                    {% if product.promotion %}
+
+                                        <div class="h6 font-weight-bold">{{product.promotion}} EUR</div>
+                                        <div class="text-muted rebate">{{product.price|intcomma}}</div>
+                                    {% else %}
+                                        <div class="h6 font-weight-bold">{{product.price|intcomma}} EUR</div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="d-flex basket">
+                                    <div class="btn-light ml-2 p-2 pt-2 text-center product-not-avaiable {% if request|update_pieces:product <= 0%} d-block {% else %}d-none {% endif %}">Product is not avaiable</div>
+                                    <div class="btn-red-list update-cart add-to-cart {% if request|update_pieces:product <= 0%} d-none {% else %} d-block {% endif %}" data-product="{{ product|get_main_product_id }}" data-action="add" style="cursor: pointer">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>

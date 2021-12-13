@@ -21,14 +21,20 @@ def ennumerate_obj(obj):
 def format_datetime(value):
     """ Return date in proper way. Its used by JavaScript """
 
+    try:
+        result = value.strftime("%Y-%m-%d %H:%M:%S")
+    except AttributeError:
+        result = ''
 
-    return value.strftime("%Y-%m-%d %H:%M:%S")
+
+    return result
 
 @register.filter
 def get_promotion_buy_num(product):
-    order = OrderItem.objects.filter(order__complete=True, product__ean=product.ean, order__date_order__gte=product.product_of_the_day_added) 
+    print(product)
+    order = OrderItem.objects.filter(order__transaction_status=True, product__ean=product.ean, order__date_order__gte=product.product_of_the_day_added)
     print(order)
-    
-    
+
+
     return len(order)
-    
+

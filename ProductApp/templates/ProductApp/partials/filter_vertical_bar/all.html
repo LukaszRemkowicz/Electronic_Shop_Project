@@ -1,0 +1,17 @@
+{% load custom_filters %}
+
+<div class="pb-3 horizontal-filters">
+    <h5 class="font-weight-bold">Cattegory</h5>
+    {% for cattegory in 'products'|get_category %}
+        <form>
+            <div class="form-inline d-flex align-items-center py-1 justify-content-between">
+                <label class="tick">{{cattegory}}
+                    <input type="checkbox">
+                    <span class="check" data-filter='cattegory={{cattegory}}'>
+                    <div class=""></div></span>
+                </label>
+            </div>
+        </form>
+    {% endfor %}
+</div>
+

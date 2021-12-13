@@ -40,8 +40,8 @@
                         </li>
                         <li class="nav-item">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'account' %}" class="btn d-flex text-center flex-column">
-                                <i class="fas fa-user-alt fa-2x"></i> 
+                            <a href="{% url 'account' %}" data-url="{% url 'account' %}" class="btn fallow-user d-flex text-center flex-column">
+                                <i class="fas fa-user-alt fa-2x"></i>
                                 <span class="nav-font-size">
                                     {% if user.first_name and user.last_name %}
 
@@ -77,7 +77,7 @@
 
                                 <a data-product="{{ product.id }}" data-action="add" class="btn d-flex flex-column text-center" href= "{% url 'shopping-cart' %}">
                                     <i class="fas fa-shopping-cart fa-2x shopping-cart"></i>
-                                    <span class="nav-font-size price-navbar">{{order.get_cart_total|floatformat:2}} $</span>
+                                    <span class="nav-font-size price-navbar">{% if order.get_cart_total %}{{order.get_cart_total|floatformat:2}}{% else %}0.00{% endif %} $</span>
                                 </a>
 
                             </div>
@@ -168,6 +168,16 @@
 
         </div>
     </section>
+    {% if url_path or  url_last %}
+    <div class="container text-left mt-3 mb-0 url-path">
+            <a href="/">Electronic Shop</a> /
+            {% for name, url in url_path.items %}
+                <a href="/{{url}}/">{{name|title}}</a> /
+            {% endfor %}
+            <span>{{url_last|truncatechars:30|title}}</span>
+        </div>
+    {% endif %}
 </header>
 
 <script src="{% static 'js/nav/searchQuery.js' %}"></script>
+<script src="{% static 'js/nav/urlPath.js' %}"></script>

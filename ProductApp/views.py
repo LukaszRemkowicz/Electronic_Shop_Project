@@ -1,12 +1,16 @@
 from typing import Any, Dict
 import json
+from django.http.response import HttpResponse
 
 from django.views.generic import ListView
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
+from django.urls import reverse
+from django.shortcuts import redirect
 
 from ShoppingCardApp.models import Customer, Order, OrderItem
+from Landingpage.utils.url_path import get_url_path
 from .utils import filter_products, sort_by_product_rate, paginate_view, try_to_get_product
 from .utilss.view_utils import *
 from .filters import SnippetFilter
@@ -22,8 +26,20 @@ CATTEGORIES = ["Laptops", "Phones", "PC", "Monitors","Accesories for laptops", "
            "TV", "Headphones"]
 
 
+class AllProducts(ListView):
+    template_name = 'ProductApp/product_cart.html'
+    model = MainProductDatabase
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        """ View for render products in product_cart template. """
+
+        context = super().get_context_data(**kwargs)
+
+        old_products = self.model.objects.all()
+
+
 class ProductPage(ListView):
-    template_name = 'productapp/product.html'
+    template_name = 'ProductApp/product.html'
     model = models.MainProductDatabase
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
@@ -47,6 +63,7 @@ class ProductPage(ListView):
         #     pieces = product.pieces
 
         pieces, _ = change_product_pieces(self.request, product)
+        print(product)
         same_products = filter_products(product.cattegory, product)
         # print('same_products', same_products)
 
@@ -60,7 +77,9 @@ class ProductPage(ListView):
         reviews = models.Reviews.objects.filter(product_id=product_id, checked_by_employer=True)
         question = models.Questions.objects.filter(product_id=product_id, checked_by_employer=True)
 
-        print('same products', same_products)
+        context['url_last'], context['url_path'] = get_url_path(self.request, product_page=True)
+
+        print('pieces', pieces)
         context['questions'] = question
         context['reviews'] = reviews
         context['pieces_range'] = pieces_range
@@ -72,12 +91,21 @@ class ProductPage(ListView):
 
 
 class ProductsCart(ListView):
-    template_name = 'productapp/product_cart.html'
+    template_name = 'ProductApp/product_cart.html'
     model = models.MainProductDatabase
 
+    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+
+        url_params = { key:str(value[0]) for key, value in self.request.GET.lists()}
+        if 'cattegory' in url_params:
+            redirect_url = reverse('products_cart', args=(url_params['cattegory'],))
+            return redirect(redirect_url)
+
+
+        return super().get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-        """ View for render products in product_cart template.
-        On this view products are filtered by user applied filters """
+        """ View for render products in product_cart template. Products are filtered by user applied filters """
 
         # TODO: Write tests for this view
 
@@ -89,7 +117,11 @@ class ProductsCart(ListView):
         else:
             products_old = ''
 
-        product_cattegory = self.kwargs['cattegory']
+        if 'cattegory' in self.kwargs:
+            product_cattegory = self.kwargs['cattegory']
+        else:
+            product_cattegory = 'all'
+
         old_products = models.MainProductDatabase.objects.filter(cattegory=product_cattegory)
 
         # Call the products models, filter by url queryset and return as query.
@@ -110,12 +142,15 @@ class ProductsCart(ListView):
             'Accesories for laptops': lambda x: filter_accesories_products(x),
             'Laptops': lambda x: filter_laptops_products(x),
             'Phones': lambda x: filter_phones_products(x),
+            'all': lambda x: get_all(x),
         }
 
         try:
             products = cattegories[product_cattegory](self.request)
         except (KeyError, ObjectDoesNotExist):
             products = []
+
+        print('jestem po cattegories', len(products))
 
         # Filter products by popularity, trending filters etc.
         # Should be done at the end of all filters
@@ -128,7 +163,7 @@ class ProductsCart(ListView):
                 'popular': sort_by_product_rate(products),
                 'trending': products.order_by('-bought_num'),
                 'cheapest': products.order_by('price'),
-                'latest': products
+                'latest': products.order_by('-created'),
             }
 
             try:
@@ -176,10 +211,13 @@ class ProductsCart(ListView):
         # Paginate View
         page = self.request.GET.get('page')
         result = 9
+
         ranger, paginator, products = paginate_view(products, result, page)
 
         # TODO: Think about using this filter
         form = SnippetFilter
+
+        context['url_last'], context['url_path'] = get_url_path(self.request)
 
         if self.request.GET.get('filter'):
             context['filter_option'] = self.request.GET.get('filter')
@@ -199,7 +237,7 @@ class ProductsCart(ListView):
 
 
 class QueryResult(ListView):
-    template_name = 'queryResult.html'
+    template_name = 'ProductApp/queryResult.html'
     model = models.MainProductDatabase
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
@@ -235,10 +273,13 @@ class QueryResult(ListView):
 
         page = self.request.GET.get('page')
         result = 10
-        ranger, paginator, products = paginate_view(products, result, page)
+        ranger, paginator, products = paginate_view(products.order_by('-created'), result, page)
+
 
 
         cattegories = [product_cat for product_cat in CATTEGORIES]
+
+        context['url_last'], context['url_path'] = get_url_path(self.request)
 
         context['products'] = products
         context['cattegories'] = cattegories
@@ -251,7 +292,7 @@ class QueryResult(ListView):
 
 
 class Wishlist(ListView):
-    template_name = 'wishlist.html'
+    template_name = 'ProductApp/wishlist.html'
     model = models.MainProductDatabase
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
@@ -262,10 +303,12 @@ class Wishlist(ListView):
         products = MainProductDatabase.objects.filter(likes=self.request.user)
 
         products = [try_to_get_product(product, '') for product in products]
-        
+
         page = self.request.GET.get('page')
         result = 10
-        ranger, paginator, products = paginate_view(products, result, page)
+        ranger, paginator, products = paginate_view(products.order_by('-created'), result, page)
+
+        context['url_last'], context['url_path'] = get_url_path(self.request)
 
         context['products'] = products
         context['custom_range'] = ranger

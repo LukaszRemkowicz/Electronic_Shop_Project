@@ -21,6 +21,8 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
 
     if cattegory == 'Phones':
         product_model = product.phones_product_data.model
+        if not product_model:
+            product_model = product.phones_product_data.name
         same_products = models.MainProductDatabase.objects.filter(phones_product_data__model=product_model)[:4]
         same_products_data = {
             'items': same_products,

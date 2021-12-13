@@ -66,6 +66,7 @@ class Inherit(models.Model):
     html_file = models.FileField(upload_to="products_pic", default="", null=True, blank=True)
     product_of_the_day = models.BooleanField(default=False)
     bought_num = models.IntegerField(default=0)
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return self.name
@@ -227,32 +228,32 @@ class MainProductDatabase(models.Model):
     @property
     def get_img(self) -> str:
         try:
-            url = self.img.url
+            url = self.main_photo.url
         except ObjectDoesNotExist:
             url=''
 
         return url
     
 
-    # @property
-    # def get_star_avg(self) -> Tuple[str, List[bool]]:
-    #     """ Method to get product review avarage """
+    @property
+    def get_star_avg(self) -> Tuple[str, List[bool]]:
+        """ Method to get product review avarage """
 
-    #     opinions = len(Reviews.objects.filter(product=self.id, checked_by_employer=True))
-    #     stars = sum([element.stars for element in Reviews.objects.filter(product=self.id,checked_by_employer=True)])
-    #     if stars > 0:
-    #         result = stars/opinions
-    #         frac, whole = math.modf(result)
+        opinions = len(Reviews.objects.filter(product=self.id, checked_by_employer=True))
+        stars = sum([element.stars for element in Reviews.objects.filter(product=self.id,checked_by_employer=True)])
+        if stars > 0:
+            result = stars/opinions
+            frac, whole = math.modf(result)
 
-    #         ranger = [True if num  in [element for element in range(1, int(whole) +1 )]
-    #                   else False for num in range(1, int(6))]
+            ranger = [True if num  in [element for element in range(1, int(whole) +1 )]
+                      else False for num in range(1, int(6))]
 
-    #         if frac > 0:
-    #             return str(result), ranger
-    #         else:
-    #             return str(int(whole)), ranger
-    #     else:
-    #         return str(0), [False for _ in range(5)]
+            if frac > 0:
+                return str(result), ranger
+            else:
+                return str(int(whole)), ranger
+        else:
+            return str(0), [False for _ in range(5)]
 
     # @property
     # def get_stars(self) -> Dict[str, int]:

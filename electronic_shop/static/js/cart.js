@@ -2,6 +2,7 @@ var updateCart = document.querySelectorAll('.update-cart');
 var addButton = document.querySelector('.basket');
 let getProductAmount = document.querySelector('.amount');
 
+
 cartTotal = 0;
 
 let selected;
@@ -20,6 +21,8 @@ function changeAddButton(pieces, element){
             element.classList.remove('d-block');
             element.classList.add('d-none');
             parent = element.parentElement;
+            console.log('parent', parent)
+
             parent.querySelector('.product-not-avaiable').classList.add('d-block');
             parent.querySelector('.product-not-avaiable').classList.remove('d-none')
 
@@ -206,10 +209,10 @@ function addCookieItem(productId, action, element){
 
         // });
 
-        cartTotal = JSON.stringify(cartTotal)
+        cartTotal = JSON.stringify(cartTotal);
 
-        console.log(element, action)
-        updateCartFunc(element, action)
+        console.log(element, action);
+        updateCartFunc(element, action);
     })
 }
 
@@ -277,6 +280,10 @@ function updateUserOrder(productId, action, getProductAmount, element){
         }
 
         updateCartFunc(element, action);
+        const buyNow = document.querySelector('.buyNow');
+        if (buyNow && element == buyNow){
+            window.location.href = '/cart/'
+        }
     })
 }
 

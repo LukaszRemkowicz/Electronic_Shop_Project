@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+    <section>
+        <div class="container grid-container grid-span w-100 bg-white mt-0">
+
+            <div class="left-menu">
+
+                <div class="card mt-4" id="card1">
+                    <div class="card-body p-1">
+                        <div class="card-body p-1 d-flex">
+                            <i class="fas fa-chevron-right mr-2 font-blue align-self-center"></i>
+                            <a class=" card-text align-self-center">Settings</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cards" id="card2">
+
+                    <h4 class="card-title">Orders</h4>
+
+                    <div class="card my-1 border border-rounded w-100 card-border">
+                        <div class="card-body p-0">
+                            <div class="card-body p-1 d-flex border-bottom">
+                                <i class="fas fa-chevron-right mr-2 p-1 font-blue align-self-center"></i>
+                                <a class=" card-text align-self-center">Your oders</a>
+                            </div>
+                            <div class="card-body p-1 d-flex">
+                                <i class="fas fa-chevron-right mr-2 p-1 font-blue align-self-center"></i>
+                                <a class=" card-text align-self-center">Address Book</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="cards my-1" id="card3">
+                    <h4 class="card-title">Products</h4>
+                    <div class="card border card-border">
+                        <div class="card-body p-0 card-content ">
+                            <div class="card-body p-1 d-flex">
+                                <i class="fas fa-chevron-right mr-2 p-1 font-blue align-self-center"></i>
+                                <a class=" card-text align-self-center">Your Products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cards my-1" id="card4">
+                    <h4 class="card-title">Questions</h4>
+                    <div class="card my-1 border border-rounded w-100 card-border">
+                        <div class="card-body p-0">
+                            <div class="card-body p-1 d-flex box p-1 my-1 border-bottom w-100">
+                                <i class="fas fa-chevron-right mr-2 p-1 font-blue align-self-center"></i>
+                                <a class=" card-text align-self-center">Your questions</a>
+                            </div>
+                            <div class="card-body p-1 d-flex">
+                                <i class="fas fa-chevron-right mr-2 p-1 font-blue align-self-center"></i>
+                                <a class=" card-text align-self-center">Ask something</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cards my-1" id="card5">
+                    <h4 class="card-title">Shopping Lists</h4>
+                    <div class="card my-1 border border-rounded w-100 card-border">
+                        <div class="card-body p-1 d-flex">
+                                <i class="fas fa-chevron-right mr-2 p-1 font-blue align-self-center"></i>
+                                <a class=" card-text align-self-center">Your lists</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cards my-1" id="card6">
+                    <h4 class="card-title">Complains, Returns</h4>
+                    <div class="card my-1 border border-rounded w-100 card-border">
+                        <div class="card-body p-0">
+                            <div class=" border-bottom box p-1 my-1 d-flex">
+                                <i class="fas fa-chevron-right mr-2 font-blue align-self-center"></i>
+                                <a class=" card-text align-self-center">Return/ Complain your product</a>
+                            </div>
+                            <div class=" box p-1 my-1 d-flex">
+                                <i class="fas fa-chevron-right mr-2 font-blue align-self-center"></i>
+                                <a class=" card-text align-self-center">Your returns/ Complains</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            {% block orders %}{% endblock orders %}
+            
+            <div id="card8">
+
+                <p class="d-block">
+                    Do you want to <a href="{% url 'logout' %}" class="text-danger"> logout </a> ?
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+{% endif %}
+
+
+
+
+{% endblock %}

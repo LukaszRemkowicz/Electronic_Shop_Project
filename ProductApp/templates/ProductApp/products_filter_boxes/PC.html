@@ -1,0 +1,145 @@
+{% load static %}
+
+{% if same_products.items|length >= 2 %}
+
+    {% if same_products.ram|length >= 2 %}
+
+        <div class="color-section data-blocks">
+            <p class="px-5 pt-1 text-left">
+                RAM:
+            </p>
+            <div class="buttons d-flex px-5
+            {% if same_products.ram|length >= 4 %}flex-wrap
+            {% endif %}" data-name='product-ram-data'>
+
+                {% for element in same_products.ram %}
+
+                    <button href="" class="btn-light d-inline py-2 mt-2 mb-2 mr-2 spec-product-data
+                    {% if element == product.ram %}active-product-content bg-white
+                    {% else %}light-border
+                    {% endif %}
+                    {% if element|length >= 15 %} font-point-seven-rem px-2
+                    {% else %} px-3
+                    {% endif %} ">{{ element }}
+                    </button>
+
+                {% endfor %}
+
+            </div>
+        </div>
+
+    {% endif %}
+
+    {% if same_products.p_c_i_e|length >= 2 %}
+
+        <div class="processor-section data-blocks">
+            <p class="px-5 pt-4 text-left">
+                Disc Pcie:
+            </p>
+            <div class="buttons d-flex px-5 sort_items
+            {% if same_products.p_c_i_e|length >= 4 %}flex-wrap
+            {% endif %}" data-name='product-p_c_i_e-data'>
+
+                {% for element in same_products.p_c_i_e %}
+
+                    <button href="" class="btn-light d-inline mt-2 mb-2 mr-2 py-2 spec-product-data
+                    {% if element == product.p_c_i_e %}active-product-content bg-white
+                    {% else %}light-border
+                    {% endif %}
+                    {% if element|length >= 15 %} font-point-seven-rem px-2
+                    {% else %} px-3
+                    {% endif %} ">{{ element }}
+                    </button>
+
+                {% endfor %}
+
+            </div>
+        </div>
+
+    {% endif %}
+
+    {% if same_products.system|length >= 2 %}
+
+        <div class="ram-section data-blocks">
+            <p class="px-5 pt-4 text-left">
+                System:
+            </p>
+            <div class="buttons d-flex px-5 sort_items
+            {% if same_products.system|length >= 4 %}flex-wrap
+            {% endif %}" data-name='product-system-data'>
+
+                {% for element in same_products.system %}
+
+                    <button href="" class="btn-light d-inline mt-2 mb-2 mr-2 py-2  spec-product-data
+                    {% if element == product.system %}active-product-content bg-white
+                    {% else %}light-border
+                    {% endif %}
+                    {% if element|length >= 15 %} font-point-seven-rem px-2
+                    {% else %} px-3
+                    {% endif %} ">{{ element }}
+                    </button>
+
+                {% endfor %}
+
+            </div>
+        </div>
+
+    {% endif %}
+
+    {% if same_products.processor|length >= 2 %}
+
+        <div class="disc-section data-blocks">
+            <p class="px-5 pt-4 text-left">
+                Processor:
+            </p>
+            <div class="buttons d-flex px-5 sort_items
+            {% if same_products.processor|length >= 4 %}flex-wrap
+            {% endif %}" data-name='product-processor-data'>
+
+                {% for element in same_products.processor %}
+
+                    <button href="" class="btn-light d-inline mt-2 mb-2 mr-2 py-2 spec-product-data
+                    {% if element == product.processor %}active-product-content bg-white
+                    {% else %}light-border
+                    {% endif %}
+                    {% if element|length >= 15 %} font-point-seven-rem px-2
+                    {% else %} px-3
+                    {% endif %} ">{{ element }}
+                    </button>
+
+                {% endfor %}
+
+            </div>
+        </div>
+
+    {% endif %}
+
+    <div class="disc-section data-blocks">
+        <p class="px-5 pt-4 text-left">
+            Graph:
+        </p>
+        <div class="buttons d-flex px-5 sort_items
+        {% if same_products.graph|length >= 4 %}flex-wrap
+        {% endif %}" data-name='product-graph-data'>
+
+            {% for element in same_products.graph %}
+
+                <button href="" class="btn-light d-inline mt-2 mb-2 mr-2 py-2 spec-product-data
+                {% if element == product.graph %}active-product-content bg-white
+                {% else %}light-border
+                {% endif %}
+                {% if element|length >= 15 %} font-point-seven-rem px-2
+                {% else %} px-3
+                {% endif %} ">{{ element }}
+                </button>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% else %}
+
+    {% include 'ProductApp/partials/spec_description/PC.html' %}
+
+{% endif %}

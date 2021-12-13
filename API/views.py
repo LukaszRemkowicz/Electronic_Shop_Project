@@ -15,12 +15,10 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from django.contrib import messages
 from django.forms.models import model_to_dict
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.contrib.auth import get_user_model
-from Articles.models import ArticleComment, LandingPageArticles
-from ProductApp.models import MainProductDatabase
-from Profile.models import Profile
 
+from Profile.models import Profile
 from .serializers import AuthTokenSerializer, BlogArticlesSerializer, GetQuantitySerializer, NewsletterSerializer, ProductSerializer, ProfileSerializer, UserSerializer
 from ShoppingCardApp import utils
 from ShoppingCardApp import models as shopping_cart
@@ -99,8 +97,10 @@ class FinishOrderView(APIView):
 
         if request.user.is_authenticated:
             customer = request.user.customer
-            order, created = shopping_cart.Order.objects.get_or_create(customer=customer, complete=False)
-
+            try:
+                order, created = shopping_cart.Order.objects.get_or_create(customer=customer, transaction_status=False)
+            except MultipleObjectsReturned:
+                order = shopping_cart.Order.objects.filter(customer=customer, transaction_status=False).order_by('-date_order')[0]
         else:
             customer, order = utils.complete_unauthorised_user_order(request, data)
 
@@ -111,14 +111,30 @@ class FinishOrderView(APIView):
         order.transaction_id = transaction_id
 
         if total == float(order.get_cart_total):
-            order.complete = True
+            order.transaction_status = True
+            order.transaction_finished = datetime.datetime.now()
         order.save()
 
         products =shopping_cart.OrderItem.objects.filter(order=order)
         for item in products:
-            if order.complete:
-                item.product.bought_num += item.quantity
-            item.product.pieces -= item.quantity
+
+
+            if item.quantity > item.product.pieces:
+                if order.transaction_status:
+                    item.bought = item.product.pieces
+                    item.product.bought_num += item.product.pieces
+                    item.save()
+                item.product.pieces -=  item.product.pieces
+
+            else:
+                if order.transaction_status:
+                    item.bought = item.quantity
+                    item.product.bought_num += item.quantity
+                item.product.pieces -= item.quantity
+                item.status = 'Collected'
+                item.save()
+
+            # item.product.pieces -= item.quantity
             item.product.save()
 
         shopping_cart.ShippingAddress.objects.create(
@@ -157,9 +173,13 @@ class UpdateItemView(APIView):
             customer.save()
 
         product = product_app.MainProductDatabase.objects.get(id=product_id)
-        order = shopping_cart.Order.objects.filter(customer=customer, complete=False)
+        order = shopping_cart.Order.objects.filter(customer=customer, transaction_status=False)
         print(order)
-        order, created = shopping_cart.Order.objects.get_or_create(customer=customer, complete=False)
+        try:
+            order, created = shopping_cart.Order.objects.get_or_create(customer=customer, transaction_status=False)
+        except MultipleObjectsReturned:
+            order = order.order_by('-date_order')[0]
+
         orderItem, created = shopping_cart.OrderItem.objects.get_or_create(order=order, product=product)
 
         if action == 'add':
@@ -340,6 +360,10 @@ class ProductView(generics.RetrieveUpdateAPIView):
                 gettattr.add(user)
             elif field == 'likes' and value == 'remove':
                 gettattr.remove(user)
+            else:
+                # gettattr = value
+                setattr(product, field, value)
+                product.save()
         serializer_class = ProductSerializer(instance=product)
 
         return Response(serializer_class.data)
@@ -374,11 +398,11 @@ class OrderProductQuantity(generics.ListAPIView):
         id = kwargs['product_id']
 
         try:
-            product_item = shopping_cart.OrderItem.objects.filter(product__id=id, order__complete=False)[0]
+            product_item = shopping_cart.OrderItem.objects.filter(product__id=id, order__transaction_status=False)[0]
             product_item = product_item.quantity
         except IndexError:
             product_item = ''
 
-        product_stock = MainProductDatabase.objects.get(id=id).pieces
+        product_stock = product_app.MainProductDatabase.objects.get(id=id).pieces
 
         return Response({'order_quantity': product_item, 'product_stock': product_stock})

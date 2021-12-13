@@ -5,12 +5,13 @@ from django.shortcuts import render
 from django.views.generic import ListView, CreateView
 
 from ProductApp.utils import paginate_view
+from Landingpage.utils.url_path import get_url_path
 from . import models
 from . import forms
 
 
 class LandingArticles(CreateView):
-    template_name = 'blog.html'
+    template_name = 'Articles/blog.html'
     model = models.LandingPageArticles
     form_class = forms.ArticleComents
 
@@ -19,6 +20,9 @@ class LandingArticles(CreateView):
         article_id = self.kwargs['article_id']
         article = models.LandingPageArticles.objects.get(id=article_id)
         comments = models.ArticleComment.objects.filter(article__id=article_id)
+
+        context['url_last'], context['url_path'] = get_url_path(self.request)
+        print(context['url_last'])
 
         context['comments_number'] = len(comments)
         context['article'] = article

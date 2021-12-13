@@ -53,14 +53,16 @@ const formElement = function(id, parentId){
 
 /** Add bootstrap alert */
 function showAlert(data, successOrNot, text){
-    let showCase = document.querySelector('.another-navbar')
+    let showCase = document.querySelector('.url-path')
     showCase.insertAdjacentHTML('afterend',
     `
+    <div class='container text-left'>
     <div class="alerts alert-${successOrNot} col-lg-offset-4 alert-dismissable w-100" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
         <p class='mb-0'>${text}</p>
+    </div>
     </div>`
     );
 }

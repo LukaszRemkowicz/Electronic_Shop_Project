@@ -1,10 +1,11 @@
 let getHour = document.querySelector('.time-hour');
 let getMinutes = document.querySelector('.time-minutes');
 let getSeconds = document.querySelector('.time-seconds');
+const getProductId = document.querySelector('.sold-left .update-cart').dataset.product
 
-countDown();
+countDownLandingPage();
 
-function countDown(){
+function countDownLandingPage(){
     const promoDate = document.querySelector('.hour').dataset.promotime
 
     const oldDate = new Date(promoDate);
@@ -25,10 +26,11 @@ function countDown(){
 
     if(timeHours <= 0 && timeMinutes <= 0 && timeSeconds <= 0){
         try{
-            clearInterval(newInterval);
+            clearInterval(newIntervalLandingpage);
         } catch (e){
             console.log(e);
         }
+        try{
         const buyBtn = document.querySelector('.sold-left .button');
         buyBtn.innerHTML = '';
 
@@ -49,15 +51,34 @@ function countDown(){
         getHour.innerHTML = `00`;
         getMinutes.innerHTML = `00`;
         getSeconds.innerHTML =`00`;
+        } catch (e){
+            console.log(e);
+        }
+
+        fetch(`/api/product/${getProductId}/`, {
+            method: 'PATCH', 
+            headers: {
+                'Content-type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify({
+                "user_id": 1,
+                "fields": {
+                    "product_of_the_day": false
+                }
+            })
+        })
 
     } else{
         // console.log(timeSeconds, timeMinutes, timeHours);
+        try{
         getHour.innerHTML = `${timeHours.toString().length >= 2 ? timeHours : "0"+timeHours}`;
         getMinutes.innerHTML = `${timeMinutes.toString().length >= 2 ? timeMinutes : "0"+timeMinutes}`;
         getSeconds.innerHTML = `${timeSeconds.toString().length >= 2 ? timeSeconds : "0"+timeSeconds}`;
+        } catch (e){
+            console.log(e);
+        }
     }
-
-    
 }
 
 function resetOfferDate() {
@@ -66,4 +87,4 @@ function resetOfferDate() {
     return futureDate;
 }
 
-let newInterval = setInterval(countDown, 1000);
+let newIntervalLandingpage = setInterval(countDownLandingPage, 1000);

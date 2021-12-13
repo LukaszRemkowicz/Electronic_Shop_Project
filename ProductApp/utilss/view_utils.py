@@ -286,6 +286,20 @@ def filter_motherboard_products(request: HttpRequest) -> QuerySet:
         try:
             if key == 'stars':
                 products = filter_by_stars(products, value, Motherboard.objects.all())
+            elif key == 'raid_controler' and value != 'No raid':
+
+                new_val = value.split('Raids:')[1].split(', ')
+                new_arr = []
+                for num, el in enumerate(new_val):
+                    number = int(el.replace(' ', ''))
+                    if num + 1 < len(new_val):
+                        new_str = f'RAID {number}\n'
+                    else:
+                        new_str = f'RAID {number}'
+                    new_arr.append(new_str)
+
+                products = filter[key](' '.join(new_arr), products)
+
             else:
                 products = filter[key](value, products)
         except (FieldError, ObjectDoesNotExist, KeyError, FieldDoesNotExist) as e:
@@ -449,11 +463,12 @@ def filter_phones_products(request: HttpRequest) -> QuerySet:
             if key == 'stars':
                 products = filter_by_stars(products, value, Phones.objects.all())
             elif key == 'diagonal':
-                if value == '70\' and more':
-                    products = products.filter(diagonal__gt=70)
-                else:
-                    value = value.replace('\'', '').replace(' ', '').split('-')
-                    products = products.filter(Q(screen_diagonal__lt=value[1]), Q(screen_diagonal__gt=value[0]))
+                value = value.replace('\'', '').replace(' ', '').split('-')
+                products = products.filter(Q(screen_diagonal__lte=value[1]), Q(screen_diagonal__gte=value[0]))
+            elif key == 'waterproof' and value == 'Yes':
+                products = products.filter(waterproof=True)
+            elif key == 'waterproof' and value == 'No':
+                products = products.filter(waterproof=False)
             else:
                 products = filter[key](value, products)
         except (FieldError, ObjectDoesNotExist, KeyError, FieldDoesNotExist) as e:
@@ -484,6 +499,28 @@ def filter_accesories_products(request: HttpRequest) -> QuerySet:
 
     return products
 
+def get_all(request: HttpRequest) -> QuerySet:
+
+    products = MainProductDatabase.objects.all()
+    filter = {
+        'producent': lambda x, products: products.filter(producent=x),
+        'cattegory': lambda x, products: products.filter(cattegory=x),
+    }
+
+    url_queryset = return_url_params(request)
+
+    for key, value in url_queryset.items():
+        try:
+            if key == 'stars':
+                products = filter_by_stars(products, value, products)
+            else:
+                products = filter[key](value, products)
+        except (FieldError, ObjectDoesNotExist, KeyError, FieldDoesNotExist) as e:
+            print('Error in Tv function', e)
+
+    return products
+
+
 
 def get_similar_products_data(request: HttpRequest):
     ids = json.loads(request.GET.get('ids'))
@@ -498,7 +535,7 @@ def change_product_pieces(request, product):
 
         customer = Customer.objects.get(user=request.user)
         try:
-            order = Order.objects.get(customer=customer, complete=False)
+            order = Order.objects.get(customer=customer, transaction_status=False)
             order_item = OrderItem.objects.get(order=order, product__ean=product.ean)
             pieces = product.pieces - order_item.quantity
 

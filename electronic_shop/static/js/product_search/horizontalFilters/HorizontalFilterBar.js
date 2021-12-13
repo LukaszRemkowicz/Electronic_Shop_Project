@@ -1,4 +1,4 @@
-const tvFilters = document.querySelectorAll('.horizontal-filters .tick span');
+const queryFilters = document.querySelectorAll('.horizontal-filters .tick span');
 const producentList = document.querySelectorAll('.producent-label span');
 const rating = document.querySelectorAll('.rating-stars .tick .check');
 
@@ -14,14 +14,15 @@ function deleteUrlParam(element){
 function checkClicked(){
     urlSearchParams = new URLSearchParams(window.location.search);
     params = Object.fromEntries(urlSearchParams.entries());
+    console.log('paramyyyy', params)
     for(let [param, value] of Object.entries(params)){
-        // console.log(param, value);
+        console.log(param, value);
         try{
             let catchElement = document.querySelector(`[data-filter="${param}=${value}"]`);
             catchElement.firstElementChild.classList.add('newClass');
             catchElement.style.backgroundColor = '#ff503c';
         } catch(e){
-            // console.log(e);
+            console.log(e);
         }
     }
 }
@@ -60,9 +61,9 @@ function removeSelectedBoxed(element, filters){
 }
 
 
-tvFilters.forEach(element => {
+queryFilters.forEach(element => {
     element.addEventListener('click', () =>{
-        removeSelectedBoxed(element, tvFilters)
+        removeSelectedBoxed(element, queryFilters)
         // const filter = element.dataset.filter.split('=');
         // if(element.firstElementChild.classList.contains('newClass')){
         //     element.firstElementChild.classList.remove('newClass');
@@ -73,7 +74,7 @@ tvFilters.forEach(element => {
 
         // }else{
         //     changeUrls(filter[0], filter[1]);
-        //     addCheckBoxes(element, tvFilters)
+        //     addCheckBoxes(element, queryFilters)
         // }
 
     })
