@@ -18,9 +18,9 @@ def create_customer(user: User) -> Customer:
     return Customer.objects.create(user=user, email=user.email)
 
 class TestShoppingCartViews(TestCase):
-    
+
     def setUp(self) -> None:
-        
+
         self.client = Client()
         self.product_data={
                 'name': 'Iphone 10',
@@ -52,7 +52,7 @@ class TestShoppingCartViews(TestCase):
                 'weight': '500g',
                 'cattegory': 'Monitor'
             }
-        
+
         self.product_monitor = {
             'name':'LG',
             'model': 'Samsung',
@@ -73,41 +73,41 @@ class TestShoppingCartViews(TestCase):
             'deep' : '10',
             'weight' : '20kg',
         }
-        
+
         self.payload = {
             'username': 'Test',
             'password': 'TestingFunc123',
             'email': 'test123@test.com',
-        }  
+        }
         self.data = {
             'date_order': '2021-07-04 14:30:59',
             'transaction_id': '12A',
         }
-    
+
     def test_address_checkout(self) -> None:
         """ testing address checkout endpoint """
-        
+
         url = reverse('summary-cart')
-        
+
         response = self.client.get(url)
-        
+
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'Shoppingcart/address-checkout.html')
-    
-    
+
+
     def test_check_if_cart_get_templete(self) -> None:
         """ testing cart endpoint """
-        
+
         url = reverse('shopping-cart')
-        
+
         response = self.client.get(url)
-        
+
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'Shoppingcart/cart.html')
-        
+
     def test_update_item_api(self) -> None:
         """ check if user can add item to the basket """
-        
+
         url = reverse('api:update_item')
 
         user = create_user(**self.payload)
@@ -117,31 +117,31 @@ class TestShoppingCartViews(TestCase):
         product_main = MainProductDatabase.objects.get(ean=product.ean)
         order = Order.objects.create(customer=customer, date_order=self.data['date_order'], transaction_id='11')
         order_item = OrderItem.objects.create(order=order, product=product_main, quantity=3, date_ordered=self.data['date_order'])
-         
+
         body = {
             'productId': product.id,
             'action': 'add',
             'amount': 1
         }
-        
+
         """ add 5 items """
-        
+
         for num_of_iteration in range(1,6):
-            
-            order_item_testing = OrderItem.objects.get(order=order)       
-            response = self.client.post(url, 
-                                        json.dumps(body), 
+
+            order_item_testing = OrderItem.objects.get(order=order)
+            response = self.client.post(url,
+                                        json.dumps(body),
                                         content_type="application/json")
-    
+
             self.assertEqual(response.status_code, 200)
             order_item_testing = OrderItem.objects.get(order=order)
-        
+
             self.assertEqual(order_item.quantity + num_of_iteration, order_item_testing.quantity)
- 
+
 
     def test_substract_item_api(self) -> None:
         """ check if user can substract item from the basket """
-        
+
         url = reverse('api:update_item')
 
         user = create_user(**self.payload)
@@ -151,42 +151,42 @@ class TestShoppingCartViews(TestCase):
         product_main = MainProductDatabase.objects.get(ean=product.ean)
         order = Order.objects.create(customer=customer, date_order=self.data['date_order'], transaction_id='11')
         order_item = OrderItem.objects.create(order=order, product=product_main, quantity=2, date_ordered=self.data['date_order'])
-        
+
         body = {
             'productId': product.id,
             'action': 'remove',
             'amount': 1
         }
-        
+
         response = self.client.post(url, json.dumps(body), content_type="application/json")
         self.assertEqual(response.status_code, 200)
-        
+
         order_item_testing = OrderItem.objects.get(order=order)
-        
+
         self.assertEqual(order_item.quantity - 1, order_item_testing.quantity)
-        
+
         """ delete order_item """
-        
+
         response = self.client.post(url, json.dumps(body), content_type="application/json")
         order_item_testing = OrderItem.objects.filter(order=order).exists()
-        
+
         self.assertNotEqual(order_item_testing, True)
 
 
     def test_order_complete_API(self) -> None:
         """ check complete order """
-        
+
         url = reverse('api:order-finished')
-        
+
         user = create_user(**self.payload)
         login = self.client.login(**self.payload)
-        
+
         customer = create_customer(user)
         product = Phones.objects.create(**self.product_data)
         product_main = MainProductDatabase.objects.get(ean=product.ean)
         order = Order.objects.create(customer=customer, date_order=self.data['date_order'])
         order_item = OrderItem.objects.create(order=order, product=product_main, quantity=2, date_ordered=self.data['date_order'])
-                
+
         body = {
             'price': float(order.get_cart_total),
             'payment': 'paypal',
@@ -202,8 +202,7 @@ class TestShoppingCartViews(TestCase):
 
         shipping = ShippingAddress.objects.get(order=order)
         order = Order.objects.get(customer=customer)
-        
+
         self.assertEqual(response.status_code, 200)
         self.assertEqual(order.complete, True)
         self.assertEqual(shipping.city, body['customerCity'])
-        

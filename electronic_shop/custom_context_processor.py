@@ -23,14 +23,13 @@ def login_form_content(request):
             order = ''
 
         try:
-
             likes = len(MainProductDatabase.objects.filter(likes=request.user))
         except:
             likes = ''
 
     else:
         _, order, _ = order_cart(request)
-
+        likes = ''
 
     product_of_the_day = MainProductDatabase.objects.filter(product_of_the_day=True).order_by('-product_of_the_day_added')
 
@@ -38,11 +37,6 @@ def login_form_content(request):
         product_of_the_day = product_of_the_day[0]
         product_of_the_day.product_of_the_day_added = timezone.template_localtime(product_of_the_day.product_of_the_day_added)
         product_of_the_day.save()
-    
-    print('*'*300)
-    print('product_of_the_day', product_of_the_day)
-
-    print('likes user', likes)
 
     return {
             'login_form': form,

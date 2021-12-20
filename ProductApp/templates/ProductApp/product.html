@@ -12,10 +12,10 @@
 
     <div class=" m-auto d-flex justify-content-between small-container" >
 
-        <div class="buys flex-column sticky-top align-items-start my-3 buy-section-hide " >
+        <div class="buys flex-column sticky-top align-items-start buy-section-hide " >
             <!-- id="fixed" -->
 
-            <div class="buys-container pt-4 pb-3 bg-white box-shadow pl-5 pr-5">
+            <div class="buys-container pt-4 pb-3 mt-4 bg-white box-shadow pl-5 pr-5">
 
                 <div class="">
 
@@ -70,7 +70,7 @@
             {% include 'messages.html' %}
             <section id="product-section">
 
-                <div class=" d-block mt-5 product-sect">
+                <div class=" d-block product-sect">
 
                     <div class="small-container mx-0">
 
@@ -485,8 +485,9 @@
 
                             <div class="d-flex mx-5 mt-3 border-bottom review-container py-2" id="reviews">
                                 <div class="review pr-5">
-                                    <i class="fas fa-user font-brown fa-2x"></i>
-                                    <p>{{ review.user.username }}</p>
+                                    {% comment %} <i class="fas fa-user font-brown fa-2x"></i> {% endcomment %}
+                                    <div class="profileImage" data-ownerComment='{{review.user.username}}'></div>
+                                    <p>{{ review.user.username|title }}</p>
                                 </div>
                                 <div class="d-flex flex-column ml-4">
                                     <div class="text-left d-flex">
@@ -506,7 +507,7 @@
                                         <p class="ml-2">{{ review.get_time }}</p>
                                     </div>
                                     <div class="user-review text-left">
-                                        <p>{{ review.review|linebreaksbr }}</p>
+                                        <p>{{ review.review|linebreaksbr|capfirst }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -547,7 +548,8 @@
                                     <form method="POST" class='question-form' data-productid='{{ product|get_main_product_id }}'>
                                         {% csrf_token %}
                                         <div class="form-group">
-                                            <textarea class="form-control" id="question-form" rows="3"></textarea>
+                                            <input type="text" class='form-control mb-1' placeholder='Name..'>
+                                            <textarea class="form-control" id="question-form" rows="3" placeholder='Write your question here..'></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-brown">Submit</button>
                                     </form>
@@ -569,15 +571,16 @@
 
                         <div class="d-flex mx-5 mt-3 border-bottom user-questions py-2">
                             <div class="review pr-5">
-                                <i class="fas fa-user font-brown fa-2x"></i>
-                                <p>{{question.user.username}}</p>
+                                {% comment %} <i class="fas fa-user font-brown fa-2x"></i> {% endcomment %}
+                                <div class="profileImage" data-ownerComment='{{question.name}}'></div>
+                                <p>{{question.name|title}}</p>
                             </div>
                             <div class="d-flex flex-column ml-4">
                                 <div class="text-left d-flex">
                                     <p class="ml-2 text-left">{{ question.get_time }}</p>
                                 </div>
                                 <div class="user-question text-left">
-                                    <p class="text-left pl-2">{{ question.question }}</p>
+                                    <p class="text-left pl-2">{{ question.question|capfirst }}</p>
                                     {% if question.employer_reply %}
                                         <div class="bg-light-grey border-rounded py-2 mb-3 ml-5 px-2 text-left employer-reply">
                                             <p class='p-0 m-0'>{{ question.employer_reply }}</p>

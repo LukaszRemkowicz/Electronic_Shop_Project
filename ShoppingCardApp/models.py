@@ -1,10 +1,10 @@
+from django.conf import settings
 from django.db import models
-# from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 
 from ProductApp.models import MainProductDatabase as Product
 
-User = get_user_model()
+User = settings.AUTH_USER_MODEL
 
 CHOICES = [
         ("Sent", "Sent"),
@@ -27,7 +27,7 @@ class Order(models.Model):
     complete = models.CharField(max_length=200, choices=CHOICES, default='Received')
     transaction_id = models.CharField(max_length=200, blank=True, default='')
     transaction_status = models.BooleanField(default=False)
-    transaction_finished = models.DateTimeField(blank=True)
+    transaction_finished = models.DateTimeField(blank=True, null=True)
 
     def __str__(self) -> str:
         return str(self.id)
@@ -67,10 +67,16 @@ class OrderItem(models.Model):
     @property
     def get_total(self) -> float:
 
-        try:
-            total = self.product.price * self.quantity
-        except TypeError:
-            total = 0
+        if self.product.promotion:
+            try:
+                total = self.product.promotion * self.quantity
+            except TypeError:
+                total = 0
+        else:
+            try:
+                total = self.product.price * self.quantity
+            except TypeError:
+                total = 0
 
         return total
 

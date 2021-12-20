@@ -1,11 +1,11 @@
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import User
-
 
 from ProductApp.models import MainProductDatabase
 from ShoppingCardApp.models import Order
 
+
+User = settings.AUTH_USER_MODEL
 
 
 class Complaint(models.Model):

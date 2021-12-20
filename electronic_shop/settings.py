@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'Profile.apps.ProfileConfig',
+    # 'Profile',
     'ProductApp.apps.ProductappConfig',
     'AddressBookApp.apps.AddressbookappConfig',
     'OrdersApp.apps.OrdersappConfig',
@@ -173,9 +174,8 @@ LOGIN_URL = 'landing-page'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# AUTH_USER_MODE = 'core.User'
-AUTH_USER_MODEL = 'auth.User'
-# AUTH_USER_MODEL = 'core.User'
+# AUTH_USER_MODEL = 'auth.User'
+AUTH_USER_MODEL = 'Profile.User'
 
 
 REST_FRAMEWORK = {

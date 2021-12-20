@@ -13,6 +13,7 @@ from django.utils import timezone
 from Articles.models import LandingPageArticles
 from ProductApp.models import MainProductDatabase as Products
 from Profile.forms import CustomLoginForm
+from ProductApp.utilss.view_utils import change_product_pieces
 from .models import ContentBase
 
 CATTEGORIES = ["Laptops", "Phones", "PC", "Monitors","Accesories for laptops", "SSD",
@@ -27,9 +28,9 @@ class LandingPage(FormView):
     success_url = reverse_lazy('account')
 
     def form_valid(self, form):
-        username = self.request.POST.get('username')
+        email = self.request.POST.get('email')
         password = self.request.POST.get('password')
-        user = authenticate(self.request, username=username, password=password)
+        user = authenticate(self.request, email=email, password=password)
 
         if user is not None:
             login(self.request, user)
@@ -56,14 +57,22 @@ class LandingPage(FormView):
             product_of_the_day.product_of_the_day_added = timezone.template_localtime(product_of_the_day.product_of_the_day_added)
             product_of_the_day.save()
         except IndexError:
+            product_of_the_day = ''
+            pass
+
+        if product_of_the_day:
+
             date = timezone.now() - datetime.timedelta(days=7)
             product_of_the_day = list(Products.objects.filter(product_of_the_day_added__gte=date))[-1]
             product_of_the_day.product_of_the_day_added = timezone.template_localtime(product_of_the_day.product_of_the_day_added)
             product_of_the_day.save()
-            
-        print(product_of_the_day.__dict__)
+
+        promotion_pieces = {product:change_product_pieces(self.request, product)[0] for product in selected}
+        print('*'*100)
+        print('promotion pieces', promotion_pieces)
 
         context['product_of_the_day'] = product_of_the_day
+        context['promotion_pieces'] = promotion_pieces
         context['selected'] = selected
         context['articles'] = articles
         context['cattegories'] = cattegories

@@ -517,6 +517,8 @@ def get_all(request: HttpRequest) -> QuerySet:
                 products = filter[key](value, products)
         except (FieldError, ObjectDoesNotExist, KeyError, FieldDoesNotExist) as e:
             print('Error in Tv function', e)
+            
+    
 
     return products
 
@@ -533,8 +535,8 @@ def get_similar_products_data(request: HttpRequest):
 def change_product_pieces(request, product):
     if request.user.is_authenticated:
 
-        customer = Customer.objects.get(user=request.user)
         try:
+            customer = Customer.objects.get(user=request.user)
             order = Order.objects.get(customer=customer, transaction_status=False)
             order_item = OrderItem.objects.get(order=order, product__ean=product.ean)
             pieces = product.pieces - order_item.quantity

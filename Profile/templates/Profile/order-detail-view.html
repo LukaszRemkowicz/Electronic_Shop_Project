@@ -21,7 +21,7 @@
               <tr>
                   <th scope="row"><a href="{% url 'product_page' item.product.cattegory item.product|get_main_product_id %}" class="d-block">{{item.product.name|truncatechars:30}}</a></th>
                   <td>{{item.quantity}}</td>
-                  <td>{{item.product.price}}</td>
+                  <td>{% if item.product.promotion %}{{item.product.promotion}}{% else %}{{item.product.price}}{% endif %} </td>
                   <td>{{item.get_total}} $</td>
                   <td><button class="no-border border-rounded p-2">{{item.status}} ({{item.bought}}/{{item.quantity}})</button></td>
               </tr>

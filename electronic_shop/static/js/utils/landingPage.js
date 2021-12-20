@@ -1,4 +1,6 @@
 function createSoldOutButton(element, text){
+    console.log('jesterm w finkcji butona');
+    console.log(element);
     element.innerHTML = '';
 
     const newBtn = document.createElement('button');
@@ -14,4 +16,5 @@ function createSoldOutButton(element, text){
 
     element.appendChild(newBtn);
     element.style.cursor = 'default';
+    element.classList.remove('d-none')
 }

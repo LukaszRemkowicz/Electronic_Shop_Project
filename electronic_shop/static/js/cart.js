@@ -2,7 +2,6 @@ var updateCart = document.querySelectorAll('.update-cart');
 var addButton = document.querySelector('.basket');
 let getProductAmount = document.querySelector('.amount');
 
-
 cartTotal = 0;
 
 let selected;
@@ -10,7 +9,6 @@ let selected;
 if (getProductAmount != null){
     getProductAmount.addEventListener('change', function(){
         selected = this.value
-        console.log(selected)
     })
 }
 
@@ -21,7 +19,6 @@ function changeAddButton(pieces, element){
             element.classList.remove('d-block');
             element.classList.add('d-none');
             parent = element.parentElement;
-            console.log('parent', parent)
 
             parent.querySelector('.product-not-avaiable').classList.add('d-block');
             parent.querySelector('.product-not-avaiable').classList.remove('d-none')
@@ -47,8 +44,6 @@ function changeAddButton(pieces, element){
 
 function updateCartFunc(element, action){
 
-    console.log(element)
-
     if (action !== 'delete' && document.querySelector('.quantity-div') !== null){
 
         let getDiv = document.querySelector(`[data-product="${element.dataset['product']}"]`).parentElement.parentElement
@@ -68,7 +63,6 @@ function updateCartFunc(element, action){
     let navbarPrice = document.querySelector('.price-navbar')
 
     if (totalBasket !== null){
-        console.log('tutaj jestem zimeczku')
         totalBasket.innerHTML = `${JSON.parse(cartTotal).subtotal} $`;
         subtalItems.innerHTML = JSON.parse(cartTotal).totalItems;
 
@@ -76,9 +70,7 @@ function updateCartFunc(element, action){
 
     navbarPrice.innerHTML = `${(+JSON.parse(cartTotal).subtotal).toFixed(2)} $`;
     totalItems.dataset['totalitems'] = JSON.parse(cartTotal).totalItems;
-
 }
-
 
 
 updateCart.forEach(element => {
@@ -94,13 +86,9 @@ updateCart.forEach(element => {
             getProductAmount= 1
         }
 
-        console.log('productId:', productId, 'action:', action, 'ammount', getProductAmount)
-
         if (action === 'delete'){
             document.querySelector(`#product-${productId}`).remove()
         }
-
-        console.log('USER:', user)
 
         if(action != undefined){
             if(user == 'AnonymousUser'){
@@ -150,9 +138,7 @@ function addCookieItem(productId, action, element){
         }
     }
 
-    console.log('Cart: ', cart)
     document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/";
-
 
     const url = '/api/order-cart-unauthorised-user/'
 
@@ -172,11 +158,7 @@ function addCookieItem(productId, action, element){
     })
     .then((data) =>{
 
-        console.log('dta: ', data);
-
         data = JSON.parse(data);
-
-        console.log('dta po parsie: ', data);
 
         cartTotal = {
             'items' : 0,
@@ -210,9 +192,8 @@ function addCookieItem(productId, action, element){
         // });
 
         cartTotal = JSON.stringify(cartTotal);
-
-        console.log(element, action);
         updateCartFunc(element, action);
+
     })
 }
 
@@ -236,7 +217,8 @@ function updateUserOrder(productId, action, getProductAmount, element){
     })
 
     .then((data) =>{
-        console.log('data: ', data);
+
+        console.log(data);
 
         if(JSON.parse(data).totalItems == 0){
             window.location.href = redirectToAccountUrl
@@ -253,7 +235,6 @@ function updateUserOrder(productId, action, getProductAmount, element){
                 getProductAmount.innerHTML = ''
             }
 
-
             if (+JSON.parse(data).pieces === 0){
                 try{
                     const newOption = document.createElement('option');
@@ -262,10 +243,9 @@ function updateUserOrder(productId, action, getProductAmount, element){
                     getProductAmount = document.querySelector('.amount')
                     getProductAmount.append(newOption);
 
-                } catch {
-                    console.log('')
+                } catch (e){
+                    console.log(e)
                 }
-
             }
 
             if(getPieces){
@@ -279,11 +259,28 @@ function updateUserOrder(productId, action, getProductAmount, element){
             }
         }
 
+        /** If there is "Buy now" button on website, redirect to cart page */
         updateCartFunc(element, action);
         const buyNow = document.querySelector('.buyNow');
         if (buyNow && element == buyNow){
             window.location.href = '/cart/'
-        }
+        };
+
+        /** Check if user is on summary cart page. If true then control +/- icons */
+        const cartSummary = document.querySelectorAll('.quantity-div');
+
+        cartSummary.forEach(element =>{
+
+            if(JSON.parse(data).pieces <= 0){
+                element.querySelector('.cartPiecesPlus').classList.add('d-none');
+            } else if(JSON.parse(data).pieces != 0 && JSON.parse(data).items != 0){
+                element.querySelector('.cartPiecesPlus').classList.remove('d-none');
+                element.querySelector('.cartPiecesMinus').classList.remove('d-none');
+            } else if(JSON.parse(data).items <= 0){
+                element.querySelector('.cartPiecesMinus').classList.add('d-none');
+                window.location.reload();
+            }
+        })
     })
 }
 

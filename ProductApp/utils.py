@@ -336,37 +336,39 @@ def find_new_product(product_items_list: List,
 
 def get_product(model: str, instance: Any) -> models.MainProductDatabase:
     """ Help function for signals. Get product with specific model """
+    print('jestem w get product')
+    print(model, type(instance))
 
     help_dict = {
         'phones': lambda instance: models.MainProductDatabase.objects.get(
             phones_product_data=instance).phones_product_data,
-        'monitors': models.MainProductDatabase.objects.get(
+        'monitors': lambda instance: models.MainProductDatabase.objects.get(
             monitors_product_data=instance).monitors_product_data,
-        'laptops': models.MainProductDatabase.objects.get(
+        'laptops': lambda instance: models.MainProductDatabase.objects.get(
             laptops_product_data=instance).laptops_product_data,
-        'pc': models.MainProductDatabase.objects.get(
+        'pc': lambda instance: models.MainProductDatabase.objects.get(
             pc_product_data=instance).pc_product_data,
-        'accesoriesforlaptops': models.MainProductDatabase.objects.get(
+        'accesoriesforlaptops': lambda instance: models.MainProductDatabase.objects.get(
             accesories_for_laptop=instance).accesories_for_laptop,
-        'ssd': models.MainProductDatabase.objects.get(
+        'ssd': lambda instance: models.MainProductDatabase.objects.get(
             ssd_product_data=instance).ssd_product_data,
-        'graphs': models.MainProductDatabase.objects.get(
+        'graphs': lambda instance: models.MainProductDatabase.objects.get(
             graph_product_data=instance).graph_product_data,
-        'ram': models.MainProductDatabase.objects.get(
+        'ram': lambda instance: models.MainProductDatabase.objects.get(
             ram_product_data=instance).ram_product_data,
-        'pendrives': models.MainProductDatabase.objects.get(
+        'pendrives': lambda instance: models.MainProductDatabase.objects.get(
             pendrive_product_data=instance).pendrive_product_data,
-        'switches': models.MainProductDatabase.objects.get(
+        'switches': lambda instance: models.MainProductDatabase.objects.get(
             switch_product_data=instance).switch_product_data,
-        'motherboard': models.MainProductDatabase.objects.get(
+        'motherboard': lambda instance: models.MainProductDatabase.objects.get(
             motherboard_product_data=instance).motherboard_product_data,
-        'cpu':models.MainProductDatabase.objects.get(
+        'cpu':lambda instance: models.MainProductDatabase.objects.get(
             cpu_product_data=instance).cpu_product_data,
-        'tv': models.MainProductDatabase.objects.get(
+        'tv': lambda instance: models.MainProductDatabase.objects.get(
             tv_product_data=instance).tv_product_data,
-        'headphones': models.MainProductDatabase.objects.get(
+        'headphones': lambda instance: models.MainProductDatabase.objects.get(
             headphone_product_data=instance).headphone_product_data,
-        'routers': models.MainProductDatabase.objects.get(
+        'routers': lambda instance: models.MainProductDatabase.objects.get(
             router_product_data=instance).router_product_data
     }
 
@@ -445,7 +447,6 @@ def choose_model(model: str, instance) -> models.MainProductDatabase:
     }
 
     try:
-        help_dict[model](instance)
         return help_dict[model](instance)
     except KeyError as e:
         print(e)
@@ -485,6 +486,7 @@ def choose_model(model: str, instance) -> models.MainProductDatabase:
 def try_to_get_product(product: "models.MainProductDatabase", instance: Any) -> "models.MainProductDatabase":
     """ Help function for signals. Try to get specific product from model """
 
+    print(product)
     instance_obj = models.MainProductDatabase.objects.get(ean=product.ean)
 
     check_if_obj_is_instance_of = {

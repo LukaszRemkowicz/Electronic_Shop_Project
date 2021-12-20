@@ -1,6 +1,16 @@
 const reviewForm = document.querySelector('.review-form')
 
 
+setTimeout(() => {
+    console.log('swswsdwd');
+    try{
+        document.querySelector('.alerts').style.display = 'none'
+    } catch(e){
+        console.log(e);
+    }
+}, 10000);
+
+
 function acceptReview(event){
 
     let content = document.querySelector('#opinion-form').value;
@@ -10,7 +20,7 @@ function acceptReview(event){
     event.preventDefault();
 
     const url = '/api/create-review/'
-    
+
     fetch(url, {
         method: 'POST',
         headers: {
@@ -34,6 +44,7 @@ function acceptReview(event){
         console.log(data);
         window.location.reload();
         window.scrollTo(0, 0);
+
     })
 
 }

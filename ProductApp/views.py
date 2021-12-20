@@ -11,7 +11,7 @@ from django.shortcuts import redirect
 
 from ShoppingCardApp.models import Customer, Order, OrderItem
 from Landingpage.utils.url_path import get_url_path
-from .utils import filter_products, sort_by_product_rate, paginate_view, try_to_get_product
+from .utils import filter_products, get_product, sort_by_product_rate, paginate_view, try_to_get_product
 from .utilss.view_utils import *
 from .filters import SnippetFilter
 from ProductApp import models
@@ -189,6 +189,11 @@ class ProductsCart(ListView):
 
         old_products = [try_to_get_product(product, '') for product in old_products]
         producents = models.Inherit.get_producents(old_products)
+        
+        if 'cattegory' not in self.kwargs:
+            products = [try_to_get_product(product, '') for product in products]
+            print(products)
+            product_cattegory = ''
 
         if self.request.GET.get('ids'):
             similar_products = get_similar_products_data(self.request)

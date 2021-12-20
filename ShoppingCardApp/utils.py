@@ -81,6 +81,7 @@ def complete_unauthorised_user_order(request, data):
     customer, created = Customer.objects.get_or_create(email=email)
     customer.name = name
     customer.save()
+    print()
 
     order = Order.objects.create(
         customer = customer,

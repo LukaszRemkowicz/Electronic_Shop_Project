@@ -9,8 +9,9 @@ from rest_framework import serializers
 
 from Articles.models import ArticleComment, LandingPageArticles
 from ProductApp.models import MainProductDatabase
-from Profile.models import Profile
+from Profile.models import User
 from Emails.models import Newsletter
+from ProductApp.models import Phones
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -44,10 +45,10 @@ class UserSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Profile
+        model = User
         fields = "__all__"
 
-    def update(self, instance, validated_data) -> Profile:
+    def update(self, instance, validated_data) -> User:
 
         password = validated_data
         print(password)
@@ -167,3 +168,34 @@ class GetQuantitySerializer(serializers.ModelSerializer):
     class Meta:
         model = MainProductDatabase
         fields = ['id']
+
+
+class CreateProductSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Phones
+        fields = '__all__'
+        
+        
+    # def create(self, validated_data):
+        
+    #     print(validated_data)
+        
+        
+    #     fold = validated_data.cattegory.lower()
+    #     PATH = rf'electronic_shop/static/images/products/{fold}/'
+        
+    #     print(validated_data)
+        
+    #     # itt.main_photo.save(product['main_photo'], File(open(PATH + product['main_photo'], 'rb')))
+    #     # try:
+    #     #     itt.second_photo.save(product['second_photo'], File(open(PATH + product['second_photo'], 'rb')))
+    #     # except:
+    #     #     pass
+    #     # try:
+    #     #     itt.third_photo.save(product['third_photo'], File(open(PATH + product['third_photo'], 'rb')))
+    #     # except:
+    #     #     pass
+        
+        
+    #     return super().create(validated_data)

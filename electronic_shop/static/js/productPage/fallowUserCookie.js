@@ -1,8 +1,8 @@
 recentWatched = JSON.parse(getCookie('recentWatched'));
 
 try{
-    if(recentWatched.indexOf(+productId) == -1){
-        if(recentWatched.length >= 5){
+    if(!recentWatched.includes(+productId)){
+        if(recentWatched.length >= 10){
             recentWatched.pop()
             recentWatched.unshift(+productId)
         }else{

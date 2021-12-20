@@ -5,6 +5,7 @@
 {% block content %}
 
 {% load static %}
+{% load custom_filters %}
 
     <section class="bg-grey align-center mt-5 pb-3">
         <div class="container grid-container showcase">
@@ -68,7 +69,7 @@
 
     <!-- Recent watched -->
 
-    <section class="align-center bg-grey pb-4">
+    <section class="align-center bg-grey pb-4 recentWatched">
         <div class="small-container">
             <div class="boxes-container flex-container flex-column">
                 <h3>Recent Watched</h3>
@@ -81,30 +82,37 @@
 
     <section class="bg-grey">
         <div class="container grid-container offerts">
-            <div class="the-best-of grid-container bg-white">
-
-                {% for product in selected %}
-                    <div class="offert label ">
-                        <a href="{% url 'product_page' product.cattegory product.id %}">
-                            <img src="{{ product.main_photo.url }}" alt="">
-                        </a>
-                        <a href="{% url 'product_page' product.cattegory product.id %}">
-                            <p>{{ product.name|truncatechars:40 }}</p>
-                        </a>
-                        {% if product.promotion %}
-                            <div class="">
-                                <p class="line-through d-inline old-price">{{ product.price }} $</p>
-                                <p class='d-inline new-promotion-price font-red'>{{ product.promotion }} $</p>
+            {% if promotion_pieces %}
+                <div class="the-best-of grid-container bg-white">
+                    {% for product, pieces in promotion_pieces.items %}
+                        <div class="offert label ">
+                            <a href="{% url 'product_page' product.cattegory product.id %}">
+                                <img class='main-pic' src="{{ product.main_photo.url }}" alt="">
+                            </a>
+                            <a href="{% url 'product_page' product.cattegory product.id %}">
+                                <p>{{ product.name|truncatechars:40 }}</p>
+                            </a>
+                            <div class="d-flex mt-4">
+                                <div class="d-flex basket mr-2">
+                                    <button type="button" class="btn-light border-0 text-center update-cart p-1 font-size-1rem product-not-avaiable font-size-1rem align-self-center {% if pieces <= 0%} d-block {% else %} d-none {% endif %}" disabled> Not avaiable </button>
+                                    <a  data-product="{{ product|get_main_product_id }}" data-action="add" type="button" class="add-to-cart btn-red  align-self-center text-center update-cart p-1 font-size-1rem {% if pieces <= 0%} d-none {% else %} d-block {% endif %}">Add to cart </a>
+                                </div>
+                                {% if product.promotion %}
+                                    <div class="d-flex flex-column">
+                                        <p class="line-through d-inline old-price mb-0">{{ product.price }} $</p>
+                                        <p class='d-inline new-promotion-price font-red mb-0'>{{ product.promotion }} $</p>
+                                    </div>
+                                {% else %}
+                                    <p class=' m-auto'>{{ product.price }} $</p>
+                                {% endif %}
                             </div>
-                        {% else %}
-                            <p>{{ product.price }} $</p>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-
-            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
 
             <!-- Product of the day -->
+            {% if product_of_the_day %}
             <div class="offert-of-the-day bg-white bg-red">
                 <h4 class='font-black pt-4 pb-3'>
                     Product of the day
@@ -115,8 +123,12 @@
                             <img class="main-pic" src="{{ product_of_the_day.main_photo.url }}" alt="">
                         </a>
                         <div class="description">
-                            <p class="font-black line-through">{{ product_of_the_day.price }}</p>
-                            <p class="price font-red">{{ product_of_the_day.promotion }}</p>
+                            {% if product_of_the_day.promotion %}
+                                <p class="font-black line-through">{{ product_of_the_day.price }}</p>
+                                <p class="price font-red">{{ product_of_the_day.promotion }}</p>
+                            {% else %}
+                                <p class="font-black">{{ product_of_the_day.price }}</p>
+                            {% endif %}
                             <p class="font-black desc">
                                 <a href="{% url 'product_page' product_of_the_day.cattegory product_of_the_day.id %}">
                                     {{ product_of_the_day.name|truncatechars:50 }}
@@ -126,9 +138,13 @@
                     </div>
                     <div class="sold-left grid-container">
                         <p class="font-red">Sold {{ product_of_the_day|get_promotion_buy_num }} piece{{product_of_the_day|get_promotion_buy_num|pluralize}}</p>
-                        <p class="font-black ">{{ product_of_the_day.pieces }} pieces left</p>
+                        <p class="font-black piecesLeft ">{{ product_of_the_day|check_orders }} pieces left</p>
                         <div class="button add-to-cart update-cart" data-action="add" data-product="{{ product_of_the_day.id }}">
-                            <i class="fas btn-light fa-shopping-cart fa-2x buy" ><span> Basket</span></i>
+                            {% if product_of_the_day|check_orders > 0 %}
+                                <i class="fas btn-light fa-shopping-cart fa-2x buy" ><span> Basket</span></i>
+                            {% else %}
+                                <button class="buy btn-light d-block p-3" style="border: 1px solid rgb(204, 204, 204" disabled><span>Not in stock</span></button>
+                            {% endif %}
                         </div>
                     </div>
 
@@ -146,6 +162,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
 
         </div>
     </section>

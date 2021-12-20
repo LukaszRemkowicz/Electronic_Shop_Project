@@ -27,9 +27,12 @@
                                     <div class="row name-div">{{ item.product.name }}</div>
                                 </a>
                                 <div class="col quantity-div">
-                                    <a href="#" class='update-cart' data-action="remove" data-product='{{ item.product.id }}'>  -  </a>
+
+                                        <a href="#" class='update-cart cartPiecesMinus {% if item.quantity < 0 %} d-none {% endif %}' data-action="remove" data-product='{{ item.product.id }}'>  -  </a>
+
                                     <a href="#" class="border">{{ item.quantity }}</a>
-                                    <a href="#" class='update-cart' data-action="add" data-product='{{ item.product.id }}'>  +  </a>
+                                        <a href="#" class='update-cart cartPiecesPlus {% if item.quantity >= item.product.pieces %} d-none{% endif %}' data-action="add" data-product='{{ item.product.id }}'>  +  </a>
+
                                 </div>
                                 <div class="col price-div ">
                                     <span class='box-shadow'>

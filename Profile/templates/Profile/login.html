@@ -5,57 +5,57 @@
 
 <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-                <div class="line-close" data-dismiss="modal" aria-label="Close">
-                    <div class="line"></div>
-                </div>
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="form-container ">
-                                <div class="inside-container grid-container bg-light-grey border-rounded">
-                                    <div class="sign-in flex-container">
-                                        <h3 class="inline">Sign in to continue</h3>
-                                        <p class="inline">Not a member yet? <a class="btn mt-0 border-0 pl-1 font-red" href="{% url 'register' %}">Register now</a> </p>
-                                        
-                                    </div>
-                                    <form action="" method="post" class="flex-container flex-column">
+    <div class="line-close" data-dismiss="modal" aria-label="Close">
+        <div class="line"></div>
+    </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-container ">
+                    <div class="inside-container grid-container bg-light-grey border-rounded">
+                        <div class="sign-in flex-container">
+                            <h3 class="inline">Sign in to continue</h3>
+                            <p class="inline">Not a member yet? <a class="btn mt-0 border-0 pl-1 font-red" href="{% url 'register' %}">Register now</a> </p>
 
-                                        {% csrf_token %}
-                                        {% load widget_tweaks %}
+                        </div>
+                        <form action="" method="post" class="flex-container flex-column">
 
-                                        {% render_field form.username type="text" autocomplete="username" placeholder="Email or Username" %}
-                                        {% render_field form.password type="password" autocomplete="current-password" placeholder="Password" %} 
-                                        
+                            {% csrf_token %}
+                            {% load widget_tweaks %}
 
-                                        {% comment %} <input type="text" autocomplete="username" placeholder="Email or Username"> {% endcomment %}
-                                        {% comment %} <input type="password" autocomplete="current-password" placeholder="Password"> {% endcomment %}
-                                        <div class="check flex-container">
-                                           {{ keep_me.keep_me_logged }}
-                                            {% comment %} <input type="checkbox" class="checkbox"> {% endcomment %}
-                                            <p class="inline">Keep me loggeed in</p> 
-                                        </div>
-                                        <button type="submit"  class="btn-red">Login Now</button>
-                                        {% comment %} href="{% url 'account' %}" {% endcomment %}
-                                    </form>
-                                    <p><a href="">Forgot your password?</a></p>
-                                    <div class="social-sigin">
-                                        <h2>Or sign in with</h2>
-                
-                                        <div class="social-buttons grid-container">
-                                            <a href=""> <img src="{% static 'images/social-logos/google-icon.svg' %}" alt="">
-                                                Google
-                                            </a>
-                                            <a href=""> <img src="{% static 'images/social-logos/twitter (2).svg' %}" alt="">
-                                                Twitter</a>
-                                            <a href=""> <img src="{% static 'images/social-logos/facebook-3.svg'%} " alt="">
-                                                Facebook</a>
-                                        </div>
-                
-                                    </div>
-                                </div>
+                            {% render_field form.email type="text" autocomplete="email" placeholder="Email.." %}
+                            {% render_field form.password type="password" autocomplete="current-password" placeholder="Password" %}
+
+
+                            {% comment %} <input type="text" autocomplete="username" placeholder="Email or Username"> {% endcomment %}
+                            {% comment %} <input type="password" autocomplete="current-password" placeholder="Password"> {% endcomment %}
+                            <div class="check flex-container">
+                                {{ keep_me.keep_me_logged }}
+                                {% comment %} <input type="checkbox" class="checkbox"> {% endcomment %}
+                                <p class="inline">Keep me loggeed in</p>
+                            </div>
+                            <button type="submit"  class="btn-red">Login Now</button>
+                            {% comment %} href="{% url 'account' %}" {% endcomment %}
+                        </form>
+                        <p><a href="">Forgot your password?</a></p>
+                        <div class="social-sigin">
+                            <h2>Or sign in with</h2>
+
+                            <div class="social-buttons grid-container">
+                                <a href=""> <img src="{% static 'images/social-logos/google-icon.svg' %}" alt="">
+                                    Google
+                                </a>
+                                <a href=""> <img src="{% static 'images/social-logos/twitter (2).svg' %}" alt="">
+                                    Twitter</a>
+                                <a href=""> <img src="{% static 'images/social-logos/facebook-3.svg'%} " alt="">
+                                    Facebook</a>
                             </div>
 
                         </div>
                     </div>
                 </div>
+
             </div>
+        </div>
+    </div>
+</div>

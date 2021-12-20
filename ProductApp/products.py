@@ -26,9 +26,9 @@ iPhone_12_Mini_5G_128GB_Dual_SIM_Blue={
                 'deep': 0.7,
                 'weight': 133,
                 'cattegory': 'Phones',
-                'main_photo': 'Iphone 12 Mini 5G 128GB Blue_1.jpg',
-                'second_photo': 'Iphone 12 Mini 5G 128GB Blue_2.jpg',
-                'third_photo': 'Iphone 12 Mini 5G 128GB Blue_3.jpg',
+                "main_photo": "Iphone 12 Mini 5G 128GB Blue_1.jpg",
+                "second_photo": "Iphone 12 Mini 5G 128GB Blue_2.jpg",
+                "third_photo": "Iphone 12 Mini 5G 128GB Blue_3.jpg",
             }
 
 iPhone_12_Mini_5G_128GB_Dual_SIM_red={

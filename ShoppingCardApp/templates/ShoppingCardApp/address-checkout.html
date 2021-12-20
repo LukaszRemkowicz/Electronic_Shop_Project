@@ -152,7 +152,7 @@
                             <p class='quantity '>{{ item.quantity }} pcs.</p>
                         </div>
                         <div class="col-4 d-flex text-left justify-content-center align-items-center">
-                            <p class='price '> ${{ item.product.price }} </p>
+                            <p class='price '> ${% if item.product.promotion %}{{ item.product.promotion }} {% else %} {{ item.product.price }} {% endif %} </p>
                         </div>
                     </div>
                 {% endfor %}

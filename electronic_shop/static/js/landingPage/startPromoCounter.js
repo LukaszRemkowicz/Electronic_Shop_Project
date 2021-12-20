@@ -30,7 +30,8 @@ function countDown(){
                 body: JSON.stringify({
                     "user_id": 1,
                     "fields": {
-                        "product_of_the_day": false
+                        "product_of_the_day": false,
+                        "promotion": null
                     }
                 })
             })

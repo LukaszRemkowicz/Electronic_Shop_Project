@@ -1,6 +1,7 @@
 from django import template
 from django.db.models.query import QuerySet
 from django.http.request import HttpRequest
+from django.core.exceptions import ObjectDoesNotExist
 from datetime import datetime
 
 from ShoppingCardApp.models import OrderItem
@@ -31,10 +32,19 @@ def format_datetime(value):
 
 @register.filter
 def get_promotion_buy_num(product):
-    print(product)
     order = OrderItem.objects.filter(order__transaction_status=True, product__ean=product.ean, order__date_order__gte=product.product_of_the_day_added)
-    print(order)
-
 
     return len(order)
+
+
+@register.filter
+def check_orders(product):
+    try:
+        ordet_item_pieces = OrderItem.objects.get(order__transaction_status=False, product=product).quantity
+    except ObjectDoesNotExist:
+       ordet_item_pieces = 0
+
+
+    return product.pieces - ordet_item_pieces
+
 

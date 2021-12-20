@@ -1,21 +1,12 @@
 recentWatched = JSON.parse(getCookie('recentWatched'));
 const recentWatchedBoxes = document.querySelector('.boxes-watched');
 
-recentWatched.forEach(id => {
+let productsWatched = [];
 
-    const url = `/api/product/${id}`
-
-
-    fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-type': 'application/json',
-            'X-CSRFToken': csrftoken,
-        }
-    })
-    .then(response => { return response.json()})
-    .then(data => {
-
+function checkWatched(data){
+    if(productsWatched.length >= recentWatched.length && productsWatched.every(element => element === null)){
+        document.querySelector('.recentWatched').style.display = 'none'
+    } else if(data.main_photo){
         let newDiv = document.createElement('div');
         let newAhref = document.createElement('a');
         newAhref.href = `/products/${data.cattegory}/${data.id}`
@@ -30,7 +21,36 @@ recentWatched.forEach(id => {
         newDiv.appendChild(newAhref);
 
         recentWatchedBoxes.appendChild(newDiv);
-    })
+    }
+}
+
+
+recentWatched.forEach(id => {
+
+    const url = `/api/product/${id}`
+
+    if(id){
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            }
+        })
+        .then(response => { return response.json()})
+        .then(data => {
+
+            if(data.detail != 'Not found.' && data.main_photo){
+                productsWatched.push(data)
+            } else {
+                productsWatched.push(null)
+            }
+
+            checkWatched(data);
+
+        })
+    }
+
 })
 
 

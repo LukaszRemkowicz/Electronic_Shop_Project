@@ -7,18 +7,19 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.urls import resolve
 
 from ProductApp.models import MainProductDatabase
 from .forms import RegisterForm, AcceptTerms, CustomLoginForm
-from .models import Profile
+from .models import User
 from ShoppingCardApp.models import Order, OrderItem
 from Landingpage.utils.url_path import get_url_path
 
 
 class UserAccount(LoginRequiredMixin, FormView):
-    model = Profile
+    model = User
     form_class = CustomLoginForm
     template_name= 'Profile/orders.html'
     redirect_authenticated_user = True
@@ -49,7 +50,6 @@ class DetailOrder(ListView):
         context['order_item'] = items
 
         return context
-
 
 class Register(FormView):
     template_name = 'Profile/register.html'

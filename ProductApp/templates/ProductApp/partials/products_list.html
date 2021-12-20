@@ -119,7 +119,7 @@
                         <div class="pb-3">
                             <h5 class="font-weight-bold">Producents</h5>
                             {% for producent, number in producents.items %}
-                                <form>
+                                <form class='producentFilters'>
                                     <div class="form-inline d-flex align-items-center py-1 justify-content-between">
                                         <label class="tick producent-label">{{producent}}
                                             <input type="checkbox">
@@ -182,7 +182,8 @@
 									<span class="fas fa-star"></span>
 									<input type="checkbox">
 									<span class="check"  data-filter='stars=5'>
-									<div class=""></div></span>
+										<div class=""></div>
+									</span>
 								</label>
 							</div>
 
@@ -195,7 +196,8 @@
 									<span class="far fa-star px-1 text-muted"></span>
 									<input type="checkbox" >
 									<span class="check" data-filter='stars=4'>
-									<div class=""></div></span>
+										<div class=""></div>
+									</span>
 								</label>
 							</div>
 
@@ -208,7 +210,8 @@
 									<span class="far fa-star px-1 text-muted"></span>
 									<input type="checkbox" >
 									<span class="check" data-filter='stars=3'>
-									<div class=""></div></span>
+										<div class=""></div>
+									</span>
 								</label>
 							</div>
 
@@ -221,7 +224,8 @@
 									<span class="far fa-star px-1 text-muted"></span>
 									<input type="checkbox" >
 									<span class="check" data-filter='stars=2'>
-									<div class=""></div></span>
+										<div class=""></div>
+									</span>
 								</label>
 							</div>
 
@@ -234,7 +238,8 @@
 									<span class="far fa-star px-1 text-muted"></span>
 									<input type="checkbox" >
 									<span class="check" data-filter='stars=1'>
-									<div class=""></div></span>
+										<div class=""></div>
+									</span>
 								</label>
 							</div>
 
@@ -390,15 +395,25 @@
 					<div class="content_detail__pagination cdp" actpage="1">
 
 						{% if products.has_previous %}
-							<a class="cdp_i page-link toogle-view" href="{% url 'products_cart' cattegory %}?page={{products.previous_page_number}}{% if filter_option %}&filter={{filter_option}}{% endif %}">prev</a>
+							<a class="cdp_i page-link toogle-view"
+								{% if cattegory %}
+									href="{% url 'products_cart' cattegory %}?page={{products.previous_page_number}}{% if filter_option %}&filter={{filter_option}}{% endif %}"
+								{% else %}
+									href="{% url 'all-products' %}?page={{products.previous_page_number}}{% if filter_option %}&filter={{filter_option}}{% endif %}"
+								{% endif %}
+							>prev</a>
 						{% endif %}
 
 						{% if 1 not in custom_range %}
 
-							<a href="{% url 'products_cart' cattegory %}?page=1
-								{% if filter_option %}&filter={{filter_option}}{% endif %}" class="cdp_i page-item
-								{% if page == products.number %}active btn-red
-								{% endif %} toogle-view">1</a>
+							<a
+								{% if cattegory %}
+									href="{% url 'products_cart' cattegory %}?page=1{% if filter_option %}&filter={{filter_option}}{% endif %}"
+								{% else %}
+									href="{% url 'all-products' %}?page=1{% if filter_option %}&filter={{filter_option}}{% endif %}"
+								{% endif %}
+									class="cdp_i page-item {% if page == products.number %}active btn-red {% endif %} toogle-view">1
+							</a>
 							<a class="cdp_i toogle-view">..</a>
 
 						{% endif %}
@@ -406,22 +421,40 @@
 						{% for page in custom_range %}
 							{{page}}
 
-							<a href="{% url 'products_cart' cattegory %}?page={{page}}{% if filter_option %}&filter={{filter_option}}{% endif %}"
-							class="cdp_i page-item toogle-view {% if page == products.number %}active{% endif %}">{{page}}</a>
+							<a
+								{% if cattegory %}
+									href="{% url 'products_cart' cattegory %}?page={{page}}{% if filter_option %}&filter={{filter_option}}{% endif %}"
+								{% else %}
+									href="{% url 'all-products' %}?page={{page}}{% if filter_option %}&filter={{filter_option}}{% endif %}"
+								{% endif %}
+									class="cdp_i page-item toogle-view {% if page == products.number %}active{% endif %}">{{page}}
+							</a>
 
 						{% endfor %}
 
 						{% if products.number not in page_num_range %}
 							<a class="cdp_i toogle-view">..</a>
-							<a class="cdp_i toogle-view" href="{% url 'products_cart' cattegory %}?page={{last_page}}
-							{% if filter_option %}&filter={{filter_option}}
-							{% endif %}">{{last_page}}</a>
+								<a class="cdp_i toogle-view"
+									{% if cattegory %}
+										href="{% url 'products_cart' cattegory %}?page={{last_page}}{% if filter_option %}&filter={{filter_option}}{% endif %}"
+									{% else %}
+										href="{% url 'all-products' %}?page={{last_page}}{% if filter_option %}&filter={{filter_option}}{% endif %}"
+									{% endif %}
+								>{{last_page}}
+							</a>
 						{% endif %}
 
 
 						{% if products.has_next %}
 
-							<a href="{% url 'products_cart' cattegory %}?page={{products.next_page_number}}{% if filter_option %}&filter={{filter_option}}{% endif %}" class="cdp_i page-link toogle-view">next</a>
+							<a
+								{% if cattegory %}
+									href="{% url 'products_cart' cattegory %}?page={{products.next_page_number}}{% if filter_option %}&filter={{filter_option}}{% endif %}"
+								{% else %}
+									href="{% url 'all-products' %}?page={{products.next_page_number}}{% if filter_option %}&filter={{filter_option}}{% endif %}"
+								{% endif %}
+									class="cdp_i page-link toogle-view">next
+							</a>
 
 						{% endif %}
 

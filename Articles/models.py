@@ -55,7 +55,7 @@ class LandingPageArticles(models.Model):
         user_name = self.owner.first_name if self.owner.first_name else ''
         last_name = self.owner.last_name if self.owner.last_name else ''
 
-        owner = f'{user_name} {last_name}' if user_name and last_name else self.owner
+        owner = f'{user_name} {last_name}' if user_name and last_name else 'Unknown'
 
         return f'Posted on {self.posted.strftime("%B")} {self.posted.day}, {self.posted.year} by {owner}'
 

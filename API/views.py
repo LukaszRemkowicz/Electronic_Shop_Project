@@ -1,10 +1,12 @@
 import json
 import datetime
 from math import prod
+import os
 import re
 from decimal import Decimal
 import time
 
+from django.core.files import File
 from django.http.response import JsonResponse
 from django.views import generic
 from rest_framework import serializers, generics, authentication, permissions
@@ -17,9 +19,10 @@ from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
 
-from Profile.models import Profile
-from .serializers import AuthTokenSerializer, BlogArticlesSerializer, GetQuantitySerializer, NewsletterSerializer, ProductSerializer, ProfileSerializer, UserSerializer
+# from Profile.models import Profile
+from .serializers import AuthTokenSerializer, BlogArticlesSerializer, CreateProductSerializer, GetQuantitySerializer, NewsletterSerializer, ProductSerializer, ProfileSerializer, UserSerializer
 from ShoppingCardApp import utils
 from ShoppingCardApp import models as shopping_cart
 from AddressBookApp import models as address
@@ -64,7 +67,7 @@ class ManageProfileView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         """Retrieve and return authentication Profile"""
-        profile = Profile.objects.get(user=self.request.user.id)
+        profile = User.objects.get(user=self.request.user.id)
 
         return profile
 
@@ -183,9 +186,15 @@ class UpdateItemView(APIView):
         orderItem, created = shopping_cart.OrderItem.objects.get_or_create(order=order, product=product)
 
         if action == 'add':
-            orderItem.quantity = (orderItem.quantity + int(amount))
+            if orderItem.quantity + int(amount) >= product.pieces:
+                orderItem.quantity = product.pieces
+            else:
+                orderItem.quantity = (orderItem.quantity + int(amount))
         elif action == 'remove':
-            orderItem.quantity = (orderItem.quantity - int(amount))
+            if orderItem.quantity - int(amount) <= 0:
+                orderItem.quantity = 0
+            else:
+                orderItem.quantity = (orderItem.quantity - int(amount))
         elif action == 'delete':
             orderItem.quantity = 0
 
@@ -264,7 +273,7 @@ class CreateReview(APIView):
                                                             user=request.user,
                                                             stars=stars)
             result = 'Review has been saved'
-            messages.info(request, 'Review has been saved')
+            messages.info(request, 'Review has been sent')
         except:
             result = f'This product have not been bought in order number {order_number}'
             messages.error(request, f'Wrong order number. Review has not been sent')
@@ -283,11 +292,18 @@ class CreateQuestion(APIView):
         data = request.data
 
         content = data['content']
-        product_id = data['productId']
 
-        question = product_app.Questions.objects.create(product_id=int(product_id),
+        product_id = data['productId']
+        name = data['name']
+
+        try:
+            question = product_app.Questions.objects.create(product_id=int(product_id),
                                                         question=content,
-                                                        user=request.user)
+                                                        user=request.user,
+                                                        name=name)
+            messages.info(request, 'Question has been sent')
+        except:
+            messages.error(request, f'Something went wrong. Try again later')
 
         result = {'result' : 'Question sent. Wait for our employer reply'}
         return Response(json.dumps(result))
@@ -341,7 +357,7 @@ class UpdateBlogComment(generics.CreateAPIView):
 class ProductView(generics.RetrieveUpdateAPIView):
 
     serializer_class = ProductSerializer
-    queryset  = product_app.MainProductDatabase.objects.all()
+    queryset  = product_app.MainProductDatabase
 
     def patch(self, request, *args, **kwargs):
         """ Add/remove like attribute for product """
@@ -370,13 +386,12 @@ class ProductView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         """Retrieve and return product"""
-        try:
-            product = self.queryset.get(id=self.kwargs['product_id'])
-        except ObjectDoesNotExist:
-            product = self.queryset[1]
 
-        print(product)
-
+        if self.queryset.objects.all().count() >= 2:
+            try:
+                product = get_object_or_404(self.queryset, pk=self.kwargs['product_id'])
+            except (ObjectDoesNotExist, IndexError):
+                pass
         return product
 
 
@@ -406,3 +421,50 @@ class OrderProductQuantity(generics.ListAPIView):
         product_stock = product_app.MainProductDatabase.objects.get(id=id).pieces
 
         return Response({'order_quantity': product_item, 'product_stock': product_stock})
+
+
+
+class CreateProduct(generics.CreateAPIView):
+
+    serializer_class = CreateProductSerializer
+
+    def post(self, request, *args, **kwargs):
+
+        models = {
+            'phones': lambda **item: product_app.Phones.objects.create(**item),
+            'monitors': lambda **item: product_app.Monitors.objects.create(**item),
+            'laptops': lambda **item: product_app.Laptops.objects.create(**item),
+            'pcs': lambda **item: product_app.Pc.objects.create(**item),
+            'accesories': lambda **item: product_app.AccesoriesForLaptops.objects.create(**item),
+            'ssds': lambda **item: product_app.Ssd.objects.create(**item),
+            'graphs': lambda **item: product_app.Graphs.objects.create(**item),
+            'rams': lambda **item: product_app.Ram.objects.create(**item),
+            'pendrives': lambda **item: product_app.Pendrives.objects.create(**item),
+            'switches': lambda **item: product_app.Switches.objects.create(**item),
+            'motherboards': lambda **item: product_app.Motherboard.objects.create(**item),
+            'cpus': lambda **item: product_app.Cpu.objects.create(**item),
+            'tvs': lambda **item: product_app.Tv.objects.create(**item),
+            'headphones': lambda **item: product_app.Headphones.objects.create(**item),
+            'routers': lambda **item: product_app.Routers.objects.create(**item),
+        }
+
+        fold = request.data
+        PATH = rf'electronic_shop/electronic_shop/static/images/products/{fold["cattegory"].lower()}/'
+
+        PATH = os.path.join(os.getcwd(), PATH).replace("\\","/")
+
+        itt = models[fold["cattegory"].lower()](**fold)
+
+        itt.main_photo.save(fold['main_photo'], File(open(PATH + fold['main_photo'], 'rb')))
+        try:
+            itt.second_photo.save(fold['second_photo'], File(open(PATH + fold['second_photo'], 'rb')))
+        except:
+            pass
+        try:
+            itt.third_photo.save(fold['third_photo'], File(open(PATH + fold['third_photo'], 'rb')))
+        except:
+            pass
+
+
+        return super().post(request, *args, **kwargs)
+

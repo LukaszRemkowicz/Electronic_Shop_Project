@@ -185,7 +185,10 @@ a {
   font-size: 0.7rem !important; }
 
 .font-size-0-8 {
-  font-size: 0.8rem; }
+  font-size: 0.8rem !important; }
+
+.font-size-1rem {
+  font-size: 1rem !important; }
 
 .font-white {
   color: white; }
@@ -255,52 +258,42 @@ a {
 @keyframes cssAnimation {
   0% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   10% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   20% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   30% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   40% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   50% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   60% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   70% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   80% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   90% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   100% {
@@ -308,48 +301,39 @@ a {
     visibility: hidden;
     padding: 0px;
     height: 0;
-    width: 0; } }
+    width: 0;
+    display: none; } }
 
 @-webkit-keyframes cssAnimation {
   0% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   10% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   20% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   30% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   40% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   50% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   60% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   70% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   80% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   90% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   100% {
     opacity: 0;
@@ -395,6 +379,22 @@ a {
     top: 20px;
     height: 50px;
     width: 50px; } }
+
+.profileImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #3c1400;
+  font-size: 1.3rem;
+  color: #fff;
+  text-align: center;
+  line-height: 60px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 0 1rem; }
+
+.horizontal-filters .form-inline, .producentFilters .form-inline, .rating-stars .form-inline {
+  cursor: pointer; }
 
 * {
   padding: 0;
@@ -578,7 +578,10 @@ a {
   font-size: 0.7rem !important; }
 
 .font-size-0-8 {
-  font-size: 0.8rem; }
+  font-size: 0.8rem !important; }
+
+.font-size-1rem {
+  font-size: 1rem !important; }
 
 .font-white {
   color: white; }
@@ -648,52 +651,42 @@ a {
 @keyframes cssAnimation {
   0% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   10% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   20% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   30% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   40% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   50% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   60% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   70% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   80% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   90% {
     opacity: 1;
-    padding: 1rem;
     min-height: 100%;
     height: 3rem; }
   100% {
@@ -701,48 +694,39 @@ a {
     visibility: hidden;
     padding: 0px;
     height: 0;
-    width: 0; } }
+    width: 0;
+    display: none; } }
 
 @-webkit-keyframes cssAnimation {
   0% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   10% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   20% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   30% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   40% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   50% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   60% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   70% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   80% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   90% {
     opacity: 1;
-    padding: 1rem;
     height: 100%; }
   100% {
     opacity: 0;
@@ -788,6 +772,22 @@ a {
     top: 20px;
     height: 50px;
     width: 50px; } }
+
+.profileImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #3c1400;
+  font-size: 1.3rem;
+  color: #fff;
+  text-align: center;
+  line-height: 60px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 0 1rem; }
+
+.horizontal-filters .form-inline, .producentFilters .form-inline, .rating-stars .form-inline {
+  cursor: pointer; }
 
 .form-container {
   margin-top: 1rem;
@@ -1358,6 +1358,9 @@ a {
   height: 24rem; }
   #ask-something .arrow-up .far {
     font-size: 3rem; }
+
+#ask-something .question-form input {
+  border: 1px solid #ced4da; }
 
 .zoom {
   position: absolute;
@@ -5587,18 +5590,6 @@ a {
     cursor: pointer; }
     .comments-block .reply a {
       text-decoration: none; }
-  .comments-block .profileImage {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #3c1400;
-    font-size: 1.3rem;
-    color: #fff;
-    text-align: center;
-    line-height: 60px;
-    font-weight: 500;
-    text-transform: uppercase;
-    margin: 0 1rem; }
 
 .be-comment-block {
   margin-bottom: 50px !important;

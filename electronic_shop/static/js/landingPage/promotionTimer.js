@@ -1,9 +1,17 @@
 let getHour = document.querySelector('.time-hour');
 let getMinutes = document.querySelector('.time-minutes');
 let getSeconds = document.querySelector('.time-seconds');
-const getProductId = document.querySelector('.sold-left .update-cart').dataset.product
+let getProductId;
 
-countDownLandingPage();
+try{
+    getProductId = document.querySelector('.sold-left .update-cart').dataset.product
+} catch (e){
+    getProductId = null
+}
+
+if(getProductId){
+    countDownLandingPage();
+}
 
 function countDownLandingPage(){
     const promoDate = document.querySelector('.hour').dataset.promotime
@@ -64,7 +72,8 @@ function countDownLandingPage(){
             body: JSON.stringify({
                 "user_id": 1,
                 "fields": {
-                    "product_of_the_day": false
+                    "product_of_the_day": false,
+                    "promotion": null
                 }
             })
         })
@@ -87,4 +96,8 @@ function resetOfferDate() {
     return futureDate;
 }
 
-let newIntervalLandingpage = setInterval(countDownLandingPage, 1000);
+let newIntervalLandingpage;
+
+if(getProductId){
+    newIntervalLandingpage = setInterval(countDownLandingPage, 1000);
+}

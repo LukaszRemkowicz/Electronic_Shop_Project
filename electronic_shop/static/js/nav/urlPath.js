@@ -1,4 +1,4 @@
-let urlPath = document.querySelector('.fallow-user').dataset.url;
+// let urlPath = document.querySelector('.fallow-user').dataset.url;
 
 
 
