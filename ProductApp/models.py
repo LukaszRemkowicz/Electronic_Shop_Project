@@ -217,7 +217,7 @@ class MainProductDatabase(models.Model):
     producent = models.CharField(max_length=100, default='')
     model = models.CharField(max_length=100, null=True, blank=True)
 
-    likes = models.ManyToManyField(User, default=None, blank=True, null=True)
+    likes = models.ManyToManyField(User, default=None, blank=True)
 
     class Meta:
         ordering = ['created']
