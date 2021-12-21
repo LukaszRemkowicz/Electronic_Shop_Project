@@ -155,6 +155,12 @@ STATICFILES_DIRS = [
 
 # STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
+STATIC_ROOT = '/vol/web/media'
+MEDIA_ROOT = '/vol/web/static'
+
+MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -170,9 +176,6 @@ messages.ERROR: 'alert-danger',
 }
 
 LOGIN_URL = 'landing-page'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # AUTH_USER_MODEL = 'auth.User'
 AUTH_USER_MODEL = 'Profile.User'

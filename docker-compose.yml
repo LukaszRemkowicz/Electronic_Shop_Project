@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/electronic_shop
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    env_file:
+      - .env
+    environment:
+      - DB_HOST=localhost
+      - DB_NAME=${DB_NAME}
+      - DB_USER=postgres
+      - DB_PASS=Solaris23
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14.1-alpine
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Solaris23
