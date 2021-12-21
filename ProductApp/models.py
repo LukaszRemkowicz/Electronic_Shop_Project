@@ -10,7 +10,7 @@ from django import utils
 # from django.db.models.base import Model
 # from django.db.models.expressions import F
 from django.utils.safestring import mark_safe
-# from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 

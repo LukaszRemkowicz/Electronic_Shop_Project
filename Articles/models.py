@@ -32,7 +32,7 @@ class LandingPageArticles(models.Model):
     tempalate = models.FileField(upload_to=f"articles/blogs/{time.strftime('%Y-%m-%d')}", default="", null=True, blank=True)
 
     def __str__(self) -> str:
-        return f'Blog id: {self.id} {self.title[:20]}..'
+        return f'Blog id: {self.id}, posted: {self.posted} {self.title[:20]}..'
 
     @property
     def render_template(self) -> Any:
