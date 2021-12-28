@@ -6,6 +6,12 @@ from dotenv import load_dotenv
 
 from django.contrib.messages import constants as messages
 
+env_path = os.path.dirname(os.path.realpath(__file__))
+env_file = os.path.join(env_path,'.env')
+
+if not env_file:
+    with open('.env', 'w'): pass
+
 
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -162,7 +168,7 @@ STATICFILES_DIRS = [
 # STATIC_ROOT = '/vol/web/static'
 # MEDIA_ROOT = '/vol/web/media'
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Default primary key field type
