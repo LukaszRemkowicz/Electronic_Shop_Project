@@ -2,6 +2,9 @@ import itertools
 import os, django, decimal
 import random
 
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "electronic_shop.settings")
+django.setup()
+
 from django.db.models.functions.text import Ord
 
 from ProductApp.products import phones, monitors, laptops, pcs, accesories, ssds, graphs, rams, \
@@ -12,8 +15,6 @@ from ProductApp.products import *
 from Articles.models import ArticleComment
 from ShoppingCardApp.models import *
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "electronic_shop.settings")
-django.setup()
 
 
 products = [phones, monitors, laptops, pcs, accesories, ssds, graphs, rams, pendrives,
@@ -70,18 +71,18 @@ for product in products:
     product.selected = False
     product.save()
 
-selected = [products[random.randint(0, len(products))] for _ in range(0,8)]
+selected = [products[random.randint(0, len(products) -1)] for _ in range(0,8)]
 
 # Add selected and change price
 for product in selected:
     product.selected = True
-    product.promotion = product.price * 0.7
+    product.promotion = product.price * round(decimal.Decimal(0.7), 2)
     product.save()
 
 
 
 """ Choose one product as a product of the day """
-product_of_the_day = products[random.randint(0, len(products))]
+product_of_the_day = products[random.randint(0, len(products) -1)]
 
 product_of_the_day.promotion = product_of_the_day.price * round(decimal.Decimal(0.6), 2)
 product_of_the_day.product_of_the_day = True
@@ -94,7 +95,10 @@ product_of_the_day.save()
 from Articles.models import LandingPageArticles
 from django.contrib.auth import get_user_model
 
-user = get_user_model().objects.create_user(email='employee@account.com', password='employee')
+try:
+    user = get_user_model().objects.get(email='employee@account.com')
+except:
+    user = get_user_model().objects.create_user(email='employee@account.com', password='employee')
 
 article = LandingPageArticles.objects.create(
     title='The standard Lorem Ipsum passage, used since the 1500s',
@@ -243,37 +247,51 @@ article.img.save('pc2.jpg', File(open(r'electronic_shop/static/images/showcase/l
 
 """ buy some products for employee account """
 
-customer = Customer.objects.create(user=user)
+try:
+    customer = Customer.objects.create(user=user)
+except:
+    customer = Customer.objects.get(user=user)
 
 for _ in range(1,10):
 
     order = Order.objects.create(customer=customer, transaction_id='', transaction_status=True, transaction_finished=timezone.now())
 
     for _ in range(1,5):
-        product= products[random.randint(0, len(products))]
+        product_item= products[random.randint(0, len(products) -1)]
 
-        order_item= OrderItem.objects.create( order=order, quantity= random.randint(1,10), product=product)
-        review = Reviews.objects.create(product=order_item, 
+        order_item= OrderItem.objects.create( order=order, quantity= random.randint(1,10), product=product_item)
+        try:
+            review = Reviews.objects.create(product=order_item.product,
                                         review='Vivamus quis maximus diam, at pulvinar mauris. Aliquam ante orci, ornare eget elit maximus, commodo hendrerit nulla. Maecenas faucibus nisi sapien, vel maximus turpis luctus a.',
                                         user=user,
                                         stars=random.randint(1,6),
                                         checked_by_employer=True,
                                         )
-        question = Questions.objects.create(product=order_item,
+        except:
+            pass
+
+        try:
+            question = Questions.objects.create(product=order_item.product,
                                             question='Gdzie jest słońce kiedy spi?',
                                             name='Janko Muzykant',
-                                            checked_by_employer=True, 
-                                            employer_reply='A dokąd w nocy tupta jeż?')
-        question = Questions.objects.create(product=order_item,
+                                            checked_by_employer=True,
+                                            employer_reply='A dokąd w nocy tupta jeż?'),
+        except:
+            pass
+
+        try:
+            question = Questions.objects.create(product=order_item.product,
                                             question='Mr. Anderson, welcome back, we miss you',
                                             name='Smith',
-                                            checked_by_employer=True, 
+                                            checked_by_employer=True,
                                             employer_reply='Im leaving right now.')
+        except:
+            pass
 
 
 """ create likes """
 
 for _ in range(1,50):
-    product_like = products[random.randint(0, len(products))].likes
+    product_like = products[random.randint(0, len(products) -1)].likes
     product_like.add(user)
 

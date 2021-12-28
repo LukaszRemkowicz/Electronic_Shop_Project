@@ -500,8 +500,15 @@ def filter_accesories_products(request: HttpRequest) -> QuerySet:
     return products
 
 def get_all(request: HttpRequest) -> QuerySet:
+    from django.core.cache import cache
 
-    products = MainProductDatabase.objects.all()
+
+    products = cache.get('objects_all')
+    print('product cached', products)
+    print('cache', cache.__dict__)
+    if not products:
+        products = MainProductDatabase.objects.all()
+        cache.set('objects_all', products)
     filter = {
         'producent': lambda x, products: products.filter(producent=x),
         'cattegory': lambda x, products: products.filter(cattegory=x),
@@ -517,8 +524,6 @@ def get_all(request: HttpRequest) -> QuerySet:
                 products = filter[key](value, products)
         except (FieldError, ObjectDoesNotExist, KeyError, FieldDoesNotExist) as e:
             print('Error in Tv function', e)
-            
-    
 
     return products
 

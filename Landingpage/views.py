@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.utils import timezone
+from django.db import ProgrammingError
 
 from Articles.models import LandingPageArticles
 from ProductApp.models import MainProductDatabase as Products
@@ -56,7 +57,7 @@ class LandingPage(FormView):
             product_of_the_day = Products.objects.filter(product_of_the_day=True)[0]
             product_of_the_day.product_of_the_day_added = timezone.template_localtime(product_of_the_day.product_of_the_day_added)
             product_of_the_day.save()
-        except IndexError:
+        except (IndexError, ProgrammingError):
             product_of_the_day = ''
             pass
 
@@ -67,9 +68,10 @@ class LandingPage(FormView):
             product_of_the_day.product_of_the_day_added = timezone.template_localtime(product_of_the_day.product_of_the_day_added)
             product_of_the_day.save()
 
-        promotion_pieces = {product:change_product_pieces(self.request, product)[0] for product in selected}
-        print('*'*100)
-        print('promotion pieces', promotion_pieces)
+        try:
+            promotion_pieces = {product:change_product_pieces(self.request, product)[0] for product in selected}
+        except ProgrammingError:
+            promotion_pieces=''
 
         context['product_of_the_day'] = product_of_the_day
         context['promotion_pieces'] = promotion_pieces

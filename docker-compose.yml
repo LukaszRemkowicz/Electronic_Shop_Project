@@ -1,29 +1,36 @@
-version: "3"
+version: '3.4'
 
 services:
-  app:
+  electronicshop:
+    image: electronicshop
     build:
       context: .
+      dockerfile: ./Dockerfile
     ports:
       - "8000:8000"
     volumes:
-      - ./:/electronic_shop
+      - .:/electronic_shop
     command: >
       sh -c "python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
     env_file:
       - .env
     environment:
-      - DB_HOST=localhost
+      - DB_HOST=db
       - DB_NAME=${DB_NAME}
-      - DB_USER=postgres
-      - DB_PASS=Solaris23
+      - DB_USER=${DB_USER}
+      - DB_PASS=&{DB_PASSWORD}
+      - DEBUG=1
     depends_on:
       - db
+    restart: always
 
   db:
     image: postgres:14.1-alpine
     environment:
       - POSTGRES_DB=${DB_NAME}
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=Solaris23
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - 5454:5454/tcp
+

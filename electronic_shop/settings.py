@@ -104,7 +104,8 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST')
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': 5432
 
     }
 }
@@ -147,6 +148,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR, "electronic_shop/static"),
         os.path.join(BASE_DIR, "static"),
@@ -155,10 +159,9 @@ STATICFILES_DIRS = [
 
 # STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-STATIC_ROOT = '/vol/web/media'
-MEDIA_ROOT = '/vol/web/static'
+# STATIC_ROOT = '/vol/web/static'
+# MEDIA_ROOT = '/vol/web/media'
 
-MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
