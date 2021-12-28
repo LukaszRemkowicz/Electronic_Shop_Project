@@ -1,13 +1,12 @@
-sudo: required
 
 language: python
 python:
- - "3.10"
+  - "3.9"
 
 services:
- - docker
+  - docker
 
- before_script: pip install docker-compose
+before_script: pip install docker-compose
 
- script:
+script:
   - docker-compose run app sh -c "python manage.py test && flake8"
