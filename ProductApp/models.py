@@ -1,7 +1,5 @@
 from typing import Any, Dict, List, Optional, Tuple, Union
-import os
-import codecs
-import math
+import os, codecs, math, uuid
 from datetime import date
 
 from django.db import models, reset_queries
@@ -10,7 +8,7 @@ from django import utils
 # from django.db.models.base import Model
 # from django.db.models.expressions import F
 from django.utils.safestring import mark_safe
-# from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 
@@ -18,8 +16,6 @@ from ProductApp.utilss.models_utils import *
 
 # User = get_user_model()
 User = settings.AUTH_USER_MODEL
-
-
 
 
 CHOICES = [
@@ -41,6 +37,15 @@ CHOICES = [
     ]
 
 
+def product_image_file_path(instance, filename):
+    """ Generate file path for new product image """
+
+    ext = filename.split('.')[-1]
+    filename = f'{uuid.uuid4()}.{ext}'
+
+    return os.path.join('uploads/products/', filename)
+
+
 class Inherit(models.Model):
 
     name = models.CharField(max_length=200, default='')
@@ -60,10 +65,11 @@ class Inherit(models.Model):
     weight = models.FloatField(blank=True, null=True)
     high = models.FloatField(blank=True, null=True)
 
-    main_photo = models.ImageField(upload_to='products_pic', null=True, blank=True)
-    second_photo = models.ImageField(upload_to='products_pic', null=True, blank=True)
-    third_photo = models.ImageField(upload_to='products_pic', null=True, blank=True)
-    html_file = models.FileField(upload_to="products_pic", default="", null=True, blank=True)
+    main_photo = models.ImageField(upload_to=product_image_file_path, null=True, blank=True)
+    main_photo = models.ImageField(upload_to=product_image_file_path, null=True, blank=True)
+    second_photo = models.ImageField(upload_to=product_image_file_path, null=True, blank=True)
+    third_photo = models.ImageField(upload_to=product_image_file_path, null=True, blank=True)
+    html_file = models.FileField(upload_to=product_image_file_path, default="", null=True, blank=True)
     product_of_the_day = models.BooleanField(default=False)
     bought_num = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
@@ -182,9 +188,9 @@ class Inherit(models.Model):
 
 class MainProductDatabase(models.Model):
 
-    main_photo = models.ImageField(null=True, blank=True, upload_to='products_pic')
-    second_photo = models.ImageField(null=True, blank=True, upload_to='products_pic')
-    third_photo = models.ImageField(null=True, blank=True, upload_to='products_pic')
+    main_photo = models.ImageField(null=True, blank=True, upload_to=product_image_file_path)
+    second_photo = models.ImageField(null=True, blank=True, upload_to=product_image_file_path)
+    third_photo = models.ImageField(null=True, blank=True, upload_to=product_image_file_path)
     name = models.CharField(max_length=100, default='')
     price = models.DecimalField(max_digits=7, decimal_places=2, default=0)
     pieces = models.IntegerField(default=0)
@@ -217,7 +223,7 @@ class MainProductDatabase(models.Model):
     producent = models.CharField(max_length=100, default='')
     model = models.CharField(max_length=100, null=True, blank=True)
 
-    likes = models.ManyToManyField(User, default=None, blank=True, null=True)
+    likes = models.ManyToManyField(User, default=None, blank=True)
 
     class Meta:
         ordering = ['created']
@@ -233,7 +239,7 @@ class MainProductDatabase(models.Model):
             url=''
 
         return url
-    
+
 
     @property
     def get_star_avg(self) -> Tuple[str, List[bool]]:

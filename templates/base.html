@@ -101,7 +101,7 @@
         const redirectToLandingPage = "{% url 'landing-page' %}";
         let userId;
         try{
-            uerId = {{request.user.id}}
+            uerId = "{{request.user.id}}"
         } catch{
             uerId = ''
         }

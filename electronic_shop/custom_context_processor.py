@@ -23,7 +23,7 @@ def login_form_content(request):
             order = ''
 
         try:
-            likes = len(MainProductDatabase.objects.filter(likes=request.user))
+            likes = MainProductDatabase.objects.filter(likes=request.user).count()
         except:
             likes = ''
 

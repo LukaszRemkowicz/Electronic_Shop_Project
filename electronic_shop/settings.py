@@ -104,7 +104,8 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST')
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': 5432
 
     }
 }
@@ -147,6 +148,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR, "electronic_shop/static"),
         os.path.join(BASE_DIR, "static"),
@@ -155,11 +159,16 @@ STATICFILES_DIRS = [
 
 # STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
+# STATIC_ROOT = '/vol/web/static'
+# MEDIA_ROOT = '/vol/web/media'
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 MESSAGE_TAGS = {
 messages.DEBUG: 'alert-info',
@@ -170,9 +179,6 @@ messages.ERROR: 'alert-danger',
 }
 
 LOGIN_URL = 'landing-page'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # AUTH_USER_MODEL = 'auth.User'
 AUTH_USER_MODEL = 'Profile.User'

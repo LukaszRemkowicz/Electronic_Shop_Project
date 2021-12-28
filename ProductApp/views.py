@@ -189,7 +189,7 @@ class ProductsCart(ListView):
 
         old_products = [try_to_get_product(product, '') for product in old_products]
         producents = models.Inherit.get_producents(old_products)
-        
+
         if 'cattegory' not in self.kwargs:
             products = [try_to_get_product(product, '') for product in products]
             print(products)
@@ -305,13 +305,13 @@ class Wishlist(ListView):
 
         context = super().get_context_data(**kwargs)
 
-        products = MainProductDatabase.objects.filter(likes=self.request.user)
+        products = MainProductDatabase.objects.filter(likes=self.request.user).order_by('-created')
 
         products = [try_to_get_product(product, '') for product in products]
 
         page = self.request.GET.get('page')
         result = 10
-        ranger, paginator, products = paginate_view(products.order_by('-created'), result, page)
+        ranger, paginator, products = paginate_view(products, result, page)
 
         context['url_last'], context['url_path'] = get_url_path(self.request)
 

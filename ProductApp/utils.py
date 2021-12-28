@@ -486,7 +486,6 @@ def choose_model(model: str, instance) -> models.MainProductDatabase:
 def try_to_get_product(product: "models.MainProductDatabase", instance: Any) -> "models.MainProductDatabase":
     """ Help function for signals. Try to get specific product from model """
 
-    print(product)
     instance_obj = models.MainProductDatabase.objects.get(ean=product.ean)
 
     check_if_obj_is_instance_of = {

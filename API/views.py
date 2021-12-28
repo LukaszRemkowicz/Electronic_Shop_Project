@@ -392,7 +392,7 @@ class ProductView(generics.RetrieveUpdateAPIView):
                 product = get_object_or_404(self.queryset, pk=self.kwargs['product_id'])
             except (ObjectDoesNotExist, IndexError):
                 pass
-        return product
+            return product
 
 
 class Newsletter(generics.CreateAPIView):
