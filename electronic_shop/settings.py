@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-print(os.getenv('BUILD_ON_TRAVIS'))
+print(os.environ)
 
 if os.getenv('BUILD_ON_TRAVIS'):
     SECRET_KEY = "SecretKeyForUseOnTravis"
