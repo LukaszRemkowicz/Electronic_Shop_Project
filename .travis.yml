@@ -12,4 +12,5 @@ script:
   - docker-compose run electronicshop sh -c "python manage.py test && flake8"
 
 env:
-  - SECRET_KEY=test
+  global:
+    - BUILD_ON_TRAVIS=true
