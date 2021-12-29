@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     # 'ckeditor',
     'mptt',
+    'electronic_shop'
 ]
 
 MIDDLEWARE = [
