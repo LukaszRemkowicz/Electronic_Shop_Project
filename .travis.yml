@@ -11,11 +11,5 @@ before_script: pip install docker-compose
 script:
   - docker-compose run electronicshop sh -c "python manage.py test && flake8"
 
-secret_key:
-  secure: $SECRET_KEY
-sec_key:
-  secure: $SEC_KEY
-db_name: $DB_NAME
-db_user: $DB_USER
-db_password:
-  secure: $DB_PASSWORD
+env:
+  - SECRET_KEY=$SECRET_KEY
