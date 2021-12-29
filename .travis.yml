@@ -1,13 +1,11 @@
-sudo: required
-
 language: python
 python:
- - "3.10"
+  - "3.9"
 
 services:
- - docker
+  - docker
 
- before_script: pip install docker-compose
+before_script: pip install docker-compose
 
  script:
   - docker-compose run electronicshop sh -c "python manage.py wait_for_db && python manage.py test && flake8"
