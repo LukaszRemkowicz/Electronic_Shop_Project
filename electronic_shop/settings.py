@@ -1,5 +1,4 @@
 from pathlib import Path
-from os.path import join, dirname
 import os
 
 from dotenv import load_dotenv
@@ -13,7 +12,7 @@ if not env_file:
     with open('.env', 'w'): pass
 
 
-dotenv_path = join(dirname(__file__), '.env')
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -201,4 +200,3 @@ REST_FRAMEWORK = {
     #     'rest_framework.parsers.JSONParser',
     # ]
 }
-
