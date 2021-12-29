@@ -37,7 +37,8 @@ if os.getenv('BUILD_ON_TRAVIS', None):
         }
     }
 else:
-    SECRET_KEY = os.getenv('SEC_KEY')
+    SECRET_KEY = 'sdwdwdwd'
+    # SECRET_KEY = os.getenv('SEC_KEY')
     # Database
     # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
