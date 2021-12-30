@@ -1,7 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login
 from django.utils import timezone
-from django.utils.deprecation import MiddlewareMixin
 
 from Profile.forms import CustomLoginForm, KeepMeLoggedIn
 from ShoppingCardApp.models import Order, Customer
@@ -45,7 +42,3 @@ def login_form_content(request):
             'likes': likes,
             'product_of_the_day': product_of_the_day
         }
-
-
-
-

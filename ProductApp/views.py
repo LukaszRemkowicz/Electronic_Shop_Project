@@ -8,6 +8,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.urls import reverse
 from django.shortcuts import redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from ShoppingCardApp.models import Customer, Order, OrderItem
 from Landingpage.utils.url_path import get_url_path
@@ -263,11 +264,11 @@ class QueryResult(ListView):
             Q(model__icontains=search_query)
             )
 
-        products = [try_to_get_product(product, '') for product in products]
+        products = [try_to_get_product(product, '') for product in products.order_by('-created')]
 
         page = self.request.GET.get('page')
         result = 10
-        ranger, paginator, products = paginate_view(products.order_by('-created'), result, page)
+        ranger, paginator, products = paginate_view(products, result, page)
 
 
 
@@ -285,7 +286,7 @@ class QueryResult(ListView):
         return context
 
 
-class Wishlist(ListView):
+class Wishlist(LoginRequiredMixin, ListView):
     template_name = 'ProductApp/wishlist.html'
     model = models.MainProductDatabase
 

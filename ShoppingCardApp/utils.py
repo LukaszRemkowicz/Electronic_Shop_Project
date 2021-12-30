@@ -1,7 +1,7 @@
 import json
 from decimal import Decimal
 
-from django.core.exceptions import MultipleObjectsReturned
+from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
 
 from ProductApp.models import MainProductDatabase
 from .models import Order, Customer, OrderItem
@@ -24,31 +24,36 @@ def order_cart(request):
 
             cart_items += cart[item_id]["quantity"]
 
-            product = MainProductDatabase.objects.get(id=item_id)
-            total = (product.price * cart[item_id]['quantity'])
+            try:
 
-            order['get_cart_total'] += total
-            order['get_cart_items'] += cart[item_id]['quantity']
+                product = MainProductDatabase.objects.get(id=item_id)
+                total = (product.price * cart[item_id]['quantity'])
 
-            if product.main_photo == '' or not product.main_photo:
-                photo = ''
-            else:
-                photo = product.get_img
+                order['get_cart_total'] += total
+                order['get_cart_items'] += cart[item_id]['quantity']
 
-            item = {
-                'product': {
-                    'id': product.id,
-                    'name': product.name,
-                    'price': product.price,
-                    'get_img': photo,
-                    'cattegory': product.cattegory
-                },
-                'quantity': cart[item_id]['quantity'],
-                'get_total': total
-            }
+                if product.main_photo == '' or not product.main_photo:
+                    photo = ''
+                else:
+                    photo = product.get_img
+
+                item = {
+                    'product': {
+                        'id': product.id,
+                        'name': product.name,
+                        'price': product.price,
+                        'get_img': photo,
+                        'cattegory': product.cattegory
+                    },
+                    'quantity': cart[item_id]['quantity'],
+                    'get_total': total
+                }
 
 
-            items.append(item)
+                items.append(item)
+
+            except ObjectDoesNotExist:
+                pass
 
     return items, order, cart_items
 

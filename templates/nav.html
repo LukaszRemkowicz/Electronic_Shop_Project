@@ -65,8 +65,8 @@
                         {% endif %}
 
                         </li>
-                        <li class="nav-item">
-                            <a href="{% url 'wishlist' %}" class="btn d-flex flex-column text-center wishlistNav">
+                        <li class="nav-item" >
+                            <a {% if request.user.is_authenticated %}href="{% url 'wishlist' %}" {% else %}style='cursor: default;'{% endif %} class="btn d-flex flex-column text-center wishlistNav">
                                 <i class="fa-2x d-flex flex-column text-center {% if likes %}no-text-shadow fas fa-heart font-red {% else %}lni lni-heart{% endif %}"></i>
                                 <span class="nav-font-size">Wishlist(<span class='likesNum'>{% if likes %}{{likes}}{% else %}0{% endif %}</span>)</span>
                             </a>

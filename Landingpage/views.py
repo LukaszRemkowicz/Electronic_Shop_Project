@@ -1,7 +1,6 @@
 import datetime
 from typing import Any, Dict
 
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login
