@@ -80,7 +80,7 @@
                             <div class="d-flex flex-column mini-images-section">
                                 {% for key, value in product.return_images.items %}
                                     <img src="{{value}}" alt="" class="
-                                    {% if value == product.main_photo.url %}
+                                    {% if product.main_photo and value == product.main_photo.url %}
                                     active-product-content
                                     {% else %}
                                     mini-img
@@ -457,7 +457,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="pr-4">
-                                                            <img src="{{product.main_photo.url}}" alt="">
+                                                            <img src="{% if product.main_photo %}{{product.main_photo.url}}{% endif %}" alt="">
                                                         </div>
                                                     </div>
                                                     <textarea class="form-control" data-productid='{{ product|get_main_product_id }}' id="opinion-form" rows="3"></textarea>

@@ -109,8 +109,6 @@ class FinishOrderView(APIView):
 
 
         total = float(data['price'])
-        # print('total: ', total)
-        # print('get_cart_total', order.get_cart_total)
         order.transaction_id = transaction_id
 
         if total == float(order.get_cart_total):
@@ -177,7 +175,6 @@ class UpdateItemView(APIView):
 
         product = product_app.MainProductDatabase.objects.get(id=product_id)
         order = shopping_cart.Order.objects.filter(customer=customer, transaction_status=False)
-        print(order)
         try:
             order, created = shopping_cart.Order.objects.get_or_create(customer=customer, transaction_status=False)
         except MultipleObjectsReturned:
@@ -229,18 +226,11 @@ class GetProductData(APIView):
         product_data = data['productData']['productClicked']['type']
         product_parametr = data['productData']['productClicked']['divId']
 
-        # print('tutaj', product_parametr)
-        # print('jakas lista', product_items_list)
-        # print('product data' , product_data)
-
         re_pattern = r'(.*-)(.*)(-.*)'
 
         product_parametr = re.match(re_pattern, product_parametr).group(2)
-        # print('Product-param', product_parametr)
         main_product = product_app.MainProductDatabase.objects.get(id=int(main_product))
         product = find_new_product(product_items_list, product_data, product_parametr, main_product)
-
-        # print('nowy product', product)
 
         try:
             product_id = product.id
@@ -324,8 +314,6 @@ class ProductDict(APIView):
         except ObjectDoesNotExist:
             return 'Object does not exist'
 
-        print(product)
-
         return Response(json.dumps(product))
 
 # class UpdateProduct(APIView):
@@ -336,7 +324,6 @@ class ProductDict(APIView):
 
 #         data = request.data
 #         user_id = data['user_id']
-#         print(data['fields'].items())
 #         for field, value in data['fields'].items():
 #             product = product_app.MainProductDatabase.objects.get(id=product_id)
 #             user = User.objects.get(id=int(user_id))

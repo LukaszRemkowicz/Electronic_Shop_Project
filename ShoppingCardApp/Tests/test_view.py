@@ -36,7 +36,7 @@ class TestShoppingCartViews(TestCase):
                 'producent_code': 'AABB123',
                 'ean': 12345644,
                 'waterproof': True,
-                'distibution': 'EU',
+                'distribution': 'EU',
                 'system': 'IOS',
                 'processor': 'Intel',
                 'cpu_clock': '400Mhz',
@@ -46,10 +46,10 @@ class TestShoppingCartViews(TestCase):
                 'screen': '100x200',
                 'screen_diagonal': 7.2,
                 'battery': 5000,
-                'high':'10cm',
-                'width': '10cm',
-                'deep': '10cm',
-                'weight': '500g',
+                'high':10,
+                'width': 10,
+                'deep': 10,
+                'weight': 500,
                 'cattegory': 'Monitor'
             }
 
@@ -75,7 +75,6 @@ class TestShoppingCartViews(TestCase):
         }
 
         self.payload = {
-            'username': 'Test',
             'password': 'TestingFunc123',
             'email': 'test123@test.com',
         }
@@ -92,7 +91,7 @@ class TestShoppingCartViews(TestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'Shoppingcart/address-checkout.html')
+        self.assertTemplateUsed(response, 'ShoppingCardApp/address-checkout.html')
 
 
     def test_check_if_cart_get_templete(self) -> None:
@@ -103,7 +102,7 @@ class TestShoppingCartViews(TestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'Shoppingcart/cart.html')
+        self.assertTemplateUsed(response, 'ShoppingCardApp/cart.html')
 
     def test_update_item_api(self) -> None:
         """ check if user can add item to the basket """
@@ -111,12 +110,12 @@ class TestShoppingCartViews(TestCase):
         url = reverse('api:update_item')
 
         user = create_user(**self.payload)
-        login = self.client.login(**self.payload)
+        self.client.login(**self.payload)
         customer = create_customer(user)
         product = Phones.objects.create(**self.product_data)
         product_main = MainProductDatabase.objects.get(ean=product.ean)
         order = Order.objects.create(customer=customer, date_order=self.data['date_order'], transaction_id='11')
-        order_item = OrderItem.objects.create(order=order, product=product_main, quantity=3, date_ordered=self.data['date_order'])
+        order_item = OrderItem.objects.create(order=order, product=product_main, quantity=2, date_ordered=self.data['date_order'])
 
         body = {
             'productId': product.id,
@@ -125,18 +124,33 @@ class TestShoppingCartViews(TestCase):
         }
 
         """ add 5 items """
+        for pieces in range(2):
 
-        for num_of_iteration in range(1,6):
+            if pieces == 0:
+                pass
+            else:
+                product.pieces = 10
+                product.save()
 
-            order_item_testing = OrderItem.objects.get(order=order)
-            response = self.client.post(url,
-                                        json.dumps(body),
-                                        content_type="application/json")
+            for num_of_iteration in range(1,6):
 
-            self.assertEqual(response.status_code, 200)
-            order_item_testing = OrderItem.objects.get(order=order)
+                if order_item.quantity >= product.pieces:
+                    order_item_testing = OrderItem.objects.get(order=order)
+                    self.assertEqual(order_item.quantity, product.pieces)
+                    self.assertNotEqual(order_item.quantity + num_of_iteration, order_item_testing.quantity)
 
-            self.assertEqual(order_item.quantity + num_of_iteration, order_item_testing.quantity)
+                else:
+
+                    order_item_testing = OrderItem.objects.get(order=order)
+                    response = self.client.post(url,
+                                                json.dumps(body),
+                                                content_type="application/json")
+
+                    self.assertEqual(response.status_code, 200)
+                    order_item_testing = OrderItem.objects.get(order=order)
+
+                    self.assertEqual(order_item.quantity + num_of_iteration, order_item_testing.quantity)
+                    self.assertNotEqual(order_item.quantity, product.pieces)
 
 
     def test_substract_item_api(self) -> None:
@@ -204,5 +218,5 @@ class TestShoppingCartViews(TestCase):
         order = Order.objects.get(customer=customer)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(order.complete, True)
+        self.assertEqual(order.transaction_status, True)
         self.assertEqual(shipping.city, body['customerCity'])

@@ -62,7 +62,6 @@ def filter_phones(phones: QuerySet) -> Dict:
     }
 
     for product in phones:
-        print(product.screen_diagonal)
         if 5 <= float(product.screen_diagonal) <= 5.49:
             screen_diagonal["5 - 5.49'"] += 1
         elif 5.5 <= float(product.screen_diagonal) <= 5.99:

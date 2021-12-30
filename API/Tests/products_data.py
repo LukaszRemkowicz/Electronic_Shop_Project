@@ -11,7 +11,7 @@ PRODUCT_DATA={
                 'producent_code': 'AABB123',
                 'ean': 123456,
                 'waterproof': True,
-                'distibution': 'EU',
+                'distribution': 'EU',
                 'system': 'IOS',
                 'processor': 'Intel',
                 'cpu_clock': '400Mhz',
@@ -21,11 +21,12 @@ PRODUCT_DATA={
                 'screen': '100x200',
                 'screen_diagonal': 7.2,
                 'battery': 100,
-                'high':'10cm',
-                'width': '10cm',
-                'deep': '10cm',
-                'weight': '500g',
-                'cattegory': 'Phones'
+                'high': 10,
+                'width':  10,
+                'deep':  10,
+                'weight': 0.5,
+                'cattegory': 'Phones',
+                'main_photo': ''
             }
 
 SECOND_PRODUCT = {
@@ -41,7 +42,7 @@ SECOND_PRODUCT = {
                 'producent_code': 'AABB123',
                 'ean': 123455,
                 'waterproof': True,
-                'distibution': 'EU',
+                'distribution': 'EU',
                 'system': 'IOS',
                 'processor': 'Intel',
                 'cpu_clock': '400Mhz',
@@ -51,9 +52,10 @@ SECOND_PRODUCT = {
                 'screen': '100x200',
                 'screen_diagonal': 7.2,
                 'battery': 100,
-                'high':'10cm',
-                'width': '10cm',
-                'deep': '10cm',
-                'weight': '500g',
-                'cattegory': 'Phones'
+                'high': 10,
+                'width':  10,
+                'deep':  10,
+                'weight': 0.5,
+                'cattegory': 'Phones',
+                'main_photo': ''
             }

@@ -6,10 +6,10 @@ from ..models import Phones, MainProductDatabase
 
 class TestProduct(TestCase):
     """ test product model """
-    
+
     def test_product_creation(self) -> None:
         """ test if product is created """
-        
+
         data = {
             'name': 'Iphone 10',
             'price': 360,
@@ -23,7 +23,7 @@ class TestProduct(TestCase):
             'producent_code': 'AABB123',
             'ean': 2343356,
             'waterproof': True,
-            'distibution': 'EU',
+            'distribution': 'EU',
             'system': 'IOS',
             'processor': 'Intel',
             'cpu_clock': '400Mhz',
@@ -33,22 +33,22 @@ class TestProduct(TestCase):
             'screen': '100x200',
             'screen_diagonal': 7.2,
             'battery': 100,
-            'high':'10cm',
-            'width': '10cm',
-            'deep': '10cm',
-            'weight': '500g',
+            'high':10,
+            'width': 10,
+            'deep': 10,
+            'weight': 0.5,
             'cattegory': 'phones'
         }
-        
-        product = Phones.objects.create(**data) 
-        
-        self.assertEqual(product.name, data['name']) 
-        
+
+        product = Phones.objects.create(**data)
+
+        self.assertEqual(product.name, data['name'])
+
         self.assertEqual(str(product), data['name'])
-        
+
     def test_if_mainproduct_is_created(self) -> None:
         """ check if main product is created """
-        
+
         data = {
             'name': 'Iphone 10',
             'price': 3000,
@@ -62,7 +62,7 @@ class TestProduct(TestCase):
             'producent_code': 'AABB123',
             'ean': 123456,
             'waterproof': True,
-            'distibution': 'EU',
+            'distribution': 'EU',
             'system': 'IOS',
             'processor': 'Intel',
             'cpu_clock': '400Mhz',
@@ -72,16 +72,15 @@ class TestProduct(TestCase):
             'screen': '100x200',
             'screen_diagonal': 7.2,
             'battery': 100,
-            'high':'10cm',
-            'width': '10cm',
-            'deep': '10cm',
-            'weight': '500g',
+            'high': 10,
+            'width':  10,
+            'deep':  10,
+            'weight': 0.5,
             'cattegory': 'phones'
         }
-        
+
         product = Phones.objects.create(**data)
         main_model = MainProductDatabase.objects.get(ean=product.ean)
-        
+
         self.assertEqual(main_model.ean, data['ean'])
-        
-        
+

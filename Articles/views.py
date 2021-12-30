@@ -22,8 +22,6 @@ class LandingArticles(CreateView):
         comments = models.ArticleComment.objects.filter(article__id=article_id)
 
         context['url_last'], context['url_path'] = get_url_path(self.request)
-        print(context['url_last'])
-
         context['comments_number'] = len(comments)
         context['article'] = article
         context['comments'] = models.ArticleComment.objects.filter(article=article)

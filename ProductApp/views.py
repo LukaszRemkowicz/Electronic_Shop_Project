@@ -63,9 +63,7 @@ class ProductPage(ListView):
         #     pieces = product.pieces
 
         pieces, _ = change_product_pieces(self.request, product)
-        print(product)
         same_products = filter_products(product.cattegory, product)
-        # print('same_products', same_products)
 
         if pieces <= 10:
             pieces_range = range(1, pieces + 1)
@@ -79,7 +77,6 @@ class ProductPage(ListView):
 
         context['url_last'], context['url_path'] = get_url_path(self.request, product_page=True)
 
-        print('pieces', pieces)
         context['questions'] = question
         context['reviews'] = reviews
         context['pieces_range'] = pieces_range
@@ -150,8 +147,6 @@ class ProductsCart(ListView):
         except (KeyError, ObjectDoesNotExist):
             products = []
 
-        print('jestem po cattegories', len(products))
-
         # Filter products by popularity, trending filters etc.
         # Should be done at the end of all filters
 
@@ -169,7 +164,6 @@ class ProductsCart(ListView):
             try:
                 products = choose_param[filter_option]
                 context['products_total'] = len(products)
-                # print( [product.price for product in products])
 
             except ObjectDoesNotExist:
                 pass
@@ -192,7 +186,6 @@ class ProductsCart(ListView):
 
         if 'cattegory' not in self.kwargs:
             products = [try_to_get_product(product, '') for product in products]
-            print(products)
             product_cattegory = ''
 
         if self.request.GET.get('ids'):
@@ -207,9 +200,6 @@ class ProductsCart(ListView):
                 data_to_filter = products[0].data_products_to_filter(products)
 
             producents = models.Inherit.get_producents(products)
-
-            # print('product 0 ', products[0])
-            # print('data_to_filter', data_to_filter)
 
         context['products_total'] = len(products)
 
@@ -249,7 +239,6 @@ class QueryResult(ListView):
         """ Filter products by query parameters """
 
         url_params = { key:str(value[0]) for key, value in self.request.GET.lists()}
-        print(url_params)
 
         search_query = ''
         param = ''
