@@ -8,5 +8,5 @@ urlpatterns = [
     # path('products/similar-products/', CheckSimilar.as_view(), name="check_similar"),
     path('search/result/', QueryResult.as_view(), name="query-result"),
     path('wishlist/', Wishlist.as_view(), name="wishlist"),
-    
+
 ]

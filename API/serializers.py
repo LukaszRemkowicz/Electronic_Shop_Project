@@ -18,7 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ('username', 'password', 'email', 'first_name', 'last_name')
+        fields = ('password', 'email', 'first_name', 'last_name')
         extra_kwargs = {
             'password': {'write_only': True, 'min_length': 5},
             'first_name': {"required": False, "allow_null": True},
@@ -51,11 +51,8 @@ class ProfileSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data) -> User:
 
         password = validated_data
-        print(password)
 
         profile = super().update(instance, validated_data)
-
-        print('jestem za profile')
 
         for key, value in validated_data.items():
             if key != 'user':
@@ -79,7 +76,6 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 class AuthTokenSerializer(serializers.Serializer):
     """ Serializer for token creation """
-    username = serializers.CharField()
     password = serializers.CharField(
         style={'input_type': 'password'},
         trim_whitespace=False
@@ -90,12 +86,10 @@ class AuthTokenSerializer(serializers.Serializer):
     def validate(self, attrs) -> Any:
         email = attrs.get('email')
         password = attrs.get('password')
-        username = attrs.get('username')
 
         user = authenticate(
             request=self.context.get('request'),
             email=email,
-            username=username,
             password= password
         )
 
@@ -124,7 +118,6 @@ class BlogArticlesSerializer(serializers.ModelSerializer):
         return comment
 
     def get_data_from_comment(self, article):
-        print(article.__dict__)
         return {
             'id': article.id,
             'publish': article.publish,
@@ -175,18 +168,17 @@ class CreateProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Phones
         fields = '__all__'
-        
-        
+
+
     # def create(self, validated_data):
-        
-    #     print(validated_data)
-        
-        
+
+
+
     #     fold = validated_data.cattegory.lower()
     #     PATH = rf'electronic_shop/static/images/products/{fold}/'
-        
+
     #     print(validated_data)
-        
+
     #     # itt.main_photo.save(product['main_photo'], File(open(PATH + product['main_photo'], 'rb')))
     #     # try:
     #     #     itt.second_photo.save(product['second_photo'], File(open(PATH + product['second_photo'], 'rb')))
@@ -196,6 +188,6 @@ class CreateProductSerializer(serializers.ModelSerializer):
     #     #     itt.third_photo.save(product['third_photo'], File(open(PATH + product['third_photo'], 'rb')))
     #     # except:
     #     #     pass
-        
-        
+
+
     #     return super().create(validated_data)

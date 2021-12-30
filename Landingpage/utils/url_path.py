@@ -22,13 +22,11 @@ def get_url_path(request, product_page=False):
     url_path_cp = copy.deepcopy(url_path)
     new_url_path = []
 
-    for num, element in enumerate(url_path_cp):
-        lenn = len(url_path)
+    for num, _ in enumerate(url_path_cp):
         if num +1 < len(url_path):
             new_url_path.append('/'.join(url_path_cp[:-1]))
             url_path_cp.pop()
     new_url_path.reverse()
-    print('reversed', new_url_path)
 
     last_element = url_path.pop()
     url_path_dict = { name: path for name, path in zip(url_path, new_url_path) }

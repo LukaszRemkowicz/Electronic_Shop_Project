@@ -91,7 +91,6 @@ def update_pieces(request: HttpRequest, product: QuerySet) -> int:
 @register.filter
 def find_all(request: HttpRequest) -> int:
     listed = request.replace('/', '').split('?')
-    print('qwdwd', listed)
     if listed[0] == 'products':
         return True
     else:
@@ -106,8 +105,6 @@ def get_category(request: HttpRequest) -> int:
 @register.filter
 def get_mainproductdatabase_product_of_the_day(ean: int) -> bool:
     product = MainProductDatabase.objects.get(ean=ean)
-    print('product.product_of_the_day', product.product_of_the_day)
-    print(product.__dict__)
     return True if product.product_of_the_day else False
 
 @register.filter

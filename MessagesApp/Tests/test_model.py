@@ -17,9 +17,10 @@ def create_customer(user: User):
 
 
 class TestMessageApp(TestCase):
-    
+
     def setUp(self) -> None:
-        client = Client()
+
+        self.client = Client()
         self.product_data={
                 'name': 'Iphone 10',
                 'price': 3000,
@@ -33,7 +34,7 @@ class TestMessageApp(TestCase):
                 'producent_code': 'AABB123',
                 'ean': 123456,
                 'waterproof': True,
-                'distibution': 'EU',
+                'distribution': 'EU',
                 'system': 'IOS',
                 'processor': 'Intel',
                 'cpu_clock': '400Mhz',
@@ -43,29 +44,28 @@ class TestMessageApp(TestCase):
                 'screen': '100x200',
                 'screen_diagonal': 7.2,
                 'battery': 100,
-                'high':'10cm',
-                'width': '10cm',
-                'deep': '10cm',
-                'weight': '500g',
+                'high': 10,
+                'width':  10,
+                'deep':  10,
+                'weight': 0.5,
                 'cattegory': 'phones'
             }
-        
+
         self.payload = {
-            'username': 'Test',
             'password': 'TestingFunc123',
             'email': 'test123@test.com',
-        }  
-    
+        }
+
     def test_complaint_model(self) -> None:
         """ test if complaint can be created """
-        
+
         user = create_user(**self.payload)
         login = self.client.login(**self.payload)
         customer = create_customer(user)
         product = Phones.objects.create(**self.product_data)
         product_main = MainProductDatabase.objects.get(ean=product.ean)
         order = Order.objects.create(customer=customer, transaction_id='11')
-                
+
         complaint_data = {
             'product': product_main,
             'status': 'In progress',
@@ -73,26 +73,26 @@ class TestMessageApp(TestCase):
             'message': 'Lorem Ipsum',
             'order': order,
         }
-        
+
         complaint = Complaint.objects.create(**complaint_data)
 
-        self.assertEqual(complaint.user.username, 'Test')
+        self.assertEqual(complaint.user.email, 'test123@test.com')
         self.assertEqual(complaint.order.transaction_id, '11')
-        
-    
+
+
     def test_question_model(self):
         """ test if question can be asked """
-        
+
         user = create_user(**self.payload)
-        
+
         question_data = {
             'subject': 'Lorem',
             'message': 'Lorem Ipsum',
             'user': user,
             'state': 'In progress',
         }
-        
+
         question = Question.objects.create(**question_data)
-        
+
         self.assertEqual(question.subject, 'Lorem')
-        self.assertEqual(question.user.username, 'Test')
+        self.assertEqual(question.user.email, 'test123@test.com')

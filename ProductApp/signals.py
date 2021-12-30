@@ -79,8 +79,6 @@ def create_product(sender, instance, created, **kwargs):
         """ update product if not created"""
 
         product = models.MainProductDatabase.objects.get(ean=instance.ean)
-        
-        print('instance', utils.get_product(instance._meta.model_name, instance).name)
 
         try:
 

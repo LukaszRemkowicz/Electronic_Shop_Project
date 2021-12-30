@@ -35,9 +35,7 @@ class Order(models.Model):
     @property
     def get_cart_total(self) -> float:
         orderitems = self.orderitem_set.all()
-        print('*'*200)
         listed = [item for item in orderitems]
-        print(listed)
         total = sum([item.get_total for item in orderitems])
 
         return total

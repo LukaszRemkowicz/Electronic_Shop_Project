@@ -32,7 +32,6 @@ def filter_products(cattegory: str, product: models.MainProductDatabase) -> Dict
             'battery': check_no_data({element.phones_product_data.battery for element in same_products}),
             'items_id': [element.id for element in same_products]
         }
-        # print(same_products_data)
         return same_products_data
 
     elif cattegory == 'Laptops':
@@ -336,8 +335,6 @@ def find_new_product(product_items_list: List,
 
 def get_product(model: str, instance: Any) -> models.MainProductDatabase:
     """ Help function for signals. Get product with specific model """
-    print('jestem w get product')
-    print(model, type(instance))
 
     help_dict = {
         'phones': lambda instance: models.MainProductDatabase.objects.get(
