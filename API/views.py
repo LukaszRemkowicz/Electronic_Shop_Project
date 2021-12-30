@@ -367,19 +367,22 @@ class ProductView(generics.RetrieveUpdateAPIView):
         parser_classes = [JSONParser]
 
         data = request.data
-        user_id = data['user_id']
-        product = self.queryset.get(id=kwargs['product_id'])
-        user = User.objects.get(id=int(user_id))
-        for field, value in data['fields'].items():
-            gettattr = getattr(product, field)
-            if field == 'likes' and value == 'add':
-                gettattr.add(user)
-            elif field == 'likes' and value == 'remove':
-                gettattr.remove(user)
-            else:
-                # gettattr = value
-                setattr(product, field, value)
-                product.save()
+        # user_id = data['user_id']
+
+        product = self.queryset.objects.get(id=kwargs['product_id'])
+        if request.user.is_authenticated:
+            # user_id = User.objects.all().first().id
+            user = User.objects.get(id=request.user.id)
+            for field, value in data['fields'].items():
+                gettattr = getattr(product, field)
+                if field == 'likes' and value == 'add':
+                    gettattr.add(user)
+                elif field == 'likes' and value == 'remove':
+                    gettattr.remove(user)
+                else:
+                    # gettattr = value
+                    setattr(product, field, value)
+                    product.save()
         serializer_class = ProductSerializer(instance=product)
 
         return Response(serializer_class.data)

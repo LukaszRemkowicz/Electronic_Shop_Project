@@ -150,8 +150,6 @@ class ProductsCart(ListView):
         except (KeyError, ObjectDoesNotExist):
             products = []
 
-        print('jestem po cattegories', len(products))
-
         # Filter products by popularity, trending filters etc.
         # Should be done at the end of all filters
 
@@ -192,7 +190,6 @@ class ProductsCart(ListView):
 
         if 'cattegory' not in self.kwargs:
             products = [try_to_get_product(product, '') for product in products]
-            print(products)
             product_cattegory = ''
 
         if self.request.GET.get('ids'):

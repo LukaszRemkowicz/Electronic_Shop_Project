@@ -13,6 +13,7 @@ class Command(BaseCommand):
 
         self.stdout.write('Waiting for database..')
         db_conn = None
+        breakpoint()
 
         while not db_conn:
             try:
