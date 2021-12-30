@@ -20,12 +20,7 @@ def order_cart(request):
     order = {'get_cart_total': 0, 'get_cart_items': 0}
     cart_items = order['get_cart_items']
 
-    # print('cart: ', cart)
-
-
     for item_id in cart:
-
-            # print('item id: ', item_id)
 
             cart_items += cart[item_id]["quantity"]
 
@@ -35,12 +30,17 @@ def order_cart(request):
             order['get_cart_total'] += total
             order['get_cart_items'] += cart[item_id]['quantity']
 
+            if product.main_photo == '' or not product.main_photo:
+                photo = ''
+            else:
+                photo = product.get_img
+
             item = {
                 'product': {
                     'id': product.id,
                     'name': product.name,
                     'price': product.price,
-                    'get_img': product.get_img,
+                    'get_img': photo,
                     'cattegory': product.cattegory
                 },
                 'quantity': cart[item_id]['quantity'],
@@ -61,7 +61,6 @@ def cart_data(request):
             order, created = Order.objects.get_or_create(customer=customer, transaction_status=False)
         except MultipleObjectsReturned:
             order = Order.objects.filter(customer=customer, transaction_status=False).order_by('-date_order')[0]
-        print(order)
         items = order.orderitem_set.all()
         address_list = AddressBook.objects.filter(user= request.user)
 
@@ -81,7 +80,6 @@ def complete_unauthorised_user_order(request, data):
     customer, created = Customer.objects.get_or_create(email=email)
     customer.name = name
     customer.save()
-    print()
 
     order = Order.objects.create(
         customer = customer,

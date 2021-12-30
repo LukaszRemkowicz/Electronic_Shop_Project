@@ -40,7 +40,6 @@ def filter_tv_products(request: HttpRequest) -> QuerySet:
     url_queryset = return_url_params(request)
 
     for key, value in url_queryset.items():
-        print(key, value)
         try:
             if key == 'stars':
                 products = filter_by_stars(products, value, Tv.objects.all())
@@ -140,7 +139,6 @@ def filter_ssd_products(request: HttpRequest) -> QuerySet:
     url_queryset = return_url_params(request)
 
     for key, value in url_queryset.items():
-        print(products)
         try:
             if key == 'stars':
                 products = filter_by_stars(products, value, Ssd.objects.all())
@@ -169,7 +167,6 @@ def filter_graphs_products(request: HttpRequest) -> QuerySet:
     url_queryset = return_url_params(request)
 
     for key, value in url_queryset.items():
-        print(products)
         try:
             if key == 'stars':
                 products = filter_by_stars(products, value, Graphs.objects.all())
@@ -199,7 +196,6 @@ def filter_rams_products(request: HttpRequest) -> QuerySet:
     url_queryset = return_url_params(request)
 
     for key, value in url_queryset.items():
-        print(products)
         try:
             if key == 'stars':
                 products = filter_by_stars(products, value, Ram.objects.all())
@@ -224,7 +220,6 @@ def filter_pendrives_products(request: HttpRequest) -> QuerySet:
     url_queryset = return_url_params(request)
 
     for key, value in url_queryset.items():
-        print(products)
         try:
             if key == 'stars':
                 products = filter_by_stars(products, value, Pendrives.objects.all())
@@ -251,7 +246,7 @@ def filter_switches_products(request: HttpRequest) -> QuerySet:
     url_queryset = return_url_params(request)
 
     for key, value in url_queryset.items():
-        print(key, type(value))
+
         try:
             if key == 'stars':
                 products = filter_by_stars(products, value, Switches.objects.all())
@@ -282,7 +277,6 @@ def filter_motherboard_products(request: HttpRequest) -> QuerySet:
     url_queryset = return_url_params(request)
 
     for key, value in url_queryset.items():
-        print(products)
         try:
             if key == 'stars':
                 products = filter_by_stars(products, value, Motherboard.objects.all())
@@ -326,7 +320,6 @@ def filter_cpus_products(request: HttpRequest) -> QuerySet:
     url_queryset = return_url_params(request)
 
     for key, value in url_queryset.items():
-        print(products)
         try:
             if key == 'stars':
                 products = filter_by_stars(products, value, Cpu.objects.all())
@@ -351,7 +344,6 @@ def filter_headphones_products(request: HttpRequest) -> QuerySet:
     url_queryset = return_url_params(request)
 
     for key, value in url_queryset.items():
-        print(products)
         try:
             if key == 'stars':
                 products = filter_by_stars(products, value, Headphones.objects.all())
@@ -381,7 +373,6 @@ def filter_routers_products(request: HttpRequest) -> QuerySet:
     url_queryset = return_url_params(request)
 
     for key, value in url_queryset.items():
-        print(key)
         try:
             if key == 'stars':
                 products = filter_by_stars(products, value, Routers.objects.all())
@@ -424,7 +415,6 @@ def filter_laptops_products(request: HttpRequest) -> QuerySet:
     url_queryset = return_url_params(request)
 
     for key, value in url_queryset.items():
-        print(key, value)
         try:
             if key == 'stars':
                 products = filter_by_stars(products, value, Laptops.objects.all())
@@ -458,7 +448,6 @@ def filter_phones_products(request: HttpRequest) -> QuerySet:
     url_queryset = return_url_params(request)
 
     for key, value in url_queryset.items():
-        print(key, value)
         try:
             if key == 'stars':
                 products = filter_by_stars(products, value, Phones.objects.all())
@@ -504,8 +493,6 @@ def get_all(request: HttpRequest) -> QuerySet:
 
 
     products = cache.get('objects_all')
-    print('product cached', products)
-    print('cache', cache.__dict__)
     if not products:
         products = MainProductDatabase.objects.all()
         cache.set('objects_all', products)

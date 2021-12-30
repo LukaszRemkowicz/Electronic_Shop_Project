@@ -10,4 +10,3 @@ admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderItem)
 admin.site.register(ShippingAddress)
 admin.site.register(ShoppingCard)
-

@@ -22,6 +22,6 @@ urlpatterns = [
     path('newsletter/', views.Newsletter.as_view(), name='Newsletter'),
     path('product-quantity/<int:product_id>/', views.OrderProductQuantity.as_view(), name='product-quantity'),
     path('create-product/', views.CreateProduct.as_view(), name='create-product'),
-    
+
 ]
 

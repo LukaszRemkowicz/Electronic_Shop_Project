@@ -142,11 +142,14 @@ class Inherit(models.Model):
 
     @staticmethod
     def change_decimal(num) -> Union[float, int]:
-        frac, whole = math.modf(num)
-        if frac:
-            return num
-        else:
-            return int(whole)
+        try:
+            frac, whole = math.modf(num)
+            if frac:
+                return num
+            else:
+                return int(whole),
+        except TypeError:
+            return ''
 
     def change_width(self) -> Union[float, int]:
         return Inherit.change_decimal(self.width)
@@ -221,7 +224,7 @@ class MainProductDatabase(models.Model):
     bought_num = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
     producent = models.CharField(max_length=100, default='')
-    model = models.CharField(max_length=100, null=True, blank=True)
+    model = models.CharField(max_length=100)
 
     likes = models.ManyToManyField(User, default=None, blank=True)
 
@@ -393,13 +396,10 @@ class Pc(Inherit):
     @classmethod
     def data_products_to_filter(cls, querySet='') -> Dict:
 
-        print('query set w modelach', querySet)
         if querySet:
             pcs = querySet
         else:
             pcs = Pc.objects.all()
-        print('pcs len', filter_pcs(pcs))
-
         return filter_pcs(pcs)
 
 

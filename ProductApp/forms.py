@@ -18,10 +18,10 @@ class FilterForm(forms.Form):
                                     )
                                 )
 
-    country = forms.BooleanField(required=False, 
+    country = forms.BooleanField(required=False,
                               widget=forms.CheckboxInput(
                                   attrs={'type': 'checkbox',
                                         'class': 'countryFilter'}
                                   )
                               )
-    
+
