@@ -10,7 +10,10 @@ User = settings.AUTH_USER_MODEL
 
 class Complaint(models.Model):
     type = models.CharField(default="RMA", max_length=20)
-    product = models.OneToOneField(MainProductDatabase, on_delete=models.CASCADE)
+    product = models.OneToOneField(
+        MainProductDatabase,
+        on_delete=models.CASCADE
+    )
     date = models.DateField(auto_now_add=True)
 
     CHOICES = [
@@ -19,7 +22,10 @@ class Complaint(models.Model):
         ("Closed", "Closed")
     ]
 
-    status = models.CharField(choices=CHOICES, max_length=50, default="checking the complaint")
+    status = models.CharField(choices=CHOICES,
+                              max_length=50,
+                              default="checking the complaint"
+                              )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     message = models.CharField(max_length=10000)
     order = models.OneToOneField(Order, on_delete=models.CASCADE)

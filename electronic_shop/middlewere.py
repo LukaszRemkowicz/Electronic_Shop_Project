@@ -1,22 +1,18 @@
-from Profile.forms import CustomLoginForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login
-from django.utils.deprecation import MiddlewareMixin
 
 from Profile.forms import CustomLoginForm
-from electronic_shop.ProductApp.models import MainProductDatabase
-
 
 
 class LoginFormMiddleware:
 
     def __init__(self, get_response):
-            self.get_response = get_response
+        self.get_response = get_response
 
     def __call__(self, request):
 
         login_form = CustomLoginForm()
-        login_form_context = {'login_form' : login_form}
+        login_form_context = {'login_form': login_form}
         request.login_form_context = login_form_context
 
         response = self.get_response(request)
@@ -25,7 +21,6 @@ class LoginFormMiddleware:
 
             form = AuthenticationForm(data=request.POST)
             if form.is_valid():
-
                 login(request, form.get_user())
         else:
             pass

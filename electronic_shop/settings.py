@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     # 'Profile',
     'ProductApp.apps.ProductappConfig',
     'AddressBookApp.apps.AddressbookappConfig',
-    'OrdersApp.apps.OrdersappConfig',
     'MessagesApp.apps.MessagesappConfig',
     'ShoppingCardApp.apps.ShoppingcardappConfig',
     'Articles.apps.ArticlesConfig',

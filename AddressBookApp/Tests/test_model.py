@@ -1,4 +1,4 @@
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.contrib.auth import get_user_model
 
 from ..models import AddressBook
@@ -7,6 +7,7 @@ from ..models import AddressBook
 def create_user(*args, **kwargs) -> get_user_model:
     """ Help function to create user """
     return get_user_model().objects.create_user(**kwargs)
+
 
 class TestAdressBookApp(TestCase):
 
@@ -17,7 +18,6 @@ class TestAdressBookApp(TestCase):
         }
 
     def test_address_book_model(self) -> None:
-
         user = create_user(**self.payload)
 
         address_data = {

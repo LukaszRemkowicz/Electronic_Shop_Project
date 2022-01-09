@@ -5,6 +5,7 @@ from . import forms
 
 from mptt.admin import MPTTModelAdmin
 
+
 class BlogAdmin(admin.ModelAdmin):
     form = forms.BlogAdminForm
 

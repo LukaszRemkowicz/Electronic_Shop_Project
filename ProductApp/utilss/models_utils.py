@@ -1,9 +1,8 @@
 from typing import Dict
 from django.db.models.query import QuerySet
-from django.db.models.functions import Length
+
 
 def filter_phones(phones: QuerySet) -> Dict:
-
     system = {}
     for product in phones:
         if product.system in system:
@@ -81,10 +80,11 @@ def filter_phones(phones: QuerySet) -> Dict:
             battery[product.battery] = 1
 
     waterproof = {
-        'Yes' : len([product.waterproof for product in phones if product.waterproof == True]),
-        'No' : len([product.waterproof for product in phones if product.waterproof == False])
+        'Yes': len([product.waterproof for product in phones
+                    if product.waterproof]),
+        'No': len([product.waterproof for product in phones
+                   if not product.waterproof])
     }
-
 
     return {
         'battery': battery,
@@ -97,10 +97,10 @@ def filter_phones(phones: QuerySet) -> Dict:
         'processor': processor,
         'system': system,
         'cpu_clock': cpu_clock,
-        }
+    }
+
 
 def filter_monitors(monitors: QuerySet) -> Dict:
-
     resolution = {}
     for product in monitors:
 
@@ -192,8 +192,8 @@ def filter_monitors(monitors: QuerySet) -> Dict:
         'refresh_rate': refresh_rate,
     }
 
-def filter_laptops(laptops: QuerySet) -> Dict:
 
+def filter_laptops(laptops: QuerySet) -> Dict:
     resolution = {}
     for product in laptops:
 
@@ -293,7 +293,9 @@ def filter_laptops(laptops: QuerySet) -> Dict:
     return {
         'resolution': resolution,
         'diagonal': screen_diagonal,
-        'bluetooth': len([product.bluetooth for product in laptops if product.bluetooth == True]),
+        'bluetooth': len([
+            product.bluetooth for product in laptops
+            if product.bluetooth]),
         'screen': screen,
         'system': system,
         'graph': graph,
@@ -304,10 +306,10 @@ def filter_laptops(laptops: QuerySet) -> Dict:
         'processor': processor,
         'processor_clock': processor_clock,
         'processor_cores_threads': processor_cores_threads,
-        }
+    }
+
 
 def filter_pcs(pcs: QuerySet) -> Dict:
-
     processor = {}
     for product in pcs:
         if product.processor in processor:
@@ -388,8 +390,8 @@ def filter_pcs(pcs: QuerySet) -> Dict:
         'bluetooth': bluetooth
     }
 
-def filter_ssd(ssds: QuerySet) -> Dict:
 
+def filter_ssd(ssds: QuerySet) -> Dict:
     format = {}
     for product in ssds:
         if product.format in format:
@@ -433,8 +435,8 @@ def filter_ssd(ssds: QuerySet) -> Dict:
         'life_time': life_time
     }
 
-def filter_graphs(graphs: QuerySet) -> Dict:
 
+def filter_graphs(graphs: QuerySet) -> Dict:
     chipset = {}
     for product in graphs:
         if product.chipset in chipset:
@@ -480,7 +482,6 @@ def filter_graphs(graphs: QuerySet) -> Dict:
 
 
 def filter_rams(rams: QuerySet) -> Dict:
-
     capacity = {}
     for product in rams:
         if product.capacity in capacity:
@@ -532,8 +533,8 @@ def filter_rams(rams: QuerySet) -> Dict:
         'type': typee
     }
 
-def filter_pendrives(pendrives: QuerySet) -> Dict:
 
+def filter_pendrives(pendrives: QuerySet) -> Dict:
     capacity = {}
     for product in pendrives:
         if product.capacity in capacity:
@@ -547,7 +548,6 @@ def filter_pendrives(pendrives: QuerySet) -> Dict:
 
 
 def filter_switches(switches: QuerySet) -> Dict:
-
     num_of_poe = {}
     for product in switches:
         if product.num_of_poe in num_of_poe:
@@ -575,8 +575,8 @@ def filter_switches(switches: QuerySet) -> Dict:
         'manageable': manageable,
     }
 
-def filter_motherboards(motherboards: QuerySet) -> Dict:
 
+def filter_motherboards(motherboards: QuerySet) -> Dict:
     chipset = {}
     for product in motherboards:
         if product.chipset in chipset:
@@ -607,7 +607,8 @@ def filter_motherboards(motherboards: QuerySet) -> Dict:
 
     raid_controler = {}
     for product in motherboards:
-        reaplce_str = product.raid_controler.replace('\n RAID ', ', ').replace('RAID ' ,'')
+        reaplce_str = product.raid_controler.replace(
+            '\n RAID ', ', ').replace('RAID ', '')
         if reaplce_str != 'No raid':
             new_string = f'Raids: {reaplce_str}'
         else:
@@ -617,7 +618,6 @@ def filter_motherboards(motherboards: QuerySet) -> Dict:
             raid_controler[new_string] += 1
         else:
             raid_controler[new_string] = 1
-
 
     ram = {}
     for product in motherboards:
@@ -633,7 +633,6 @@ def filter_motherboards(motherboards: QuerySet) -> Dict:
         else:
             wifi[product.wifi] = 1
 
-
     return {
         'chipset': chipset,
         'processor_socket': processor_socket,
@@ -646,7 +645,6 @@ def filter_motherboards(motherboards: QuerySet) -> Dict:
 
 
 def filter_cpus(cpus: QuerySet) -> Dict:
-
     cooler = {}
     for product in cpus:
         if product.cooler in cooler:
@@ -700,7 +698,6 @@ def filter_cpus(cpus: QuerySet) -> Dict:
 
 
 def filter_tvs(tvs: QuerySet) -> Dict:
-
     refresh = {}
     for product in tvs:
         if product.refresh_rate in refresh:
@@ -777,10 +774,10 @@ def filter_tvs(tvs: QuerySet) -> Dict:
         'smart_tv': smart_tv,
         'resolution': resolution,
         'matrix_type': matrix_type
-        }
+    }
+
 
 def filter_headphones(heaphones: QuerySet) -> Dict:
-
     connection = {}
     for product in heaphones:
         if product.connection in connection:
@@ -794,7 +791,6 @@ def filter_headphones(heaphones: QuerySet) -> Dict:
 
 
 def filter_routers(routers: QuerySet) -> Dict:
-
     wifi = {}
     for product in routers:
         new_str = product.wifi

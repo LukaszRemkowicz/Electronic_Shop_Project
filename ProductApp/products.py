@@ -1,683 +1,682 @@
-iPhone_12_Mini_5G_128GB_Dual_SIM_Blue={
-                'name': 'Iphone 12 Mini 5G 128GB Blue',
-                'price': 799.99,
-                'model': 'Iphone 12',
-                'pieces': 5,
-                'color': 'Blue',
-                'producent': 'Apple',
-                'producent_code': 'MGE63PM/A',
-                'ean': 194252015810 ,
-                'waterproof': True,
-                'system': 'iOS 14',
-                'processor': 'Apple A14 Bionic',
-                'cpu_clock': '6 x 2.99 GHz Hexa Core',
-                'memory_card': 'Not avaiable',
-                'max_memory_card': 'Not avaiable',
-                'ram': '4 GB',
-                'memory': '128 GB',
-                'modem': '5G',
-                'usb': '3.0',
-                'audio_jack': "Not avaiable",
-                'screen': '1080 x 2340',
-                'screen_diagonal': 5.4,
-                'battery': '2277 mAh',
-                'high': 13.1,
-                'width': 6.4,
-                'deep': 0.7,
-                'weight': 133,
-                'cattegory': 'Phones',
-                "main_photo": "Iphone 12 Mini 5G 128GB Blue_1.jpg",
-                "second_photo": "Iphone 12 Mini 5G 128GB Blue_2.jpg",
-                "third_photo": "Iphone 12 Mini 5G 128GB Blue_3.jpg",
-            }
+iPhone_12_Mini_5G_128GB_Dual_SIM_Blue = {
+    'name': 'Iphone 12 Mini 5G 128GB Blue',
+    'price': 799.99,
+    'model': 'Iphone 12',
+    'pieces': 5,
+    'color': 'Blue',
+    'producent': 'Apple',
+    'producent_code': 'MGE63PM/A',
+    'ean': 194252015810,
+    'waterproof': True,
+    'system': 'iOS 14',
+    'processor': 'Apple A14 Bionic',
+    'cpu_clock': '6 x 2.99 GHz Hexa Core',
+    'memory_card': 'Not avaiable',
+    'max_memory_card': 'Not avaiable',
+    'ram': '4 GB',
+    'memory': '128 GB',
+    'modem': '5G',
+    'usb': '3.0',
+    'audio_jack': "Not avaiable",
+    'screen': '1080 x 2340',
+    'screen_diagonal': 5.4,
+    'battery': '2277 mAh',
+    'high': 13.1,
+    'width': 6.4,
+    'deep': 0.7,
+    'weight': 133,
+    'cattegory': 'Phones',
+    "main_photo": "Iphone 12 Mini 5G 128GB Blue_1.jpg",
+    "second_photo": "Iphone 12 Mini 5G 128GB Blue_2.jpg",
+    "third_photo": "Iphone 12 Mini 5G 128GB Blue_3.jpg",
+}
 
-iPhone_12_Mini_5G_128GB_Dual_SIM_red={
-                'name': 'Iphone 12 Mini 5G 128GB Red',
-                'model': 'Iphone 12',
-                'price': 799.99,
-                'pieces': 5,
-                'color': 'Red',
-                'producent': 'Apple',
-                'producent_code': 'MGE53PM/A',
-                'ean': 194252015537 ,
-                'waterproof': True,
-                'system': 'iOS 14',
-                'processor': 'Apple A14 Bionic',
-                'cpu_clock': '6 x 2.99 GHz Hexa Core',
-                'memory_card': 'Not avaiable',
-                'max_memory_card': 'Not avaiable',
-                'ram': '4 GB',
-                'memory': '128 GB',
-                'modem': '5G',
-                'usb': '3.0',
-                'audio_jack': "Not avaiable",
-                'screen': '1080 x 2340',
-                'screen_diagonal': 5.4,
-                'battery': '2277 mAh',
-                'high': 13.1,
-                'width': 6.4,
-                'deep': 0.7,
-                'weight': 133,
-                'cattegory': 'Phones',
-                'main_photo': 'Iphone 12 Mini 5G 128GB Red_1.jpg',
-                'second_photo': 'Iphone 12 Mini 5G 128GB Red_2.jpg',
-                'third_photo': 'Iphone 12 Mini 5G 128GB Red_3.jpg',
-            }
+iPhone_12_Mini_5G_128GB_Dual_SIM_red = {
+    'name': 'Iphone 12 Mini 5G 128GB Red',
+    'model': 'Iphone 12',
+    'price': 799.99,
+    'pieces': 5,
+    'color': 'Red',
+    'producent': 'Apple',
+    'producent_code': 'MGE53PM/A',
+    'ean': 194252015537,
+    'waterproof': True,
+    'system': 'iOS 14',
+    'processor': 'Apple A14 Bionic',
+    'cpu_clock': '6 x 2.99 GHz Hexa Core',
+    'memory_card': 'Not avaiable',
+    'max_memory_card': 'Not avaiable',
+    'ram': '4 GB',
+    'memory': '128 GB',
+    'modem': '5G',
+    'usb': '3.0',
+    'audio_jack': "Not avaiable",
+    'screen': '1080 x 2340',
+    'screen_diagonal': 5.4,
+    'battery': '2277 mAh',
+    'high': 13.1,
+    'width': 6.4,
+    'deep': 0.7,
+    'weight': 133,
+    'cattegory': 'Phones',
+    'main_photo': 'Iphone 12 Mini 5G 128GB Red_1.jpg',
+    'second_photo': 'Iphone 12 Mini 5G 128GB Red_2.jpg',
+    'third_photo': 'Iphone 12 Mini 5G 128GB Red_3.jpg',
+}
 
-iPhone_12_Pro_512GB_Grey={
-                'name': 'Iphone 12 Pro 512GB Grey',
-                'model': 'Iphone 12',
-                'price': 1499.99,
-                'pieces': 2,
-                'color': 'Grey',
-                'producent': 'Apple',
-                'producent_code': 'MGMU3PM/A',
-                'ean': 194252040294 ,
-                'waterproof': True,
-                'system': 'iOS 14',
-                'processor': 'Apple A14 Bionic',
-                'cpu_clock': '6 x 2.99 GHz Hexa Core',
-                'memory_card': 'Not avaiable',
-                'max_memory_card': 'Not avaiable',
-                'ram': '6 GB',
-                'memory': '512 GB',
-                'modem': '5G',
-                'usb': '3.0',
-                'audio_jack': "Not avaiable",
-                'screen': '1170 x 2532',
-                'screen_diagonal': 6.1,
-                'battery': '2775 mAh',
-                'high': 14.7,
-                'width': 7.1,
-                'deep': 0.7,
-                'weight': 187,
-                'cattegory': 'Phones',
-                'main_photo': 'Iphone 12 Pro 512GB Grey_1.jpg',
-                'second_photo': 'Iphone 12 Pro 512GB Grey_2.jpg',
-                'third_photo': 'Iphone 12 Pro 512GB Grey_3.jpg',
-            }
+iPhone_12_Pro_512GB_Grey = {
+    'name': 'Iphone 12 Pro 512GB Grey',
+    'model': 'Iphone 12',
+    'price': 1499.99,
+    'pieces': 2,
+    'color': 'Grey',
+    'producent': 'Apple',
+    'producent_code': 'MGMU3PM/A',
+    'ean': 194252040294,
+    'waterproof': True,
+    'system': 'iOS 14',
+    'processor': 'Apple A14 Bionic',
+    'cpu_clock': '6 x 2.99 GHz Hexa Core',
+    'memory_card': 'Not avaiable',
+    'max_memory_card': 'Not avaiable',
+    'ram': '6 GB',
+    'memory': '512 GB',
+    'modem': '5G',
+    'usb': '3.0',
+    'audio_jack': "Not avaiable",
+    'screen': '1170 x 2532',
+    'screen_diagonal': 6.1,
+    'battery': '2775 mAh',
+    'high': 14.7,
+    'width': 7.1,
+    'deep': 0.7,
+    'weight': 187,
+    'cattegory': 'Phones',
+    'main_photo': 'Iphone 12 Pro 512GB Grey_1.jpg',
+    'second_photo': 'Iphone 12 Pro 512GB Grey_2.jpg',
+    'third_photo': 'Iphone 12 Pro 512GB Grey_3.jpg',
+}
 
-iPhone_12_Pro_256GB_Grey={
-                'name': 'Iphone 12 Pro 256GB Grey',
-                'model': 'Iphone 12',
-                'price': 1199.99,
-                'pieces': 5,
-                'color': 'Grey',
-                'producent': 'Apple',
-                'producent_code': 'MGMP3PM/A',
-                'ean': 194252038932 ,
-                'waterproof': True,
-                'system': 'iOS 14',
-                'processor': 'Apple A14 Bionic',
-                'cpu_clock': '6 x 2.99 GHz Hexa Core',
-                'memory_card': 'Not avaiable',
-                'max_memory_card': 'Not avaiable',
-                'ram': '6 GB',
-                'memory': '256 GB',
-                'modem': '5G',
-                'usb': '3.0',
-                'audio_jack': "Not avaiable",
-                'screen': '1170 x 2532',
-                'screen_diagonal': 6.1,
-                'battery': '2775 mAh',
-                'high': 14.7,
-                'width': 7.1,
-                'deep': 0.7,
-                'weight': 187,
-                'cattegory': 'Phones',
-                'main_photo': 'Iphone 12 Pro 256GB Grey_1.jpg',
-                'second_photo': 'Iphone 12 Pro 256GB Grey_2.jpg',
-                'third_photo': 'Iphone 12 Pro 256GB Grey_3.jpg',
-            }
+iPhone_12_Pro_256GB_Grey = {
+    'name': 'Iphone 12 Pro 256GB Grey',
+    'model': 'Iphone 12',
+    'price': 1199.99,
+    'pieces': 5,
+    'color': 'Grey',
+    'producent': 'Apple',
+    'producent_code': 'MGMP3PM/A',
+    'ean': 194252038932,
+    'waterproof': True,
+    'system': 'iOS 14',
+    'processor': 'Apple A14 Bionic',
+    'cpu_clock': '6 x 2.99 GHz Hexa Core',
+    'memory_card': 'Not avaiable',
+    'max_memory_card': 'Not avaiable',
+    'ram': '6 GB',
+    'memory': '256 GB',
+    'modem': '5G',
+    'usb': '3.0',
+    'audio_jack': "Not avaiable",
+    'screen': '1170 x 2532',
+    'screen_diagonal': 6.1,
+    'battery': '2775 mAh',
+    'high': 14.7,
+    'width': 7.1,
+    'deep': 0.7,
+    'weight': 187,
+    'cattegory': 'Phones',
+    'main_photo': 'Iphone 12 Pro 256GB Grey_1.jpg',
+    'second_photo': 'Iphone 12 Pro 256GB Grey_2.jpg',
+    'third_photo': 'Iphone 12 Pro 256GB Grey_3.jpg',
+}
 
-Xiaomi_Redmi_Note_10_Pro_128GB_Onyx_Gray={
-                'name': 'Xiaomi Redmi Note 10 128GB Onyx Gray',
-                'model': 'Redmi Note 10',
-                'price': 339.99,
-                'pieces': 15,
-                'color': 'Grey',
-                'producent': 'Xiaomi',
-                'producent_code': 'MZB08KVEU',
-                'ean': 6934177730375 ,
-                'waterproof': False,
-                'system': 'Android 11',
-                'processor': 'Qualcomm Snapdragon 732G',
-                'cpu_clock': '2.3 GHz Octa Core',
-                'memory_card': 'microSD',
-                'max_memory_card': '512 GB',
-                'ram': '6 GB',
-                'memory': '128 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': "MiniJack 3.5mm",
-                'screen': '1080 x 2400 Amoled',
-                'screen_diagonal': 6.67,
-                'battery': '5020 mAh',
-                'high': 16.4,
-                'width': 7.6,
-                'deep': 0.8,
-                'weight': 193,
-                'cattegory': 'Phones',
-                'main_photo': 'Xiaomi Redmi Note 10 128GB Onyx Gray_1.jpg',
-                'second_photo': 'Xiaomi Redmi Note 10 128GB Onyx Gray_2.jpg',
-            }
+Xiaomi_Redmi_Note_10_Pro_128GB_Onyx_Gray = {
+    'name': 'Xiaomi Redmi Note 10 128GB Onyx Gray',
+    'model': 'Redmi Note 10',
+    'price': 339.99,
+    'pieces': 15,
+    'color': 'Grey',
+    'producent': 'Xiaomi',
+    'producent_code': 'MZB08KVEU',
+    'ean': 6934177730375,
+    'waterproof': False,
+    'system': 'Android 11',
+    'processor': 'Qualcomm Snapdragon 732G',
+    'cpu_clock': '2.3 GHz Octa Core',
+    'memory_card': 'microSD',
+    'max_memory_card': '512 GB',
+    'ram': '6 GB',
+    'memory': '128 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': "MiniJack 3.5mm",
+    'screen': '1080 x 2400 Amoled',
+    'screen_diagonal': 6.67,
+    'battery': '5020 mAh',
+    'high': 16.4,
+    'width': 7.6,
+    'deep': 0.8,
+    'weight': 193,
+    'cattegory': 'Phones',
+    'main_photo': 'Xiaomi Redmi Note 10 128GB Onyx Gray_1.jpg',
+    'second_photo': 'Xiaomi Redmi Note 10 128GB Onyx Gray_2.jpg',
+}
 
-Xiaomi_Redmi_Note_10_Pro_64GB_Onyx_Gray={
-                'name': 'Xiaomi Redmi Note 10 64GB Onyx Gray',
-                'model': 'Redmi Note 10',
-                'price': 309.99,
-                'pieces': 15,
-                'color': 'Grey',
-                'producent': 'Xiaomi',
-                'producent_code': '31743',
-                'ean': 6934177734465 ,
-                'waterproof': False,
-                'system': 'Android 11',
-                'processor': 'Qualcomm Snapdragon 732G',
-                'cpu_clock': '2.3 GHz Octa Core',
-                'memory_card': 'microSD',
-                'max_memory_card': '512 GB',
-                'ram': '6 GB',
-                'memory': '64 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': "MiniJack 3.5mm",
-                'screen': '1080 x 2400 Amoled',
-                'screen_diagonal': 6.67,
-                'battery': '5020 mAh',
-                'high': 16.4,
-                'width': 7.6,
-                'deep': 0.8,
-                'weight': 193,
-                'cattegory': 'Phones',
-                'main_photo': 'Xiaomi Redmi Note 10 64GB Onyx Gray_1.jpg',
-                'second_photo': 'Xiaomi Redmi Note 10 64GB Onyx Gray_2.jpg',
-            }
+Xiaomi_Redmi_Note_10_Pro_64GB_Onyx_Gray = {
+    'name': 'Xiaomi Redmi Note 10 64GB Onyx Gray',
+    'model': 'Redmi Note 10',
+    'price': 309.99,
+    'pieces': 15,
+    'color': 'Grey',
+    'producent': 'Xiaomi',
+    'producent_code': '31743',
+    'ean': 6934177734465,
+    'waterproof': False,
+    'system': 'Android 11',
+    'processor': 'Qualcomm Snapdragon 732G',
+    'cpu_clock': '2.3 GHz Octa Core',
+    'memory_card': 'microSD',
+    'max_memory_card': '512 GB',
+    'ram': '6 GB',
+    'memory': '64 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': "MiniJack 3.5mm",
+    'screen': '1080 x 2400 Amoled',
+    'screen_diagonal': 6.67,
+    'battery': '5020 mAh',
+    'high': 16.4,
+    'width': 7.6,
+    'deep': 0.8,
+    'weight': 193,
+    'cattegory': 'Phones',
+    'main_photo': 'Xiaomi Redmi Note 10 64GB Onyx Gray_1.jpg',
+    'second_photo': 'Xiaomi Redmi Note 10 64GB Onyx Gray_2.jpg',
+}
 
-Xiaomi_Redmi_Note_10_Pro_64GB_Dual_SIM_Blue={
-                'name': 'Xiaomi Redmi Note 10 64GB Blue',
-                'model': 'Redmi Note 10',
-                'price': 309.99,
-                'pieces': 15,
-                'color': 'Blue',
-                'producent': 'Xiaomi',
-                'producent_code': 'xiaomi_20210607155020',
-                'ean': 6934177734458 ,
-                'waterproof': False,
-                'system': 'Android 11',
-                'processor': 'Qualcomm Snapdragon 732G',
-                'cpu_clock': '2.3 GHz Octa Core',
-                'memory_card': 'microSD',
-                'max_memory_card': '512 GB',
-                'ram': '6 GB',
-                'memory': '64 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': "MiniJack 3.5mm",
-                'screen': '1080 x 2400 Amoled',
-                'screen_diagonal': 6.67,
-                'battery': '5020 mAh',
-                'high': 16.4,
-                'width': 7.6,
-                'deep': 0.8,
-                'weight': 193,
-                'cattegory': 'Phones',
-                'main_photo': 'Xiaomi Redmi Note 10 64GB Blue_1.jpg',
-                'second_photo': 'Xiaomi Redmi Note 10 64GB Blue_2.jpg',
-            }
+Xiaomi_Redmi_Note_10_Pro_64GB_Dual_SIM_Blue = {
+    'name': 'Xiaomi Redmi Note 10 64GB Blue',
+    'model': 'Redmi Note 10',
+    'price': 309.99,
+    'pieces': 15,
+    'color': 'Blue',
+    'producent': 'Xiaomi',
+    'producent_code': 'xiaomi_20210607155020',
+    'ean': 6934177734458,
+    'waterproof': False,
+    'system': 'Android 11',
+    'processor': 'Qualcomm Snapdragon 732G',
+    'cpu_clock': '2.3 GHz Octa Core',
+    'memory_card': 'microSD',
+    'max_memory_card': '512 GB',
+    'ram': '6 GB',
+    'memory': '64 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': "MiniJack 3.5mm",
+    'screen': '1080 x 2400 Amoled',
+    'screen_diagonal': 6.67,
+    'battery': '5020 mAh',
+    'high': 16.4,
+    'width': 7.6,
+    'deep': 0.8,
+    'weight': 193,
+    'cattegory': 'Phones',
+    'main_photo': 'Xiaomi Redmi Note 10 64GB Blue_1.jpg',
+    'second_photo': 'Xiaomi Redmi Note 10 64GB Blue_2.jpg',
+}
 
-Xiaomi_Redmi_Note_10_Pro_64GB_Dual_SIM_Gradient_bronze={
-                'name': 'Xiaomi Redmi Note 10 64GB Gradient Bronze',
-                'model': 'Redmi Note 10',
-                'price': 309.99,
-                'pieces': 15,
-                'color': 'Gradient Bronze',
-                'producent': 'Xiaomi',
-                'producent_code': '31751',
-                'ean': 7608515832593 ,
-                'waterproof': False,
-                'system': 'Android 11',
-                'processor': 'Qualcomm Snapdragon 732G',
-                'cpu_clock': '2.3 GHz Octa Core',
-                'memory_card': 'microSD',
-                'max_memory_card': '512 GB',
-                'ram': '6 GB',
-                'memory': '64 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': "MiniJack 3.5mm",
-                'screen': '1080 x 2400 Amoled',
-                'screen_diagonal': 6.67,
-                'battery': '5020 mAh',
-                'high': 16.4,
-                'width': 7.6,
-                'deep': 0.8,
-                'weight': 193,
-                'cattegory': 'Phones',
-                'main_photo': 'Xiaomi Redmi Note 10 64GB Gradient Bronze_1.jpg',
-                'second_photo': 'Xiaomi Redmi Note 10 64GB Gradient Bronze_2.jpg',
-            }
+Xiaomi_Redmi_Note_10_Pro_64GB_Dual_SIM_Gradient_bronze = {
+    'name': 'Xiaomi Redmi Note 10 64GB Gradient Bronze',
+    'model': 'Redmi Note 10',
+    'price': 309.99,
+    'pieces': 15,
+    'color': 'Gradient Bronze',
+    'producent': 'Xiaomi',
+    'producent_code': '31751',
+    'ean': 7608515832593,
+    'waterproof': False,
+    'system': 'Android 11',
+    'processor': 'Qualcomm Snapdragon 732G',
+    'cpu_clock': '2.3 GHz Octa Core',
+    'memory_card': 'microSD',
+    'max_memory_card': '512 GB',
+    'ram': '6 GB',
+    'memory': '64 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': "MiniJack 3.5mm",
+    'screen': '1080 x 2400 Amoled',
+    'screen_diagonal': 6.67,
+    'battery': '5020 mAh',
+    'high': 16.4,
+    'width': 7.6,
+    'deep': 0.8,
+    'weight': 193,
+    'cattegory': 'Phones',
+    'main_photo': 'Xiaomi Redmi Note 10 64GB Gradient Bronze_1.jpg',
+    'second_photo': 'Xiaomi Redmi Note 10 64GB Gradient Bronze_2.jpg',
+}
 
-Samsung_Galaxy_S20_FE_128GB_Dual_SIM_Blue={
-                'name': 'Samsung Galaxy s20 Blue 128GB',
-                'model': 'Galaxy s20',
-                'price': 609.99,
-                'pieces': 15,
-                'color': 'Blue',
-                'producent': 'Samsung',
-                'producent_code': 'SM-G780GZBDEUE',
-                'ean': 8806092522770 ,
-                'waterproof': True,
-                'system': 'Android 10',
-                'processor': 'Qualcomm Snapdragon 865',
-                'cpu_clock': '2.8 GHz Octa Core',
-                'memory_card': 'microSD',
-                'max_memory_card': '1TB',
-                'ram': '6 GB',
-                'memory': '128 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': "Not Avaiable",
-                'screen': '1080 x 2400 Super Amoled',
-                'screen_diagonal': 6.5,
-                'battery': '4500 mAh',
-                'high': 15.9,
-                'width': 7.4,
-                'deep': 0.8,
-                'weight': 193,
-                'cattegory': 'Phones',
-                'main_photo': 'Samsung Galaxy s20 Blue 128GB_1.jpg',
-                'second_photo': 'Samsung Galaxy s20 Blue 128GB_2.jpg',
-                'third_photo': 'Samsung Galaxy s20 Blue 128GB_3.jpg',
-            }
+Samsung_Galaxy_S20_FE_128GB_Dual_SIM_Blue = {
+    'name': 'Samsung Galaxy s20 Blue 128GB',
+    'model': 'Galaxy s20',
+    'price': 609.99,
+    'pieces': 15,
+    'color': 'Blue',
+    'producent': 'Samsung',
+    'producent_code': 'SM-G780GZBDEUE',
+    'ean': 8806092522770,
+    'waterproof': True,
+    'system': 'Android 10',
+    'processor': 'Qualcomm Snapdragon 865',
+    'cpu_clock': '2.8 GHz Octa Core',
+    'memory_card': 'microSD',
+    'max_memory_card': '1TB',
+    'ram': '6 GB',
+    'memory': '128 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': "Not Avaiable",
+    'screen': '1080 x 2400 Super Amoled',
+    'screen_diagonal': 6.5,
+    'battery': '4500 mAh',
+    'high': 15.9,
+    'width': 7.4,
+    'deep': 0.8,
+    'weight': 193,
+    'cattegory': 'Phones',
+    'main_photo': 'Samsung Galaxy s20 Blue 128GB_1.jpg',
+    'second_photo': 'Samsung Galaxy s20 Blue 128GB_2.jpg',
+    'third_photo': 'Samsung Galaxy s20 Blue 128GB_3.jpg',
+}
 
-Samsung_Galaxy_S20_FE_256GB_Dual_SIM_Pink={
-                'name': 'Samsung Galaxy s20 Pink 256GB',
-                'model': 'Galaxy s20',
-                'price': 759.99,
-                'pieces': 10,
-                'color': 'Pink',
-                'producent': 'Samsung',
-                'producent_code': 'SM-G780GLVHEUE',
-                'ean': 8806092522961,
-                'waterproof': True,
-                'system': 'Android 10',
-                'processor': 'Qualcomm Snapdragon 865',
-                'cpu_clock': '2.8 GHz Octa Core',
-                'memory_card': 'microSD',
-                'max_memory_card': '1TB',
-                'ram': '8 GB',
-                'memory': '256 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': "Not Avaiable",
-                'screen': '1080 x 2400 Super Amoled',
-                'screen_diagonal': 6.5,
-                'battery': '4500 mAh',
-                'high': 15.9,
-                'width': 7.4,
-                'deep': 0.8,
-                'weight': 193,
-                'cattegory': 'Phones',
-                'main_photo': 'Samsung Galaxy s20 Pink 256GB_1.jpg',
-                'second_photo': 'Samsung Galaxy s20 Pink 256GB_2.jpg',
-            }
+Samsung_Galaxy_S20_FE_256GB_Dual_SIM_Pink = {
+    'name': 'Samsung Galaxy s20 Pink 256GB',
+    'model': 'Galaxy s20',
+    'price': 759.99,
+    'pieces': 10,
+    'color': 'Pink',
+    'producent': 'Samsung',
+    'producent_code': 'SM-G780GLVHEUE',
+    'ean': 8806092522961,
+    'waterproof': True,
+    'system': 'Android 10',
+    'processor': 'Qualcomm Snapdragon 865',
+    'cpu_clock': '2.8 GHz Octa Core',
+    'memory_card': 'microSD',
+    'max_memory_card': '1TB',
+    'ram': '8 GB',
+    'memory': '256 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': "Not Avaiable",
+    'screen': '1080 x 2400 Super Amoled',
+    'screen_diagonal': 6.5,
+    'battery': '4500 mAh',
+    'high': 15.9,
+    'width': 7.4,
+    'deep': 0.8,
+    'weight': 193,
+    'cattegory': 'Phones',
+    'main_photo': 'Samsung Galaxy s20 Pink 256GB_1.jpg',
+    'second_photo': 'Samsung Galaxy s20 Pink 256GB_2.jpg',
+}
 
-Samsung_Galaxy_S20_FE_128GB_Dual_SIM_White={
-                'name': 'Samsung Galaxy s20 White 128GB',
-                'model': 'Galaxy s20',
-                'price': 619.99,
-                'pieces': 10,
-                'color': 'White',
-                'producent': 'Samsung',
-                'producent_code': 'SM-G780GZWDEUE',
-                'ean': 8806090840678,
-                'waterproof': True,
-                'system': 'Android 10',
-                'processor': 'Qualcomm Snapdragon 865',
-                'cpu_clock': '2.8 GHz Octa Core',
-                'memory_card': 'microSD',
-                'max_memory_card': '1TB',
-                'ram': '6 GB',
-                'memory': '128 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': "Not Avaiable",
-                'screen': '1080 x 2400 Super Amoled',
-                'screen_diagonal': 6.5,
-                'battery': '4500 mAh',
-                'high': 15.9,
-                'width': 7.4,
-                'deep': 0.8,
-                'weight': 193,
-                'cattegory': 'Phones',
-                'main_photo': 'Samsung Galaxy s20 White 128GB_1.jpg',
-                'second_photo': 'Samsung Galaxy s20 White 128GB_2.jpg',
-                'third_photo': 'Samsung Galaxy s20 White 128GB_3.jpg',
-            }
+Samsung_Galaxy_S20_FE_128GB_Dual_SIM_White = {
+    'name': 'Samsung Galaxy s20 White 128GB',
+    'model': 'Galaxy s20',
+    'price': 619.99,
+    'pieces': 10,
+    'color': 'White',
+    'producent': 'Samsung',
+    'producent_code': 'SM-G780GZWDEUE',
+    'ean': 8806090840678,
+    'waterproof': True,
+    'system': 'Android 10',
+    'processor': 'Qualcomm Snapdragon 865',
+    'cpu_clock': '2.8 GHz Octa Core',
+    'memory_card': 'microSD',
+    'max_memory_card': '1TB',
+    'ram': '6 GB',
+    'memory': '128 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': "Not Avaiable",
+    'screen': '1080 x 2400 Super Amoled',
+    'screen_diagonal': 6.5,
+    'battery': '4500 mAh',
+    'high': 15.9,
+    'width': 7.4,
+    'deep': 0.8,
+    'weight': 193,
+    'cattegory': 'Phones',
+    'main_photo': 'Samsung Galaxy s20 White 128GB_1.jpg',
+    'second_photo': 'Samsung Galaxy s20 White 128GB_2.jpg',
+    'third_photo': 'Samsung Galaxy s20 White 128GB_3.jpg',
+}
 
-Sony_Xperia_L4_64GB_Dual_SIM_Black={
-                'name': 'Sony Xperia L4 64GB Black',
-                'model': 'Xperia L4',
-                'price': 179.99,
-                'pieces': 20,
-                'color': 'Black',
-                'producent': 'Sony',
-                'producent_code': 'XQAD52M4B.EEAC',
-                'ean': 7311271631262,
-                'waterproof': False,
-                'system': 'Android 9',
-                'processor': 'MediaTek Helio P22',
-                'cpu_clock': '2.0 GHz Octa Core',
-                'memory_card': 'microSD',
-                'max_memory_card': '515GB',
-                'ram': '3 GB',
-                'memory': '64 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': 'MiniJack 3.5mm',
-                'screen': '720 x 1680 LCD',
-                'screen_diagonal': 6.2,
-                'battery': '3580 mAh',
-                'high': 15.9,
-                'width': 7.1,
-                'deep': 0.9,
-                'weight': 178,
-                'cattegory': 'Phones',
-                'main_photo': 'Sony Xperia L4 64GB Black_1.jpg',
-            }
+Sony_Xperia_L4_64GB_Dual_SIM_Black = {
+    'name': 'Sony Xperia L4 64GB Black',
+    'model': 'Xperia L4',
+    'price': 179.99,
+    'pieces': 20,
+    'color': 'Black',
+    'producent': 'Sony',
+    'producent_code': 'XQAD52M4B.EEAC',
+    'ean': 7311271631262,
+    'waterproof': False,
+    'system': 'Android 9',
+    'processor': 'MediaTek Helio P22',
+    'cpu_clock': '2.0 GHz Octa Core',
+    'memory_card': 'microSD',
+    'max_memory_card': '515GB',
+    'ram': '3 GB',
+    'memory': '64 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': 'MiniJack 3.5mm',
+    'screen': '720 x 1680 LCD',
+    'screen_diagonal': 6.2,
+    'battery': '3580 mAh',
+    'high': 15.9,
+    'width': 7.1,
+    'deep': 0.9,
+    'weight': 178,
+    'cattegory': 'Phones',
+    'main_photo': 'Sony Xperia L4 64GB Black_1.jpg',
+}
 
 Samsung_Galaxy_A20e_32GB_Dual_SIM_Black = {
-                'name': 'Samsung Galaxy A20e 32GB Black',
-                'model': 'Galaxy A20e',
-                'price': 229.99,
-                'pieces': 18,
-                'color': 'Black',
-                'producent': 'Samsung',
-                'producent_code': 'SM-A202FZKDXEO',
-                'ean': 8801643850975,
-                'waterproof': False,
-                'system': 'Android 9',
-                'processor': 'Exynos 7884',
-                'cpu_clock': '1.6 GHz Octa Core',
-                'memory_card': 'microSD',
-                'max_memory_card': '512GB',
-                'ram': '3 GB',
-                'memory': '32 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': 'MiniJack 3.5mm',
-                'screen': '720 x 1560 IPS',
-                'screen_diagonal': 5.8,
-                'battery': '3000 mAh',
-                'high': 14.7,
-                'width': 6.9,
-                'deep': 0.8,
-                'weight': 141,
-                'cattegory': 'Phones',
-                'main_photo': 'Samsung Galaxy A20e 32GB Black_1.jpg',
-                'second_photo': 'Samsung Galaxy A20e 32GB Black_2.jpg',
-                'third_photo': 'Samsung Galaxy A20e 32GB Black_3.jpg',
-            }
+    'name': 'Samsung Galaxy A20e 32GB Black',
+    'model': 'Galaxy A20e',
+    'price': 229.99,
+    'pieces': 18,
+    'color': 'Black',
+    'producent': 'Samsung',
+    'producent_code': 'SM-A202FZKDXEO',
+    'ean': 8801643850975,
+    'waterproof': False,
+    'system': 'Android 9',
+    'processor': 'Exynos 7884',
+    'cpu_clock': '1.6 GHz Octa Core',
+    'memory_card': 'microSD',
+    'max_memory_card': '512GB',
+    'ram': '3 GB',
+    'memory': '32 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': 'MiniJack 3.5mm',
+    'screen': '720 x 1560 IPS',
+    'screen_diagonal': 5.8,
+    'battery': '3000 mAh',
+    'high': 14.7,
+    'width': 6.9,
+    'deep': 0.8,
+    'weight': 141,
+    'cattegory': 'Phones',
+    'main_photo': 'Samsung Galaxy A20e 32GB Black_1.jpg',
+    'second_photo': 'Samsung Galaxy A20e 32GB Black_2.jpg',
+    'third_photo': 'Samsung Galaxy A20e 32GB Black_3.jpg',
+}
 
 Samsung_Galaxy_A20e_32GB_Dual_SIM_Coral = {
-                'name': 'Samsung Galaxy A20e 32GB Coral',
-                'model': 'Galaxy A20e',
-                'price': 229.99,
-                'pieces': 18,
-                'color': 'Coral',
-                'producent': 'Samsung',
-                'producent_code': 'SM-A202FZODXEO',
-                'ean': 8801643870416,
-                'waterproof': False,
-                'system': 'Android 9',
-                'processor': 'Exynos 7884',
-                'cpu_clock': '1.6 GHz Octa Core',
-                'memory_card': 'microSD',
-                'max_memory_card': '512GB',
-                'ram': '3 GB',
-                'memory': '32 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': 'MiniJack 3.5mm',
-                'screen': '720 x 1560 IPS',
-                'screen_diagonal': 5.8,
-                'battery': '3000 mAh',
-                'high': 14.7,
-                'width': 6.9,
-                'deep': 0.8,
-                'weight': 141,
-                'cattegory': 'Phones',
-                'main_photo': 'Samsung Galaxy A20e 32GB Coral_1.jpg',
-                'second_photo': 'Samsung Galaxy A20e 32GB Coral_2.jpg',
-                'third_photo': 'Samsung Galaxy A20e 32GB Coral_3.jpg',
-            }
+    'name': 'Samsung Galaxy A20e 32GB Coral',
+    'model': 'Galaxy A20e',
+    'price': 229.99,
+    'pieces': 18,
+    'color': 'Coral',
+    'producent': 'Samsung',
+    'producent_code': 'SM-A202FZODXEO',
+    'ean': 8801643870416,
+    'waterproof': False,
+    'system': 'Android 9',
+    'processor': 'Exynos 7884',
+    'cpu_clock': '1.6 GHz Octa Core',
+    'memory_card': 'microSD',
+    'max_memory_card': '512GB',
+    'ram': '3 GB',
+    'memory': '32 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': 'MiniJack 3.5mm',
+    'screen': '720 x 1560 IPS',
+    'screen_diagonal': 5.8,
+    'battery': '3000 mAh',
+    'high': 14.7,
+    'width': 6.9,
+    'deep': 0.8,
+    'weight': 141,
+    'cattegory': 'Phones',
+    'main_photo': 'Samsung Galaxy A20e 32GB Coral_1.jpg',
+    'second_photo': 'Samsung Galaxy A20e 32GB Coral_2.jpg',
+    'third_photo': 'Samsung Galaxy A20e 32GB Coral_3.jpg',
+}
 
 Samsung_Galaxy_A20e_32GB_Dual_SIM_Blue = {
-                'name': 'Samsung Galaxy A20e 32GB Blue',
-                'model': 'Galaxy A20e',
-                'price': 229.99,
-                'pieces': 18,
-                'color': 'Blue',
-                'producent': 'Samsung',
-                'producent_code': 'SM-A202FZBDXEO',
-                'ean': 8801643870553,
-                'waterproof': False,
-                'system': 'Android 9',
-                'processor': 'Exynos 7884',
-                'cpu_clock': '1.6 GHz Octa Core',
-                'memory_card': 'microSD',
-                'max_memory_card': '512GB',
-                'ram': '3 GB',
-                'memory': '32 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': 'MiniJack 3.5mm',
-                'screen': '720 x 1560 IPS',
-                'screen_diagonal': 5.8,
-                'battery': '3000 mAh',
-                'high': 14.7,
-                'width': 6.9,
-                'deep': 0.8,
-                'weight': 141,
-                'cattegory': 'Phones',
-                'main_photo': 'Samsung Galaxy A20e 32GB Blue_1.jpg',
-                'second_photo': 'Samsung Galaxy A20e 32GB Blue_2.jpg',
-                'third_photo': 'Samsung Galaxy A20e 32GB Blue_3.jpg',
-            }
+    'name': 'Samsung Galaxy A20e 32GB Blue',
+    'model': 'Galaxy A20e',
+    'price': 229.99,
+    'pieces': 18,
+    'color': 'Blue',
+    'producent': 'Samsung',
+    'producent_code': 'SM-A202FZBDXEO',
+    'ean': 8801643870553,
+    'waterproof': False,
+    'system': 'Android 9',
+    'processor': 'Exynos 7884',
+    'cpu_clock': '1.6 GHz Octa Core',
+    'memory_card': 'microSD',
+    'max_memory_card': '512GB',
+    'ram': '3 GB',
+    'memory': '32 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': 'MiniJack 3.5mm',
+    'screen': '720 x 1560 IPS',
+    'screen_diagonal': 5.8,
+    'battery': '3000 mAh',
+    'high': 14.7,
+    'width': 6.9,
+    'deep': 0.8,
+    'weight': 141,
+    'cattegory': 'Phones',
+    'main_photo': 'Samsung Galaxy A20e 32GB Blue_1.jpg',
+    'second_photo': 'Samsung Galaxy A20e 32GB Blue_2.jpg',
+    'third_photo': 'Samsung Galaxy A20e 32GB Blue_3.jpg',
+}
 
 Xiaomi_Mi_11_Lite_128GB_Black = {
-                'name': 'Xiaomi Mi 11 Lite 128GB Black',
-                'model': 'Mi 11 Lite',
-                'price': 329.99,
-                'pieces': 12,
-                'color': 'Black',
-                'producent': 'Xiaomi',
-                'producent_code': 'xiaomi_20210421154933',
-                'ean': 6934177729638,
-                'waterproof': False,
-                'system': 'Android 11',
-                'processor': 'Qualcomm Snapdragon 732G',
-                'cpu_clock': '2.3 GHz Octa Core',
-                'memory_card': 'microSD',
-                'max_memory_card': 'No data',
-                'ram': '6 GB',
-                'memory': '128 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': 'Not Avaiable',
-                'screen': '1080 x 2400 Amoled',
-                'screen_diagonal': 6.55,
-                'battery': '4250 mAh',
-                'high': 16.05,
-                'width': 7.5,
-                'deep': 0.7,
-                'weight': 157,
-                'cattegory': 'Phones',
-                'main_photo': 'Xiaomi Mi 11 Lite 128GB Black_1.jpg',
-                'second_photo': 'Xiaomi Mi 11 Lite 128GB Black_2.jpg',
-                'third_photo': 'Xiaomi Mi 11 Lite 128GB Black_3.jpg',
-            }
+    'name': 'Xiaomi Mi 11 Lite 128GB Black',
+    'model': 'Mi 11 Lite',
+    'price': 329.99,
+    'pieces': 12,
+    'color': 'Black',
+    'producent': 'Xiaomi',
+    'producent_code': 'xiaomi_20210421154933',
+    'ean': 6934177729638,
+    'waterproof': False,
+    'system': 'Android 11',
+    'processor': 'Qualcomm Snapdragon 732G',
+    'cpu_clock': '2.3 GHz Octa Core',
+    'memory_card': 'microSD',
+    'max_memory_card': 'No data',
+    'ram': '6 GB',
+    'memory': '128 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': 'Not Avaiable',
+    'screen': '1080 x 2400 Amoled',
+    'screen_diagonal': 6.55,
+    'battery': '4250 mAh',
+    'high': 16.05,
+    'width': 7.5,
+    'deep': 0.7,
+    'weight': 157,
+    'cattegory': 'Phones',
+    'main_photo': 'Xiaomi Mi 11 Lite 128GB Black_1.jpg',
+    'second_photo': 'Xiaomi Mi 11 Lite 128GB Black_2.jpg',
+    'third_photo': 'Xiaomi Mi 11 Lite 128GB Black_3.jpg',
+}
 
 Xiaomi_Mi_11_Lite_128GB_Blue = {
-                'name': 'Xiaomi Mi 11 Lite 128GB Blue',
-                'model': 'Mi 11 Lite',
-                'price': 329.99,
-                'pieces': 12,
-                'color': 'Blue',
-                'producent': 'Xiaomi',
-                'producent_code': 'xiaomi_20210421155922',
-                'ean': 6934177732676,
-                'waterproof': False,
-                'system': 'Android 11',
-                'processor': 'Qualcomm Snapdragon 732G',
-                'cpu_clock': '2.3 GHz Octa Core',
-                'memory_card': 'microSD',
-                'max_memory_card': 'No data',
-                'ram': '6 GB',
-                'memory': '128 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': 'Not Avaiable',
-                'screen': '1080 x 2400 Amoled',
-                'screen_diagonal': 6.55,
-                'battery': '4250 mAh',
-                'high': 16.05,
-                'width': 7.5,
-                'deep': 0.7,
-                'weight': 157,
-                'cattegory': 'Phones',
-                'main_photo': 'Xiaomi Mi 11 Lite 128GB Blue_1.jpg',
-                'second_photo': 'Xiaomi Mi 11 Lite 128GB Blue_2.jpg',
-            }
+    'name': 'Xiaomi Mi 11 Lite 128GB Blue',
+    'model': 'Mi 11 Lite',
+    'price': 329.99,
+    'pieces': 12,
+    'color': 'Blue',
+    'producent': 'Xiaomi',
+    'producent_code': 'xiaomi_20210421155922',
+    'ean': 6934177732676,
+    'waterproof': False,
+    'system': 'Android 11',
+    'processor': 'Qualcomm Snapdragon 732G',
+    'cpu_clock': '2.3 GHz Octa Core',
+    'memory_card': 'microSD',
+    'max_memory_card': 'No data',
+    'ram': '6 GB',
+    'memory': '128 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': 'Not Avaiable',
+    'screen': '1080 x 2400 Amoled',
+    'screen_diagonal': 6.55,
+    'battery': '4250 mAh',
+    'high': 16.05,
+    'width': 7.5,
+    'deep': 0.7,
+    'weight': 157,
+    'cattegory': 'Phones',
+    'main_photo': 'Xiaomi Mi 11 Lite 128GB Blue_1.jpg',
+    'second_photo': 'Xiaomi Mi 11 Lite 128GB Blue_2.jpg',
+}
 
 Xiaomi_Mi_11_Lite_64GB_Black = {
-                'name': 'Xiaomi Mi 11 Lite 64GB Black',
-                'model': 'Mi 11 Lite',
-                'price': 329.99,
-                'pieces': 12,
-                'color': 'Black',
-                'producent': 'Xiaomi',
-                'producent_code': 'xiaomi_20210607143053',
-                'ean': 6934177732645,
-                'waterproof': False,
-                'system': 'Android 11',
-                'processor': 'Qualcomm Snapdragon 732G',
-                'cpu_clock': '2.3 GHz Octa Core',
-                'memory_card': 'microSD',
-                'max_memory_card': 'No data',
-                'ram': '6 GB',
-                'memory': '64 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': 'Not Avaiable',
-                'screen': '1080 x 2400 Amoled',
-                'screen_diagonal': 6.55,
-                'battery': '4250 mAh',
-                'high': 16.05,
-                'width': 7.5,
-                'deep': 0.7,
-                'weight': 157,
-                'cattegory': 'Phones',
-                'main_photo': 'Xiaomi Mi 11 Lite 64GB Black_1.jpg',
-                'second_photo': 'Xiaomi Mi 11 Lite 64GB Black_2.jpg',
-                'third_photo': 'Xiaomi Mi 11 Lite 64GB Black_3.jpg',
-            }
+    'name': 'Xiaomi Mi 11 Lite 64GB Black',
+    'model': 'Mi 11 Lite',
+    'price': 329.99,
+    'pieces': 12,
+    'color': 'Black',
+    'producent': 'Xiaomi',
+    'producent_code': 'xiaomi_20210607143053',
+    'ean': 6934177732645,
+    'waterproof': False,
+    'system': 'Android 11',
+    'processor': 'Qualcomm Snapdragon 732G',
+    'cpu_clock': '2.3 GHz Octa Core',
+    'memory_card': 'microSD',
+    'max_memory_card': 'No data',
+    'ram': '6 GB',
+    'memory': '64 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': 'Not Avaiable',
+    'screen': '1080 x 2400 Amoled',
+    'screen_diagonal': 6.55,
+    'battery': '4250 mAh',
+    'high': 16.05,
+    'width': 7.5,
+    'deep': 0.7,
+    'weight': 157,
+    'cattegory': 'Phones',
+    'main_photo': 'Xiaomi Mi 11 Lite 64GB Black_1.jpg',
+    'second_photo': 'Xiaomi Mi 11 Lite 64GB Black_2.jpg',
+    'third_photo': 'Xiaomi Mi 11 Lite 64GB Black_3.jpg',
+}
 
 LG_K61_128GB_Dual_SIM_Grey = {
-                'name': 'LG K61 128GB Grey',
-                'model': 'LG K61',
-                'price': 319.99,
-                'pieces': 10,
-                'color': 'Grey',
-                'producent': 'LG',
-                'producent_code': '88060870441190',
-                'ean': 8806087044614,
-                'waterproof': False,
-                'system': 'Android 9',
-                'processor': 'MediaTek MT6765',
-                'cpu_clock': '2.3 GHz Octa Core',
-                'memory_card': 'microSD',
-                'max_memory_card': '2TB',
-                'ram': '4 GB',
-                'memory': '128 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': 'MiniJack 3.5mm',
-                'screen': '1080 x 2340 TN',
-                'screen_diagonal': 6.5,
-                'battery': '4000 mAh',
-                'high': 16.4,
-                'width': 7.7,
-                'deep': 0.8,
-                'weight': 191,
-                'cattegory': 'Phones',
-                'main_photo': 'LG K61 128GB Grey_1.jpg',
-            }
+    'name': 'LG K61 128GB Grey',
+    'model': 'LG K61',
+    'price': 319.99,
+    'pieces': 10,
+    'color': 'Grey',
+    'producent': 'LG',
+    'producent_code': '88060870441190',
+    'ean': 8806087044614,
+    'waterproof': False,
+    'system': 'Android 9',
+    'processor': 'MediaTek MT6765',
+    'cpu_clock': '2.3 GHz Octa Core',
+    'memory_card': 'microSD',
+    'max_memory_card': '2TB',
+    'ram': '4 GB',
+    'memory': '128 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': 'MiniJack 3.5mm',
+    'screen': '1080 x 2340 TN',
+    'screen_diagonal': 6.5,
+    'battery': '4000 mAh',
+    'high': 16.4,
+    'width': 7.7,
+    'deep': 0.8,
+    'weight': 191,
+    'cattegory': 'Phones',
+    'main_photo': 'LG K61 128GB Grey_1.jpg',
+}
 
 LG_K61_128GB_Dual_SIM_White = {
-                'name': 'LG K61 128GB White',
-                'model': 'LG K61',
-                'price': 319.99,
-                'pieces': 10,
-                'color': 'White',
-                'producent': 'LG',
-                'producent_code': '8806087044386',
-                'ean': 8806087044386,
-                'waterproof': False,
-                'system': 'Android 9',
-                'processor': 'MediaTek MT6765',
-                'cpu_clock': '2.3 GHz Octa Core',
-                'memory_card': 'microSD',
-                'max_memory_card': '2TB',
-                'ram': '4 GB',
-                'memory': '128 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': 'MiniJack 3.5mm',
-                'screen': '1080 x 2340 TN',
-                'screen_diagonal': 6.5,
-                'battery': '4000 mAh',
-                'high': 16.4,
-                'width': 7.7,
-                'deep': 0.8,
-                'weight': 191,
-                'cattegory': 'Phones',
-                'main_photo': 'LG K61 128GB White_1.jpg',
-            }
+    'name': 'LG K61 128GB White',
+    'model': 'LG K61',
+    'price': 319.99,
+    'pieces': 10,
+    'color': 'White',
+    'producent': 'LG',
+    'producent_code': '8806087044386',
+    'ean': 8806087044386,
+    'waterproof': False,
+    'system': 'Android 9',
+    'processor': 'MediaTek MT6765',
+    'cpu_clock': '2.3 GHz Octa Core',
+    'memory_card': 'microSD',
+    'max_memory_card': '2TB',
+    'ram': '4 GB',
+    'memory': '128 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': 'MiniJack 3.5mm',
+    'screen': '1080 x 2340 TN',
+    'screen_diagonal': 6.5,
+    'battery': '4000 mAh',
+    'high': 16.4,
+    'width': 7.7,
+    'deep': 0.8,
+    'weight': 191,
+    'cattegory': 'Phones',
+    'main_photo': 'LG K61 128GB White_1.jpg',
+}
 
 Huawei_P20_Lite_64GB_Dual_SIM_Pink = {
-                'name': 'Huawei P20 Lite 64GB Pink',
-                'model': 'P20 lite',
-                'price': 272.99,
-                'pieces': 8,
-                'color': 'Pink',
-                'producent': 'Huawei',
-                'producent_code': 'P20 lite PL',
-                'ean': 6901443217427,
-                'waterproof': False,
-                'system': 'Android 8',
-                'processor': 'Huawei Kirin 659',
-                'cpu_clock': '2.36 GHz Quad Core',
-                'memory_card': 'microSD',
-                'max_memory_card': '256GB',
-                'ram': '4 GB',
-                'memory': '64 GB',
-                'modem': '4G LTE',
-                'usb': 'Type C',
-                'audio_jack': 'MiniJack 3.5mm',
-                'screen': '1080 x 2280 TN',
-                'screen_diagonal': 5.84,
-                'battery': '3000 mAh',
-                'high': 14.9,
-                'width': 7.1,
-                'deep': 0.7,
-                'weight': 154,
-                'cattegory': 'Phones',
-                'main_photo': 'Huawei P20 Lite 64GB Pink_1.jpg',
-                'second_photo': 'Huawei P20 Lite 64GB Pink_2.jpg',
-            }
-
+    'name': 'Huawei P20 Lite 64GB Pink',
+    'model': 'P20 lite',
+    'price': 272.99,
+    'pieces': 8,
+    'color': 'Pink',
+    'producent': 'Huawei',
+    'producent_code': 'P20 lite PL',
+    'ean': 6901443217427,
+    'waterproof': False,
+    'system': 'Android 8',
+    'processor': 'Huawei Kirin 659',
+    'cpu_clock': '2.36 GHz Quad Core',
+    'memory_card': 'microSD',
+    'max_memory_card': '256GB',
+    'ram': '4 GB',
+    'memory': '64 GB',
+    'modem': '4G LTE',
+    'usb': 'Type C',
+    'audio_jack': 'MiniJack 3.5mm',
+    'screen': '1080 x 2280 TN',
+    'screen_diagonal': 5.84,
+    'battery': '3000 mAh',
+    'high': 14.9,
+    'width': 7.1,
+    'deep': 0.7,
+    'weight': 154,
+    'cattegory': 'Phones',
+    'main_photo': 'Huawei P20 Lite 64GB Pink_1.jpg',
+    'second_photo': 'Huawei P20 Lite 64GB Pink_2.jpg',
+}
 
 phones = [
     iPhone_12_Mini_5G_128GB_Dual_SIM_Blue,
@@ -700,7 +699,7 @@ phones = [
     LG_K61_128GB_Dual_SIM_Grey,
     LG_K61_128GB_Dual_SIM_White,
     Huawei_P20_Lite_64GB_Dual_SIM_Pink
-    ]
+]
 
 """
 
@@ -1236,7 +1235,7 @@ Dell_P2419H = {
     'second_photo': 'Dell P2419H_2.jpg',
 }
 
-Philips_V_line_273V7QDSB= {
+Philips_V_line_273V7QDSB = {
     'name': 'Philips V-line 273V7QDSB',
     'producent': 'Philips',
     'producent_code': '273V7QDSB/00',
@@ -1307,7 +1306,6 @@ for monitor in monitors:
 
 """
 
-
 """ Laptops """
 Dell_Vostro_3500_grey_8GB_RAM_I5_Windows10 = {
     'name': 'Dell Vostro 3500 Grey 8GB RAM, I5, Windows10 ',
@@ -1320,7 +1318,7 @@ Dell_Vostro_3500_grey_8GB_RAM_I5_Windows10 = {
     'color': 'Grey',
     'cattegory': 'Laptops',
     'processor': 'Intel Core i5-1135G7',
-    'processor_clock' : '2.4 GHz',
+    'processor_clock': '2.4 GHz',
     'processor_cores_threads': '4/8',
     'resolution': '1920 x 1080 (Full HD)',
     'energy_time': 2,
@@ -1344,7 +1342,7 @@ Dell_Vostro_3500_grey_8GB_RAM_I5_Windows10 = {
     'main_photo': 'Dell Vostro 3500 Grey 8GB RAM, I5, Windows10_1.jpg',
     'second_photo': 'Dell Vostro 3500 Grey 8GB RAM, I5, Windows10_2.jpg',
     'third_photo': 'Dell Vostro 3500 Grey 8GB RAM, I5, Windows10_3.jpg',
- }
+}
 
 Dell_Vostro_3500_black = {
     'name': 'Dell Vostro 3500 black',
@@ -1357,7 +1355,7 @@ Dell_Vostro_3500_black = {
     'color': 'Black',
     'cattegory': 'Laptops',
     'processor': 'Intel Core i3-1115G4',
-    'processor_clock' : '3.0 GHz',
+    'processor_clock': '3.0 GHz',
     'processor_cores_threads': '2/4',
     'resolution': '1920 x 1080 (Full HD)',
     'energy_time': 2,
@@ -1381,7 +1379,7 @@ Dell_Vostro_3500_black = {
     'main_photo': 'Dell_Vostro_3500_black_1.jpg',
     'second_photo': 'Dell_Vostro_3500_black_2.jpg',
     'third_photo': 'Dell_Vostro_3500_black_3.jpg',
- }
+}
 
 Dell_Vostro_3500_16_GB_RAM_256_GB_SSD_Windows_10 = {
     'name': 'Dell Vostro 3500 16 GB RAM 256 GB SSD Windows 10',
@@ -1394,7 +1392,7 @@ Dell_Vostro_3500_16_GB_RAM_256_GB_SSD_Windows_10 = {
     'color': 'Grey',
     'cattegory': 'Laptops',
     'processor': 'Intel Core i5-1135G7',
-    'processor_clock' : '2.4 GHz',
+    'processor_clock': '2.4 GHz',
     'processor_cores_threads': '4/8',
     'ram': 16,
     'ram_model': 'DDR4',
@@ -1418,8 +1416,7 @@ Dell_Vostro_3500_16_GB_RAM_256_GB_SSD_Windows_10 = {
     'main_photo': 'Dell Vostro 3500 16 GB RAM 256 GB SSD Windows 10_1.jpg',
     'second_photo': 'Dell Vostro 3500 16 GB RAM 256 GB SSD Windows 10_2.jpg',
     'third_photo': 'Dell Vostro 3500 16 GB RAM 256 GB SSD Windows 10_3.jpg',
- }
-
+}
 
 Laptop_Acer_Nitro_5_AN515_44 = {
     'name': 'Laptop Acer Nitro 5 AN515-44',
@@ -1432,7 +1429,7 @@ Laptop_Acer_Nitro_5_AN515_44 = {
     'color': 'Black',
     'cattegory': 'Laptops',
     'processor': 'AMD Ryzen 5 4600H',
-    'processor_clock' : '3.0 GHz',
+    'processor_clock': '3.0 GHz',
     'processor_cores_threads': '6/12',
     'ram': 8,
     'max_ram': 32,
@@ -1457,8 +1454,7 @@ Laptop_Acer_Nitro_5_AN515_44 = {
     'main_photo': 'Laptop Acer Nitro 5 AN515-44_1.jpg',
     'second_photo': 'Laptop Acer Nitro 5 AN515-44_2.jpg',
     'third_photo': 'Laptop Acer Nitro 5 AN515-44_3.jpg',
- }
-
+}
 
 Laptop_Acer_Nitro_5_AN515_44_16_GB_RAM_512_GB_PCIe = {
     'name': 'Laptop Acer Nitro 5 AN515-44 16 GB RAM512 GB M.2 PCIE',
@@ -1471,7 +1467,7 @@ Laptop_Acer_Nitro_5_AN515_44_16_GB_RAM_512_GB_PCIe = {
     'color': 'Black',
     'cattegory': 'Laptops',
     'processor': 'AMD Ryzen 5 4600H',
-    'processor_clock' : '3.0 GHz',
+    'processor_clock': '3.0 GHz',
     'processor_cores_threads': '6/12',
     'ram': 16,
     'max_ram': 32,
@@ -1496,8 +1492,7 @@ Laptop_Acer_Nitro_5_AN515_44_16_GB_RAM_512_GB_PCIe = {
     'main_photo': 'Laptop Acer Nitro 5 AN515-44 16 GB RAM512 GB M.2 PCIE_1.jpg',
     'second_photo': 'Laptop Acer Nitro 5 AN515-44 16 GB RAM512 GB M.2 PCIE_2.jpg',
     'third_photo': 'Laptop Acer Nitro 5 AN515-44 16 GB RAM512 GB M.2 PCIE_3.jpg',
- }
-
+}
 
 Laptop_Acer_Nitro_5_AN515_44_16_GB_RAM_1TB_GB_PCIe_Windows_10 = {
     'name': 'Laptop Acer Nitro 5 AN515-44 16 GB RAM 1TB GB M.2 PCIE Windows 10',
@@ -1510,7 +1505,7 @@ Laptop_Acer_Nitro_5_AN515_44_16_GB_RAM_1TB_GB_PCIe_Windows_10 = {
     'color': 'Black',
     'cattegory': 'Laptops',
     'processor': 'AMD Ryzen 5 4600H',
-    'processor_clock' : '3.0 GHz',
+    'processor_clock': '3.0 GHz',
     'processor_cores_threads': '6/12',
     'ram': 16,
     'max_ram': 32,
@@ -1535,7 +1530,7 @@ Laptop_Acer_Nitro_5_AN515_44_16_GB_RAM_1TB_GB_PCIe_Windows_10 = {
     'main_photo': 'Laptop Acer Nitro 5 AN515-44 16 GB RAM 1TB GB M.2 PCIE Windows 10_1.jpg',
     'second_photo': 'Laptop Acer Nitro 5 AN515-44 16 GB RAM 1TB GB M.2 PCIE Windows 10_2.jpg',
     'third_photo': 'Laptop Acer Nitro 5 AN515-44 16 GB RAM 1TB GB M.2 PCIE Windows 10_3.jpg',
- }
+}
 
 Laptop_Acer_Nitro_5_AN515_44_16_GB_RAM_1TB_GB_PCIe = {
     'name': 'Laptop Acer Nitro 5 AN515-44 16 GB RAM 1TB GB M.2 PCIE',
@@ -1548,7 +1543,7 @@ Laptop_Acer_Nitro_5_AN515_44_16_GB_RAM_1TB_GB_PCIe = {
     'color': 'Black',
     'cattegory': 'Laptops',
     'processor': 'AMD Ryzen 5 4600H',
-    'processor_clock' : '3.0 GHz',
+    'processor_clock': '3.0 GHz',
     'processor_cores_threads': '6/12',
     'ram': 16,
     'max_ram': 32,
@@ -1573,7 +1568,7 @@ Laptop_Acer_Nitro_5_AN515_44_16_GB_RAM_1TB_GB_PCIe = {
     'main_photo': 'Laptop Acer Nitro 5 AN515-44 16 GB RAM 1TB GB M.2 PCIE_1.jpg',
     'second_photo': 'Laptop Acer Nitro 5 AN515-44 16 GB RAM 1TB GB M.2 PCIE_2.jpg',
     'third_photo': 'Laptop Acer Nitro 5 AN515-44 16 GB RAM 1TB GB M.2 PCIE_3.jpg',
- }
+}
 
 Laptop_Gigabyte_G5 = {
     'name': 'Laptop Gigabyte G5',
@@ -1586,7 +1581,7 @@ Laptop_Gigabyte_G5 = {
     'color': 'Black',
     'cattegory': 'Laptops',
     'processor': 'Intel Core i5-10500H',
-    'processor_clock' : '2.5 GHz',
+    'processor_clock': '2.5 GHz',
     'processor_cores_threads': '6/12',
     'ram': 16,
     'max_ram': 64,
@@ -1611,8 +1606,7 @@ Laptop_Gigabyte_G5 = {
     'main_photo': 'Laptop Gigabyte G5_1.jpg',
     'second_photo': 'Laptop Gigabyte G5_2.jpg',
     'third_photo': 'Laptop Gigabyte G5_3.jpg',
- }
-
+}
 
 Laptop_Gigabyte_G5_32_GB_RAM_512_GB_SSD_PCIe = {
     'name': 'Laptop Gigabyte G5 32 GB RAM 512 GB SSD PCIe',
@@ -1625,7 +1619,7 @@ Laptop_Gigabyte_G5_32_GB_RAM_512_GB_SSD_PCIe = {
     'color': 'Black',
     'cattegory': 'Laptops',
     'processor': 'Intel Core i5-10500H',
-    'processor_clock' : '2.5 GHz',
+    'processor_clock': '2.5 GHz',
     'processor_cores_threads': '6/12',
     'ram': 32,
     'max_ram': 64,
@@ -1650,7 +1644,7 @@ Laptop_Gigabyte_G5_32_GB_RAM_512_GB_SSD_PCIe = {
     'main_photo': 'Laptop Gigabyte Laptop G5 32 GB RAM 512 GB SSD PCIe_1.jpg',
     'second_photo': 'Laptop Gigabyte Laptop G5 32 GB RAM 512 GB SSD PCIe_2.jpg',
     'third_photo': 'Laptop Gigabyte Laptop G5 32 GB RAM 512 GB SSD PCIe_3.jpg',
- }
+}
 
 Laptop_Gigabyte_G5_32_GB_RAM_512_GB_SSD_PCIe_Windows_10 = {
     'name': 'Laptop Gigabyte G5 32 GB RAM 512 GB SSD PCIe Windows 10',
@@ -1663,7 +1657,7 @@ Laptop_Gigabyte_G5_32_GB_RAM_512_GB_SSD_PCIe_Windows_10 = {
     'color': 'Black',
     'cattegory': 'Laptops',
     'processor': 'Intel Core i5-10500H',
-    'processor_clock' : '2.5 GHz',
+    'processor_clock': '2.5 GHz',
     'processor_cores_threads': '6/12',
     'ram': 32,
     'max_ram': 64,
@@ -1687,7 +1681,7 @@ Laptop_Gigabyte_G5_32_GB_RAM_512_GB_SSD_PCIe_Windows_10 = {
     'high': 2.7,
     'main_photo': 'Laptop Gigabyte Laptop G5 32 GB RAM 512 GB SSD PCIe Windows 10_1.jpg',
     'second_photo': 'Laptop Gigabyte Laptop G5 32 GB RAM 512 GB SSD PCIe Windows 10_2.jpg',
- }
+}
 
 Laptop_Gigabyte_G5_32_GB_RAM_1_TB_512_GB_SSD_PCIe_Windows_10 = {
     'name': 'Laptop Gigabyte G5 32 GB RAM 1 TB 512 GB SSD PCIe Windows 10 Pro',
@@ -1700,7 +1694,7 @@ Laptop_Gigabyte_G5_32_GB_RAM_1_TB_512_GB_SSD_PCIe_Windows_10 = {
     'color': 'Black',
     'cattegory': 'Laptops',
     'processor': 'Intel Core i5-10500H',
-    'processor_clock' : '2.5 GHz',
+    'processor_clock': '2.5 GHz',
     'processor_cores_threads': '6/12',
     'ram': 32,
     'max_ram': 64,
@@ -1725,7 +1719,7 @@ Laptop_Gigabyte_G5_32_GB_RAM_1_TB_512_GB_SSD_PCIe_Windows_10 = {
     'main_photo': 'Laptop Gigabyte G5 32 GB RAM 1 TB 512 GB SSD PCIe Windows 10 Pro_1.jpg',
     'second_photo': 'Laptop Gigabyte G5 32 GB RAM 1 TB 512 GB SSD PCIe Windows 10 Pro_2.jpg',
     'third_photo': 'Laptop Gigabyte G5 32 GB RAM 1 TB 512 GB SSD PCIe Windows 10 Pro_3.jpg',
- }
+}
 
 Lenovo_IdeaPad_Flex_5_15IIL05_2in1 = {
     'name': 'Lenovo IdeaPad Flex 5 15IIL05',
@@ -1738,7 +1732,7 @@ Lenovo_IdeaPad_Flex_5_15IIL05_2in1 = {
     'color': 'Black',
     'cattegory': 'Laptops',
     'processor': 'Intel Core i5-1035G1',
-    'processor_clock' : '1 GHz',
+    'processor_clock': '1 GHz',
     'processor_cores_threads': '4/8',
     'ram': 8,
     'max_ram': 8,
@@ -1763,7 +1757,7 @@ Lenovo_IdeaPad_Flex_5_15IIL05_2in1 = {
     'main_photo': 'Lenovo_IdeaPad_Flex_5_15IIL05_2in1_1.jpg',
     'second_photo': 'Lenovo_IdeaPad_Flex_5_15IIL05_2in1_2.jpg',
     'third_photo': 'Lenovo_IdeaPad_Flex_5_15IIL05_2in1_3.jpg',
- }
+}
 
 Lenovo_IdeaPad_Flex_5_15IIL05_8_GB_RAM_512_GB_SSD_PCIe_Windows_10 = {
     'name': 'Lenovo IdeaPad Flex 5 15IIL058 GB RAM 512 GB SSD PCIe Windows 10',
@@ -1776,7 +1770,7 @@ Lenovo_IdeaPad_Flex_5_15IIL05_8_GB_RAM_512_GB_SSD_PCIe_Windows_10 = {
     'color': 'Black',
     'cattegory': 'Laptops',
     'processor': 'Intel Core i5-1035G1',
-    'processor_clock' : '1 GHz',
+    'processor_clock': '1 GHz',
     'processor_cores_threads': '4/8',
     'ram': 8,
     'max_ram': 8,
@@ -1801,7 +1795,7 @@ Lenovo_IdeaPad_Flex_5_15IIL05_8_GB_RAM_512_GB_SSD_PCIe_Windows_10 = {
     'main_photo': 'Lenovo_IdeaPad_Flex_5_15IIL05_2in1_1.jpg',
     'second_photo': 'Lenovo_IdeaPad_Flex_5_15IIL05_2in1_2.jpg',
     'third_photo': 'Lenovo_IdeaPad_Flex_5_15IIL05_2in1_3.jpg',
- }
+}
 
 Lenovo_IdeaPad_Flex_5_15IIL05__8_GB_RAM_2_TB_SSD_PCIe_Windows_10_Home = {
     'name': 'Lenovo IdeaPad Flex 5 15IIL05 8 GB RAM 512 GB SSD PCIe Windows 10',
@@ -1814,7 +1808,7 @@ Lenovo_IdeaPad_Flex_5_15IIL05__8_GB_RAM_2_TB_SSD_PCIe_Windows_10_Home = {
     'color': 'Black',
     'cattegory': 'Laptops',
     'processor': 'Intel Core i5-1035G1',
-    'processor_clock' : '1 GHz',
+    'processor_clock': '1 GHz',
     'processor_cores_threads': '4/8',
     'ram': 8,
     'max_ram': 8,
@@ -1839,7 +1833,7 @@ Lenovo_IdeaPad_Flex_5_15IIL05__8_GB_RAM_2_TB_SSD_PCIe_Windows_10_Home = {
     'main_photo': 'Lenovo_IdeaPad_Flex_5_15IIL05_2in1_1.jpg',
     'second_photo': 'Lenovo_IdeaPad_Flex_5_15IIL05_2in1_2.jpg',
     'third_photo': 'Lenovo_IdeaPad_Flex_5_15IIL05_2in1_3.jpg',
- }
+}
 
 Apple_MacBook_Air_13_M1_Grey_8GB_RAM_PCIE_256 = {
     'name': 'Apple MacBook Air 13 M1 Grey 8GB RAM PciE 256',
@@ -1852,7 +1846,7 @@ Apple_MacBook_Air_13_M1_Grey_8GB_RAM_PCIE_256 = {
     'color': 'Grey',
     'cattegory': 'Laptops',
     'processor': 'Apple M1',
-    'processor_clock' : '3.2 GHz',
+    'processor_clock': '3.2 GHz',
     'processor_cores_threads': '8/8',
     'ram': 8,
     'max_ram': 8,
@@ -1876,7 +1870,7 @@ Apple_MacBook_Air_13_M1_Grey_8GB_RAM_PCIE_256 = {
     'main_photo': 'Apple MacBook Air 13 M1 Grey 8GB RAM PciE 256_1.jpg',
     'second_photo': 'Apple MacBook Air 13 M1 Grey 8GB RAM PciE 256_2.jpg',
     'third_photo': 'Apple MacBook Air 13 M1 Grey 8GB RAM PciE 256_3.jpg',
- }
+}
 
 Apple_MacBook_Air_13_M1_Silver_8GB_RAM_PCIE_256 = {
     'name': 'Apple MacBook Air 13 M1 Silver 8GB RAM PciE 256',
@@ -1889,7 +1883,7 @@ Apple_MacBook_Air_13_M1_Silver_8GB_RAM_PCIE_256 = {
     'color': 'Silver',
     'cattegory': 'Laptops',
     'processor': 'Apple M1',
-    'processor_clock' : '3.2 GHz',
+    'processor_clock': '3.2 GHz',
     'processor_cores_threads': '8/8',
     'ram': 8,
     'max_ram': 8,
@@ -1913,7 +1907,7 @@ Apple_MacBook_Air_13_M1_Silver_8GB_RAM_PCIE_256 = {
     'main_photo': 'Apple MacBook Air 13 M1 Silver 8GB RAM PciE 256_1.jpg',
     'second_photo': 'Apple MacBook Air 13 M1 Silver 8GB RAM PciE 256_2.jpg',
     'third_photo': 'Apple MacBook Air 13 M1 Silver 8GB RAM PciE 256_3.jpg',
- }
+}
 
 Apple_MacBook_Air_13_M1_Gold_8GB_RAM_PCIE_256 = {
     'name': 'Apple MacBook Air 13 M1 Gold 8GB RAM PciE 256',
@@ -1926,7 +1920,7 @@ Apple_MacBook_Air_13_M1_Gold_8GB_RAM_PCIE_256 = {
     'color': 'Gold',
     'cattegory': 'Laptops',
     'processor': 'Apple M1',
-    'processor_clock' : '3.2 GHz',
+    'processor_clock': '3.2 GHz',
     'processor_cores_threads': '8/8',
     'ram': 8,
     'max_ram': 8,
@@ -1950,7 +1944,7 @@ Apple_MacBook_Air_13_M1_Gold_8GB_RAM_PCIE_256 = {
     'main_photo': 'Apple MacBook Air 13 M1 Gold 8GB RAM PciE 256_1.jpg',
     'second_photo': 'Apple MacBook Air 13 M1 Gold 8GB RAM PciE 256_2.jpg',
     'third_photo': 'Apple MacBook Air 13 M1 Gold 8GB RAM PciE 256_3.jpg',
- }
+}
 
 Apple_MacBook_Air_13_M1_Grey_16GB_RAM_PCIE_512 = {
     'name': 'Apple MacBook Air 13 M1 Grey 16GB RAM PciE 512',
@@ -1963,7 +1957,7 @@ Apple_MacBook_Air_13_M1_Grey_16GB_RAM_PCIE_512 = {
     'color': 'Grey',
     'cattegory': 'Laptops',
     'processor': 'Apple M1',
-    'processor_clock' : '3.2 GHz',
+    'processor_clock': '3.2 GHz',
     'processor_cores_threads': '8/8',
     'ram': 16,
     'max_ram': 16,
@@ -1987,7 +1981,7 @@ Apple_MacBook_Air_13_M1_Grey_16GB_RAM_PCIE_512 = {
     'main_photo': 'Apple MacBook Air 13 M1 Grey 16GB RAM PciE 512_1.jpg',
     'second_photo': 'Apple MacBook Air 13 M1 Grey 16GB RAM PciE 512_2.jpg',
     'third_photo': 'Apple MacBook Air 13 M1 Grey 16GB RAM PciE 512_3.jpg',
- }
+}
 
 Apple_MacBook_Air_13_M1_Grey_16GB_RAM_PCIE_1TB = {
     'name': 'Apple MacBook Air 13 M1 Grey 16GB RAM PciE 1TB',
@@ -2000,7 +1994,7 @@ Apple_MacBook_Air_13_M1_Grey_16GB_RAM_PCIE_1TB = {
     'color': 'Grey',
     'cattegory': 'Laptops',
     'processor': 'Apple M1',
-    'processor_clock' : '3.2 GHz',
+    'processor_clock': '3.2 GHz',
     'processor_cores_threads': '8/8',
     'ram': 16,
     'max_ram': 16,
@@ -2024,7 +2018,7 @@ Apple_MacBook_Air_13_M1_Grey_16GB_RAM_PCIE_1TB = {
     'main_photo': 'Apple MacBook Air 13 M1 Grey 16GB RAM PciE 1TB_1.jpg',
     'second_photo': 'Apple MacBook Air 13 M1 Grey 16GB RAM PciE 1TB_2.jpg',
     'third_photo': 'Apple MacBook Air 13 M1 Grey 16GB RAM PciE 1TB_3.jpg',
- }
+}
 
 Apple_MacBook_Air_13_M1_Gold_16GB_RAM_PCIE_512GB = {
     'name': 'Apple MacBook Air 13 M1 Gold 16GB RAM PciE 512GB',
@@ -2037,7 +2031,7 @@ Apple_MacBook_Air_13_M1_Gold_16GB_RAM_PCIE_512GB = {
     'color': 'Grey',
     'cattegory': 'Laptops',
     'processor': 'Apple M1',
-    'processor_clock' : '3.2 GHz',
+    'processor_clock': '3.2 GHz',
     'processor_cores_threads': '8/8',
     'ram': 16,
     'max_ram': 16,
@@ -2061,9 +2055,9 @@ Apple_MacBook_Air_13_M1_Gold_16GB_RAM_PCIE_512GB = {
     'main_photo': 'Apple MacBook Air 13 M1 Gold 16GB RAM PciE 256_1.jpg',
     'second_photo': 'Apple MacBook Air 13 M1 Gold 16GB RAM PciE 256_2.jpg',
     'third_photo': 'Apple MacBook Air 13 M1 Gold 16GB RAM PciE 256_3.jpg',
- }
+}
 
-laptops =[
+laptops = [
     # Gigabyte
     Laptop_Gigabyte_G5_32_GB_RAM_1_TB_512_GB_SSD_PCIe_Windows_10,
     Laptop_Gigabyte_G5_32_GB_RAM_512_GB_SSD_PCIe_Windows_10,
@@ -2144,7 +2138,7 @@ Dell_Vostro_3681_Core_i5_10400_8_GB_Intel_UHD_Graphics_630_256_GB_M2_PCIe_Window
     'main_photo': 'Dell Vostro 3681 Core i5-10400 8 GB Intel UHD Graphics 630 256 GB M2 PCIe Windows 10_1.jpg',
 }
 
-Game_X_G500_Core_i5_10400F_16_GB_RTX_3070_1_TB_M2_PCIe= {
+Game_X_G500_Core_i5_10400F_16_GB_RTX_3070_1_TB_M2_PCIe = {
     'name': 'Game X G500, Core i5-10400F, 16 GB RAM, RTX 3070, 1 TB M.2 PCIe 1 TB HDD',
     'producent': 'No producent',
     'producent_code': 'No code',
@@ -2175,7 +2169,7 @@ Game_X_G500_Core_i5_10400F_16_GB_RTX_3070_1_TB_M2_PCIe= {
     'third_photo': 'Game X G500, Core i5-10400F, 16 GB, RTX 3070, 1 TB M2 PCIe_3.jpg',
 }
 
-Game_X_G500_Core_i5_10400F_16_GB_RTX_3070_1_TB_M2_PCIe_1_TB_HDD= {
+Game_X_G500_Core_i5_10400F_16_GB_RTX_3070_1_TB_M2_PCIe_1_TB_HDD = {
     'name': 'Game X G500, Core i5-10400F, 16 GB RAM, RTX 3070, 1 TB M2 PCIe HDD 1TB',
     'producent': 'No producent',
     'producent_code': 'No code',
@@ -2206,7 +2200,7 @@ Game_X_G500_Core_i5_10400F_16_GB_RTX_3070_1_TB_M2_PCIe_1_TB_HDD= {
     'third_photo': 'Game X G500, Core i5-10400F, 16 GB, RTX 3070, 1 TB M2 PCIe_3.jpg',
 }
 
-Game_X_G500_Core_i5_10400F_16_GB_RTX_3070_1_TB_M2_PCIe_2_TB_HDD= {
+Game_X_G500_Core_i5_10400F_16_GB_RTX_3070_1_TB_M2_PCIe_2_TB_HDD = {
     'name': 'Game X G500, Core i5-10400F, 16 GB RAM, RTX 3070, 1 TB M2 PCIe HDD 2TB',
     'producent': 'No producent',
     'producent_code': 'No code',
@@ -2237,7 +2231,7 @@ Game_X_G500_Core_i5_10400F_16_GB_RTX_3070_1_TB_M2_PCIe_2_TB_HDD= {
     'third_photo': 'Game X G500, Core i5-10400F, 16 GB, RTX 3070, 1 TB M2 PCIe_3.jpg',
 }
 
-Game_X_G500_Core_i5_10400F_16_GB_RTX_3070_Ti_1_TB_M2_PCIe_2_TB_HDD= {
+Game_X_G500_Core_i5_10400F_16_GB_RTX_3070_Ti_1_TB_M2_PCIe_2_TB_HDD = {
     'name': 'Game X G500, Core i5-10400F, 16 GB RAM, RTX 3070 Ti, 1 TB M2 PCIe HDD 2TB',
     'producent': 'No producent',
     'producent_code': 'No code',
@@ -2268,7 +2262,7 @@ Game_X_G500_Core_i5_10400F_16_GB_RTX_3070_Ti_1_TB_M2_PCIe_2_TB_HDD= {
     'third_photo': 'Game X G500, Core i5-10400F, 16 GB, RTX 3070, 1 TB M2 PCIe_3.jpg',
 }
 
-Game_X_G500_Core_i5_10400F_32_GB_RTX_3070_Ti_1_TB_M2_PCIe_2_TB_HDD= {
+Game_X_G500_Core_i5_10400F_32_GB_RTX_3070_Ti_1_TB_M2_PCIe_2_TB_HDD = {
     'name': 'Game X G500, Core i5-10400F, 32 GB RAM, RTX 3070 Ti, 1 TB M2 PCIe HDD 2TB',
     'producent': 'No producent',
     'producent_code': 'No code',
@@ -2299,7 +2293,7 @@ Game_X_G500_Core_i5_10400F_32_GB_RTX_3070_Ti_1_TB_M2_PCIe_2_TB_HDD= {
     'third_photo': 'Game X G500, Core i5-10400F, 16 GB, RTX 3070, 1 TB M2 PCIe_3.jpg',
 }
 
-Game_X_G500_Core_i5_10400F_64_GB_RTX_3070_Ti_1_TB_M2_PCIe_2_TB_HDD= {
+Game_X_G500_Core_i5_10400F_64_GB_RTX_3070_Ti_1_TB_M2_PCIe_2_TB_HDD = {
     'name': 'Game X G500, Core i5-10400F, 64 GB RAM, RTX 3070 Ti, 1 TB M2 PCIe HDD 2TB',
     'producent': 'No producent',
     'producent_code': 'No code',
@@ -2330,7 +2324,7 @@ Game_X_G500_Core_i5_10400F_64_GB_RTX_3070_Ti_1_TB_M2_PCIe_2_TB_HDD= {
     'third_photo': 'Game X G500, Core i5-10400F, 16 GB, RTX 3070, 1 TB M2 PCIe_3.jpg',
 }
 
-Game_X_G500_Core_i5_10400F_64_GB_RTX_3070_Ti_1_TB_M2_PCIe_2_TB_HDD_Windows_10_Pro= {
+Game_X_G500_Core_i5_10400F_64_GB_RTX_3070_Ti_1_TB_M2_PCIe_2_TB_HDD_Windows_10_Pro = {
     'name': 'Game X G500, Core i5-10400F, 64 GB RAM, RTX 3070 Ti, 1 TB M2 PCIe HDD 2TB WIndows 10 Pro',
     'producent': 'No producent',
     'producent_code': 'No code',
@@ -2361,7 +2355,7 @@ Game_X_G500_Core_i5_10400F_64_GB_RTX_3070_Ti_1_TB_M2_PCIe_2_TB_HDD_Windows_10_Pr
     'third_photo': 'Game X G500, Core i5-10400F, 16 GB, RTX 3070, 1 TB M2 PCIe_3.jpg',
 }
 
-Game_X_G500_Core_i5_10400F_64_GB_RTX_3070_Ti_1_TB_M2_PCIe_2_TB_HDD_Windows_10_Home= {
+Game_X_G500_Core_i5_10400F_64_GB_RTX_3070_Ti_1_TB_M2_PCIe_2_TB_HDD_Windows_10_Home = {
     'name': 'Game X G500, Core i5-10400F, 64 GB RAM, RTX 3070 Ti, 1 TB M2 PCIe HDD 2TB Windows 10 Home',
     'producent': 'No producent',
     'producent_code': 'No code',
@@ -2392,7 +2386,7 @@ Game_X_G500_Core_i5_10400F_64_GB_RTX_3070_Ti_1_TB_M2_PCIe_2_TB_HDD_Windows_10_Ho
     'third_photo': 'Game X G500, Core i5-10400F, 16 GB, RTX 3070, 1 TB M2 PCIe_3.jpg',
 }
 
-Game_X_G500_Core_i5_10400F_64_GB_RTX_3070_Ti_2_TB_M2_PCIe_2_TB_HDD_Windows_10_Home= {
+Game_X_G500_Core_i5_10400F_64_GB_RTX_3070_Ti_2_TB_M2_PCIe_2_TB_HDD_Windows_10_Home = {
     'name': 'Game X G500, Core i5-10400F, 64 GB RAM, RTX 3070 Ti, 1 TB M2 PCIe HDD 2TB Windows 10 Home',
     'producent': 'No producent',
     'producent_code': 'No code',
@@ -2423,7 +2417,7 @@ Game_X_G500_Core_i5_10400F_64_GB_RTX_3070_Ti_2_TB_M2_PCIe_2_TB_HDD_Windows_10_Ho
     'third_photo': 'Game X G500, Core i5-10400F, 16 GB, RTX 3070, 1 TB M2 PCIe_3.jpg',
 }
 
-Game_X_G500_Core_i5_10400F_64_GB_RTX_3070_Ti_2_TB_M2_PCIe_1_TB_HDD_Windows_10_Home= {
+Game_X_G500_Core_i5_10400F_64_GB_RTX_3070_Ti_2_TB_M2_PCIe_1_TB_HDD_Windows_10_Home = {
     'name': 'Game X G500, Core i5-10400F, 64 GB RAM, RTX 3070 Ti, 1 TB M2 PCIe HDD 1TB Windows 10 Home',
     'producent': 'No producent',
     'producent_code': 'No code',
@@ -2454,7 +2448,7 @@ Game_X_G500_Core_i5_10400F_64_GB_RTX_3070_Ti_2_TB_M2_PCIe_1_TB_HDD_Windows_10_Ho
     'third_photo': 'Game X G500, Core i5-10400F, 16 GB, RTX 3070, 1 TB M2 PCIe_3.jpg',
 }
 
-Game_X_G500_Core_i5_10400F_32_GB_RTX_3070_Ti_2_TB_M2_PCIe_1_TB_HDD= {
+Game_X_G500_Core_i5_10400F_32_GB_RTX_3070_Ti_2_TB_M2_PCIe_1_TB_HDD = {
     'name': 'Game X G500, Core i5-10400F, 32 GB RAM, RTX 3070 Ti, 1 TB M2 PCIe HDD 1TB',
     'producent': 'No producent',
     'producent_code': 'No code',
@@ -2727,7 +2721,7 @@ Lenovo_Legion_T5_26IOB6_Core_i5_11400F_16_GB_RTX_3060_Ti_512__GB_M2_PCIe = {
     'third_photo': 'Lenovo Legion T5 26IOB6, Core i5-11400F, 32 GB, RTX 3070, 1 TB M.2 PCIe_1.jpg',
 }
 
-pcs= [
+pcs = [
     Dell_Vostro_3681_Core_i5_10400_8_GB_Intel_UHD_Graphics_630_256_GB_M2_PCIe_Windows_10_Pro,
     Game_X_G500_Core_i5_10400F_16_GB_RTX_3070_1_TB_M2_PCIe,
     Game_X_G500_Core_i5_10400F_16_GB_RTX_3070_1_TB_M2_PCIe_1_TB_HDD,
@@ -3079,9 +3073,6 @@ HUB_USB_Sitecom_2x_USB_C_2x_USB_A_3_1_Gen1 = {
     'second_photo': 'HUB USB Sitecom 2x USB-C + 2x USB-A 3.1 Gen1_2.jpg',
 }
 
-
-
-
 accesories = [
     Green_Cell_6MT4T_G5M10_Dell_Latitude_E5450_E5470_E5550_E5570,
     Dell_Baterry_for_Dell_XPS_13_9360_7_6V_60Wh_RNP72,
@@ -3186,7 +3177,6 @@ SSD_Lexar_NM620_1_TB_M_2_2280_PCI_E_x4_Gen3_NVMe = {
     'third_photo': 'SSD Lexar NM620 1 TB M.2 2280 PCI-E x4 Gen3 NVMe_3.jpg',
 }
 
-
 Kingston_A2000_1_TB_M_2_2280_PCI_E_x4_Gen3_NVMe = {
     'name': 'Kingston A2000 1 TB M.2 2280 PCI-E x4 Gen3 NVMe',
     'producent': 'Kingston',
@@ -3225,7 +3215,7 @@ Kingston_A2000_250_GB_M_2_2280_PCI_E_x4_Gen3_NVMe = {
     'third_photo': 'Kingston A2000 1 TB M.2 2280 PCI-E x4 Gen3 NVMe_3.jpg',
 }
 
-Crucial_BX500_240_GB_2_5_SATA_III  = {
+Crucial_BX500_240_GB_2_5_SATA_III = {
     'name': 'Crucial BX500 240 GB 2.5" SATA III',
     'producent': 'Crucial',
     'producent_code': 'CT240BX500SSD1',
@@ -3505,8 +3495,6 @@ Samsung_860_EVO_500_GB_SATA_III = {
     'second_photo': 'Samsung 860 EVO 500 GB 2.5 SATA III_2.jpg',
     'third_photo': 'Samsung 860 EVO 500 GB 2.5 SATA III_3.jpg',
 }
-
-
 
 ssds = [
     SSD_Kingston_A2000_500_GB_M_2_2280_PCI_x4_Gen3_NVMe,
@@ -4171,7 +4159,7 @@ Ballistix_DDR4_16_GB_3600_MHz_CL16 = {
     'main_photo': 'Ballistix DDR4, 16 GB, 3600MHz, CL16_1.jpg',
 }
 
-G_Skill_Aegis_DDR4_8_GB_3200MHz_CL16  = {
+G_Skill_Aegis_DDR4_8_GB_3200MHz_CL16 = {
     'name': 'G.Skill Aegis, DDR4, 8 GB, 3200MHz, CL16 ',
     'producent': 'G.Skill',
     'producent_code': 'F4-3200C16S-8GIS',
@@ -4192,7 +4180,7 @@ G_Skill_Aegis_DDR4_8_GB_3200MHz_CL16  = {
     'second_photo': 'G.Skill Aegis, DDR4, 8 GB, 3200MHz, CL16_1.jpg',
 }
 
-G_Skill_Aegis_DDR4_32_GB_3200MHz_CL16  = {
+G_Skill_Aegis_DDR4_32_GB_3200MHz_CL16 = {
     'name': 'G.Skill Aegis, DDR4, 32 GB, 3200MHz, CL16 ',
     'producent': 'G.Skill',
     'producent_code': 'F4-3200C16S-8GIS',
@@ -4214,7 +4202,7 @@ G_Skill_Aegis_DDR4_32_GB_3200MHz_CL16  = {
     'third_photo': 'G.Skill Aegis, DDR4, 8 GB, 3200MHz, CL16_1.jpg',
 }
 
-G_Skill_Aegis_DDR4_16_GB_2133MHz_CL15  = {
+G_Skill_Aegis_DDR4_16_GB_2133MHz_CL15 = {
     'name': 'G.Skill Aegis, DDR4, 16 GB, 2133MHz, CL15 ',
     'producent': 'G.Skill',
     'producent_code': 'F4-2133C15-16GIS',
@@ -4236,7 +4224,7 @@ G_Skill_Aegis_DDR4_16_GB_2133MHz_CL15  = {
     'third_photo': 'G.Skill Aegis, DDR4, 8 GB, 3200MHz, CL16_1.jpg',
 }
 
-G_Skill_Aegis_DDR4_16_GB_2666MHz_CL19  = {
+G_Skill_Aegis_DDR4_16_GB_2666MHz_CL19 = {
     'name': 'G.Skill Aegis, DDR4, 16 GB, 2666MHz, CL19',
     'producent': 'G.Skill',
     'producent_code': 'F4-2666C19S-16GIS',
@@ -4452,7 +4440,6 @@ G_Skill_Trident_Z_Neo_DDR4_64_GB_3600MHz_CL16 = {
     'second_photo': 'G.Skill Trident Z Neo, DDR4, 32 GB, 3600MHz, CL16_2.jpg',
     'second_photo': 'G.Skill Trident Z Neo, DDR4, 32 GB, 3600MHz, CL16_3.jpg',
 }
-
 
 rams = [
     Corsair_Vengeance_RGB_PRO_DDR4_16_GB_3200MHz_CL16,
@@ -4682,7 +4669,7 @@ GoodRam_UTS3_16_GB = {
     'main_photo': 'GoodRam UTS3 16 GB_1.jpg',
 }
 
-SanDisk_Ultra_Dual_Drive_64GB  = {
+SanDisk_Ultra_Dual_Drive_64GB = {
     'name': 'SanDisk Ultra Dual Drive 64GB',
     'producent': 'SanDisk',
     'producent_code': 'SDDDC2-064G-G46',
@@ -5327,7 +5314,6 @@ HP_1820_24G = {
     'main_photo': 'HP 1820 24G_1.jpg',
 }
 
-
 switches = [
     Cisco_Meraki_Go_GS110_8_HW,
     TP_Link_TL_SG1005D,
@@ -5754,7 +5740,7 @@ Nzxt_N7_Z590 = {
     'third_photo': 'Nzxt N7 Z590_3.jpg',
 }
 
-Nzxt_N7_Z490  = {
+Nzxt_N7_Z490 = {
     'name': 'Nzxt N7 Z490',
     'producent': 'Nzxt',
     'producent_code': 'N7-Z49XT-B1',
@@ -5941,7 +5927,6 @@ motherboards = [
     ASRock_W480_CREATOR,
     Biostar_Z490GTN
 ]
-
 
 """
 
@@ -6345,7 +6330,6 @@ AMD_Ryzen_Threadripper_3960X_3_8GHz_128_MB_BOX = {
     'second_photo': 'AMD Ryzen Threadripper 3960X, 3.8GHz, 128 MB, BOX_2.jpg',
     'third_photo': 'AMD Ryzen Threadripper 3960X, 3.8GHz, 128 MB, BOX_3.jpg',
 }
-
 
 cpus = [
     Intel_Core_i5_10400F_2_9GHz_12_MB_BOX,
@@ -7019,9 +7003,6 @@ Thomson_LED_65_diagonal_4K_Ultra_HD_Android = {
     'second_photo': 'Thomson LED 65 4K Ultra HD Android_2.jpg',
 }
 
-
-
-
 tvs = [
     Philips_LED_43_diagonal_4K_Ultra_HD_SAPHI_Ambilight,
     Samsung_QLED_50_diagonal_4K_Ultra_HD_Tizen,
@@ -7045,7 +7026,7 @@ tvs = [
     Thomson_LED_40_diagonal_Full_HD_Android,
     # 19
     Thomson_LED_65_diagonal_4K_Ultra_HD_Android
-    ]
+]
 
 """
 from django.core.files import File
@@ -7128,7 +7109,6 @@ Corsair_HS50_Pro_Stereo_Black = {
     'third_photo': 'Corsair HS50 Pro Stereo Black_3.jpg',
 }
 
-
 Genesis_Neon_360 = {
     'name': 'Genesis Neon 360',
     'model': 'Neon 360',
@@ -7189,7 +7169,7 @@ SteelSeries_Arctis_1 = {
     'third_photo': 'SteelSeries Arctis 1_3.jpg',
 }
 
-HyperX_Cloud_Alpha_Red= {
+HyperX_Cloud_Alpha_Red = {
     'name': 'HyperX Cloud Alpha Red',
     'model': 'HyperX Cloud Alpha',
     'price': 72.99,
@@ -7209,7 +7189,7 @@ HyperX_Cloud_Alpha_Red= {
     'third_photo': 'HyperX Cloud Alpha_3.jpg',
 }
 
-HyperX_Cloud_Alpha_Blue= {
+HyperX_Cloud_Alpha_Blue = {
     'name': 'HyperX Cloud Alpha Blue',
     'model': 'HyperX Cloud Alpha',
     'price': 100.99,
@@ -7229,7 +7209,7 @@ HyperX_Cloud_Alpha_Blue= {
     'third_photo': 'HyperX Cloud Alpha Blue_3.jpg',
 }
 
-HyperX_Cloud_Alpha_Black= {
+HyperX_Cloud_Alpha_Black = {
     'name': 'HyperX Cloud Alpha Black',
     'model': 'HyperX Cloud Alpha',
     'price': 100.99,
@@ -7248,7 +7228,7 @@ HyperX_Cloud_Alpha_Black= {
     'second_photo': 'HyperX Cloud Alpha Black_2.jpg',
 }
 
-SPC_Gear_Viro_Plus_Card_USB_7_1= {
+SPC_Gear_Viro_Plus_Card_USB_7_1 = {
     'name': 'SPC Gear Viro Plus Card USB 7.1',
     'model': 'Viro Plus',
     'price': 52.99,
@@ -7298,7 +7278,7 @@ Audio_Technica_ATH0_M40X = {
     'weight': 320,
     'jack': 'Mini Jack 3.5 mm',
     'cable_lenght': '1.2',
-    'microphone': False ,
+    'microphone': False,
     'color': 'Black',
     'main_photo': 'Audio-Technica ATH-M40X_1.jpg',
     'second_photo': 'Audio-Technica ATH-M40X_2.jpg',
@@ -7318,7 +7298,7 @@ Koss_UR40 = {
     'weight': 320,
     'jack': 'Mini Jack 3.5 mm',
     'cable_lenght': '2.4',
-    'microphone': False ,
+    'microphone': False,
     'color': 'Black',
     'main_photo': 'Koss UR40_1.jpg',
     'second_photo': 'Koss UR40_2.jpg',
@@ -7337,7 +7317,7 @@ Xiaomi_Mi_True_Wireless_Earphones_2_Basic = {
     'bluetooth_range': '10m',
     'work_time': '10 h',
     'weight': 10,
-    'microphone': True ,
+    'microphone': True,
     'color': 'Black',
     'main_photo': 'Xiaomi Mi True Wireless Earphones 2 Basic_1.jpg',
     'second_photo': 'Xiaomi Mi True Wireless Earphones 2 Basic_2.jpg',
@@ -7357,7 +7337,7 @@ Bose_QuietComfort_35_II = {
     'bluetooth_range': '9m',
     'work_time': '20 h',
     'weight': 235,
-    'microphone': True ,
+    'microphone': True,
     'color': 'Black',
     'main_photo': 'Bose QuietComfort 35 II_1.jpg',
 }
@@ -7375,7 +7355,7 @@ Samsung_Galaxy_Buds_Black = {
     'bluetooth_range': '10m',
     'work_time': '11 h',
     'weight': 6.3,
-    'microphone': True ,
+    'microphone': True,
     'color': 'Black',
     'main_photo': 'Samsung Galaxy Buds_1.jpg',
     'second_photo': 'Samsung Galaxy Buds_2.jpg',
@@ -7395,7 +7375,7 @@ Samsung_Galaxy_Buds_Blue = {
     'bluetooth_range': '10m',
     'work_time': '11 h',
     'weight': 6.3,
-    'microphone': True ,
+    'microphone': True,
     'color': 'Blue',
     'main_photo': 'Samsung Galaxy Buds Blue_1.jpg',
     'second_photo': 'Samsung Galaxy Buds Blue_2.jpg',
@@ -7415,14 +7395,14 @@ Samsung_Galaxy_Buds_Red = {
     'bluetooth_range': '10m',
     'work_time': '11 h',
     'weight': 6.3,
-    'microphone': True ,
+    'microphone': True,
     'color': 'Red',
     'main_photo': 'Samsung Galaxy Buds Red_1.jpg',
     'second_photo': 'Samsung Galaxy Buds Red_2.jpg',
     'third_photo': 'Samsung Galaxy Buds Red_3.jpg',
 }
 
-JBL_T110BT_Black= {
+JBL_T110BT_Black = {
     'name': 'JBL T110BT Black',
     'model': 'T110BT',
     'price': 26.99,
@@ -7435,14 +7415,14 @@ JBL_T110BT_Black= {
     'bluetooth_range': '10m',
     'work_time': '6 h',
     'weight': 16.2,
-    'microphone': True ,
+    'microphone': True,
     'color': 'Black',
     'main_photo': 'JBL T110BT_1.jpg',
     'second_photo': 'JBL T110BT_2.jpg',
     'third_photo': 'JBL T110BT_3.jpg',
 }
 
-JBL_T110BT_Grey= {
+JBL_T110BT_Grey = {
     'name': 'JBL T110BT Grey',
     'model': 'T110BT',
     'price': 26.99,
@@ -7455,13 +7435,12 @@ JBL_T110BT_Grey= {
     'bluetooth_range': '10m',
     'work_time': '6 h',
     'weight': 16.2,
-    'microphone': True ,
+    'microphone': True,
     'color': 'Grey',
     'main_photo': 'JBL T110BT Grey_1.jpg',
     'second_photo': 'JBL T110BT Grey_2.jpg',
     'third_photo': 'JBL T110BT Grey_3.jpg',
 }
-
 
 headphones = [
     Corsair_HS50_Pro_Stereo_Green,
@@ -7509,7 +7488,7 @@ for headphone in headphones:
 
 """ Routers """
 
-Cisco_RV260  = {
+Cisco_RV260 = {
     'name': 'Cisco RV260',
     'model': 'RV260',
     'price': 172.72,
@@ -7554,8 +7533,8 @@ Asus_RT_AX55 = {
     'sim': False,
     'antennas': 4,
     'color': 'Black',
-    'wifi_2_4ghz_speed' : '574 Mb/s',
-    'wifi_5ghz_speed' : '1200 Mb/s',
+    'wifi_2_4ghz_speed': '574 Mb/s',
+    'wifi_5ghz_speed': '1200 Mb/s',
     'width': 230,
     'deep': 134,
     'weight': 374,
@@ -7575,8 +7554,8 @@ TP_Link_Archer_MR400 = {
     'cattegory': 'Routers',
     'ean': 6935364080679,
     'wifi': '802.11ac (gen. 5)',
-    'wifi_2_4ghz_speed' : '300 Mb/s',
-    'wifi_5ghz_speed' : '867 Mb/s',
+    'wifi_2_4ghz_speed': '300 Mb/s',
+    'wifi_5ghz_speed': '867 Mb/s',
     'case': 'Desk',
     'vpn': True,
     'encryption_standard': 'WPA2',
@@ -7605,8 +7584,8 @@ TP_Link_TL_WR902AC = {
     'cattegory': 'Routers',
     'ean': 6935364095666,
     'wifi': '802.11ac (gen. 5)',
-    'wifi_2_4ghz_speed' : '300 Mb/s',
-    'wifi_5ghz_speed' : '433 Mb/s',
+    'wifi_2_4ghz_speed': '300 Mb/s',
+    'wifi_5ghz_speed': '433 Mb/s',
     'case': 'Portable',
     'vpn': True,
     'encryption_standard': 'WPA2',
@@ -7634,8 +7613,8 @@ Tenda_AC23 = {
     'cattegory': 'Routers',
     'ean': 6932849428438,
     'wifi': '802.11ac (gen. 5)',
-    'wifi_2_4ghz_speed' : '300 Mb/s',
-    'wifi_5ghz_speed' : '1733 Mb/s',
+    'wifi_2_4ghz_speed': '300 Mb/s',
+    'wifi_5ghz_speed': '1733 Mb/s',
     'case': 'Desk',
     'vpn': True,
     'encryption_standard': 'WPA2',
@@ -7671,8 +7650,8 @@ TP_Link_Archer_C6 = {
     'sim': False,
     'antennas': 4,
     'color': 'Black',
-    'wifi_2_4ghz_speed' : '300 Mb/s',
-    'wifi_5ghz_speed' : '867 Mb/s',
+    'wifi_2_4ghz_speed': '300 Mb/s',
+    'wifi_5ghz_speed': '867 Mb/s',
     'width': 230,
     'high': 144,
     'deep': 35,
@@ -7701,8 +7680,8 @@ TP_Link_TL_MR6400 = {
     'sim': True,
     'antennas': 2,
     'color': 'Black',
-    'wifi_2_4ghz_speed' : '300 Mb/s',
-    'wifi_5ghz_speed' : '',
+    'wifi_2_4ghz_speed': '300 Mb/s',
+    'wifi_5ghz_speed': '',
     'width': 202,
     'high': 33.6,
     'deep': 141,
@@ -7731,8 +7710,8 @@ Asus_4G_AC53U = {
     'sim': True,
     'antennas': 2,
     'color': 'Black',
-    'wifi_2_4ghz_speed' : '300 Mb/s',
-    'wifi_5ghz_speed' : '433 Mb/s',
+    'wifi_2_4ghz_speed': '300 Mb/s',
+    'wifi_5ghz_speed': '433 Mb/s',
     'width': 137,
     'high': 58,
     'deep': 118,
@@ -7759,8 +7738,8 @@ Huawei_B818_263 = {
     'sim': True,
     'antennas': 2,
     'color': 'Black',
-    'wifi_2_4ghz_speed' : '300 Mb/s',
-    'wifi_5ghz_speed' : '1200 Mb/s',
+    'wifi_2_4ghz_speed': '300 Mb/s',
+    'wifi_5ghz_speed': '1200 Mb/s',
     'width': 103,
     'high': 225,
     'deep': 103,
@@ -7789,8 +7768,8 @@ Tenda_4G03 = {
     'sim': True,
     'antennas': 2,
     'color': 'Black',
-    'wifi_2_4ghz_speed' : '300 Mb/s',
-    'wifi_5ghz_speed' : '',
+    'wifi_2_4ghz_speed': '300 Mb/s',
+    'wifi_5ghz_speed': '',
     'width': 126,
     'high': 185,
     'deep': 60,
@@ -7862,7 +7841,7 @@ Cisco_C931_4P = {
     'producent': 'Cisco',
     'producent_code': 'C931-4P',
     'cattegory': 'Routers',
-    'ean': 889728172097 ,
+    'ean': 889728172097,
     'wifi': '',
     'case': 'Desk',
     'vpn': True,
@@ -7888,7 +7867,7 @@ MikroTik_CCR1016_12G = {
     'producent': 'MikroTik',
     'producent_code': 'CCR1016-12G',
     'cattegory': 'Routers',
-    'ean': 5711783892199 ,
+    'ean': 5711783892199,
     'wifi': '',
     'case': 'Rack',
     'vpn': False,
@@ -7914,7 +7893,7 @@ Zyxel_LTE7480_M804 = {
     'producent': 'MikroTik',
     'producent_code': 'LTE7480-M804',
     'cattegory': 'Routers',
-    'ean': 4718937610846 ,
+    'ean': 4718937610846,
     'wifi': '802.11n (gen. 4)',
     'case': 'Desk',
     'vpn': True,
@@ -7941,7 +7920,7 @@ NETGEAR_Nighthawk_M2 = {
     'producent': 'NETGEAR',
     'producent_code': 'Nighthawk M2',
     'cattegory': 'Routers',
-    'ean': 606449141887 ,
+    'ean': 606449141887,
     'wifi': '802.11n (gen. 4)',
     'case': 'Portable',
     'vpn': False,
@@ -7968,7 +7947,7 @@ NETGEAR_Nighthawk_AX8 = {
     'producent': 'NETGEAR',
     'producent_code': 'Nighthawk AX8',
     'cattegory': 'Routers',
-    'ean': 606449135244 ,
+    'ean': 606449135244,
     'wifi': '802.11ax (gen. 6)',
     'case': 'Desk',
     'vpn': True,
@@ -7997,7 +7976,7 @@ Teltonika_RUTX11 = {
     'producent': 'Teltonika',
     'producent_code': 'RUTX11000000',
     'cattegory': 'Routers',
-    'ean': 4779027312378 ,
+    'ean': 4779027312378,
     'wifi': '802.11ac (gen. 5)',
     'case': 'Desk',
     'vpn': True,
@@ -8026,7 +8005,7 @@ NETGEAR_AirCard_MR1100 = {
     'producent': 'NETGEAR',
     'producent_code': 'MR1100-100EUS',
     'cattegory': 'Routers',
-    'ean': 606449128680 ,
+    'ean': 606449128680,
     'wifi': '802.11ac (gen. 5)',
     'case': 'Portable',
     'vpn': False,
@@ -8054,7 +8033,7 @@ Asus_GT_AC5300 = {
     'producent': 'NETGEAR',
     'producent_code': '90IG03S1-BM2G00',
     'cattegory': 'Routers',
-    'ean': 889349607732 ,
+    'ean': 889349607732,
     'wifi': '802.11ac (gen. 5)',
     'case': 'Desk',
     'vpn': True,

@@ -1,27 +1,11 @@
 import uuid
 
 from django.db import models
-from django.conf import settings
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, \
+                                        BaseUserManager, PermissionsMixin
 
 from AddressBookApp.models import AddressBook
 from MessagesApp.models import Complaint, Question
-from ShoppingCardApp.models import Order
-
-# User = settings.AUTH_USER_MODEL
-
-# class Profile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     number = models.IntegerField(blank=True, null=True)
-#     orders = models.ManyToManyField(Order, blank=True, null=True)
-#     address_book = models.OneToOneField(AddressBook, on_delete=models.CASCADE, blank=True, null=True)
-#     questions = models.OneToOneField(Question, on_delete=models.CASCADE, blank=True, null=True)
-#     complain = models.OneToOneField(Complaint, on_delete=models.CASCADE, blank=True, null=True)
-#     keep_me = models.BooleanField(default=False)
-#     newsletter = models.BooleanField(default=False, null=True, blank=True)
-
-#     def __str__(self) -> str:
-#         return self.user.username
 
 
 class UserManager(BaseUserManager):
@@ -52,26 +36,46 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     """ Custom user model that supports email instead username """
 
-    id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
+    id = models.UUIDField(
+        default=uuid.uuid4,
+        editable=False,
+        primary_key=True
+    )
     email = models.EmailField(max_length=255, unique=True)
-    name = models.CharField(max_length=255, default='', blank=True, null=True)
+    name = models.CharField(
+        max_length=255,
+        default='',
+        blank=True, null=True
+    )
     first_name = models.CharField(max_length=50, default='')
     last_name = models.CharField(max_length=100, default='')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    address_book = models.ForeignKey(AddressBook, on_delete=models.CASCADE, blank=True, null=True, related_name='addres_book')
-    questions = models.ForeignKey(Question, on_delete=models.CASCADE, blank=True, null=True, related_name='questions')
-    complain = models.ForeignKey(Complaint, on_delete=models.CASCADE, blank=True, null=True, related_name='complain')
+    address_book = models.ForeignKey(
+        AddressBook,
+        on_delete=models.CASCADE,
+        blank=True, null=True,
+        related_name='addres_book'
+    )
+    questions = models.ForeignKey(
+        Question,
+        on_delete=models.CASCADE,
+        blank=True, null=True,
+        related_name='questions'
+    )
+    complain = models.ForeignKey(
+        Complaint,
+        on_delete=models.CASCADE,
+        blank=True, null=True,
+        related_name='complain'
+    )
     keep_me = models.BooleanField(default=False)
     newsletter = models.BooleanField(default=False, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
     objects = UserManager()
 
-    USERNAME_FIELD  = 'email'
-    
+    USERNAME_FIELD = 'email'
 
     def __str__(self) -> str:
         return self.email
-    
-    

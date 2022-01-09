@@ -1,13 +1,11 @@
 from typing import Any
+from os import error
 
 from django.contrib.auth import get_user_model, authenticate
-from django.contrib.auth.models import User
-from django.db.models.query import QuerySet
-from django.http.response import JsonResponse
 from django.utils.translation import ugettext_lazy as _
 from rest_framework import serializers
 
-from Articles.models import ArticleComment, LandingPageArticles
+from Articles.models import ArticleComment
 from ProductApp.models import MainProductDatabase
 from Profile.models import User
 from Emails.models import Newsletter
@@ -15,7 +13,6 @@ from ProductApp.models import Phones
 
 
 class UserSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = get_user_model()
         fields = ('password', 'email', 'first_name', 'last_name')
@@ -32,7 +29,6 @@ class UserSerializer(serializers.ModelSerializer):
         return get_user_model().objects.create_user(**validated_data)
 
     def update(self, instance, validated_data) -> User:
-
         password = validated_data.pop('password', None)
         user = super().update(instance, validated_data)
 
@@ -42,15 +38,15 @@ class UserSerializer(serializers.ModelSerializer):
 
         return user
 
-class ProfileSerializer(serializers.ModelSerializer):
 
+class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = "__all__"
 
     def update(self, instance, validated_data) -> User:
 
-        password = validated_data
+        # password = validated_data
 
         profile = super().update(instance, validated_data)
 
@@ -59,12 +55,12 @@ class ProfileSerializer(serializers.ModelSerializer):
                 if key == 'keep_me':
                     try:
                         profile.keep_me = value
-                    except:
+                    except error:
                         pass
                 else:
                     try:
                         profile.newsletter = value
-                    except:
+                    except error:
                         pass
 
         # if password:
@@ -82,7 +78,6 @@ class AuthTokenSerializer(serializers.Serializer):
     )
     email = serializers.CharField(required=False)
 
-
     def validate(self, attrs) -> Any:
         email = attrs.get('email')
         password = attrs.get('password')
@@ -90,7 +85,7 @@ class AuthTokenSerializer(serializers.Serializer):
         user = authenticate(
             request=self.context.get('request'),
             email=email,
-            password= password
+            password=password
         )
 
         if not user:
@@ -101,6 +96,7 @@ class AuthTokenSerializer(serializers.Serializer):
 
         return attrs
 
+
 class BlogArticlesSerializer(serializers.ModelSerializer):
     """ Blog comments section Serializer  """
 
@@ -108,7 +104,9 @@ class BlogArticlesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ArticleComment
-        fields = ('name', 'comment', 'email', 'article', 'new_fields', 'parent')
+        fields = ('name', 'comment', 'email',
+                  'article', 'new_fields', 'parent'
+                  )
 
     def create(self, validated_data):
         """ Create blog comment serializer """
@@ -124,6 +122,7 @@ class BlogArticlesSerializer(serializers.ModelSerializer):
             'level': article.level
         }
 
+
 class ProductSerializer(serializers.ModelSerializer):
     """ Get products data Serializer  """
 
@@ -133,7 +132,6 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class NewsletterSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Newsletter
         fields = ['email']
@@ -164,30 +162,6 @@ class GetQuantitySerializer(serializers.ModelSerializer):
 
 
 class CreateProductSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Phones
         fields = '__all__'
-
-
-    # def create(self, validated_data):
-
-
-
-    #     fold = validated_data.cattegory.lower()
-    #     PATH = rf'electronic_shop/static/images/products/{fold}/'
-
-    #     print(validated_data)
-
-    #     # itt.main_photo.save(product['main_photo'], File(open(PATH + product['main_photo'], 'rb')))
-    #     # try:
-    #     #     itt.second_photo.save(product['second_photo'], File(open(PATH + product['second_photo'], 'rb')))
-    #     # except:
-    #     #     pass
-    #     # try:
-    #     #     itt.third_photo.save(product['third_photo'], File(open(PATH + product['third_photo'], 'rb')))
-    #     # except:
-    #     #     pass
-
-
-    #     return super().create(validated_data)

@@ -4,9 +4,11 @@ from django.test import TestCase
 from ..models import Customer, Order, OrderItem, ShippingAddress
 from ProductApp.models import Phones, MainProductDatabase
 
+
 def create_user(*args, **kwargs):
     """ Help function to create user """
     return get_user_model().objects.create_user(**kwargs)
+
 
 def create_customer(user):
     """ Help function to create customer """
@@ -19,21 +21,22 @@ class TestOrderModel(TestCase):
     def setUp(self) -> None:
 
         self.payload = {
-        'password': 'TestingFunc123',
-        'email': 'test123@test.com',
-    }
+            'password': 'TestingFunc123',
+            'email': 'test123@test.com',
+        }
 
         self.data = {
             'date_order': '2021-07-04 14:30:59',
             'transaction_id': '12A',
         }
 
-        self.product_data={
+        self.product_data = {
                 'name': 'Iphone 10',
                 'price': 3000,
                 'pieces': 2,
                 'ram': 8,
                 'memory': 8,
+                'model': ' ',
                 'modem': 8,
                 'color': 'grey',
                 'describe': 'The best model',
@@ -51,7 +54,7 @@ class TestOrderModel(TestCase):
                 'screen': '100x200',
                 'screen_diagonal': 7.2,
                 'battery': 100,
-                'high':10,
+                'high': 10,
                 'width': 10,
                 'deep': 10,
                 'weight': 0.5,
@@ -59,12 +62,11 @@ class TestOrderModel(TestCase):
             }
 
         self.shipping_data = {
-            'address':'testing 12',
+            'address': 'testing 12',
             'city': 'Test',
             'state': 'Warminsko-Mazurskie',
             'zipcode': '11-222',
         }
-
 
     def test_if_customer_can_be_create(self) -> None:
         """ test customer model """
@@ -90,7 +92,9 @@ class TestOrderModel(TestCase):
         customer = create_customer(user)
         order = Order.objects.create(customer=customer, **self.data)
         product = Phones.objects.create(**self.product_data)
-        main_product_instance = MainProductDatabase.objects.get(ean=product.ean)
+        main_product_instance = MainProductDatabase.objects.get(
+            ean=product.ean
+            )
 
         order_item = OrderItem.objects.create(
             product=main_product_instance,
@@ -101,7 +105,8 @@ class TestOrderModel(TestCase):
 
         self.assertEqual(order_item.product.name, 'Iphone 10')
 
-        self.assertEqual(order_item.get_total, order_item.quantity * product.price)
+        self.assertEqual(order_item.get_total,
+                         order_item.quantity * product.price)
 
     def test_shipping_address(self) -> None:
         """ test shipping model """
@@ -113,7 +118,7 @@ class TestOrderModel(TestCase):
         shipping = ShippingAddress.objects.create(
             customer=customer,
             order=order,
-            data_added = self.data['date_order'],
+            data_added=self.data['date_order'],
             **self.shipping_data
         )
 
@@ -125,7 +130,9 @@ class TestOrderModel(TestCase):
         customer = create_customer(user)
         order = Order.objects.create(customer=customer, **self.data)
         product = Phones.objects.create(**self.product_data)
-        main_product_instance = MainProductDatabase.objects.get(ean=product.ean)
+        main_product_instance = MainProductDatabase.objects.get(
+            ean=product.ean
+            )
 
         order_item = OrderItem.objects.create(
             product=main_product_instance,
@@ -137,7 +144,7 @@ class TestOrderModel(TestCase):
         shipping = ShippingAddress.objects.create(
             customer=customer,
             order=order,
-            data_added = self.data['date_order'],
+            data_added=self.data['date_order'],
             **self.shipping_data
         )
 
@@ -145,7 +152,8 @@ class TestOrderModel(TestCase):
         total = sum([item.get_total for item in orderitems])
 
         """ check OrderItem get_total method """
-        self.assertEqual(order_item.get_total, order_item.quantity * product.price)
+        self.assertEqual(order_item.get_total,
+                         order_item.quantity * product.price)
 
         """ check Order get_cart_total method """
         self.assertEqual(order.get_cart_total, total)

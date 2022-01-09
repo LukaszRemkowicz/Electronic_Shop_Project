@@ -3,7 +3,7 @@
 let productsList = JSON.parse(getCookie('cart')).products
 
 for (let [productId, ] of Object.entries(productsList)){
-    url = `/api/product/${productId}`
+    const url = `/api/product/${productId}`
     fetch(url, {
         method: "GET",
         headers : {

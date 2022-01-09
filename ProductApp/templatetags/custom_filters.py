@@ -1,4 +1,3 @@
-from re import T
 from django import template
 from django.db.models.query import QuerySet
 from django.http.request import HttpRequest
@@ -32,8 +31,9 @@ def find_producent(url: str) -> str:
         if 'producent=' in urll:
             return urll.split('producent=')[1]
 
+
 @register.filter
-def find_grid (url: str) -> bool:
+def find_grid(url: str) -> bool:
     return search_for_url(url, 'grid', 'true')
 
 
@@ -53,15 +53,19 @@ def check_smart(url: str) -> bool:
 
 
 @register.filter
-def get_main_product_id (product: QuerySet) -> int:
-
+def get_main_product_id(product: QuerySet) -> int:
     product = MainProductDatabase.objects.get(ean=product.ean)
     return product.id
 
+
 @register.filter
 def get_aplied_filters(request: HttpRequest) -> dict:
-    url_queryset = { key:str(value[0]) for key, value in request.GET.lists()}
-    result = {key.replace('_', ' ') for key, _ in url_queryset.items() if key not in ('page', 'grid', 'filter')}
+    url_queryset = {key: str(value[0]) for key, value in request.GET.lists()}
+    result = {
+        key.replace('_', ' ') for key, _ in url_queryset.items()
+        if key not in ('page', 'grid', 'filter'
+                       )
+        }
 
     if 'filter' in url_queryset:
         result.add(url_queryset['filter'])
@@ -72,10 +76,14 @@ def get_aplied_filters(request: HttpRequest) -> dict:
 
     return result
 
+
 @register.filter
 def check_like(product: QuerySet, request: HttpRequest) -> bool:
     product = MainProductDatabase.objects.get(ean=product.ean)
-    many_to_many = [user for user in product.likes.all() if user == request.user]
+    many_to_many = [
+        user for user in product.likes.all()
+        if user == request.user
+        ]
     if len(many_to_many) >= 1:
         return True
     else:
@@ -95,11 +103,14 @@ def find_all(request: HttpRequest) -> int:
         return True
     else:
         return False
-    
+
 
 @register.filter
 def get_category(request: HttpRequest) -> int:
-    return ["Laptops", "Phones","PC","Monitors","Accesories for laptops","SSD","Graphs","Ram", "Pendrives","Routers","Switches","Motherboard","CPU","TV","Headphones"]
+    return ["Laptops", "Phones", "PC", "Monitors",
+            "Accesories for laptops", "SSD", "Graphs",
+            "Ram", "Pendrives", "Routers", "Switches",
+            "Motherboard", "CPU", "TV", "Headphones"]
 
 
 @register.filter
@@ -107,7 +118,8 @@ def get_mainproductdatabase_product_of_the_day(ean: int) -> bool:
     product = MainProductDatabase.objects.get(ean=ean)
     return True if product.product_of_the_day else False
 
+
 @register.filter
 def get_mainproductdatabase_promoprice(ean: int) -> bool:
     product = MainProductDatabase.objects.get(ean=ean)
-    return product.promotion 
+    return product.promotion

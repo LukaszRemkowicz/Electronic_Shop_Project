@@ -20,37 +20,42 @@ class TestProductData(TestCase):
         self.second_product = create_product(products_data.SECOND_PRODUCT)
 
         self.data = {'productData': {
-                "productClicked": {
-                    "type": "white",
-                    "divId": "product-color-data"
-                    },
-                "productId": self.product.id,
-                "itemsId": [self.second_product.id, self.product.id,]
-                }}
-
+            "productClicked": {
+                "type": "white",
+                "divId": "product-color-data"
+            },
+            "productId": self.product.id,
+            "itemsId": [self.second_product.id, self.product.id, ]
+        }}
 
     def test_get_product_data(self):
         """ test sending data to filter (mock JavaScript data) """
 
-        response = self.client.post(self.url, json.dumps(self.data), content_type="application/json")
+        response = self.client.post(
+            self.url,
+            json.dumps(self.data),
+            content_type="application/json"
+        )
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(int(response.data), self.second_product.id)
-
 
     def test_wrong_product_data(self):
         """ test wrong data - object doesnt exists """
 
         data = {'productData': {
-                "productClicked": {
-                    "type": "blue",
-                    "divId": "product-color-data"
-                    },
-                "productId": self.product.id,
-                "itemsId": [self.second_product.id, self.product.id,]
-                }}
+            "productClicked": {
+                "type": "blue",
+                "divId": "product-color-data"
+            },
+            "productId": self.product.id,
+            "itemsId": [self.second_product.id, self.product.id, ]
+        }}
 
-        response = self.client.post(self.url, json.dumps(data), content_type="application/json")
+        response = self.client.post(
+            self.url, json.dumps(data),
+            content_type="application/json"
+        )
 
         self.assertEqual(response.status_code, 200)
         self.assertNotEqual(response.data, self.second_product.id)
