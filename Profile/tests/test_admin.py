@@ -27,7 +27,6 @@ class AdminSiteTests(TestCase):
         self.assertContains(res, self.user.name)
         self.assertContains(res, self.user.email)
 
-
     def test_user_change_page(self):
         """ test that the user edit page works """
 
@@ -35,7 +34,6 @@ class AdminSiteTests(TestCase):
         res = self.client.get(url)
 
         self.assertEqual(res.status_code, 200)
-
 
     def test_create_user_page(self):
         """ test that the create user page works """

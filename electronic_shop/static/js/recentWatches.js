@@ -37,10 +37,12 @@ recentWatched.forEach(id => {
                 'X-CSRFToken': csrftoken,
             }
         })
-        .then(response => { return response.json()})
+        .then(response => response.json())
         .then(data => {
+            console.log(data);
+            console.log(id);
 
-            if(data.detail != 'Not found.' && data.main_photo){
+            if(data.detail != 'Not found.' || !data.main_photo){
                 productsWatched.push(data)
             } else {
                 productsWatched.push(null)

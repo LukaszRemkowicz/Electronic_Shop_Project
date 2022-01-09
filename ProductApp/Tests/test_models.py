@@ -1,5 +1,4 @@
 from django.test import TestCase
-from django.contrib.auth import get_user_model
 
 from ..models import Phones, MainProductDatabase
 
@@ -25,6 +24,7 @@ class TestProduct(TestCase):
             'waterproof': True,
             'distribution': 'EU',
             'system': 'IOS',
+            'model': ' ',
             'processor': 'Intel',
             'cpu_clock': '400Mhz',
             'memory_card': '10GB',
@@ -33,7 +33,7 @@ class TestProduct(TestCase):
             'screen': '100x200',
             'screen_diagonal': 7.2,
             'battery': 100,
-            'high':10,
+            'high': 10,
             'width': 10,
             'deep': 10,
             'weight': 0.5,
@@ -61,6 +61,7 @@ class TestProduct(TestCase):
             'producent': 'Apple',
             'producent_code': 'AABB123',
             'ean': 123456,
+            'model': ' ',
             'waterproof': True,
             'distribution': 'EU',
             'system': 'IOS',
@@ -83,4 +84,3 @@ class TestProduct(TestCase):
         main_model = MainProductDatabase.objects.get(ean=product.ean)
 
         self.assertEqual(main_model.ean, data['ean'])
-

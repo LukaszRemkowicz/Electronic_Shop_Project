@@ -1,12 +1,11 @@
 import datetime
 from typing import Any, Dict
 
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.views.generic.list import ListView
 from django.utils import timezone
 from django.db import ProgrammingError
@@ -17,9 +16,11 @@ from Profile.forms import CustomLoginForm
 from ProductApp.utilss.view_utils import change_product_pieces
 from .models import ContentBase
 
-CATTEGORIES = ["Laptops", "Phones", "PC", "Monitors","Accesories for laptops", "SSD",
-           "Graphs", "Ram", "Pendrives", "Routers", "Switches", "Motherboard", "CPU",
-           "TV", "Headphones"]
+CATTEGORIES = ["Laptops", "Phones", "PC", "Monitors",
+               "Accesories for laptops", "SSD",
+               "Graphs", "Ram", "Pendrives", "Routers",
+               "Switches", "Motherboard", "CPU",
+               "TV", "Headphones"]
 
 
 class LandingPage(FormView):
@@ -39,7 +40,6 @@ class LandingPage(FormView):
         else:
             messages.error(self.request, "Username or password incorrect")
 
-
         return super(LandingPage, self).form_valid(form)
 
     def form_invalid(self, form):
@@ -54,24 +54,33 @@ class LandingPage(FormView):
         articles = LandingPageArticles.objects.filter(outdated=False)[:3]
         selected = Products.objects.filter(selected=True)
         try:
-            product_of_the_day = Products.objects.filter(product_of_the_day=True)[0]
-            product_of_the_day.product_of_the_day_added = timezone.template_localtime(product_of_the_day.product_of_the_day_added)
+            product_of_the_day = Products.objects.filter(
+                product_of_the_day=True
+            )[0]
+            localtime = timezone.template_localtime(
+                product_of_the_day.product_of_the_day_added
+            )
+            product_of_the_day.product_of_the_day_added = localtime
             product_of_the_day.save()
         except (IndexError, ProgrammingError):
             product_of_the_day = ''
             pass
 
         if product_of_the_day:
-
             date = timezone.now() - datetime.timedelta(days=7)
-            product_of_the_day = list(Products.objects.filter(product_of_the_day_added__gte=date))[-1]
-            product_of_the_day.product_of_the_day_added = timezone.template_localtime(product_of_the_day.product_of_the_day_added)
+            product_of_the_day = list(Products.objects.filter(
+                product_of_the_day_added__gte=date
+            ))[-1]
+            localtime = timezone.template_localtime(
+                product_of_the_day.product_of_the_day_added)
+            product_of_the_day.product_of_the_day_added = localtime
             product_of_the_day.save()
 
         try:
-            promotion_pieces = {product:change_product_pieces(self.request, product)[0] for product in selected}
+            promotion_pieces = {product: change_product_pieces(
+                self.request, product)[0] for product in selected}
         except ProgrammingError:
-            promotion_pieces=''
+            promotion_pieces = ''
 
         context['product_of_the_day'] = product_of_the_day
         context['promotion_pieces'] = promotion_pieces
@@ -83,63 +92,55 @@ class LandingPage(FormView):
 
 
 class DeliveryPage(ListView):
-
     template_name = 'Landingpage/delivery.html'
     model = ContentBase
 
-class InstallmentsPage(ListView):
 
+class InstallmentsPage(ListView):
     template_name = 'Landingpage/installments.html'
     model = ContentBase
 
-class InsurancePage(ListView):
 
+class InsurancePage(ListView):
     template_name = 'Landingpage/insurance.html'
     model = ContentBase
 
-class AssemblyPage(ListView):
 
+class AssemblyPage(ListView):
     template_name = 'Landingpage/assembly.html'
     model = ContentBase
 
 
 class ReturnsComplaintsPage(ListView):
-
     template_name = 'Landingpage/returnsComplaints.html'
     model = ContentBase
 
 
 class FrequentlyQuestionsPage(ListView):
-
     template_name = 'Landingpage/frequentlyQuestions.html'
     model = ContentBase
 
 
 class AboutPage(ListView):
-
     template_name = 'Landingpage/about.html'
     model = ContentBase
 
 
 class RegulationsPage(ListView):
-
     template_name = 'Landingpage/regulations.html'
     model = ContentBase
 
 
 class PrivacyPolicyPage(ListView):
-
     template_name = 'Landingpage/privacyPolicy.html'
     model = ContentBase
 
 
 class CareerPage(ListView):
-
     template_name = 'Landingpage/career.html'
     model = ContentBase
 
 
 class ContactPage(ListView):
-
     template_name = 'Landingpage/contact.html'
     model = ContentBase

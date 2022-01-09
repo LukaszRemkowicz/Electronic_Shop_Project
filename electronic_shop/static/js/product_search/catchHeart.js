@@ -37,16 +37,18 @@ function fetchHeart (url, whatToDo){
 }
 
 try{
-    heart.forEach(element => {
-        element.addEventListener('click', (e) => {
-            const url = `/api/product/${e.target.dataset.heart}/`;
-            fetchHeart(url, 'add');
-            element.style.display = 'none';
-            const el = element.parentNode.querySelector('.fa-heart');
-            el.classList.remove('d-none');
-            el.style.display = 'inline-block'
+    if(user !== 'AnonymousUser'){
+        heart.forEach(element => {
+            element.addEventListener('click', (e) => {
+                const url = `/api/product/${e.target.dataset.heart}/`;
+                fetchHeart(url, 'add');
+                element.style.display = 'none';
+                const el = element.parentNode.querySelector('.fa-heart');
+                el.classList.remove('d-none');
+                el.style.display = 'inline-block'
+            })
         })
-    })
+    }
 } catch(e) {
     console.log(e);
 }

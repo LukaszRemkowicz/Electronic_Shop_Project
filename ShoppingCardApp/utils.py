@@ -1,7 +1,7 @@
 import json
 from decimal import Decimal
 
-from django.core.exceptions import MultipleObjectsReturned
+from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
 
 from ProductApp.models import MainProductDatabase
 from .models import Order, Customer, OrderItem
@@ -13,7 +13,7 @@ def order_cart(request):
     try:
         # new_request = request.COOKIES["cart"].replace("\'", "\"")
         cart = json.loads(request.COOKIES["cart"])['products']
-    except:
+    except KeyError:
         cart = {}
 
     items = []
@@ -22,7 +22,9 @@ def order_cart(request):
 
     for item_id in cart:
 
-            cart_items += cart[item_id]["quantity"]
+        cart_items += cart[item_id]["quantity"]
+
+        try:
 
             product = MainProductDatabase.objects.get(id=item_id)
             total = (product.price * cart[item_id]['quantity'])
@@ -47,8 +49,10 @@ def order_cart(request):
                 'get_total': total
             }
 
-
             items.append(item)
+
+        except ObjectDoesNotExist:
+            pass
 
     return items, order, cart_items
 
@@ -56,13 +60,23 @@ def order_cart(request):
 def cart_data(request):
 
     if request.user.is_authenticated:
-        customer = request.user.customer
+        # breakpoint()
+        customer = Customer.objects.filter(user=request.user)
+        if customer.exists():
+            customer = customer[0]
+        else:
+            customer = Customer.objects.create(user=request.user)
         try:
-            order, created = Order.objects.get_or_create(customer=customer, transaction_status=False)
+            order, created = Order.objects.get_or_create(
+                customer=customer,
+                transaction_status=False
+                )
         except MultipleObjectsReturned:
-            order = Order.objects.filter(customer=customer, transaction_status=False).order_by('-date_order')[0]
+            order = Order.objects.filter(customer=customer,
+                                         transaction_status=False
+                                         ).order_by('-date_order')[0]
         items = order.orderitem_set.all()
-        address_list = AddressBook.objects.filter(user= request.user)
+        address_list = AddressBook.objects.filter(user=request.user)
 
     else:
         address_list = []
@@ -82,14 +96,14 @@ def complete_unauthorised_user_order(request, data):
     customer.save()
 
     order = Order.objects.create(
-        customer = customer,
-        transaction_status = False,
+        customer=customer,
+        transaction_status=False,
     )
 
     for item in items:
         product = MainProductDatabase.objects.get(id=item['product']['id'])
 
-        order_item = OrderItem.objects.create(
+        OrderItem.objects.create(
             product=product,
             order=order,
             quantity=item['quantity']

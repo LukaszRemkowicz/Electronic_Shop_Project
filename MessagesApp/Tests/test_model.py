@@ -11,6 +11,7 @@ def create_user(*args, **kwargs) -> User:
     """ Help function to create user """
     return get_user_model().objects.create_user(**kwargs)
 
+
 def create_customer(user: User):
     """ Help function to create customer """
     return Customer.objects.create(user=user, email=user.email)
@@ -19,37 +20,37 @@ def create_customer(user: User):
 class TestMessageApp(TestCase):
 
     def setUp(self) -> None:
-
         self.client = Client()
-        self.product_data={
-                'name': 'Iphone 10',
-                'price': 3000,
-                'pieces': 2,
-                'ram': 8,
-                'memory': 8,
-                'modem': 8,
-                'color': 'grey',
-                'describe': 'The best model',
-                'producent': 'Apple',
-                'producent_code': 'AABB123',
-                'ean': 123456,
-                'waterproof': True,
-                'distribution': 'EU',
-                'system': 'IOS',
-                'processor': 'Intel',
-                'cpu_clock': '400Mhz',
-                'memory_card': '10GB',
-                'usb': '3.0',
-                'audio_jack': "Yes",
-                'screen': '100x200',
-                'screen_diagonal': 7.2,
-                'battery': 100,
-                'high': 10,
-                'width':  10,
-                'deep':  10,
-                'weight': 0.5,
-                'cattegory': 'phones'
-            }
+        self.product_data = {
+            'name': 'Iphone 10',
+            'price': 3000,
+            'pieces': 2,
+            'ram': 8,
+            'memory': 8,
+            'modem': 8,
+            'color': 'grey',
+            'describe': 'The best model',
+            'producent': 'Apple',
+            'producent_code': 'AABB123',
+            'ean': 123456,
+            'model': ' ',
+            'waterproof': True,
+            'distribution': 'EU',
+            'system': 'IOS',
+            'processor': 'Intel',
+            'cpu_clock': '400Mhz',
+            'memory_card': '10GB',
+            'usb': '3.0',
+            'audio_jack': "Yes",
+            'screen': '100x200',
+            'screen_diagonal': 7.2,
+            'battery': 100,
+            'high': 10,
+            'width': 10,
+            'deep': 10,
+            'weight': 0.5,
+            'cattegory': 'phones'
+        }
 
         self.payload = {
             'password': 'TestingFunc123',
@@ -60,7 +61,7 @@ class TestMessageApp(TestCase):
         """ test if complaint can be created """
 
         user = create_user(**self.payload)
-        login = self.client.login(**self.payload)
+        self.client.login(**self.payload)
         customer = create_customer(user)
         product = Phones.objects.create(**self.product_data)
         product_main = MainProductDatabase.objects.get(ean=product.ean)
@@ -78,7 +79,6 @@ class TestMessageApp(TestCase):
 
         self.assertEqual(complaint.user.email, 'test123@test.com')
         self.assertEqual(complaint.order.transaction_id, '11')
-
 
     def test_question_model(self):
         """ test if question can be asked """

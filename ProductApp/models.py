@@ -1,40 +1,38 @@
-from typing import Any, Dict, List, Optional, Tuple, Union
-import os, codecs, math, uuid
-from datetime import date
+import codecs
+import math
+import os
+import uuid
+from typing import Any, Dict, List, Tuple, Union
 
-from django.db import models, reset_queries
-from django.utils import tree, timezone
-from django import utils
-# from django.db.models.base import Model
-# from django.db.models.expressions import F
-from django.utils.safestring import mark_safe
-from django.contrib.auth import get_user_model
-from django.core.exceptions import ObjectDoesNotExist
+from ProductApp.utilss.models_utils import \
+    filter_phones, filter_routers, filter_headphones, filter_tvs, \
+    filter_cpus, filter_motherboards, filter_switches, filter_pendrives, \
+    filter_rams, filter_graphs, filter_ssd, filter_pcs, filter_laptops, \
+    filter_monitors
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
+from django.db import models
+from django.utils.safestring import mark_safe
 
-from ProductApp.utilss.models_utils import *
-
-# User = get_user_model()
 User = settings.AUTH_USER_MODEL
 
-
 CHOICES = [
-        ("Laptops", "Laptops"),
-        ("Phones", 'Phones'),
-        ("PC", "PC"),
-        ("Monitors", "Monitors"),
-        ("Accesories for laptops", "Accesories for laptops"),
-        ("SSD", "SSD"),
-        ("Graphs", "Graphs"),
-        ("Ram", "Ram"),
-        ("Pendrives", "Pendrives"),
-        ("Routers", "Routers"),
-        ("Switches", "Switches"),
-        ("Motherboard", "Motherboard"),
-        ("CPU", "CPU"),
-        ("TV", "TV"),
-        ("Headphones", "Headphones"),
-    ]
+    ("Laptops", "Laptops"),
+    ("Phones", 'Phones'),
+    ("PC", "PC"),
+    ("Monitors", "Monitors"),
+    ("Accesories for laptops", "Accesories for laptops"),
+    ("SSD", "SSD"),
+    ("Graphs", "Graphs"),
+    ("Ram", "Ram"),
+    ("Pendrives", "Pendrives"),
+    ("Routers", "Routers"),
+    ("Switches", "Switches"),
+    ("Motherboard", "Motherboard"),
+    ("CPU", "CPU"),
+    ("TV", "TV"),
+    ("Headphones", "Headphones"),
+]
 
 
 def product_image_file_path(instance, filename):
@@ -47,29 +45,44 @@ def product_image_file_path(instance, filename):
 
 
 class Inherit(models.Model):
-
     name = models.CharField(max_length=200, default='')
     model = models.CharField(max_length=100, null=True, blank=True)
     price = models.DecimalField(max_digits=7, decimal_places=2, default=0)
     pieces = models.IntegerField(default=0)
-    promotion = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
+    promotion = models.DecimalField(max_digits=7, decimal_places=2,
+                                    blank=True, null=True
+                                    )
     producent = models.CharField(max_length=100, default='')
-    producent_code = models.CharField(max_length=100, default='', null=True, blank=True)
+    producent_code = models.CharField(max_length=100, default='',
+                                      null=True, blank=True
+                                      )
     ean = models.BigIntegerField(unique=True, null=True)
     color = models.CharField(max_length=50, null=True, blank=True)
     distribution = models.CharField(max_length=10, default='EU')
     cattegory = models.CharField(choices=CHOICES, max_length=50, default='')
-    describe = models.CharField(max_length=30000, null=True, blank=True, default='')
+    describe = models.CharField(max_length=30000,
+                                null=True, blank=True, default=''
+                                )
     width = models.FloatField(blank=True, null=True)
     deep = models.FloatField(blank=True, null=True)
     weight = models.FloatField(blank=True, null=True)
     high = models.FloatField(blank=True, null=True)
 
-    main_photo = models.ImageField(upload_to=product_image_file_path, null=True, blank=True)
-    main_photo = models.ImageField(upload_to=product_image_file_path, null=True, blank=True)
-    second_photo = models.ImageField(upload_to=product_image_file_path, null=True, blank=True)
-    third_photo = models.ImageField(upload_to=product_image_file_path, null=True, blank=True)
-    html_file = models.FileField(upload_to=product_image_file_path, default="", null=True, blank=True)
+    main_photo = models.ImageField(upload_to=product_image_file_path,
+                                   null=True, blank=True
+                                   )
+    main_photo = models.ImageField(upload_to=product_image_file_path,
+                                   null=True, blank=True
+                                   )
+    second_photo = models.ImageField(upload_to=product_image_file_path,
+                                     null=True, blank=True
+                                     )
+    third_photo = models.ImageField(upload_to=product_image_file_path,
+                                    null=True, blank=True
+                                    )
+    html_file = models.FileField(upload_to=product_image_file_path,
+                                 default="", null=True, blank=True
+                                 )
     product_of_the_day = models.BooleanField(default=False)
     bought_num = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
@@ -90,14 +103,24 @@ class Inherit(models.Model):
 
         product = MainProductDatabase.objects.get(ean=self.ean)
 
-        opinions = len(Reviews.objects.filter(product=product.id, checked_by_employer=True))
-        stars = sum([element.stars for element in Reviews.objects.filter(product=product.id,checked_by_employer=True)])
+        opinions = len(Reviews.objects.filter(
+            product=product.id, checked_by_employer=True
+        ))
+        stars = sum([
+            element.stars for element in Reviews.objects.filter(
+                product=product.id, checked_by_employer=True
+            )
+        ])
         if stars > 0:
-            result = stars/opinions
+            result = stars / opinions
             frac, whole = math.modf(result)
 
-            ranger = [True if num  in [element for element in range(1, int(whole) +1 )]
-                      else False for num in range(1, int(6))]
+            ranger = [
+                True if num in [
+                    element for element in range(1, int(whole) + 1)
+                ]
+                else False for num in range(1, int(6))
+            ]
 
             if frac > 0:
                 return str(result), ranger
@@ -112,8 +135,11 @@ class Inherit(models.Model):
 
         product = MainProductDatabase.objects.get(ean=self.ean)
 
-        stars = [element.stars for element in Reviews.objects.filter(product=product.id, checked_by_employer=True)]
-        stars_dict = {key:0 for key in range(1, 6)}
+        stars = [
+            element.stars for element in Reviews.objects.filter(
+                product=product.id, checked_by_employer=True
+            )]
+        stars_dict = {key: 0 for key in range(1, 6)}
 
         if len(stars) > 0:
 
@@ -124,7 +150,7 @@ class Inherit(models.Model):
                     stars_dict[element] += 1
 
             for key, value in stars_dict.items():
-                percentage = (100*value) / len(stars)
+                percentage = (100 * value) / len(stars)
                 stars_dict[key] = (value, int(percentage))
 
         return stars_dict
@@ -178,53 +204,116 @@ class Inherit(models.Model):
     @property
     def get_num_of_reviews(self) -> int:
         product = MainProductDatabase.objects.get(ean=self.ean)
-        return len(Reviews.objects.filter(product=product.id, checked_by_employer=True))
+        return len(Reviews.objects.filter(
+            product=product.id, checked_by_employer=True
+        ))
 
     @property
     def get_num_of_questions(self) -> int:
         product = MainProductDatabase.objects.get(ean=self.ean)
-        return len(Questions.objects.filter(product=product.id, checked_by_employer=True))
+        return len(Questions.objects.filter(
+            product=product.id,
+            checked_by_employer=True)
+        )
 
     class Meta:
         abstract = True
+        ordering = ['-id']
 
 
 class MainProductDatabase(models.Model):
-
-    main_photo = models.ImageField(null=True, blank=True, upload_to=product_image_file_path)
-    second_photo = models.ImageField(null=True, blank=True, upload_to=product_image_file_path)
-    third_photo = models.ImageField(null=True, blank=True, upload_to=product_image_file_path)
+    main_photo = models.ImageField(null=True, blank=True,
+                                   upload_to=product_image_file_path
+                                   )
+    second_photo = models.ImageField(null=True, blank=True,
+                                     upload_to=product_image_file_path
+                                     )
+    third_photo = models.ImageField(null=True, blank=True,
+                                    upload_to=product_image_file_path
+                                    )
     name = models.CharField(max_length=100, default='')
     price = models.DecimalField(max_digits=7, decimal_places=2, default=0)
     pieces = models.IntegerField(default=0)
-    promotion = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
+    promotion = models.DecimalField(max_digits=7, decimal_places=2,
+                                    blank=True, null=True
+                                    )
     product_of_the_day = models.BooleanField(default=False)
     product_of_the_day_added = models.DateTimeField(null=True, blank=True)
     selected = models.BooleanField(default=False)
 
-    phones_product_data = models.ForeignKey('Phones', on_delete=models.CASCADE, null=True, blank=True)
-    monitors_product_data = models.ForeignKey('Monitors', on_delete=models.CASCADE, null=True, blank=True)
-    laptops_product_data = models.ForeignKey('Laptops', on_delete=models.CASCADE, default='', null=True, blank=True)
-    pc_product_data = models.ForeignKey('Pc', on_delete=models.CASCADE, default='', null=True, blank=True)
-    accesories_for_laptop = models.ForeignKey('AccesoriesForLaptops', on_delete=models.CASCADE, default='', null=True, blank=True)
-    ssd_product_data = models.ForeignKey('Ssd', on_delete=models.CASCADE, default='', null=True, blank=True)
-    graph_product_data = models.ForeignKey('Graphs', on_delete=models.CASCADE, default='', null=True, blank=True)
-    ram_product_data = models.ForeignKey('Ram', on_delete=models.CASCADE, default='', null=True, blank=True)
-    pendrive_product_data = models.ForeignKey('Pendrives', on_delete=models.CASCADE, default='', null=True, blank=True)
-    switch_product_data = models.ForeignKey('Switches', on_delete=models.CASCADE, default='', null=True, blank=True)
-    motherboard_product_data = models.ForeignKey('Motherboard', on_delete=models.CASCADE, default='', null=True, blank=True)
-    cpu_product_data = models.ForeignKey('Cpu', on_delete=models.CASCADE, default='', null=True, blank=True)
-    tv_product_data = models.ForeignKey('Tv', on_delete=models.CASCADE, default='', null=True, blank=True)
-    headphone_product_data = models.ForeignKey('Headphones', on_delete=models.CASCADE, default='', null=True, blank=True)
-    router_product_data = models.ForeignKey('Routers', on_delete=models.CASCADE, default='', blank=True, null=True,)
+    phones_product_data = models.ForeignKey('Phones',
+                                            on_delete=models.CASCADE,
+                                            null=True, blank=True
+                                            )
+    monitors_product_data = models.ForeignKey('Monitors',
+                                              on_delete=models.CASCADE,
+                                              null=True, blank=True
+                                              )
+    laptops_product_data = models.ForeignKey('Laptops',
+                                             on_delete=models.CASCADE,
+                                             default='', null=True, blank=True
+                                             )
+    pc_product_data = models.ForeignKey('Pc',
+                                        on_delete=models.CASCADE,
+                                        default='', null=True, blank=True
+                                        )
+    accesories_for_laptop = models.ForeignKey('AccesoriesForLaptops',
+                                              on_delete=models.CASCADE,
+                                              default='', null=True,
+                                              blank=True
+                                              )
+    ssd_product_data = models.ForeignKey('Ssd',
+                                         on_delete=models.CASCADE,
+                                         default='', null=True, blank=True
+                                         )
+    graph_product_data = models.ForeignKey('Graphs',
+                                           on_delete=models.CASCADE,
+                                           default='', null=True, blank=True
+                                           )
+    ram_product_data = models.ForeignKey('Ram',
+                                         on_delete=models.CASCADE,
+                                         default='', null=True, blank=True
+                                         )
+    pendrive_product_data = models.ForeignKey('Pendrives',
+                                              on_delete=models.CASCADE,
+                                              default='', null=True, blank=True
+                                              )
+    switch_product_data = models.ForeignKey('Switches',
+                                            on_delete=models.CASCADE,
+                                            default='', null=True, blank=True
+                                            )
+    motherboard_product_data = models.ForeignKey('Motherboard',
+                                                 on_delete=models.CASCADE,
+                                                 default='', null=True,
+                                                 blank=True
+                                                 )
+    cpu_product_data = models.ForeignKey('Cpu',
+                                         on_delete=models.CASCADE,
+                                         default='', null=True, blank=True
+                                         )
+    tv_product_data = models.ForeignKey('Tv',
+                                        on_delete=models.CASCADE,
+                                        default='', null=True, blank=True
+                                        )
+    headphone_product_data = models.ForeignKey('Headphones',
+                                               on_delete=models.CASCADE,
+                                               default='', null=True,
+                                               blank=True
+                                               )
+    router_product_data = models.ForeignKey('Routers',
+                                            on_delete=models.CASCADE,
+                                            default='', blank=True, null=True
+                                            )
 
     ean = models.BigIntegerField(null=True, blank=True, unique=True)
-    cattegory =  models.CharField(choices=CHOICES, max_length=50, default='')
-    color = models.CharField(max_length=100, default='', blank=True, null=True)
+    cattegory = models.CharField(choices=CHOICES, max_length=50, default='')
+    color = models.CharField(max_length=100, default='',
+                             blank=True, null=True
+                             )
     bought_num = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
     producent = models.CharField(max_length=100, default='')
-    model = models.CharField(max_length=100)
+    model = models.CharField(max_length=100, default='')
 
     likes = models.ManyToManyField(User, default=None, blank=True)
 
@@ -239,23 +328,30 @@ class MainProductDatabase(models.Model):
         try:
             url = self.main_photo.url
         except ObjectDoesNotExist:
-            url=''
+            url = ''
 
         return url
-
 
     @property
     def get_star_avg(self) -> Tuple[str, List[bool]]:
         """ Method to get product review avarage """
 
-        opinions = len(Reviews.objects.filter(product=self.id, checked_by_employer=True))
-        stars = sum([element.stars for element in Reviews.objects.filter(product=self.id,checked_by_employer=True)])
+        opinions = len(Reviews.objects.filter(
+            product=self.id, checked_by_employer=True
+        ))
+        stars = sum(
+            [element.stars for element in Reviews.objects.filter(
+                product=self.id, checked_by_employer=True
+            )])
         if stars > 0:
-            result = stars/opinions
+            result = stars / opinions
             frac, whole = math.modf(result)
 
-            ranger = [True if num  in [element for element in range(1, int(whole) +1 )]
-                      else False for num in range(1, int(6))]
+            ranger = [
+                True if num in [
+                    element for element in range(1, int(whole) + 1)
+                ]
+                else False for num in range(1, int(6))]
 
             if frac > 0:
                 return str(result), ranger
@@ -268,7 +364,10 @@ class MainProductDatabase(models.Model):
     # def get_stars(self) -> Dict[str, int]:
     #     """ Help method to generate progress bars """
 
-    #     stars = [element.stars for element in Reviews.objects.filter(product=self.id, checked_by_employer=True)]
+    #     stars = [
+    #     element.stars for element in Reviews.objects.filter(
+    #     product=self.id, checked_by_employer=True
+    #     )]
     #     stars_dict = {key:0 for key in range(1, 6)}
 
     #     if len(stars) > 0:
@@ -286,12 +385,10 @@ class MainProductDatabase(models.Model):
     #     return stars_dict
 
 
-
 class Phones(Inherit):
-
     ram = models.CharField(max_length=50, default='')
     memory = models.CharField(max_length=50, default='')
-    modem = models.CharField(max_length=20 ,default='')
+    modem = models.CharField(max_length=20, default='')
 
     waterproof = models.BooleanField(default=False)
     system = models.CharField(max_length=50, default='')
@@ -306,10 +403,10 @@ class Phones(Inherit):
     battery = models.CharField(max_length=50, default='')
 
     @classmethod
-    def data_products_to_filter(cls, querySet='') -> Dict:
+    def data_products_to_filter(cls, queryset='') -> Dict:
 
-        if querySet:
-            phones = querySet
+        if queryset:
+            phones = queryset
         else:
             phones = Phones.objects.all()
 
@@ -317,7 +414,6 @@ class Phones(Inherit):
 
 
 class Monitors(Inherit):
-
     resolution = models.CharField(max_length=50, default='')
     refresh_rate = models.CharField(max_length=20, default='')
     format = models.CharField(max_length=10, default='')
@@ -327,12 +423,11 @@ class Monitors(Inherit):
     diagonal = models.CharField(max_length=10, default='')
     curved = models.CharField(max_length=10, default='')
 
-
     @classmethod
-    def data_products_to_filter(cls, querySet='') -> Dict:
+    def data_products_to_filter(cls, queryset='') -> Dict:
 
-        if querySet:
-            monitors = querySet
+        if queryset:
+            monitors = queryset
         else:
             monitors = Monitors.objects.all()
 
@@ -340,7 +435,6 @@ class Monitors(Inherit):
 
 
 class Laptops(Inherit):
-
     resolution = models.CharField(max_length=50, default='')
     energy_time = models.IntegerField(default=0)
     battery = models.CharField(max_length=30, default='')
@@ -348,7 +442,9 @@ class Laptops(Inherit):
     screen_diagonal = models.CharField(max_length=10, default='')
     system = models.CharField(max_length=50, default='')
     graph = models.CharField(max_length=50, default='')
-    second_graph = models.CharField(max_length=50, default='', blank=True, null=True)
+    second_graph = models.CharField(max_length=50,
+                                    default='', blank=True, null=True
+                                    )
     disc = models.CharField(max_length=100, default='')
     ram = models.IntegerField(default=0)
     ram_model = models.CharField(max_length=20, default='')
@@ -361,21 +457,18 @@ class Laptops(Inherit):
     processor_clock = models.CharField(max_length=50, default='')
     processor_cores_threads = models.CharField(max_length=50, default='')
 
-
     @classmethod
-    def data_products_to_filter(cls, querySet='') -> Dict:
+    def data_products_to_filter(cls, queryset='') -> Dict:
 
-        if querySet:
-            laptops = querySet
+        if queryset:
+            laptops = queryset
         else:
             laptops = Laptops.objects.all()
 
         return filter_laptops(laptops)
 
 
-
 class Pc(Inherit):
-
     processor = models.CharField(max_length=50, default='')
     socket = models.CharField(max_length=20, default='')
     cooler = models.CharField(max_length=20, default='')
@@ -384,48 +477,48 @@ class Pc(Inherit):
     motherboard_chipset = models.CharField(max_length=20, default='')
     power_suply = models.CharField(max_length=20, default='')
     mouse = models.CharField(max_length=10, default='', blank=True, null=True)
-    keyboard = models.CharField(max_length=10, default='', blank=True, null=True)
+    keyboard = models.CharField(max_length=10,
+                                default='', blank=True, null=True
+                                )
     disc = models.CharField(max_length=20, default='')
     ram = models.IntegerField(default=0)
     ram_type = models.CharField(max_length=20, default='')
-    p_c_i_e = models.CharField(max_length=50 ,default='')
+    p_c_i_e = models.CharField(max_length=50, default='')
     wifi = models.CharField(max_length=20, default='')
     bluetooth = models.CharField(max_length=10, default='')
 
-
     @classmethod
-    def data_products_to_filter(cls, querySet='') -> Dict:
+    def data_products_to_filter(cls, queryset='') -> Dict:
 
-        if querySet:
-            pcs = querySet
+        if queryset:
+            pcs = queryset
         else:
             pcs = Pc.objects.all()
         return filter_pcs(pcs)
 
 
 class AccesoriesForLaptops(Inherit):
-    diagonal_for_cases = models.CharField(max_length=20, blank=True, null=True)
+    diagonal_for_cases = models.CharField(
+        max_length=20, blank=True, null=True
+    )
 
     @classmethod
     def data_products_to_filter(cls, queryset='') -> None:
-
         pass
 
 
 class Ssd(Inherit):
-
     format = models.CharField(max_length=30, default='')
     capacity = models.CharField(max_length=30, default='')
     reading_speed = models.CharField(max_length=30, default='')
     writing_speed = models.CharField(max_length=30, default='')
-    life_time = models.CharField(max_length=30 ,default='')
-
+    life_time = models.CharField(max_length=30, default='')
 
     @classmethod
-    def data_products_to_filter(cls, querySet='') -> Dict:
+    def data_products_to_filter(cls, queryset='') -> Dict:
 
-        if querySet:
-            ssd = querySet
+        if queryset:
+            ssd = queryset
         else:
             ssd = Ssd.objects.all()
 
@@ -433,7 +526,6 @@ class Ssd(Inherit):
 
 
 class Graphs(Inherit):
-
     chipset = models.CharField(max_length=30, default='')
     chipset_producent = models.CharField(max_length=50, default='')
     phisic_lenght = models.CharField(max_length=50, default='')
@@ -443,10 +535,10 @@ class Graphs(Inherit):
     connector_type = models.CharField(max_length=60, default='')
 
     @classmethod
-    def data_products_to_filter(cls, querySet='') -> Dict:
+    def data_products_to_filter(cls, queryset='') -> Dict:
 
-        if querySet:
-            graphs = querySet
+        if queryset:
+            graphs = queryset
         else:
             graphs = Graphs.objects.all()
 
@@ -454,7 +546,6 @@ class Graphs(Inherit):
 
 
 class Ram(Inherit):
-
     capacity = models.CharField(max_length=30, default='')
     frequency = models.CharField(max_length=30, default='')
     modules_number = models.IntegerField(default=0)
@@ -463,12 +554,11 @@ class Ram(Inherit):
     lights = models.CharField(max_length=20, default='No')
     type = models.CharField(max_length=20, default='')
 
-
     @classmethod
-    def data_products_to_filter(cls, querySet='') -> Dict:
+    def data_products_to_filter(cls, queryset='') -> Dict:
 
-        if querySet:
-            rams = querySet
+        if queryset:
+            rams = queryset
         else:
             rams = Ram.objects.all()
 
@@ -476,16 +566,15 @@ class Ram(Inherit):
 
 
 class Pendrives(Inherit):
-
     capacity = models.CharField(max_length=20, default='')
     connector = models.CharField(max_length=20, default='')
     case = models.CharField(max_length=50, default='')
 
     @classmethod
-    def data_products_to_filter(cls, querySet='') -> Dict:
+    def data_products_to_filter(cls, queryset='') -> Dict:
 
-        if querySet:
-            pendrives = querySet
+        if queryset:
+            pendrives = queryset
         else:
             pendrives = Pendrives.objects.all()
 
@@ -493,22 +582,23 @@ class Pendrives(Inherit):
 
 
 class Switches(Inherit):
-
-    num_of_poe = models.CharField(max_length=40, default='', null=True, blank=True)
+    num_of_poe = models.CharField(max_length=40,
+                                  default='', null=True, blank=True
+                                  )
     case_kind = models.CharField(max_length=40, default='')
     manageable = models.CharField(max_length=40, default='')
-    ports_num = models.CharField(max_length=50 ,default='')
-    bus_speed = models.CharField(max_length=50 ,default='')
+    ports_num = models.CharField(max_length=50, default='')
+    bus_speed = models.CharField(max_length=50, default='')
 
     @property
     def split_ports(self):
         return self.ports_num.split('\n')
 
     @classmethod
-    def data_products_to_filter(cls, querySet='') -> Dict:
+    def data_products_to_filter(cls, queryset='') -> Dict:
 
-        if querySet:
-            switches = querySet
+        if queryset:
+            switches = queryset
         else:
             switches = Switches.objects.all()
 
@@ -533,10 +623,10 @@ class Motherboard(Inherit):
         return self.raid_controler.split('\n')
 
     @classmethod
-    def data_products_to_filter(cls, querySet='') -> Dict:
+    def data_products_to_filter(cls, queryset='') -> Dict:
 
-        if querySet:
-            motherboards = querySet
+        if queryset:
+            motherboards = queryset
         else:
             motherboards = Motherboard.objects.all()
 
@@ -552,10 +642,10 @@ class Cpu(Inherit):
     supported_memory = models.CharField(default='', max_length=20)
 
     @classmethod
-    def data_products_to_filter(cls, querySet='') -> Dict:
+    def data_products_to_filter(cls, queryset='') -> Dict:
 
-        if querySet:
-            cpus = querySet
+        if queryset:
+            cpus = queryset
         else:
             cpus = Cpu.objects.all()
 
@@ -578,56 +668,65 @@ class Tv(Inherit):
     power_consumption = models.CharField(max_length=50, default='')
 
     @classmethod
-    def data_products_to_filter(cls, querySet='') -> Dict:
+    def data_products_to_filter(cls, queryset='') -> Dict:
 
-        if querySet:
-            tvs = querySet
+        if queryset:
+            tvs = queryset
         else:
             tvs = Tv.objects.all()
 
         return filter_tvs(tvs)
 
 
-
 class Headphones(Inherit):
-    bluetooth_range = models.CharField(max_length=50, default='', blank=True, null=True)
+    bluetooth_range = models.CharField(max_length=50,
+                                       default='', blank=True, null=True
+                                       )
     jack = models.CharField(max_length=50, default='', blank=True, null=True)
-    cable_lenght = models.CharField(max_length=50, default='', blank=True, null=True)
+    cable_lenght = models.CharField(max_length=50,
+                                    default='', blank=True, null=True
+                                    )
     microphone = models.BooleanField(default=False)
-    work_time = models.CharField(max_length=50, default='', blank=True, null=True)
+    work_time = models.CharField(max_length=50, default='',
+                                 blank=True, null=True
+                                 )
     connection = models.CharField(max_length=50, default='')
 
     @classmethod
-    def data_products_to_filter(cls, querySet='') -> Dict:
+    def data_products_to_filter(cls, queryset='') -> Dict:
 
-        if querySet:
-            headphones = querySet
+        if queryset:
+            headphones = queryset
         else:
             headphones = Headphones.objects.all()
 
         return filter_headphones(headphones)
 
 
-
 class Routers(Inherit):
     wifi = models.CharField(default='', max_length=100, blank=True, null=True)
     case = models.CharField(default='', max_length=100, blank=True, null=True)
     vpn = models.CharField(default='', max_length=100, blank=True, null=True)
-    encryption_standard = models.CharField(default='', max_length=50, blank=True, null=True)
+    encryption_standard = models.CharField(default='',
+                                           max_length=50, blank=True, null=True
+                                           )
     wan_ports = models.CharField(max_length=100, default='')
     lan_ports = models.CharField(max_length=100, default='')
     usb_ports = models.IntegerField(default=0)
     sim = models.BooleanField(default=False)
     antennas = models.IntegerField(default=0, blank=True, null=True)
-    wifi_2_4ghz_speed = models.CharField(default='', max_length=100, blank=True, null=True)
-    wifi_5ghz_speed = models.CharField(default='', max_length=100, blank=True, null=True)
-
+    wifi_2_4ghz_speed = models.CharField(default='',
+                                         max_length=100, blank=True, null=True
+                                         )
+    wifi_5ghz_speed = models.CharField(default='',
+                                       max_length=100, blank=True, null=True
+                                       )
 
     @classmethod
-    def data_products_to_filter(cls, querySet='') -> Dict:
+    def data_products_to_filter(cls, queryset='') -> Dict:
 
-        if querySet:
-            routers = querySet
+        if queryset:
+            routers = queryset
         else:
             routers = Routers.objects.all()
 
@@ -635,8 +734,9 @@ class Routers(Inherit):
 
 
 class Reviews(models.Model):
-
-    product = models.ForeignKey(MainProductDatabase, on_delete=models.CASCADE)
+    product = models.ForeignKey(MainProductDatabase,
+                                on_delete=models.CASCADE
+                                )
     review = models.TextField(max_length=5000, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
@@ -656,26 +756,31 @@ class Reviews(models.Model):
 
     @property
     def get_range_stars(self) -> List[bool]:
-        """ return array with representation (True or False) of stars given to a product """
+        """ return array with representation (True or False)
+        of stars given to a product """
 
-        return [True if num in [el for el in range(1, self.stars+1)] else False for num in range(1, 6)]
+        return [
+            True if num in [
+                el for el in range(1, self.stars + 1)
+            ] else False for num in range(1, 6)
+        ]
 
 
 class Questions(models.Model):
-
     product = models.ForeignKey(MainProductDatabase, on_delete=models.CASCADE)
     question = models.CharField(max_length=5000, blank=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='User')
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             blank=True, null=True, related_name='User'
+                             )
     name = models.CharField(max_length=50, default='')
     date = models.DateField(auto_now_add=True)
     checked_by_employer = models.BooleanField(default=False)
     employer_reply = models.CharField(max_length=5000, blank=True, null=True)
 
     def __str__(self) -> str:
-        return f'Question of {self.product.name}/ Product ID: {self.product.id}'
-
+        return f'Question of {self.product.name}/ ' \
+               f'Product ID: {self.product.id}'
 
     @property
     def get_time(self) -> str:
         return str(self.date)
-

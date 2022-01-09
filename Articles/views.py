@@ -1,10 +1,7 @@
 from typing import Any, Dict
-from django.core.paginator import Paginator
 
-from django.shortcuts import render
-from django.views.generic import ListView, CreateView
+from django.views.generic import CreateView
 
-from ProductApp.utils import paginate_view
 from Landingpage.utils.url_path import get_url_path
 from . import models
 from . import forms
@@ -24,7 +21,9 @@ class LandingArticles(CreateView):
         context['url_last'], context['url_path'] = get_url_path(self.request)
         context['comments_number'] = len(comments)
         context['article'] = article
-        context['comments'] = models.ArticleComment.objects.filter(article=article)
+        context['comments'] = models.ArticleComment.objects.filter(
+            article=article
+        )
 
         # Paginator
         # page = self.request.GET.get('page', 1)

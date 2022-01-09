@@ -1,9 +1,11 @@
 from django.contrib import admin
 
-from .models import *
+from .models import Customer, Order, OrderItem, ShippingAddress, ShoppingCard
+
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['date_order', 'id']
+
 
 admin.site.register(Customer)
 admin.site.register(Order, OrderAdmin)

@@ -1,12 +1,10 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
-from Profile import models
-
 
 def create_user_helper_function(**payload):
-
     return get_user_model().objects.create_user(**payload)
+
 
 class TestModel(TestCase):
     """ test user model """
@@ -17,12 +15,10 @@ class TestModel(TestCase):
                         }
 
     def test_user_creation(self) -> None:
-
         user = create_user_helper_function(**self.payload)
 
         self.assertEqual(user.email, self.payload['email'])
         self.assertTrue(user.check_password(self.payload['password']))
-
 
     # def test_check_signal(self) -> None:
     #     """ test if profile is created """
@@ -33,7 +29,6 @@ class TestModel(TestCase):
     #     self.assertEqual(str(profile), self.payload['email'])
 
     def test_check_email_normalize(self) -> None:
-
         payload = {
             'email': 'TEST@TesT.pl',
             'password': 'test'
@@ -48,7 +43,6 @@ class TestModel(TestCase):
 
         with self.assertRaises(ValueError):
             get_user_model().objects.create_user(None, 'test123')
-
 
     def test_create_super_user(self):
         """ Test superuser is created """

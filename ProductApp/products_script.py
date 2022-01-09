@@ -1,7 +1,7 @@
-import itertools, os
+import itertools
 
 from ProductApp.products import phones, monitors, laptops, pcs, accesories, ssds, graphs, rams, \
-                                pendrives, switches, motherboards, cpus, tvs, headphones, routers
+    pendrives, switches, motherboards, cpus, tvs, headphones, routers
 from django.core.files import File
 from ProductApp.models import *
 from ProductApp.products import *
@@ -10,7 +10,6 @@ products = [phones, monitors, laptops, pcs, accesories, ssds, graphs, rams, pend
             switches, motherboards, cpus, tvs, headphones, routers]
 folders = ['phones', 'monitors', 'laptops', 'pcs', 'accesories', 'ssds', 'graphs', 'rams', 'pendrives',
            'switches', 'motherboards', 'cpus', 'tvs', 'headphones', 'routers']
-
 
 models = {
     'phones': lambda **item: Phones.objects.create(**item),
@@ -29,8 +28,6 @@ models = {
     'headphones': lambda **item: Headphones.objects.create(**item),
     'routers': lambda **item: Routers.objects.create(**item),
 }
-
-
 
 for prod, folder in zip(products, folders):
     for product, fold in zip(prod, itertools.repeat(folder)):

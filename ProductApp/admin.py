@@ -19,4 +19,3 @@ admin.site.register(models.Switches)
 admin.site.register(models.Motherboard)
 admin.site.register(models.Cpu)
 admin.site.register(models.Headphones)
-
