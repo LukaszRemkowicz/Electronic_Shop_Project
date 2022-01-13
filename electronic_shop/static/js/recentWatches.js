@@ -2,6 +2,19 @@ recentWatched = JSON.parse(getCookie('recentWatched'));
 const recentWatchedBoxes = document.querySelector('.boxes-watched');
 
 let productsWatched = [];
+console.log('hjestem przed ifgem');
+console.log('recentWatched1', recentWatched);
+if(window.screen.width <= 1080 && window.screen.width >= 980){
+    recentWatched = recentWatched.splice(0, recentWatched.length-2);
+    jumpOnWatched();
+}else if(window.screen.width < 980 && window.screen.width >= 760){
+    recentWatched = recentWatched.splice(0, recentWatched.length-3);
+    jumpOnWatched();
+} else{
+    console.log('jestem w elsie');
+    document.querySelector('.recentWatched').style.display = 'none'
+}
+
 
 function checkWatched(data){
     if(productsWatched.length >= recentWatched.length && productsWatched.every(element => element === null)){
@@ -24,35 +37,36 @@ function checkWatched(data){
     }
 }
 
+function jumpOnWatched(){
+    recentWatched.forEach(id => {
 
-recentWatched.forEach(id => {
+        const url = `/api/product/${id}`
+    
+        if(id){
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+    
+                if(data.detail != 'Not found.' || !data.main_photo){
+                    productsWatched.push(data)
+                } else {
+                    productsWatched.push(null)
+                }
+    
+                checkWatched(data);
+    
+            })
+        }
+    
+    })
+}
 
-    const url = `/api/product/${id}`
 
-    if(id){
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json',
-                'X-CSRFToken': csrftoken,
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            console.log(id);
-
-            if(data.detail != 'Not found.' || !data.main_photo){
-                productsWatched.push(data)
-            } else {
-                productsWatched.push(null)
-            }
-
-            checkWatched(data);
-
-        })
-    }
-
-})
 
 

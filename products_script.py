@@ -2,6 +2,9 @@ import itertools
 import os, django, decimal
 import random
 
+from django.utils import timezone
+from django.db.utils import IntegrityError
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "electronic_shop.settings")
 django.setup()
 
@@ -23,22 +26,22 @@ folders = ['phones', 'monitors', 'laptops', 'pcs', 'accesories', 'ssds', 'graphs
            'switches', 'motherboards', 'cpus', 'tvs', 'headphones', 'routers']
 
 
-models = {
-    'phones': lambda **item: Phones.objects.create(**item),
-    'monitors': lambda **item: Monitors.objects.create(**item),
-    'laptops': lambda **item: Laptops.objects.create(**item),
-    'pcs': lambda **item: Pc.objects.create(**item),
-    'accesories': lambda **item: AccesoriesForLaptops.objects.create(**item),
-    'ssds': lambda **item: Ssd.objects.create(**item),
-    'graphs': lambda **item: Graphs.objects.create(**item),
-    'rams': lambda **item: Ram.objects.create(**item),
-    'pendrives': lambda **item: Pendrives.objects.create(**item),
-    'switches': lambda **item: Switches.objects.create(**item),
-    'motherboards': lambda **item: Motherboard.objects.create(**item),
-    'cpus': lambda **item: Cpu.objects.create(**item),
-    'tvs': lambda **item: Tv.objects.create(**item),
-    'headphones': lambda **item: Headphones.objects.create(**item),
-    'routers': lambda **item: Routers.objects.create(**item),
+model = {
+    'phones': lambda **item: Phones.objects.get_or_create(**item),
+    'monitors': lambda **item: Monitors.objects.get_or_create(**item),
+    'laptops': lambda **item: Laptops.objects.get_or_create(**item),
+    'pcs': lambda **item: Pc.objects.get_or_create(**item),
+    'accesories': lambda **item: AccesoriesForLaptops.objects.get_or_create(**item),
+    'ssds': lambda **item: Ssd.objects.get_or_create(**item),
+    'graphs': lambda **item: Graphs.objects.get_or_create(**item),
+    'rams': lambda **item: Ram.objects.get_or_create(**item),
+    'pendrives': lambda **item: Pendrives.objects.get_or_create(**item),
+    'switches': lambda **item: Switches.objects.get_or_create(**item),
+    'motherboards': lambda **item: Motherboard.objects.get_or_create(**item),
+    'cpus': lambda **item: Cpu.objects.get_or_create(**item),
+    'tvs': lambda **item: Tv.objects.get_or_create(**item),
+    'headphones': lambda **item: Headphones.objects.get_or_create(**item),
+    'routers': lambda **item: Routers.objects.get_or_create(**item),
 }
 
 
@@ -48,11 +51,13 @@ models = {
 for prod, folder in zip(products, folders):
     for product, fold in zip(prod, itertools.repeat(folder)):
         PATH = rf'electronic_shop/static/images/products/{fold}/'
+        _, itt = model[fold](**product)
+
         try:
-            itt = models[fold](**product)
-        except FileNotFoundError:
+            itt.main_photo.save(product['main_photo'], File(open(PATH + product['main_photo'], 'rb')))
+        except:
             pass
-        itt.main_photo.save(product['main_photo'], File(open(PATH + product['main_photo'], 'rb')))
+        
         try:
             itt.second_photo.save(product['second_photo'], File(open(PATH + product['second_photo'], 'rb')))
         except:
