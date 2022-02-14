@@ -13,7 +13,10 @@ if (getProductAmount != null){
 }
 
 function changeAddButton(pieces, element){
+    console.log('changeAddButton', pieces);
 
+    // #TODO porownac wartosc koszyka z pieces produktu. Sprawdzic porownywanie koszyka usera
+    // annonymous z pieces po stronie template
     if(+pieces <= 0){
         try{
             element.classList.remove('d-block');
@@ -111,14 +114,14 @@ function addCookieItem(productId, action, element){
         }
 
         if (cart['products'][productId] === undefined){
-            console.log('cart po dodaniu', cart)
+            // console.log('cart po dodaniu', cart)
             cart['products'][productId] = {'quantity' : 1};
         }else{
 
             cart['products'][productId]['quantity'] += 1;
 
             if (cart['products'][productId]['quantity'] <= 0){
-                console.log('Removed');
+                // console.log('Removed');
                 delete cart['products'][productId] ;
             }
         }
@@ -159,6 +162,7 @@ function addCookieItem(productId, action, element){
     .then((data) =>{
 
         data = JSON.parse(data);
+        console.log('dwdwdwdwdwdwdwd', data);
 
         cartTotal = {
             'items' : 0,
@@ -192,7 +196,15 @@ function addCookieItem(productId, action, element){
         // });
 
         cartTotal = JSON.stringify(cartTotal);
-        updateCartFunc(element, action);
+        // updateCartFunc(product, action);
+        console.log('filteredData', filteredData);
+        // data.items.forEach(el => {
+        //     changeAddButton(el.product.pieces, element);
+        //     updateCartFunc(el, action);
+        // })
+
+        changeAddButton(filteredData.product.pieces, element);
+        updateCartFunc(filteredData, action);
 
     })
 }
@@ -218,7 +230,7 @@ function updateUserOrder(productId, action, getProductAmount, element){
 
     .then((data) =>{
 
-        console.log(data);
+        console.log('data.pieces', data.pieces);
 
         if(JSON.parse(data).totalItems == 0){
             window.location.href = redirectToAccountUrl

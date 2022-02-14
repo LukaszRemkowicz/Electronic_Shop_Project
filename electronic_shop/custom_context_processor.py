@@ -37,6 +37,7 @@ def login_form_content(request):
         product_of_the_day=True
     ).order_by(
         '-product_of_the_day_added')
+    
 
     if len(product_of_the_day) >= 1:
         product_of_the_day = product_of_the_day[0]

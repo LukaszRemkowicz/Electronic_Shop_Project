@@ -64,11 +64,9 @@ addToCart = [... addToCart]
 
 addToCart.forEach(element =>{
     element.addEventListener('click', function () {
-        console.log(element);
 
         /** Slow down animation if user is at the bottom of the page */
         let indexOf = (addToCart.indexOf(element)%addToCart.length) *200
-
         let imgtodrag = element.parentElement.parentElement.parentElement.parentElement.querySelector('.main-pic');
         const theBestOf = document.querySelector('.the-best-of');
         if(imgtodrag == null && theBestOf == null){
@@ -76,7 +74,7 @@ addToCart.forEach(element =>{
             indexOf = 0;
 
         }else if(theBestOf){
-            imgtodrag = element.parentElement.parentElement.parentElement.querySelector('.main-pic');
+            imgtodrag = element.parentElement.parentElement.parentElement.parentElement.querySelector('.main-pic');
             indexOf  = 700
         }
 

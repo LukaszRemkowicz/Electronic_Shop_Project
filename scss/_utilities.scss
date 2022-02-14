@@ -65,6 +65,10 @@ li{
     align-self: center;
 }
 
+.align-items-center{
+    align-items: center;
+}
+
 .grid-container{
     display: grid;
     justify-content: center;
@@ -209,6 +213,10 @@ a{
 }
 
 .border-rounded{
+    border-radius: 10px;
+}
+
+.border-radius-10px{
     border-radius: 10px;
 }
 

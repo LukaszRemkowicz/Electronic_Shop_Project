@@ -48,6 +48,9 @@ class LandingPage(FormView):
         return redirect('landing-page')
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+
+        # TODO return product of the day even if promotion ended. Think about productOfTheDay history model. Is it worth?
+
         context = super(LandingPage, self).get_context_data(**kwargs)
         cattegories = [product_cat for product_cat in CATTEGORIES]
 
@@ -69,8 +72,9 @@ class LandingPage(FormView):
         if product_of_the_day:
             date = timezone.now() - datetime.timedelta(days=7)
             product_of_the_day = list(Products.objects.filter(
-                product_of_the_day_added__gte=date
-            ))[-1]
+                product_of_the_day_added__gte=date,
+                product_of_the_day=True
+            ))[0]
             localtime = timezone.template_localtime(
                 product_of_the_day.product_of_the_day_added)
             product_of_the_day.product_of_the_day_added = localtime

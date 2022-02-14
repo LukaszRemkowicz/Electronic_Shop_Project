@@ -6,19 +6,54 @@
 
 {% load static %}
 {% load custom_filters %}
-
-    <section class="bg-grey align-center mt-5 pb-3">
+    <section class="bg-grey align-center mt-5 pb-3 showcase-section">
         <div class="container grid-container showcase">
             {% include 'messages.html' %}
 
-            <div class="cattegories bg-red">
+            <div class="cattegories bg-red box-shadow border-radius-10px">
                 <h2>Cattegories</h2>
-                <div class="alarm-box cattegories-box bg-white pt-2 pl-5">
+                <div class="alarm-box cattegories-box bg-white pt-xl-2 pt-sm-0 pl-xl-2 pl-sm-0 mt-xl-3">
 
-                    <ul>
+                    <ul class="m-2">
                         {% for cattegory in cattegories %}
                             {% comment %} {{cattegory}} {% endcomment %}
-                            <li class='text-left mb-2'><a href="{% url 'products_cart' cattegory=cattegory %}">{{cattegory}}</a></li>
+                            <div class="d-flex mb-xl-2 mb-sm-0 iconsDiv">
+                                {% if cattegory == 'PC' %}
+                                    <i class="w-25 fa fa-desktop mr-3"></i>
+                                {% elif cattegory == 'Laptops'%}
+                                    <i class="w-25 fa fa-laptop mr-3"></i>
+                                {% elif cattegory == 'Phones'%}
+                                    <i class="w-25 fas fa-mobile-screen-button mr-3"></i>
+                                {% elif cattegory == 'Monitors'%}
+                                    <i class="w-25 fa fa-desktop mr-3"></i>
+                                {% elif cattegory == 'Accesories for laptops' %}
+                                    <i class="w-25 fa fa-battery-empty mr-3"></i>
+                                {% elif cattegory == 'SSD' %}
+                                    <i class="w-25 fa fa-hard-drive mr-3"></i>
+                                {% elif cattegory == 'Graphs' %}
+                                    <i class="w-25 fa-solid fa-tachograph-digital mr-3"></i>
+                                {% elif cattegory == 'Ram' %}
+                                    <i class="w-25 fa-solid fa-memory mr-3"></i>
+                                {% elif cattegory == 'Pendrives' %}
+                                    <i class="w-25 fa-solid fa-memory mr-3"></i>
+                                {% elif cattegory == 'Routers' %}
+                                    <i class="w-25 fa-solid fa-wifi mr-3"></i>
+                                {% elif cattegory == 'Switches' %}
+                                    <i class="w-25 fa-solid fa-wifi mr-3"></i>
+                                {% elif cattegory == 'Motherboard' %}
+                                    <i class="w-25 fa-solid fa-wifi mr-3"></i>
+                                {% elif cattegory == 'CPU' %}
+                                    <i class="w-25 fa-solid fa-microchip mr-3"></i>
+                                {% elif cattegory == 'TV' %}
+                                    <i class="w-25 fa-solid fa-tv mr-3"></i>
+                                {% elif cattegory == 'Headphones' %}
+                                    <i class="w-25 fa-solid fa-headphones mr-3"></i>
+                                {% endif %}
+                                <li class='text-left w-100'>
+                                    <a href="{% url 'products_cart' cattegory=cattegory %}" class="w-100">{{cattegory}}</a>
+                                </li>
+                            </div>
+                           
                         {% endfor %}
                     </ul>
 
@@ -33,7 +68,7 @@
                   <li data-target="#carouselLandinpage" data-slide-to="1" ></li>
                   <li data-target="#carouselLandinpage" data-slide-to="2"></li>
                 </ol>
-                <div class="carousel-inner mr-2">
+                <div class="carousel-inner mr-2 box-shadow">
 
                     {% load landing_page %}
                     {% for num, article in articles|ennumerate_obj %}
@@ -55,7 +90,7 @@
             <!-- Articles section-->
             <div class="blog-articles grid-container">
                 {% for article in articles %}
-                    <div class="box px-2 py-2">
+                    <div class="box px-2 py-2 box-shadow border-radius-10px" data-articleId='{{article.id}}'>
                         <a href="{% url 'articles' article.id %}">
                             <img class=""  src="{{article.img.url}}" alt="">
                         <p class='py-2'>{{article.short_description|truncatechars:90}}</p>
@@ -80,22 +115,27 @@
 
     <!-- Recomends section -->
 
-    <section class="bg-grey">
+    <section class="bg-grey mt-2 recomends-section">
         <div class="container grid-container offerts">
             {% if promotion_pieces %}
-                <div class="the-best-of grid-container bg-white">
+                <div class="the-best-of grid-container bg-white w-100 justify-items-center">
                     {% for product, pieces in promotion_pieces.items %}
-                        <div class="offert label ">
-                            <a href="{% url 'product_page' product.cattegory product.id %}">
-                                <img class='main-pic' src="{{ product.main_photo.url }}" alt="">
+
+                    <div class="card p-4 h-100" style="width: 18rem;">
+                        <div class="d-flex h-50 justify-content-center align-items-center">
+                            <a href="{% url 'product_page' product.cattegory product.id %}" class="card-img-top">
+                                <img class="main-pic" src="{{ product.main_photo.url }}" alt="Card image cap">
                             </a>
+                        </div>
+
+                        <div class="card-body d-flex justify-content-end flex-column">
                             <a href="{% url 'product_page' product.cattegory product.id %}">
-                                <p>{{ product.name|truncatechars:40 }}</p>
+                                <p class="card-text">{{ product.name|truncatechars:40 }}</p>
                             </a>
-                            <div class="d-flex mt-4">
+                            <div class="d-flex mt-4 justify-content-between">
                                 <div class="d-flex basket mr-2">
                                     <button type="button" class="btn-light border-0 text-center update-cart p-1 font-size-1rem product-not-avaiable font-size-1rem align-self-center {% if pieces <= 0%} d-block {% else %} d-none {% endif %}" disabled> Not avaiable </button>
-                                    <a  data-product="{{ product|get_main_product_id }}" data-action="add" type="button" class="add-to-cart btn-red  align-self-center text-center update-cart p-1 font-size-1rem {% if pieces <= 0%} d-none {% else %} d-block {% endif %}">Add to cart </a>
+                                    <a  data-product="{{ product|get_main_product_id }}" data-action="add" type="button" class="add-to-cart btn-red  align-self-center text-center update-cart p-1 font-size-1rem {% if pieces <= 0%} d-none {% else %} d-block {% endif %}"><span>Add to cart</span></a>
                                 </div>
                                 {% if product.promotion %}
                                     <div class="d-flex flex-column">
@@ -107,6 +147,35 @@
                                 {% endif %}
                             </div>
                         </div>
+                      </div>
+
+                        {% comment %} <div class="offert label card">
+                            <a href="{% url 'product_page' product.cattegory product.id %}" class='offert-firstChild card-img-top'>
+                                <img class='main-pic' src="{{ product.main_photo.url }}" alt="">
+                            </a>
+                            <div class="card-body">
+
+                                <a href="{% url 'product_page' product.cattegory product.id %}" class="offert-secondChild">
+                                    <p>{{ product.name|truncatechars:40 }}</p>
+                                </a>
+                                <div class="d-flex mt-4 offert-thirdChild">
+                                    <div class="d-flex basket mr-2">
+                                        <button type="button" class="btn-light border-0 text-center update-cart p-1 font-size-1rem product-not-avaiable font-size-1rem align-self-center {% if pieces <= 0%} d-block {% else %} d-none {% endif %}" disabled> Not avaiable </button>
+                                        <a  data-product="{{ product|get_main_product_id }}" data-action="add" type="button" class="add-to-cart btn-red  align-self-center text-center update-cart p-1 font-size-1rem {% if pieces <= 0%} d-none {% else %} d-block {% endif %}">Add to cart </a>
+                                    </div>
+                                    {% if product.promotion %}
+                                        <div class="d-flex flex-column">
+                                            <p class="line-through d-inline old-price mb-0">{{ product.price }} $</p>
+                                            <p class='d-inline new-promotion-price font-red mb-0'>{{ product.promotion }} $</p>
+                                        </div>
+                                    {% else %}
+                                        <p class=' m-auto'>{{ product.price }} $</p>
+                                    {% endif %}
+                                </div>
+
+
+                            </div>
+                        </div> {% endcomment %}
                     {% endfor %}
                 </div>
             {% endif %}
@@ -169,7 +238,7 @@
 
     <!-- Brand Zone -->
 
-    <section class="bg-white my-2">
+    <section class="bg-white my-2 producent-logos">
         <div class="container flex-container logos justify-content-between">
 
             <div class="logo">
@@ -226,9 +295,9 @@
 
     <!-- Newsletter section -->
 
-    <section class="notification">
+    <section class="notification mt-3">
         <div class="container grid-container notifications">
-            <div class="newsletter bg-white grid-container">
+            <div class="newsletter bg-white grid-container box-shadow">
                 <div class="mobile-pic letter-pic">
                     <img src="{% static 'images/newsletter/at-1019990_1920.jpg'%}" alt="">
                 </div>
@@ -240,13 +309,13 @@
                     <div class="newsletter-form d-flex flex-column">
                         <form action="" class="flex-container">
                             <input type="text" placeholder="Your email">
-                            <button type="submi">Sign up</button>
+                            <button type="submit">Sign up</button>
                         </form>
                     </div>
                 </div>
 
             </div>
-            <div class="mobile-aplication bg-white grid-container">
+            <div class="mobile-aplication bg-white grid-container box-shadow">
                 <div class="mobile-desc">
                     <h3>Mobile Aplication</h3>
                     <h4>

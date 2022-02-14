@@ -39,26 +39,26 @@ function countDownLandingPage(){
             console.log(e);
         }
         try{
-        const buyBtn = document.querySelector('.sold-left .button');
-        buyBtn.innerHTML = '';
+            const buyBtn = document.querySelector('.sold-left .button');
+            buyBtn.innerHTML = '';
 
-        const newBtn = document.createElement('button');
-        newBtn.classList.add('buy', 'btn-light', 'd-block');
+            const newBtn = document.createElement('button');
+            newBtn.classList.add('buy', 'btn-light', 'd-block');
 
-        const newSpan = document.createElement('span');
-        newSpan.innerHTML = 'Promotion ended';
+            const newSpan = document.createElement('span');
+            newSpan.innerHTML = 'Promotion ended';
 
-        newBtn.appendChild(newSpan);
-        newBtn.style.border = '1px solid rgb(204, 204, 204)';
-        newBtn.style.padding = '1rem';
-        newBtn.disabled = true;
+            newBtn.appendChild(newSpan);
+            newBtn.style.border = '1px solid rgb(204, 204, 204)';
+            newBtn.style.padding = '1rem';
+            newBtn.disabled = true;
 
-        buyBtn.appendChild(newBtn);
-        buyBtn.style.cursor = 'default';
+            buyBtn.appendChild(newBtn);
+            buyBtn.style.cursor = 'default';
 
-        getHour.innerHTML = `00`;
-        getMinutes.innerHTML = `00`;
-        getSeconds.innerHTML =`00`;
+            getHour.innerHTML = `00`;
+            getMinutes.innerHTML = `00`;
+            getSeconds.innerHTML =`00`;
         } catch (e){
             console.log(e);
         }

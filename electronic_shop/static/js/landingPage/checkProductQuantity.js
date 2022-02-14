@@ -12,6 +12,7 @@ function checkQuantity(){
         })
         .then(response => response.json())
         .then(data => {
+            console.log('dwdwdwd');
             console.log(data);
             if(data['order_quantity'] >= data['product_stock']){
                 console.log('datkaaaaaaaa');

@@ -36,6 +36,7 @@ def order_cart(request):
                 photo = ''
             else:
                 photo = product.get_img
+                
 
             item = {
                 'product': {
@@ -43,7 +44,8 @@ def order_cart(request):
                     'name': product.name,
                     'price': product.price,
                     'get_img': photo,
-                    'cattegory': product.cattegory
+                    'cattegory': product.cattegory,
+                    'pieces': product.pieces
                 },
                 'quantity': cart[item_id]['quantity'],
                 'get_total': total
