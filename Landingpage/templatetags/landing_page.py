@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from django import template
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -18,11 +20,16 @@ def ennumerate_obj(obj):
 
 
 @register.filter
-def format_datetime(value):
+def format_datetime(value, new_date=''):
     """ Return date in proper way. Its used by JavaScript """
 
     try:
-        result = value.strftime("%Y-%m-%d %H:%M:%S")
+        if new_date:
+            result = value - timedelta(days=int(new_date))
+            result = result.strftime("%Y-%m-%d %H:%M:%S")
+        else:
+            result = value.strftime("%Y-%m-%d %H:%M:%S")
+
     except AttributeError:
         result = ''
 

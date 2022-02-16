@@ -234,5 +234,8 @@ def update_product(sender, instance, created, **kwargs):
         elif product.model != instance_obj.model:
             instance_obj.model = product.model
             instance_obj.save()
+        elif product.product_of_the_day != instance_obj.product_of_the_day:
+            instance_obj.product_of_the_day = product.product_of_the_day
+            instance_obj.save()
 
         skip_signals = False

@@ -218,7 +218,9 @@
                     </div>
 
                     <div class="time-left flex-column flex-container">
-                        <div class="hour" data-promoTime="{{ product_of_the_day.product_of_the_day_added|format_datetime }}">
+                        {{product_of_the_day.product_of_the_day}}
+                        <div class="hour" data-promoTime="{% if product_of_the_day.product_of_the_day %}
+                        {{product_of_the_day.product_of_the_day_added|format_datetime}} {% else %} {{product_of_the_day.product_of_the_day_added|format_datetime:1}} {% endif %}">
                             <span class="time-hour"></span>
                             <span>:</span>
                             <span class="time-minutes"></span>

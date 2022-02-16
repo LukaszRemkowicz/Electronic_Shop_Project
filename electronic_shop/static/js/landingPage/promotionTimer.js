@@ -20,6 +20,9 @@ function countDownLandingPage(){
     let newDate = new Date(promoDate);
     const now = new Date();
 
+    console.log('timer', promoDate)
+
+
     newDate.setDate(newDate.getDate()+1);
 
     // if (now.getSeconds() == newDate.getSeconds()) {
@@ -31,6 +34,9 @@ function countDownLandingPage(){
     let timeSeconds = Math.floor((offerTime / 1000) % 60);
     let timeMinutes = Math.floor((offerTime / (1000 * 60) % 60));
     let timeHours = Math.floor((offerTime / (1000 * 60 * 60) % 24));
+
+    console.log('offerTime', timeSeconds, timeMinutes, timeHours)
+
 
     if(timeHours <= 0 && timeMinutes <= 0 && timeSeconds <= 0){
         try{
@@ -59,12 +65,15 @@ function countDownLandingPage(){
             getHour.innerHTML = `00`;
             getMinutes.innerHTML = `00`;
             getSeconds.innerHTML =`00`;
+
+            document.querySelector('.offert-of-the-day .add-to-cart').classList.remove('add-to-cart')
+
         } catch (e){
             console.log(e);
         }
 
         fetch(`/api/product/${getProductId}/`, {
-            method: 'PATCH', 
+            method: 'PATCH',
             headers: {
                 'Content-type': 'application/json',
                 'X-CSRFToken': csrftoken,
