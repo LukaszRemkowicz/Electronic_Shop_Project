@@ -51,13 +51,16 @@ model = {
 for prod, folder in zip(products, folders):
     for product, fold in zip(prod, itertools.repeat(folder)):
         PATH = rf'electronic_shop/static/images/products/{fold}/'
-        _, itt = model[fold](**product)
+        try:
+            itt, _ = model[fold](**product)
+        except IntegrityError:
+            pass
 
         try:
             itt.main_photo.save(product['main_photo'], File(open(PATH + product['main_photo'], 'rb')))
         except:
             pass
-        
+
         try:
             itt.second_photo.save(product['second_photo'], File(open(PATH + product['second_photo'], 'rb')))
         except:
@@ -100,10 +103,13 @@ product_of_the_day.save()
 from Articles.models import LandingPageArticles
 from django.contrib.auth import get_user_model
 
-try:
-    user = get_user_model().objects.get(email='employee@account.com')
-except:
-    user = get_user_model().objects.create_user(email='employee@account.com', password='employee')
+
+
+user, created = get_user_model().objects.get_or_create(email='employee@account.com')
+
+if created:
+    user.set_password('employee')
+    user.save()
 
 article = LandingPageArticles.objects.create(
     title='The standard Lorem Ipsum passage, used since the 1500s',
@@ -252,10 +258,8 @@ article.img.save('pc2.jpg', File(open(r'electronic_shop/static/images/showcase/l
 
 """ buy some products for employee account """
 
-try:
-    customer = Customer.objects.create(user=user)
-except:
-    customer = Customer.objects.get(user=user)
+
+customer, created = Customer.objects.get_or_create(user=user)
 
 for _ in range(1,10):
 
@@ -264,35 +268,32 @@ for _ in range(1,10):
     for _ in range(1,5):
         product_item= products[random.randint(0, len(products) -1)]
 
-        order_item= OrderItem.objects.create( order=order, quantity= random.randint(1,10), product=product_item)
+        order_item= OrderItem.objects.create(order=order, quantity= random.randint(1,10), product=product_item)
+
         try:
-            review = Reviews.objects.create(product=order_item.product,
-                                        review='Vivamus quis maximus diam, at pulvinar mauris. Aliquam ante orci, ornare eget elit maximus, commodo hendrerit nulla. Maecenas faucibus nisi sapien, vel maximus turpis luctus a.',
-                                        user=user,
-                                        stars=random.randint(1,6),
+            review, created = Reviews.objects.get_or_create(product=order_item.product,
+                                            review='Vivamus quis maximus diam, at pulvinar mauris. Aliquam ante orci, ornare eget elit maximus, commodo hendrerit nulla. Maecenas faucibus nisi sapien, vel maximus turpis luctus a.',
+                                            user=user,
+                                            stars=random.randint(1,6),
+                                            checked_by_employer=True,
+                                            )
+        except IntegrityError:
+            pass
+
+        if created:
+            review = created
+
+        question = Questions.objects.create(product=order_item.product,
+                                        question='Gdzie jest słońce kiedy spi?',
+                                        name='Janko Muzykant',
                                         checked_by_employer=True,
-                                        )
-        except:
-            pass
+                                        employer_reply='A dokąd w nocy tupta jeż?'),
 
-        try:
-            question = Questions.objects.create(product=order_item.product,
-                                            question='Gdzie jest słońce kiedy spi?',
-                                            name='Janko Muzykant',
-                                            checked_by_employer=True,
-                                            employer_reply='A dokąd w nocy tupta jeż?'),
-        except:
-            pass
-
-        try:
-            question = Questions.objects.create(product=order_item.product,
-                                            question='Mr. Anderson, welcome back, we miss you',
-                                            name='Smith',
-                                            checked_by_employer=True,
-                                            employer_reply='Im leaving right now.')
-        except:
-            pass
-
+        question = Questions.objects.create(product=order_item.product,
+                                        question='Mr. Anderson, welcome back, we miss you',
+                                        name='Smith',
+                                        checked_by_employer=True,
+                                        employer_reply='Im leaving right now.')
 
 """ create likes """
 

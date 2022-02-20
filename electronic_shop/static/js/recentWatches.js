@@ -4,14 +4,14 @@ const recentWatchedBoxes = document.querySelector('.boxes-watched');
 let productsWatched = [];
 console.log('hjestem przed ifgem');
 console.log('recentWatched1', recentWatched);
+
 if(window.screen.width <= 1080 && window.screen.width >= 980){
     recentWatched = recentWatched.splice(0, recentWatched.length-2);
     jumpOnWatched();
 }else if(window.screen.width < 980 && window.screen.width >= 760){
-    recentWatched = recentWatched.splice(0, recentWatched.length-3);
+    recentWatched = recentWatched.splice(0, recentWatched.length-5);
     jumpOnWatched();
 } else{
-    console.log('jestem w elsie');
     document.querySelector('.recentWatched').style.display = 'none'
 }
 
@@ -41,7 +41,7 @@ function jumpOnWatched(){
     recentWatched.forEach(id => {
 
         const url = `/api/product/${id}`
-    
+
         if(id){
             fetch(url, {
                 method: 'GET',
@@ -52,18 +52,16 @@ function jumpOnWatched(){
             })
             .then(response => response.json())
             .then(data => {
-    
+
                 if(data.detail != 'Not found.' || !data.main_photo){
                     productsWatched.push(data)
                 } else {
                     productsWatched.push(null)
                 }
-    
+
                 checkWatched(data);
-    
             })
         }
-    
     })
 }
 

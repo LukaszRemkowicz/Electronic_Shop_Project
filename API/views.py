@@ -17,26 +17,26 @@ from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 
-from .serializers import AuthTokenSerializer, BlogArticlesSerializer, \
-    CreateProductSerializer, GetQuantitySerializer, NewsletterSerializer, \
-    ProductSerializer, ProfileSerializer, UserSerializer
+from . import serializers
+from Articles.models import LandingPageArticles
 from ShoppingCardApp import utils
 from ShoppingCardApp import models as shopping_cart
 from ProductApp import models as product_app
 from ProductApp.utils import find_new_product
 from .utils import change_model_to_dict
+import Profile
 
 User = get_user_model()
 
 
 class CreateUserView(generics.CreateAPIView):
     """ create user """
-    serializer_class = UserSerializer
+    serializer_class = serializers.UserSerializer
 
 
 class CreateTokenView(ObtainAuthToken):
     """Create a new auth token for user"""
-    serializer_class = AuthTokenSerializer
+    serializer_class = serializers.AuthTokenSerializer
     renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
 
     def _clean_data(self, data):
@@ -47,7 +47,7 @@ class CreateTokenView(ObtainAuthToken):
 
 class ManageUserView(generics.RetrieveUpdateAPIView):
     """Manage the authenticated user"""
-    serializer_class = UserSerializer
+    serializer_class = serializers.UserSerializer
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -58,7 +58,7 @@ class ManageUserView(generics.RetrieveUpdateAPIView):
 
 class ManageProfileView(generics.RetrieveUpdateAPIView):
     """Manage the authenticated Profile"""
-    serializer_class = ProfileSerializer
+    serializer_class = serializers.ProfileSerializer
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -120,18 +120,25 @@ class FinishOrderView(APIView):
 
         products = shopping_cart.OrderItem.objects.filter(order=order)
         for item in products:
+            product_database = product_app.ProductOfTheDayDB.objects.filter(ean=item.product.ean).last()
 
             if item.quantity > item.product.pieces:
                 if order.transaction_status:
                     item.bought = item.product.pieces
                     item.product.bought_num += item.product.pieces
+                    product_database.sold_num += item.product.pieces
+                    product_database.save()
                     item.save()
                 item.product.pieces -= item.product.pieces
 
             else:
                 if order.transaction_status:
                     item.bought = item.quantity
+                    breakpoint()
                     item.product.bought_num += item.quantity
+                    product_database.sold_num += item.quantity
+                    product_database.save()
+
                 item.product.pieces -= item.quantity
                 item.status = 'Collected'
                 item.save()
@@ -165,10 +172,9 @@ class UpdateItemView(APIView):
         action = data['action']
         amount = data['amount']
 
-        # customer = request.user.customer
         try:
             customer = request.user.customer
-        except os.error:
+        except Profile.models.User.customer.DoesNotExist:
             customer = shopping_cart.Customer.objects.create(
                 user=request.user, email=request.user.email
             )
@@ -348,11 +354,11 @@ class ProductDict(APIView):
 
 
 class UpdateBlogComment(generics.CreateAPIView):
-    serializer_class = BlogArticlesSerializer
+    serializer_class = serializers.BlogArticlesSerializer
 
 
 class ProductView(generics.RetrieveUpdateAPIView):
-    serializer_class = ProductSerializer
+    serializer_class = serializers.ProductSerializer
     queryset = product_app.MainProductDatabase
 
     def patch(self, request, *args, **kwargs):
@@ -364,18 +370,18 @@ class ProductView(generics.RetrieveUpdateAPIView):
 
         data = request.data
         user_id = data['user_id']
-        product = self.queryset.get(id=kwargs['product_id'])
-        user = User.objects.get(id=int(user_id))
+        product = self.queryset.objects.get(id=kwargs['product_id'])
+        user = User.objects.filter(id=int(user_id)).exists()
         for field, value in data['fields'].items():
             gettattr = getattr(product, field)
             if field == 'likes' and value == 'add':
-                gettattr.add(user)
+                gettattr.add(user[0])
             elif field == 'likes' and value == 'remove':
-                gettattr.remove(user)
+                gettattr.remove(user[0])
             else:
                 setattr(product, field, value)
                 product.save()
-        serializer_class = ProductSerializer(instance=product)
+        serializer_class = serializers.ProductSerializer(instance=product)
 
         return Response(serializer_class.data)
 
@@ -394,10 +400,24 @@ class ProductView(generics.RetrieveUpdateAPIView):
             return product
 
 
+class RetrievListOfProducts(generics.ListAPIView):
+    """ Get list of products  """
+
+    serializer_class = serializers.RetrievProductsSerializer
+
+    def get_queryset(self):
+        # breakpoint()
+        ids = json.loads(self.kwargs['products_query'])
+        queryset = LandingPageArticles.objects.all()
+        result = queryset.filter(id__in=ids)
+
+        return result
+
+
 class Newsletter(generics.CreateAPIView):
     """ Save email to newsletter database """
 
-    serializer_class = NewsletterSerializer
+    serializer_class = serializers.NewsletterSerializer
 
     data = {"response": "Address has been added"}
 
@@ -405,7 +425,7 @@ class Newsletter(generics.CreateAPIView):
 class OrderProductQuantity(generics.ListAPIView):
     """ Get product pieces in basket """
 
-    serializer_class = GetQuantitySerializer
+    serializer_class = serializers.GetQuantitySerializer
     queryset = shopping_cart.Order.objects.all()
 
     def get(self, request, *args, **kwargs):
@@ -423,6 +443,7 @@ class OrderProductQuantity(generics.ListAPIView):
         product_stock = product_app.MainProductDatabase.objects.get(
             id=id
         ).pieces
+        # breakpoint()
 
         return Response(
             {'order_quantity': product_item, 'product_stock': product_stock}
@@ -430,7 +451,7 @@ class OrderProductQuantity(generics.ListAPIView):
 
 
 class CreateProduct(generics.CreateAPIView):
-    serializer_class = CreateProductSerializer
+    serializer_class = serializers.CreateProductSerializer
 
     def post(self, request, *args, **kwargs):
 

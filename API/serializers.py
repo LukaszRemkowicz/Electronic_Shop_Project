@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model, authenticate
 from django.utils.translation import ugettext_lazy as _
 from rest_framework import serializers
 
-from Articles.models import ArticleComment
+from Articles.models import ArticleComment, LandingPageArticles
 from ProductApp.models import MainProductDatabase
 from Profile.models import User
 from Emails.models import Newsletter
@@ -164,4 +164,10 @@ class GetQuantitySerializer(serializers.ModelSerializer):
 class CreateProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Phones
+        fields = '__all__'
+
+
+class RetrievProductsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LandingPageArticles
         fields = '__all__'

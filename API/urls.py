@@ -1,3 +1,4 @@
+from unittest.mock import patch
 from django.urls import path
 
 from . import views
@@ -43,4 +44,6 @@ urlpatterns = [
          name='product-quantity'),
     path('create-product/', views.CreateProduct.as_view(),
          name='create-product'),
+    path('products/<str:products_query>', views.RetrievListOfProducts.as_view(),
+         name='get-products')
 ]

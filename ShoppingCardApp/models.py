@@ -22,7 +22,7 @@ class Customer(models.Model):
     email = models.CharField(max_length=30, blank=True, null=True)
 
     def __str__(self) -> str:
-        return str(self.email)
+        return str(self.email) if self.email else self.user.email
 
 
 class Order(models.Model):

@@ -6,11 +6,12 @@ let articleId = document.querySelector('.be-comment-block').dataset.articleid
 
 
 const formElement = function(id, parentId){
-    console.log(`document.contains(document.querySelector('.newForm'))`, document.contains(document.querySelector('.newForm')));
+
     if(document.contains(document.querySelector('.newForm'))){
-        console.log('wchodze do forma');
+
         document.querySelector('.newForm').remove();
         return ''
+
     } else{
 
     return `<form name='csrfmiddlewaretoken' ${csrftoken} class="form-block newForm" data-formId=${id} method='POST'> \
@@ -88,7 +89,6 @@ reply.forEach( element => {
         let newElement = element.parentElement.parentElement.parentElement;
         newElement = newElement.querySelector('.node-comment');
         const id = element.dataset.commentid;
-        console.log(id);
         newElement.insertAdjacentHTML('afterend', formElement(id, parentId));
         addeventToNewForm(element);
     })
@@ -96,9 +96,9 @@ reply.forEach( element => {
 
 /** Fetch to backend API */
 function fetchComment(element){
+
     let commentsObj = Object();
     element.forEach(element => {
-        console.log(element);
         let name = element.name
         commentsObj[name] = element.value
     });

@@ -30,6 +30,11 @@
         // padding-top: 1rem;
     }
 
+    #shopping-cart{
+        position: relative;
+        padding-right: 1.5rem;
+    }
+
     & .logo {
         width: 100%;
         height: 100%;
@@ -97,10 +102,7 @@
                 background-color: #4d4d4d;
                 color: white;
             }
-
         }
-
-
     }
 
     #navbarDropdown{
@@ -427,21 +429,29 @@
 .showcase{
     grid-template-columns: 20% 80%;
     grid-gap: 1rem;
-    padding-bottom: 2rem;
-    padding-top: 2rem;
+    padding: 0 2rem 2rem 2rem !important;
     overflow: hidden;
 
     .cattegories{
         grid-row-start: 1;
         grid-row-end: 6;
         height: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+        z-index: 1;
 
         & .alarm-box{
+            z-index: 2;
+
             ul {
+
+                i{
+                    margin-top: 0.4rem;
+                }
 
                 li {
                 position: relative;
-                padding-bottom: 0.5rem;
+                // padding-bottom: 0.5rem;
 
                     ::after{
                         content:'';
@@ -465,7 +475,8 @@
         }
 
         &-box{
-            height: 91.5%;
+            height: 100%;
+            max-height: 100%;
             border-radius: 10px 10px 0 0;
         }
     }
@@ -476,19 +487,23 @@
         width: 100%;
 
         &-inner{
-        height: 100%;
-        margin-left: 1rem;
-        margin-right: 3rem;
-
-        &-item{
-            width: 100%;
             height: 100%;
+            // margin-left: 1rem;
+            margin-right: 3rem;
+
+            &-item{
+                width: 100%;
+                height: 100%;
+            }
+
+            img{
+                height: 100%;
+                width: 100%;
+                }
         }
 
-        img{
-            height: 100%;
-            width: 100%;
-            }
+        & .active{
+            background-color: $main-light-color;
         }
 
         &-indicators{
@@ -591,7 +606,8 @@
     width: 100%;
     height: 100%;
     margin: 1rem;
-    padding: 2.5rem;
+    // padding: 2.5rem;
+
 
     img{
         max-width: 100%;
@@ -603,6 +619,8 @@
     &s{
         grid-template-columns: repeat(2, 4fr 2fr);
         grid-gap: 2rem;
+        padding: 2rem !important;
+
     }
     &-of-the-day{
         border: 1px solid rgb(211, 205, 205);
@@ -616,12 +634,25 @@
 }
 
 .the-best-of{
-    grid-template-columns: repeat(4, 2fr);
+    grid-template-columns: repeat(3, 3fr);
     grid-column: 1 /span 3;
     height: 100%;
     border: 1px solid rgb(211, 205, 205);
     box-shadow: -5px 9px 22px 4px rgba(208,208,208,0.62);
     border-radius: 10px;
+    justify-items: center;
+    grid-gap: 1rem;
+    padding: 2rem;
+    grid-row: 1 / 5;
+
+    .card{
+        margin: 1rem;
+        width: 100% !important;
+
+        img{
+            padding: 1rem;
+        }
+    }
 
     .new-promotion-price{
         font-size: 1.1rem;
@@ -637,6 +668,7 @@
 
 .offert-of-the-day{
     color: $font-color;
+    grid-row: 1 / 2;
 
 
     h3{
@@ -647,8 +679,9 @@
     .alarm-box{
         width: 100.5%;
         height: 91%;
-        border-radius: 10px 10px 0 0;
+        border-radius: 10px;
         font-family: $mery-popins-font;
+        padding-bottom: 1rem;
 
         img{
             width: 50%;
@@ -792,6 +825,8 @@
         grid-template-columns: 2fr 2fr;
         grid-gap: 2rem;
         margin-bottom: 2rem;
+        padding: 2rem !important;
+
     }
 
     .newsletter{
@@ -817,7 +852,7 @@
 
             margin-top: 2rem;
             height: 2.5rem;
-            width: 23rem;
+            // width: 23rem;
             border: 1.5px solid $grey-main-color;
             border-radius: 10px;
 
@@ -895,10 +930,10 @@
         }
 
         &-pic{
-            justify-self: center;
-            width: 65%;
-            height: 100%;
-            padding-top: 0.7rem;
+            // justify-self: center;
+            // width: 65%;
+            // height: 100%;
+            // padding-top: 0.7rem;
 
 
             & img{
@@ -931,7 +966,7 @@
 
 .footer{
     justify-content: space-around;
-    padding: 2rem;
+    padding: 2rem 3rem !important;
     height: fit-content;
     align-items: flex-start;
 
@@ -948,7 +983,7 @@
             font-size: 1rem;
             font-weight: 100;
             text-align: left;
-            padding-left: 2rem;
+            // padding-left: 2rem;
         }
 
         & li, h3{
@@ -959,7 +994,7 @@
     }
 
     .contact{
-        padding-left: 3rem;
+        // padding-left: 3rem;
         padding-top: 2rem;
 
 

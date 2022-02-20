@@ -81,9 +81,16 @@ class Register(FormView):
 
         return super(Register, self).form_invalid(form)
 
-    def get(self, request: HttpRequest,
-            *args: str, **kwargs: Any) -> HttpResponse:
+    # def get(self, request: HttpRequest,
+    #         *args: str, **kwargs: Any) -> HttpResponse:
 
-        if request.user.is_authenticated:
-            return redirect('landing-page')
-        return super().get(request, *args, **kwargs)
+    #     if request.user.is_authenticated:
+    #         return redirect('landing-page')
+    #     return super().get(request, *args, **kwargs)
+
+    #TODO check it out
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('/')
+
+        return super().dispatch(request, *args, **kwargs)

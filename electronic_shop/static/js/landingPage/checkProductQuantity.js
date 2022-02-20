@@ -12,9 +12,7 @@ function checkQuantity(){
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             if(data['order_quantity'] >= data['product_stock']){
-                console.log('datkaaaaaaaa');
 
                 createSoldOutButton(productId, 'Not in stock');
                 productId.classList.remove('add-to-cart', 'update-cart');
