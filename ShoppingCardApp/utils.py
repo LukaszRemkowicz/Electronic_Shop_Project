@@ -62,7 +62,6 @@ def order_cart(request):
 def cart_data(request):
 
     if request.user.is_authenticated:
-        # breakpoint()
         customer = Customer.objects.filter(user=request.user)
         if customer.exists():
             customer = customer[0]

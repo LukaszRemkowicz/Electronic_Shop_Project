@@ -24,6 +24,7 @@ from ShoppingCardApp import models as shopping_cart
 from ProductApp import models as product_app
 from ProductApp.utils import find_new_product
 from .utils import change_model_to_dict
+import Profile
 
 User = get_user_model()
 
@@ -119,11 +120,14 @@ class FinishOrderView(APIView):
 
         products = shopping_cart.OrderItem.objects.filter(order=order)
         for item in products:
+            product_database = product_app.ProductOfTheDayDB.objects.filter(ean=item.product.ean).last()
 
             if item.quantity > item.product.pieces:
                 if order.transaction_status:
                     item.bought = item.product.pieces
                     item.product.bought_num += item.product.pieces
+                    product_database.sold_num += item.product.pieces
+                    product_database.save()
                     item.save()
                 item.product.pieces -= item.product.pieces
 
@@ -131,6 +135,9 @@ class FinishOrderView(APIView):
                 if order.transaction_status:
                     item.bought = item.quantity
                     item.product.bought_num += item.quantity
+                    product_database.sold_num += item.quantity
+                    product_database.save()
+
                 item.product.pieces -= item.quantity
                 item.status = 'Collected'
                 item.save()
@@ -164,11 +171,9 @@ class UpdateItemView(APIView):
         action = data['action']
         amount = data['amount']
 
-        # customer = request.user.customer
-        breakpoint()
         try:
             customer = request.user.customer
-        except os.error:
+        except Profile.models.User.customer.DoesNotExist:
             customer = shopping_cart.Customer.objects.create(
                 user=request.user, email=request.user.email
             )
@@ -400,7 +405,6 @@ class RetrievListOfProducts(generics.ListAPIView):
     serializer_class = serializers.RetrievProductsSerializer
 
     def get_queryset(self):
-        # breakpoint()
         ids = json.loads(self.kwargs['products_query'])
         queryset = LandingPageArticles.objects.all()
         result = queryset.filter(id__in=ids)
@@ -437,7 +441,6 @@ class OrderProductQuantity(generics.ListAPIView):
         product_stock = product_app.MainProductDatabase.objects.get(
             id=id
         ).pieces
-        # breakpoint()
 
         return Response(
             {'order_quantity': product_item, 'product_stock': product_stock}

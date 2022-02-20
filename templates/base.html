@@ -80,7 +80,8 @@
 
     <!-- Product of the day counter -->
     <div class="d-none">
-        <div class="hourBaseHtml" data-promotime='{{product_of_the_day.product_of_the_day_added|format_datetime}}'></div>
+        <div class="hourBaseHtml" data-promotime='{% if product_of_the_day.product_of_the_day %}
+            {{product_of_the_day.product_of_the_day_added|format_datetime}} {% else %} {{product_of_the_day.product_of_the_day_added|format_datetime:1}} {% endif %}'></div>
         <div class="baseId" data-productId='{{product_of_the_day.id}}'></div>
     </div>
 

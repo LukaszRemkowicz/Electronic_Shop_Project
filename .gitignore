@@ -21,7 +21,6 @@ media/*
 # Backup files #
 *.bak
 
-migrations
 /electronic_shop/static/images
 .vscode/
 

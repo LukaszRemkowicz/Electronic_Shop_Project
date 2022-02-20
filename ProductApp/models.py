@@ -2,17 +2,20 @@ import codecs
 import math
 import os
 import uuid
-from typing import Any, Dict, List, Tuple, Union
+from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
+
+from django.conf import settings
+from django.utils import timezone
+from django.core.exceptions import ObjectDoesNotExist
+from django.db import models
+from django.utils.safestring import mark_safe
 
 from ProductApp.utilss.models_utils import \
     filter_phones, filter_routers, filter_headphones, filter_tvs, \
     filter_cpus, filter_motherboards, filter_switches, filter_pendrives, \
     filter_rams, filter_graphs, filter_ssd, filter_pcs, filter_laptops, \
     filter_monitors
-from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
-from django.db import models
-from django.utils.safestring import mark_safe
+
 
 User = settings.AUTH_USER_MODEL
 
@@ -317,6 +320,8 @@ class MainProductDatabase(models.Model):
 
     likes = models.ManyToManyField(User, default=None, blank=True)
 
+    __product_of_the_day = False
+
     class Meta:
         ordering = ['created']
 
@@ -360,29 +365,33 @@ class MainProductDatabase(models.Model):
         else:
             return str(0), [False for _ in range(5)]
 
-    # @property
-    # def get_stars(self) -> Dict[str, int]:
-    #     """ Help method to generate progress bars """
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.__product_of_the_day = self.product_of_the_day
 
-    #     stars = [
-    #     element.stars for element in Reviews.objects.filter(
-    #     product=self.id, checked_by_employer=True
-    #     )]
-    #     stars_dict = {key:0 for key in range(1, 6)}
+    def save(self, *args, **kwargs) -> None:
 
-    #     if len(stars) > 0:
+        if self.product_of_the_day != self.__product_of_the_day and self.product_of_the_day and not self._state.adding:
+            data = {
+                'ean': self.ean,
+                'old_price': self.price,
+                'product': self,
+                'promotion': self.promotion if self.promotion else 0
+            }
+            ProductOfTheDayDB.objects.create(**data)
 
-    #         for element in stars:
-    #             if element not in stars_dict:
-    #                 stars_dict[element] = 1
-    #             else:
-    #                 stars_dict[element] += 1
+            self.product_of_the_day_added = timezone.now()
 
-    #         for key, value in stars_dict.items():
-    #             percentage = (100*value) / len(stars)
-    #             stars_dict[key] = (value, int(percentage))
+        elif self.product_of_the_day != self.__product_of_the_day and not self.product_of_the_day and not self._state.adding:
 
-    #     return stars_dict
+            self.promotion = None
+            product = ProductOfTheDayDB.objects.filter(ean=self.ean).last()
+            product.end_time = timezone.now()
+            product.save()
+
+        super().save(*args, **kwargs)
+
+        self.__product_of_the_day = self.product_of_the_day
 
 
 class Phones(Inherit):
@@ -784,3 +793,17 @@ class Questions(models.Model):
     @property
     def get_time(self) -> str:
         return str(self.date)
+
+
+class ProductOfTheDayDB(models.Model):
+
+    ean = models.CharField(max_length=50, blank=False, null=False)
+    product = models.ForeignKey(MainProductDatabase, on_delete=models.CASCADE, blank=False, null=False)
+    date_start = models.DateTimeField(auto_now_add=True)
+    end_time = models.DateTimeField(null=True, blank=True)
+    old_price = models.DecimalField(decimal_places=2, max_digits=7)
+    promotion = models.DecimalField(decimal_places=2, max_digits=7)
+    sold_num = models.IntegerField(null=True, blank=True, default=0)
+
+    def __str__(self) -> str:
+        return self.product.name
