@@ -134,7 +134,6 @@ class FinishOrderView(APIView):
             else:
                 if order.transaction_status:
                     item.bought = item.quantity
-                    breakpoint()
                     item.product.bought_num += item.quantity
                     product_database.sold_num += item.quantity
                     product_database.save()
@@ -406,7 +405,6 @@ class RetrievListOfProducts(generics.ListAPIView):
     serializer_class = serializers.RetrievProductsSerializer
 
     def get_queryset(self):
-        # breakpoint()
         ids = json.loads(self.kwargs['products_query'])
         queryset = LandingPageArticles.objects.all()
         result = queryset.filter(id__in=ids)
@@ -443,7 +441,6 @@ class OrderProductQuantity(generics.ListAPIView):
         product_stock = product_app.MainProductDatabase.objects.get(
             id=id
         ).pieces
-        # breakpoint()
 
         return Response(
             {'order_quantity': product_item, 'product_stock': product_stock}
