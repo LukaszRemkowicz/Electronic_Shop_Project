@@ -53,7 +53,7 @@
                                     <a href="{% url 'products_cart' cattegory=cattegory %}" class="w-100">{{cattegory}}</a>
                                 </li>
                             </div>
-                           
+
                         {% endfor %}
                     </ul>
 
@@ -183,9 +183,11 @@
             <!-- Product of the day -->
             {% if product_of_the_day %}
             <div class="offert-of-the-day bg-white bg-red">
-                <h4 class='font-black pt-4 pb-3'>
-                    Product of the day
-                </h4>
+                <div class="h4-div">
+                    <h4 class='font-black pt-4 pb-3 text-uppercase pb-2'>
+                        Product of the day
+                    </h4>
+                </div>
                 <div class="alarm-box bg-white">
                     <div class="product-box">
                         <a href="{% url 'product_page' product_of_the_day.cattegory product_of_the_day.id %}">
@@ -193,10 +195,11 @@
                         </a>
                         <div class="description">
                             {% if product_of_the_day.promotion %}
-                                <p class="font-black line-through">{{ product_of_the_day.price }}</p>
-                                <p class="price font-red">{{ product_of_the_day.promotion }}</p>
+                                <p class="price font-red text-left">{{ product_of_the_day.promotion }}</p>
+                                <p class="font-black line-through text-left">{{ product_of_the_day.price }}</p>
                             {% else %}
-                                <p class="font-black">{{ product_of_the_day.price }}</p>
+                                <p class="d-inline font-red mr-2">{{product_of_the_day.get_previous_promo.0}}</p>
+                                <p class="font-black text-left d-inline line-through">{{ product_of_the_day.get_previous_promo.1 }}</p>
                             {% endif %}
                             <p class="font-black desc">
                                 <a href="{% url 'product_page' product_of_the_day.cattegory product_of_the_day.id %}">
@@ -205,20 +208,72 @@
                             </p>
                         </div>
                     </div>
-                    <div class="sold-left grid-container">
-                        <p class="font-red">Sold {{ product_of_the_day|get_promotion_buy_num }} piece{{product_of_the_day|get_promotion_buy_num|pluralize}}</p>
-                        <p class="font-black piecesLeft ">{{ product_of_the_day|check_orders }} pieces left</p>
+
+                    <div class="price-mq d-xl-none d-sm-block">
+                        <div class="button add-to-cart update-cart" data-action="add" data-product="{{ product_of_the_day.id }}">
+                            <div class="d-flex flex-column font-black">
+                                <div class="product-name">
+                                    <p class="text-left">
+                                        {{product_of_the_day.name}}
+                                    </p>
+                                </div>
+
+                                <div class="d-flex promoPrice">
+                                    {% if product_of_the_day.promotion %}
+                                        <p class="price font-red text-left">{{ product_of_the_day.promotion }}</p>
+                                        <p class="font-black line-through text-left">{{ product_of_the_day.price }}</p>
+                                    {% else %}
+                                        <p class="d-inline font-red mr-2">{{product_of_the_day.get_previous_promo.0}}</p>
+                                        <p class="font-black text-left d-inline line-through">{{ product_of_the_day.get_previous_promo.1 }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="d-flex stars-div">
+                                    <div class="d-flex">
+                                        {% for element in product_of_the_day.get_star_avg.1 %}
+
+                                            {% if element %}
+
+                                                <i class="fas fa-star font-red fa-1x m-auto"></i>
+
+                                            {% else %}
+
+                                                <i class="far fa-star fa-1x m-auto"></i>
+
+                                            {% endif %}
+
+                                        {% endfor %}
+                                        <a href="#opinions"
+                                            class='
+                                            {% if product_of_the_day.get_num_of_reviews%}font-red
+                                            {% endif %} pl-1 m-auto'>
+                                            ({% if not product_of_the_day.get_num_of_reviews %}0
+                                            {% else %}
+                                            {{product_of_the_day.get_num_of_reviews}}
+                                            {% endif %})
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sold-left">
+                        <div class="w-100 text-left justify-content-between d-md-flex d-sm-none sold-statistics">
+                            <p class="font-red d-inline">Sold {{ product_of_the_day|get_promotion_buy_num }} piece{{product_of_the_day|get_promotion_buy_num|pluralize}}</p>
+                            <p class="font-black piecesLeft d-inline">{{ product_of_the_day|check_orders }} pieces left</p>
+                        </div>
                         <div class="button add-to-cart update-cart" data-action="add" data-product="{{ product_of_the_day.id }}">
                             {% if product_of_the_day|check_orders > 0 %}
                                 <i class="fas btn-light fa-shopping-cart fa-2x buy" ><span> Basket</span></i>
                             {% else %}
-                                <button class="buy btn-light d-block p-3" style="border: 1px solid rgb(204, 204, 204" disabled><span>Not in stock</span></button>
+                                <button class="buy btn-light d-block p-3-lg" style="border: 1px solid rgb(204, 204, 204" disabled><span>Not in stock</span></button>
                             {% endif %}
                         </div>
                     </div>
 
                     <div class="time-left flex-column flex-container">
-                        {{product_of_the_day.product_of_the_day}}
+                        <span class="time-left-first-span">Time left</span>
                         <div class="hour" data-promoTime="{% if product_of_the_day.product_of_the_day %}
                         {{product_of_the_day.product_of_the_day_added|format_datetime}} {% else %} {{product_of_the_day.product_of_the_day_added|format_datetime:1}} {% endif %}">
                             <span class="time-hour"></span>
@@ -231,6 +286,43 @@
                             <p>HOURS </p> <p> MINUTES </p> <p> SECONDS</p>
                         </div>
                     </div>
+
+                    <div class="desc-for-sr pr-1 d-xl-none">
+                        <div class="prod-the-day-desc">
+                            {% if product_of_the_day.is_monitor %}
+                                {% include 'ProductApp/partials/spec_description/Monitor.html' with product=product_of_the_day.monitors_product_data %}
+                            {% elif product_of_the_day.is_phone %}
+                                {% include 'ProductApp/partials/spec_description/Phones.html' with product=product_of_the_day.phones_product_data %}
+                            {% elif product_of_the_day.is_laptop %}
+                                {% include 'ProductApp/partials/spec_description/Laptops.html' with product=product_of_the_day.laptops_product_data %}
+                            {% elif product_of_the_day.is_pc %}
+                                {% include 'ProductApp/partials/spec_description/PC.html' with product=product_of_the_day.pc_product_data %}
+                            {% elif product_of_the_day.is_accesories %}
+                                {% include 'ProductApp/partials/spec_description/Accesories for laptops.html' with product=product_of_the_day.accesories_for_laptop %}
+                            {% elif product_of_the_day.is_ssd %}
+                                {% include 'ProductApp/partials/spec_description/SSD.html' with product=product_of_the_day.ssd_product_data %}
+                            {% elif product_of_the_day.is_graph %}
+                                {% include 'ProductApp/partials/spec_description/Graphs.html' with product=product_of_the_day.graph_product_data %}
+                            {% elif product_of_the_day.is_ram %}
+                                {% include 'ProductApp/partials/spec_description/Ram.html' with product=product_of_the_day.ram_product_data %}
+                            {% elif product_of_the_day.is_pendrive %}
+                                {% include 'ProductApp/partials/spec_description/Pendrivers.html' with product=product_of_the_day.pendrive_product_data %}
+                            {% elif product_of_the_day.is_switch %}
+                                {% include 'ProductApp/partials/spec_description/Switches.html' with product=product_of_the_day.switch_product_data %}
+                            {% elif product_of_the_day.is_motherboard %}
+                                {% include 'ProductApp/partials/spec_description/MotherBoard.html' with product=product_of_the_day.motherboard_product_data %}
+                            {% elif product_of_the_day.is_cpu %}
+                                {% include 'ProductApp/partials/spec_description/CPU.html' with product=product_of_the_day.cpu_product_data %}
+                            {% elif product_of_the_day.is_tv %}
+                                {% include 'ProductApp/partials/spec_description/TV.html' with product=product_of_the_day.tv_product_data %}
+                            {% elif product_of_the_day.is_headphones %}
+                                {% include 'ProductApp/partials/spec_description/Headphones.html' with product=product_of_the_day.headphone_product_data %}
+                            {% elif product_of_the_day.is_router %}
+                                {% include 'ProductApp/partials/spec_description/Routers.html' with product=product_of_the_day.router_product_data %}
+                            {% endif %}
+                        </div>
+                    </div>
+
                 </div>
             </div>
             {% endif %}

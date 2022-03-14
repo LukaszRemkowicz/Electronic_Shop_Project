@@ -393,6 +393,124 @@ class MainProductDatabase(models.Model):
 
         self.__product_of_the_day = self.product_of_the_day
 
+    @property
+    def get_previous_promo(self):
+        product = ProductOfTheDayDB.objects.filter(product=self).last()
+
+        return product.promotion, product.old_price
+
+    @property
+    def is_monitor(self):
+        if self.monitors_product_data:
+            return True
+        else:
+            pass
+
+    @property
+    def is_phone(self):
+        if self.phones_product_data:
+            return True
+        else:
+            pass
+
+    @property
+    def is_laptop(self):
+        if self.laptops_product_data:
+            return True
+        else:
+            pass
+
+    @property
+    def is_monitor(self):
+        if self.monitors_product_data:
+            return True
+        else:
+            pass
+
+    @property
+    def is_pc(self):
+        if self.pc_product_data:
+            return True
+        else:
+            pass
+
+    @property
+    def is_accessories(self):
+        if self.accesories_for_laptop:
+            return True
+        else:
+            pass
+
+    @property
+    def is_ssd(self):
+        if self.ssd_product_data:
+            return True
+        else:
+            pass
+
+    @property
+    def is_graph(self):
+        if self.graph_product_data:
+            return True
+        else:
+            pass
+
+    @property
+    def is_ram(self):
+        if self.ram_product_data:
+            return True
+        else:
+            pass
+
+    @property
+    def is_pendrive(self):
+        if self.pendrive_product_data:
+            return True
+        else:
+            pass
+
+    @property
+    def is_switch(self):
+        if self.switch_product_data:
+            return True
+        else:
+            pass
+
+    @property
+    def is_motherboard(self):
+        if self.motherboard_product_data:
+            return True
+        else:
+            pass
+
+    @property
+    def is_cpu(self):
+        if self.cpu_product_data:
+            return True
+        else:
+            pass
+
+    @property
+    def is_tv(self):
+        if self.tv_product_data:
+            return True
+        else:
+            pass
+
+    @property
+    def is_headphones(self):
+        if self.headphone_product_data:
+            return True
+        else:
+            pass
+
+    @property
+    def is_router(self):
+        if self.router_product_data:
+            return True
+        else:
+            pass
+
 
 class Phones(Inherit):
     ram = models.CharField(max_length=50, default='')
