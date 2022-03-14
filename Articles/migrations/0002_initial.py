@@ -12,23 +12,34 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('Articles', '0001_initial'),
+        ("Articles", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='landingpagearticles',
-            name='owner',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="landingpagearticles",
+            name="owner",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL
+            ),
         ),
         migrations.AddField(
-            model_name='articlecomment',
-            name='article',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Articles.landingpagearticles'),
+            model_name="articlecomment",
+            name="article",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="Articles.landingpagearticles",
+            ),
         ),
         migrations.AddField(
-            model_name='articlecomment',
-            name='parent',
-            field=mptt.fields.TreeForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='children', to='Articles.articlecomment'),
+            model_name="articlecomment",
+            name="parent",
+            field=mptt.fields.TreeForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="children",
+                to="Articles.articlecomment",
+            ),
         ),
     ]

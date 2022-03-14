@@ -7,15 +7,27 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='ContentBase',
+            name="ContentBase",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('delivery', models.FileField(blank=True, default='', null=True, upload_to='products_pic')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "delivery",
+                    models.FileField(
+                        blank=True, default="", null=True, upload_to="products_pic"
+                    ),
+                ),
             ],
         ),
     ]

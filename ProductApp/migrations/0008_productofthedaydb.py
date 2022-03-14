@@ -7,21 +7,35 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ProductApp', '0007_auto_20220113_1914'),
+        ("ProductApp", "0007_auto_20220113_1914"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ProductOfTheDayDB',
+            name="ProductOfTheDayDB",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date_start', models.DateTimeField(auto_created=True)),
-                ('ean', models.CharField(max_length=50)),
-                ('end_time', models.DateTimeField()),
-                ('old_price', models.DecimalField(decimal_places=2, max_digits=7)),
-                ('promotion', models.DecimalField(decimal_places=2, max_digits=7)),
-                ('sold_num', models.IntegerField()),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ProductApp.mainproductdatabase')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("date_start", models.DateTimeField(auto_created=True)),
+                ("ean", models.CharField(max_length=50)),
+                ("end_time", models.DateTimeField()),
+                ("old_price", models.DecimalField(decimal_places=2, max_digits=7)),
+                ("promotion", models.DecimalField(decimal_places=2, max_digits=7)),
+                ("sold_num", models.IntegerField()),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="ProductApp.mainproductdatabase",
+                    ),
+                ),
             ],
         ),
     ]

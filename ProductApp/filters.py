@@ -9,21 +9,26 @@ class SnippetFilter(django_filters.FilterSet):
     # )
 
     curved = django_filters.filters.ModelChoiceFilter(
-        label='ddwdwdw', queryset=Tv.objects.filter(curved='True')
+        label="ddwdwdw", queryset=Tv.objects.filter(curved="True")
     )
-    producent = django_filters.filters.BooleanFilter(label='ddwdwdw')
+    producent = django_filters.filters.BooleanFilter(label="ddwdwdw")
 
     class Meta:
         model = Tv
-        fields = ['producent', 'promotion',
-                  'diagonal', 'resolution',
-                  'curved', 'refresh_rate',
-                  'smart_tv', 'wifi'
-                  ]
+        fields = [
+            "producent",
+            "promotion",
+            "diagonal",
+            "resolution",
+            "curved",
+            "refresh_rate",
+            "smart_tv",
+            "wifi",
+        ]
 
     def __init__(self, *args, **kwargs):
         super(SnippetFilter, self).__init__(*args, **kwargs)
-        self.filters['curved'].label = "dwfdwdf"
+        self.filters["curved"].label = "dwfdwdf"
 
     # def filter_by_producent(self, queryset, name, cattegory):
     #     return Tv.objects.filter(producent=name, cattegory=cattegory)

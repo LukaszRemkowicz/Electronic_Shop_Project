@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ProductApp', '0004_auto_20211223_1317'),
+        ("ProductApp", "0004_auto_20211223_1317"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='mainproductdatabase',
-            name='model',
-            field=models.CharField(default='', max_length=100),
+            model_name="mainproductdatabase",
+            name="model",
+            field=models.CharField(default="", max_length=100),
             preserve_default=False,
         ),
     ]

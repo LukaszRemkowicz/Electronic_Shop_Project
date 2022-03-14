@@ -15,21 +15,21 @@ from ProductApp.models import Phones
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ('password', 'email', 'first_name', 'last_name')
+        fields = ("password", "email", "first_name", "last_name")
         extra_kwargs = {
-            'password': {'write_only': True, 'min_length': 5},
-            'first_name': {"required": False, "allow_null": True},
-            'last_name': {"required": False, "allow_null": True},
-            'email': {"required": False, "allow_null": True},
+            "password": {"write_only": True, "min_length": 5},
+            "first_name": {"required": False, "allow_null": True},
+            "last_name": {"required": False, "allow_null": True},
+            "email": {"required": False, "allow_null": True},
         }
 
     def create(self, validated_data) -> User:
-        """ Create User serializer """
+        """Create User serializer"""
 
         return get_user_model().objects.create_user(**validated_data)
 
     def update(self, instance, validated_data) -> User:
-        password = validated_data.pop('password', None)
+        password = validated_data.pop("password", None)
         user = super().update(instance, validated_data)
 
         if password:
@@ -51,8 +51,8 @@ class ProfileSerializer(serializers.ModelSerializer):
         profile = super().update(instance, validated_data)
 
         for key, value in validated_data.items():
-            if key != 'user':
-                if key == 'keep_me':
+            if key != "user":
+                if key == "keep_me":
                     try:
                         profile.keep_me = value
                     except error:
@@ -71,75 +71,67 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class AuthTokenSerializer(serializers.Serializer):
-    """ Serializer for token creation """
+    """Serializer for token creation"""
+
     password = serializers.CharField(
-        style={'input_type': 'password'},
-        trim_whitespace=False
+        style={"input_type": "password"}, trim_whitespace=False
     )
     email = serializers.CharField(required=False)
 
     def validate(self, attrs) -> Any:
-        email = attrs.get('email')
-        password = attrs.get('password')
+        email = attrs.get("email")
+        password = attrs.get("password")
 
         user = authenticate(
-            request=self.context.get('request'),
-            email=email,
-            password=password
+            request=self.context.get("request"), email=email, password=password
         )
 
         if not user:
-            message = _('Unable to authenticate')
-            raise serializers.ValidationError(message, code='authentication')
+            message = _("Unable to authenticate")
+            raise serializers.ValidationError(message, code="authentication")
 
-        attrs['user'] = user
+        attrs["user"] = user
 
         return attrs
 
 
 class BlogArticlesSerializer(serializers.ModelSerializer):
-    """ Blog comments section Serializer  """
+    """Blog comments section Serializer"""
 
-    new_fields = serializers.SerializerMethodField('get_data_from_comment')
+    new_fields = serializers.SerializerMethodField("get_data_from_comment")
 
     class Meta:
         model = ArticleComment
-        fields = ('name', 'comment', 'email',
-                  'article', 'new_fields', 'parent'
-                  )
+        fields = ("name", "comment", "email", "article", "new_fields", "parent")
 
     def create(self, validated_data):
-        """ Create blog comment serializer """
+        """Create blog comment serializer"""
 
         comment = ArticleComment.objects.create(**validated_data)
 
         return comment
 
     def get_data_from_comment(self, article):
-        return {
-            'id': article.id,
-            'publish': article.publish,
-            'level': article.level
-        }
+        return {"id": article.id, "publish": article.publish, "level": article.level}
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    """ Get products data Serializer  """
+    """Get products data Serializer"""
 
     class Meta:
         model = MainProductDatabase
-        fields = '__all__'
+        fields = "__all__"
 
 
 class NewsletterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Newsletter
-        fields = ['email']
+        fields = ["email"]
 
     def create(self, validated_data):
-        """ Create blog comment serializer """
+        """Create blog comment serializer"""
 
-        email = Newsletter.objects.filter(email=validated_data['email'])
+        email = Newsletter.objects.filter(email=validated_data["email"])
 
         if len(email) == 0:
 
@@ -150,24 +142,22 @@ class NewsletterSerializer(serializers.ModelSerializer):
         return newsletter
 
     def to_representation(self, instance):
-        return {
-            "response": "Email has been added"
-        }
+        return {"response": "Email has been added"}
 
 
 class GetQuantitySerializer(serializers.ModelSerializer):
     class Meta:
         model = MainProductDatabase
-        fields = ['id']
+        fields = ["id"]
 
 
 class CreateProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Phones
-        fields = '__all__'
+        fields = "__all__"
 
 
 class RetrievProductsSerializer(serializers.ModelSerializer):
     class Meta:
         model = LandingPageArticles
-        fields = '__all__'
+        fields = "__all__"

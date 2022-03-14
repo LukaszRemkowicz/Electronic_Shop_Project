@@ -4,7 +4,7 @@ from .models import Customer, Order, OrderItem, ShippingAddress, ShoppingCard
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['date_order', 'id']
+    list_display = ["date_order", "id"]
 
 
 admin.site.register(Customer)
