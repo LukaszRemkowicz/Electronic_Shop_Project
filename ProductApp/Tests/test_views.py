@@ -50,6 +50,7 @@ class TestProductView(TestCase):
 
     def test_product_page_templete(self):
         """ test if good product template is used """
+
         product = Phones.objects.create(**self.product_data)
         product_main = MainProductDatabase.objects.get(ean=product.ean)
 
