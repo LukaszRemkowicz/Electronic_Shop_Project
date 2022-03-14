@@ -440,6 +440,12 @@
         overflow: hidden;
         z-index: 1;
 
+        .iconsDiv{
+            a{
+                font-size: 1rem;
+            }
+        }
+
         & .alarm-box{
             z-index: 2;
 
@@ -561,6 +567,7 @@
                 // padding: 1rem;
                 height: 100%;
                 font-weight: 300;
+                font-size: 1rem;
             }
         }
 
@@ -645,6 +652,7 @@
     padding: 2rem;
     grid-row: 1 / 5;
 
+
     .card{
         margin: 1rem;
         width: 100% !important;
@@ -677,14 +685,27 @@
     }
 
     .alarm-box{
-        width: 100.5%;
         height: 91%;
         border-radius: 10px;
         font-family: $mery-popins-font;
-        padding-bottom: 1rem;
+
+        .product-box{
+            display: flex;
+            justify-content: center;
+
+            a{
+                display: block;
+            }
+        } 
+        .prod-the-day-desc{
+            p{
+                padding-left: 0rem !important;
+            }
+        }
 
         img{
-            width: 50%;
+            max-height: 100%;
+            object-fit: contain;
         }
     }
 
@@ -722,7 +743,7 @@
 }
 
 .sold-left{
-    grid-template-columns: 1fr 1fr;
+    // grid-template-columns: 1fr 1fr;
     font-size: 1.2rem;
     padding: 0 1rem;
     position: relative;
@@ -753,8 +774,8 @@
 .time-left{
 
     color: black;
-    padding: 1.5rem;
-    margin-top: 1rem;
+    padding: 1.2rem;
+    margin-top: 2rem;
     margin-bottom: 1rem;
     position: relative;
 
@@ -788,7 +809,7 @@
 
         span{
             padding: 0.5rem;
-            font-size: 1.7rem;
+            font-size: 1.2rem;
 
         }
     }
@@ -838,11 +859,12 @@
             height: 100%;
 
             & h3{
-                font-size: 1.5rem;
+                font-size: 1rem;
             }
 
             & h4{
                 font-weight: 100;
+                font-size: 1rem;
 
             }
 
@@ -920,11 +942,12 @@
             padding-left: 3rem;
 
             & h3{
-                font-size: 1.5rem;
+                font-size: 1rem;
             }
 
             & h4{
                 font-weight: 100;
+                font-size: 1rem;
 
             }
         }

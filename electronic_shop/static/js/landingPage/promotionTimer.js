@@ -56,7 +56,7 @@ function countDownLandingPage(){
 
             newBtn.appendChild(newSpan);
             newBtn.style.border = '1px solid rgb(204, 204, 204)';
-            newBtn.style.padding = '1rem';
+            // newBtn.style.padding = '1rem';
             newBtn.disabled = true;
 
             buyBtn.appendChild(newBtn);
@@ -66,7 +66,15 @@ function countDownLandingPage(){
             getMinutes.innerHTML = `00`;
             getSeconds.innerHTML =`00`;
 
-            document.querySelector('.offert-of-the-day .add-to-cart').classList.remove('add-to-cart')
+            const remEvent = document.querySelector('.offert-of-the-day .sold-left .button');
+            remEvent.dataset.action = '';
+            let new_element = remEvent.cloneNode(true);
+            remEvent.parentNode.replaceChild(new_element, remEvent);
+            document.querySelector('.offert-of-the-day .add-to-cart').classList.remove('add-to-cart');
+            document.querySelector('.offert-of-the-day .update-cart').classList.remove('update-cart');
+            document.querySelector('.offert-of-the-day .sold-left p').style.display = 'none';
+            document.querySelector('.offert-of-the-day .piecesLeft').style.display = 'none';
+            document.querySelector('.offert-of-the-day .time-left').classList.add('d-xl-block', 'd-sm-none');
 
         } catch (e){
             console.log(e);

@@ -69,7 +69,26 @@ li {
   color: white; }
 
 .btn-light {
-  background: whitesmoke; }
+  background: whitesmoke;
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  cursor: pointer;
+  color: #666666;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+  opacity: 0.7; }
+  .btn-light :hover {
+    background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+    background-color: #e9e9e9; }
+  .btn-light :active {
+    position: relative;
+    top: 1px; }
 
 .btn-red, .btn-red-list {
   background: #ff503c;
@@ -468,7 +487,26 @@ li {
   color: white; }
 
 .btn-light {
-  background: whitesmoke; }
+  background: whitesmoke;
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  cursor: pointer;
+  color: #666666;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+  opacity: 0.7; }
+  .btn-light :hover {
+    background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+    background-color: #e9e9e9; }
+  .btn-light :active {
+    position: relative;
+    top: 1px; }
 
 .btn-red, .btn-red-list {
   background: #ff503c;
@@ -1046,7 +1084,7 @@ a {
   font-family: "Poppins", sans-serif; }
 
 .card-body .card-text {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 100;
   text-align: left;
   font-family: "Poppins", sans-serif;
@@ -1568,6 +1606,27 @@ a {
     width: 100%;
     border-bottom: 1px solid #cccccc; }
 
+@media (min-width: 1201px) {
+  .product-box {
+    flex-direction: column; }
+    .product-box a {
+      padding: 2rem; }
+    .product-box .description {
+      padding-top: 0; }
+      .product-box .description p:nth-child(3) {
+        padding-bottom: 0;
+        margin-bottom: 0; }
+  .sold-left > div {
+    padding: 0 1rem; }
+  .sold-left p {
+    font-size: 0.9rem;
+    display: flex; }
+  .sold-left p:nth-child(1) {
+    padding-right: 1rem; }
+  .sold-left .button {
+    padding: 0 1rem;
+    margin-top: 0; } }
+
 @media (max-width: 1400px) {
   .the-best-of {
     grid-template-columns: repeat(3, 2fr);
@@ -1648,36 +1707,6 @@ a {
     display: flex;
     flex-direction: column-reverse;
     padding-bottom: 0 !important; }
-    .offerts .offert {
-      display: grid;
-      height: 15rem; }
-      .offerts .offert .offert-firstChild {
-        height: 50%; }
-      .offerts .offert .offert-secondChild {
-        height: 20%; }
-      .offerts .offert .offert-thirdChild {
-        height: 30%; }
-      .offerts .offert .basket {
-        width: 100%;
-        position: relative;
-        padding-bottom: 1rem; }
-        .offerts .offert .basket::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 4rem;
-          border-bottom: 1px solid #cccccc;
-          width: 70%; }
-      .offerts .offert div {
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
-        margin-top: 0 !important; }
-        .offerts .offert div a {
-          width: 50% !important; }
-      .offerts .offert img {
-        width: 100%;
-        height: 100%; }
   .the-best-of {
     grid-template-columns: repeat(3, 2fr);
     grid-gap: 2rem;
@@ -1698,8 +1727,89 @@ a {
         .the-best-of .card a img {
           max-height: 100%;
           object-fit: contain; }
+  .offert-of-the-day .h4-div {
+    position: relative;
+    margin: 1rem;
+    margin-bottom: 2rem; }
+  .offert-of-the-day h4 {
+    display: inline;
+    position: relative;
+    padding-bottom: 0 !important; }
+    .offert-of-the-day h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60%;
+      border-bottom: 3px solid #ff503c; }
+  .offert-of-the-day .alarm-box {
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr;
+    max-width: 100%;
+    margin: 0 6rem 1rem 0rem;
+    grid-gap: 2rem; }
+    .offert-of-the-day .alarm-box a {
+      width: 60%; }
+    .offert-of-the-day .alarm-box img {
+      width: 100%; }
+    .offert-of-the-day .alarm-box .product-box {
+      grid-column: 1 /  1;
+      grid-row: 1 / 4;
+      padding: 1rem;
+      justify-content: flex-end; }
+      .offert-of-the-day .alarm-box .product-box .description {
+        display: none; }
+    .offert-of-the-day .alarm-box .price-mq {
+      display: block;
+      grid-column: 2 / 2;
+      grid-row: 1 / 2; }
+      .offert-of-the-day .alarm-box .price-mq .promoPrice {
+        padding-right: 2rem;
+        grid-gap: 1rem; }
+        .offert-of-the-day .alarm-box .price-mq .promoPrice .font-red {
+          font-size: 1.4rem; }
+        .offert-of-the-day .alarm-box .price-mq .promoPrice .font-black {
+          font-size: 1rem; }
+      .offert-of-the-day .alarm-box .price-mq .product-name p {
+        font-size: 1.3rem; }
+      .offert-of-the-day .alarm-box .price-mq .stars-div i, .offert-of-the-day .alarm-box .price-mq .stars-div a {
+        color: rgba(1, 1, 1, 0.5);
+        font-size: 0.9rem; }
+    .offert-of-the-day .alarm-box .desc-for-sr {
+      grid-column: 3 / 3;
+      grid-row: 1 / 2; }
+      .offert-of-the-day .alarm-box .desc-for-sr .not-data-block {
+        padding-top: 0 !important; }
+        .offert-of-the-day .alarm-box .desc-for-sr .not-data-block p {
+          padding: 0.5rem 0; }
+    .offert-of-the-day .alarm-box .sold-left {
+      grid-column: 2 /  2;
+      grid-row: 2 / 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 0; }
+      .offert-of-the-day .alarm-box .sold-left p {
+        font-size: 1rem; }
+      .offert-of-the-day .alarm-box .sold-left .button {
+        width: 100%;
+        justify-self: center; }
+        .offert-of-the-day .alarm-box .sold-left .button button {
+          padding: 0.3rem; }
+          .offert-of-the-day .alarm-box .sold-left .button button span {
+            font-size: 1rem; }
+  .time-left {
+    grid-row: 2/4;
+    grid-column: 3/3;
+    margin-top: 0; }
+    .time-left ::after, .time-left ::before {
+      display: none; }
   .producent-logos {
-    display: none; } }
+    display: none; }
+  .hour span {
+    font-size: 0.9rem !important; }
+  .sold-left {
+    margin-top: 0; } }
 
 @media (max-width: 1000px) {
   .container {
@@ -1735,13 +1845,22 @@ a {
       margin-bottom: 0;
       margin-bottom: 2rem; }
     .navbar .form-inline {
-      width: 100% !important;
+      width: 70%;
       display: inline;
       grid-row: 2 /span 2;
       grid-column: 1 /span 1;
       margin-bottom: 2rem !important; }
       .navbar .form-inline button {
         margin: 0 !important; }
+  .offert-of-the-day .alarm-box {
+    margin-left: 1rem;
+    margin-right: 1rem; }
+    .offert-of-the-day .alarm-box .product-box a {
+      width: 80%; }
+  .hour-text {
+    display: none; }
+  .time-left {
+    padding: 0; }
   .main-content {
     margin-right: 2rem;
     padding-right: 0; }
@@ -2705,167 +2824,167 @@ a {
 
 @media (max-width: 3000px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(65% - 5px) - 5px) !important; } }
+    width: calc(calc(65% - 3px) - 3px) !important; } }
 
 @media (max-width: 2950px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(65% - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(65% - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2900px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2850px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2800px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2750px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2700px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2650px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2600px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2550px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2500px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2450px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2400px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2350px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2300px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2250px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2200px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2150px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2100px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2050px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2000px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1950px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1900px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1850px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1800px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1750px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1700px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1650px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1600px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1550px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1500px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1450px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1400px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1350px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1300px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1250px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1200px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px))) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px))) !important; } }
 
 @media (max-width: 1150px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px)))) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px)))) !important; } }
 
 @media (max-width: 1100px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px))))) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px))))) !important; } }
 
 @media (max-width: 1050px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px)))))) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px)))))) !important; } }
 
 @media (max-width: 1000px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px))))))) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px))))))) !important; } }
 
 @media (max-width: 950px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
@@ -2929,8 +3048,14 @@ a {
 
 @media (max-width: 200px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px))))))-10% - 10%) !important;
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px))))))-10% - 10%) !important;
     width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(80% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 10px) !important; } }
+
+@media (max-width: 900px) {
+  .offert-of-the-day .alarm-box .product-box {
+    margin-right: 1rem; }
+  .offert-of-the-day .alarm-box img {
+    width: 120%; } }
 
 @media (max-width: 800px) {
   .cattegories .alarm-box ul {
@@ -2938,11 +3063,41 @@ a {
     .cattegories .alarm-box ul li {
       display: flex;
       justify-content: start;
-      align-items: center; } }
+      align-items: center; }
+  .desc-for-sr {
+    display: none; }
+  .offert-of-the-day .alarm-box {
+    grid-template-columns: 3fr 2fr; }
+  .offert-of-the-day .price-mq, .offert-of-the-day .sold-left {
+    grid-column: 2/2; }
+  .offert-of-the-day .product-box {
+    grid-column: 1/2; }
+  .align-left, .time-left span, .hour, .hour-text {
+    width: 100%;
+    text-align: left; }
+  .time-left {
+    grid-column: 2/2;
+    grid-row: 2/2;
+    margin-bottom: 0; }
+  .sold-left {
+    grid-row: 3/3 !important; }
+  .product-box {
+    grid-row: 1/5 !important;
+    margin-right: 2rem !important; }
+  .fa-shopping-cart {
+    font-size: 1.2rem; }
+    .fa-shopping-cart span {
+      padding-left: 1rem; } }
 
 @media (max-width: 700px) {
   .the-best-of {
     grid-template-columns: repeat(1, 2fr); }
+  .sold-statistics {
+    display: none; }
+  .sold-left {
+    margin-top: 0; }
+    .sold-left .button {
+      margin-top: 0; }
   .forgot-pass a {
     font-size: 1rem !important; }
   .social-sigin h2 {
@@ -5401,7 +5556,55 @@ a {
       padding: 2rem !important; }
     .the-best-of .card {
       width: 90% !important;
-      height: auto !important; } }
+      height: auto !important; }
+  .alarm-box {
+    grid-template-columns: 3fr 3fr !important; }
+    .alarm-box .product-box img {
+      width: 90%; }
+  .time-left {
+    display: grid !important;
+    grid-row: 5/5;
+    grid-column: 2 / 2;
+    margin: 0;
+    padding: 0; }
+    .time-left .time-left-first-span {
+      display: none; }
+    .time-left ::before, .time-left ::after {
+      display: none; }
+    .time-left span {
+      font-size: 0.9rem !important; }
+    .time-left .hour {
+      display: flex;
+      flex-direction: column;
+      grid-column: 2/2;
+      grid-row: 1/3;
+      margin-left: 1rem; }
+      .time-left .hour :nth-child(2), .time-left .hour :nth-child(4) {
+        display: none; }
+      .time-left .hour span {
+        padding: 0; }
+    .time-left .hour-text {
+      display: flex;
+      flex-direction: column;
+      grid-column: 1/1;
+      grid-row: 1/3; }
+      .time-left .hour-text p {
+        font-size: 0.7rem !important;
+        margin-bottom: 0;
+        padding-bottom: 0; }
+  .price-mq {
+    grid-column: 1 / 1 !important;
+    grid-row: 5/7 !important; }
+    .price-mq i, .price-mq a {
+      font-size: 0.8rem; }
+  .sold-left {
+    grid-column: 2 / 2 !important;
+    grid-row: 6/6 !important;
+    justify-content: flex-end !important; }
+  .product-box {
+    grid-column: 1/3 !important; }
+  .h4-div {
+    margin-bottom: 0 !important; } }
 
 @media (max-width: 500px) {
   .afterClass, .navbar ul .nav-item:nth-of-type(odd) a::after {
@@ -5482,7 +5685,47 @@ a {
       width: 90% !important;
       align-self: center; }
   .the-best-of .main-pic {
-    padding: 0.5rem !important; } }
+    padding: 0.5rem !important; }
+  .alarm-box {
+    display: flex !important;
+    flex-direction: column; }
+    .alarm-box .price-mq .button > div {
+      display: grid;
+      grid-template-columns: 2fr 2fr; }
+      .alarm-box .price-mq .button > div .product-name {
+        grid-column: 1/1;
+        grid-row: 1/1; }
+      .alarm-box .price-mq .button > div .promoPrice {
+        grid-column: 1/1;
+        grid-row: 2/2;
+        justify-content: center; }
+      .alarm-box .price-mq .button > div .stars-div {
+        grid-column: 1/1;
+        grid-row: 3/3;
+        justify-content: center; }
+    .alarm-box .button i {
+      justify-content: center; }
+  .hour {
+    display: flex; }
+    .hour :nth-child(2), .hour :nth-child(4) {
+      display: inline !important; }
+  .time-left {
+    justify-content: space-around; }
+    .time-left .time-left-first-span {
+      grid-row: 1/1;
+      grid-column: 1/1; }
+    .time-left span {
+      display: inline !important; }
+    .time-left .hour {
+      flex-direction: row;
+      grid-row: 2/2;
+      grid-column: 1/1;
+      margin-left: 0;
+      margin-top: 1rem; }
+      .time-left .hour span {
+        font-size: 1.2rem !important; }
+    .time-left .hour-text {
+      display: none; } }
 
 @media (max-width: 360px) {
   .cattegories .alarm-box ul {
@@ -5504,7 +5747,12 @@ a {
 
 @media (max-width: 300px) {
   .umm-1jfznrn, .umm-1ikmx2u {
-    right: calc(0% + 25px) !important; } }
+    right: calc(0% + 25px) !important; }
+  .stars-div {
+    display: none !important; }
+  .form-inline {
+    margin: 0 !important;
+    width: 100% !important; } }
 
 @media (max-width: 260px) {
   .search-query {
@@ -5537,7 +5785,10 @@ a {
   .the-best-of {
     padding: 0 !important; }
   .subtotal {
-    flex-direction: column; } }
+    flex-direction: column; }
+  .alarm-box {
+    margin: 0 !important;
+    padding: 1rem; } }
 
 @media (max-width: 230px) {
   .navbar {
@@ -5548,7 +5799,7 @@ a {
     width: 60% !important;
     padding: 0 !important; }
   .navbar .form-inline {
-    width: 80% !important;
+    width: 80%;
     box-shadow: none;
     display: flex !important;
     flex-direction: column !important;
@@ -5571,7 +5822,18 @@ a {
     .navbar ul li:last-child {
       padding-bottom: 1rem; }
   .navbar ul .nav-item:nth-of-type(odd) a::after {
-    display: none !important; } }
+    display: none !important; }
+  .button > div {
+    display: flex !important; }
+  .promoPrice {
+    flex-direction: column-reverse; }
+  .product-box {
+    padding: 0 !important; }
+  .alarm-box ul {
+    display: flex !important;
+    flex-direction: column; }
+    .alarm-box ul .iconsDiv {
+      flex-wrap: wrap; } }
 
 .after-before, .shipping-information::after, .shipping-information::before {
   position: absolute;
@@ -6233,6 +6495,8 @@ a {
     box-sizing: border-box;
     overflow: hidden;
     z-index: 1; }
+    .showcase .cattegories .iconsDiv a {
+      font-size: 1rem; }
     .showcase .cattegories .alarm-box {
       z-index: 2; }
       .showcase .cattegories .alarm-box ul i {
@@ -6286,7 +6550,8 @@ a {
       height: 8rem; }
       .showcase .blog-articles .box p {
         height: 100%;
-        font-weight: 300; }
+        font-weight: 300;
+        font-size: 1rem; }
     .showcase .blog-articles img {
       width: 40%;
       height: 100%;
@@ -6354,13 +6619,19 @@ a {
   .offert-of-the-day h3 {
     margin-top: 1rem; }
   .offert-of-the-day .alarm-box {
-    width: 100.5%;
     height: 91%;
     border-radius: 10px;
-    font-family: "Poppins", sans-serif;
-    padding-bottom: 1rem; }
+    font-family: "Poppins", sans-serif; }
+    .offert-of-the-day .alarm-box .product-box {
+      display: flex;
+      justify-content: center; }
+      .offert-of-the-day .alarm-box .product-box a {
+        display: block; }
+    .offert-of-the-day .alarm-box .prod-the-day-desc p {
+      padding-left: 0rem !important; }
     .offert-of-the-day .alarm-box img {
-      width: 50%; }
+      max-height: 100%;
+      object-fit: contain; }
   .offert-of-the-day .description {
     padding-top: 2rem;
     position: relative; }
@@ -6383,7 +6654,6 @@ a {
         border-top: 1px solid #cccccc; }
 
 .sold-left {
-  grid-template-columns: 1fr 1fr;
   font-size: 1.2rem;
   padding: 0 1rem;
   position: relative;
@@ -6405,8 +6675,8 @@ a {
 
 .time-left {
   color: black;
-  padding: 1.5rem;
-  margin-top: 1rem;
+  padding: 1.2rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
   position: relative; }
   .time-left ::before {
@@ -6429,7 +6699,7 @@ a {
     padding: 0.3rem; }
   .time-left .hour span {
     padding: 0.5rem;
-    font-size: 1.7rem; }
+    font-size: 1.2rem; }
 
 .logo {
   height: 150px;
@@ -6459,9 +6729,10 @@ a {
     .notification .newsletter-desc {
       height: 100%; }
       .notification .newsletter-desc h3 {
-        font-size: 1.5rem; }
+        font-size: 1rem; }
       .notification .newsletter-desc h4 {
-        font-weight: 100; }
+        font-weight: 100;
+        font-size: 1rem; }
     .notification .newsletter-form {
       margin-top: 2rem;
       height: 2.5rem;
@@ -6505,9 +6776,10 @@ a {
     padding: 1.5rem;
     padding-left: 3rem; }
     .notification .mobile-desc h3 {
-      font-size: 1.5rem; }
+      font-size: 1rem; }
     .notification .mobile-desc h4 {
-      font-weight: 100; }
+      font-weight: 100;
+      font-size: 1rem; }
   .notification .mobile-pic img {
     height: 170px;
     border-radius: 10px;
@@ -6644,6 +6916,27 @@ a {
     height: 100%;
     width: 100%; }
 
+@media (min-width: 1201px) {
+  .product-box {
+    flex-direction: column; }
+    .product-box a {
+      padding: 2rem; }
+    .product-box .description {
+      padding-top: 0; }
+      .product-box .description p:nth-child(3) {
+        padding-bottom: 0;
+        margin-bottom: 0; }
+  .sold-left > div {
+    padding: 0 1rem; }
+  .sold-left p {
+    font-size: 0.9rem;
+    display: flex; }
+  .sold-left p:nth-child(1) {
+    padding-right: 1rem; }
+  .sold-left .button {
+    padding: 0 1rem;
+    margin-top: 0; } }
+
 @media (max-width: 1400px) {
   .the-best-of {
     grid-template-columns: repeat(3, 2fr);
@@ -6724,36 +7017,6 @@ a {
     display: flex;
     flex-direction: column-reverse;
     padding-bottom: 0 !important; }
-    .offerts .offert {
-      display: grid;
-      height: 15rem; }
-      .offerts .offert .offert-firstChild {
-        height: 50%; }
-      .offerts .offert .offert-secondChild {
-        height: 20%; }
-      .offerts .offert .offert-thirdChild {
-        height: 30%; }
-      .offerts .offert .basket {
-        width: 100%;
-        position: relative;
-        padding-bottom: 1rem; }
-        .offerts .offert .basket::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 4rem;
-          border-bottom: 1px solid #cccccc;
-          width: 70%; }
-      .offerts .offert div {
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
-        margin-top: 0 !important; }
-        .offerts .offert div a {
-          width: 50% !important; }
-      .offerts .offert img {
-        width: 100%;
-        height: 100%; }
   .the-best-of {
     grid-template-columns: repeat(3, 2fr);
     grid-gap: 2rem;
@@ -6774,8 +7037,89 @@ a {
         .the-best-of .card a img {
           max-height: 100%;
           object-fit: contain; }
+  .offert-of-the-day .h4-div {
+    position: relative;
+    margin: 1rem;
+    margin-bottom: 2rem; }
+  .offert-of-the-day h4 {
+    display: inline;
+    position: relative;
+    padding-bottom: 0 !important; }
+    .offert-of-the-day h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60%;
+      border-bottom: 3px solid #ff503c; }
+  .offert-of-the-day .alarm-box {
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr;
+    max-width: 100%;
+    margin: 0 6rem 1rem 0rem;
+    grid-gap: 2rem; }
+    .offert-of-the-day .alarm-box a {
+      width: 60%; }
+    .offert-of-the-day .alarm-box img {
+      width: 100%; }
+    .offert-of-the-day .alarm-box .product-box {
+      grid-column: 1 /  1;
+      grid-row: 1 / 4;
+      padding: 1rem;
+      justify-content: flex-end; }
+      .offert-of-the-day .alarm-box .product-box .description {
+        display: none; }
+    .offert-of-the-day .alarm-box .price-mq {
+      display: block;
+      grid-column: 2 / 2;
+      grid-row: 1 / 2; }
+      .offert-of-the-day .alarm-box .price-mq .promoPrice {
+        padding-right: 2rem;
+        grid-gap: 1rem; }
+        .offert-of-the-day .alarm-box .price-mq .promoPrice .font-red {
+          font-size: 1.4rem; }
+        .offert-of-the-day .alarm-box .price-mq .promoPrice .font-black {
+          font-size: 1rem; }
+      .offert-of-the-day .alarm-box .price-mq .product-name p {
+        font-size: 1.3rem; }
+      .offert-of-the-day .alarm-box .price-mq .stars-div i, .offert-of-the-day .alarm-box .price-mq .stars-div a {
+        color: rgba(1, 1, 1, 0.5);
+        font-size: 0.9rem; }
+    .offert-of-the-day .alarm-box .desc-for-sr {
+      grid-column: 3 / 3;
+      grid-row: 1 / 2; }
+      .offert-of-the-day .alarm-box .desc-for-sr .not-data-block {
+        padding-top: 0 !important; }
+        .offert-of-the-day .alarm-box .desc-for-sr .not-data-block p {
+          padding: 0.5rem 0; }
+    .offert-of-the-day .alarm-box .sold-left {
+      grid-column: 2 /  2;
+      grid-row: 2 / 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 0; }
+      .offert-of-the-day .alarm-box .sold-left p {
+        font-size: 1rem; }
+      .offert-of-the-day .alarm-box .sold-left .button {
+        width: 100%;
+        justify-self: center; }
+        .offert-of-the-day .alarm-box .sold-left .button button {
+          padding: 0.3rem; }
+          .offert-of-the-day .alarm-box .sold-left .button button span {
+            font-size: 1rem; }
+  .time-left {
+    grid-row: 2/4;
+    grid-column: 3/3;
+    margin-top: 0; }
+    .time-left ::after, .time-left ::before {
+      display: none; }
   .producent-logos {
-    display: none; } }
+    display: none; }
+  .hour span {
+    font-size: 0.9rem !important; }
+  .sold-left {
+    margin-top: 0; } }
 
 @media (max-width: 1000px) {
   .container {
@@ -6811,13 +7155,22 @@ a {
       margin-bottom: 0;
       margin-bottom: 2rem; }
     .navbar .form-inline {
-      width: 100% !important;
+      width: 70%;
       display: inline;
       grid-row: 2 /span 2;
       grid-column: 1 /span 1;
       margin-bottom: 2rem !important; }
       .navbar .form-inline button {
         margin: 0 !important; }
+  .offert-of-the-day .alarm-box {
+    margin-left: 1rem;
+    margin-right: 1rem; }
+    .offert-of-the-day .alarm-box .product-box a {
+      width: 80%; }
+  .hour-text {
+    display: none; }
+  .time-left {
+    padding: 0; }
   .main-content {
     margin-right: 2rem;
     padding-right: 0; }
@@ -7781,167 +8134,167 @@ a {
 
 @media (max-width: 3000px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(65% - 5px) - 5px) !important; } }
+    width: calc(calc(65% - 3px) - 3px) !important; } }
 
 @media (max-width: 2950px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(65% - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(65% - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2900px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2850px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2800px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2750px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2700px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2650px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2600px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2550px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2500px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2450px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2400px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2350px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2300px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2250px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2200px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2150px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2100px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2050px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 2000px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1950px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1900px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1850px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1800px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1750px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1700px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1650px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1600px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1550px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1500px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1450px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1400px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1350px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1300px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1250px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) !important; } }
 
 @media (max-width: 1200px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px))) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px))) !important; } }
 
 @media (max-width: 1150px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px)))) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px)))) !important; } }
 
 @media (max-width: 1100px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px))))) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px))))) !important; } }
 
 @media (max-width: 1050px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px)))))) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px)))))) !important; } }
 
 @media (max-width: 1000px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px))))))) !important; } }
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px))))))) !important; } }
 
 @media (max-width: 950px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
@@ -8005,8 +8358,14 @@ a {
 
 @media (max-width: 200px) and (min-width: 200px) {
   .navbar .form-inline .search-bar {
-    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px))))))-10% - 10%) !important;
+    width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(65% - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px) - 3px))))))-10% - 10%) !important;
     width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(80% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 10px) !important; } }
+
+@media (max-width: 900px) {
+  .offert-of-the-day .alarm-box .product-box {
+    margin-right: 1rem; }
+  .offert-of-the-day .alarm-box img {
+    width: 120%; } }
 
 @media (max-width: 800px) {
   .cattegories .alarm-box ul {
@@ -8014,11 +8373,41 @@ a {
     .cattegories .alarm-box ul li {
       display: flex;
       justify-content: start;
-      align-items: center; } }
+      align-items: center; }
+  .desc-for-sr {
+    display: none; }
+  .offert-of-the-day .alarm-box {
+    grid-template-columns: 3fr 2fr; }
+  .offert-of-the-day .price-mq, .offert-of-the-day .sold-left {
+    grid-column: 2/2; }
+  .offert-of-the-day .product-box {
+    grid-column: 1/2; }
+  .align-left, .time-left span, .hour, .hour-text {
+    width: 100%;
+    text-align: left; }
+  .time-left {
+    grid-column: 2/2;
+    grid-row: 2/2;
+    margin-bottom: 0; }
+  .sold-left {
+    grid-row: 3/3 !important; }
+  .product-box {
+    grid-row: 1/5 !important;
+    margin-right: 2rem !important; }
+  .fa-shopping-cart {
+    font-size: 1.2rem; }
+    .fa-shopping-cart span {
+      padding-left: 1rem; } }
 
 @media (max-width: 700px) {
   .the-best-of {
     grid-template-columns: repeat(1, 2fr); }
+  .sold-statistics {
+    display: none; }
+  .sold-left {
+    margin-top: 0; }
+    .sold-left .button {
+      margin-top: 0; }
   .forgot-pass a {
     font-size: 1rem !important; }
   .social-sigin h2 {
@@ -10477,7 +10866,55 @@ a {
       padding: 2rem !important; }
     .the-best-of .card {
       width: 90% !important;
-      height: auto !important; } }
+      height: auto !important; }
+  .alarm-box {
+    grid-template-columns: 3fr 3fr !important; }
+    .alarm-box .product-box img {
+      width: 90%; }
+  .time-left {
+    display: grid !important;
+    grid-row: 5/5;
+    grid-column: 2 / 2;
+    margin: 0;
+    padding: 0; }
+    .time-left .time-left-first-span {
+      display: none; }
+    .time-left ::before, .time-left ::after {
+      display: none; }
+    .time-left span {
+      font-size: 0.9rem !important; }
+    .time-left .hour {
+      display: flex;
+      flex-direction: column;
+      grid-column: 2/2;
+      grid-row: 1/3;
+      margin-left: 1rem; }
+      .time-left .hour :nth-child(2), .time-left .hour :nth-child(4) {
+        display: none; }
+      .time-left .hour span {
+        padding: 0; }
+    .time-left .hour-text {
+      display: flex;
+      flex-direction: column;
+      grid-column: 1/1;
+      grid-row: 1/3; }
+      .time-left .hour-text p {
+        font-size: 0.7rem !important;
+        margin-bottom: 0;
+        padding-bottom: 0; }
+  .price-mq {
+    grid-column: 1 / 1 !important;
+    grid-row: 5/7 !important; }
+    .price-mq i, .price-mq a {
+      font-size: 0.8rem; }
+  .sold-left {
+    grid-column: 2 / 2 !important;
+    grid-row: 6/6 !important;
+    justify-content: flex-end !important; }
+  .product-box {
+    grid-column: 1/3 !important; }
+  .h4-div {
+    margin-bottom: 0 !important; } }
 
 @media (max-width: 500px) {
   .afterClass, .navbar ul .nav-item:nth-of-type(odd) a::after {
@@ -10558,7 +10995,47 @@ a {
       width: 90% !important;
       align-self: center; }
   .the-best-of .main-pic {
-    padding: 0.5rem !important; } }
+    padding: 0.5rem !important; }
+  .alarm-box {
+    display: flex !important;
+    flex-direction: column; }
+    .alarm-box .price-mq .button > div {
+      display: grid;
+      grid-template-columns: 2fr 2fr; }
+      .alarm-box .price-mq .button > div .product-name {
+        grid-column: 1/1;
+        grid-row: 1/1; }
+      .alarm-box .price-mq .button > div .promoPrice {
+        grid-column: 1/1;
+        grid-row: 2/2;
+        justify-content: center; }
+      .alarm-box .price-mq .button > div .stars-div {
+        grid-column: 1/1;
+        grid-row: 3/3;
+        justify-content: center; }
+    .alarm-box .button i {
+      justify-content: center; }
+  .hour {
+    display: flex; }
+    .hour :nth-child(2), .hour :nth-child(4) {
+      display: inline !important; }
+  .time-left {
+    justify-content: space-around; }
+    .time-left .time-left-first-span {
+      grid-row: 1/1;
+      grid-column: 1/1; }
+    .time-left span {
+      display: inline !important; }
+    .time-left .hour {
+      flex-direction: row;
+      grid-row: 2/2;
+      grid-column: 1/1;
+      margin-left: 0;
+      margin-top: 1rem; }
+      .time-left .hour span {
+        font-size: 1.2rem !important; }
+    .time-left .hour-text {
+      display: none; } }
 
 @media (max-width: 360px) {
   .cattegories .alarm-box ul {
@@ -10580,7 +11057,12 @@ a {
 
 @media (max-width: 300px) {
   .umm-1jfznrn, .umm-1ikmx2u {
-    right: calc(0% + 25px) !important; } }
+    right: calc(0% + 25px) !important; }
+  .stars-div {
+    display: none !important; }
+  .form-inline {
+    margin: 0 !important;
+    width: 100% !important; } }
 
 @media (max-width: 260px) {
   .search-query {
@@ -10613,7 +11095,10 @@ a {
   .the-best-of {
     padding: 0 !important; }
   .subtotal {
-    flex-direction: column; } }
+    flex-direction: column; }
+  .alarm-box {
+    margin: 0 !important;
+    padding: 1rem; } }
 
 @media (max-width: 230px) {
   .navbar {
@@ -10624,7 +11109,7 @@ a {
     width: 60% !important;
     padding: 0 !important; }
   .navbar .form-inline {
-    width: 80% !important;
+    width: 80%;
     box-shadow: none;
     display: flex !important;
     flex-direction: column !important;
@@ -10647,4 +11132,15 @@ a {
     .navbar ul li:last-child {
       padding-bottom: 1rem; }
   .navbar ul .nav-item:nth-of-type(odd) a::after {
-    display: none !important; } }
+    display: none !important; }
+  .button > div {
+    display: flex !important; }
+  .promoPrice {
+    flex-direction: column-reverse; }
+  .product-box {
+    padding: 0 !important; }
+  .alarm-box ul {
+    display: flex !important;
+    flex-direction: column; }
+    .alarm-box ul .iconsDiv {
+      flex-wrap: wrap; } }
