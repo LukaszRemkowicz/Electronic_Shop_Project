@@ -83,8 +83,9 @@ class LandingPage(FormView):
             product_of_the_day.save()
 
         else:
-            product_of_the_day = ProductOfTheDayDB.objects.all().order_by('-date_start')[0]
-            product_of_the_day = Products.objects.get(id=product_of_the_day.product.id)
+            product_of_the_day = ProductOfTheDayDB.objects.all().order_by('-date_start').first()
+            if product_of_the_day:
+                product_of_the_day = Products.objects.get(id=product_of_the_day.product.id)
 
         try:
             promotion_pieces = {product: change_product_pieces(

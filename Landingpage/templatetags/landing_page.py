@@ -22,7 +22,6 @@ def ennumerate_obj(obj):
 @register.filter
 def format_datetime(value, new_date=''):
     """ Return date in proper way. Its used by JavaScript """
-
     try:
         if new_date:
             result = value - timedelta(days=int(new_date))
@@ -30,7 +29,7 @@ def format_datetime(value, new_date=''):
         else:
             result = value.strftime("%Y-%m-%d %H:%M:%S")
 
-    except AttributeError:
+    except (AttributeError, TypeError):
         result = ''
 
     return result

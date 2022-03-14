@@ -46,8 +46,9 @@ def login_form_content(request):
         product_of_the_day.product_of_the_day_added = localtime
         product_of_the_day.save()
     else:
-        product_of_the_day = ProductOfTheDayDB.objects.all().order_by('-date_start')[0]
-        product_of_the_day = MainProductDatabase.objects.get(id=product_of_the_day.product.id)
+        product_of_the_day_db = ProductOfTheDayDB.objects.all().order_by('-date_start').first()
+        if product_of_the_day_db:
+            product_of_the_day = MainProductDatabase.objects.get(id=product_of_the_day.product.id)
 
     return {
         'login_form': form,

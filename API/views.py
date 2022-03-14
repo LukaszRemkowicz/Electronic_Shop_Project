@@ -126,8 +126,9 @@ class FinishOrderView(APIView):
                 if order.transaction_status:
                     item.bought = item.product.pieces
                     item.product.bought_num += item.product.pieces
-                    product_database.sold_num += item.product.pieces
-                    product_database.save()
+                    if product_database:
+                        product_database.sold_num += item.product.pieces
+                        product_database.save()
                     item.save()
                 item.product.pieces -= item.product.pieces
 
@@ -135,8 +136,9 @@ class FinishOrderView(APIView):
                 if order.transaction_status:
                     item.bought = item.quantity
                     item.product.bought_num += item.quantity
-                    product_database.sold_num += item.quantity
-                    product_database.save()
+                    if product_database:
+                        product_database.sold_num += item.quantity
+                        product_database.save()
 
                 item.product.pieces -= item.quantity
                 item.status = 'Collected'
