@@ -8,7 +8,7 @@ class AddressBook(models.Model):
     name = models.CharField(blank=False, max_length=50)
     last_name = models.CharField(blank=False, max_length=50)
     city = models.CharField(blank=False, max_length=50)
-    street = models.CharField(blank=False, max_length=100, default='')
+    street = models.CharField(blank=False, max_length=100, default="")
     post_code = models.CharField(blank=False, max_length=10)
     state = models.CharField(blank=True, max_length=30)
     phone_number = models.CharField(blank=False, max_length=15)

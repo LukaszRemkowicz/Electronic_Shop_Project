@@ -6,28 +6,36 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('Articles', '0009_auto_20220113_1914'),
+        ("Articles", "0009_auto_20220113_1914"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='landingpagearticles',
-            name='img',
-            field=models.ImageField(blank=True, null=True, upload_to='articles/landin-page/2022-01-16'),
+            model_name="landingpagearticles",
+            name="img",
+            field=models.ImageField(
+                blank=True, null=True, upload_to="articles/landin-page/2022-01-16"
+            ),
         ),
         migrations.AlterField(
-            model_name='landingpagearticles',
-            name='second_img',
-            field=models.ImageField(blank=True, null=True, upload_to='articles/landin-page/2022-01-16'),
+            model_name="landingpagearticles",
+            name="second_img",
+            field=models.ImageField(
+                blank=True, null=True, upload_to="articles/landin-page/2022-01-16"
+            ),
         ),
         migrations.AlterField(
-            model_name='landingpagearticles',
-            name='tempalate',
-            field=models.FileField(blank=True, default='', null=True, upload_to='articles/blogs/2022-01-16'),
+            model_name="landingpagearticles",
+            name="tempalate",
+            field=models.FileField(
+                blank=True, default="", null=True, upload_to="articles/blogs/2022-01-16"
+            ),
         ),
         migrations.AlterField(
-            model_name='landingpagearticles',
-            name='third_img',
-            field=models.ImageField(blank=True, null=True, upload_to='articles/landin-page/2022-01-16'),
+            model_name="landingpagearticles",
+            name="third_img",
+            field=models.ImageField(
+                blank=True, null=True, upload_to="articles/landin-page/2022-01-16"
+            ),
         ),
     ]

@@ -41,7 +41,7 @@ def create_product(sender, instance, created, **kwargs):
     global skip_signals
 
     if created:
-        """ check if ean code is already in the DB """
+        """check if ean code is already in the DB"""
 
         product_ean = models.MainProductDatabase.objects.filter(
             ean=instance.ean
@@ -73,77 +73,91 @@ def create_product(sender, instance, created, **kwargs):
                 product.second_photo = instance.second_photo
                 product.third_photo = instance.third_photo
             except Exception as error:
-                print('Oops, something went wrong: ', error)
+                print("Oops, something went wrong: ", error)
                 raise
 
             product.save()
 
             skip_signals = False
     else:
-        """ update product if not created"""
+        """update product if not created"""
 
         product = models.MainProductDatabase.objects.get(ean=instance.ean)
 
         try:
 
-            if product.name != utils.get_product(
-                    instance._meta.model_name, instance
-            ).name:
+            if (
+                product.name
+                != utils.get_product(instance._meta.model_name, instance).name
+            ):
                 product.name = instance.name
                 product.save()
-            elif product.price != utils.get_product(
-                    instance._meta.model_name, instance
-            ).price:
+            elif (
+                product.price
+                != utils.get_product(instance._meta.model_name, instance).price
+            ):
                 product.price = instance.price
                 product.save()
-            elif product.pieces != utils.get_product(
-                    instance._meta.model_name, instance
-            ).pieces:
+            elif (
+                product.pieces
+                != utils.get_product(instance._meta.model_name, instance).pieces
+            ):
                 product.pieces = instance.pieces
                 product.save()
-            elif product.ean != utils.get_product(
-                    instance._meta.model_name, instance
-            ).ean:
+            elif (
+                product.ean
+                != utils.get_product(instance._meta.model_name, instance).ean
+            ):
                 product.ean = instance.ean
                 product.save()
-            elif product.product_of_the_day != utils.get_product(
+            elif (
+                product.product_of_the_day
+                != utils.get_product(
                     instance._meta.model_name, instance
-            ).product_of_the_day:
+                ).product_of_the_day
+            ):
                 product.product_of_the_day = instance.product_of_the_day
                 product.save()
-            elif product.cattegory != utils.get_product(
-                    instance._meta.model_name, instance
-            ).cattegory:
+            elif (
+                product.cattegory
+                != utils.get_product(instance._meta.model_name, instance).cattegory
+            ):
                 product.cattegory = instance.cattegory
                 product.save()
-            elif product.color != utils.get_product(
-                    instance._meta.model_name, instance
-            ).color:
+            elif (
+                product.color
+                != utils.get_product(instance._meta.model_name, instance).color
+            ):
                 product.color = instance.color
                 product.save()
-            elif product.main_photo != utils.get_product(
-                    instance._meta.model_name, instance
-            ).main_photo:
+            elif (
+                product.main_photo
+                != utils.get_product(instance._meta.model_name, instance).main_photo
+            ):
                 product.main_photo = instance.main_photo
                 product.save()
-            elif product.second_photo != utils.get_product(
-                    instance._meta.model_name, instance
-            ).second_photo:
+            elif (
+                product.second_photo
+                != utils.get_product(instance._meta.model_name, instance).second_photo
+            ):
                 product.second_photo = instance.second_photo
                 product.save()
-            elif product.third_photo != utils.get_product(
-                    instance._meta.model_name, instance
-            ).third_photo:
+            elif (
+                product.third_photo
+                != utils.get_product(instance._meta.model_name, instance).third_photo
+            ):
                 product.third_photo = instance.third_photo
                 product.save()
-            elif product.producent != utils.get_product(
-                    instance._meta.model_name, instance
-            ).producent:
+            elif (
+                product.producent
+                != utils.get_product(instance._meta.model_name, instance).producent
+            ):
                 product.producent = instance.producent
                 product.save()
-            elif product.model != utils.get_product(
-                    instance._meta.model_name, instance
-            ).model:
+            elif (
+                product.model
+                != utils.get_product(instance._meta.model_name, instance).model
+            ):
                 product.model = instance.model
                 product.save()
 
@@ -187,7 +201,7 @@ def create_product(sender, instance, created, **kwargs):
 @receiver(post_save, sender=models.MainProductDatabase)
 @skip_signal()
 def update_product(sender, instance, created, **kwargs):
-    """ Update product if main product changed """
+    """Update product if main product changed"""
 
     global skip_signals
 

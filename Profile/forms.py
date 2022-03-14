@@ -12,7 +12,7 @@ class CustomLoginForm(forms.Form):
 
     def clean_email(self) -> str or NoReturn:
         email = self.cleaned_data.get("email")
-        password = self.data.get('password')
+        password = self.data.get("password")
         if User.objects.filter(email=email).exists():
             try:
                 authenticate(email=email, password=password)
@@ -56,7 +56,7 @@ class RegisterForm(UserCreationForm):
         #     "password2",
         #     "email",
         # )
-        fields = ['password1', 'password2', 'email']
+        fields = ["password1", "password2", "email"]
 
     # def clean_username(self) -> str or NoReturn:
     #     username = self.cleaned_data.get("username")
@@ -70,9 +70,7 @@ class RegisterForm(UserCreationForm):
     def clean_email(self) -> str or NoReturn:
         email = self.cleaned_data.get("email")
         if User.objects.filter(email=email).exists():
-            raise forms.ValidationError(
-                "Acount with that Email already exist"
-                )
+            raise forms.ValidationError("Acount with that Email already exist")
 
         return email
 
@@ -89,16 +87,12 @@ class RegisterForm(UserCreationForm):
 class AcceptTerms(forms.Form):
     accepted_terms = forms.BooleanField(
         required=True,
-        widget=forms.CheckboxInput(attrs={
-            'type': 'checkbox',
-            'class': 'checkbox'})
-        )
+        widget=forms.CheckboxInput(attrs={"type": "checkbox", "class": "checkbox"}),
+    )
 
 
 class KeepMeLoggedIn(forms.Form):
     keep_me_logged = forms.BooleanField(
         required=False,
-        widget=forms.CheckboxInput(attrs={
-            'type': 'checkbox',
-            'class': 'checkbox'})
-        )
+        widget=forms.CheckboxInput(attrs={"type": "checkbox", "class": "checkbox"}),
+    )

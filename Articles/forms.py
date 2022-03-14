@@ -5,9 +5,8 @@ from mptt.forms import TreeNodeChoiceField
 
 class BlogAdminForm(forms.ModelForm):
     content_wysiwyg = forms.CharField(
-        widget=forms.Textarea(
-            attrs={'id': "richtext_field"}
-        ))
+        widget=forms.Textarea(attrs={"id": "richtext_field"})
+    )
 
     class Meta:
         model = LandingPageArticles
@@ -20,8 +19,8 @@ class ArticleComents(forms.ModelForm):
     class Meta:
         model = ArticleComment
         fields = [
-            'comment',
-            'name',
-            'email',
-            'parent',
+            "comment",
+            "name",
+            "email",
+            "parent",
         ]

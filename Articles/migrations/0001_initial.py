@@ -7,45 +7,101 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='ArticleComment',
+            name="ArticleComment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('comment', models.TextField(max_length=1000)),
-                ('email', models.CharField(max_length=100)),
-                ('publish', models.DateField(auto_now_add=True)),
-                ('name', models.CharField(max_length=50)),
-                ('checked', models.BooleanField(default=False)),
-                ('lft', models.PositiveIntegerField(editable=False)),
-                ('rght', models.PositiveIntegerField(editable=False)),
-                ('tree_id', models.PositiveIntegerField(db_index=True, editable=False)),
-                ('level', models.PositiveIntegerField(editable=False)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("comment", models.TextField(max_length=1000)),
+                ("email", models.CharField(max_length=100)),
+                ("publish", models.DateField(auto_now_add=True)),
+                ("name", models.CharField(max_length=50)),
+                ("checked", models.BooleanField(default=False)),
+                ("lft", models.PositiveIntegerField(editable=False)),
+                ("rght", models.PositiveIntegerField(editable=False)),
+                ("tree_id", models.PositiveIntegerField(db_index=True, editable=False)),
+                ("level", models.PositiveIntegerField(editable=False)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='LandingPageArticles',
+            name="LandingPageArticles",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=100)),
-                ('outdated', models.BooleanField(default=False)),
-                ('tag_one', models.CharField(blank=True, default='', max_length=20, null=True)),
-                ('tag_two', models.CharField(blank=True, default='', max_length=20, null=True)),
-                ('tag_three', models.CharField(blank=True, default='', max_length=20, null=True)),
-                ('alt_short_descript', models.CharField(blank=True, default='', max_length=100, null=True)),
-                ('posted', models.DateField()),
-                ('content_wysiwyg', models.TextField()),
-                ('short_description', models.CharField(max_length=100)),
-                ('img', models.ImageField(blank=True, null=True, upload_to='articles/landin-page/2021-12-22')),
-                ('second_img', models.ImageField(blank=True, null=True, upload_to='articles/landin-page/2021-12-22')),
-                ('third_img', models.ImageField(blank=True, null=True, upload_to='articles/landin-page/2021-12-22')),
-                ('tempalate', models.FileField(blank=True, default='', null=True, upload_to='articles/blogs/2021-12-22')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=100)),
+                ("outdated", models.BooleanField(default=False)),
+                (
+                    "tag_one",
+                    models.CharField(blank=True, default="", max_length=20, null=True),
+                ),
+                (
+                    "tag_two",
+                    models.CharField(blank=True, default="", max_length=20, null=True),
+                ),
+                (
+                    "tag_three",
+                    models.CharField(blank=True, default="", max_length=20, null=True),
+                ),
+                (
+                    "alt_short_descript",
+                    models.CharField(blank=True, default="", max_length=100, null=True),
+                ),
+                ("posted", models.DateField()),
+                ("content_wysiwyg", models.TextField()),
+                ("short_description", models.CharField(max_length=100)),
+                (
+                    "img",
+                    models.ImageField(
+                        blank=True,
+                        null=True,
+                        upload_to="articles/landin-page/2021-12-22",
+                    ),
+                ),
+                (
+                    "second_img",
+                    models.ImageField(
+                        blank=True,
+                        null=True,
+                        upload_to="articles/landin-page/2021-12-22",
+                    ),
+                ),
+                (
+                    "third_img",
+                    models.ImageField(
+                        blank=True,
+                        null=True,
+                        upload_to="articles/landin-page/2021-12-22",
+                    ),
+                ),
+                (
+                    "tempalate",
+                    models.FileField(
+                        blank=True,
+                        default="",
+                        null=True,
+                        upload_to="articles/blogs/2021-12-22",
+                    ),
+                ),
             ],
         ),
     ]

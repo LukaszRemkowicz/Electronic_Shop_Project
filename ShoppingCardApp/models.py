@@ -6,19 +6,15 @@ from ProductApp.models import MainProductDatabase as Product
 User = settings.AUTH_USER_MODEL
 
 CHOICES = [
-        ("Sent", "Sent"),
-        ("Cancelled", "Cancelled"),
-        ("In progress", "In progress"),
-        ("Received", "Received")
-    ]
+    ("Sent", "Sent"),
+    ("Cancelled", "Cancelled"),
+    ("In progress", "In progress"),
+    ("Received", "Received"),
+]
 
 
 class Customer(models.Model):
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
-        null=True, blank=True
-    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     email = models.CharField(max_length=30, blank=True, null=True)
 
     def __str__(self) -> str:
@@ -28,17 +24,11 @@ class Customer(models.Model):
 class Order(models.Model):
 
     customer = models.ForeignKey(
-        Customer,
-        on_delete=models.SET_NULL,
-        blank=True, null=True
+        Customer, on_delete=models.SET_NULL, blank=True, null=True
     )
     date_order = models.DateTimeField(auto_now_add=True)
-    complete = models.CharField(
-        max_length=200,
-        choices=CHOICES,
-        default='Received'
-    )
-    transaction_id = models.CharField(max_length=200, blank=True, default='')
+    complete = models.CharField(max_length=200, choices=CHOICES, default="Received")
+    transaction_id = models.CharField(max_length=200, blank=True, default="")
     transaction_status = models.BooleanField(default=False)
     transaction_finished = models.DateTimeField(blank=True, null=True)
 
@@ -63,29 +53,15 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
 
-    status = [
-        ('Colecting', 'Collecting'),
-        ('Collected', 'Collected'),
-        ('Sent', 'Sent')
-    ]
+    status = [("Colecting", "Collecting"), ("Collected", "Collected"), ("Sent", "Sent")]
 
     product = models.ForeignKey(
-        Product,
-        on_delete=models.SET_NULL,
-        blank=True, null=True
+        Product, on_delete=models.SET_NULL, blank=True, null=True
     )
-    order = models.ForeignKey(
-        Order,
-        on_delete=models.SET_NULL,
-        blank=True, null=True
-        )
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(
-        max_length=200,
-        choices=status,
-        default='Collecting'
-    )
+    status = models.CharField(max_length=200, choices=status, default="Collecting")
     bought = models.IntegerField(default=0, null=True, blank=True)
 
     @property
@@ -107,15 +83,9 @@ class OrderItem(models.Model):
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(
-        Customer,
-        on_delete=models.SET_NULL,
-        blank=True, null=True
+        Customer, on_delete=models.SET_NULL, blank=True, null=True
     )
-    order = models.ForeignKey(
-        Order,
-        on_delete=models.SET_NULL,
-        blank=True, null=True
-    )
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
     address = models.CharField(max_length=200, null=True)
     city = models.CharField(max_length=200, null=True)
     state = models.CharField(max_length=200, null=True)

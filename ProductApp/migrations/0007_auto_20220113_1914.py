@@ -6,68 +6,68 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ProductApp', '0006_alter_mainproductdatabase_model'),
+        ("ProductApp", "0006_alter_mainproductdatabase_model"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='accesoriesforlaptops',
-            options={'ordering': ['-id']},
+            name="accesoriesforlaptops",
+            options={"ordering": ["-id"]},
         ),
         migrations.AlterModelOptions(
-            name='cpu',
-            options={'ordering': ['-id']},
+            name="cpu",
+            options={"ordering": ["-id"]},
         ),
         migrations.AlterModelOptions(
-            name='graphs',
-            options={'ordering': ['-id']},
+            name="graphs",
+            options={"ordering": ["-id"]},
         ),
         migrations.AlterModelOptions(
-            name='headphones',
-            options={'ordering': ['-id']},
+            name="headphones",
+            options={"ordering": ["-id"]},
         ),
         migrations.AlterModelOptions(
-            name='laptops',
-            options={'ordering': ['-id']},
+            name="laptops",
+            options={"ordering": ["-id"]},
         ),
         migrations.AlterModelOptions(
-            name='monitors',
-            options={'ordering': ['-id']},
+            name="monitors",
+            options={"ordering": ["-id"]},
         ),
         migrations.AlterModelOptions(
-            name='motherboard',
-            options={'ordering': ['-id']},
+            name="motherboard",
+            options={"ordering": ["-id"]},
         ),
         migrations.AlterModelOptions(
-            name='pc',
-            options={'ordering': ['-id']},
+            name="pc",
+            options={"ordering": ["-id"]},
         ),
         migrations.AlterModelOptions(
-            name='pendrives',
-            options={'ordering': ['-id']},
+            name="pendrives",
+            options={"ordering": ["-id"]},
         ),
         migrations.AlterModelOptions(
-            name='phones',
-            options={'ordering': ['-id']},
+            name="phones",
+            options={"ordering": ["-id"]},
         ),
         migrations.AlterModelOptions(
-            name='ram',
-            options={'ordering': ['-id']},
+            name="ram",
+            options={"ordering": ["-id"]},
         ),
         migrations.AlterModelOptions(
-            name='routers',
-            options={'ordering': ['-id']},
+            name="routers",
+            options={"ordering": ["-id"]},
         ),
         migrations.AlterModelOptions(
-            name='ssd',
-            options={'ordering': ['-id']},
+            name="ssd",
+            options={"ordering": ["-id"]},
         ),
         migrations.AlterModelOptions(
-            name='switches',
-            options={'ordering': ['-id']},
+            name="switches",
+            options={"ordering": ["-id"]},
         ),
         migrations.AlterModelOptions(
-            name='tv',
-            options={'ordering': ['-id']},
+            name="tv",
+            options={"ordering": ["-id"]},
         ),
     ]

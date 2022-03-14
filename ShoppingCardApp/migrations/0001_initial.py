@@ -11,59 +11,173 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('ProductApp', '0001_initial'),
+        ("ProductApp", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Customer',
+            name="Customer",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('email', models.CharField(blank=True, max_length=30, null=True)),
-                ('user', models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("email", models.CharField(blank=True, max_length=30, null=True)),
+                (
+                    "user",
+                    models.OneToOneField(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Order',
+            name="Order",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date_order', models.DateTimeField(auto_now_add=True)),
-                ('complete', models.CharField(choices=[('Sent', 'Sent'), ('Cancelled', 'Cancelled'), ('In progress', 'In progress'), ('Received', 'Received')], default='Received', max_length=200)),
-                ('transaction_id', models.CharField(blank=True, default='', max_length=200)),
-                ('transaction_status', models.BooleanField(default=False)),
-                ('transaction_finished', models.DateTimeField(blank=True, null=True)),
-                ('customer', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='ShoppingCardApp.customer')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("date_order", models.DateTimeField(auto_now_add=True)),
+                (
+                    "complete",
+                    models.CharField(
+                        choices=[
+                            ("Sent", "Sent"),
+                            ("Cancelled", "Cancelled"),
+                            ("In progress", "In progress"),
+                            ("Received", "Received"),
+                        ],
+                        default="Received",
+                        max_length=200,
+                    ),
+                ),
+                (
+                    "transaction_id",
+                    models.CharField(blank=True, default="", max_length=200),
+                ),
+                ("transaction_status", models.BooleanField(default=False)),
+                ("transaction_finished", models.DateTimeField(blank=True, null=True)),
+                (
+                    "customer",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="ShoppingCardApp.customer",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='ShoppingCard',
+            name="ShoppingCard",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='ShippingAddress',
+            name="ShippingAddress",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('address', models.CharField(max_length=200, null=True)),
-                ('city', models.CharField(max_length=200, null=True)),
-                ('state', models.CharField(max_length=200, null=True)),
-                ('zipcode', models.CharField(max_length=200, null=True)),
-                ('data_added', models.DateTimeField(auto_now_add=True)),
-                ('customer', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='ShoppingCardApp.customer')),
-                ('order', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='ShoppingCardApp.order')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("address", models.CharField(max_length=200, null=True)),
+                ("city", models.CharField(max_length=200, null=True)),
+                ("state", models.CharField(max_length=200, null=True)),
+                ("zipcode", models.CharField(max_length=200, null=True)),
+                ("data_added", models.DateTimeField(auto_now_add=True)),
+                (
+                    "customer",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="ShoppingCardApp.customer",
+                    ),
+                ),
+                (
+                    "order",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="ShoppingCardApp.order",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='OrderItem',
+            name="OrderItem",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantity', models.IntegerField(blank=True, default=0, null=True)),
-                ('date_ordered', models.DateTimeField(auto_now_add=True)),
-                ('status', models.CharField(choices=[('Colecting', 'Collecting'), ('Collected', 'Collected'), ('Sent', 'Sent')], default='Collecting', max_length=200)),
-                ('bought', models.IntegerField(blank=True, default=0, null=True)),
-                ('order', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='ShoppingCardApp.order')),
-                ('product', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='ProductApp.mainproductdatabase')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("quantity", models.IntegerField(blank=True, default=0, null=True)),
+                ("date_ordered", models.DateTimeField(auto_now_add=True)),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("Colecting", "Collecting"),
+                            ("Collected", "Collected"),
+                            ("Sent", "Sent"),
+                        ],
+                        default="Collecting",
+                        max_length=200,
+                    ),
+                ),
+                ("bought", models.IntegerField(blank=True, default=0, null=True)),
+                (
+                    "order",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="ShoppingCardApp.order",
+                    ),
+                ),
+                (
+                    "product",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="ProductApp.mainproductdatabase",
+                    ),
+                ),
             ],
         ),
     ]
