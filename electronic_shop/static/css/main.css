@@ -185,6 +185,9 @@ a {
 .bg-light-grey {
   background-color: whitesmoke; }
 
+.bg-dark {
+  background-color: #343a40; }
+
 .font-red {
   color: #ff503c !important; }
   .font-red:hover {
@@ -602,6 +605,9 @@ a {
 
 .bg-light-grey {
   background-color: whitesmoke; }
+
+.bg-dark {
+  background-color: #343a40; }
 
 .font-red {
   color: #ff503c !important; }
@@ -6232,6 +6238,16 @@ a {
 
 .nav-item i {
   padding: 0.5rem; }
+
+.toast {
+  display: block;
+  opacity: 1;
+  flex-basis: 1460px; }
+
+.btn-light-cookie {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa; }
 
 .navbar {
   display: grid;

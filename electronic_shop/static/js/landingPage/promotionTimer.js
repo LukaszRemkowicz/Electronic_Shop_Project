@@ -20,9 +20,6 @@ function countDownLandingPage(){
     let newDate = new Date(promoDate);
     const now = new Date();
 
-    console.log('timer', promoDate)
-
-
     newDate.setDate(newDate.getDate()+1);
 
     // if (now.getSeconds() == newDate.getSeconds()) {
@@ -34,9 +31,6 @@ function countDownLandingPage(){
     let timeSeconds = Math.floor((offerTime / 1000) % 60);
     let timeMinutes = Math.floor((offerTime / (1000 * 60) % 60));
     let timeHours = Math.floor((offerTime / (1000 * 60 * 60) % 24));
-
-    console.log('offerTime', timeSeconds, timeMinutes, timeHours)
-
 
     if(timeHours <= 0 && timeMinutes <= 0 && timeSeconds <= 0){
         try{

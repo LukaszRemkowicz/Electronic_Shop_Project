@@ -119,7 +119,7 @@ for prod, folder in zip(products, folders):
             )
         except:
             pass
-
+        print(f'Product {product.name} created')
 
 """ Choose random products and change "product of the day" field. Adding promotion """
 products = list(MainProductDatabase.objects.all())
