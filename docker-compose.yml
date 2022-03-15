@@ -10,6 +10,7 @@ services:
       - "8000:8000"
     volumes:
       - .:/electronic_shop
+      - postgres:/vol/postgres
     command: >
       sh -c "python manage.py wait_for_db &&
               python manage.py migrate &&
@@ -20,7 +21,6 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
       - SECRET_KEY=${SECRET_KEY}
-      # - DEBUG=1
     depends_on:
       - db
     restart: always
@@ -35,6 +35,5 @@ services:
       - 5454:5454/tcp
     restart: always
 
-
-
-# while !</dev/tcp/db/5432; do sleep 1; done;
+volumes:
+  postgres:
