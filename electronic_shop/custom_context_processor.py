@@ -46,9 +46,7 @@ def login_form_content(request):
         )
         if product_of_the_day_db:
             
-            product_of_the_day = MainProductDatabase.objects.get(
-                id=product_of_the_day.product.id
-            )
+            product_of_the_day = product_of_the_day_db.product
 
     return {
         "login_form": form,
