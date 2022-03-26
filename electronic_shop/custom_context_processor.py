@@ -45,7 +45,7 @@ def login_form_content(request):
             ProductOfTheDayDB.objects.all().order_by("-date_start").first()
         )
         if product_of_the_day_db:
-            
+
             product_of_the_day = MainProductDatabase.objects.get(
                 id=product_of_the_day.product.id
             )
