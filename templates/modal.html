@@ -1,0 +1,39 @@
+{% load static %}
+
+<div class="container">
+
+{% comment %}  
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">
+Modal with multiple actions
+</button>
+  {% endcomment %}
+<!-- Modal -->
+  <div class="modal my-welcome-modal" id="myModaL" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header justify-content-center">
+          <h4 class="modal-title" id="myModalLabel">Welcome on my page!</h4>
+        </div>
+
+        <div class="modal-body">
+          <p class='m-2'>
+            This website is just a aplication made for training my programmer skills. <br />
+            Its not a real online shop! <br />
+            You can test here buying products, making a products review etc. <br />
+            For security porpose, you can't create here accounts. You can use testing account with credentials: <br />
+            <span>login</span>: <span class="font-red">test</span> <br />
+            <span>password</span>: <span class="font-red">test</span>
+          </p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn btn-info my-welcome-modal-btn" data-dismiss="modal">OK, i understand</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="{% static 'js/my-welcome-modal.js' %}"></script>

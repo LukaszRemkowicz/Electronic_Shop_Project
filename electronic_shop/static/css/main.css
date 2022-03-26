@@ -6249,6 +6249,15 @@ a {
   background-color: #f8f9fa;
   border-color: #f8f9fa; }
 
+.my-welcome-modal {
+  display: block;
+  height: 50vh !important;
+  top: 25vh; }
+  .my-welcome-modal p {
+    font-weight: 100; }
+  .my-welcome-modal span {
+    font-weight: 500; }
+
 .navbar {
   display: grid;
   grid-template-columns: 1fr 2fr 1.1fr;
