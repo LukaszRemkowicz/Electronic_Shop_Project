@@ -70,10 +70,13 @@
 </head>
 
 <body>
+
     {% include 'modal.html' %}
+    {% include 'messages.html' %}
     {% include 'nav.html' %}
 
     {% block content %}{% endblock %}
+
     {% include 'cookie.html' %}
     {% include 'footer.html' %}
     {% load landing_page %}

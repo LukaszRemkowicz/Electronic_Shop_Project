@@ -517,6 +517,41 @@ class MainProductDatabase(models.Model):
         else:
             pass
 
+    @property
+    def product_details(self):
+
+        if self.monitors_product_data:
+            return self.monitors_product_data
+        elif self.phones_product_data:
+            return self.phones_product_data
+        elif self.laptops_product_data:
+            return self. laptops_product_data
+        elif self.monitors_product_data:
+            return self.monitors_product_data
+        elif self.pc_product_data:
+            return self.pc_product_data
+        elif self.accesories_for_laptop:
+            return self.accesories_for_laptop
+        elif self.ssd_product_data:
+            return self.ssd_product_data
+        elif self.graph_product_data:
+            return self.graph_product_data
+        elif self.ram_product_data:
+            return self.ram_product_data
+        elif self.pendrive_product_data:
+            return self.pendrive_product_data
+        elif self.switch_product_data:
+            return self.switch_product_data
+        elif self.motherboard_product_data:
+            return self.motherboard_product_data
+        elif self.cpu_product_data:
+            return self.cpu_product_data
+        elif self.tv_product_data:
+            return self.tv_product_data
+        elif self.headphone_product_data:
+            return self.headphone_product_data
+        elif self.router_product_data:
+            return self.router_product_data
 
 class Phones(Inherit):
     ram = models.CharField(max_length=50, default="")
