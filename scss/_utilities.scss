@@ -250,6 +250,10 @@ a{
     border-radius: 10px;
 }
 
+.border_radius_5px{
+    border-radius: 10px;
+}
+
 .active{
 
     &-product-content{
@@ -321,80 +325,23 @@ a{
     }
 }
 
-.alerts{
-    // height: 5rem;
-    // height: 100% !important;
-    // -webkit-animation: cssAnimation 10s forwards;
-    animation: cssAnimation 10s forwards;
+.alerts-animation{
+    animation: cssAnimation 8s forwards;
 }
 
 @keyframes cssAnimation {
     0%   {
         opacity: 1;
-        // padding: 1rem;
         min-height: 100%;
-        height: 3rem;
     }
-    10%   {
+
+    30% {
         opacity: 1;
-        // padding: 1rem;
-        min-height: 100%;
-        height: 3rem    ;
     }
-    20%   {
-        opacity: 1;
-        // padding: 1rem;
-        min-height: 100%;
-        height: 3rem    ;
-    }
-    30%   {
-        opacity: 1;
-        // padding: 1rem;
-        min-height: 100%;
-        height: 3rem    ;
-    }
-    40%   {
-        opacity: 1;
-        // padding: 1rem;
-        min-height: 100%;
-        height: 3rem    ;
-    }
-    50%   {
-        opacity: 1;
-        // padding: 1rem;
-        min-height: 100%;
-        height: 3rem    ;
-    }
-    60%   {
-        opacity: 1;
-        // padding: 1rem;
-        min-height: 100%;
-        height: 3rem    ;
-    }
-    70%   {
-        opacity: 1;
-        // padding: 1rem;
-        min-height: 100%;
-        height: 3rem    ;
-    }
-    80%   {
-        opacity: 1;
-        // padding: 1rem;
-        min-height: 100%;
-        height: 3rem    ;
-    }
-    90%  {
-        opacity: 1;
-        // padding: 1rem;
-        min-height: 100%;
-        height: 3rem    ;
-    }
+
     100% {
         opacity: 0;
         visibility: hidden;
-        padding: 0px;
-        height: 0;
-        width: 0;
         display: none;
     }
 }

@@ -391,9 +391,12 @@ class MainProductDatabase(models.Model):
         ):
 
             self.promotion = None
+
             product = ProductOfTheDayDB.objects.filter(ean=self.ean).last()
-            product.end_time = timezone.now()
-            product.save()
+
+            if product:
+                product.end_time = timezone.now()
+                product.save()
 
         super().save(*args, **kwargs)
 

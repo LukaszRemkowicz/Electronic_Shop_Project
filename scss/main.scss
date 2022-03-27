@@ -1197,9 +1197,24 @@
     }
 }
 
+.messages-div{
+    position: fixed;
+    top: 12rem;
+    z-index: 1000;
+    width: 100%;
+    margin: 0 auto;
+
+    .alerts{
+        width: 40vw !important;
+        // opacity: 0.4;
+        button{
+            margin: 5px
+        }
+    }
+}
+
 
 // Import Media Queries
 @import 'media';
-
 
 
