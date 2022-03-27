@@ -1,3 +1,5 @@
+{% load static %}
+
 {% for message in messages %}
 
     <div class="mt-2 messages-div d-flex justify-content-center ">
@@ -12,3 +14,5 @@
     </div>
 
 {% endfor %}
+
+<script type='text/javascript' src='{% static "js/messages.js" %}'></script>
