@@ -1730,6 +1730,11 @@ $width_summary: 40rem;
 }
 
 @media (max-width: 600px){
+
+    .alerts{
+        width: 80vw !important;
+    }
+
     .the-best-of{
         grid-gap: 0;
 

@@ -5486,6 +5486,8 @@ a {
     margin-bottom: 0 !important; } }
 
 @media (max-width: 600px) {
+  .alerts {
+    width: 80vw !important; }
   .the-best-of {
     grid-gap: 0; }
     .the-best-of .main-pic {
@@ -6873,7 +6875,7 @@ a {
 
 .messages-div {
   position: fixed;
-  top: 12rem;
+  top: 2rem;
   z-index: 1000;
   width: 100%;
   margin: 0 auto; }
@@ -10826,6 +10828,8 @@ a {
     margin-bottom: 0 !important; } }
 
 @media (max-width: 600px) {
+  .alerts {
+    width: 80vw !important; }
   .the-best-of {
     grid-gap: 0; }
     .the-best-of .main-pic {
