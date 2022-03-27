@@ -2,6 +2,8 @@ let getHour = document.querySelector('.time-hour');
 let getMinutes = document.querySelector('.time-minutes');
 let getSeconds = document.querySelector('.time-seconds');
 let getProductId;
+let newIntervalLandingpage;
+
 
 try{
     getProductId = document.querySelector('.sold-left .update-cart').dataset.product
@@ -9,9 +11,9 @@ try{
     getProductId = null
 }
 
-if(getProductId){
-    countDownLandingPage();
-}
+// if(getProductId){
+//     countDownLandingPage();
+// }
 
 function countDownLandingPage(){
     const promoDate = document.querySelector('.hour').dataset.promotime
@@ -33,6 +35,7 @@ function countDownLandingPage(){
     let timeHours = Math.floor((offerTime / (1000 * 60 * 60) % 24));
 
     if(timeHours <= 0 && timeMinutes <= 0 && timeSeconds <= 0){
+
         try{
             clearInterval(newIntervalLandingpage);
         } catch (e){
@@ -106,8 +109,6 @@ function resetOfferDate() {
     futureDate.setDate(futureDate.getDate() + 15);
     return futureDate;
 }
-
-let newIntervalLandingpage;
 
 if(getProductId){
     newIntervalLandingpage = setInterval(countDownLandingPage, 1000);

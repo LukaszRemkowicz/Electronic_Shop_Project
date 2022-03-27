@@ -1,7 +1,7 @@
 from django.urls import path
-from django.contrib.auth.views import LogoutView as Logout
+# from django.contrib.auth.views import LogoutView as Logout
 
-from .views import DetailOrder, UserAccount
+from .views import DetailOrder, UserAccount, Logout
 from .views import Register
 
 urlpatterns = [

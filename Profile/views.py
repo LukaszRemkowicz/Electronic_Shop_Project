@@ -3,11 +3,16 @@ from typing import Any, Dict
 from django.shortcuts import redirect
 from django.http import HttpResponse, HttpRequest
 from django.contrib import messages
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
+from django.views import View
 from django.views.generic.edit import FormView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login
+from django.contrib.auth.views import SuccessURLAllowedHostsMixin
+from django.contrib.auth.views import LogoutView
+from django.views.generic import TemplateView
+
 
 from .forms import RegisterForm, AcceptTerms, CustomLoginForm
 from .models import User
@@ -93,3 +98,15 @@ class Register(FormView):
             return redirect("/")
 
         return super().dispatch(request, *args, **kwargs)
+
+class Logout(LogoutView):
+    """ Override logout view to add message"""
+
+    def get_next_page(self):
+
+        next_page = super().get_next_page()
+        messages.add_message(
+            self.request, messages.WARNING,
+            'You successfully log out!'
+        )
+        return next_page
