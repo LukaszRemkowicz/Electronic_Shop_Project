@@ -784,36 +784,36 @@ a {
   .form-container .inside-container {
     max-width: 100%;
     height: 100%;
-    padding: 5rem 5rem;
-    justify-content: space-between; }
+    padding: 3rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    grid-gap: 1rem; }
     .form-container .inside-container p a {
       color: black;
       border-bottom: 1px solid #ff503c;
-      font-size: 1.2rem;
+      font-size: 1rem;
       padding-bottom: 0.5rem; }
-    .form-container .inside-container .forgot-pass {
-      margin-top: 2rem; }
     .form-container .inside-container .sign-in {
       height: 40px;
       width: 100%;
       align-items: center;
       justify-content: space-between; }
       .form-container .inside-container .sign-in p {
-        margin-bottom: 0; }
+        margin-bottom: 0;
+        font-size: 0.8rem !important;
+        width: fit-content; }
         .form-container .inside-container .sign-in p span {
           color: #ff503c;
           padding-left: 0.5rem;
           font-weight: 100; }
       .form-container .inside-container .sign-in h3 {
-        margin-bottom: 0; }
-      .form-container .inside-container .sign-in h3, .form-container .inside-container .sign-in p {
-        font-size: 1.3rem !important;
-        width: fit-content; }
+        margin-bottom: 0;
+        font-size: 1rem; }
     .form-container .inside-container .social-sigin h2 {
       text-align: left;
-      font-size: 1.2rem;
-      padding-bottom: 1rem;
-      padding-top: 2rem; }
+      font-size: 0.8rem;
+      padding-bottom: 1rem; }
     .form-container .inside-container .social-buttons {
       grid-template-columns: repeat(3, 3fr);
       grid-gap: 1rem; }
@@ -823,37 +823,30 @@ a {
         justify-content: center;
         height: 40px;
         background: white;
-        font-size: 1.2rem; }
-        .form-container .inside-container .social-buttons a:nth-child(1) img {
-          width: 20px;
-          height: 20px;
-          margin-right: 1rem; }
-        .form-container .inside-container .social-buttons a:nth-child(2) {
-          background: RGB(80, 171, 241);
-          color: white; }
-          .form-container .inside-container .social-buttons a:nth-child(2) img {
-            width: 30px;
-            height: 30px;
-            margin-right: 0.5rem; }
+        font-size: 1.2rem;
+        max-width: 100%;
+        max-height: 100%;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        background: rgba(255, 255, 255, 0.1); }
+        .form-container .inside-container .social-buttons a img {
+          padding: 0.2rem;
+          max-height: 100%;
+          object-fit: contain; }
         .form-container .inside-container .social-buttons a:nth-child(3) {
           background: RGB(60, 90, 154);
           color: white; }
-          .form-container .inside-container .social-buttons a:nth-child(3) img {
-            width: 30px;
-            height: 30px;
-            margin-right: 0.5rem; }
   .form-container form {
-    margin-top: 3rem;
-    grid-gap: 2rem;
+    margin-top: 1rem;
+    grid-gap: 1rem;
     width: 100%; }
     .form-container form input {
       width: 100%;
-      height: 4rem;
       padding-bottom: 2rem;
-      margin-top: 0.5rem;
-      padding: 0.7rem;
+      padding: 6px 24px;
       padding-top: 0.5rem;
-      font-size: 1.3rem;
+      font-size: 1rem;
       font-weight: lighter;
       border: none; }
       .form-container form input::placeholder {
@@ -864,7 +857,7 @@ a {
       height: 20px; }
       .form-container form .check p {
         width: 100%;
-        font-size: 1.3rem;
+        font-size: 0.8rem;
         text-align: left;
         margin-bottom: 0; }
       .form-container form .check .checkbox {
@@ -912,10 +905,39 @@ a {
           transform: rotate(-45deg) scale(1); }
     .form-container form button {
       width: 100%;
-      height: 4rem;
       font-size: 1.3rem;
       font-weight: 100;
-      border: none; }
+      border: none;
+      box-shadow: inset 0px 1px 0px 0px #cf866c;
+      background: linear-gradient(to bottom, #ff503c 5%, #e4401c 100%);
+      border-radius: 3px;
+      border: 1px solid #ff503c;
+      display: inline-block;
+      cursor: pointer;
+      color: #ffffff;
+      font-size: 13px;
+      padding: 6px 24px;
+      text-decoration: none;
+      text-shadow: 0px 1px 0px #854629; }
+      .form-container form button:hover {
+        background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+        background-color: #bc3315; }
+
+.login-form {
+  position: relative;
+  padding-bottom: 1rem; }
+  .login-form::after {
+    content: '';
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    border-bottom: 1px solid;
+    border-color: rgba(255, 80, 60, 0.3);
+    width: 100%; }
+
+.not_member p {
+  font-size: 0.8rem;
+  font-weight: 100; }
 
 #register-form .form-group input {
   height: 3.5rem; }
@@ -2065,217 +2087,12 @@ a {
         .footer .icons > i > svg {
           width: 50% !important; } }
 
-@media (max-width: 4000px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 15.5% !important; } }
-
-@media (max-width: 3950px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 16% !important; } }
-
-@media (max-width: 3900px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 16.5% !important; } }
-
-@media (max-width: 3850px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 17% !important; } }
-
-@media (max-width: 3800px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 17.5% !important; } }
-
-@media (max-width: 3750px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 18% !important; } }
-
-@media (max-width: 3700px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 18.5% !important; } }
-
-@media (max-width: 3650px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 19% !important; } }
-
-@media (max-width: 3600px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 19.5% !important; } }
-
-@media (max-width: 3550px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 20% !important; } }
-
-@media (max-width: 3500px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 20.5% !important; } }
-
-@media (max-width: 3450px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 21% !important; } }
-
-@media (max-width: 3400px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 21.5% !important; } }
-
-@media (max-width: 3350px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 22% !important; } }
-
-@media (max-width: 3300px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 22.5% !important; } }
-
-@media (max-width: 3250px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 23% !important; } }
-
-@media (max-width: 3200px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 23.5% !important; } }
-
-@media (max-width: 3150px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 24% !important; } }
-
-@media (max-width: 3100px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 24.5% !important; } }
-
-@media (max-width: 3050px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 25% !important; } }
-
-@media (max-width: 3000px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 25.5% !important; } }
-
-@media (max-width: 2950px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 26% !important; } }
-
-@media (max-width: 2900px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 26.5% !important; } }
-
-@media (max-width: 2850px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 27% !important; } }
-
-@media (max-width: 2800px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 27.5% !important; } }
-
-@media (max-width: 2750px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 28% !important; } }
-
-@media (max-width: 2700px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 28.5% !important; } }
-
-@media (max-width: 2650px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 29% !important; } }
-
-@media (max-width: 2600px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 29.5% !important; } }
-
-@media (max-width: 2550px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 30% !important; } }
-
-@media (max-width: 2500px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 30.5% !important; } }
-
-@media (max-width: 2450px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 31% !important; } }
-
-@media (max-width: 2400px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 31.5% !important; } }
-
-@media (max-width: 2350px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 32% !important; } }
-
-@media (max-width: 2300px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 32.5% !important; } }
-
-@media (max-width: 2250px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 33% !important; } }
-
-@media (max-width: 2200px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 33.5% !important; } }
-
-@media (max-width: 2150px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 34% !important; } }
-
-@media (max-width: 2100px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 34.5% !important; } }
-
-@media (max-width: 2050px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 35% !important; } }
-
-@media (max-width: 2000px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 35.5% !important; } }
-
-@media (max-width: 1950px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 36% !important; } }
-
-@media (max-width: 1900px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 36.5% !important; } }
-
-@media (max-width: 1850px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 37% !important; } }
-
-@media (max-width: 1800px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 37.5% !important; } }
-
-@media (max-width: 1750px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 38% !important; } }
-
-@media (max-width: 1700px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 38.5% !important; } }
-
-@media (max-width: 1650px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 39% !important; } }
-
-@media (max-width: 1600px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 39.5% !important; } }
-
-@media (max-width: 1550px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 40% !important; } }
-
 @media (max-width: 1500px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 40.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2283,16 +2100,11 @@ a {
       display: block; } }
 
 @media (max-width: 1450px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 41% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2300,16 +2112,11 @@ a {
       display: block; } }
 
 @media (max-width: 1400px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 41.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2317,16 +2124,11 @@ a {
       display: block; } }
 
 @media (max-width: 1350px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 42% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2334,16 +2136,11 @@ a {
       display: block; } }
 
 @media (max-width: 1300px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 42.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2351,16 +2148,11 @@ a {
       display: block; } }
 
 @media (max-width: 1250px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 43% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2368,16 +2160,11 @@ a {
       display: block; } }
 
 @media (max-width: 1200px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 43.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2385,16 +2172,11 @@ a {
       display: block; } }
 
 @media (max-width: 1150px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 44% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2402,16 +2184,11 @@ a {
       display: block; } }
 
 @media (max-width: 1100px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 44.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2419,16 +2196,11 @@ a {
       display: block; } }
 
 @media (max-width: 1050px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 45% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2436,16 +2208,11 @@ a {
       display: block; } }
 
 @media (max-width: 1000px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 45.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2453,16 +2220,11 @@ a {
       display: block; } }
 
 @media (max-width: 950px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 46% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2470,16 +2232,11 @@ a {
       display: block; } }
 
 @media (max-width: 900px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 46.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2487,16 +2244,11 @@ a {
       display: block; } }
 
 @media (max-width: 850px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 47% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2504,16 +2256,11 @@ a {
       display: block; } }
 
 @media (max-width: 800px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 47.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2521,16 +2268,11 @@ a {
       display: block; } }
 
 @media (max-width: 750px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 48% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2538,16 +2280,11 @@ a {
       display: block; } }
 
 @media (max-width: 700px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 48.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2555,16 +2292,11 @@ a {
       display: block; } }
 
 @media (max-width: 650px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 49% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2572,16 +2304,11 @@ a {
       display: block; } }
 
 @media (max-width: 600px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 49.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2589,16 +2316,11 @@ a {
       display: block; } }
 
 @media (max-width: 550px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 50% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2606,16 +2328,11 @@ a {
       display: block; } }
 
 @media (max-width: 500px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 50.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2623,16 +2340,11 @@ a {
       display: block; } }
 
 @media (max-width: 450px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 51% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2640,16 +2352,11 @@ a {
       display: block; } }
 
 @media (max-width: 400px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 51.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2657,16 +2364,11 @@ a {
       display: block; } }
 
 @media (max-width: 350px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 52% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2674,16 +2376,11 @@ a {
       display: block; } }
 
 @media (max-width: 300px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 52.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2691,16 +2388,11 @@ a {
       display: block; } }
 
 @media (max-width: 250px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 53% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2708,16 +2400,11 @@ a {
       display: block; } }
 
 @media (max-width: 200px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 53.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2725,16 +2412,11 @@ a {
       display: block; } }
 
 @media (max-width: 150px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 54% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -2742,16 +2424,11 @@ a {
       display: block; } }
 
 @media (max-width: 100px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 54.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -6373,7 +6050,6 @@ a {
         transform: translate(-90%) rotate(-90deg); }
   .modal-dialog {
     max-width: 100vw;
-    height: 70% !important;
     -webkit-transform: translate(-50%, -50%) !important;
     transform: translate(-50%, -50%) !important;
     position: absolute !important;
@@ -6412,8 +6088,6 @@ a {
 
 .check {
   height: 40px !important; }
-  .check p {
-    padding-bottom: 4rem; }
 
 .another-navbar {
   height: 3rem; }
@@ -7405,217 +7079,12 @@ a {
         .footer .icons > i > svg {
           width: 50% !important; } }
 
-@media (max-width: 4000px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 15.5% !important; } }
-
-@media (max-width: 3950px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 16% !important; } }
-
-@media (max-width: 3900px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 16.5% !important; } }
-
-@media (max-width: 3850px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 17% !important; } }
-
-@media (max-width: 3800px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 17.5% !important; } }
-
-@media (max-width: 3750px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 18% !important; } }
-
-@media (max-width: 3700px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 18.5% !important; } }
-
-@media (max-width: 3650px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 19% !important; } }
-
-@media (max-width: 3600px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 19.5% !important; } }
-
-@media (max-width: 3550px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 20% !important; } }
-
-@media (max-width: 3500px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 20.5% !important; } }
-
-@media (max-width: 3450px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 21% !important; } }
-
-@media (max-width: 3400px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 21.5% !important; } }
-
-@media (max-width: 3350px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 22% !important; } }
-
-@media (max-width: 3300px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 22.5% !important; } }
-
-@media (max-width: 3250px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 23% !important; } }
-
-@media (max-width: 3200px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 23.5% !important; } }
-
-@media (max-width: 3150px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 24% !important; } }
-
-@media (max-width: 3100px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 24.5% !important; } }
-
-@media (max-width: 3050px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 25% !important; } }
-
-@media (max-width: 3000px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 25.5% !important; } }
-
-@media (max-width: 2950px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 26% !important; } }
-
-@media (max-width: 2900px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 26.5% !important; } }
-
-@media (max-width: 2850px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 27% !important; } }
-
-@media (max-width: 2800px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 27.5% !important; } }
-
-@media (max-width: 2750px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 28% !important; } }
-
-@media (max-width: 2700px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 28.5% !important; } }
-
-@media (max-width: 2650px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 29% !important; } }
-
-@media (max-width: 2600px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 29.5% !important; } }
-
-@media (max-width: 2550px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 30% !important; } }
-
-@media (max-width: 2500px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 30.5% !important; } }
-
-@media (max-width: 2450px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 31% !important; } }
-
-@media (max-width: 2400px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 31.5% !important; } }
-
-@media (max-width: 2350px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 32% !important; } }
-
-@media (max-width: 2300px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 32.5% !important; } }
-
-@media (max-width: 2250px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 33% !important; } }
-
-@media (max-width: 2200px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 33.5% !important; } }
-
-@media (max-width: 2150px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 34% !important; } }
-
-@media (max-width: 2100px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 34.5% !important; } }
-
-@media (max-width: 2050px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 35% !important; } }
-
-@media (max-width: 2000px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 35.5% !important; } }
-
-@media (max-width: 1950px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 36% !important; } }
-
-@media (max-width: 1900px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 36.5% !important; } }
-
-@media (max-width: 1850px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 37% !important; } }
-
-@media (max-width: 1800px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 37.5% !important; } }
-
-@media (max-width: 1750px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 38% !important; } }
-
-@media (max-width: 1700px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 38.5% !important; } }
-
-@media (max-width: 1650px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 39% !important; } }
-
-@media (max-width: 1600px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 39.5% !important; } }
-
-@media (max-width: 1550px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 40% !important; } }
-
 @media (max-width: 1500px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 40.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7623,16 +7092,11 @@ a {
       display: block; } }
 
 @media (max-width: 1450px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 41% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7640,16 +7104,11 @@ a {
       display: block; } }
 
 @media (max-width: 1400px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 41.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7657,16 +7116,11 @@ a {
       display: block; } }
 
 @media (max-width: 1350px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 42% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7674,16 +7128,11 @@ a {
       display: block; } }
 
 @media (max-width: 1300px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 42.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7691,16 +7140,11 @@ a {
       display: block; } }
 
 @media (max-width: 1250px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 43% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7708,16 +7152,11 @@ a {
       display: block; } }
 
 @media (max-width: 1200px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 43.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7725,16 +7164,11 @@ a {
       display: block; } }
 
 @media (max-width: 1150px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 44% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7742,16 +7176,11 @@ a {
       display: block; } }
 
 @media (max-width: 1100px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 44.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7759,16 +7188,11 @@ a {
       display: block; } }
 
 @media (max-width: 1050px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 45% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7776,16 +7200,11 @@ a {
       display: block; } }
 
 @media (max-width: 1000px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 45.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7793,16 +7212,11 @@ a {
       display: block; } }
 
 @media (max-width: 950px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 46% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7810,16 +7224,11 @@ a {
       display: block; } }
 
 @media (max-width: 900px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 46.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7827,16 +7236,11 @@ a {
       display: block; } }
 
 @media (max-width: 850px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 47% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7844,16 +7248,11 @@ a {
       display: block; } }
 
 @media (max-width: 800px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 47.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7861,16 +7260,11 @@ a {
       display: block; } }
 
 @media (max-width: 750px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 48% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7878,16 +7272,11 @@ a {
       display: block; } }
 
 @media (max-width: 700px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 48.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7895,16 +7284,11 @@ a {
       display: block; } }
 
 @media (max-width: 650px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 49% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7912,16 +7296,11 @@ a {
       display: block; } }
 
 @media (max-width: 600px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 49.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7929,16 +7308,11 @@ a {
       display: block; } }
 
 @media (max-width: 550px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 50% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7946,16 +7320,11 @@ a {
       display: block; } }
 
 @media (max-width: 500px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 50.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7963,16 +7332,11 @@ a {
       display: block; } }
 
 @media (max-width: 450px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 51% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7980,16 +7344,11 @@ a {
       display: block; } }
 
 @media (max-width: 400px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 51.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -7997,16 +7356,11 @@ a {
       display: block; } }
 
 @media (max-width: 350px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 52% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -8014,16 +7368,11 @@ a {
       display: block; } }
 
 @media (max-width: 300px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 52.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -8031,16 +7380,11 @@ a {
       display: block; } }
 
 @media (max-width: 250px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 53% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -8048,16 +7392,11 @@ a {
       display: block; } }
 
 @media (max-width: 200px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 53.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -8065,16 +7404,11 @@ a {
       display: block; } }
 
 @media (max-width: 150px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 54% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }
@@ -8082,16 +7416,11 @@ a {
       display: block; } }
 
 @media (max-width: 100px) and (min-width: 100px) {
-  .modal-dialog {
-    width: 54.5% !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 2rem; }
     .sign-in h3, .sign-in p {
       padding-bottom: 1rem; }
-    .sign-in p {
-      width: 100% !important;
-      text-align: center; }
     .sign-in h3 span {
       color: #ff503c;
       font-size: 1.5rem; }

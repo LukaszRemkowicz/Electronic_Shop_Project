@@ -1007,10 +1007,10 @@ $form-inline: 100%;
 @while $min-width-for-login-modal <= $max-width-for-login-modal{
     @media (max-width: $max-width-for-login-modal) and (min-width: $min-width-for-login-modal){
 
-        .modal-dialog{
-            width: $width-login-modal + 0.5% !important;
-            $width-login-modal: $width-login-modal + 0.5%
-        }
+        // .modal-dialog{
+        //     width: $width-login-modal + 0.5% !important;
+        //     $width-login-modal: $width-login-modal + 0.5%
+        // }
 
         @if $max-width-for-login-modal <= 1500px{
 
@@ -1023,10 +1023,10 @@ $form-inline: 100%;
                     padding-bottom: 1rem;
                 }
 
-                p{
-                    width: 100% !important;
-                    text-align: center;
-                }
+                // p{
+                //     width: 100% !important;
+                //     text-align: center;
+                // }
 
                 h3 span{
                     color: $main-red-color;
