@@ -1,10 +1,13 @@
 from functools import wraps
 from os import error as osErr
+import logging
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from . import models, utils
+
+logger = logging.getLogger(f'project.{__name__}')
 
 skip_signals = False
 

@@ -1,4 +1,5 @@
 from typing import Any, Dict
+import logging
 
 from django.shortcuts import redirect
 from django.http import HttpResponse, HttpRequest
@@ -13,11 +14,13 @@ from django.contrib.auth.views import SuccessURLAllowedHostsMixin
 from django.contrib.auth.views import LogoutView
 from django.views.generic import TemplateView
 
-
 from .forms import RegisterForm, AcceptTerms, CustomLoginForm
 from .models import User
 from ShoppingCardApp.models import Order, OrderItem
 from Landingpage.utils.url_path import get_url_path
+
+
+logger = logging.getLogger(f'project.{__name__}')
 
 
 class UserAccount(LoginRequiredMixin, FormView):

@@ -26,27 +26,10 @@ from ProductApp.utilss.models_utils import (
     filter_laptops,
     filter_monitors,
 )
+from electronic_shop.const import CATTEGORIES_CHOICES as CHOICES
 
 
 User = settings.AUTH_USER_MODEL
-
-CHOICES = [
-    ("Laptops", "Laptops"),
-    ("Phones", "Phones"),
-    ("PC", "PC"),
-    ("Monitors", "Monitors"),
-    ("Accesories for laptops", "Accesories for laptops"),
-    ("SSD", "SSD"),
-    ("Graphs", "Graphs"),
-    ("Ram", "Ram"),
-    ("Pendrives", "Pendrives"),
-    ("Routers", "Routers"),
-    ("Switches", "Switches"),
-    ("Motherboard", "Motherboard"),
-    ("CPU", "CPU"),
-    ("TV", "TV"),
-    ("Headphones", "Headphones"),
-]
 
 
 def product_image_file_path(instance, filename):
