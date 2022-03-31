@@ -1,7 +1,8 @@
 from typing import Any, Dict
+import logging
+
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
-
 from django.views.generic import ListView
 from django.conf import settings
 from django.urls import reverse
@@ -47,6 +48,8 @@ from ProductApp.utils import get_model_queryset
 # TODO change productApp models. Add "as"
 
 User = settings.AUTH_USER_MODEL
+logger = logging.getLogger(f"project.{__name__}")
+
 
 CATTEGORIES = [
     "Laptops",
@@ -185,6 +188,7 @@ class ProductsCart(ListView):
             products = cattegories[product_cattegory](self.request)
         except (KeyError, ObjectDoesNotExist):
             products = []
+            logger.exception("Exception in ProductsCart view occurred")
 
         # Filter products by popularity, trending filters etc.
         # Should be done at the end of all filters
@@ -205,6 +209,7 @@ class ProductsCart(ListView):
                 context["products_total"] = len(products)
 
             except ObjectDoesNotExist:
+                logger.exception("Exception in ProductsCart view occurred")
                 pass
 
         # Method is called from specific produc Model.

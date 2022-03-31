@@ -1,4 +1,5 @@
 import uuid
+import logging
 
 from django.db import models
 from django.contrib.auth.models import (
@@ -9,6 +10,9 @@ from django.contrib.auth.models import (
 
 from AddressBookApp.models import AddressBook
 from MessagesApp.models import Complaint, Question
+
+
+logger = logging.getLogger(f"project.{__name__}")
 
 
 class UserManager(BaseUserManager):

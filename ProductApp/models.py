@@ -26,27 +26,10 @@ from ProductApp.utilss.models_utils import (
     filter_laptops,
     filter_monitors,
 )
+from electronic_shop.const import CATTEGORIES_CHOICES as CHOICES
 
 
 User = settings.AUTH_USER_MODEL
-
-CHOICES = [
-    ("Laptops", "Laptops"),
-    ("Phones", "Phones"),
-    ("PC", "PC"),
-    ("Monitors", "Monitors"),
-    ("Accesories for laptops", "Accesories for laptops"),
-    ("SSD", "SSD"),
-    ("Graphs", "Graphs"),
-    ("Ram", "Ram"),
-    ("Pendrives", "Pendrives"),
-    ("Routers", "Routers"),
-    ("Switches", "Switches"),
-    ("Motherboard", "Motherboard"),
-    ("CPU", "CPU"),
-    ("TV", "TV"),
-    ("Headphones", "Headphones"),
-]
 
 
 def product_image_file_path(instance, filename):
@@ -528,7 +511,7 @@ class MainProductDatabase(models.Model):
         elif self.phones_product_data:
             return self.phones_product_data
         elif self.laptops_product_data:
-            return self. laptops_product_data
+            return self.laptops_product_data
         elif self.monitors_product_data:
             return self.monitors_product_data
         elif self.pc_product_data:
@@ -555,6 +538,7 @@ class MainProductDatabase(models.Model):
             return self.headphone_product_data
         elif self.router_product_data:
             return self.router_product_data
+
 
 class Phones(Inherit):
     ram = models.CharField(max_length=50, default="")
