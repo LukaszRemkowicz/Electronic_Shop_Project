@@ -9,7 +9,7 @@ from .models import Order, Customer, OrderItem
 from AddressBookApp.models import AddressBook
 
 
-logger = logging.getLogger(f'project.{__name__}')
+logger = logging.getLogger(f"project.{__name__}")
 
 
 def order_cart(request):

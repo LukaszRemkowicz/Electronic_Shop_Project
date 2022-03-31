@@ -511,7 +511,7 @@ class MainProductDatabase(models.Model):
         elif self.phones_product_data:
             return self.phones_product_data
         elif self.laptops_product_data:
-            return self. laptops_product_data
+            return self.laptops_product_data
         elif self.monitors_product_data:
             return self.monitors_product_data
         elif self.pc_product_data:
@@ -538,6 +538,7 @@ class MainProductDatabase(models.Model):
             return self.headphone_product_data
         elif self.router_product_data:
             return self.router_product_data
+
 
 class Phones(Inherit):
     ram = models.CharField(max_length=50, default="")

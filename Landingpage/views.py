@@ -19,7 +19,7 @@ from .models import ContentBase
 from electronic_shop.const import CATTEGORIES
 
 
-logger = logging.getLogger(f'project.{__name__}')
+logger = logging.getLogger(f"project.{__name__}")
 
 
 class LandingPage(FormView):
@@ -36,17 +36,17 @@ class LandingPage(FormView):
         if user is not None:
             login(self.request, user)
             messages.info(self.request, "You have logged in!")
-            logger.info(f'user {email} logged in')
+            logger.info(f"user {email} logged in")
         else:
             messages.error(self.request, "Username or password incorrect")
-            logger.info(f'Someone tried to log in')
+            logger.info(f"Someone tried to log in")
 
         return super(LandingPage, self).form_valid(form)
 
     def form_invalid(self, form):
         # messages.error(self.request, form.errors)
         messages.error(self.request, "Username or password incorrect")
-        logger.info(f'Someone tried to log in')
+        logger.info(f"Someone tried to log in")
 
         return redirect("landing-page")
 
@@ -69,7 +69,7 @@ class LandingPage(FormView):
         #     product_of_the_day = ""
         #     print(e)
         #     pass
-        
+
         # if product_of_the_day:
         #     date = timezone.now() - datetime.timedelta(days=7)
         #     product_of_the_day = Products.objects.filter(
@@ -97,7 +97,7 @@ class LandingPage(FormView):
             }
         except ProgrammingError:
             promotion_pieces = ""
-            logger.exception('Exception occurred')
+            logger.exception("Exception occurred")
 
         # context["product_of_the_day"] = product_of_the_day
         context["promotion_pieces"] = promotion_pieces

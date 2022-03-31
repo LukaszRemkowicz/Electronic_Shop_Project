@@ -7,7 +7,7 @@ from django.dispatch import receiver
 
 from . import models, utils
 
-logger = logging.getLogger(f'project.{__name__}')
+logger = logging.getLogger(f"project.{__name__}")
 
 skip_signals = False
 

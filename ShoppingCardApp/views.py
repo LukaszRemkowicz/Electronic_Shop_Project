@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from .utils import cart_data
 
 
-logger = logging.getLogger(f'project.{__name__}')
+logger = logging.getLogger(f"project.{__name__}")
 
 
 def address_checkout(request) -> HttpResponse:

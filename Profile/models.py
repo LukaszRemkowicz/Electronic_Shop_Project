@@ -12,7 +12,7 @@ from AddressBookApp.models import AddressBook
 from MessagesApp.models import Complaint, Question
 
 
-logger = logging.getLogger(f'project.{__name__}')
+logger = logging.getLogger(f"project.{__name__}")
 
 
 class UserManager(BaseUserManager):
