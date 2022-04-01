@@ -206,7 +206,7 @@ INTERNAL_IPS = [
 # }
 
 
-def get_logging_structure(LOGFILE_ROOT):
+def logging_structure(logfile_name):
     return {
         "version": 1,
         "disable_existing_loggers": False,
@@ -218,34 +218,34 @@ def get_logging_structure(LOGFILE_ROOT):
             "simple": {"format": "%(levelname)s %(message)s"},
         },
         "handlers": {
-            "profiles_file": {
+            "profile": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
-                "filename": os.path.join(LOGFILE_ROOT, "profiles.log"),
+                "filename": os.path.join(logfile_name, "profiles.log"),
                 "formatter": "verbose",
             },
-            "data_log_file": {
+            "data": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
-                "filename": os.path.join(LOGFILE_ROOT, "data.log"),
+                "filename": os.path.join(logfile_name, "data.log"),
                 "formatter": "verbose",
             },
-            "django_log_file": {
+            "django": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
-                "filename": os.path.join(LOGFILE_ROOT, "django.log"),
+                "filename": os.path.join(logfile_name, "django.log"),
                 "formatter": "verbose",
             },
-            "proj_log_file": {
+            "project": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
-                "filename": os.path.join(LOGFILE_ROOT, "project.log"),
+                "filename": os.path.join(logfile_name, "project.log"),
                 "formatter": "verbose",
             },
             "route_updater": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
-                "filename": os.path.join(LOGFILE_ROOT, "route.updater.log"),
+                "filename": os.path.join(logfile_name, "route.updater.log"),
                 "formatter": "verbose",
             },
             "console": {
@@ -256,16 +256,16 @@ def get_logging_structure(LOGFILE_ROOT):
         },
         "loggers": {
             "profiles": {
-                "handlers": ["console", "profiles_file"],
+                "handlers": ["console", "profile"],
                 "level": "DEBUG",
             },
             "django": {
-                "handlers": ["django_log_file"],
+                "handlers": ["django"],
                 "propagate": True,
                 "level": "ERROR",
             },
             "project": {
-                "handlers": ["proj_log_file"],
+                "handlers": ["project"],
                 "level": "DEBUG",
             },
             "route_updater": {
@@ -277,7 +277,7 @@ def get_logging_structure(LOGFILE_ROOT):
 
 
 LOGGING_CONFIG = None
-LOGGING = get_logging_structure("_logs")
+LOGGING = logging_structure("_logs")
 logging.config.dictConfig(LOGGING)
 
 logger = logging.getLogger(f"project.{__name__}")
