@@ -12,13 +12,13 @@ let articles = document.querySelectorAll('.blog-articles div');
 
 articles = [...articles];
 const ids = articles.map(element => +element.dataset.articleid);
-const url = `/api/products/[${ids}]`;
+const apiUrl = `/api/products/[${ids}]`;
 
 let newData;
 
 
 
-fetch(url, {
+fetch(apiUrl, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',

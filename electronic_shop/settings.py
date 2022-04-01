@@ -56,9 +56,11 @@ INSTALLED_APPS = [
     # 'ckeditor',
     "mptt",
     "electronic_shop",
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -97,16 +99,52 @@ WSGI_APPLICATION = "electronic_shop.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+postgres_local = True
+is_docker = True
+
+def choose_db(db):
+    return [
+        os.getenv(f"{db}_NAME"),
+        os.getenv(f"{db}_USER"),
+        os.getenv(f"{db}_PASSWORD"),
+        os.getenv(f"{db}_HOST"),
+        5432 if db == 'LOCAL' else os.getenv("DROPLET_PORT"),
+        {}
+        ]
+
+if postgres_local:
+    name, user, password, host, port, options= choose_db('LOCAL')
+else:
+    name, user, password, host, port, options = choose_db('DROPLET')
+
+if is_docker:
+    name = os.getenv("DOCKER_DB_NAME")
+    host = 'db'
+
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": 5432,
+        "NAME": name,
+        "USER": user,
+        "PASSWORD": password,
+        "HOST": host,
+        "PORT": port,
+        "OPTIONS" : options
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": os.getenv("DB_NAME"),
+#         "USER": os.getenv("DB_USER"),
+#         "PASSWORD": os.getenv("DB_PASSWORD"),
+#         "HOST": os.getenv("DB_HOST"),
+#         "PORT": 5432,
+#     }
+# }
+
 
 
 # Password validation
@@ -192,8 +230,19 @@ REST_FRAMEWORK = {
     # ]
 }
 
+INTERNAL_IPS = [
+    '127.0.0.1'
+]
 
-def get_logging_structure(LOGFILE_ROOT):
+def show_toolbar(request):
+    return True
+
+DEBUG_TOOLBAR_CONFIG = {
+  "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
+}
+
+
+def logging_structure(logfile_name):
     return {
         "version": 1,
         "disable_existing_loggers": False,
@@ -205,34 +254,34 @@ def get_logging_structure(LOGFILE_ROOT):
             "simple": {"format": "%(levelname)s %(message)s"},
         },
         "handlers": {
-            "profiles_file": {
+            "profile": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
-                "filename": os.path.join(LOGFILE_ROOT, "profiles.log"),
+                "filename": os.path.join(logfile_name, "profiles.log"),
                 "formatter": "verbose",
             },
-            "data_log_file": {
+            "data": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
-                "filename": os.path.join(LOGFILE_ROOT, "data.log"),
+                "filename": os.path.join(logfile_name, "data.log"),
                 "formatter": "verbose",
             },
-            "django_log_file": {
+            "django": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
-                "filename": os.path.join(LOGFILE_ROOT, "django.log"),
+                "filename": os.path.join(logfile_name, "django.log"),
                 "formatter": "verbose",
             },
-            "proj_log_file": {
+            "project": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
-                "filename": os.path.join(LOGFILE_ROOT, "project.log"),
+                "filename": os.path.join(logfile_name, "project.log"),
                 "formatter": "verbose",
             },
             "route_updater": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
-                "filename": os.path.join(LOGFILE_ROOT, "route.updater.log"),
+                "filename": os.path.join(logfile_name, "route.updater.log"),
                 "formatter": "verbose",
             },
             "console": {
@@ -243,16 +292,16 @@ def get_logging_structure(LOGFILE_ROOT):
         },
         "loggers": {
             "profiles": {
-                "handlers": ["console", "profiles_file"],
+                "handlers": ["console", "profile"],
                 "level": "DEBUG",
             },
             "django": {
-                "handlers": ["django_log_file"],
+                "handlers": ["django"],
                 "propagate": True,
                 "level": "ERROR",
             },
             "project": {
-                "handlers": ["proj_log_file"],
+                "handlers": ["project"],
                 "level": "DEBUG",
             },
             "route_updater": {
@@ -264,7 +313,7 @@ def get_logging_structure(LOGFILE_ROOT):
 
 
 LOGGING_CONFIG = None
-LOGGING = get_logging_structure("_logs")
+LOGGING = logging_structure("_logs")
 logging.config.dictConfig(LOGGING)
 
 logger = logging.getLogger(f"project.{__name__}")
