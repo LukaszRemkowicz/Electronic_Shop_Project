@@ -99,16 +99,52 @@ WSGI_APPLICATION = "electronic_shop.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+postgres_local = True
+is_docker = True
+
+def choose_db(db):
+    return [
+        os.getenv(f"{db}_NAME"),
+        os.getenv(f"{db}_USER"),
+        os.getenv(f"{db}_PASSWORD"),
+        os.getenv(f"{db}_HOST"),
+        5432 if db == 'LOCAL' else os.getenv("DROPLET_PORT"),
+        {}
+        ]
+
+if postgres_local:
+    name, user, password, host, port, options= choose_db('LOCAL')
+else:
+    name, user, password, host, port, options = choose_db('DROPLET')
+
+if is_docker:
+    name = os.getenv("DOCKER_DB_NAME")
+    host = 'db'
+
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": 5432,
+        "NAME": name,
+        "USER": user,
+        "PASSWORD": password,
+        "HOST": host,
+        "PORT": port,
+        "OPTIONS" : options
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": os.getenv("DB_NAME"),
+#         "USER": os.getenv("DB_USER"),
+#         "PASSWORD": os.getenv("DB_PASSWORD"),
+#         "HOST": os.getenv("DB_HOST"),
+#         "PORT": 5432,
+#     }
+# }
+
 
 
 # Password validation
@@ -198,12 +234,12 @@ INTERNAL_IPS = [
     '127.0.0.1'
 ]
 
-# def show_toolbar(request):
-#     return True
+def show_toolbar(request):
+    return True
 
-# DEBUG_TOOLBAR_CONFIG = {
-#   "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
-# }
+DEBUG_TOOLBAR_CONFIG = {
+  "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
+}
 
 
 def logging_structure(logfile_name):
