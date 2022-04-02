@@ -32,7 +32,7 @@ RUN mkdir -p /vol/web/static
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
 RUN adduser -u 5678 --disabled-password --gecos "" user && chown -R user /electronic_shop
 RUN chown -R user:user /vol/
-RUN chmod -R 777 _logs
+RUN chmod -R 777 /electronic_shop
 RUN chmod -R 755 /vol/web
 USER user
 
