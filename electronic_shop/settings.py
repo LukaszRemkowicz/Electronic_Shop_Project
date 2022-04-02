@@ -242,7 +242,7 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 
-def logging_structure(logfile_name):
+def logging_structure(logfile_folder):
     return {
         "version": 1,
         "disable_existing_loggers": False,
@@ -257,31 +257,31 @@ def logging_structure(logfile_name):
             "profile": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
-                "filename": os.path.join(logfile_name, "profiles.log"),
+                "filename": os.path.join(logfile_folder, "profiles.log"),
                 "formatter": "verbose",
             },
             "data": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
-                "filename": os.path.join(logfile_name, "data.log"),
+                "filename": os.path.join(logfile_folder, "data.log"),
                 "formatter": "verbose",
             },
             "django": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
-                "filename": os.path.join(logfile_name, "django.log"),
+                "filename": os.path.join(logfile_folder, "django.log"),
                 "formatter": "verbose",
             },
             "project": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
-                "filename": os.path.join(logfile_name, "project.log"),
+                "filename": os.path.join(logfile_folder, "project.log"),
                 "formatter": "verbose",
             },
             "route_updater": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
-                "filename": os.path.join(logfile_name, "route.updater.log"),
+                "filename": os.path.join(logfile_folder, "route.updater.log"),
                 "formatter": "verbose",
             },
             "console": {
@@ -313,7 +313,12 @@ def logging_structure(logfile_name):
 
 
 LOGGING_CONFIG = None
-LOGGING = logging_structure("_logs")
+LOG_PATH = os.path.join(BASE_DIR, '_log')
+
+if not os.path.join(LOG_PATH):
+    os.mkdir(LOG_PATH)
+
+LOGGING = logging_structure(LOG_PATH)
 logging.config.dictConfig(LOGGING)
 
 logger = logging.getLogger(f"project.{__name__}")
