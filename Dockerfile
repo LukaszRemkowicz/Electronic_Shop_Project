@@ -20,8 +20,9 @@ RUN pip install -r /requirements.txt
 RUN apk del .tmp-build-deps
 
 RUN mkdir /electronic_shop
-RUN mkdir /electronic_shop/logs
 WORKDIR /electronic_shop
+RUN mkdir /_logs
+
 
 COPY . /electronic_shop
 
