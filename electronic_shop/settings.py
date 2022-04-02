@@ -310,15 +310,15 @@ def logging_structure(logfile_folder):
             },
         },
     }
+    
+
+onlyfiles = [f for f in os.listdir(BASE_DIR)]
+
+print(onlyfiles)
 
 
 LOGGING_CONFIG = None
-LOG_PATH = os.path.join(BASE_DIR, '_logs')
-
-if not os.path.join(LOG_PATH):
-    os.mkdir(LOG_PATH)
-
-LOGGING = logging_structure(LOG_PATH)
+LOGGING = logging_structure("_logs")
 logging.config.dictConfig(LOGGING)
 
 logger = logging.getLogger(f"project.{__name__}")
