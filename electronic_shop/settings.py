@@ -310,7 +310,7 @@ def logging_structure(logfile_folder):
             },
         },
     }
-    
+
 
 onlyfiles = [f for f in os.listdir(BASE_DIR)]
 
