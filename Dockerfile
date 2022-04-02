@@ -21,7 +21,7 @@ RUN apk del .tmp-build-deps
 
 RUN mkdir /electronic_shop
 WORKDIR /electronic_shop
-RUN mkdir _logs
+RUN mkdir /_logs
 
 COPY . /electronic_shop
 
