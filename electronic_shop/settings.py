@@ -312,7 +312,7 @@ def logging_structure(logfile_folder):
     }
 
 from pathlib import Path
-onlyfiles = [f for f in os.listdir(Path(BASE_DIR).parent)]
+onlyfiles = [f for f in os.listdir(os.path.join(BASE_DIR, 'electronic_shop'))]
 
 print(onlyfiles)
 
