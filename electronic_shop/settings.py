@@ -311,8 +311,8 @@ def logging_structure(logfile_folder):
         },
     }
 
-
-onlyfiles = [f for f in os.listdir(BASE_DIR)]
+from pathlib import Path
+onlyfiles = [f for f in os.listdir(Path(BASE_DIR).parent)]
 
 print(onlyfiles)
 
