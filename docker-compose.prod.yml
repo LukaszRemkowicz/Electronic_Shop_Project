@@ -5,7 +5,8 @@ services:
     image: electronicshop
     build:
       context: .
-      dockerfile: ./Dockerfile.prod
+      dockerfile: ./Dockerfile
+      target: development
     ports:
       - "8000:8000"
     volumes:

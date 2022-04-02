@@ -1,4 +1,4 @@
-FROM python:3.10-alpine
+FROM python:3.10-alpine as development
 
 
 EXPOSE 8000
@@ -40,3 +40,8 @@ USER user
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 # File wsgi.py was not found in subfolder: 'Electronic_shop'. Please enter the Python path to wsgi file.
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "electronic_shop.wsgi"]
+
+FROM development as production
+RUN mkdir /electronic_shop/_logs/
+
+
