@@ -313,7 +313,7 @@ def logging_structure(logfile_folder):
 
 
 LOGGING_CONFIG = None
-LOG_PATH = os.path.join(BASE_DIR, '_log')
+LOG_PATH = os.path.join(BASE_DIR, '_logs')
 
 if not os.path.join(LOG_PATH):
     os.mkdir(LOG_PATH)
