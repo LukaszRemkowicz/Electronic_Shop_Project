@@ -260,7 +260,12 @@ def logging_structure(logfile_folder):
                 "filename": os.path.join(logfile_folder, "profiles.log"),
                 "formatter": "verbose",
             },
-
+            "data": {
+                "level": "DEBUG",
+                "class": "logging.FileHandler",
+                "filename": os.path.join(logfile_folder, "data.log"),
+                "formatter": "verbose",
+            },
             "django": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
@@ -305,17 +310,6 @@ def logging_structure(logfile_folder):
             },
         },
     }
-
-from pathlib import Path
-
-par_dir = [f for f in os.listdir(Path(BASE_DIR).parent)]
-base_dir = [f for f in os.listdir(Path(BASE_DIR))]
-child_dir = [f for f in os.listdir(os.path.join(BASE_DIR, 'electronic_shop'))]
-
-print('par_dir', par_dir)
-print('base_dir', base_dir)
-print('child_dir', child_dir)
-
 
 LOGGING_CONFIG = None
 LOGGING = logging_structure("_logs")
