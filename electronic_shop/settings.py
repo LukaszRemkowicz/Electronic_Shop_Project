@@ -312,9 +312,14 @@ def logging_structure(logfile_folder):
     }
 
 from pathlib import Path
-onlyfiles = [f for f in os.listdir(os.path.join(BASE_DIR, 'electronic_shop'))]
 
-print(onlyfiles)
+par_dir = [f for f in os.listdir(Path(BASE_DIR).parent)]
+base_dir = [f for f in os.listdir(Path(BASE_DIR))]
+child_dir = [f for f in os.listdir(os.path.join(BASE_DIR, 'electronic_shop'))]
+
+print('par_dir', par_dir)
+print('base_dir', base_dir)
+print('child_dir', child_dir)
 
 
 LOGGING_CONFIG = None
