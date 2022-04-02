@@ -20,11 +20,8 @@ RUN pip install -r /requirements.txt
 RUN apk del .tmp-build-deps
 
 RUN mkdir /electronic_shop
-
-FROM development as production
-RUN mkdir /electronic_shop/_logs/
-
 WORKDIR /electronic_shop
+
 
 COPY . /electronic_shop
 
@@ -43,3 +40,8 @@ USER user
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 # File wsgi.py was not found in subfolder: 'Electronic_shop'. Please enter the Python path to wsgi file.
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "electronic_shop.wsgi"]
+
+FROM development as production
+RUN mkdir /electronic_shop/_logs/
+
+CMD ["sh"]
