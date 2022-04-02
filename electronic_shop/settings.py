@@ -134,7 +134,7 @@ DATABASES = {
     }
 }
 
-print(password)
+print(os.getenv(f"LOCAL_PASSWORD"))
 
 # DATABASES = {
 #     "default": {
