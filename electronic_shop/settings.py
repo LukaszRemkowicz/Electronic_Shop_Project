@@ -260,12 +260,7 @@ def logging_structure(logfile_folder):
                 "filename": os.path.join(logfile_folder, "profiles.log"),
                 "formatter": "verbose",
             },
-            "data": {
-                "level": "DEBUG",
-                "class": "logging.FileHandler",
-                "filename": os.path.join(logfile_folder, "data.log"),
-                "formatter": "verbose",
-            },
+
             "django": {
                 "level": "DEBUG",
                 "class": "logging.FileHandler",
