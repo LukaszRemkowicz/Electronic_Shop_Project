@@ -102,24 +102,26 @@ WSGI_APPLICATION = "electronic_shop.wsgi.application"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
+
 def choose_db(db):
     return [
         os.getenv(f"{db}_NAME"),
         os.getenv(f"{db}_USER"),
         os.getenv(f"{db}_PASSWORD"),
         os.getenv(f"{db}_HOST"),
-        5432 if db == 'LOCAL' else os.getenv("DROPLET_PORT"),
-        {}
-        ]
+        5432 if db == "LOCAL" else os.getenv("DROPLET_PORT"),
+        {},
+    ]
 
 if LOCAL_DB:
     name, user, password, host, port, options= choose_db('LOCAL')
+
 else:
-    name, user, password, host, port, options = choose_db('DROPLET')
+    name, user, password, host, port, options = choose_db("DROPLET")
 
 if IS_DOCKER:
     name = os.getenv("DOCKER_DB_NAME")
-    host = 'db'
+    host = "db"
 
 
 DATABASES = {
@@ -130,7 +132,7 @@ DATABASES = {
         "PASSWORD": password,
         "HOST": host,
         "PORT": port,
-        "OPTIONS" : options
+        "OPTIONS": options,
     }
 }
 
@@ -229,15 +231,15 @@ REST_FRAMEWORK = {
     # ]
 }
 
-INTERNAL_IPS = [
-    '127.0.0.1'
-]
+INTERNAL_IPS = ["127.0.0.1"]
+
 
 def show_toolbar(request):
     return True
 
+
 DEBUG_TOOLBAR_CONFIG = {
-  "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
+    "SHOW_TOOLBAR_CALLBACK": show_toolbar,
 }
 
 
