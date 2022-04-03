@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 from django.contrib.messages import constants as messages
 
-from const import LOCAL_DB, IS_DOCKER
+from .const import LOCAL_DB, IS_DOCKER
 
 
 dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
