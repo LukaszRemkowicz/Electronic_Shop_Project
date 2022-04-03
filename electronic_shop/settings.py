@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 
 from django.contrib.messages import constants as messages
 
+from .const import LOCAL_DB, IS_DOCKER
+
 
 dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
 load_dotenv(dotenv_path)
@@ -99,8 +101,6 @@ WSGI_APPLICATION = "electronic_shop.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-postgres_local = True
-is_docker = True
 
 
 def choose_db(db):
@@ -113,13 +113,13 @@ def choose_db(db):
         {},
     ]
 
+if LOCAL_DB:
+    name, user, password, host, port, options= choose_db('LOCAL')
 
-if postgres_local:
-    name, user, password, host, port, options = choose_db("LOCAL")
 else:
     name, user, password, host, port, options = choose_db("DROPLET")
 
-if is_docker:
+if IS_DOCKER:
     name = os.getenv("DOCKER_DB_NAME")
     host = "db"
 
@@ -243,78 +243,82 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 
-def logging_structure(logfile_name):
+def get_logging_structure(LOGFILE_ROOT):
     return {
-        "version": 1,
-        "disable_existing_loggers": False,
-        "formatters": {
-            "verbose": {
-                "format": "[%(asctime)s] %(levelname)s [%(pathname)s:%(lineno)s] %(message)s",
-                "datefmt": "%d/%b/%Y %H:%M:%S",
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'verbose': {
+                'format': "[%(asctime)s] %(levelname)s [%(pathname)s:%(lineno)s] %(message)s",
+                'datefmt': "%d/%b/%Y %H:%M:%S"
             },
-            "simple": {"format": "%(levelname)s %(message)s"},
-        },
-        "handlers": {
-            "profile": {
-                "level": "DEBUG",
-                "class": "logging.FileHandler",
-                "filename": os.path.join(logfile_name, "profiles.log"),
-                "formatter": "verbose",
-            },
-            "data": {
-                "level": "DEBUG",
-                "class": "logging.FileHandler",
-                "filename": os.path.join(logfile_name, "data.log"),
-                "formatter": "verbose",
-            },
-            "django": {
-                "level": "DEBUG",
-                "class": "logging.FileHandler",
-                "filename": os.path.join(logfile_name, "django.log"),
-                "formatter": "verbose",
-            },
-            "project": {
-                "level": "DEBUG",
-                "class": "logging.FileHandler",
-                "filename": os.path.join(logfile_name, "project.log"),
-                "formatter": "verbose",
-            },
-            "route_updater": {
-                "level": "DEBUG",
-                "class": "logging.FileHandler",
-                "filename": os.path.join(logfile_name, "route.updater.log"),
-                "formatter": "verbose",
-            },
-            "console": {
-                "level": "DEBUG",
-                "class": "logging.StreamHandler",
-                "formatter": "simple",
+            'simple': {
+                'format': '%(levelname)s %(message)s'
             },
         },
-        "loggers": {
-            "profiles": {
-                "handlers": ["console", "profile"],
-                "level": "DEBUG",
+        'handlers': {
+            'profiles_file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(LOGFILE_ROOT, 'profiles.log'),
+                'formatter': 'verbose'
             },
-            "django": {
-                "handlers": ["django"],
-                "propagate": True,
-                "level": "ERROR",
+            'data_log_file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(LOGFILE_ROOT, 'data.log'),
+                'formatter': 'verbose'
             },
-            "project": {
-                "handlers": ["project"],
-                "level": "DEBUG",
+            'django_log_file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(LOGFILE_ROOT, 'django.log'),
+                'formatter': 'verbose'
             },
-            "route_updater": {
-                "handlers": ["console", "route_updater"],
-                "level": "DEBUG",
+            'proj_log_file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(LOGFILE_ROOT, 'project.log'),
+                'formatter': 'verbose'
             },
+            'route_updater': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(LOGFILE_ROOT, 'route.updater.log'),
+                'formatter': 'verbose'
+            },
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+                'formatter': 'simple'
+            }
         },
+        'loggers': {
+            'profiles': {
+                'handlers': ['console', 'profiles_file'],
+                'level': 'DEBUG',
+            },
+
+            'django': {
+                'handlers': ['django_log_file'],
+                'propagate': True,
+                'level': 'ERROR',
+            },
+            'project': {
+                'handlers': ['proj_log_file'],
+                'level': 'DEBUG',
+            },
+            'route_updater': {
+                'handlers': ['console', 'route_updater'],
+                'level': 'DEBUG',
+            },
+        }
     }
 
-
+# Reset logging
+# (see http://www.caktusgroup.com/blog/2015/01/27/Django-Logging-Configuration-logging_config-default-settings-logger/)
 LOGGING_CONFIG = None
-LOGGING = logging_structure("_logs")
+LOGGING = get_logging_structure('_logs')
 logging.config.dictConfig(LOGGING)
 
-logger = logging.getLogger(f"project.{__name__}")
+logger = logging.getLogger(f'project.{__name__}')
