@@ -5,11 +5,10 @@ services:
     image: electronicshop
     build:
       context: .
-      target: development
+      target: production
     ports:
       - "8000:8000"
     volumes:
-      - .:/electronic_shop
       - postgres:/vol/postgres
     command: >
       sh -c "python manage.py wait_for_db &&
@@ -18,8 +17,8 @@ services:
     environment:
       - DB_HOST=db
       - DOCKER_DB_NAME=${DOCKER_DB_NAME}
-      - DB_USER=${LOCAL_USER}
-      - DB_PASSWORD=${LOCAL_PASSWORD}
+      - LOCAL_USER=${LOCAL_USER}
+      - LOCAL_PASSWORD=${LOCAL_PASSWORD}
       - SECRET_KEY=${SECRET_KEY}
     depends_on:
       - db

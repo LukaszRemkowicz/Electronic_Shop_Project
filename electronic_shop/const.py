@@ -33,3 +33,6 @@ CATTEGORIES_CHOICES = [
     ("TV", "TV"),
     ("Headphones", "Headphones"),
 ]
+
+LOCAL_DB = True
+IS_DOCKER = True
