@@ -41,7 +41,7 @@ from .utils import (
 )
 
 # from .utilss.view_utils import *
-from .filters import SnippetFilter
+# from .filters import SnippetFilter
 from ProductApp import models
 from ProductApp.utils import get_model_queryset
 
@@ -257,7 +257,7 @@ class ProductsCart(ListView):
         ranger, paginator, products = paginate_view(products, result, page)
 
         # TODO: Think about using this filter
-        form = SnippetFilter
+        # form = SnippetFilter
 
         context["url_last"], context["url_path"] = get_url_path(self.request)
 
@@ -274,7 +274,7 @@ class ProductsCart(ListView):
         context["cattegory"] = product_cattegory
         context["paginator"] = paginator
         context["products"] = products
-        context["form"] = form
+        # context["form"] = form
         context["mainDatabaseProd"] = old_products
 
         return context

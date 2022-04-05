@@ -8,6 +8,7 @@ from ProductApp.models import MainProductDatabase, ProductOfTheDayDB
 
 
 def login_form_content(request):
+
     form = CustomLoginForm()
     keep_me = KeepMeLoggedIn()
 

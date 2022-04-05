@@ -1,4 +1,4 @@
-import debug_toolbar
+# import debug_toolbar
 
 from django.contrib import admin
 from django.urls import path, include
@@ -14,5 +14,5 @@ urlpatterns = [
     path("api/", include("API.urls", namespace="api")),
     path("articles/", include("Articles.urls"), name="articles"),
     path("", include("Landingpage.urls"), name="landingpage"),
-    path("__debug__/", include(debug_toolbar.urls)),
+    # path("__debug__/", include(debug_toolbar.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

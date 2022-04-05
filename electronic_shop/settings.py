@@ -58,11 +58,11 @@ INSTALLED_APPS = [
     # 'ckeditor',
     "mptt",
     "electronic_shop",
-    "debug_toolbar",
+    # "debug_toolbar",
 ]
 
 MIDDLEWARE = [
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    # "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -82,19 +82,19 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
+                "electronic_shop.custom_context_processor.login_form_content",
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "electronic_shop.custom_context_processor.login_form_content",
             ],
         },
     },
 ]
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    "electronic_shop.custom_context_processor.login_form_content",
-)
+# TEMPLATE_CONTEXT_PROCESSORS = (
+#     "electronic_shop.custom_context_processor.login_form_content",
+# )
 
 WSGI_APPLICATION = "electronic_shop.wsgi.application"
 
@@ -234,13 +234,13 @@ REST_FRAMEWORK = {
 INTERNAL_IPS = ["127.0.0.1"]
 
 
-def show_toolbar(request):
-    return True
+# def show_toolbar(request):
+#     return True
 
 
-DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK": show_toolbar,
-}
+# DEBUG_TOOLBAR_CONFIG = {
+#     "SHOW_TOOLBAR_CALLBACK": show_toolbar,
+# }
 
 
 def get_logging_structure(LOGFILE_ROOT):
