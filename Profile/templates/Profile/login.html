@@ -6,7 +6,7 @@
         <div class="line"></div>
     </div>
 
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog login_modal" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="form-container ">
@@ -17,10 +17,10 @@
                             {% csrf_token %}
                             {% load widget_tweaks %}
 
-                            {% render_field form.email type="text" autocomplete="email" placeholder="Email" %}
-                            {% render_field form.password type="password" autocomplete="current-password" placeholder="Password" %}
+                            {% render_field login_form.email type="text" autocomplete="email" placeholder="Email" %}
+                            {% render_field login_form.password type="password" autocomplete="current-password" placeholder="Password" %}
 
-                            <div class="check flex-container">
+                            <div class="keep_me_check flex-container">
                                 {{ keep_me.keep_me_logged }}
                                 <p class="">Keep me loggeed in</p>
                             </div>

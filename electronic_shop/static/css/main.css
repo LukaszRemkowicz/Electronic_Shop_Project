@@ -784,7 +784,7 @@ a {
   .form-container .inside-container {
     max-width: 100%;
     height: 100%;
-    padding: 3rem 5rem;
+    padding: 3rem 4rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -792,7 +792,7 @@ a {
     .form-container .inside-container p a {
       color: black;
       border-bottom: 1px solid #ff503c;
-      font-size: 1rem;
+      font-size: 0.8rem;
       padding-bottom: 0.5rem; }
     .form-container .inside-container .sign-in {
       height: 40px;
@@ -851,45 +851,45 @@ a {
       border: none; }
       .form-container form input::placeholder {
         opacity: 0.5; }
-    .form-container form .check {
+    .form-container form .keep_me_check {
       width: 100%;
       justify-content: left;
       height: 20px; }
-      .form-container form .check p {
+      .form-container form .keep_me_check p {
         width: 100%;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         text-align: left;
         margin-bottom: 0; }
-      .form-container form .check .checkbox {
-        width: 19px;
+      .form-container form .keep_me_check .checkbox {
+        width: 14px;
         margin: 0;
         margin-right: 0.5rem;
         height: 19px; }
-        .form-container form .check .checkbox p {
+        .form-container form .keep_me_check .checkbox p {
           font-size: 1.3rem !important; }
-      .form-container form .check input {
+      .form-container form .keep_me_check input {
         display: inline-block;
         position: relative;
         padding-left: 25px;
         margin-right: 30px;
         line-height: 130%;
         cursor: pointer; }
-        .form-container form .check input:before {
+        .form-container form .keep_me_check input:before {
           content: '';
           display: block;
           position: absolute;
-          top: 10px;
+          top: 13px;
           left: 0;
-          width: 19px;
-          height: 19px;
+          width: 14px;
+          height: 14px;
           margin-top: -10px;
           background-color: white;
           border: 1px solid #4d4d4d; }
-        .form-container form .check input:after {
+        .form-container form .keep_me_check input:after {
           content: '';
           position: absolute;
-          top: 9px;
-          left: 4px;
+          top: 10px;
+          left: 02px;
           width: 10px;
           height: 6px;
           margin-top: -5px;
@@ -900,7 +900,7 @@ a {
           opacity: 0;
           transform: rotate(-45deg) scale(0);
           transition: all 0.3s; }
-        .form-container form .check input:checked::after {
+        .form-container form .keep_me_check input:checked::after {
           opacity: 1;
           transform: rotate(-45deg) scale(1); }
     .form-container form button {
@@ -1615,6 +1615,11 @@ a {
     width: 55% !important; } }
 
 @media (max-width: 1200px) {
+  .login_modal {
+    width: 50vw;
+    height: 50vh; }
+    .login_modal form {
+      height: 100%; }
   .showcase {
     display: flex;
     flex-direction: column; }
@@ -1681,10 +1686,14 @@ a {
         width: 100%;
         overflow: hidden;
         height: 100%;
-        display: flex; }
+        align-items: center;
+        display: flex;
+        justify-items: center;
+        justify-content: center; }
         .the-best-of .card a img {
           max-height: 100%;
-          object-fit: contain; }
+          object-fit: contain;
+          width: 90%; }
   .offert-of-the-day .h4-div {
     position: relative;
     margin: 1rem;
@@ -1707,7 +1716,7 @@ a {
     margin: 0 6rem 1rem 0rem;
     grid-gap: 2rem; }
     .offert-of-the-day .alarm-box a {
-      width: 60%; }
+      width: 90%; }
     .offert-of-the-day .alarm-box img {
       width: 100%; }
     .offert-of-the-day .alarm-box .product-box {
@@ -2665,6 +2674,10 @@ a {
     width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(80% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 10px) !important; } }
 
 @media (max-width: 900px) {
+  .login_modal {
+    height: 45vh; }
+    .login_modal .inside-container {
+      padding: 2rem; }
   .offert-of-the-day .alarm-box .product-box {
     margin-right: 1rem; }
   .offert-of-the-day .alarm-box img {
@@ -2703,6 +2716,10 @@ a {
       padding-left: 1rem; } }
 
 @media (max-width: 700px) {
+  .login_modal {
+    width: 60vw; }
+    .login_modal .inside-container {
+      padding: 2rem; }
   .the-best-of {
     grid-template-columns: repeat(1, 2fr); }
   .sold-statistics {
@@ -2711,11 +2728,6 @@ a {
     margin-top: 0; }
     .sold-left .button {
       margin-top: 0; }
-  .forgot-pass a {
-    font-size: 1rem !important; }
-  .social-sigin h2 {
-    padding: 1rem;
-    padding-top: 1rem !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 4rem; }
@@ -5163,6 +5175,8 @@ a {
     margin-bottom: 0 !important; } }
 
 @media (max-width: 600px) {
+  .login_modal {
+    width: 75vw; }
   .the-best-of {
     grid-gap: 0; }
     .the-best-of .main-pic {
@@ -5220,6 +5234,9 @@ a {
     margin-bottom: 0 !important; } }
 
 @media (max-width: 500px) {
+  .login_modal {
+    width: 90vw;
+    margin: auto 0; }
   .afterClass, .navbar ul .nav-item:nth-of-type(odd) a::after {
     display: block;
     content: '';
@@ -6027,8 +6044,8 @@ a {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
     font-weight: 100;
     background: white;
     display: flex;
@@ -6037,7 +6054,7 @@ a {
     cursor: pointer; }
     .modal .line-close .line {
       left: 2rem;
-      height: 1.5rem;
+      height: 1rem;
       border-left: 2px solid black;
       transform: rotate(45deg); }
       .modal .line-close .line::after {
@@ -6045,7 +6062,7 @@ a {
         content: "";
         top: 0;
         left: 0;
-        height: 1.5rem;
+        height: 1rem;
         border-left: 2px solid black;
         transform: translate(-90%) rotate(-90deg); }
   .modal-dialog {
@@ -6085,9 +6102,6 @@ a {
       color: #ff503c;
       padding-left: 0.5rem;
       font-weight: 100; }
-
-.check {
-  height: 40px !important; }
 
 .another-navbar {
   height: 3rem; }
@@ -6236,7 +6250,8 @@ a {
     margin: 1rem;
     width: 100% !important; }
     .the-best-of .card img {
-      padding: 1rem; }
+      padding: 1rem;
+      width: 70%; }
   .the-best-of .new-promotion-price {
     font-size: 1.1rem; }
   .the-best-of .old-price {
@@ -6607,6 +6622,11 @@ a {
     width: 55% !important; } }
 
 @media (max-width: 1200px) {
+  .login_modal {
+    width: 50vw;
+    height: 50vh; }
+    .login_modal form {
+      height: 100%; }
   .showcase {
     display: flex;
     flex-direction: column; }
@@ -6673,10 +6693,14 @@ a {
         width: 100%;
         overflow: hidden;
         height: 100%;
-        display: flex; }
+        align-items: center;
+        display: flex;
+        justify-items: center;
+        justify-content: center; }
         .the-best-of .card a img {
           max-height: 100%;
-          object-fit: contain; }
+          object-fit: contain;
+          width: 90%; }
   .offert-of-the-day .h4-div {
     position: relative;
     margin: 1rem;
@@ -6699,7 +6723,7 @@ a {
     margin: 0 6rem 1rem 0rem;
     grid-gap: 2rem; }
     .offert-of-the-day .alarm-box a {
-      width: 60%; }
+      width: 90%; }
     .offert-of-the-day .alarm-box img {
       width: 100%; }
     .offert-of-the-day .alarm-box .product-box {
@@ -7657,6 +7681,10 @@ a {
     width: calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(calc(80% - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 5px) - 10px) !important; } }
 
 @media (max-width: 900px) {
+  .login_modal {
+    height: 45vh; }
+    .login_modal .inside-container {
+      padding: 2rem; }
   .offert-of-the-day .alarm-box .product-box {
     margin-right: 1rem; }
   .offert-of-the-day .alarm-box img {
@@ -7695,6 +7723,10 @@ a {
       padding-left: 1rem; } }
 
 @media (max-width: 700px) {
+  .login_modal {
+    width: 60vw; }
+    .login_modal .inside-container {
+      padding: 2rem; }
   .the-best-of {
     grid-template-columns: repeat(1, 2fr); }
   .sold-statistics {
@@ -7703,11 +7735,6 @@ a {
     margin-top: 0; }
     .sold-left .button {
       margin-top: 0; }
-  .forgot-pass a {
-    font-size: 1rem !important; }
-  .social-sigin h2 {
-    padding: 1rem;
-    padding-top: 1rem !important; }
   .sign-in {
     flex-direction: column;
     margin-bottom: 4rem; }
@@ -10155,6 +10182,8 @@ a {
     margin-bottom: 0 !important; } }
 
 @media (max-width: 600px) {
+  .login_modal {
+    width: 75vw; }
   .the-best-of {
     grid-gap: 0; }
     .the-best-of .main-pic {
@@ -10212,6 +10241,9 @@ a {
     margin-bottom: 0 !important; } }
 
 @media (max-width: 500px) {
+  .login_modal {
+    width: 90vw;
+    margin: auto 0; }
   .afterClass, .navbar ul .nav-item:nth-of-type(odd) a::after {
     display: block;
     content: '';
