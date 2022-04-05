@@ -1,9 +1,12 @@
 from pathlib import Path
 import os
+import logging.config
 
 from dotenv import load_dotenv
 
 from django.contrib.messages import constants as messages
+
+from .const import LOCAL_DB, IS_DOCKER
 
 
 dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
@@ -55,9 +58,11 @@ INSTALLED_APPS = [
     # 'ckeditor',
     "mptt",
     "electronic_shop",
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -96,16 +101,51 @@ WSGI_APPLICATION = "electronic_shop.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+
+
+def choose_db(db):
+    return [
+        os.getenv(f"{db}_NAME"),
+        os.getenv(f"{db}_USER"),
+        os.getenv(f"{db}_PASSWORD"),
+        os.getenv(f"{db}_HOST"),
+        5432 if db == "LOCAL" else os.getenv("DROPLET_PORT"),
+        {},
+    ]
+
+if LOCAL_DB:
+    name, user, password, host, port, options= choose_db('LOCAL')
+
+else:
+    name, user, password, host, port, options = choose_db("DROPLET")
+
+if IS_DOCKER:
+    name = os.getenv("DOCKER_DB_NAME")
+    host = "db"
+
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": 5432,
+        "NAME": name,
+        "USER": user,
+        "PASSWORD": password,
+        "HOST": host,
+        "PORT": port,
+        "OPTIONS": options,
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": os.getenv("DB_NAME"),
+#         "USER": os.getenv("DB_USER"),
+#         "PASSWORD": os.getenv("DB_PASSWORD"),
+#         "HOST": os.getenv("DB_HOST"),
+#         "PORT": 5432,
+#     }
+# }
 
 
 # Password validation
@@ -190,3 +230,95 @@ REST_FRAMEWORK = {
     #     'rest_framework.parsers.JSONParser',
     # ]
 }
+
+INTERNAL_IPS = ["127.0.0.1"]
+
+
+def show_toolbar(request):
+    return True
+
+
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK": show_toolbar,
+}
+
+
+def get_logging_structure(LOGFILE_ROOT):
+    return {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'verbose': {
+                'format': "[%(asctime)s] %(levelname)s [%(pathname)s:%(lineno)s] %(message)s",
+                'datefmt': "%d/%b/%Y %H:%M:%S"
+            },
+            'simple': {
+                'format': '%(levelname)s %(message)s'
+            },
+        },
+        'handlers': {
+            'profiles_file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(LOGFILE_ROOT, 'profiles.log'),
+                'formatter': 'verbose'
+            },
+            'data_log_file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(LOGFILE_ROOT, 'data.log'),
+                'formatter': 'verbose'
+            },
+            'django_log_file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(LOGFILE_ROOT, 'django.log'),
+                'formatter': 'verbose'
+            },
+            'proj_log_file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(LOGFILE_ROOT, 'project.log'),
+                'formatter': 'verbose'
+            },
+            'route_updater': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(LOGFILE_ROOT, 'route.updater.log'),
+                'formatter': 'verbose'
+            },
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+                'formatter': 'simple'
+            }
+        },
+        'loggers': {
+            'profiles': {
+                'handlers': ['console', 'profiles_file'],
+                'level': 'DEBUG',
+            },
+
+            'django': {
+                'handlers': ['django_log_file'],
+                'propagate': True,
+                'level': 'ERROR',
+            },
+            'project': {
+                'handlers': ['proj_log_file'],
+                'level': 'DEBUG',
+            },
+            'route_updater': {
+                'handlers': ['console', 'route_updater'],
+                'level': 'DEBUG',
+            },
+        }
+    }
+
+# Reset logging
+# (see http://www.caktusgroup.com/blog/2015/01/27/Django-Logging-Configuration-logging_config-default-settings-logger/)
+LOGGING_CONFIG = None
+LOGGING = get_logging_structure('_logs')
+logging.config.dictConfig(LOGGING)
+
+logger = logging.getLogger(f'project.{__name__}')

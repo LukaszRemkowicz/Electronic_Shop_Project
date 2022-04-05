@@ -1,4 +1,5 @@
 from typing import Any, Dict
+import logging
 
 from django.shortcuts import redirect
 from django.http import HttpResponse, HttpRequest
@@ -13,11 +14,13 @@ from django.contrib.auth.views import SuccessURLAllowedHostsMixin
 from django.contrib.auth.views import LogoutView
 from django.views.generic import TemplateView
 
-
 from .forms import RegisterForm, AcceptTerms, CustomLoginForm
 from .models import User
 from ShoppingCardApp.models import Order, OrderItem
 from Landingpage.utils.url_path import get_url_path
+
+
+logger = logging.getLogger(f"project.{__name__}")
 
 
 class UserAccount(LoginRequiredMixin, FormView):
@@ -99,14 +102,14 @@ class Register(FormView):
 
         return super().dispatch(request, *args, **kwargs)
 
+
 class Logout(LogoutView):
-    """ Override logout view to add message"""
+    """Override logout view to add message"""
 
     def get_next_page(self):
 
         next_page = super().get_next_page()
         messages.add_message(
-            self.request, messages.WARNING,
-            'You successfully log out!'
+            self.request, messages.WARNING, "You successfully log out!"
         )
         return next_page

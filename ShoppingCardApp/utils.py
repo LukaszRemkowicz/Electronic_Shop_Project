@@ -1,11 +1,15 @@
 import json
 from decimal import Decimal
+import logging
 
 from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
 
 from ProductApp.models import MainProductDatabase
 from .models import Order, Customer, OrderItem
 from AddressBookApp.models import AddressBook
+
+
+logger = logging.getLogger(f"project.{__name__}")
 
 
 def order_cart(request):
