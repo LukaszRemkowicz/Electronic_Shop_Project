@@ -568,13 +568,13 @@
     height: 100%;
     color: black;
 
-    &::before{
+    a::before{
         content:attr(data-totalitems);
         font-size:12px;
         font-weight:600;
         position:absolute;
-        top:50px;
-        right:10px;
+        top: 0px;
+        right:0px;
         background:$main-red-color;
         line-height:24px;
         padding:0 5px;

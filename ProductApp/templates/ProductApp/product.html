@@ -261,35 +261,33 @@
                 </div>
             </nav>
 
-            {% comment %} Use this if you want render specific product html template {% endcomment %}
-            {% comment %} {{product.phones_product_data.render_html}} {% endcomment %}
+            {% comment %} TODO  if product has html template: {% endcomment %}
+            {% comment %}    {{product.phones_product_data.render_html}} {% endcomment %}
 
-            {% if product.cattegory == 'Phones' %}
+
+            {% if product.is_phone %}
                  {% include 'ProductApp/product_description_templates/Phones.html' %}
-            {% elif product.cattegory == 'Laptops' %}
+            {% elif product.is_laptop %}
                  {% include 'ProductApp/product_description_templates/Laptops.html' %}
-            {% elif product.cattegory == 'PC' %}
+            {% elif product.is_pc %}
                  {% include 'ProductApp/product_description_templates/PC.html' %}
-            {% elif product.cattegory == 'Monitors' %}
+            {% elif product.is_monitor %}
                  {% include 'ProductApp/product_description_templates/Monitor.html' %}
-            {% elif product.cattegory == 'SSD' %}
+            {% elif product.is_ssd %}
                  {% include 'ProductApp/product_description_templates/SSD.html' %}
-            {% elif product.cattegory == 'Graphs' %}
+            {% elif product.is_graph %}
                  {% include 'ProductApp/product_description_templates/Graphs.html' %}
-            {% elif product.cattegory == 'Ram' %}
+            {% elif product.is_ram %}
                  {% include 'ProductApp/product_description_templates/Ram.html' %}
-            {% elif product.cattegory == 'Routers' %}
+            {% elif product.is_router %}
                  {% include 'ProductApp/product_description_templates/Routers.html' %}
-            {% elif product.cattegory == 'Motherboard' %}
+            {% elif product.is_motheboard %}
                  {% include 'ProductApp/product_description_templates/Motherboard.html' %}
-            {% elif product.cattegory == 'CPU' %}
+            {% elif product.is_cpu %}
                  {% include 'ProductApp/product_description_templates/CPU.html' %}
-            {% elif product.cattegory == 'TV' %}
+            {% elif product.is_tv %}
                  {% include 'ProductApp/product_description_templates/TV.html' %}
             {% endif %}
-
-
-
 
 
             <!-- Specification -->
@@ -297,44 +295,44 @@
             <section>
                 <div class="mb-3 pb-4 pt-4" id="specification">
                     <div class="small-container bg-white box-shadow mx-0 p-5">
+
                         <table class="table table-striped account-table">
 
-                            {% if product.cattegory == 'Phones' %}
+                            {% if product.is_phone %}
                                 {% include 'ProductApp/spec_table/Phones.html' %}
-                            {% elif product.cattegory == 'Laptops' %}
+                            {% elif product.is_laptop %}
                                 {% include 'ProductApp/spec_table/Laptops.html' %}
-                            {% elif product.cattegory == 'PC' %}
+                            {% elif product.is_pc %}
                                 {% include 'ProductApp/spec_table/PC.html' %}
-                            {% elif product.cattegory == 'Monitors' %}
+                            {% elif product.is_monitor %}
                                 {% include 'ProductApp/spec_table/Monitor.html' %}
-                            {% elif product.cattegory == 'Accesories for laptops' %}
+                            {% elif product.is_accessories %}
                                 {% include 'ProductApp/spec_table/Accesories for laptops.html' %}
-                            {% elif product.cattegory == 'SSD' %}
+                            {% elif product.is_ssd %}
                                 {% include 'ProductApp/spec_table/SSD.html' %}
-                            {% elif product.cattegory == 'Graphs' %}
+                            {% elif product.is_graph %}
                                 {% include 'ProductApp/spec_table/Graphs.html' %}
-                            {% elif product.cattegory == 'Ram' %}
+                            {% elif product.is_ram %}
                                 {% include 'ProductApp/spec_table/Ram.html' %}
-                            {% elif product.cattegory == 'Pendrives' %}
+                            {% elif product.is_pendrive %}
                                 {% include 'ProductApp/spec_table/Pendrives.html' %}
-                            {% elif product.cattegory == 'Routers' %}
+                            {% elif product.is_router %}
                                 {% include 'ProductApp/spec_table/Routers.html' %}
-                            {% elif product.cattegory == 'Switches' %}
+                            {% elif product.is_switch %}
                                 {% include 'ProductApp/spec_table/Switches.html' %}
-                            {% elif product.cattegory == 'Motherboard' %}
+                            {% elif product.is_motheboard %}
                             {% include 'ProductApp/spec_table/Motherboard.html' %}
-                            {% elif product.cattegory == 'CPU' %}
+                            {% elif product.is_cpu %}
                                 {% include 'ProductApp/spec_table/CPU.html' %}
-                            {% elif product.cattegory == 'TV' %}
+                            {% elif product.is_tv %}
                                 {% include 'ProductApp/spec_table/TV.html' %}
-                            {% elif product.cattegory == 'Headphones' %}
+                            {% elif product.is_headphones %}
                                 {% include 'ProductApp/spec_table/Headphones.html' %}
                             {% endif %}
 
                         </table>
+
                     </div>
-
-
                 </div>
             </section>
 

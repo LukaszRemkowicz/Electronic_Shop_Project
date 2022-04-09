@@ -57,9 +57,9 @@
 
                             {% else %}
 
-                            <a href="" data-toggle="modal" data-target="#Modal1" class="btn d-flex text-center">
+                            <a href="" data-toggle="modal" data-target="#Modal1" class="btn d-flex text-center flex-column">
                                 <i class="fas fa-user-alt fa-2x"></i>
-                                <span class="nav-font-size"></span>Login
+                                <span class="nav-font-size">Login</span>
                             </a>
 
                         {% endif %}
@@ -73,9 +73,15 @@
                         </li>
 
                         <li class="nav-item" >
-                            <div id="shopping-cart" data-totalitems={% if not order %}'0'{% else %}"{{ order.get_cart_items }}"{% endif %}>
+                            <div id="shopping-cart">
 
-                                <a data-product="{{ product.id }}" data-action="add" class="btn d-flex flex-column text-center" href= "{% url 'shopping-cart' %}">
+                                <a
+                                    data-product="{{ product.id }}"
+                                    data-action="add"
+                                    class="btn d-flex flex-column text-center"
+                                    href= "{% url 'shopping-cart' %}"
+                                    data-totalitems={% if not order %}'0'{% else %}"{{ order.get_cart_items }}"{% endif %}
+                                >
                                     <i class="fas fa-shopping-cart fa-2x shopping-cart"></i>
                                     <span class="nav-font-size price-navbar">{% if order.get_cart_total %}{{order.get_cart_total|floatformat:2}}{% else %}0.00{% endif %} $</span>
                                 </a>

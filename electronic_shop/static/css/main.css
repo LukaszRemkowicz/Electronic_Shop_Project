@@ -1380,13 +1380,13 @@ a {
   width: 100%;
   height: 100%;
   color: black; }
-  #shopping-cart::before {
+  #shopping-cart a::before {
     content: attr(data-totalitems);
     font-size: 12px;
     font-weight: 600;
     position: absolute;
-    top: 50px;
-    right: 10px;
+    top: 0px;
+    right: 0px;
     background: #ff503c;
     line-height: 24px;
     padding: 0 5px;
@@ -5895,8 +5895,7 @@ a {
     text-align: center;
     font-weight: 100; }
   .navbar #shopping-cart {
-    position: relative;
-    padding-right: 1.5rem; }
+    position: relative; }
   .navbar .logo {
     width: 100%;
     height: 100%; }
@@ -6024,9 +6023,7 @@ a {
       border-right: 1px solid #cccccc; }
 
 #nav-line {
-  position: relative;
-  padding-right: 0.7rem;
-  margin-right: 0.7rem; }
+  position: relative; }
   #nav-line::after {
     display: block;
     content: '';
