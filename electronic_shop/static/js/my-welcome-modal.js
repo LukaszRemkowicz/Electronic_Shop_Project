@@ -2,8 +2,10 @@ const welcomeBtn = document.querySelector('.my-welcome-modal-btn');
 const myModal = document.querySelector('.my-welcome-modal');
 
 welcomeBtn.addEventListener('click', ()=> {
+    console.log('ok clicked')
     setCookie('welcomemodal','1',7);
-    myModal.style.display = 'none';
+    myModal.classList.remove('d-block');
+    myModal.classList.add('d-none')
 })
 
 

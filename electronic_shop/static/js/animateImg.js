@@ -44,6 +44,8 @@
 
 // });
 
+const getTotal = document.querySelector('[data-totalitems]')
+
 function getOffset(element){
     /** Helper fuinction to determinate top and left offset */
 
@@ -64,6 +66,8 @@ addToCart = [... addToCart]
 
 addToCart.forEach(element =>{
     element.addEventListener('click', function () {
+
+        getTotal.setAttribute('data-totalitems', parseInt(getTotal.dataset.totalitems) + 1)
 
         /** Slow down animation if user is at the bottom of the page */
         let indexOf = (addToCart.indexOf(element)%addToCart.length) *200
