@@ -5,24 +5,26 @@
     {% if same_products.colors|length >= 2 %}
 
         <div class="color-section data-blocks">
-            <p class="px-5 pt-1 text-left">
+            <p class=" pt-1 text-left">
                 Color:
             </p>
-            <div class="buttons d-flex px-5
+            <div class="buttons d-flex 
             {% if same_products.colors|length >= 4 %}flex-wrap
             {% endif %}" data-name='product-color-data'>
 
                 {% for element in same_products.colors %}
 
                     <button
-                    href=""
-                    class="btn-light d-inline py-2 mt-2 mb-2 mr-2 spec-product-data
-                    {% if element == product.color %} active-product-content bg-white
-                    {% else %} light-border
-                    {% endif %}
-                    {% if element|length >= 6 %} font-point-seven-rem px-2
-                    {% else %} px-3
-                    {% endif %} ">{{ element }}
+                        href=""
+                        class="btn-light d-inline py-2 mt-2 mb-2 mr-2 spec-product-data
+                        {% if element == product.color %} active-product-content bg-white
+                        {% else %} light-border
+                        {% endif %}
+                        {% if element|length >= 6 %} font-point-seven-rem px-2
+                        {% else %} px-3
+                        {% endif %} "
+                    >
+                        {{ element }}
                     </button>
 
                 {% endfor %}
@@ -35,10 +37,10 @@
     {% if same_products.memory|length >= 2 %}
 
         <div class="processor-section data-blocks">
-            <p class="px-5 pt-4 text-left">
+            <p class=" pt-4 text-left">
                 Memory:
             </p>
-            <div class="buttons d-flex px-5 sort_items
+            <div class="buttons d-flex  sort_items
             {% if same_products.memory|length >= 4 %}flex-wrap
             {% endif %}" data-name='product-memory-data'>
 
@@ -65,10 +67,10 @@
     {% if same_products.ram|length >= 2 %}
 
         <div class="ram-section data-blocks">
-            <p class="px-5 pt-4 text-left">
+            <p class=" pt-4 text-left">
                 RAM:
             </p>
-            <div class="buttons d-flex px-5 sort_items
+            <div class="buttons d-flex  sort_items
             {% if same_products.ram|length >= 4 %}flex-wrap
             {% endif %}" data-name='product-ram-data'>
 
@@ -95,10 +97,10 @@
     {% if same_products.battery|length >= 2 %}
 
         <div class="disc-section data-blocks">
-            <p class="px-5 pt-4 text-left">
+            <p class=" pt-4 text-left">
                 Battery [mAh]:
             </p>
-            <div class="buttons d-flex px-5 sort_items
+            <div class="buttons d-flex  sort_items
             {% if same_products.battery|length >= 4 %}flex-wrap
             {% endif %}" data-name='product-battery-data'>
 

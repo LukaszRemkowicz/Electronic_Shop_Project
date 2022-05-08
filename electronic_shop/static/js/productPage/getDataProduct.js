@@ -5,6 +5,7 @@ let productData = {}
 
 childProductData.forEach(element =>{
     element.addEventListener('click', () =>{
+
         let newArr = [...specProductData].map(element => element.parentNode)
         // let news = newArr.filter(elements => !elements.isEqualNode(element.parentNode));
         const newData = element.innerText.replaceAll('/n', '').trim()

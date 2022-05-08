@@ -12,7 +12,6 @@ const clearAllStarsEvent = (parentDiv, stars) => {
     parentDiv.parentNode.addEventListener('mouseleave', () => {
             for(let i = 0; i < stars.length; i++ ){
                 if(baseClass.includes(stars[i]) === false ){
-                    console.log('active mouseleave', active);
                     stars[i].className = 'far fa-star fa-2x stars-review-form';
                 }
             }
@@ -34,10 +33,8 @@ const clearStarsOnHoverEvent = (stars, clickedElement = '') => {
                 } else {
                     loop = active-1;
                 }
-                console.log('loop', loop);
 
                 for(let i = loop; i < starsReviewForm.length; i++ ){
-                    console.log('jestem w ifie', i);
                     starsReviewForm[i].className = 'far fa-star fa-2x stars-review-form';
                 }
             }
@@ -53,9 +50,9 @@ clearStarsOnHoverEvent(starsReviewForm)
 const colourStarsEvent = (stars) => {
     stars.forEach(element =>{
         element.parentElement.addEventListener('mouseover', ()=>{
+
             let valueOfStars = event.target.dataset.numofstars;
             active = valueOfStars
-            console.log('active', active);
 
             for (let i = 0; i< valueOfStars; i++){
                 starsReviewForm[i].className = 'fas fa-star font-red fa-2x stars-review-form';
@@ -71,7 +68,6 @@ colourStarsEvent(starsReviewForm)
 
 starsReviewForm.forEach(element =>{
     element.addEventListener('click', ()=>{
-        console.log('jestem w clicku?');
         let valueOfStars = event.target.dataset.numofstars
         numClicked = +valueOfStars;
         let parent = element.parentNode
@@ -82,7 +78,6 @@ starsReviewForm.forEach(element =>{
         colourStarsEvent(starsReviewForm);
     })
 })
-
 
 
 function colourStars(parentElement){
@@ -116,7 +111,6 @@ function colourStars(parentElement){
 
     starsReviewForm = [];
     starsReviewForm = document.querySelectorAll('.stars-review-form');
-    console.log('starsReviewForm', starsReviewForm);
     clearAllStarsEvent(getstarsParent, starsReviewForm);
 
     starsReviewForm.forEach(element =>{

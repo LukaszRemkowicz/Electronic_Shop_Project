@@ -10,20 +10,20 @@
 
     <!-- Buy it section -->
 
-    <div class=" m-auto d-flex justify-content-between small-container" >
+    <div class=" m-auto d-flex justify-content-between small-container product_main_container flex-lg-row flex-column" >
 
-        <div class="buys flex-column sticky-top align-items-start buy-section-hide " >
+        <div class="buys flex-column sticky-top align-items-start buy-section-hide" >
             <!-- id="fixed" -->
 
-            <div class="buys-container pt-4 pb-3 mt-4 bg-white box-shadow pl-5 pr-5">
+            <div class="buys-container w-100 p-4 mt-4 bg-white box-shadow">
 
                 <div class="">
 
                     <!-- Product price section -->
-                    {% if product.ean|get_mainproductdatabase_product_of_the_day %}
+                    {% if product.product_of_the_day %}
                         <div class="d-flex justify-content-between mb-2">
                             <p class="font-black line-through">{{ product.price|intcomma }}</p>
-                            <h2 class="price font-red">{{ product.ean|get_mainproductdatabase_promoprice|intcomma }}</h2>
+                            <h2 class="price font-red">{{ product.promotion }}</h2>
                         </div>
                     {% else %}
                         <h2 class="w-100 pb-4">{{ product.price|intcomma }} $</h2>
@@ -41,7 +41,7 @@
                             {% endif %}
 
                         </select>
-                        <a  class="ml-2 btn-red py-2 text-center w-100 update-cart buyNow" style="cursor: pointer" data-product="{{ product|get_main_product_id }}" data-action="add">Buy now</a>
+                        <a  class="ml-2 btn-red py-2 text-center w-100 update-cart buyNow" style="cursor: pointer" data-product="{{ product.id }}" data-action="add">Buy now</a>
 
                     </div>
 
@@ -52,7 +52,7 @@
 
                     <div class="d-flex basket">
                         <button href="#" type="button" class="add-to-cart btn-light ml-2 p-2 pt-2 pb-2 text-center product-not-avaiable {% if pieces <= 0%} d-block {% else %} d-none {% endif %}" disabled>Product is not avaiable </button>
-                        <a href="#" data-product="{{ product|get_main_product_id }}" data-action="add" type="button" class="add-to-cart btn-red ml-2 pt-2 pb-2 text-center update-cart {% if pieces <= 0%} d-none {% else %} d-block {% endif %}">Add to cart </a>
+                        <a href="#" data-product="{{ product.id }}" data-action="add" type="button" class="add-to-cart btn-red ml-2 pt-2 pb-2 text-center update-cart {% if pieces <= 0%} d-none {% else %} d-block {% endif %}">Add to cart </a>
                     </div>
 
                    {% include 'ProductApp/partials/free_deliver.html' %}
@@ -66,7 +66,55 @@
             </div>
         </div>
 
-        <div class="rest-section" style="width: 100%;">
+        <!-- Buy it section -->
+
+        <div class="buy d-none align-items-start my-4" id="fixed">
+
+            <div class="buy-container justify-content-center px-4 pt-4 pb-3 bg-white box-shadow">
+
+                <div class="d-flex">
+
+                    {% comment %} <div class="align-self-center w-20 product_price">
+                        <h5 class="w-100 text-left">{{product.price}}</h5>
+                    </div> {% endcomment %}
+
+                    <div class="align-self-center product_price">
+                        {% if product.product_of_the_day %}
+                                <p class="font-black line-through">{{ product.price|intcomma }}</p>
+                                <h5 class="price font-red ml-3">{{ product.promotion }}</h5>
+
+                        {% else %}
+                            <h5 class="w-100">{{ product.price|intcomma }} $</h5>
+                        {% endif %}
+                    </div>
+
+                    <div class="buy-it d-flex ml-2">
+                        <a href="" class="btn-red text-center">Buy now</a>
+                    </div>
+
+                    <div class="d-none d-sm-flex justify-content-between pl-3 left-pcs">
+                        <p class="">or</p>
+                    </div>
+
+                    <div class="d-none d-sm-flex basket">
+                        <a href="" class=" btn-red ml-2 p-2 pt-2 pb-2 text-center add-to-cart">Add to card</a>
+                    </div>
+
+                </div>
+                
+                {% comment %} {% if not product.product_of_the_day %} {% endcomment %}
+                <div class="free-deliver d-sm-none d-md-flex border-top border-bottom ml-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-truck mr-2 font-red mt-1" viewBox="0 0 16 16">
+                        <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                    </svg>
+                    <h6 class="my-auto m-0 p-0">Free Delivery</h5>
+                </div>
+                {% comment %} {% endif %} {% endcomment %}
+
+            </div>
+        </div>
+
+        <div class="rest-section">
             <section id="product-section">
 
                 <div class=" d-block product-sect">
@@ -76,60 +124,66 @@
                         <div class="main-product-div d-flex bg-white mt-4 mb-4 justify-content-between">
 
                             <!-- product images section -->
-                            <div class="d-flex flex-column mini-images-section">
-                                {% for key, value in product.return_images.items %}
-                                    <img src="{{value}}" alt="" class="
-                                    {% if product.main_photo and value == product.main_photo.url %}
-                                    active-product-content
-                                    {% else %}
-                                    mini-img
-                                    {% endif %} p-3"
-                                    data-image-name='{{ key }}'>
-                                {% endfor %}
+                                <div class="d-flex flex-column mini-images-section">
+                                    {% for key, value in product.product_details.return_images.items %}
+                                        <img
+                                            src="{{value}}"
+                                            alt=""
+                                            class="
+                                                {% if product.main_photo and value == product.main_photo.url %}
+                                                active-product-content
+                                                {% else %}
+                                                mini-img
+                                                {% endif %}"
+                                            data-image-name='{{ key }}'
+                                        >
+                                    {% endfor %}
+                                </div>
 
-                            </div>
                             <div class="d-flex main-img">
                                 <div class="align-self-center m-auto main-img-div">
                                     <img src="{% if product.main_photo %}{{ product.main_photo.url }}{% endif %}" class="main-pic" alt="" />
-									{% comment %} <i class="far fa-heart font-red fa-2x"></i> {% endcomment %}
-                                    {% comment %} <i class="lni lni-heart font-light-grey"></i> {% endcomment %}
                                 </div>
                             </div>
 
-                            <div class="position-relative">
+                            <div class="position-relative heart_section">
                                 <i class="lni-heart-absolute lni lni-heart font-light-grey hearts
-                                {% if product|check_like:request %}
-                                d-none
-                                {% endif %}" data-heart={{product|get_main_product_id}}></i>
+                                    {% if product|check_like:request %}
+                                    d-none
+                                    {% endif %}" data-heart={{product.id}}
+                                ></i>
 
                                 <i class="fas fa-heart font-red fa-2x hearts
-                                {% if not product|check_like:request %}
-                                d-none
-                                {% endif %}" data-heart={{product|get_main_product_id}}></i>
+                                    {% if not product|check_like:request %}
+                                    d-none
+                                    {% endif %}" data-heart={{product.id}}
+                                ></i>
                             </div>
 
                             <!-- product filter section -->
 
-                            <div class="main-content d-flex flex-column pb-5 pt-4 border-left">
+                            <div class="main-content d-flex flex-column pb-5 pt-4 border-left product_description">
 
-                                {% if product.ean|get_mainproductdatabase_product_of_the_day %}
-                                <div class="text-left pl-5 font-point-seven-rem mb-1">
-                                    <p class='btn-red d-inline p-1 w-50'>Product of the day</p>
-                                </div>
+                                {% if product.product_of_the_day %}
+                                    <div class="text-left font-point-seven-rem mb-1">
+                                        <p class='btn-info d-inline p-1 w-50'>Product of the day</p>
+                                    </div>
                                 {% endif %}
-                                <h4 class="mt-2 mb-0 text-left pl-5 product-title">{{ product.name }}</h4>
+
+                                <h4 class="mt-2 mb-0 text-left product-title">{{ product.name }}</h4>
 
                                 <div class="d-flex w-100 product-id">
-                                    <p class="text-left pl-5 pt-1 d-inline font-light-grey">Product ID: {{ product|get_main_product_id }}</p>
+                                    <p class="text-left pt-1 d-inline font-light-grey">Product ID: {{ product.id }}</p>
                                     {% if same_products.items|length >= 2 %}
                                         {{cattegory}}
                                         <a href="{% url 'products_cart' product.cattegory %}?ids={{ same_products.items_id }}" class="check-similar text-left ml-3 pt-1 d-inline font-light-grey">Check similar products</a>
                                     {% endif %}
                                 </div>
 
-                                <div class="text-left pl-5 d-flex flex-column filter-section-reviews align-content-center">
+                                <div class="text-left d-flex flex-column filter-section-reviews align-content-center">
 
-                                    <div class="d-flex">
+                                    <div class="d-flex justify-content-between">
+
                                         <div class="d-flex">
                                             {% for element in product.get_star_avg.1 %}
 
@@ -147,100 +201,57 @@
                                             <a href="#opinions" class='font-red pl-1 m-auto'>({% if not product.get_num_of_reviews %}0{% else %}{{product.get_num_of_reviews}}{% endif %})</a>
                                         </div>
 
-                                        {% comment %} {% if product.get_num_of_questions %} {% endcomment %}
+                                        <div class="">
+                                            <a href='#ask-something' class='m-auto w-100 font-brown'>{{ product.get_num_of_questions }} Questions</a>
+                                        </div>
 
-                                            <div class="pl-5">
-                                                <a href='#ask-something' class='m-auto w-100 font-brown'>{{ product.get_num_of_questions }} Questions</a>
-                                            </div>
                                     </div>
 
-                                    {% comment %} {% endif %} {% endcomment %}
-
-                                    <div class="pt-2">
-                                        <p class='m-auto w-100 font-brown'>This product has been bought by {{ product.bought_num }} people </p>
-                                    </div>
+                                    {% if product.get_num_of_questions %}
+                                        <div class="pt-2">
+                                            <p class='m-auto w-100 font-brown'>This product has been bought by {{ product.bought_num }} people </p>
+                                        </div>
+                                    {% endif %}
 
                                 </div>
 
                                 <div class="select-section">
-                                    {% if product.cattegory == 'Phones' %}
-                                        {% include 'ProductApp/products_filter_boxes/phones.html' %}
-                                    {% elif product.cattegory == 'Laptops' %}
-                                        {% include 'ProductApp/products_filter_boxes/Laptops.html' %}
-                                    {% elif product.cattegory == 'PC' %}
-                                        {% include 'ProductApp/products_filter_boxes/PC.html' %}
-                                    {% elif product.cattegory == 'Monitors' %}
-                                        {% include 'ProductApp/products_filter_boxes/Monitor.html' %}
-                                    {% elif product.cattegory == 'Accesories for laptops' %}
-                                        {% include 'ProductApp/products_filter_boxes/Accesories for laptops.html' %}
-                                    {% elif product.cattegory == 'SSD' %}
-                                        {% include 'ProductApp/products_filter_boxes/SSD.html' %}
-                                    {% elif product.cattegory == 'Graphs' %}
-                                        {% include 'ProductApp/products_filter_boxes/Graphs.html' %}
-                                    {% elif product.cattegory == 'Ram' %}
-                                        {% include 'ProductApp/products_filter_boxes/Ram.html' %}
-                                    {% elif product.cattegory == 'Pendrives' %}
-                                        {% include 'ProductApp/products_filter_boxes/Pendrives.html' %}
-                                    {% elif product.cattegory == 'Routers' %}
-                                        {% include 'ProductApp/products_filter_boxes/Routers.html' %}
-                                    {% elif product.cattegory == 'Switches' %}
-                                        {% include 'ProductApp/products_filter_boxes/Switches.html' %}
-                                    {% elif product.cattegory == 'Motherboard' %}
-                                        {% include 'ProductApp/products_filter_boxes/Motherboard.html' %}
-                                    {% elif product.cattegory == 'CPU' %}
-                                        {% include 'ProductApp/products_filter_boxes/CPU.html' %}
-                                    {% elif product.cattegory == 'TV' %}
-                                        {% include 'ProductApp/products_filter_boxes/TV.html' %}
-                                    {% elif product.cattegory == 'Headphones' %}
-                                        {% include 'ProductApp/products_filter_boxes/Headphones.html' %}
+                                    {% if product.cattegory == 'Phones'%}
+                                        {% include 'ProductApp/products_filter_boxes/phones.html' with product=product.product_details %}
+                                    {% elif product.cattegory == 'Laptops'%}
+                                        {% include 'ProductApp/products_filter_boxes/Laptops.html' with product=product.product_details %}
+                                    {% elif product.cattegory == 'PC'%}
+                                        {% include 'ProductApp/products_filter_boxes/PC.html' with product=product.product_details %}
+                                    {% elif product.cattegory == 'Monitors'%}
+                                        {% include 'ProductApp/products_filter_boxes/Monitor.html' with product=product.product_details %}
+                                    {% elif product.cattegory == 'Accesories for laptops'%}
+                                        {% include 'ProductApp/products_filter_boxes/Accesories for laptops.html' with product=product.product_details %}
+                                    {% elif product.cattegory == 'SSD'%}
+                                        {% include 'ProductApp/products_filter_boxes/SSD.html' with product=product.product_details %}
+                                    {% elif product.cattegory == 'Graphs'%}
+                                        {% include 'ProductApp/products_filter_boxes/Graphs.html' with product=product.product_details %}
+                                    {% elif product.cattegory == 'Ram'%}
+                                        {% include 'ProductApp/products_filter_boxes/Ram.html' with product=product.product_details %}
+                                    {% elif product.cattegory == 'Pendrives'%}
+                                        {% include 'ProductApp/products_filter_boxes/Pendrives.html' with product=product.product_details %}
+                                    {% elif product.cattegory == 'Routers'%}
+                                        {% include 'ProductApp/products_filter_boxes/Routers.html' with product=product.product_details %}
+                                    {% elif product.cattegory == 'Switches'%}
+                                        {% include 'ProductApp/products_filter_boxes/Switches.html' with product=product.product_details %}
+                                    {% elif product.cattegory == 'Motherboard'%}
+                                        {% include 'ProductApp/products_filter_boxes/Motherboard.html' with product=product.product_details %}
+                                    {% elif product.cattegory == 'CPU'%}
+                                        {% include 'ProductApp/products_filter_boxes/CPU.html' with product=product.product_details %}
+                                    {% elif product.cattegory == 'TV'%}
+                                        {% include 'ProductApp/products_filter_boxes/TV.html' with product=product.product_details %}
+                                    {% elif product.cattegory == 'Headphones'%}
+                                        {% include 'ProductApp/products_filter_boxes/Headphones.html' with product=product.product_details %}
                                     {% endif %}
                                 </div>
+
                             </div>
                         </div>
-
                     </div>
-
-                    <!-- Buy it section -->
-
-                    <div class="buy d-none flex-column align-items-start my-4" id="fixed">
-
-                        <div class="buy-container justify-content-around px-4 pt-4 pb-3 bg-white box-shadow">
-                            <div class="align-self-center w-20">
-                                <h2 class="w-100 pb-4 text-left">3 299 zł</h2>
-                            </div>
-
-
-
-                            <div class="buy-it d-flex">
-                                <a href="" class="btn-red ml-2 p-1 py-2 mr-2 text-center">Buy now</a>
-                                <select name="amount" id="" class="">
-
-                                    {% for num in  pieces_range %}
-
-                                        <option value="{{ num }}">{{ num }}</option>
-
-                                    {% endfor %}
-
-                                    </select>
-                                </div>
-
-                            <div class="d-flex justify-content-between pl-3 left-pcs">
-                                <p class="">or</p>
-                                <p class="text-right pt-2 font-light-grey mb-0"><span class="hide-it">Left: {{ product.quantity }} pcs</span></p>
-                            </div>
-
-                            <div class="d-flex basket ">
-                                <a href="" class=" btn-red border-rounded ml-2 p-2 pt-2 pb-2 text-center add-to-cart">Add to card</a>
-                            </div>
-
-                            <div class="free-deliver d-flex mt-4 border-top border-bottom py-3">
-
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-truck mr-2 font-red" viewBox="0 0 16 16">
-                                    <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                                </svg>
-                                <h3 class="my-auto">Free Delivery</h3>
-                            </div>
-                        </div>
                 </div>
             </section>
 
@@ -266,68 +277,69 @@
 
 
             {% if product.is_phone %}
-                 {% include 'ProductApp/product_description_templates/Phones.html' %}
+                {% include 'ProductApp/product_description_templates/Phones.html' %}
             {% elif product.is_laptop %}
-                 {% include 'ProductApp/product_description_templates/Laptops.html' %}
+                {% include 'ProductApp/product_description_templates/Laptops.html' %}
             {% elif product.is_pc %}
-                 {% include 'ProductApp/product_description_templates/PC.html' %}
+                {% include 'ProductApp/product_description_templates/PC.html' %}
             {% elif product.is_monitor %}
-                 {% include 'ProductApp/product_description_templates/Monitor.html' %}
+                {% include 'ProductApp/product_description_templates/Monitor.html' %}
             {% elif product.is_ssd %}
-                 {% include 'ProductApp/product_description_templates/SSD.html' %}
+                {% include 'ProductApp/product_description_templates/SSD.html' %}
             {% elif product.is_graph %}
-                 {% include 'ProductApp/product_description_templates/Graphs.html' %}
+                {% include 'ProductApp/product_description_templates/Graphs.html' %}
             {% elif product.is_ram %}
-                 {% include 'ProductApp/product_description_templates/Ram.html' %}
+                {% include 'ProductApp/product_description_templates/Ram.html' %}
             {% elif product.is_router %}
-                 {% include 'ProductApp/product_description_templates/Routers.html' %}
+                {% include 'ProductApp/product_description_templates/Routers.html' %}
             {% elif product.is_motheboard %}
-                 {% include 'ProductApp/product_description_templates/Motherboard.html' %}
+                {% include 'ProductApp/product_description_templates/Motherboard.html' %}
             {% elif product.is_cpu %}
-                 {% include 'ProductApp/product_description_templates/CPU.html' %}
+                {% include 'ProductApp/product_description_templates/CPU.html' %}
             {% elif product.is_tv %}
-                 {% include 'ProductApp/product_description_templates/TV.html' %}
+                {% include 'ProductApp/product_description_templates/TV.html' %}
             {% endif %}
 
 
             <!-- Specification -->
-
+            {{product.product_details}}
             <section>
                 <div class="mb-3 pb-4 pt-4" id="specification">
                     <div class="small-container bg-white box-shadow mx-0 p-5">
 
                         <table class="table table-striped account-table">
 
+
                             {% if product.is_phone %}
-                                {% include 'ProductApp/spec_table/Phones.html' %}
+                                {% include 'ProductApp/spec_table/Phones.html'  with product=product.product_details %}
                             {% elif product.is_laptop %}
-                                {% include 'ProductApp/spec_table/Laptops.html' %}
+                                {% include 'ProductApp/spec_table/Laptops.html'  with product=product.product_details %}
                             {% elif product.is_pc %}
-                                {% include 'ProductApp/spec_table/PC.html' %}
+                                {% include 'ProductApp/spec_table/PC.html'  with product=product.product_details %}
                             {% elif product.is_monitor %}
-                                {% include 'ProductApp/spec_table/Monitor.html' %}
+                                {% include 'ProductApp/spec_table/Monitor.html'  with product=product.product_details %}
                             {% elif product.is_accessories %}
-                                {% include 'ProductApp/spec_table/Accesories for laptops.html' %}
+                                {% include 'ProductApp/spec_table/Accesories for laptops.html'  with product=product.product_details %}
                             {% elif product.is_ssd %}
-                                {% include 'ProductApp/spec_table/SSD.html' %}
+                                {% include 'ProductApp/spec_table/SSD.html'  with product=product.product_details %}
                             {% elif product.is_graph %}
-                                {% include 'ProductApp/spec_table/Graphs.html' %}
+                                {% include 'ProductApp/spec_table/Graphs.html'  with product=product.product_details %}
                             {% elif product.is_ram %}
-                                {% include 'ProductApp/spec_table/Ram.html' %}
+                                {% include 'ProductApp/spec_table/Ram.html'  with product=product.product_details %}
                             {% elif product.is_pendrive %}
-                                {% include 'ProductApp/spec_table/Pendrives.html' %}
+                                {% include 'ProductApp/spec_table/Pendrives.html'  with product=product.product_details %}
                             {% elif product.is_router %}
-                                {% include 'ProductApp/spec_table/Routers.html' %}
+                                {% include 'ProductApp/spec_table/Routers.html'  with product=product.product_details %}
                             {% elif product.is_switch %}
-                                {% include 'ProductApp/spec_table/Switches.html' %}
+                                {% include 'ProductApp/spec_table/Switches.html'  with product=product.product_details %}
                             {% elif product.is_motheboard %}
-                            {% include 'ProductApp/spec_table/Motherboard.html' %}
+                                {% include 'ProductApp/spec_table/Motherboard.html'  with product=product.product_details %}
                             {% elif product.is_cpu %}
-                                {% include 'ProductApp/spec_table/CPU.html' %}
+                                {% include 'ProductApp/spec_table/CPU.html'  with product=product.product_details %}
                             {% elif product.is_tv %}
-                                {% include 'ProductApp/spec_table/TV.html' %}
+                                {% include 'ProductApp/spec_table/TV.html'  with product=product.product_details %}
                             {% elif product.is_headphones %}
-                                {% include 'ProductApp/spec_table/Headphones.html' %}
+                                {% include 'ProductApp/spec_table/Headphones.html'  with product=product.product_details %}
                             {% endif %}
 
                         </table>
@@ -337,85 +349,57 @@
             </section>
 
             <!-- Opinions -->
-            <section class="my-3">
+            <section class="my-3 opinion_section">
                 <div class="d-flex flex-column" id="opinions">
                     <div class="small-container pt-3 mx-0 bg-white box-shadow">
-                        <div class="d-flex border-bottom pb-5 mx-5 opinion-div justify-content-between">
-                            <div class="d-flex flex-column pb-3 stars-class">
+                        <div class="d-flex border-bottom p-4 opinion-div justify-content-between">
+                            <div class="d-none d-md-flex flex-column stars-class">
                                 <h4 class="">Opinions</h4>
                                 <div class="stars">
 
                                     {% for element in product.get_star_avg.1 %}
-
                                         {% if element %}
-
                                             <i class="fas fa-star font-red fa-2x"></i>
-
                                         {% else %}
-
                                             <i class="far fa-star fa-2x"></i>
-
                                         {% endif %}
-
                                     {% endfor %}
-                                    {% comment %} <i class="fas fa-star font-red fa-3x"></i>
-                                    <i class="fas fa-star font-red fa-3x"></i>
-                                    <i class="fas fa-star font-red fa-3x"></i>
-                                    <i class="far fa-star fa-3x"></i>
-                                    <i class="far fa-star fa-3x"></i> {% endcomment %}
+
                                 </div>
                                 <a href="#reviews" class="w-100">{{ product.get_num_of_reviews }} review{{ product.get_num_of_reviews|pluralize }}</a>
                             </div>
-                            <div class="rated-on d-flex flex-column pl-5">
-                                <p class="">This product is rated on</p>
+
+                            {% if not product.get_stars.items %}
+                                <div class="d-md-none d-sm-block">
+                                    <p>This product has no reviews yet</p>
+                                </div>
+                            {% endif %}
+
+                            <div class="rated-on d-none d-md-flex flex-column">
+                                <p class="m-0">This product is rated on</p>
                                 <h2><span> {{product.get_star_avg.0}}</span>/5</h2>
                             </div>
-                            <div class="progress-bars ml-4">
-                                {% for key, value in product.get_stars.items %}
-                                <div class="d-flex">
-                                    <p class="mb-0 bar">{{ key }}</p>
-                                    <div class="bar d-flex">
-                                        <i class="fas fa-star font-red align-self-center"></i>
-                                    </div>
-                                    <div class="progress align-items-center w-100 mt-1 mx-2 bar">
-                                        <div class="progress-bar" role="progressbar" style="width: {{ value.1 }}%; height: 100%;" aria-valuenow="{{ value.1 }}" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mb-0 bar"> {% if value == 0 %}0{% else %}{{ value.1 }}{% endif %}%</p>
-                                </div>
 
-                                {% endfor %}
+                            {% if product.get_stars.items %}
+                                <div class="progress-bars">
 
-                                {% comment %} <div class="d-flex mb-2">
-                                    <p class="mb-0">2</p>
-                                    <div class="progress align-items-center w-100 mt-1 mx-2">
-                                        <div class="progress-bar" role="progressbar" style="width: 50%; height: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    {% for key, value in product.get_stars.items %}
+                                    <div class="d-flex">
+                                        <p class="mb-0 bar">{{ key }}</p>
+                                        <div class="bar d-flex">
+                                            <i class="fas fa-star font-red align-self-center"></i>
+                                        </div>
+                                        <div class="progress align-items-center w-100 mt-1 mx-2 bar">
+                                            <div class="progress-bar" role="progressbar" style="width: {{ value.1 }}%; height: 100%;" aria-valuenow="{{ value.1 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <p class="mb-0 bar"> {% if value == 0 %}0{% else %}{{ value.1 }}{% endif %}%</p>
                                     </div>
-                                    <p class="mb-0">2</p>
-                                </div>
-                                <div class="d-flex mb-2">
-                                    <p class="mb-0">2</p>
-                                    <div class="progress align-items-center w-100 mt-1 mx-2">
-                                        <div class="progress-bar" role="progressbar" style="width: 75%; height: 100%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mb-0">2</p>
-                                </div>
-                                <div class="d-flex mb-2">
-                                    <p class="mb-0">2</p>
-                                    <div class="progress align-items-center w-100 mt-1 mx-2">
-                                        <div class="progress-bar" role="progressbar" style="width: 100%; height: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mb-0">2</p>
-                                </div>
-                                <div class="d-flex mb-2">
-                                    <p class="mb-0">2</p>
-                                    <div class="progress align-items-center w-100 mt-1 mx-2">
-                                        <div class="progress-bar" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mb-0">2</p>
-                                </div> {% endcomment %}
-                            </div>
+                                    {% endfor %}
 
-                            <div class="add-opinion">
+                                </div>
+                            {% endif %}
+
+                            <div class="add-opinion d-flex">
 
                                 <div class="modal fade" id="opinion-modal" tabindex="-1" role="dialog" aria-labelledby="question-modalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg" role="document">
@@ -457,7 +441,7 @@
                                                             <img src="{% if product.main_photo %}{{product.main_photo.url}}{% endif %}" alt="">
                                                         </div>
                                                     </div>
-                                                    <textarea class="form-control" data-productid='{{ product|get_main_product_id }}' id="opinion-form" rows="3"></textarea>
+                                                    <textarea class="form-control" data-productid='{{ product.id }}' id="opinion-form" rows="3"></textarea>
 
 
                                                 </div>
@@ -468,7 +452,7 @@
                                     </div>
                                 </div>
                                 <div class="write-opinion">
-                                    <button type="button" class="btn-brown mx-4 px-5 box-shadow write-opinion-btn" data-toggle="modal" data-target="#opinion-modal">
+                                    <button type="button" class="btn-brown px-sm-5 box-shadow write-opinion-btn" data-toggle="modal" data-target="#opinion-modal" value=>
                                         Write opinion
                                     </button>
                                 </div>
@@ -521,7 +505,7 @@
 
             <div class="d-flex ask" id="ask-something">
                 <div class="small-container w-100 bg-white pt-4 mb-4 box-shadow mx-0">
-                    <div class="d-flex border-bottom pb-2 mx-5 ask-form justify-content-between">
+                    <div class="d-flex border-bottom p-4 ask-form justify-content-between">
                         <p>Do you have any question?</p>
 
                         <div class="modal fade" id="question-modal" tabindex="-1" role="dialog" aria-labelledby="question-modalLabel" aria-hidden="true">
@@ -534,15 +518,12 @@
                                             <p class="align-self-center w-100 px-2">{{ product.name }}</p>
                                         </div>
                                     </div>
-                                    {% comment %} <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button> {% endcomment %}
                                 </div>
                                 <div class="modal-body">
 
                                     <!-- Form question submit -->
 
-                                    <form method="POST" class='question-form' data-productid='{{ product|get_main_product_id }}'>
+                                    <form method="POST" class='question-form' data-productid='{{ product.id }}'>
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <input type="text" class='form-control mb-1' placeholder='Name..'>
@@ -554,8 +535,8 @@
                             </div>
                             </div>
                         </div>
-                        <div class="">
-                            <button type="button" class="btn-brown mx-4 px-5 box-shadow" data-toggle="modal" data-target="#question-modal">
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn-brown mx-sm-4 px-sm-5 box-shadow" data-toggle="modal" data-target="#question-modal">
                                 Ask something
                             </button>
                         </div>
@@ -601,15 +582,10 @@
 
     <!-- Scripts -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.min.js" integrity="sha512-QABeEm/oYtKZVyaO8mQQjePTPplrV8qoT7PrwHDJCBLqZl5UmuPi3APEcWwtTNOiH24psax69XPQtEo5dAkGcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    {% comment %} <script src="static/js/jquery.sticky.js"></script> {% endcomment %}
-    {% comment %} <script>
-        $(document).ready(function(){
-            $("#fixed").sticky({topSpacing:0});
-        });
-    </script> {% endcomment %}
-    <script> const productId = '{{ product|get_main_product_id }}';</script>
+    {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.min.js" integrity="sha512-QABeEm/oYtKZVyaO8mQQjePTPplrV8qoT7PrwHDJCBLqZl5UmuPi3APEcWwtTNOiH24psax69XPQtEo5dAkGcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> {% endcomment %}
+
+    <script> const productId = '{{ product.product_details.id }}';</script>
     <script> const productIds = '{{ same_products.items_id }}'; </script>
     <script src="{% static 'js/ProductPage/productReview.js' %}"></script>
     <script src="{% static 'js/ProductPage/productReviewStars.js' %}"></script>
@@ -621,7 +597,7 @@
     <script src="{% static 'js/productPage/tables.js' %}"></script>
     <script src="{% static 'js/productPage/jumpSmooth.js' %}"></script>
     <script src="{% static 'js/product_search/changeUrlFunction.js' %}"></script>
-    <script src="{% static 'js/productPage/checkSimilar.js' %}"></script>
+    {% comment %} <script src="{% static 'js/productPage/checkSimilar.js' %}"></script> {% endcomment %}
     <script src="{% static 'js/product_search/catchHeart.js' %}"></script>
     <script src="{% static 'js/productPage/fallowUserCookie.js' %}" type="text/javascript"></script>
 

@@ -49,6 +49,4 @@ function acceptReview(event){
 
 }
 
-
 reviewForm.addEventListener('submit', acceptReview);
-

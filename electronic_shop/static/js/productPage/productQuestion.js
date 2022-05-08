@@ -54,7 +54,6 @@ changePic.forEach( element => {
     } else{
         result = 'US'
     }
-    
 
     element.innerHTML = result
 })

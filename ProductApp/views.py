@@ -1,3 +1,4 @@
+from bdb import Breakpoint
 from typing import Any, Dict
 import logging
 
@@ -103,7 +104,8 @@ class ProductPage(ListView):
         else:
             pieces_range = range(1, 11)
 
-        product = try_to_get_product(product, "")
+
+        # product = try_to_get_product(product, "")
 
         reviews = models.Reviews.objects.filter(
             product_id=product_id, checked_by_employer=True

@@ -1,5 +1,5 @@
-const tables = document.querySelectorAll('#specification p:nth-child(1)');
-const tablesSecondP = document.querySelectorAll('#specification p:nth-child(2)');
+const tables = document.querySelectorAll('#specification .spec__table p:nth-child(1)');
+const tablesSecondP = document.querySelectorAll('#specification .spec__table p:nth-child(2)');
 const tablesh6 = document.querySelectorAll('#specification h6');
 
 

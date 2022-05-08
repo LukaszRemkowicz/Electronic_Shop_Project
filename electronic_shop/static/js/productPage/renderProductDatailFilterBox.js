@@ -20,7 +20,7 @@ const createElements = (element) => {
     const newSpan = document.createElement('span');
 
     newDiv.className = 'd-flex';
-    newP.className = 'pl-5 text-left font-light-grey';
+    newP.className = 'text-left font-light-grey';
     let text = element.split('_').join(' ').capitalize();
     if (text === 'P c i e'){
         text = text.replaceAll(' ', '')
@@ -55,8 +55,9 @@ if(productDataBlock.length <= 2 && productDataBlock.length >= 1 ){
             return response.json()
         })
         .then((data) =>{
+
             newProduct = JSON.parse(data);
-            console.log('datka', data);
+
             try{
                 const productSpecList = productDict[newProduct.cattegory];
                 if (productSpecList !== undefined){
@@ -64,7 +65,7 @@ if(productDataBlock.length <= 2 && productDataBlock.length >= 1 ){
                     newSpecDiv.className = 'pt-3 data-blocks';
 
                     productSpecList.forEach(element =>{
-                        console.log(element)
+
                         newSpecDiv.appendChild(createElements(`${element}`));
                     });
                     getProductDataBars[getProductDataBars.length-1].appendChild(newSpecDiv)

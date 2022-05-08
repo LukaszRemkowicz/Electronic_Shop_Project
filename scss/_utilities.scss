@@ -93,13 +93,11 @@ li{
 
         box-shadow:inset 0px 1px 0px 0px #ffffff;
         background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-        // background-color:#f9f9f9;
         border-radius:6px;
         border:1px solid #dcdcdc;
         display:inline-block;
         cursor:pointer;
         color:#666666;
-        // font-family:Arial;
         font-size:15px;
         font-weight:bold;
         padding:6px 24px;
@@ -119,8 +117,19 @@ li{
     }
 
     &-red{
-        background: $main-red-color;
-        color: $font-color;
+
+        box-shadow:inset 0px 1px 0px 0px #cf866c;
+        background:linear-gradient(to bottom,  $main-red-color 5%, #e15535 100%);
+        background-color:#d0451b;
+        border-radius:3px;
+        border:1px solid #942911;
+        display:inline-block;
+        cursor:pointer;
+        color:#ffffff;
+        font-size:13px;
+        padding:6px 24px;
+        text-decoration:none;
+        text-shadow:0px 1px 0px #854629;
     }
 
     &-blue{
@@ -132,6 +141,28 @@ li{
     &-brown{
         background: $main-brown-colour;
         color: $font-color;
+    }
+
+    &-info{
+        box-shadow:inset 0px 0px 0px 50px #e67a73;
+        background-color:#e4685d;
+        border:1px solid #ffffff;
+        display:inline-block;
+        cursor:pointer;
+        color:#ffffff;
+        font-family:Arial;
+        font-size:15px;
+        padding:8px 15px;
+        text-decoration:none;
+        text-shadow:0px 0px 0px #b23e35;
+        
+        &:hover {
+            background-color:#eb675e;
+        }
+        &:active {
+            position:relative;
+            top:1px;
+        }
     }
 }
 

@@ -171,7 +171,7 @@ class Inherit(models.Model):
             if frac:
                 return num
             else:
-                return (int(whole),)
+                return (int(whole))
         except TypeError:
             return ""
 

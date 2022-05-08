@@ -123,13 +123,13 @@ def get_category(request: HttpRequest) -> int:
     ]
 
 
-@register.filter
-def get_mainproductdatabase_product_of_the_day(ean: int) -> bool:
-    product = MainProductDatabase.objects.get(ean=ean)
-    return True if product.product_of_the_day else False
+# @register.filter
+# def get_mainproductdatabase_product_of_the_day(ean: int) -> bool:
+#     product = MainProductDatabase.objects.get(ean=ean)
+#     return True if product.product_of_the_day else False
 
 
-@register.filter
-def get_mainproductdatabase_promoprice(ean: int) -> bool:
-    product = MainProductDatabase.objects.get(ean=ean)
-    return product.promotion
+# @register.filter
+# def get_mainproductdatabase_promoprice(ean: int) -> bool:
+#     product = MainProductDatabase.objects.get(ean=ean)
+#     return product.promotion

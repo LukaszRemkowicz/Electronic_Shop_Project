@@ -250,15 +250,15 @@
 #nav-line{
     position: relative;
 
-        &::after{
-            display: block;
-            content:'';
-            position: absolute;
-            bottom: 0.4rem;
-            right: 0px;
-            width: 1%;
-            height: 90%;
-            border-right: 1px solid rgb(204, 204, 204);
+    &::after{
+        display: block;
+        content:'';
+        position: absolute;
+        bottom: 0.4rem;
+        right: 0px;
+        width: 1%;
+        height: 90%;
+        border-right: 1px solid rgb(204, 204, 204);
 
     }
 }

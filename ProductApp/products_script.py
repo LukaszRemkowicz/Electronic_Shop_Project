@@ -1,3 +1,5 @@
+# TODO add this script to menagement
+
 import itertools
 
 from ProductApp.products import (
